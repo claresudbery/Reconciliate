@@ -1,0 +1,80 @@
+NB: The original process which was in here has been moved to the same place as the main config. 
+ 
+## How to Use This Software 
+ 
+This software was designed specifically for one person's accounting needs, so it is not designed to be more generally useful. 
+This file documents the way this software was designed to be used. 
+!! This software is a work in progress and may contain bugs. 
+The functionality is regularly updated and I can't guarantee this file will always be up to date. 
+  
+### A lot of functionality won't run on a Mac 
+ 
+!! Most of the functionality in this software assumes you have a Microsoft Excel spreadsheet! This functionality will not work on a Mac. 
+There is some functionality that operates purely on csv files, which will work on a Mac. 
+Also it is possible to convert the project to .Net Core and run it on a Mac, but in that case stubs will be used instead of spreadsheets. 
+See your-project-path/DotNetConversion.sh for info on .Net Core. 
+ 
+### You will have to edit the code for your own banks and credit cards. 
+
+The software is designed to read csv-format statements downloaded from bank and credit cards. 
+BUT it only handles one bank and two credit card providers. 
+You will have to edit the code to handle the data format used in csv statements by your own bank and credit card providers. 
+The relevant code is in the following files: 
+In this folder: your-project-path/Console/Reconciliation/Records 
+ActualBankRecord.cs 
+CredCard1Record.cs 
+CredCard2Record.cs 
+Also in this folder: your-project-path/Console/Reconciliation/Files 
+ActualBankInFile.cs 
+ActualBankOutFile.cs 
+CredCard1File.cs 
+Sadly I am not able to share with you which providers are currently coded. 
+ 
+### How to Get Set Up 
+ 
+1) You should create a config file, using your-project-path/spreadsheet-samples/SampleConfig.xml as a base. 
+2) You should put the path to your config file in C:/Config/Config.xml. 
+3) You should have a Microsoft Excel spreadsheet, whose name and path you set in the config file you created at the start. 
+4) Your spreadsheet should have a set of worksheets which match the sheets set in your-project-path/Interfaces/Constants/MainSheetNames.cs. 
+5) Optional: You can rename the worksheets in your spreadsheet, but make sure you update the corresponding values in your config. 
+6) Your worksheets should have a certain structure. See your-project-path/spreadsheet-samples/Test-Spreadsheet.xlsx for examples. 
+ 
+### How to Use the Software 
+ 
+The software is used to track all spending, and then reconciliate that spending against statements from banks and credit cards. Here's how: 
+ 
+1) Create a comma-separated list of all the transactions you would like to merge with your spreadsheet, and store in text files. 
+I use the Notes app on my phone to create a new comma-separated line for each transaction. Then I email the Notes contents to myself. 
+You need two separate comma-separated files: one contains Bank In and Bank Out as well as CredCard2. The other is just CredCard1. 
+They should be named Pending.txt and CredCard1InOutPending.csv. 
+See examples in your-project-path/spreadsheet-samples/Pending.txt and your-project-path/spreadsheet-samples/CredCard1InOutPending.csv. 
+They should be placed in the location you have configured in your config under DefaultFilePath. 
+ 
+2) Tend to various idiosyncracies: 
+a) Your Expected In worksheet needs to have a "Divider" row as its last row. 
+b) The first line in Pending.txt must not begin with "Bank out", "Bank in" or "CredCard1" (or the CredCard1 name in your config). 
+c) It's a good idea to open pending csv files in Excel and check that the columns all line up correctly (in case you missed a comma). 
+d) Make sure your spreadsheet is not open in an editor. 
+ 
+3) Download csv files from your bank(s) and credit card(s). 
+!! You will need to edit the code to make this work for your own providers - see note above. 
+The resulting files need to be named ActualBank.csv, CredCard1.csv or CredCard2.csv.
+(Or use the names you have put in the config under DefaultBankFileName, DefaultCredCard1FileName and DefaultCredCard2FileName).
+The files should be placed in the location you have configured in your config under DefaultFilePath. 
+ 
+4) Run the software, by running it from an IDE or building it and launching the exe (or follow .Net Core instructiuons - see above). 
+ 
+4A) Before doing any reconciliation, you need to run the "load pending CSVs" step. 
+ 
+4B) Do the reconciliation. 
+At the time of writing, there are separate reconciliation steps for Bank In, Bank Out, CredCard1 and CredCard2. 
+The software will pull data from Budget In and Budget Out for any monthly or annual payments. 
+It will ask you for various inputs. 
+It will update the Expected Out sheet in your spreadsheet. 
+It will then compare the transactions in your bank / cred card statements with those in your hand-cranked csv and in your spreadsheet. 
+It will attempt to auto-match, then give you the opportunity to manually override, then do manual matching for what's left. 
+Text shown in green is a good match, yellow is a good guess for what might be close. 
+PAY ATTENTION to the "Unmatched from third party" items. These are items that were on your statement but not in your spreadsheet or CVSs. 
+It then updates your spreadsheet with all the new transactions and all the matches (it says something like "write to CSV"). 
+Several worksheets in the spreadsheet will be updated, including Totals, Expected In and Expected Out. 
+

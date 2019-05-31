@@ -1,0 +1,12 @@
+All CredCard2, bank out, bank in
+
+Bank Out 
+3/11/18,999.00,,your description of this transaction - hopefully using text that will match your bank statement
+
+Bank In
+3/11/18,567.00,,your description of this transaction - hopefully using text that will match your bank statement
+
+CredCard2
+23/9/18,5.78,,your description of this transaction - hopefully using text that will match your cred card statement
+23/9/18,22.59,,your description of this transaction - hopefully using text that will match your cred card statement
+22/9/18,333.55,,your description of this transaction - hopefully using text that will match your cred card statement

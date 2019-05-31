@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- .Net Framework version -->
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{30D6DC9A-9AE6-41C5-9683-09A49B55A7C3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Interfaces</RootNamespace>
+    <AssemblyName>Interfaces</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\Dividers.cs" />
+    <Compile Include="Constants\MainSheetNames.cs" />
+    <Compile Include="Constants\Codes.cs" />
+    <Compile Include="Constants\PocketMoneySheetNames.cs" />
+    <Compile Include="Constants\ReconConsts.cs" />
+    <Compile Include="Constants\PlanningSheetNames.cs" />
+    <Compile Include="Constants\WorkingMode.cs" />
+    <Compile Include="Constants\XmlReader.cs" />
+    <Compile Include="DTOs\AutoMatchedRecord.cs" />
+    <Compile Include="DTOs\BudgetingMonths.cs" />
+    <Compile Include="DTOs\BudgetItemListData.cs" />
+    <Compile Include="Constants\ConsoleColour.cs" />
+    <Compile Include="DTOs\ConsoleLine.cs" />
+    <Compile Include="DTOs\ConsoleSnippet.cs" />
+    <Compile Include="DTOs\DataLoadingInformation.cs" />
+    <Compile Include="DTOs\FilePaths.cs" />
+    <Compile Include="DTOs\Rankings.cs" />
+    <Compile Include="DTOs\RecordForMatching.cs" />
+    <Compile Include="IBankAndBankInLoader.cs" />
+    <Compile Include="ICellRow.cs" />
+    <Compile Include="IClock.cs" />
+    <Compile Include="ICSVFile.cs" />
+    <Compile Include="ICSVFileFactory.cs" />
+    <Compile Include="ICSVRecord.cs" />
+    <Compile Include="ICellSet.cs" />
+    <Compile Include="IDataFile.cs" />
+    <Compile Include="ILoader.cs" />
+    <Compile Include="IMatcher.cs" />
+    <Compile Include="IReconciliationInterface.cs" />
+    <Compile Include="ISpreadsheet.cs" />
+    <Compile Include="IFileIO.cs" />
+    <Compile Include="IInputOutput.cs" />
+    <Compile Include="IPotentialMatch.cs" />
+    <Compile Include="IReconciliator.cs" />
+    <Compile Include="ISpreadsheetRepoFactory.cs" />
+    <Compile Include="ISpreadsheetRepo.cs" />
+    <Compile Include="Delegates\MatchFindingDelegate.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Delegates\RecordMatchingDelegate.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,33 @@
+source: 24/03/2017,200.12,BAC,'ZZZSpecialDescription001,
+match: 24/03/2017,£200.12,,PCL,ZZZSpecialDescription001
+,,,,
+source: 06/03/2017,261.4,BAC,ZZZSpecialDescription007,
+match: 01/04/2017,£261.40,,PCL,ZZZSpecialDescription005
+,,,,
+source: 03/04/2017,350,BAC,'ZZZThing,
+match: 01/03/2017,£350.00,,ABC,ZZZThing2
+,,,,
+We started with 16 records from ActualBank,,,,
+We started with 5 records from Bank In,,,,
+Number of matched records from ActualBank: 3,,,,
+Number of matched records from Bank In: 3,,,,
+,,,,
+There are 13 unmatched records from ActualBank:,,,,
+14/03/2017,11.1,BAC,ZZZSpecialDescription009,
+14/03/2017,11.1,BAC,ZZZSpecialDescription009,
+24/03/2017,143.27,BAC,ZZZSpecialDescription010,
+24/03/2017,174.2,BAC,ZZZSpecialDescription011,
+24/03/2017,15,BAC,ZZZSpecialDescription009,
+24/03/2017,15,BAC,ZZZSpecialDescription009,
+31/03/2017,13,BAC,Effervescent onimals,
+31/03/2017,13,BAC,ZZZSpecialDescription013,
+,,,,
+31/03/2017,13,BAC,Fizzy thingies,
+03/04/2017,261.4,BAC,ZZZSpecialDescription026,
+04/04/2017,442,IBP,ZZZSpecialDescription015,
+05/04/2017,13,BAC,Stroppy kangaroos,
+07/04/2017,30,BAC,ZZZSpecialDescription011,
+,,,,
+2 unmatched from bank in:,,,,
+01/02/2017,£350.00,,ABC,ZZZThing3
+03/04/2017,£350.00,,ABC,ZZZThing1

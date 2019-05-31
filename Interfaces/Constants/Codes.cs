@@ -1,0 +1,92 @@
+﻿namespace Interfaces.Constants
+{
+    public static class Codes
+    {
+        static readonly XmlReader _xmlReader = new XmlReader();
+
+        public static string BankBal => _xmlReader.ReadXml(nameof(BankBal));
+        public static string CredCard1Bal => _xmlReader.ReadXml(nameof(CredCard1Bal));
+        public static string CredCard2Bal => _xmlReader.ReadXml(nameof(CredCard2Bal));
+        public static string Expenses => _xmlReader.ReadXml(nameof(Expenses));
+
+        public static string Code001 => _xmlReader.ReadXml(nameof(Code001));
+        public static string Code002 => _xmlReader.ReadXml(nameof(Code002));
+        public static string Code003 => _xmlReader.ReadXml(nameof(Code003));
+        public static string Code004 => _xmlReader.ReadXml(nameof(Code004));
+        public static string Code005 => _xmlReader.ReadXml(nameof(Code005));
+        public static string Code006 => _xmlReader.ReadXml(nameof(Code006));
+        public static string Code007 => _xmlReader.ReadXml(nameof(Code007));
+        public static string Code008 => _xmlReader.ReadXml(nameof(Code008));
+        public static string Code009 => _xmlReader.ReadXml(nameof(Code009));
+        public static string Code010 => _xmlReader.ReadXml(nameof(Code010));
+        public static string Code011 => _xmlReader.ReadXml(nameof(Code011));
+        public static string Code012 => _xmlReader.ReadXml(nameof(Code012));
+        public static string Code013 => _xmlReader.ReadXml(nameof(Code013));
+        public static string Code014 => _xmlReader.ReadXml(nameof(Code014));
+        public static string Code015 => _xmlReader.ReadXml(nameof(Code015));
+        public static string Code016 => _xmlReader.ReadXml(nameof(Code016));
+        public static string Code017 => _xmlReader.ReadXml(nameof(Code017));
+        public static string Code018 => _xmlReader.ReadXml(nameof(Code018));
+        public static string Code019 => _xmlReader.ReadXml(nameof(Code019));
+        public static string Code020 => _xmlReader.ReadXml(nameof(Code020));
+        public static string Code021 => _xmlReader.ReadXml(nameof(Code021));
+        public static string Code022 => _xmlReader.ReadXml(nameof(Code022));
+        public static string Code023 => _xmlReader.ReadXml(nameof(Code023));
+        public static string Code024 => _xmlReader.ReadXml(nameof(Code024));
+        public static string Code025 => _xmlReader.ReadXml(nameof(Code025));
+        public static string Code026 => _xmlReader.ReadXml(nameof(Code026));
+        public static string Code027 => _xmlReader.ReadXml(nameof(Code027));
+        public static string Code028 => _xmlReader.ReadXml(nameof(Code028));
+	    public static string Code029 => _xmlReader.ReadXml(nameof(Code029));
+        public static string Code030 => _xmlReader.ReadXml(nameof(Code030));
+        public static string Code031 => _xmlReader.ReadXml(nameof(Code031));
+        public static string Code032 => _xmlReader.ReadXml(nameof(Code032));
+        public static string Code033 => _xmlReader.ReadXml(nameof(Code033));
+        public static string Code034 => _xmlReader.ReadXml(nameof(Code034));
+        public static string Code035 => _xmlReader.ReadXml(nameof(Code035));
+        public static string Code036 => _xmlReader.ReadXml(nameof(Code036));
+        public static string Code037 => _xmlReader.ReadXml(nameof(Code037));
+        public static string Code038 => _xmlReader.ReadXml(nameof(Code038));
+        public static string Code039 => _xmlReader.ReadXml(nameof(Code039));
+        public static string Code040 => _xmlReader.ReadXml(nameof(Code040));
+        public static string Code041 => _xmlReader.ReadXml(nameof(Code041));
+        public static string Code042 => _xmlReader.ReadXml(nameof(Code042));
+        public static string Code043 => _xmlReader.ReadXml(nameof(Code043));
+        public static string Code044 => _xmlReader.ReadXml(nameof(Code044));
+        public static string Code045 => _xmlReader.ReadXml(nameof(Code045));
+        public static string Code046 => _xmlReader.ReadXml(nameof(Code046));
+        public static string Code047 => _xmlReader.ReadXml(nameof(Code047));
+        public static string Code048 => _xmlReader.ReadXml(nameof(Code048));
+        public static string Code049 => _xmlReader.ReadXml(nameof(Code049));
+        public static string Code050 => _xmlReader.ReadXml(nameof(Code050));
+        public static string Code051 => _xmlReader.ReadXml(nameof(Code051));
+        public static string Code052 => _xmlReader.ReadXml(nameof(Code052));
+        public static string Code053 => _xmlReader.ReadXml(nameof(Code053));
+        public static string Code054 => _xmlReader.ReadXml(nameof(Code054));
+        public static string Code055 => _xmlReader.ReadXml(nameof(Code055));
+        public static string Code056 => _xmlReader.ReadXml(nameof(Code056));
+        public static string Code057 => _xmlReader.ReadXml(nameof(Code057));
+        public static string Code058 => _xmlReader.ReadXml(nameof(Code058));
+        public static string Code059 => _xmlReader.ReadXml(nameof(Code059));
+        public static string Code060 => _xmlReader.ReadXml(nameof(Code060));
+        public static string Code061 => _xmlReader.ReadXml(nameof(Code061));
+        public static string Code062 => _xmlReader.ReadXml(nameof(Code062));
+        public static string Code063 => _xmlReader.ReadXml(nameof(Code063));
+        public static string Code064 => _xmlReader.ReadXml(nameof(Code064));
+        public static string Code065 => _xmlReader.ReadXml(nameof(Code065));
+        public static string Code066 => _xmlReader.ReadXml(nameof(Code066));
+        public static string Code067 => _xmlReader.ReadXml(nameof(Code067));
+        public static string Code068 => _xmlReader.ReadXml(nameof(Code068));
+        public static string Code069 => _xmlReader.ReadXml(nameof(Code069));
+        public static string Code070 => _xmlReader.ReadXml(nameof(Code070));
+        public static string Code071 => _xmlReader.ReadXml(nameof(Code071));
+        public static string Code072 => _xmlReader.ReadXml(nameof(Code072));
+        public static string Code073 => _xmlReader.ReadXml(nameof(Code073));
+        public static string Code074 => _xmlReader.ReadXml(nameof(Code074));
+        public static string Code075 => _xmlReader.ReadXml(nameof(Code075));
+        public static string Code076 => _xmlReader.ReadXml(nameof(Code076));
+        public static string Code077 => _xmlReader.ReadXml(nameof(Code077));
+        public static string Code078 => _xmlReader.ReadXml(nameof(Code078));
+        public static string Code079 => _xmlReader.ReadXml(nameof(Code079));
+    }
+}

@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- .Net Framework version -->
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3A91246B-E279-4AED-952D-4C869C1282FB}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConsoleCatchall.Console</RootNamespace>
+    <AssemblyName>ConsoleCatchall.Console</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Reconciliation\Files\ExpectedIncomeFile.cs" />
+    <Compile Include="Reconciliation\Loaders\DummyLoader.cs" />
+    <Compile Include="Reconciliation\Utils\Clock.cs" />
+    <Compile Include="Reconciliation\Matchers\CredCard2AndCredCard2InOutMatcher.cs" />
+    <Compile Include="Reconciliation\Loaders\FileLoader.cs" />
+    <Compile Include="Reconciliation\Files\GenericFile.cs" />
+    <Compile Include="Reconciliation\Files\CredCard1File.cs" />
+    <Compile Include="Reconciliation\Files\ActualBankInFile.cs" />
+    <Compile Include="Reconciliation\Loaders\CredCard2AndCredCard2InOutLoader.cs" />
+    <Compile Include="Reconciliation\Loaders\CredCard1AndCredCard1InOutLoader.cs" />
+    <Compile Include="Reconciliation\Loaders\BankAndBankInLoader.cs" />
+    <Compile Include="Reconciliation\Loaders\BankAndBankOutLoader.cs" />
+    <Compile Include="Reconciliation\Files\ActualBankOutFile.cs" />
+    <Compile Include="Reconciliation\Matchers\CredCard1AndCredCard1InOutMatcher.cs" />
+    <Compile Include="Reconciliation\Matchers\BankAndBankInMatcher.cs" />
+    <Compile Include="Reconciliation\Matchers\BankAndBankOutMatcher.cs" />
+    <Compile Include="Reconciliation\Records\ExpectedIncomeRecord.cs" />
+    <Compile Include="Reconciliation\Spreadsheets\FakeCellSet.cs" />
+    <Compile Include="Reconciliation\Spreadsheets\FakeCellRow.cs" />
+    <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetRepo.cs" />
+    <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetRepoFactory.cs" />
+    <Compile Include="Reconciliation\Spreadsheets\ISpreadsheetRepoFactoryFactory.cs" />
+    <Compile Include="Reconciliation\Spreadsheets\Spreadsheet.cs" />
+    <Compile Include="Reconciliation\Spreadsheets\SpreadsheetRepoFactoryFactory.cs" />
+    <Compile Include="InputOutput.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reconciliation\Files\CSVFactory.cs" />
+    <Compile Include="Reconciliation\Extensions\DateExtensions.cs" />
+    <Compile Include="Reconciliation\Extensions\DoubleExtensions.cs" />
+    <Compile Include="Reconciliation\Files\FileIO.cs" />
+    <Compile Include="Reconciliation\Loaders\PendingCsvFileCreator.cs" />
+    <Compile Include="Reconciliation\ReconciliationInterface.cs" />
+    <Compile Include="Reconciliation\ReconciliationIntro.cs" />
+    <Compile Include="Reconciliation\Files\CSVFile.cs" />
+    <Compile Include="Reconciliation\Reconciliator.cs" />
+    <Compile Include="Reconciliation\Records\CredCard2InOutRecord.cs" />
+    <Compile Include="Reconciliation\Records\CredCard2Record.cs" />
+    <Compile Include="Reconciliation\Records\BankRecord.cs" />
+    <Compile Include="Reconciliation\Records\CredCard1InOutRecord.cs" />
+    <Compile Include="Reconciliation\Records\PotentialMatch.cs" />
+    <Compile Include="Reconciliation\Records\CredCard1Record.cs" />
+    <Compile Include="Reconciliation\Records\ActualBankRecord.cs" />
+    <Compile Include="Reconciliation\Extensions\StringExtensions.cs" />
+    <Compile Include="Reconciliation\Utils\StringHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExcelLibrary\ExcelLibrary.csproj">
+      <Project>{7dfaf792-db46-494f-8063-6e3c2aaf7522}</Project>
+      <Name>ExcelLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{30d6dc9a-9ae6-41c5-9683-09a49b55a7c3}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <TestResultsFolderPath>..\TestResults</TestResultsFolderPath>
+  </PropertyGroup>
+  <Target Name="AfterClean">
+    <RemoveDir Directories="$(TestResultsFolderPath)" Condition="Exists('$(TestResultsFolderPath)')" />
+  </Target>
+</Project>

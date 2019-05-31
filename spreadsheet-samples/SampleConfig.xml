@@ -1,0 +1,203 @@
+<?xml version="1.0"?>  
+<config>
+	<!--**************-->
+	<!--ReconConsts-->
+	<!--**************-->
+	<TestValueDoNotChange>This value should always be this string.</TestValueDoNotChange>
+	<MainSpreadsheetPath>C:/Your/Spreadsheet/Path</MainSpreadsheetPath>
+	<DefaultFilePath>C:/Your/Csv/Path</DefaultFilePath>
+	<MainSpreadsheetFileName>Your-Spreadsheet.xlsx</MainSpreadsheetFileName>
+	<TestBackupFilePath>C:/Your/Spreadsheet/Backups</TestBackupFilePath>
+	<SourceDebugSpreadsheetPath>C:/Your/Debug/Spreadsheet</SourceDebugSpreadsheetPath>
+	<BackupSubFolder>Backup-Spreadsheet-Folder</BackupSubFolder>
+	<DebugSpreadsheetFileName>debug-backup-spreadsheet.xlsx</DebugSpreadsheetFileName>
+	<PocketMoneySpreadsheetPath>C:/Your/Spreadsheet/Path/Pocket-Money-Spreadsheet.xlsx</PocketMoneySpreadsheetPath>
+    <FiveFileOptions>1.EnterFile, 2.CredCard1InOut, 3.CredCard2InOut, 4.BankIn, 5.BankOut</FiveFileOptions>
+    <FourAccountingTypes>1.CredCard1, 2.CredCard2, 3.ActualBankIn, 4.ActualBankOut</FourAccountingTypes>
+    <FourFileNameOptions>1.EnterFileName, 2.CredCard1File, 3.CredCard2File, 4.ActualBankFile</FourFileNameOptions>
+    <FiveFileDetails>1.OwnFileDetails, 2.CredCard1, 3.CredCard2, 4.ActualBankIn, 5.ActualBankOut</FiveFileDetails>
+    <File_Option_02>2. CredCard1 InOut default ({0}.csv) (3rd party format will be CredCard1)</File_Option_02>
+    <File_Option_03>3. CredCard2 InOut default ({0}.csv) (3rd party format will be CredCard2)</File_Option_03>
+    <File_Option_04>4. Bank In default ({0}.csv) (3rd party format will be ActualBank)</File_Option_04>
+    <File_Option_05>5. Bank Out default ({0}.csv) (3rd party format will be ActualBank)</File_Option_05>
+    <File_Name_Option_02>2. Use the default for CredCard1 ({0}.csv)</File_Name_Option_02>
+    <File_Name_Option_03>3. Use the default for CredCard2 ({0}.csv)</File_Name_Option_03>
+    <File_Name_Option_04>4. Use the default for ActualBank ({0}.csv)</File_Name_Option_04>
+    <File_Details_02>2. Use defaults for CredCard1 and CredCard1 InOut</File_Details_02>
+    <File_Details_03>3. Use defaults for CredCard2 and CredCard2 InOut</File_Details_03>
+    <File_Details_04>4. Use defaults for ActualBank and Bank In</File_Details_04>
+    <File_Details_05>5. Use defaults for ActualBank and Bank Out</File_Details_05>
+    <Accounting_Type_01>1. CredCard1 and CredCard1 InOut</Accounting_Type_01>
+    <Accounting_Type_02>2. CredCard2 and CredCard2 InOut</Accounting_Type_02>
+    <Accounting_Type_03>3. ActualBank and Bank In</Accounting_Type_03>
+    <Accounting_Type_04>4. ActualBank and Bank Out</Accounting_Type_04>
+    <DefaultBankFileName>ActualBank</DefaultBankFileName>
+    <DefaultCredCard1FileName>CredCard1</DefaultCredCard1FileName>
+    <DefaultCredCard2FileName>CredCard2</DefaultCredCard2FileName>
+    <DefaultCredCard1InOutFileName>CredCard1InOut</DefaultCredCard1InOutFileName>
+    <DefaultCredCard2InOutFileName>CredCard2InOut</DefaultCredCard2InOutFileName>
+    <DefaultCredCard2InOutPendingFileName>CredCard2InOutPending</DefaultCredCard2InOutPendingFileName>
+    <DefaultCredCard1InOutPendingFileName>CredCard1InOutPending</DefaultCredCard1InOutPendingFileName>
+    <BankDescriptor>ActualBank</BankDescriptor>
+    <CredCard1Descriptor>CredCard1</CredCard1Descriptor>
+    <CredCard1InOutDescriptor>CredCard1 InOut</CredCard1InOutDescriptor>
+    <CredCard2Descriptor>CredCard2</CredCard2Descriptor>
+    <CredCard2InOutDescriptor>CredCard2 InOut</CredCard2InOutDescriptor>
+    <EmployerExpenseDescription>ACME LTD</EmployerExpenseDescription>
+    <CredCard1Name>CredCard1</CredCard1Name>
+    <CredCard2Name>CredCard2</CredCard2Name>
+    <CredCard1DdDescription>CREDIT CARD 1</CredCard1DdDescription>
+    <CredCard2DdDescription>CREDIT CARD 2</CredCard2DdDescription>
+    <CredCard1RegularPymtDescription>CRED CARD 1 PAYMENT DESCRIPTION ON STATEMENTS</CredCard1RegularPymtDescription>
+    <CredCard2RegularPymtDescription>CRED CARD 2 PAYMENT DESCRIPTION ON STATEMENTS</CredCard2RegularPymtDescription>
+    <Instructions_Line_01>  (See ReconciliationProcess.txt for full process, and Trello for current bugs)</Instructions_Line_01>
+    <Instructions_Line_02>  Go to your third party website and download a statement as a csv file.</Instructions_Line_02>
+    <Instructions_Line_03>  Name it ActualBank.csv, CredCard1.csv or CredCard2.csv.</Instructions_Line_03>
+    <Instructions_Line_04>  Create csvs of pending transactions, named Pending.txt and CredCard1InOutPending.csv.</Instructions_Line_04>
+    <Instructions_Line_05>  !! For Bank In and Bank Out, check Type columns before starting !!</Instructions_Line_05>
+    <Instructions_Line_06>  Check VERY carefully - it's really easy to miss an example of this.</Instructions_Line_06>
+    <Instructions_Line_07>  This is because if the description is in the Type column, you'll get errors.</Instructions_Line_07>
+    <Instructions_Line_08>  But you won't see those errors until you're halfway through processing</Instructions_Line_08>
+    <Instructions_Line_09>  the file, and then you'll lose all your work.</Instructions_Line_09>
+    <Instructions_Line_10>  Run the 'load pending csvs' step before starting reconciliation.</Instructions_Line_10>
+    <Instructions_Line_11>  Follow the on-screen instructions.</Instructions_Line_11>             
+    <BankOutHeader>Bank Out</BankOutHeader>
+    <BankInHeader>Bank In</BankInHeader >
+    <CredCard2Header>CredCard2</CredCard2Header>
+    <LoadPendingCsvs>1. Load pending csvs for CredCard2, Bank In and Bank Out (from phone).</LoadPendingCsvs>
+	<LoadingExpenses>Loading ACME expenses from Expected In...</LoadingExpenses>
+	<!--**************-->
+	<!--Codes-->
+	<!--**************-->
+    <BankBal>ActualBank Balance</BankBal>
+    <CredCard1Bal>CredCard1 Balance</CredCard1Bal>
+    <CredCard2Bal>CredCard2 Balance</CredCard2Bal>
+    <Expenses>Acme Expenses</Expenses>
+    <Code001>Code001</Code001>
+    <Code002>Code002</Code002>
+    <Code003>Code003</Code003>
+    <Code004>Code004</Code004>
+    <Code005>Code005</Code005>
+    <Code006>Code006</Code006>
+    <Code007>Code007</Code007>
+    <Code008>Code008</Code008>
+    <Code009>Code009</Code009>
+    <Code010>Code010</Code010>
+    <Code011>Code011</Code011>
+    <Code012>Code012</Code012>
+    <Code013>Code013</Code013>
+    <Code014>Code014</Code014>
+    <Code015>Code015</Code015>
+    <Code016>Code016</Code016>
+    <Code017>Code017</Code017>
+    <Code018>Code018</Code018>
+    <Code019>Code019</Code019>
+    <Code020>Code020</Code020>
+    <Code021>Code021</Code021>
+    <Code022>Code022</Code022>
+    <Code023>Code023</Code023>
+    <Code024>Code024</Code024>
+    <Code025>Code025</Code025>
+    <Code026>Code026</Code026>
+    <Code027>Code027</Code027>
+    <Code028>Code028</Code028>
+    <Code029>Code029</Code029>
+    <Code030>Code030</Code030>
+    <Code031>Code031</Code031>
+    <Code032>Code032</Code032>
+    <Code033>Code033</Code033>
+    <Code034>Code034</Code034>
+    <Code035>Code035</Code035>
+    <Code036>Code036</Code036>
+    <Code037>Code037</Code037>
+    <Code038>Code038</Code038>
+    <Code039>Code039</Code039>
+    <Code040>Code040</Code040>
+    <Code041>Code041</Code041>
+    <Code042>Code042</Code042>
+    <Code043>Code043</Code043>
+    <Code044>Code044</Code044>
+    <Code045>Code045</Code045>
+    <Code046>Code046</Code046>
+    <Code047>Code047</Code047>
+    <Code048>Code048</Code048>
+    <Code049>Code049</Code049>
+    <Code050>Code050</Code050>
+    <Code051>Code051</Code051>
+    <Code052>Code052</Code052>
+    <Code053>Code053</Code053>
+    <Code054>Code054</Code054>
+    <Code055>Code055</Code055>
+    <Code056>Code056</Code056>
+    <Code057>Code057</Code057>
+    <Code058>Code058</Code058>
+    <Code059>Code059</Code059>
+    <Code060>Code060</Code060>
+    <Code061>Code061</Code061>
+    <Code062>Code062</Code062>
+    <Code063>Code063</Code063>
+    <Code064>Code064</Code064>
+    <Code065>Code065</Code065>
+    <Code066>Code066</Code066>
+    <Code067>Code067</Code067>
+    <Code068>Code068</Code068>
+    <Code069>Code069</Code069>
+    <Code070>Code070</Code070>
+    <Code071>Code071</Code071>
+    <Code072>Code072</Code072>
+    <Code073>Code073</Code073>
+    <Code074>Code074</Code074>
+    <Code075>Code075</Code075>
+    <Code076>Code076</Code076>
+    <Code077>Code077</Code077>
+    <Code078>Code078</Code078>
+    <Code079>Code079</Code079>
+	<!--**************-->
+	<!--TestSheetNames-->
+	<!--**************-->
+    <TestSheetNames.CredCard1>CredCard1</TestSheetNames.CredCard1>
+    <TestSheetNames.TestRecord>TestRecord</TestSheetNames.TestRecord>
+    <TestSheetNames.CredCard>CredCard</TestSheetNames.CredCard>
+    <TestSheetNames.Bank>Bank</TestSheetNames.Bank>
+    <TestSheetNames.ActualBank>ActualBank</TestSheetNames.ActualBank>
+    <TestSheetNames.BadDivider>BadDivider</TestSheetNames.BadDivider>
+    <TestSheetNames.BudgetOut>Budget Out</TestSheetNames.BudgetOut>
+    <TestSheetNames.ExpectedOut>Expected Out</TestSheetNames.ExpectedOut>
+	<!--**************-->
+	<!--MainSheetNames-->
+	<!--**************-->
+    <MainSheetNames.BudgetOut>Budget Out</MainSheetNames.BudgetOut>
+    <MainSheetNames.BudgetIn>Budget In</MainSheetNames.BudgetIn>
+    <MainSheetNames.ExpectedOut>Expected Out</MainSheetNames.ExpectedOut>
+    <MainSheetNames.ExpectedIn>Expected In</MainSheetNames.ExpectedIn>
+    <MainSheetNames.Totals>Totals</MainSheetNames.Totals>
+    <MainSheetNames.Savings>Savings</MainSheetNames.Savings>
+    <MainSheetNames.BankOut>Bank Out</MainSheetNames.BankOut>
+    <MainSheetNames.BankIn>Bank In</MainSheetNames.BankIn>
+    <MainSheetNames.CredCard1>CredCard1</MainSheetNames.CredCard1>
+    <MainSheetNames.CredCard2>CredCard2</MainSheetNames.CredCard2>
+    <MainSheetNames.CredCard3>CredCard3</MainSheetNames.CredCard3>
+	<!--**************-->
+	<!--PocketMoneySheetNames-->
+	<!--**************-->
+    <PocketMoneySheetNames.SecondChild>SecondChild</PocketMoneySheetNames.SecondChild>
+	<!--**************-->
+	<!--PlanningSheetNames-->
+	<!--**************-->
+    <PlanningSheetNames.Expenses>Expenses</PlanningSheetNames.Expenses>
+    <PlanningSheetNames.Deposits>Deposits</PlanningSheetNames.Deposits>
+	<!--**************-->
+	<!--Dividers-->
+	<!--**************-->
+	<Dividers.DividerText>divider</Dividers.DividerText>
+	<Dividers.Expenses>Expenses</Dividers.Expenses>
+	<Dividers.ExpensesTotal>Expenses Total</Dividers.ExpensesTotal>
+	<Dividers.SODDs>SODDs</Dividers.SODDs>
+	<Dividers.CredCard1>CredCard1 cred card</Dividers.CredCard1>
+	<Dividers.CredCard2>CredCard2 cred card</Dividers.CredCard2>
+	<Dividers.SODDTotal>SODDTotal</Dividers.SODDTotal>
+	<Dividers.AnnualSODDs>AnnualSODDs</Dividers.AnnualSODDs>
+	<Dividers.AnnualTotal>AnnualTotal</Dividers.AnnualTotal>
+	<Dividers.Date>Date</Dividers.Date>
+	<Dividers.Total>Total</Dividers.Total>
+</config>
