@@ -672,8 +672,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 new InputOutput(),
                 reconciliator,
                 dataLoadingInfo.ThirdPartyDescriptor,
-                dataLoadingInfo.OwnedFileDescriptor,
-                matcher);
+                dataLoadingInfo.OwnedFileDescriptor);
             return reconciliationInterface;
         }
 

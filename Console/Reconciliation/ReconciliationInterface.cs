@@ -25,14 +25,12 @@ namespace ConsoleCatchall.Console.Reconciliation
             IInputOutput inputOutput,
             IReconciliator<TThirdPartyType, TOwnedType> reconciliator,
             string thirdPartyDescriptor,
-            string ownedFileDescriptor,
-            IMatcher matcher)
+            string ownedFileDescriptor)
         {
             _inputOutput = inputOutput;
             Reconciliator = reconciliator;
             ThirdPartyDescriptor = thirdPartyDescriptor;
             OwnedFileDescriptor = ownedFileDescriptor;
-            Matcher = matcher;
         }
 
         public void DoTheMatching()
