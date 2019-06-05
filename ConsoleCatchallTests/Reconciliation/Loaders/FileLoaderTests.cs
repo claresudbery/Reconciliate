@@ -75,18 +75,16 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mockBankOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord>());
             var loadingInfo = new DummyLoader().LoadingInfo();
-            var mockMatcher = new Mock<IMatcher>();
 
             // Act
-            var reconciliationInterface = reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
+            reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
                 mockSpreadsheet.Object,
                 mockPendingFileIO.Object,
                 mockPendingFile.Object,
                 mockActualBankFileIO.Object,
                 mockBankOutFileIO.Object,
                 budgetingMonths,
-                loadingInfo,
-                mockMatcher.Object);
+                loadingInfo);
 
             // Assert
             mockSpreadsheet
@@ -372,19 +370,17 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mockBankOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord>());
             var loadingInfo = new BankAndBankOutLoader().LoadingInfo();
-            var mockMatcher = new Mock<IMatcher>();
             SetUpForLoaderBespokeStuff(mockInputOutput, mockSpreadsheet);
 
             // Act
-            var reconciliationInterface = reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
+            reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
                 mockSpreadsheet.Object,
                 mockPendingFileIO.Object,
                 mockPendingFile.Object,
                 mockActualBankFileIO.Object,
                 mockBankOutFileIO.Object,
                 budgetingMonths,
-                loadingInfo,
-                mockMatcher.Object);
+                loadingInfo);
 
             // Assert
             mockPendingFileIO.Verify(x => x.SetFilePaths(loadingInfo.FilePaths.MainPath, loadingInfo.PendingFileName));
@@ -438,18 +434,16 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 Loader = mockLoader.Object,
                 FilePaths = new FilePaths()
             };
-            var mockMatcher = new Mock<IMatcher>();
 
             // Act
-            var reconciliationInterface = reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
+            reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
                 mockSpreadsheet.Object,
                 mockPendingFileIO.Object,
                 mockPendingFile.Object,
                 mockActualBankFileIO.Object,
                 mockBankOutFileIO.Object,
                 budgetingMonths,
-                loadingInfo,
-                mockMatcher.Object);
+                loadingInfo);
 
             // Assert
             mockLoader.Verify(x => x.MergeBespokeDataWithPendingFile(
@@ -479,20 +473,18 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var loadingInfo = new DummyLoader().LoadingInfo();
             loadingInfo.FilePaths.MainPath = "This is not a path";
             bool exceptionThrown = false;
-            var mockMatcher = new Mock<IMatcher>();
 
             // Act
             try
             {
-                var reconciliationInterface = reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
+                reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
                     mockSpreadsheet.Object,
                     mockPendingFileIO.Object,
                     mockPendingFile.Object,
                     mockActualBankFileIO.Object,
                     mockBankOutFileIO.Object,
                     budgetingMonths,
-                    loadingInfo,
-                    mockMatcher.Object);
+                    loadingInfo);
             }
             catch (DirectoryNotFoundException)
             {

@@ -520,7 +520,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
                 reconciliationInterface =
                     LoadFilesAndMergeData<TThirdPartyType, TOwnedType>(
-                        spreadsheet, pendingFileIO, pendingFile, thirdPartyFileIO, ownedFileIO, budgetingMonths, dataLoadingInfo, matcher);
+                        spreadsheet, pendingFileIO, pendingFile, thirdPartyFileIO, ownedFileIO, budgetingMonths, dataLoadingInfo);
             }
             finally
             {
@@ -548,8 +548,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 IFileIO<TThirdPartyType> thirdPartyFileIO,
                 IFileIO<TOwnedType> ownedFileIO,
                 BudgetingMonths budgetingMonths,
-                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo,
-                IMatcher matcher)
+                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
@@ -558,7 +557,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             MergeOtherData(spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
             MergeUnreconciledData(spreadsheet, pendingFile, dataLoadingInfo);
             var reconciliator = LoadThirdPartyAndOwnedFilesIntoReconciliator<TThirdPartyType, TOwnedType>(dataLoadingInfo, thirdPartyFileIO, ownedFileIO);
-            var reconciliationInterface = CreateReconciliationInterface(dataLoadingInfo, reconciliator, matcher);
+            var reconciliationInterface = CreateReconciliationInterface(dataLoadingInfo, reconciliator);
             return reconciliationInterface;
         }
 
@@ -662,8 +661,7 @@ namespace ConsoleCatchall.Console.Reconciliation
         private ReconciliationInterface<TThirdPartyType, TOwnedType>
             CreateReconciliationInterface<TThirdPartyType, TOwnedType>(
                 DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo,
-                Reconciliator<TThirdPartyType, TOwnedType> reconciliator,
-                IMatcher matcher)
+                Reconciliator<TThirdPartyType, TOwnedType> reconciliator)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
