@@ -12,13 +12,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         private ExpectedIncomeFile _expectedIncomeFile;
         private CSVFile<ExpectedIncomeRecord> _expectedIncomeCSVFile;
 
-        public BankAndBankInLoader(ISpreadsheetRepoFactory spreadsheetRepoFactory)
-        {
-            var expectedIncomeFileIO = new FileIO<ExpectedIncomeRecord>(new FakeSpreadsheetRepoFactory());
-            _expectedIncomeCSVFile = new CSVFile<ExpectedIncomeRecord>(expectedIncomeFileIO);
-            _expectedIncomeFile = new ExpectedIncomeFile(_expectedIncomeCSVFile);
-        }
-
         public BankAndBankInLoader()
         {
             var expectedIncomeFileIO = new FileIO<ExpectedIncomeRecord>(new FakeSpreadsheetRepoFactory());
