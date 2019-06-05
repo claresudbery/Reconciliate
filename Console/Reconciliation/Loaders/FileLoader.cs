@@ -10,7 +10,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
     internal class FileLoader
     {
-        private readonly IInputOutput _inputOutput;
+        public readonly IInputOutput _inputOutput;
 
         public FileLoader(IInputOutput inputOutput)
         {
@@ -61,7 +61,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
         }
 
-        private void MergeBudgetData<TThirdPartyType, TOwnedType>(
+        public void MergeBudgetData<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 ICSVFile<TOwnedType> pendingFile,
                 BudgetingMonths budgetingMonths,
@@ -77,7 +77,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             }
         }
 
-        private void MergeOtherData<TThirdPartyType, TOwnedType>(
+        public void MergeOtherData<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 ICSVFile<TOwnedType> pendingFile,
                 BudgetingMonths budgetingMonths,
@@ -88,7 +88,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             dataLoadingInfo.Loader.MergeBespokeDataWithPendingFile(_inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
         }
 
-        private void MergeUnreconciledData<TThirdPartyType, TOwnedType>(
+        public void MergeUnreconciledData<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 ICSVFile<TOwnedType> pendingFile,
                 DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
@@ -105,7 +105,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _inputOutput.OutputLine("...");
         }
 
-        private Reconciliator<TThirdPartyType, TOwnedType>
+        public Reconciliator<TThirdPartyType, TOwnedType>
             LoadThirdPartyAndOwnedFilesIntoReconciliator<TThirdPartyType, TOwnedType>(
                 DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo,
                 IFileIO<TThirdPartyType> thirdPartyFileIO,
@@ -126,7 +126,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return reconciliator;
         }
 
-        private ReconciliationInterface<TThirdPartyType, TOwnedType>
+        public ReconciliationInterface<TThirdPartyType, TOwnedType>
             CreateReconciliationInterface<TThirdPartyType, TOwnedType>(
                 DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo,
                 Reconciliator<TThirdPartyType, TOwnedType> reconciliator,
@@ -161,7 +161,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return budgetingMonths;
         }
 
-        private DateTime GetNextUnplannedMonth(ISpreadsheet spreadsheet)
+        public DateTime GetNextUnplannedMonth(ISpreadsheet spreadsheet)
         {
             DateTime defaultMonth = DateTime.Today;
             DateTime nextUnplannedMonth = defaultMonth;
@@ -212,7 +212,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return nextUnplannedMonth;
         }
 
-        private int GetLastMonthForBudgetPlanning(ISpreadsheet spreadsheet, int nextUnplannedMonth)
+        public int GetLastMonthForBudgetPlanning(ISpreadsheet spreadsheet, int nextUnplannedMonth)
         {
             string nextUnplannedMonthAsString = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(nextUnplannedMonth);
             var requestToEnterMonth = String.Format(ReconConsts.EnterMonths, nextUnplannedMonthAsString);
@@ -239,7 +239,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return result;
         }
 
-        private int ConfirmBudgetingMonthChoicesWithUser(BudgetingMonths budgetingMonths, ISpreadsheet spreadsheet)
+        public int ConfirmBudgetingMonthChoicesWithUser(BudgetingMonths budgetingMonths, ISpreadsheet spreadsheet)
         {
             var newResult = budgetingMonths.LastMonthForBudgetPlanning;
             string input = GetResponseToBudgetingMonthsConfirmationMessage(budgetingMonths);
@@ -258,7 +258,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return newResult;
         }
 
-        private string GetResponseToBudgetingMonthsConfirmationMessage(BudgetingMonths budgetingMonths)
+        public string GetResponseToBudgetingMonthsConfirmationMessage(BudgetingMonths budgetingMonths)
         {
             string firstMonth = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(budgetingMonths.NextUnplannedMonth);
             string secondMonth = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(budgetingMonths.LastMonthForBudgetPlanning);
@@ -270,7 +270,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return _inputOutput.GetInput(confirmationText);
         }
 
-        private int HandleZeroMonthChoiceResult(int chosenMonth, ISpreadsheet spreadsheet, int nextUnplannedMonth)
+        public int HandleZeroMonthChoiceResult(int chosenMonth, ISpreadsheet spreadsheet, int nextUnplannedMonth)
         {
             var newResult = chosenMonth;
             if (chosenMonth == 0)
