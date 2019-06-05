@@ -16,7 +16,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
         private readonly IInputOutput _inputOutput;
         private readonly ISpreadsheetRepoFactory _spreadsheetFactory;
-        private readonly BankAndBankInLoader _bankAndBankInLoader = new BankAndBankInLoader();
 
         public BankAndBankInMatcher(
             IInputOutput inputOutput,
@@ -29,7 +28,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
         public void DoMatching(FilePaths mainFilePaths)
         {
-            var loadingInfo = _bankAndBankInLoader.LoadingInfo();
+            var loadingInfo = new BankAndBankInLoader().LoadingInfo();
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
             ReconciliationInterface<ActualBankRecord, BankRecord> reconciliationInterface
@@ -124,7 +123,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                 (newMatch as BankRecord).Type = (recordForMatching.Matches[matchIndex].ActualRecords[0] as BankRecord).Type;
                 foreach (var actualRecord in recordForMatching.Matches[matchIndex].ActualRecords)
                 {
-                    _bankAndBankInLoader.UpdateExpectedIncomeRecordWhenMatched(recordForMatching.SourceRecord, (TOwnedType)actualRecord);
+                    CreateExpectedIncomeRecord(recordForMatching.SourceRecord, (TOwnedType)actualRecord);
                     ownedFile.RemoveRecordPermanently((TOwnedType)actualRecord);
                 }
                 recordForMatching.Matches[matchIndex].ActualRecords.Clear();
@@ -133,7 +132,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             }
             else
             {
-                _bankAndBankInLoader.UpdateExpectedIncomeRecordWhenMatched(
+                CreateExpectedIncomeRecord(
                     recordForMatching.SourceRecord,
                     (TOwnedType)recordForMatching.Matches[matchIndex].ActualRecords[0]);
             }
@@ -146,6 +145,25 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             (source as ICSVRecord).Matched = true;
             match.Match = source;
             (source as ICSVRecord).Match = match;
+        }
+
+        private void CreateExpectedIncomeRecord<TThirdPartyType, TOwnedType>(
+            TThirdPartyType sourceRecord,
+            TOwnedType match)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            MatchedExpectedIncomeRecords.Add(new ExpectedIncomeRecord
+            {
+                Description = match.Description,
+                UnreconciledAmount = match.MainAmount(),
+                Match = sourceRecord,
+                Matched = true,
+                Code = Codes.Expenses,
+                Date = match.Date,
+                DatePaid = sourceRecord.Date,
+                TotalPaid = sourceRecord.MainAmount()
+            });
         }
 
         private string CreateNewDescription(IPotentialMatch potentialMatch)

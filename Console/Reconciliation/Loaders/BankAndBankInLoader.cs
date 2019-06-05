@@ -68,19 +68,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             DataLoadingInformation<ActualBankRecord, BankRecord> dataLoadingInfo)
         {
             inputOutput.OutputLine(ReconConsts.LoadingExpenses);
-            _expectedIncomeCSVFile.Load(false);
-
-            spreadsheet.AddUnreconciledRowsToCsvFile<ExpectedIncomeRecord>(MainSheetNames.ExpectedIn, _expectedIncomeFile.File);
-            _expectedIncomeCSVFile.PopulateSourceRecordsFromRecords();
-            _expectedIncomeFile.FilterForEmployerExpensesOnly();
-
-            _expectedIncomeFile.CopyToPendingFile(pendingFile);
-            _expectedIncomeCSVFile.PopulateRecordsFromOriginalFileLoad();
-        }
-
-        public void UpdateExpectedIncomeRecordWhenMatched(ICSVRecord sourceRecord, ICSVRecord matchedRecord)
-        {
-            _expectedIncomeFile.UpdateExpectedIncomeRecordWhenMatched(sourceRecord, matchedRecord);
+            var expectedIncomeFileIO = new FileIO<ExpectedIncomeRecord>(new FakeSpreadsheetRepoFactory());
+            var expectedIncomeCSVFile = new CSVFile<ExpectedIncomeRecord>(expectedIncomeFileIO);
+            expectedIncomeCSVFile.Load(false);
+            var expectedIncomeFile = new ExpectedIncomeFile(expectedIncomeCSVFile);
+            spreadsheet.AddUnreconciledRowsToCsvFile<ExpectedIncomeRecord>(MainSheetNames.ExpectedIn, expectedIncomeFile.File);
+            expectedIncomeCSVFile.PopulateSourceRecordsFromRecords();
+            expectedIncomeFile.FilterForEmployerExpensesOnly();
+            expectedIncomeFile.CopyToPendingFile(pendingFile);
+            expectedIncomeCSVFile.PopulateRecordsFromOriginalFileLoad();
         }
     }
 }
