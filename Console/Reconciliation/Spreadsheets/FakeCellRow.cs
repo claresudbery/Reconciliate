@@ -22,6 +22,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         {
         }
 
+        public void DoAThing(object thing)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public object ReadCell(int columnNumber)
         {
             return _fakeCells[columnNumber];
