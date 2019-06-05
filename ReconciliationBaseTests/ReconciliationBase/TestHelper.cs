@@ -1,4 +1,4 @@
-﻿namespace ReconciliationIntegrationTests.ReconciliationBase
+﻿namespace ReconciliationBaseTests.ReconciliationBase
 {
     internal static class TestHelper
     {

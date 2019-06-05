@@ -8,8 +8,8 @@
     <ProjectGuid>{5744922C-8B6D-40BC-B4CF-44BC4391DCD5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ReconciliationIntegrationTests</RootNamespace>
-    <AssemblyName>ReconciliationIntegrationTests</AssemblyName>
+    <RootNamespace>ReconciliationBaseTests</RootNamespace>
+    <AssemblyName>ReconciliationBaseTests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

@@ -5,15 +5,16 @@ using Interfaces;
 using Interfaces.DTOs;
 using NUnit.Framework;
 
-namespace ReconciliationIntegrationTests.ReconciliationBase
+namespace ReconciliationBaseTests.ReconciliationBase
 {
     [TestFixture]
-    internal partial class ReconciliationInterfaceTests : IInputOutput
+    public partial class ReconciliationIntroTests : IInputOutput
     {
         readonly List<List<string>> _outputAllLinesRecordedDescriptions = new List<List<string>>();
         readonly List<string> _outputSingleLineRecordedMessages = new List<string>();
         readonly List<ConsoleLine> _outputAllLinesRecordedConsoleLines = new List<ConsoleLine>();
         readonly List<ConsoleLine> _outputSingleLineRecordedConsoleLines = new List<ConsoleLine>();
+        private List<string> _getInputMessages = new List<string>();
 
         public void OutputAllLines(List<IPotentialMatch> options)
         {
@@ -72,6 +73,7 @@ namespace ReconciliationIntegrationTests.ReconciliationBase
 
         public string GetInput(string explanatoryMessage, string debugDescription = "")
         {
+            _getInputMessages.Add(explanatoryMessage);
             return _mockInputOutput.Object.GetInput(explanatoryMessage, debugDescription);
         }
 

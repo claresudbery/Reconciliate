@@ -6,7 +6,7 @@ using Interfaces.Constants;
 using Moq;
 using NUnit.Framework;
 
-namespace ReconciliationIntegrationTests.ReconciliationBase
+namespace ReconciliationBaseTests.ReconciliationBase
 {
     [TestFixture]
     public partial class ReconciliationIntroTests : IInputOutput

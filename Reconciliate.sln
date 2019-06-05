@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelIntegrationTests", "ExcelIntegrationTests\ExcelIntegrationTests.csproj", "{3DA33919-418E-4819-970F-76E233F9CAD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReconciliationIntegrationTests", "ReconciliationIntegrationTests\ReconciliationIntegrationTests.csproj", "{5744922C-8B6D-40BC-B4CF-44BC4391DCD5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReconciliationBaseTests", "ReconciliationBaseTests\ReconciliationBaseTests.csproj", "{5744922C-8B6D-40BC-B4CF-44BC4391DCD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
