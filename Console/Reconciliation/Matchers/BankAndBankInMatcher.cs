@@ -16,7 +16,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
         private readonly IInputOutput _inputOutput;
         private readonly ISpreadsheetRepoFactory _spreadsheetFactory;
-        private readonly IBankAndBankInLoader _bankAndBankInLoader;
+        private readonly BankAndBankInLoader _bankAndBankInLoader = new BankAndBankInLoader();
 
         public BankAndBankInMatcher(
             IInputOutput inputOutput, 
@@ -25,13 +25,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         {
             _inputOutput = inputOutput;
             _spreadsheetFactory = spreadsheetFactory;
-            _bankAndBankInLoader = bankAndBankInLoader;
             MatchedExpectedIncomeRecords = new List<ExpectedIncomeRecord>();
         }
 
         public void DoMatching(FilePaths mainFilePaths)
         {
-            var loadingInfo = ((BankAndBankInLoader)_bankAndBankInLoader).LoadingInfo();
+            var loadingInfo = _bankAndBankInLoader.LoadingInfo();
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
             ReconciliationInterface<ActualBankRecord, BankRecord> reconciliationInterface
