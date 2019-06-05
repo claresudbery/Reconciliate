@@ -100,23 +100,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return reconciliationInterface;
         }
 
-        public BudgetingMonths RecursivelyAskForBudgetingMonths(ISpreadsheet spreadsheet)
-        {
-            DateTime nextUnplannedMonth = GetNextUnplannedMonth(spreadsheet);
-            int lastMonthForBudgetPlanning = GetLastMonthForBudgetPlanning(spreadsheet, nextUnplannedMonth.Month);
-            var budgetingMonths = new BudgetingMonths
-            {
-                NextUnplannedMonth = nextUnplannedMonth.Month,
-                LastMonthForBudgetPlanning = lastMonthForBudgetPlanning,
-                StartYear = nextUnplannedMonth.Year
-            };
-            if (lastMonthForBudgetPlanning != 0)
-            {
-                budgetingMonths.LastMonthForBudgetPlanning = ConfirmBudgetingMonthChoicesWithUser(budgetingMonths, spreadsheet);
-            }
-            return budgetingMonths;
-        }
-
         public DateTime GetNextUnplannedMonth(ISpreadsheet spreadsheet)
         {
             DateTime defaultMonth = DateTime.Today;
