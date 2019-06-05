@@ -1,0 +1,33 @@
+Commit b1642a7b18d2a23bc9384f18dd0f58ab800ae1ba:
+	Initial state:
+		ConsoleCatchallTests: 9 seconds
+		ExcelIntegrationTests: 7 seconds
+Commit cd52774799c3d03e9f21ab241a2793e5687c0932:
+	Ignore all Excel tests > 100ms
+		ExcelIntegrationTests now tests are ignored: 4 seconds
+		Removed slow tests:
+			ExcelIntegrationTests:
+				720ms: WillAppendAllRowsInCsvFileToSpecifiedWorksheet
+				194ms: WillAppendCsvRecordToSpecifiedWorksheet
+				907ms: WillAppendRowsToWorksheetOrderedByMatchedAndThenByDateAndIncludingDivider
+				541ms: CanDeleteSpecifiedRows
+				138ms: CanUpdateAmountAndTextIdentifiedByAmountCode
+				127ms: CanUpdateAmountIdentifiedByAmountCode
+				242ms: CanGetSubsetOfColumnsAsRowsConvertedToRecords
+				250ms: CanInsertNewRow
+				539ms: CanAppendNewRow
+			BankRecordExcelTests (partial class of ExcelRecordTests):
+				110ms: WillPopulateBankRecordCells
+				125ms: WillInsertDividerTextInSecondCellWhenBankRecordIsDivider
+				103ms: WillInsertNullInRelevantCellWhenBankRecordIsNotMatched
+				379ms: M_WillAddMatchData_WhenPopulatingBankSpreadsheetRow
+		New slow tests:
+			ExcelIntegrationTests:
+				294ms: CanFindFirstEmptyRowInColumnForSpecifiedSheet
+				244ms: CanReadLastRowOfSpecifiedWorksheetAsObjectList
+			CredCard1InOutRecordExcelTests (partial class of ExcelRecordTests):
+				387ms: M_WillAddMatchData_WhenPopulatingCredCard1SpreadsheetRow
+			BankRecordExcelTests (partial class of ExcelRecordTests):
+				108ms: WillInsertXInCellWhenBankRecordIsMatched
+			Total: 1033 ms
+		
