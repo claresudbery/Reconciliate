@@ -25,9 +25,5 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                 = reconciliationIntro.LoadCorrectFiles<CredCard2Record, CredCard2InOutRecord>(loadingInfo, _spreadsheetFactory, this);
             reconciliationInterface?.DoTheMatching();
         }
-
-        public void DoPreliminaryStuff()
-        {
-        }
     }
 }

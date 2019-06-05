@@ -37,7 +37,6 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         public void DoTheMatching()
         {
-            Matcher.DoPreliminaryStuff();
             DoAutomaticMatching();
             
             DoSemiAutomaticMatching();

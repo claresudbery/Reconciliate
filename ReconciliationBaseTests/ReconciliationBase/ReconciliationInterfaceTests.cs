@@ -1100,22 +1100,5 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var text2Lines = _outputSingleLineRecordedMessages.Where(x => x.Contains(text2));
             Assert.AreEqual(1, text2Lines.Count(), "manually-matched source should only be output once.");
         }
-
-        [Test]
-        public void M_WhenMatchingTheFirstActionIsMatcherPreliminaryStuff()
-        {
-            // Arrange
-            _mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ActualBankRecord>());
-            _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<BankRecord>());
-            var mockMatcher = new Mock<IMatcher>();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
-            var reconciliationInterface = new ReconciliationInterface<ActualBankRecord, BankRecord>(this, reconciliator, "ActualBank", "Bank In", mockMatcher.Object);
-
-            // Act
-            reconciliationInterface.DoTheMatching();
-
-            // Assert
-            mockMatcher.Verify(x => x.DoPreliminaryStuff(), Times.Exactly(1));
-        }
     }
 }
