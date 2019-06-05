@@ -1,11 +1,20 @@
-Mechanics:
-	The ExcelRecord tests are all in the same class (using partials to have a file per record type)
-		That class (in ExcelRecordTests.cs) has one-time setup and tear-down methods which open/close the spreadsheet.
-	The ExcelIntegrationTests class
-		also has one-time setup and tear-down methods which open/close the spreadsheet. 
-	Every sheet that's opened may add a one-time overhead, but then it's held open.
-
 Ideas:
+	Conclusion from everything below:
+		Based on everything done in here, it looks like any further work should be focused on:
+		Cutting down on the number of integration tests - turn them into unit tests where possible.
+		But be aware that the biggest culprit is NOT ExcelIntegration.
+		In fact, the best ones to focus on are all the csv tests:
+			ConsoleCatchallTests.Reconciliation.Files
+			ConsoleCatchallTests.Reconciliation.ReconciliatorMatchingTests
+		But all together the tests run in 11 seconds so maybe it's best to leave it for now.
+	Argh:
+		I just discovered that since I clicked Run Tests in Parallel, the two test projects are run in parallel!
+			This means it is now irrelevant if Excel integration tests run slowly, because overall the other projects tests take longer.
+			Individual tests within project are not run in parallel, which is why I didn't notice.
+		Also, I misread seconds as milliseconds, and there are a couple of test sets in the main test project that also run slowly
+			This is because they are in fact integration tests! The following sets of tests read/write csv files:
+			ConsoleCatchallTests.Reconciliation.Files
+			ConsoleCatchallTests.Reconciliation.ReconciliatorMatchingTests
 	Are all these tests necessary? Can some of them be non-integration tests? 
 		Check they run faster when they're not integration tests
 	Bank record tests are slower - replace with cred card tests if possible.
@@ -17,7 +26,16 @@ Ideas:
 		Similarly, can we have one test which definitely always gets run first, so we don't get random tests running apparently slowly?
 	Think about which tests can be paralellised (currently none of them are)
 	Move mocked methods out of integration tests project and back into ConsoleCatchallTests.
+	For some reason, sometimes tests that use Mock<ISpreadsheetRepo> or Mock<ICellSet> run slowly - see below
+		But it only ever seems to affect one test, so is not really worth investigating further.
 		
+Mechanics of Excel integration tests:
+	The ExcelRecord tests are all in the same class (using partials to have a file per record type)
+		That class (in ExcelRecordTests.cs) has one-time setup and tear-down methods which open/close the spreadsheet.
+	The ExcelIntegrationTests class
+		also has one-time setup and tear-down methods which open/close the spreadsheet. 
+	Every sheet that's opened may add a one-time overhead, but then it's held open.
+
 Commit b1642a7b18d2a23bc9384f18dd0f58ab800ae1ba:
 	Initial state:
 		ConsoleCatchallTests: 9 seconds
