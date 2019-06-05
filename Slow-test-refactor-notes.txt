@@ -1,3 +1,9 @@
+Mechanics:
+	The ExcelRecord tests are all in the same class (using partials to have a file per record type)
+		That class (in ExcelRecordTests.cs) has one-time setup and tear-down methods which open/close the spreadsheet.
+	The ExcelIntegrationTests class
+		also has one-time setup and tear-down methods which open/close the spreadsheet. 
+
 Commit b1642a7b18d2a23bc9384f18dd0f58ab800ae1ba:
 	Initial state:
 		ConsoleCatchallTests: 9 seconds
@@ -34,3 +40,13 @@ Commit cd52774799c3d03e9f21ab241a2793e5687c0932:
 	Without committing, I also ignored all three M_WillAddMatchData_WhenPopulating tests
 		This just made another ExcelRecord test pop up at 357ms
 		So presumably there is a price to pay of around 350ms when the spreadsheet is first opened for record tests.
+Commit dabf8ee285a85b41029cafd62af866b9065dfd01:
+	Stop ignoring ExcelRecord tests
+		because we know we have to have one slow test when the spreadsheet first fires up
+		but we also want to investigate why so many tests run between 50ms and 150ms 
+	Ran only the ExcelRecord tests and consistently got TWO tests with big times:
+		528ms: M_WillAddMatchData_WhenPopulatingBankSpreadsheetRow
+		410ms: WillInsertDividerTextInSecondCellWhenBankRecordIsDivider
+	But when I run all the ExcelIntegrationTests at once, I go back to the previous situation - the only ExcelRecord test > 200ms:
+		370ms: M_WillAddMatchData_WhenPopulatingBankSpreadsheetRow
+	So somehow the other Excel tests are kind of warming things up, maybe by getting the spreadsheet open?
