@@ -116,7 +116,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns($"{userInput}")
                 .Returns("Y");
             // Use self-shunt to avoid infinite recursion:
-            var reconciliate = new FileLoader(this);
+            var reconciliate = new ReconciliationIntro(this);
 
             // Act
             reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
@@ -136,7 +136,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns($"{monthInput}")
                 .Returns("Y");
-            var reconciliate = new FileLoader(_mockInputOutput.Object);
+            var reconciliate = new ReconciliationIntro(_mockInputOutput.Object);
 
             // Act
             var result = reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
@@ -160,7 +160,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns($"{monthInput + 1}")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:
-            var reconciliate = new FileLoader(this);
+            var reconciliate = new ReconciliationIntro(this);
 
             // Act
             reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
@@ -192,7 +192,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns(userInput)
                 .Returns("Y")
                 .Returns("Y");
-            var reconciliate = new FileLoader(_mockInputOutput.Object);
+            var reconciliate = new ReconciliationIntro(_mockInputOutput.Object);
 
             // Act
             var result = reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
@@ -220,7 +220,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns("Y")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:
-            var reconciliate = new FileLoader(this);
+            var reconciliate = new ReconciliationIntro(this);
             
             // Act
             reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
@@ -240,7 +240,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns($"{0}")
                 .Returns("Y")
                 .Returns("Y");
-            var reconciliate = new FileLoader(_mockInputOutput.Object);
+            var reconciliate = new ReconciliationIntro(_mockInputOutput.Object);
 
             // Act
             var result = reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
@@ -261,7 +261,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns("0")
                 .Returns("Y")
                 .Returns("Y");
-            var reconciliate = new FileLoader(_mockInputOutput.Object);
+            var reconciliate = new ReconciliationIntro(_mockInputOutput.Object);
             bool exceptionThrown = false;
 
             // Act
@@ -292,7 +292,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns($"{11}")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:
-            var reconciliate = new FileLoader(this);
+            var reconciliate = new ReconciliationIntro(this);
 
             // Act
             reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
@@ -316,7 +316,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns($"{userInputForNextUnplannedMonth}")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:
-            var reconciliate = new FileLoader(this);
+            var reconciliate = new ReconciliationIntro(this);
 
             // Act
             var result = reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
@@ -345,7 +345,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns("1")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:
-            var reconciliate = new FileLoader(this);
+            var reconciliate = new ReconciliationIntro(this);
 
             // Act
             var result = reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);

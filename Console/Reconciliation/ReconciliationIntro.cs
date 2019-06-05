@@ -504,8 +504,6 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             ReconciliationInterface<TThirdPartyType, TOwnedType> reconciliationInterface = null;
 
-            var fileLoader = new FileLoader(_inputOutput);
-
             try
             {
                 // NB This is the only function the spreadsheet is used in, until the very end (Reconciliator.Finish, called from
@@ -513,7 +511,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 // WriteBackToMainSpreadsheet. Between now and then, everything is done using csv files.
                 var spreadsheetRepo = spreadsheetFactory.CreateSpreadsheetRepo();
                 var spreadsheet = new Spreadsheet(spreadsheetRepo);
-                BudgetingMonths budgetingMonths = fileLoader.RecursivelyAskForBudgetingMonths(spreadsheet);
+                BudgetingMonths budgetingMonths = RecursivelyAskForBudgetingMonths(spreadsheet);
                 var pendingFileIO = new FileIO<TOwnedType>(spreadsheetFactory);
                 var thirdPartyFileIO = new FileIO<TThirdPartyType>(spreadsheetFactory);
                 var ownedFileIO = new FileIO<TOwnedType>(spreadsheetFactory);
