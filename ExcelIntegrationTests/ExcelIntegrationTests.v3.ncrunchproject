@@ -1,0 +1,8 @@
+﻿<ProjectConfiguration>
+  <Settings>
+    <AdditionalFilesToIncludeForProject>
+      <Value>..\reconciliation-samples\**.*</Value>
+      <Value>..\spreadsheet-samples\**.*</Value>
+    </AdditionalFilesToIncludeForProject>
+  </Settings>
+</ProjectConfiguration>
