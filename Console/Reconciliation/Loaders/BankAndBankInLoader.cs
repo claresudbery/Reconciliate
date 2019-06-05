@@ -82,9 +82,5 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         {
             _expectedIncomeFile.UpdateExpectedIncomeRecordWhenMatched(sourceRecord, matchedRecord);
         }
-
-        public void Finish()
-        {
-        }
     }
 }

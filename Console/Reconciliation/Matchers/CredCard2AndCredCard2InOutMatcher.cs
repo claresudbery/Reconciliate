@@ -33,9 +33,5 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             where TOwnedType : ICSVRecord, new()
         {
         }
-
-        public void Finish()
-        {
-        }
     }
 }
