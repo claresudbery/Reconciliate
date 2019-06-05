@@ -209,7 +209,7 @@ namespace ExcelIntegrationTests.Records
         {
             // Arrange
             String expectedSourceLine = String.Format("27/04/2018^£5.10^^pintipoplication^\"£10,567.89\"^");
-            var credCard1InOutRecord = new CredCard1InOutRecord();
+            //var credCard1InOutRecord = new CredCard1InOutRecord();
             var cells = _spreadsheet.ReadLastRow("Bank");
 
             Assert.AreEqual(true, true);

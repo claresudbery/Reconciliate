@@ -247,7 +247,7 @@ namespace ExcelIntegrationTests.Records
         {
             // Arrange
             String expectedSourceLine = String.Format("02/07/2018^£5.20^^ABC^description4^42345^\"£7,567.89\"^^^");
-            var bankRecord = new BankRecord();
+            //var bankRecord = new BankRecord();
             var cells = _spreadsheet.ReadLastRow("Bank");
 
             Assert.AreEqual(true, true);

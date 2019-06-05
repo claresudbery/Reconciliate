@@ -8,12 +8,14 @@ Mechanics:
 Ideas:
 	Are all these tests necessary? Can some of them be non-integration tests? 
 		Check they run faster when they're not integration tests
+	Bank record tests are slower - replace with cred card tests if possible.
 	Why are nearly all the Bank record tests slower than the CredCard ones?
 	Investigate the tests that have between 50 and 150ms 
 	Have one shared spreadsheet used by both ExcelIntegrationTests and ExcelRecordTests.
 	Try to minimise the number of worksheets that get opened.
 		Try opening all sheets upfront, then you'll get a clearer view of which tests are genuinely slow.
 		Similarly, can we have one test which definitely always gets run first, so we don't get random tests running apparently slowly?
+	Think about which tests can be paralellised (currently none of them are)
 		
 Commit b1642a7b18d2a23bc9384f18dd0f58ab800ae1ba:
 	Initial state:
@@ -65,7 +67,7 @@ Commit dabf8ee285a85b41029cafd62af866b9065dfd01:
 	But when I run all the ExcelIntegrationTests at once, I go back to the previous situation - the only ExcelRecord test > 200ms:
 		370ms: M_WillAddMatchData_WhenPopulatingBankSpreadsheetRow
 	So somehow the other Excel tests are kind of warming things up, maybe by getting the spreadsheet open?
-Between commits:
+Commit 6d3d088c5741f9d0734f213e75a63263a5e97347:
 	The three WillPopulateSourceLineWhenReadingFrom tests (as an example of tests that are slower for Bank than CredCard):
 	Original times:
 		43ms: BankRecord
@@ -92,4 +94,21 @@ Between commits:
 			40ms: CredCard1
 			30ms: CredCard2
 	Not consistent!
-	This could be a massive rabbit hole and it doesn't even matter so I'm abandoning this line of enquiry!
+Commit 
+	I added some more columns to the CredCard sheet in the spreadsheet to see if that made a difference.
+	New times:		
+		49ms: BankRecord
+		45ms: CredCard1
+		45ms: CredCard2
+	I removed the newing up of the BankRecord / CredCard object, as that was the only thing left that differentiated between record types.
+	New times:		
+		First repetition:
+			39ms: BankRecord
+			49ms: CredCard1
+			46ms: CredCard2
+		Second repetition:
+			38ms: BankRecord
+			48ms: CredCard1
+			41ms: CredCard2
+	So it looks like maybe Bank records just ARE slower - partly cos number of columns, partly cos the class has more stuff in it?
+	This could be a massive rabbit hole and it doesn't really matter so I'm abandoning this line of enquiry!
