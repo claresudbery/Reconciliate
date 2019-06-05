@@ -131,6 +131,15 @@ Commit 32faa28f19ff3ca9cc4d10cd4e83a02fe4cab3b9:
 		Tried ignoring this one too.
 		Aha! Now no tests are running so slow (ie > 150ms).
 	This is really weird, because I don't have the same mocking problem in ConsoleCatchallTests.
-Commit 
+Commit 791cbee4436d8059da571a695c45488cb312d3d1:
+	Moved the slow mocked tests to ConsoleCatchallTests to see if that project is different for some reason.
+	The first mocked test still ran slowly!
+	This made me look closer at ICellSet and ISpreadsheetRepo to see if there was something different about them.
+	I found one thing: They both have methods that have parameters of type object.
+	The only other interface that references anything of type object is ICellRow.
+	ICellRow does get mocked in ConsoleCatchallTests (which, before I moved those mocked methods, didn't have ANY tests > 200ms)
+	But ICellRow only has a function return of type object, no function parameters of type object.
+
+	So 
 	
 	
