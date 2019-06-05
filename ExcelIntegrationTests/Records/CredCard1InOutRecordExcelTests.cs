@@ -219,6 +219,7 @@ namespace ExcelIntegrationTests.Records
             Assert.AreEqual(expectedSourceLine, credCard1InOutRecord.SourceLine);
         }
 
+        [Ignore("Want to see which tests run slow when all the M_WillAddMatchData_WhenPopulating tests are ignored.")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void M_WillAddMatchData_WhenPopulatingCredCard1SpreadsheetRow()

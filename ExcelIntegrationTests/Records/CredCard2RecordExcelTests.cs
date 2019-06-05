@@ -10,6 +10,7 @@ namespace ExcelIntegrationTests.Records
     [TestFixture]
     public partial class ExcelRecordTests //(CredCard2Record)
     {
+        [Ignore("Want to see if any more tests will run slow after all tests using Mock<ICellSet> are ignored.")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void M_WillPopulateCredCard2RecordCells()

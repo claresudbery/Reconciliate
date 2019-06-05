@@ -37,6 +37,7 @@ namespace ExcelIntegrationTests.Records
         //    mockCellSet.Verify(x => x.PopulateCell(expectedRowNumber, CredCard1Record.AmountIndex + 1, credCard1Record.Amount));
         //}
 
+        [Ignore("Want to see if any more tests will run slow after all tests using Mock<ICellSet> are ignored.")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void M_WillPopulateCredCard1RecordCells()
@@ -60,6 +61,7 @@ namespace ExcelIntegrationTests.Records
             mockCells.Verify(x => x.PopulateCell(row, CredCard1Record.DescriptionSpreadsheetIndex + 1, credCard1Record.Description), "Desc");
         }
 
+        [Ignore("Trying to find out whether any more tests will run slow when I ignore the mocking ones.")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void M_WillReadFromCredCard1RecordCells()

@@ -116,4 +116,19 @@ Between commits:
 	I removed the non-parallesiable attribute on all tests and clicked the "run tests in parallel" button in Test Explorer
 	Didn't make a blind bit of difference!
 	Also it looked like it wasn't actually running them in parallel at all. [shrug]
-Commit 
+Commit a32e346ab9e32a0f331b0b707208ad8ff88caa3b:
+	Put spreadsheet creation and teardown into central TestHelper class
+	This allows one open spreadsheet to be shared between ExcelIntegrationTests and ExcelRecordTests
+	It didn't make any difference! M_WillAddMatchData_WhenPopulatingCredCard1SpreadsheetRow is till running at 350+ ms
+	But then I had a revelation! M_WillAddMatchData_WhenPopulatingCredCard1SpreadsheetRow is using mocks!
+	Ignored all three M_WillAddMatchData_WhenPopulating tests again.
+	The one which ran slow was another mock-based test: M_WillPopulateActualBankRecordCells
+		This test also uses Mock<ICellSet>
+	So I ignored all the tests that used Mock<ICellSet>
+		But now the one which ran slow was M_WillReadFromCredCard1RecordCells
+		This doesn't use Mock<ICellSet> but it does use Mock<ISpreadsheetRepo>
+		Tried ignoring this one too.
+		Aha! Now no tests are running so slow (ie > 150ms).
+	This is really weird, because I don't have the same mocking problem in ConsoleCatchallTests.
+	
+	
