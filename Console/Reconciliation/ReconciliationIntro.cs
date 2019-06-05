@@ -579,5 +579,24 @@ namespace ConsoleCatchall.Console.Reconciliation
             // The separator we loaded with had to match the source. Then we convert it here to match its destination.
             pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
         }
+
+        public BudgetingMonths RecursivelyAskForBudgetingMonths(ISpreadsheet spreadsheet)
+        {
+            var fileLoader = new FileLoader(_inputOutput);
+
+            DateTime nextUnplannedMonth = fileLoader.GetNextUnplannedMonth(spreadsheet);
+            int lastMonthForBudgetPlanning = fileLoader.GetLastMonthForBudgetPlanning(spreadsheet, nextUnplannedMonth.Month);
+            var budgetingMonths = new BudgetingMonths
+            {
+                NextUnplannedMonth = nextUnplannedMonth.Month,
+                LastMonthForBudgetPlanning = lastMonthForBudgetPlanning,
+                StartYear = nextUnplannedMonth.Year
+            };
+            if (lastMonthForBudgetPlanning != 0)
+            {
+                budgetingMonths.LastMonthForBudgetPlanning = fileLoader.ConfirmBudgetingMonthChoicesWithUser(budgetingMonths, spreadsheet);
+            }
+            return budgetingMonths;
+        }
     }
 }
