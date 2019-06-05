@@ -186,50 +186,5 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             Assert.AreEqual(sourceDate, incomeRecords[0].DatePaid);
             Assert.AreEqual(sourceAmount, incomeRecords[0].TotalPaid);
         }
-
-        [Test]
-        public void WhenFinishing_WillWriteBackToMainSpreadsheet()
-        {
-            // Arrange
-            var mockExpectedIncomeFile = new Mock<ICSVFile<ExpectedIncomeRecord>>();
-            mockExpectedIncomeFile.Setup(x => x.Records).Returns(new List<ExpectedIncomeRecord>());
-            var expectedIncomeFile = new ExpectedIncomeFile(mockExpectedIncomeFile.Object);
-
-            // Act
-            expectedIncomeFile.Finish();
-
-            // Assert
-            mockExpectedIncomeFile.Verify(x => x.WriteBackToMainSpreadsheet(MainSheetNames.ExpectedIn));
-        }
-
-        [Test]
-        public void WhenFinishing_WillReconcileAllRecords()
-        {
-            // Arrange
-            var mockIncomeFileIO = new Mock<IFileIO<ExpectedIncomeRecord>>();
-            var desc1 = "desc1";
-            var desc2 = "desc2";
-            var amount = 10;
-            var expectedIncomeRecords = new List<ExpectedIncomeRecord>
-            {
-                new ExpectedIncomeRecord { Matched = false, UnreconciledAmount = amount, ReconciledAmount = 0, Description = desc1 },
-                new ExpectedIncomeRecord { Matched = true, UnreconciledAmount = amount, ReconciledAmount = 0, Description = desc2 }
-            };
-            mockIncomeFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(expectedIncomeRecords);
-            var csvFile = new CSVFile<ExpectedIncomeRecord>(mockIncomeFileIO.Object);
-            csvFile.Load();
-            var expectedIncomeFile = new ExpectedIncomeFile(csvFile);
-
-            // Act
-            expectedIncomeFile.Finish();
-
-            // Assert
-            Assert.AreEqual(amount, csvFile.Records[0].UnreconciledAmount);
-            Assert.AreEqual(0, csvFile.Records[0].ReconciledAmount);
-            Assert.AreEqual(desc1, csvFile.Records[0].Description);
-            Assert.AreEqual(0, csvFile.Records[1].UnreconciledAmount);
-            Assert.AreEqual(amount, csvFile.Records[1].ReconciledAmount);
-            Assert.AreEqual(desc2, csvFile.Records[1].Description);
-        }
     }
 }

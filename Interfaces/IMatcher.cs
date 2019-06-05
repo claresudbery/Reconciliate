@@ -11,7 +11,5 @@ namespace Interfaces
                 IReconciliationInterface<TThirdPartyType, TOwnedType> reconciliationInterface)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new();
-
-        void Finish();
     }
 }

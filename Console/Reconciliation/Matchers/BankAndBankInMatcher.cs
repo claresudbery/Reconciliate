@@ -185,7 +185,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
         public void Finish()
         {
-            _bankAndBankInLoader.Finish();
         }
 
         public void DEBUGPreliminaryStuff<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)

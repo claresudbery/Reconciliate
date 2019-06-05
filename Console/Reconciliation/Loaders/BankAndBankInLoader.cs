@@ -85,7 +85,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
         public void Finish()
         {
-            _expectedIncomeFile.Finish();
         }
     }
 }

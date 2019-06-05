@@ -63,14 +63,5 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
                 }
             }
         }
-
-        public void Finish()
-        {
-            foreach (var matchedRecord in File.Records.Where(x => x.Matched))
-            {
-                matchedRecord.Reconcile();
-            }
-            File.WriteBackToMainSpreadsheet(MainSheetNames.ExpectedIn);
-        }
     }
 }

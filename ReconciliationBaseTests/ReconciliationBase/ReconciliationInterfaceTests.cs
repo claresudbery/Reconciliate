@@ -1117,22 +1117,5 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Assert
             mockMatcher.Verify(x => x.DoPreliminaryStuff(reconciliator, reconciliationInterface), Times.Exactly(1));
         }
-
-        [Test]
-        public void M_WhenFinishingShouldCallMatcherFinishingFunctionality()
-        {
-            // Arrange
-            _mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ActualBankRecord>());
-            _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<BankRecord>());
-            var mockMatcher = new Mock<IMatcher>();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
-            var reconciliationInterface = new ReconciliationInterface<ActualBankRecord, BankRecord>(this, reconciliator, "ActualBank", "Bank In", mockMatcher.Object);
-
-            // Act
-            reconciliationInterface.Finish();
-
-            // Assert
-            mockMatcher.Verify(x => x.Finish(), Times.Exactly(1));
-        }
     }
 }

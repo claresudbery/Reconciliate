@@ -246,7 +246,6 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             ShowWarnings();
             _inputOutput.Output(ReconConsts.WritingNewData);
-            Matcher.Finish();
             Reconciliator.Finish("recon");
         }
 
