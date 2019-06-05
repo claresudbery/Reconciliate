@@ -16,6 +16,7 @@ Ideas:
 		Try opening all sheets upfront, then you'll get a clearer view of which tests are genuinely slow.
 		Similarly, can we have one test which definitely always gets run first, so we don't get random tests running apparently slowly?
 	Think about which tests can be paralellised (currently none of them are)
+	Move mocked methods out of integration tests project and back into ConsoleCatchallTests.
 		
 Commit b1642a7b18d2a23bc9384f18dd0f58ab800ae1ba:
 	Initial state:
@@ -139,7 +140,15 @@ Commit 791cbee4436d8059da571a695c45488cb312d3d1:
 	The only other interface that references anything of type object is ICellRow.
 	ICellRow does get mocked in ConsoleCatchallTests (which, before I moved those mocked methods, didn't have ANY tests > 200ms)
 	But ICellRow only has a function return of type object, no function parameters of type object.
-
-	So 
+Commit f25b2d5c58bf134736b03369a5f3fb8d23510478 
+	So I gave ICellRow a function iwth a parameter of type object
+	Huh? Now the previously-slow-running mocking methods I added before are running FASTER.
+	And NOTHING is running at > 200ms
+	Not even the tests that use Mock<ICellRow> (of which there are a few).
+Commit 
+	Removed the dummy ICellRow method again.
+	Everything still speedy.
+	I HAVE NO IDEA
+	This is a rabbit hole. I need to just ignore and move on.
 	
 	

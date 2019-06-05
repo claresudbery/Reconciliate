@@ -12,11 +12,6 @@ namespace ExcelLibrary
             _excelCells = excelCells;
         }
 
-        public void DoAThing(object thing)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public object ReadCell(int columnNumber)
         {
             return _excelCells[columnNumber];
