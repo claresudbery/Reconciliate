@@ -192,42 +192,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
-        public void M_CanShowFirstExpenseTransactionWithListOfMatches()
-        {
-            // Arrange
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Description = ReconConsts.EmployerExpenseDescription},
-                    new ActualBankRecord {Description = "something else"}
-                });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<BankRecord> {
-                    new BankRecord {Type = Codes.Expenses, Description = Codes.Expenses},
-                    new BankRecord {Type = Codes.Expenses, Description = Codes.Expenses},
-                    new BankRecord {Type = Codes.Expenses, Description = Codes.Expenses},
-                    new BankRecord {Type = "Chq", Description = "something else"}
-                });
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", mockActualBankFileIO.Object, mockBankFileIO.Object);
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
-
-            // Act
-            matcher.DEBUGPreliminaryStuff(reconciliator);
-
-            // Assert
-            var expenseDescriptionLines = _outputAllLinesRecordedConsoleLines.Where(
-                x => x.DescriptionString == ReconConsts.EmployerExpenseDescription);
-            Assert.AreEqual(1, expenseDescriptionLines.Count(), "transaction with expense description.");
-            var expenseCodeLines = _outputAllLinesRecordedConsoleLines.Where(
-                x => x.DescriptionString == Codes.Expenses);
-            Assert.AreEqual(3, expenseCodeLines.Count(), "row with expense code.");
-
-            // Clean up
-            reconciliator.RefreshFiles();
-        }
-
-        [Test]
         public void M_WhenMatchingSpecifiedRecords_WillMatchRecordWithSpecifiedIndex()
         {
             // Arrange
@@ -659,51 +623,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             Assert.AreEqual(actualBankData[0], reconciliator.OwnedFile.Records[2].Match);
             Assert.IsTrue(reconciliator.OwnedFile.Records[2].Matched);
             Assert.IsTrue(reconciliator.OwnedFile.Records[2].Description.Contains(ReconConsts.SeveralExpenses));
-        }
-
-        [Test]
-        public void M_WhenReconcilingExpenses_WillMatchOnASingleAmount()
-        {
-            // Arrange
-            var expenseAmount = 10.00;
-            List<BankRecord> expectedInRows = new List<BankRecord> { new BankRecord
-            {
-                UnreconciledAmount = expenseAmount,
-                Description = "HELLOW"
-            } };
-            var bankInFileIO = new Mock<IFileIO<BankRecord>>();
-            bankInFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(expectedInRows);
-            var bankInFile = new CSVFile<BankRecord>(bankInFileIO.Object);
-            bankInFile.Load();
-            ActualBankRecord expenseTransaction = new ActualBankRecord { Amount = expenseAmount };
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
-
-            // Act
-            var result = matcher.STANDBYFindExpenseMatches(expenseTransaction, bankInFile).ToList();
-
-            // Assert
-            Assert.AreEqual(1, result.Count);
-            Assert.AreEqual(expectedInRows[0], result[0].ActualRecords[0]);
-        }
-
-        [Test]
-        public void M_WhenReconcilingExpenses_WillNotMatchOnASingleDifferentAmount()
-        {
-            // Arrange
-            var expenseAmount = 10.00;
-            List<BankRecord> expectedInRows = new List<BankRecord> { new BankRecord { UnreconciledAmount = expenseAmount } };
-            var bankInFileIO = new Mock<IFileIO<BankRecord>>();
-            bankInFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(expectedInRows);
-            var bankInFile = new CSVFile<BankRecord>(bankInFileIO.Object);
-            bankInFile.Load();
-            ActualBankRecord expenseTransaction = new ActualBankRecord { Amount = expenseAmount - 1 };
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
-
-            // Act
-            var result = matcher.STANDBYFindExpenseMatches(expenseTransaction, bankInFile).ToList();
-
-            // Assert
-            Assert.AreEqual(0, result.Count);
         }
 
         [Test]

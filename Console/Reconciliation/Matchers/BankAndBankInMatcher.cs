@@ -85,22 +85,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                 && !bankRecord.Description.Contains(ReconConsts.EmployerExpenseDescription);
         }
 
-        public List<ConsoleLine> GetAllExpenseTransactionsFromActualBankIn<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-            FilterForAllExpenseTransactionsFromActualBankIn(reconciliator);
-            return reconciliator.ThirdPartyFile.Records.Select(x => x.ToConsole()).ToList();
-        }
-
-        public List<ConsoleLine> GetAllWagesRowsAndExpenseTransactionsFromExpectedIn<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-            FilterForAllWagesRowsAndExpenseTransactionsFromExpectedIn(reconciliator);
-            return reconciliator.OwnedFile.Records.Select(x => x.ToConsole()).ToList();
-        }
-
         public void MatchSpecifiedRecords<TThirdPartyType, TOwnedType>(
                 RecordForMatching<TThirdPartyType> recordForMatching,
                 int matchIndex,
@@ -177,89 +161,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
-            return DEBUGFindExpenseMatches(sourceRecord as ActualBankRecord, ownedFile as ICSVFile<BankRecord>);
-        }
-
-        public IEnumerable<IPotentialMatch> STANDBYFindExpenseMatches<TThirdPartyType, TOwnedType>
-                (TThirdPartyType sourceRecord, ICSVFile<TOwnedType> ownedFile)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-            var result = new List<PotentialMatch>();
-            if (ownedFile.Records[0].MainAmount() == sourceRecord.MainAmount())
-            {
-                var actualRecords = new List<ICSVRecord>();
-                actualRecords.Add(ownedFile.Records[0]);
-                result.Add(new PotentialMatch {ActualRecords = actualRecords});
-            }
-            return result;
-        }
-
-        public void DEBUGPreliminaryStuff<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-            List<ConsoleLine> allExpenseTransactionsFromActualBankIn = GetAllExpenseTransactionsFromActualBankIn(reconciliator);
-            _inputOutput.OutputLine("***********");
-            _inputOutput.OutputLine("All Expense Transactions From ActualBank In:");
-            _inputOutput.OutputAllLines(allExpenseTransactionsFromActualBankIn);
-
-            List<ConsoleLine> allExpenseTransactionsFromExpectedIn = GetAllWagesRowsAndExpenseTransactionsFromExpectedIn(reconciliator);
-            _inputOutput.OutputLine("***********");
-            _inputOutput.OutputLine("All Expense Transactions From Expected In:");
-            _inputOutput.OutputAllLines(allExpenseTransactionsFromExpectedIn);
-
-            reconciliator.RefreshFiles();
-
-            _inputOutput.GetInput(ReconConsts.EnterAnyKeyToContinue);
-        }
-
-        private IEnumerable<IPotentialMatch> DEBUGFindExpenseMatches(ActualBankRecord sourceRecord, ICSVFile<BankRecord> ownedFile)
-        {
-            var result = new List<IPotentialMatch>();
-            var randomNumberGenerator = new Random();
-
-            AddSetOfOverlappingMatches(randomNumberGenerator, ownedFile, result, 3);
-            AddSetOfOverlappingMatches(randomNumberGenerator, ownedFile, result, 2);
-            AddSetOfOverlappingMatches(randomNumberGenerator, ownedFile, result, 2);
-            AddSetOfOverlappingMatches(randomNumberGenerator, ownedFile, result, 3);
-
-            return result;
-        }
-
-        private static void AddSetOfOverlappingMatches(
-            Random randomNumberGenerator,
-            ICSVFile<BankRecord> ownedFile, 
-            List<IPotentialMatch> result, 
-            int numMatches)
-        {
-            var unmatchedRecords = ownedFile.Records.Where(x => !x.Matched).ToList();
-            var maxRand = unmatchedRecords.Count - 1;
-            if (maxRand >= 0)
-            {
-                var newMatch = new PotentialMatch
-                {
-                    ActualRecords = new List<ICSVRecord>(),
-                    ConsoleLines = new List<ConsoleLine>(),
-                    Rankings = new Rankings { Amount = 0, Date = 0, Combined = 0 },
-                    AmountMatch = true,
-                    FullTextMatch = true,
-                    PartialTextMatch = true
-                };
-                for (int count = 1; count <= numMatches; count++)
-                {
-                    if (maxRand >= 0)
-                    {
-                        var randomIndex = randomNumberGenerator.Next(0, maxRand);
-                        var nextRecord = unmatchedRecords[randomIndex];
-                        newMatch.ActualRecords.Add(nextRecord);
-                        newMatch.ConsoleLines.Add(nextRecord.ToConsole());
-                        unmatchedRecords.Remove(nextRecord);
-                        maxRand--;
-                    }
-                }
-                result.Add(newMatch);
-            }
+            return new List<IPotentialMatch>();
         }
     }
 }
