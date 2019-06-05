@@ -121,6 +121,7 @@ Commit a32e346ab9e32a0f331b0b707208ad8ff88caa3b:
 	This allows one open spreadsheet to be shared between ExcelIntegrationTests and ExcelRecordTests
 	It didn't make any difference! M_WillAddMatchData_WhenPopulatingCredCard1SpreadsheetRow is till running at 350+ ms
 	But then I had a revelation! M_WillAddMatchData_WhenPopulatingCredCard1SpreadsheetRow is using mocks!
+Commit 32faa28f19ff3ca9cc4d10cd4e83a02fe4cab3b9:
 	Ignored all three M_WillAddMatchData_WhenPopulating tests again.
 	The one which ran slow was another mock-based test: M_WillPopulateActualBankRecordCells
 		This test also uses Mock<ICellSet>
@@ -130,5 +131,6 @@ Commit a32e346ab9e32a0f331b0b707208ad8ff88caa3b:
 		Tried ignoring this one too.
 		Aha! Now no tests are running so slow (ie > 150ms).
 	This is really weird, because I don't have the same mocking problem in ConsoleCatchallTests.
+Commit 
 	
 	
