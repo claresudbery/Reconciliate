@@ -40,11 +40,5 @@ namespace Interfaces
         void RemoveFinalMatch(int matchIndex);
         void RemoveMultipleFinalMatches(List<int> matchIndices);
         void RefreshFiles();
-        void FilterOwnedFile(System.Predicate<TOwnedType> filterPredicate);
-        void FilterThirdPartyFile(System.Predicate<TThirdPartyType> filterPredicate);
-        void SetMatchFinder(MatchFindingDelegate<TThirdPartyType, TOwnedType> matchFindingDelegate);
-        void ResetMatchFinder();
-        void SetRecordMatcher(RecordMatchingDelegate<TThirdPartyType, TOwnedType> recordMatcher);
-        void ResetRecordMatcher();
     }
 }

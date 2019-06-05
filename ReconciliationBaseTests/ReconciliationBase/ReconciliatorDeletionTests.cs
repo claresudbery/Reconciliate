@@ -961,49 +961,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
         }
 
         [Test]
-        public void M_CanDeleteMultipleOwnedRecordsAfterSemiAutoMatching()
-        {
-            // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"}
-                });
-            var bankRecords = new List<BankRecord>
-            {
-                new BankRecord {Description = "Match01"},
-                new BankRecord {Description = "Match02"},
-                new BankRecord {Description = "Match03"},
-                new BankRecord {Description = "Match04"}
-            };
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(bankRecords);
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.SetMatchFinder((record, file) => new List<PotentialMatch>{new PotentialMatch
-            {
-                ActualRecords = new List<ICSVRecord> { bankRecords[0], bankRecords[2] }
-            }});
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            var previousNumThirdPartyRecords = actualBankFile.Records.Count;
-            var previousNumOwnedRecords = bankFile.Records.Count;
-
-            // Act
-            reconciliator.DeleteSpecificOwnedRecordFromListOfMatches(0);
-
-            // Assert
-            Assert.AreEqual(previousNumThirdPartyRecords, actualBankFile.Records.Count);
-            Assert.AreEqual(previousNumOwnedRecords - 2, bankFile.Records.Count);
-            Assert.AreEqual(0, bankFile.Records.Count(x => x.Description == bankRecords[0].Description));
-            Assert.AreEqual(0, bankFile.Records.Count(x => x.Description == bankRecords[2].Description));
-        }
-
-        [Test]
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]

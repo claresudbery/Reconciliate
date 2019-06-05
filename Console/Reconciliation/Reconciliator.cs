@@ -41,9 +41,6 @@ namespace ConsoleCatchall.Console.Reconciliation
         private int _currentIndex = -1;
         private readonly List<string> _reservedWords = new List<string>{"AND","THE","OR","WITH"};
 
-        private MatchFindingDelegate<TThirdPartyType, TOwnedType> _matchFindingDelegate;
-        private RecordMatchingDelegate<TThirdPartyType, TOwnedType> _recordMatchingDelegate;
-
         public Reconciliator(
             ICSVFile<TThirdPartyType> thirdPartyFile,
             ICSVFile<TOwnedType> ownedFile,
@@ -88,26 +85,6 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             Reset();
         }
-        
-        public void SetMatchFinder(MatchFindingDelegate<TThirdPartyType, TOwnedType> matchFindingDelegate)
-        {
-            _matchFindingDelegate = matchFindingDelegate;
-        }
-
-        public void ResetMatchFinder()
-        {
-            _matchFindingDelegate = FindLatestOrderedMatches;
-        }
-
-        public void SetRecordMatcher(RecordMatchingDelegate<TThirdPartyType, TOwnedType> recordMatcher)
-        {
-            _recordMatchingDelegate = recordMatcher;
-        }
-
-        public void ResetRecordMatcher()
-        {
-            _recordMatchingDelegate = MatchSpecifiedRecords;
-        }
 
         public bool FindReconciliationMatchesForNextThirdPartyRecord()
         {
@@ -117,7 +94,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 _currentIndex++;
                 TThirdPartyType sourceRecord = ThirdPartyFile.Records[_currentIndex];
-                var matches = _matchFindingDelegate(sourceRecord, OwnedFile).ToList();
+                var matches = FindLatestOrderedMatches(sourceRecord, OwnedFile).ToList();
 
                 if (!sourceRecord.Matched && matches.Count > 0)
                 {
@@ -280,7 +257,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         public void MatchCurrentRecord(int matchIndex)
         {
-            _recordMatchingDelegate(_latestRecordForMatching, matchIndex, OwnedFile);
+            MatchSpecifiedRecords(_latestRecordForMatching, matchIndex, OwnedFile);
         }
 
         private void MatchSpecifiedRecords(
@@ -339,8 +316,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             _currentIndex = -1;
             ThirdPartyFile.ResetAllMatches();
             OwnedFile.ResetAllMatches();
-            ResetMatchFinder();
-            ResetRecordMatcher();
         }
 
         public void RefreshFiles()
@@ -649,16 +624,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 RemoveFinalMatch(thirdPartyIndex);
             }
-        }
-
-        public void FilterOwnedFile(System.Predicate<TOwnedType> filterPredicate)
-        {
-            OwnedFile.RemoveRecords(filterPredicate);
-        }
-
-        public void FilterThirdPartyFile(System.Predicate<TThirdPartyType> filterPredicate)
-        {
-            ThirdPartyFile.RemoveRecords(filterPredicate);
         }
 
         public List<TThirdPartyType> ThirdPartyRecords()

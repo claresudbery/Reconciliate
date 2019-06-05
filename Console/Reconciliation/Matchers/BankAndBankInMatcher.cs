@@ -41,42 +41,18 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
-            DoEmployerExpenseMatching(reconciliator);
-        }
-
-        private void DoEmployerExpenseMatching<TThirdPartyType, TOwnedType>(
-                IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-            FilterForAllExpenseTransactionsFromActualBankIn(reconciliator);
-            FilterForAllWagesRowsAndExpenseTransactionsFromExpectedIn(reconciliator);
-            reconciliator.SetMatchFinder(FindExpenseMatches);
-            reconciliator.SetRecordMatcher(MatchSpecifiedRecords);
-
-            reconciliator.RefreshFiles();
-            reconciliator.ResetMatchFinder();
-            reconciliator.ResetRecordMatcher();
         }
 
         public void FilterForAllExpenseTransactionsFromActualBankIn<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
-            reconciliator.FilterThirdPartyFile(IsNotExpenseTransaction);
         }
 
         public bool IsNotExpenseTransaction<TThirdPartyType>(TThirdPartyType actualBankRecord) where TThirdPartyType : ICSVRecord, new()
         {
             return actualBankRecord.Description.RemovePunctuation().ToUpper()
                    != ReconConsts.EmployerExpenseDescription;
-        }
-
-        public void FilterForAllWagesRowsAndExpenseTransactionsFromExpectedIn<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-            reconciliator.FilterOwnedFile(IsNotWagesRowOrExpenseTransaction);
         }
 
         public bool IsNotWagesRowOrExpenseTransaction<TOwnedType>(TOwnedType bankRecord) where TOwnedType : ICSVRecord, new()
