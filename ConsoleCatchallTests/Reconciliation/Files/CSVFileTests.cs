@@ -30,7 +30,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanCreateEmptyCSVFile()
+        public void M_CanCreateEmptyCSVFile()
         {
             // Act
             var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory());
@@ -208,7 +208,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanRemoveRecordsUsingSpecifiedFilter()
+        public void M_CanRemoveRecordsUsingSpecifiedFilter()
         {
             // Arrange
             var mockFileIO = new Mock<IFileIO<ActualBankRecord>>();
@@ -617,7 +617,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void WillCopyRecordsToAnotherFile()
+        public void M_WillCopyRecordsToAnotherFile()
         {
             // Arrange
             var mockSourceFileIO = new Mock<IFileIO<ExpectedIncomeRecord>>();
@@ -645,7 +645,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void WhenRemovingRecordPermanentlyItDoesNotComeBackAfterRefreshingFileContents()
+        public void M_WhenRemovingRecordPermanentlyItDoesNotComeBackAfterRefreshingFileContents()
         {
             // Arrange
             var mockFileIO = new Mock<IFileIO<ExpectedIncomeRecord>>();
@@ -670,7 +670,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void WhenAddingRecordPermanentlyItIsStillThereAfterRefreshingFileContents()
+        public void M_WhenAddingRecordPermanentlyItIsStillThereAfterRefreshingFileContents()
         {
             // Arrange
             var mockFileIO = new Mock<IFileIO<ExpectedIncomeRecord>>();
