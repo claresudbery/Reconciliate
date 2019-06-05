@@ -9,16 +9,23 @@ namespace ExcelIntegrationTests.Records
     {
         private ExcelSpreadsheetRepo _spreadsheet;
 
+        private static string TestSpreadsheetPath()
+        {
+            string currentPath = TestContext.CurrentContext.TestDirectory;
+            return TestHelper.FullyQualifiedSpreadsheetFilePath(currentPath)
+                   + "/" + "Test-Spreadsheet.xlsx";
+        }
+
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            _spreadsheet = TestHelper.OneTimeSpreadsheetSetUp();
+            _spreadsheet = new ExcelSpreadsheetRepo(TestSpreadsheetPath());
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            TestHelper.OneTimeSpreadsheetTearDown();
+            _spreadsheet.Dispose();
         }
     }
 }

@@ -38,13 +38,13 @@ namespace ExcelIntegrationTests
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            _excelSpreadsheet = TestHelper.OneTimeSpreadsheetSetUp();
+            _excelSpreadsheet = new ExcelSpreadsheetRepo(_testSpreadsheetFileNameAndPath);
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            TestHelper.OneTimeSpreadsheetTearDown();
+            _excelSpreadsheet.Dispose();
         }
 
         private void CloseAndReopenSpreadsheet()
@@ -361,7 +361,6 @@ namespace ExcelIntegrationTests
             Assert.AreEqual(true, exceptionThrown);
         }
 
-        [Ignore("Ignoring all tests > 100ms: This one took 194 ms")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void WillAppendCsvRecordToSpecifiedWorksheet()
@@ -395,7 +394,6 @@ namespace ExcelIntegrationTests
             Assert.AreEqual(initialLastRowNumber + 1, newRowNumber);
         }
 
-        [Ignore("Ignoring all tests > 100ms: This one took 907 ms")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void WillAppendRowsToWorksheetOrderedByMatchedAndThenByDateAndIncludingDivider()
@@ -437,7 +435,6 @@ namespace ExcelIntegrationTests
             Assert.AreEqual("ZZZSpecialDescription005", (String)newRows[5].ReadCell(4));
         }
 
-        [Ignore("Ignoring all tests > 100ms: This one took 541 ms")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void CanDeleteSpecifiedRows()
@@ -758,7 +755,6 @@ namespace ExcelIntegrationTests
             Assert.AreNotEqual(previousAmount, updatedAmount);
         }
 
-        [Ignore("Ignoring all tests > 100ms: This one took 138 ms")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void CanUpdateAmountAndTextIdentifiedByAmountCode()
@@ -786,7 +782,6 @@ namespace ExcelIntegrationTests
             Assert.AreNotEqual(previousText, updatedText);
         }
 
-        [Ignore("Ignoring all tests > 100ms: This one took 127 ms")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void CanUpdateAmountIdentifiedByAmountCode()
@@ -833,7 +828,6 @@ namespace ExcelIntegrationTests
             Assert.AreEqual(expectedError, errorMessage);
         }
 
-        [Ignore("Experimenting with one central spreadsheet and don't want the experiment confused by closijng/reopening spreadsheet.")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void UpdatedAmountIsStillPresentAfterSpreadsheetIsClosedAndReopened()
@@ -854,7 +848,6 @@ namespace ExcelIntegrationTests
             Assert.AreNotEqual(previousAmount, updatedAmount);
         }
 
-        [Ignore("Ignoring all tests > 100ms: This one took 242 ms")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void CanGetSubsetOfColumnsAsRowsConvertedToRecords()
@@ -881,7 +874,6 @@ namespace ExcelIntegrationTests
             Assert.AreEqual("Description009", budgetItems[expectedNumItems - 1].Description);
         }
 
-        [Ignore("Ignoring all tests > 100ms: This one took 250 ms")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void CanInsertNewRow()
@@ -919,7 +911,6 @@ namespace ExcelIntegrationTests
             _excelSpreadsheet.DeleteSpecifiedRows(sheetName, testRowNumber, testRowNumber);
         }
 
-        [Ignore("Ignoring all tests > 100ms: This one took 539 ms")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void CanAppendNewRow()
