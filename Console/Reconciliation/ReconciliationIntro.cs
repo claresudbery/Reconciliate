@@ -496,8 +496,7 @@ namespace ConsoleCatchall.Console.Reconciliation
         public ReconciliationInterface<TThirdPartyType, TOwnedType>
             LoadCorrectFiles<TThirdPartyType, TOwnedType>(
                 DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo,
-                ISpreadsheetRepoFactory spreadsheetFactory,
-                IMatcher matcher = null)
+                ISpreadsheetRepoFactory spreadsheetFactory)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
