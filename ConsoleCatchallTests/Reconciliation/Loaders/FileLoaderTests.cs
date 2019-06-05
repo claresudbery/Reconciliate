@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using ConsoleCatchall.Console.Reconciliation;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Records;
@@ -60,7 +61,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         {
             // Arrange
             var mockInputOutput = new Mock<IInputOutput>();
-            var reconciliate = new FileLoader(mockInputOutput.Object);
+            var reconciliate = new ReconciliationIntro(mockInputOutput.Object);
             var mockSpreadsheet = new Mock<ISpreadsheet>();
             var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
             var mockPendingFile = new Mock<ICSVFile<BankRecord>>();
@@ -359,7 +360,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         {
             // Arrange
             var mockInputOutput = new Mock<IInputOutput>();
-            var reconciliate = new FileLoader(mockInputOutput.Object);
+            var reconciliate = new ReconciliationIntro(mockInputOutput.Object);
             var mockSpreadsheet = new Mock<ISpreadsheet>();
             var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
             var mockPendingFile = new Mock<ICSVFile<BankRecord>>();
@@ -418,7 +419,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         {
             // Arrange
             var mockInputOutput = new Mock<IInputOutput>();
-            var reconciliate = new FileLoader(mockInputOutput.Object);
+            var reconciliate = new ReconciliationIntro(mockInputOutput.Object);
             var mockSpreadsheet = new Mock<ISpreadsheet>();
             var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
             var mockPendingFile = new Mock<ICSVFile<BankRecord>>();
@@ -464,7 +465,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         {
             // Arrange
             var mockInputOutput = new Mock<IInputOutput>();
-            var reconciliate = new FileLoader(mockInputOutput.Object);
+            var reconciliate = new ReconciliationIntro(mockInputOutput.Object);
             var mockSpreadsheet = new Mock<ISpreadsheet>();
             var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
             var mockPendingFile = new Mock<ICSVFile<BankRecord>>();

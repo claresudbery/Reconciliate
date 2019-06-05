@@ -520,7 +520,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 var pendingFile = new CSVFile<TOwnedType>(pendingFileIO);
 
                 reconciliationInterface =
-                    fileLoader.LoadFilesAndMergeData<TThirdPartyType, TOwnedType>(
+                    LoadFilesAndMergeData<TThirdPartyType, TOwnedType>(
                         spreadsheet, pendingFileIO, pendingFile, thirdPartyFileIO, ownedFileIO, budgetingMonths, dataLoadingInfo, matcher);
             }
             finally
@@ -531,6 +531,37 @@ namespace ConsoleCatchall.Console.Reconciliation
             _inputOutput.OutputLine("");
             _inputOutput.OutputLine("");
 
+            return reconciliationInterface;
+        }
+
+        // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
+        // We load it up into memory.
+        // Then some budget amounts are added to that file (in memory).
+        // Other budget amounts (like CredCard1 balance) have been written directly to the spreadsheet before this.
+        // Then we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
+        // Then we write all that data away into the 'owned' csv file (eg BankOut.csv). Then we read it back in again!
+        // Also we load up the third party data, and pass it all on to the reconciliation interface.
+        public ReconciliationInterface<TThirdPartyType, TOwnedType>
+            LoadFilesAndMergeData<TThirdPartyType, TOwnedType>(
+                ISpreadsheet spreadsheet,
+                IFileIO<TOwnedType> pendingFileIO,
+                ICSVFile<TOwnedType> pendingFile,
+                IFileIO<TThirdPartyType> thirdPartyFileIO,
+                IFileIO<TOwnedType> ownedFileIO,
+                BudgetingMonths budgetingMonths,
+                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo,
+                IMatcher matcher)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            var fileLoader = new FileLoader(_inputOutput);
+
+            fileLoader.LoadPendingData(pendingFileIO, pendingFile, dataLoadingInfo);
+            fileLoader.MergeBudgetData(spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+            fileLoader.MergeOtherData(spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+            fileLoader.MergeUnreconciledData(spreadsheet, pendingFile, dataLoadingInfo);
+            var reconciliator = fileLoader.LoadThirdPartyAndOwnedFilesIntoReconciliator<TThirdPartyType, TOwnedType>(dataLoadingInfo, thirdPartyFileIO, ownedFileIO);
+            var reconciliationInterface = fileLoader.CreateReconciliationInterface(dataLoadingInfo, reconciliator, matcher);
             return reconciliationInterface;
         }
     }
