@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Matchers;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
@@ -489,6 +490,48 @@ namespace ConsoleCatchall.Console.Reconciliation
                     }
                     break;
             }
+        }
+
+        public ReconciliationInterface<TThirdPartyType, TOwnedType>
+            LoadCorrectFiles<TThirdPartyType, TOwnedType>(
+                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo,
+                ISpreadsheetRepoFactory spreadsheetFactory,
+                IMatcher matcher)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            _inputOutput.OutputLine("Loading data...");
+
+            ReconciliationInterface<TThirdPartyType, TOwnedType> reconciliationInterface = null;
+
+            var fileLoader = new FileLoader(_inputOutput);
+
+            try
+            {
+                // NB This is the only function the spreadsheet is used in, until the very end (Reconciliator.Finish, called from
+                // ReconciliationInterface), when another spreadsheet instance gets created by FileIO so it can call 
+                // WriteBackToMainSpreadsheet. Between now and then, everything is done using csv files.
+                var spreadsheetRepo = spreadsheetFactory.CreateSpreadsheetRepo();
+                var spreadsheet = new Spreadsheet(spreadsheetRepo);
+                BudgetingMonths budgetingMonths = fileLoader.RecursivelyAskForBudgetingMonths(spreadsheet);
+                var pendingFileIO = new FileIO<TOwnedType>(spreadsheetFactory);
+                var thirdPartyFileIO = new FileIO<TThirdPartyType>(spreadsheetFactory);
+                var ownedFileIO = new FileIO<TOwnedType>(spreadsheetFactory);
+                var pendingFile = new CSVFile<TOwnedType>(pendingFileIO);
+
+                reconciliationInterface =
+                    fileLoader.LoadFilesAndMergeData<TThirdPartyType, TOwnedType>(
+                        spreadsheet, pendingFileIO, pendingFile, thirdPartyFileIO, ownedFileIO, budgetingMonths, dataLoadingInfo, matcher);
+            }
+            finally
+            {
+                spreadsheetFactory.DisposeOfSpreadsheetRepo();
+            }
+
+            _inputOutput.OutputLine("");
+            _inputOutput.OutputLine("");
+
+            return reconciliationInterface;
         }
     }
 }

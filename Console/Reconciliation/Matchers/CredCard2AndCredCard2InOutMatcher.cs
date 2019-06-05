@@ -20,9 +20,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         {
             var loadingInfo = new CredCard2AndCredCard2InOutLoader().LoadingInfo();
             loadingInfo.FilePaths = mainFilePaths;
+            var reconciliationIntro = new ReconciliationIntro(_inputOutput);
             var fileLoader = new FileLoader(_inputOutput);
             ReconciliationInterface<CredCard2Record, CredCard2InOutRecord> reconciliationInterface
-                = fileLoader.LoadCorrectFiles<CredCard2Record, CredCard2InOutRecord>(loadingInfo, _spreadsheetFactory, this);
+                = reconciliationIntro.LoadCorrectFiles<CredCard2Record, CredCard2InOutRecord>(loadingInfo, _spreadsheetFactory, this);
             reconciliationInterface?.DoTheMatching();
         }
 
