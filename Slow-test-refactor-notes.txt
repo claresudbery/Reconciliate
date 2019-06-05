@@ -29,5 +29,8 @@ Commit cd52774799c3d03e9f21ab241a2793e5687c0932:
 				387ms: M_WillAddMatchData_WhenPopulatingCredCard1SpreadsheetRow
 			BankRecordExcelTests (partial class of ExcelRecordTests):
 				108ms: WillInsertXInCellWhenBankRecordIsMatched
+					(was only just under 100ms before tests were ignored)
 			Total: 1033 ms
-		
+	Without committing, I also ignored all three M_WillAddMatchData_WhenPopulating tests
+		This just made another ExcelRecord test pop up at 357ms
+		So presumably there is a price to pay of around 350ms when the spreadsheet is first opened for record tests.
