@@ -511,7 +511,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         {
             // Arrange
             var mockInputOutput = new Mock<IInputOutput>();
-            var reconciliate = new FileLoader(mockInputOutput.Object);
+            var reconciliate = new ReconciliationIntro(mockInputOutput.Object);
             var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
             var pendingFile = new CSVFile<BankRecord>(mockPendingFileIO.Object);
             mockPendingFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))

@@ -556,13 +556,28 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             var fileLoader = new FileLoader(_inputOutput);
 
-            fileLoader.LoadPendingData(pendingFileIO, pendingFile, dataLoadingInfo);
+            LoadPendingData(pendingFileIO, pendingFile, dataLoadingInfo);
             fileLoader.MergeBudgetData(spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
             fileLoader.MergeOtherData(spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
             fileLoader.MergeUnreconciledData(spreadsheet, pendingFile, dataLoadingInfo);
             var reconciliator = fileLoader.LoadThirdPartyAndOwnedFilesIntoReconciliator<TThirdPartyType, TOwnedType>(dataLoadingInfo, thirdPartyFileIO, ownedFileIO);
             var reconciliationInterface = fileLoader.CreateReconciliationInterface(dataLoadingInfo, reconciliator, matcher);
             return reconciliationInterface;
+        }
+
+        public void LoadPendingData<TThirdPartyType, TOwnedType>(
+            IFileIO<TOwnedType> pendingFileIO,
+            ICSVFile<TOwnedType> pendingFile,
+            DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            _inputOutput.OutputLine(
+                "Loading data from pending file (which you should have already split out, if necessary)...");
+            pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
+            pendingFile.Load(true, dataLoadingInfo.DefaultSeparator);
+            // The separator we loaded with had to match the source. Then we convert it here to match its destination.
+            pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
         }
     }
 }

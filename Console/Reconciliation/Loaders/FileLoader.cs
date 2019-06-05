@@ -17,21 +17,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _inputOutput = inputOutput;
         }
 
-        public void LoadPendingData<TThirdPartyType, TOwnedType>(
-                IFileIO<TOwnedType> pendingFileIO,
-                ICSVFile<TOwnedType> pendingFile,
-                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-            _inputOutput.OutputLine(
-                "Loading data from pending file (which you should have already split out, if necessary)...");
-            pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
-            pendingFile.Load(true, dataLoadingInfo.DefaultSeparator);
-            // The separator we loaded with had to match the source. Then we convert it here to match its destination.
-            pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
-        }
-
         public void MergeBudgetData<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 ICSVFile<TOwnedType> pendingFile,
