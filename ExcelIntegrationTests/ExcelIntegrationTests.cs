@@ -38,13 +38,13 @@ namespace ExcelIntegrationTests
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            _excelSpreadsheet = new ExcelSpreadsheetRepo(_testSpreadsheetFileNameAndPath);
+            _excelSpreadsheet = TestHelper.OneTimeSpreadsheetSetUp();
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            _excelSpreadsheet.Dispose();
+            TestHelper.OneTimeSpreadsheetTearDown();
         }
 
         private void CloseAndReopenSpreadsheet()
@@ -92,7 +92,6 @@ namespace ExcelIntegrationTests
             Assert.AreEqual(expectedCsv, result);
         }
 
-        [Ignore("Ignoring all tests > 100ms: This one took 720 ms")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void WillAppendAllRowsInCsvFileToSpecifiedWorksheet()
@@ -834,6 +833,7 @@ namespace ExcelIntegrationTests
             Assert.AreEqual(expectedError, errorMessage);
         }
 
+        [Ignore("Experimenting with one central spreadsheet and don't want the experiment confused by closijng/reopening spreadsheet.")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void UpdatedAmountIsStillPresentAfterSpreadsheetIsClosedAndReopened()
