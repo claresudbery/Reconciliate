@@ -7,7 +7,7 @@ using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
-    internal class BankAndBankInLoader : IBankAndBankInLoader, ILoader<ActualBankRecord, BankRecord>
+    internal class BankAndBankInLoader : ILoader<ActualBankRecord, BankRecord>
     {
         private ExpectedIncomeFile _expectedIncomeFile;
         private CSVFile<ExpectedIncomeRecord> _expectedIncomeCSVFile;

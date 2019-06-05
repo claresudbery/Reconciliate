@@ -19,9 +19,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         private readonly BankAndBankInLoader _bankAndBankInLoader = new BankAndBankInLoader();
 
         public BankAndBankInMatcher(
-            IInputOutput inputOutput, 
-            ISpreadsheetRepoFactory spreadsheetFactory,
-            IBankAndBankInLoader bankAndBankInLoader)
+            IInputOutput inputOutput,
+            ISpreadsheetRepoFactory spreadsheetFactory)
         {
             _inputOutput = inputOutput;
             _spreadsheetFactory = spreadsheetFactory;

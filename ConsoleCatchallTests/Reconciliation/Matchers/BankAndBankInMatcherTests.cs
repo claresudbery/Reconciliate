@@ -30,7 +30,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenDoingExpenseMatchingWillFilterOwnedFileForWagesRowsAndExpenseTransactionsOnly()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockBankInFileIO = new Mock<IFileIO<BankRecord>>();
             var wagesDescription =
                 $"Wages ({ReconConsts.EmployerExpenseDescription}) (!! in an inestimable manner, not forthwith - forever 1st outstanding)";
@@ -52,7 +51,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var actualBankFile = new ActualBankInFile(new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object));
             var dataLoadingInfo = new DataLoadingInformation<ActualBankRecord, BankRecord> { SheetName = MainSheetNames.BankIn };
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(dataLoadingInfo, actualBankFile, bankInFile);
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
             matcher.FilterForAllWagesRowsAndExpenseTransactionsFromExpectedIn(reconciliator);
@@ -69,7 +68,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WillFilterActualBankFileForExpenseTransactionsOnly()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
             mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
@@ -85,7 +83,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var bankInFile = new GenericFile<BankRecord>(new CSVFile<BankRecord>(mockBankInFileIO.Object));
             var dataLoadingInfo = new DataLoadingInformation<ActualBankRecord, BankRecord> { SheetName = MainSheetNames.BankIn };
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(dataLoadingInfo, actualBankFile, bankInFile);
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
             matcher.FilterForAllExpenseTransactionsFromActualBankIn(reconciliator);
@@ -99,10 +97,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenExpenseMatchingWillFilterOwnedFileForWagesRowsAndExpenseTransactionsOnly()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
             matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
@@ -115,10 +112,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenExpenseMatchingWillFilterActualBankFileForExpenseTransactionsOnly()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
             matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
@@ -131,10 +127,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenExpenseMatchingWillRefreshFilesAtEnd()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
             matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
@@ -147,10 +142,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenExpenseMatchingWillSetMatchFindingDelegate()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
             matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
@@ -163,10 +157,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenExpenseMatchingWillResetMatchFindingDelegateAtEnd()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
             matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
@@ -179,10 +172,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenExpenseMatchingWillSetRecordMatchingDelegate()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
             matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
@@ -195,10 +187,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenExpenseMatchingWillDoSemiAutomaticMatching()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
             matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
@@ -211,10 +202,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenExpenseMatchingWillResetRecordMatchingDelegate()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
             matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
@@ -227,7 +217,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_CanShowFirstExpenseTransactionWithListOfMatches()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
             var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
             mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
@@ -243,7 +232,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                     new BankRecord {Type = "Chq", Description = "something else"}
                 });
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", mockActualBankFileIO.Object, mockBankFileIO.Object);
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
             matcher.DEBUGPreliminaryStuff(reconciliator);
@@ -264,10 +253,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenMatchingSpecifiedRecords_WillMatchRecordWithSpecifiedIndex()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockOwnedFile = new Mock<ICSVFile<BankRecord>>();
             mockOwnedFile.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
             var sourceRecord = new ActualBankRecord
             {
                 Amount = 34.56,
@@ -296,10 +284,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenMatchingSpecifiedRecords_WillReplaceMultipleMatchesWithSingleMatch()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockOwnedFile = new Mock<ICSVFile<BankRecord>>();
             mockOwnedFile.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
             var sourceRecord = new ActualBankRecord
             {
                 Amount = 34.56,
@@ -332,10 +319,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenMatchingSpecifiedRecords_AndMultipleMatchesExist_WillCreateNewRecordWithExplanatoryDescription()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockOwnedFile = new Mock<ICSVFile<BankRecord>>();
             mockOwnedFile.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
             var sourceRecord = new ActualBankRecord
             {
                 Amount = 34.56,
@@ -371,10 +357,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenMatchingSpecifiedRecords_AndMultipleMatchesExist_WillCreateNewRecordWithDateToMatchSourceRecord()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockOwnedFile = new Mock<ICSVFile<BankRecord>>();
             mockOwnedFile.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
             var sourceRecord = new ActualBankRecord
             {
                 Date = DateTime.Today,
@@ -408,10 +393,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenMatchingSpecifiedRecords_AndMultipleMatchesExist_WillCreateNewRecordWithAllAmountsAddedTogether()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockOwnedFile = new Mock<ICSVFile<BankRecord>>();
             mockOwnedFile.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
             var sourceRecord = new ActualBankRecord
             {
                 Date = DateTime.Today,
@@ -447,10 +431,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenMatchingSpecifiedRecords_AndMultipleMatchesExist_WillCreateNewRecordWithTypeOfFirstMatch()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockOwnedFile = new Mock<ICSVFile<BankRecord>>();
             mockOwnedFile.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
             var sourceRecord = new ActualBankRecord
             {
                 Date = DateTime.Today,
@@ -485,10 +468,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenMatchingSpecifiedRecords_BothSourceAndMatchWillHaveMatchedSetToTrue()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockOwnedFile = new Mock<ICSVFile<BankRecord>>();
             mockOwnedFile.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
             var sourceRecord = new ActualBankRecord
             {
                 Date = DateTime.Today,
@@ -523,10 +505,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenMatchingSpecifiedRecords_SourceAndMatchWillHaveMatchPropertiesPointingAtEachOther()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var mockOwnedFile = new Mock<ICSVFile<BankRecord>>();
             mockOwnedFile.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
             var sourceRecord = new ActualBankRecord
             {
                 Date = DateTime.Today,
@@ -561,8 +542,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenMatchingSpecifiedRecords_AndMultipleMatchesExist_WillRemoveOriginalMatchesFromOwnedFile()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
             var sourceRecord = new ActualBankRecord
             {
                 Date = DateTime.Today,
@@ -605,8 +585,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenMatchingSpecifiedRecords_AndMultipleMatchesExist_WillAddNewlyCreatedMatchToOwnedFile()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
             var sourceRecord = new ActualBankRecord
             {
                 Date = DateTime.Today,
@@ -677,8 +656,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                     ConsoleLines = new List<ConsoleLine>{ new ConsoleLine { DescriptionString = "Console Description" } }
                 }
             };
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
             matcher.FilterForAllExpenseTransactionsFromActualBankIn(reconciliator);
             matcher.FilterForAllWagesRowsAndExpenseTransactionsFromExpectedIn(reconciliator);
             reconciliator.SetMatchFinder((record, file) => expectedPotentialMatches);
@@ -709,7 +687,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenReconcilingExpenses_WillMatchOnASingleAmount()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var expenseAmount = 10.00;
             List<BankRecord> expectedInRows = new List<BankRecord> { new BankRecord
             {
@@ -721,7 +698,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var bankInFile = new CSVFile<BankRecord>(bankInFileIO.Object);
             bankInFile.Load();
             ActualBankRecord expenseTransaction = new ActualBankRecord { Amount = expenseAmount };
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
             var result = matcher.STANDBYFindExpenseMatches(expenseTransaction, bankInFile).ToList();
@@ -735,7 +712,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenReconcilingExpenses_WillNotMatchOnASingleDifferentAmount()
         {
             // Arrange
-            var mockBankAndBankInLoader = new Mock<IBankAndBankInLoader>();
             var expenseAmount = 10.00;
             List<BankRecord> expectedInRows = new List<BankRecord> { new BankRecord { UnreconciledAmount = expenseAmount } };
             var bankInFileIO = new Mock<IFileIO<BankRecord>>();
@@ -743,7 +719,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var bankInFile = new CSVFile<BankRecord>(bankInFileIO.Object);
             bankInFile.Load();
             ActualBankRecord expenseTransaction = new ActualBankRecord { Amount = expenseAmount - 1 };
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mockBankAndBankInLoader.Object);
+            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
             var result = matcher.STANDBYFindExpenseMatches(expenseTransaction, bankInFile).ToList();

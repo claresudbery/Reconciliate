@@ -56,7 +56,6 @@
     <Compile Include="DTOs\FilePaths.cs" />
     <Compile Include="DTOs\Rankings.cs" />
     <Compile Include="DTOs\RecordForMatching.cs" />
-    <Compile Include="IBankAndBankInLoader.cs" />
     <Compile Include="ICellRow.cs" />
     <Compile Include="IClock.cs" />
     <Compile Include="ICSVFile.cs" />
