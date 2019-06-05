@@ -36,24 +36,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             reconciliationInterface?.DoTheMatching();
         }
 
-        public void FilterForAllExpenseTransactionsFromActualBankIn<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-        }
-
-        public bool IsNotExpenseTransaction<TThirdPartyType>(TThirdPartyType actualBankRecord) where TThirdPartyType : ICSVRecord, new()
-        {
-            return actualBankRecord.Description.RemovePunctuation().ToUpper()
-                   != ReconConsts.EmployerExpenseDescription;
-        }
-
-        public bool IsNotWagesRowOrExpenseTransaction<TOwnedType>(TOwnedType bankRecord) where TOwnedType : ICSVRecord, new()
-        {
-            return (bankRecord as BankRecord).Type != Codes.Expenses
-                && !bankRecord.Description.Contains(ReconConsts.EmployerExpenseDescription);
-        }
-
         public void MatchSpecifiedRecords<TThirdPartyType, TOwnedType>(
                 RecordForMatching<TThirdPartyType> recordForMatching,
                 int matchIndex,
@@ -123,14 +105,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                 combinedAmounts += $", {potentialMatch.ActualRecords[count].MainAmount().ToCsvString(true)}";
             }
             return $"{ReconConsts.SeveralExpenses} ({combinedAmounts})";
-        }
-
-        public IEnumerable<IPotentialMatch> FindExpenseMatches<TThirdPartyType, TOwnedType>
-                (TThirdPartyType sourceRecord, ICSVFile<TOwnedType> ownedFile)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-            return new List<IPotentialMatch>();
         }
     }
 }
