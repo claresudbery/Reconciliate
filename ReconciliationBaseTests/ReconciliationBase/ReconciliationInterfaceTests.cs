@@ -1115,7 +1115,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             reconciliationInterface.DoTheMatching();
 
             // Assert
-            mockMatcher.Verify(x => x.DoPreliminaryStuff(reconciliator, reconciliationInterface), Times.Exactly(1));
+            mockMatcher.Verify(x => x.DoPreliminaryStuff(reconciliator), Times.Exactly(1));
         }
     }
 }

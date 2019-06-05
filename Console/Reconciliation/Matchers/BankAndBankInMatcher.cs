@@ -37,17 +37,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         }
 
         public void DoPreliminaryStuff<TThirdPartyType, TOwnedType>(
-                IReconciliator<TThirdPartyType, TOwnedType> reconciliator,
-                IReconciliationInterface<TThirdPartyType, TOwnedType> reconciliationInterface)
+                IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
-            DoEmployerExpenseMatching(reconciliator, reconciliationInterface);
+            DoEmployerExpenseMatching(reconciliator);
         }
 
         private void DoEmployerExpenseMatching<TThirdPartyType, TOwnedType>(
-                IReconciliator<TThirdPartyType, TOwnedType> reconciliator,
-                IReconciliationInterface<TThirdPartyType, TOwnedType> reconciliationInterface)
+                IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
@@ -55,8 +53,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             FilterForAllWagesRowsAndExpenseTransactionsFromExpectedIn(reconciliator);
             reconciliator.SetMatchFinder(FindExpenseMatches);
             reconciliator.SetRecordMatcher(MatchSpecifiedRecords);
-
-            reconciliationInterface.DoSemiAutomaticMatching();
 
             reconciliator.RefreshFiles();
             reconciliator.ResetMatchFinder();

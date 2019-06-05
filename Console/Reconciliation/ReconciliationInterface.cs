@@ -8,7 +8,7 @@ using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation
 {
-    internal class ReconciliationInterface<TThirdPartyType, TOwnedType> : IReconciliationInterface<TThirdPartyType, TOwnedType>
+    internal class ReconciliationInterface<TThirdPartyType, TOwnedType>
         where TThirdPartyType : ICSVRecord, new()
         where TOwnedType : ICSVRecord, new()
     {
@@ -37,7 +37,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         public void DoTheMatching()
         {
-            Matcher.DoPreliminaryStuff(Reconciliator, this);
+            Matcher.DoPreliminaryStuff(Reconciliator);
             DoAutomaticMatching();
             
             DoSemiAutomaticMatching();

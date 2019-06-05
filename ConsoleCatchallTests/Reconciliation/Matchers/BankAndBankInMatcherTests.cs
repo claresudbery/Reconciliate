@@ -98,11 +98,10 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         {
             // Arrange
             var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
-            var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
             var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
-            matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
+            matcher.DoPreliminaryStuff(mockReconciliator.Object);
 
             // Assert
             mockReconciliator.Verify(x => x.FilterOwnedFile(matcher.IsNotWagesRowOrExpenseTransaction));
@@ -113,11 +112,10 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         {
             // Arrange
             var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
-            var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
             var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
-            matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
+            matcher.DoPreliminaryStuff(mockReconciliator.Object);
 
             // Assert
             mockReconciliator.Verify(x => x.FilterThirdPartyFile(matcher.IsNotExpenseTransaction));
@@ -128,11 +126,10 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         {
             // Arrange
             var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
-            var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
             var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
-            matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
+            matcher.DoPreliminaryStuff(mockReconciliator.Object);
 
             // Assert
             mockReconciliator.Verify(x => x.RefreshFiles());
@@ -143,11 +140,10 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         {
             // Arrange
             var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
-            var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
             var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
-            matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
+            matcher.DoPreliminaryStuff(mockReconciliator.Object);
 
             // Assert
             mockReconciliator.Verify(x => x.SetMatchFinder(matcher.FindExpenseMatches));
@@ -158,11 +154,10 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         {
             // Arrange
             var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
-            var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
             var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
-            matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
+            matcher.DoPreliminaryStuff(mockReconciliator.Object);
 
             // Assert
             mockReconciliator.Verify(x => x.ResetMatchFinder());
@@ -173,29 +168,13 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         {
             // Arrange
             var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
-            var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
             var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
-            matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
+            matcher.DoPreliminaryStuff(mockReconciliator.Object);
 
             // Assert
             mockReconciliator.Verify(x => x.SetRecordMatcher(matcher.MatchSpecifiedRecords));
-        }
-
-        [Test]
-        public void M_WhenExpenseMatchingWillDoSemiAutomaticMatching()
-        {
-            // Arrange
-            var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
-            var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
-
-            // Act
-            matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
-
-            // Assert
-            mockReconciliationInterface.Verify(x => x.DoSemiAutomaticMatching());
         }
 
         [Test]
@@ -203,11 +182,10 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         {
             // Arrange
             var mockReconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
-            var mockReconciliationInterface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
             var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory());
 
             // Act
-            matcher.DoPreliminaryStuff(mockReconciliator.Object, mockReconciliationInterface.Object);
+            matcher.DoPreliminaryStuff(mockReconciliator.Object);
 
             // Assert
             mockReconciliator.Verify(x => x.ResetRecordMatcher());
