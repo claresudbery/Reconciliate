@@ -373,7 +373,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             SetUpForLoaderBespokeStuff(mockInputOutput, mockSpreadsheet);
 
             // Act
-            reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
+            var reconciliationInterface = reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
                 mockSpreadsheet.Object,
                 mockPendingFileIO.Object,
                 mockPendingFile.Object,
@@ -407,7 +407,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mockInputOutput.Verify(x => x.OutputLine("Creating reconciliation interface..."));
             Assert.AreEqual(loadingInfo.ThirdPartyDescriptor, reconciliationInterface.ThirdPartyDescriptor, "Third Party Descriptor");
             Assert.AreEqual(loadingInfo.OwnedFileDescriptor, reconciliationInterface.OwnedFileDescriptor, "Owned File Descriptor");
-            Assert.AreEqual(mockMatcher.Object, reconciliationInterface.Matcher, "Matcher");
         }
 
         [Test]

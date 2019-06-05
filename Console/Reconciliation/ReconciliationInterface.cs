@@ -17,7 +17,6 @@ namespace ConsoleCatchall.Console.Reconciliation
         public IReconciliator<TThirdPartyType, TOwnedType> Reconciliator { get; private set; }
         public string ThirdPartyDescriptor { get; private set; }
         public string OwnedFileDescriptor { get; private set; }
-        public IMatcher Matcher { get; private set; }
 
         private bool _doingSemiAutomaticMatching = false;
 
