@@ -10,32 +10,6 @@ namespace ExcelIntegrationTests.Records
     [TestFixture]
     public partial class ExcelRecordTests //(ActualBankRecord)
     {
-        [Ignore("Want to see if any more tests will run slow after all tests using Mock<ICellSet> are ignored.")]
-        [Test]
-        [Parallelizable(ParallelScope.None)]
-        public void M_WillPopulateActualBankRecordCells()
-        {
-            // Arrange
-            var actualBankRecord = new ActualBankRecord
-            {
-                Date = new DateTime(year: 2017, month: 4, day: 19),
-                Type = "Chq",
-                Description = "Acme: Esmerelda's birthday",
-                Amount = 1234.56
-            };
-            var row = 10;
-            var mockCells = new Mock<ICellSet>();
-
-            // Act 
-            actualBankRecord.PopulateSpreadsheetRow(mockCells.Object, row);
-
-            // Assert
-            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.DateSpreadsheetIndex + 1, actualBankRecord.Date), "Date");
-            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.AmountSpreadsheetIndex + 1, actualBankRecord.MainAmount()), "Amount");
-            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.TypeSpreadsheetIndex + 1, actualBankRecord.Type), "Type");
-            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.DescriptionSpreadsheetIndex + 1, actualBankRecord.Description), "Desc");
-        }
-
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void WillReadFromActualBankRecordCells()

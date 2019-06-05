@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("ConsoleCatchallTests")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("ExcelIntegrationTests")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("ReconciliationIntegrationTests")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("DynamicProxyGenAssembly2")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

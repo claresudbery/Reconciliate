@@ -1,13 +1,12 @@
 ﻿using System;
 using System.IO;
 using ConsoleCatchall.Console.Reconciliation;
-using ConsoleCatchallTests.Reconciliation.TestUtils;
 using Interfaces;
 using Interfaces.Constants;
 using Moq;
 using NUnit.Framework;
 
-namespace ConsoleCatchallTests.Reconciliation
+namespace ReconciliationIntegrationTests.ReconciliationBase
 {
     [TestFixture]
     public partial class ReconciliationIntroTests : IInputOutput

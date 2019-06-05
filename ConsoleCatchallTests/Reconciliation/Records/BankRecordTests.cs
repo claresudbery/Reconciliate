@@ -1,6 +1,8 @@
 ﻿using System;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Utils;
+using Interfaces;
+using Moq;
 using NUnit.Framework;
 
 namespace ConsoleCatchallTests.Reconciliation.Records
@@ -645,6 +647,34 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             Assert.AreEqual(originalSourceLine, bankRecord.SourceLine);
             Assert.AreEqual(originalType, bankRecord.Type);
             Assert.AreEqual(originalChequeNumber, bankRecord.ChequeNumber);
+        }
+
+        [Test]
+        [Parallelizable(ParallelScope.None)]
+        public void M_WillAddMatchData_WhenPopulatingBankSpreadsheetRow()
+        {
+            // Arrange
+            var row = 10;
+            var bankRecord = new BankRecord
+            {
+                Match = new ActualBankRecord
+                {
+                    Date = DateTime.Today,
+                    Amount = 22.34,
+                    Type = "POS",
+                    Description = "match description"
+                }
+            };
+            var mockCells = new Mock<ICellSet>();
+
+            // Act 
+            bankRecord.PopulateSpreadsheetRow(mockCells.Object, row);
+
+            // Assert
+            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.DateSpreadsheetIndex + 1, bankRecord.Match.Date), "Date");
+            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.AmountSpreadsheetIndex + 1, bankRecord.Match.MainAmount()), "Amount");
+            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.TypeSpreadsheetIndex + 1, ((ActualBankRecord)bankRecord.Match).Type), "Type");
+            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.DescriptionSpreadsheetIndex + 1, bankRecord.Match.Description), "Desc");
         }
     }
 }

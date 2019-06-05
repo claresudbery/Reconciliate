@@ -5,7 +5,7 @@ using Interfaces;
 using Interfaces.DTOs;
 using NUnit.Framework;
 
-namespace ConsoleCatchallTests.Reconciliation
+namespace ReconciliationIntegrationTests.ReconciliationBase
 {
     [TestFixture]
     public partial class ReconciliationIntroTests : IInputOutput

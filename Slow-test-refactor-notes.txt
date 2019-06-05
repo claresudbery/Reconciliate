@@ -7,6 +7,10 @@ Ideas:
 			ConsoleCatchallTests.Reconciliation.Files
 			ConsoleCatchallTests.Reconciliation.ReconciliatorMatchingTests
 		But all together the tests run in 11 seconds so maybe it's best to leave it for now.
+		Note that some tests have prefixes, left over from a previous slow-test investigation:
+			M_ means the test contains mocks
+			R_ means the test contains a call to Reload
+				- which is probably a source of slowness because it means a csv gets reloaded from disk.
 	Argh:
 		I just discovered that since I clicked Run Tests in Parallel, the two test projects are run in parallel!
 			This means it is now irrelevant if Excel integration tests run slowly, because overall the other projects tests take longer.

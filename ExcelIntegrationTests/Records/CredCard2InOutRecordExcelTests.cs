@@ -218,32 +218,5 @@ namespace ExcelIntegrationTests.Records
             // Assert
             Assert.AreEqual(expectedSourceLine, credCard2InOutRecord.SourceLine);
         }
-
-        [Ignore("Want to see which tests run slow when all the M_WillAddMatchData_WhenPopulating tests are ignored.")]
-        [Test]
-        [Parallelizable(ParallelScope.None)]
-        public void M_WillAddMatchData_WhenPopulatingCredCard2SpreadsheetRow()
-        {
-            // Arrange
-            var row = 10;
-            var credCard2InOutRecord = new CredCard2InOutRecord
-            {
-                Match = new CredCard2Record
-                {
-                    Date = DateTime.Today,
-                    Amount = 22.34,
-                    Description = "match description"
-                }
-            };
-            var mockCells = new Mock<ICellSet>();
-
-            // Act 
-            credCard2InOutRecord.PopulateSpreadsheetRow(mockCells.Object, row);
-
-            // Assert
-            mockCells.Verify(x => x.PopulateCell(row, CredCard2Record.DateSpreadsheetIndex + 1, credCard2InOutRecord.Match.Date), "Date");
-            mockCells.Verify(x => x.PopulateCell(row, CredCard2Record.AmountSpreadsheetIndex + 1, credCard2InOutRecord.Match.MainAmount()), "Amount");
-            mockCells.Verify(x => x.PopulateCell(row, CredCard2Record.DescriptionSpreadsheetIndex + 1, credCard2InOutRecord.Match.Description), "Desc");
-        }
     }
 }

@@ -8,7 +8,7 @@ using Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace ConsoleCatchallTests.Reconciliation
+namespace ReconciliationIntegrationTests.ReconciliationBase
 {
     [TestFixture]
     public class ReconciliatorDeletionTests

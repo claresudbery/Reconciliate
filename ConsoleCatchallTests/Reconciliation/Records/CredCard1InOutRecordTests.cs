@@ -1,6 +1,8 @@
 ﻿using System;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Utils;
+using Interfaces;
+using Moq;
 using NUnit.Framework;
 
 namespace ConsoleCatchallTests.Reconciliation.Records
@@ -530,6 +532,32 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             Assert.AreEqual(originalDescription, credCard1InOutRecord.Description);
             Assert.AreEqual(originalReconciledAmount, credCard1InOutRecord.ReconciledAmount);
             Assert.AreEqual(originalSourceLine, credCard1InOutRecord.SourceLine);
+        }
+
+        [Test]
+        [Parallelizable(ParallelScope.None)]
+        public void M_WillAddMatchData_WhenPopulatingCredCard1SpreadsheetRow()
+        {
+            // Arrange
+            var row = 10;
+            var credCard1InOutRecord = new CredCard1InOutRecord
+            {
+                Match = new CredCard1Record
+                {
+                    Date = DateTime.Today,
+                    Amount = 22.34,
+                    Description = "match description"
+                }
+            };
+            var mockCells = new Mock<ICellSet>();
+
+            // Act 
+            credCard1InOutRecord.PopulateSpreadsheetRow(mockCells.Object, row);
+
+            // Assert
+            mockCells.Verify(x => x.PopulateCell(row, CredCard1Record.DateSpreadsheetIndex + 1, credCard1InOutRecord.Match.Date), "Date");
+            mockCells.Verify(x => x.PopulateCell(row, CredCard1Record.AmountSpreadsheetIndex + 1, credCard1InOutRecord.Match.MainAmount()), "Amount");
+            mockCells.Verify(x => x.PopulateCell(row, CredCard1Record.DescriptionSpreadsheetIndex + 1, credCard1InOutRecord.Match.Description), "Desc");
         }
     }
 }

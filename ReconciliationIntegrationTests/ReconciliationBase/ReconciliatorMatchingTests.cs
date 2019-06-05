@@ -8,14 +8,13 @@ using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
-using ConsoleCatchallTests.Reconciliation.TestUtils;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
 using Moq;
 using NUnit.Framework;
 
-namespace ConsoleCatchallTests.Reconciliation
+namespace ReconciliationIntegrationTests.ReconciliationBase
 {
     // NB: Tests prefixed R_ are those that call file.Reload()
     // This was done when I was trying to work out what makes some tests run slower than others

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using ConsoleCatchall.Console.Reconciliation.Records;
+using Interfaces;
+using Moq;
 using NUnit.Framework;
 
 namespace ConsoleCatchallTests.Reconciliation.Records
@@ -293,6 +295,29 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             Assert.AreEqual(originalAmount, credCard2Record.Amount);
             Assert.AreEqual(originalDescription, credCard2Record.Description);
             Assert.AreEqual(originalSourceLine, credCard2Record.SourceLine);
+        }
+
+        [Test]
+        [Parallelizable(ParallelScope.None)]
+        public void M_WillPopulateCredCard2RecordCells()
+        {
+            // Arrange
+            var credCard2Record = new CredCard2Record
+            {
+                Date = new DateTime(year: 2017, month: 4, day: 19),
+                Amount = 13.48,
+                Description = "Acme: Esmerelda's birthday"
+            };
+            var row = 10;
+            var mockCells = new Mock<ICellSet>();
+
+            // Act 
+            credCard2Record.PopulateSpreadsheetRow(mockCells.Object, row);
+
+            // Assert
+            mockCells.Verify(x => x.PopulateCell(row, CredCard2Record.DateSpreadsheetIndex + 1, credCard2Record.Date), "Date");
+            mockCells.Verify(x => x.PopulateCell(row, CredCard2Record.AmountSpreadsheetIndex + 1, credCard2Record.MainAmount()), "Amount");
+            mockCells.Verify(x => x.PopulateCell(row, CredCard2Record.DescriptionSpreadsheetIndex + 1, credCard2Record.Description), "Desc");
         }
     }
 }

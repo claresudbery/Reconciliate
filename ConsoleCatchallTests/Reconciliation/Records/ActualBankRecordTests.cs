@@ -1,6 +1,8 @@
 ﻿using System;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Utils;
+using Interfaces;
+using Moq;
 using NUnit.Framework;
 
 namespace ConsoleCatchallTests.Reconciliation.Records
@@ -470,6 +472,31 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             Assert.AreEqual(originalDescription, actualBankRecord.Description);
             Assert.AreEqual(originalType, actualBankRecord.Type);
             Assert.AreEqual(originalSourceLine, actualBankRecord.SourceLine);
+        }
+
+        [Test]
+        [Parallelizable(ParallelScope.None)]
+        public void M_WillPopulateActualBankRecordCells()
+        {
+            // Arrange
+            var actualBankRecord = new ActualBankRecord
+            {
+                Date = new DateTime(year: 2017, month: 4, day: 19),
+                Type = "Chq",
+                Description = "Acme: Esmerelda's birthday",
+                Amount = 1234.56
+            };
+            var row = 10;
+            var mockCells = new Mock<ICellSet>();
+
+            // Act 
+            actualBankRecord.PopulateSpreadsheetRow(mockCells.Object, row);
+
+            // Assert
+            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.DateSpreadsheetIndex + 1, actualBankRecord.Date), "Date");
+            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.AmountSpreadsheetIndex + 1, actualBankRecord.MainAmount()), "Amount");
+            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.TypeSpreadsheetIndex + 1, actualBankRecord.Type), "Type");
+            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.DescriptionSpreadsheetIndex + 1, actualBankRecord.Description), "Desc");
         }
     }
 }
