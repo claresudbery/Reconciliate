@@ -13,6 +13,7 @@ namespace ExcelIntegrationTests.Records
     [TestFixture]
     public partial class ExcelRecordTests //(BankRecord)
     {
+        [Ignore("Ignoring all tests > 100ms: This one took 110 ms")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void WillPopulateBankRecordCells()
@@ -48,6 +49,7 @@ namespace ExcelIntegrationTests.Records
             previousRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
         }
 
+        [Ignore("Ignoring all tests > 100ms: This one took 125 ms")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void WillInsertDividerTextInSecondCellWhenBankRecordIsDivider()
@@ -92,6 +94,7 @@ namespace ExcelIntegrationTests.Records
             previousRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
         }
 
+        [Ignore("Ignoring all tests > 100ms: This one took 103 ms")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void WillInsertNullInRelevantCellWhenBankRecordIsNotMatched()
@@ -257,6 +260,7 @@ namespace ExcelIntegrationTests.Records
             Assert.AreEqual(expectedSourceLine, bankRecord.SourceLine);
         }
 
+        [Ignore("Ignoring all tests > 100ms: This one took 379 ms")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void M_WillAddMatchData_WhenPopulatingBankSpreadsheetRow()
