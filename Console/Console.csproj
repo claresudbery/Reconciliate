@@ -43,7 +43,6 @@
     <Compile Include="Reconciliation\Loaders\DummyLoader.cs" />
     <Compile Include="Reconciliation\Utils\Clock.cs" />
     <Compile Include="Reconciliation\Matchers\CredCard2AndCredCard2InOutMatcher.cs" />
-    <Compile Include="Reconciliation\Loaders\FileLoader.cs" />
     <Compile Include="Reconciliation\Files\GenericFile.cs" />
     <Compile Include="Reconciliation\Files\CredCard1File.cs" />
     <Compile Include="Reconciliation\Files\ActualBankInFile.cs" />

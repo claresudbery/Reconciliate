@@ -21,7 +21,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             var loadingInfo = new BankAndBankOutLoader().LoadingInfo();
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
-            var fileLoader = new FileLoader(_inputOutput);
             ReconciliationInterface<ActualBankRecord, BankRecord> reconciliationInterface
                 = reconciliationIntro.LoadCorrectFiles<ActualBankRecord, BankRecord>(loadingInfo, _spreadsheetFactory, this);
             reconciliationInterface?.DoTheMatching();
