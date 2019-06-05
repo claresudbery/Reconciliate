@@ -37,7 +37,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         public void DoTheMatching()
         {
-            Matcher.DoPreliminaryStuff<TThirdPartyType, TOwnedType>();
+            Matcher.DoPreliminaryStuff();
             DoAutomaticMatching();
             
             DoSemiAutomaticMatching();
