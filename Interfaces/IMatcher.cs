@@ -6,8 +6,7 @@ namespace Interfaces
     {
         void DoMatching(FilePaths mainFilePaths);
 
-        void DoPreliminaryStuff<TThirdPartyType, TOwnedType>(
-            IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
+        void DoPreliminaryStuff<TThirdPartyType, TOwnedType>()
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new();
     }

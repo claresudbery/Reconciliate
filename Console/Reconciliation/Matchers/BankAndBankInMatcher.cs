@@ -36,8 +36,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             reconciliationInterface?.DoTheMatching();
         }
 
-        public void DoPreliminaryStuff<TThirdPartyType, TOwnedType>(
-                IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
+        public void DoPreliminaryStuff<TThirdPartyType, TOwnedType>()
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
