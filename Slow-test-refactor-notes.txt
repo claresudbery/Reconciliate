@@ -94,7 +94,7 @@ Commit 6d3d088c5741f9d0734f213e75a63263a5e97347:
 			40ms: CredCard1
 			30ms: CredCard2
 	Not consistent!
-Commit 
+Commit 43ce253ddd6b1869d921002ff86b4b20e862183c:
 	I added some more columns to the CredCard sheet in the spreadsheet to see if that made a difference.
 	New times:		
 		49ms: BankRecord

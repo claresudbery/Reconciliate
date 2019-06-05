@@ -209,16 +209,14 @@ namespace ExcelIntegrationTests.Records
         {
             // Arrange
             String expectedSourceLine = String.Format("27/04/2018^£5.10^^pintipoplication^\"£10,567.89\"^");
-            //var credCard2InOutRecord = new CredCard2InOutRecord();
+            var credCard2InOutRecord = new CredCard2InOutRecord();
             var cells = _spreadsheet.ReadLastRow("CredCard");
 
-            Assert.AreEqual(true, true);
-
             // Act 
-            //credCard2InOutRecord.ReadFromSpreadsheetRow(cells);
+            credCard2InOutRecord.ReadFromSpreadsheetRow(cells);
 
             // Assert
-            //Assert.AreEqual(expectedSourceLine, credCard2InOutRecord.SourceLine);
+            Assert.AreEqual(expectedSourceLine, credCard2InOutRecord.SourceLine);
         }
 
         [Test]
