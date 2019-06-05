@@ -311,7 +311,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 case "1": result = new CredCard1AndCredCard1InOutMatcher(_inputOutput, _spreadsheetFactory); break;
                 case "2": result = new CredCard2AndCredCard2InOutMatcher(_inputOutput, _spreadsheetFactory); break;
-                case "3": result = new BankAndBankInMatcher(_inputOutput, _spreadsheetFactory, new BankAndBankInLoader(_spreadsheetFactory)); break;
+                case "3": result = new BankAndBankInMatcher(_inputOutput, _spreadsheetFactory, new BankAndBankInLoader()); break;
                 case "4": result = new BankAndBankOutMatcher(_inputOutput, _spreadsheetFactory); break;
             }
 
@@ -421,7 +421,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 {
                     _ownedFileName = ReconConsts.DefaultBankInFileName;
                     _thirdPartyFileName = ReconConsts.DefaultBankFileName;
-                    _matcher = new BankAndBankInMatcher(_inputOutput, _spreadsheetFactory, new BankAndBankInLoader(_spreadsheetFactory));
+                    _matcher = new BankAndBankInMatcher(_inputOutput, _spreadsheetFactory, new BankAndBankInLoader());
                 } break;
                 case "5":
                 {
@@ -593,14 +593,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
             return budgetingMonths;
         }
-
-
-
-
-
-
-
-
 
         private void MergeBudgetData<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,

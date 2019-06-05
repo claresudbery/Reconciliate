@@ -34,8 +34,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var pendingRecords = new List<BankRecord>();
             mockPendingFile.Setup(x => x.Records).Returns(pendingRecords);
             var budgetingMonths = new BudgetingMonths();
-            var loadingInfo = new BankAndBankInLoader(new FakeSpreadsheetRepoFactory()).LoadingInfo();
-            var bankAndBankInLoader = new BankAndBankInLoader(new FakeSpreadsheetRepoFactory());
+            var loadingInfo = new BankAndBankInLoader().LoadingInfo();
+            var bankAndBankInLoader = new BankAndBankInLoader();
 
             // Act
             bankAndBankInLoader.MergeBespokeDataWithPendingFile(

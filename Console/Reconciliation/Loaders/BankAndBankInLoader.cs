@@ -1,5 +1,6 @@
 ﻿using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Records;
+using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
@@ -13,7 +14,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
         public BankAndBankInLoader(ISpreadsheetRepoFactory spreadsheetRepoFactory)
         {
-            var expectedIncomeFileIO = new FileIO<ExpectedIncomeRecord>(spreadsheetRepoFactory);
+            var expectedIncomeFileIO = new FileIO<ExpectedIncomeRecord>(new FakeSpreadsheetRepoFactory());
+            _expectedIncomeCSVFile = new CSVFile<ExpectedIncomeRecord>(expectedIncomeFileIO);
+            _expectedIncomeFile = new ExpectedIncomeFile(_expectedIncomeCSVFile);
+        }
+
+        public BankAndBankInLoader()
+        {
+            var expectedIncomeFileIO = new FileIO<ExpectedIncomeRecord>(new FakeSpreadsheetRepoFactory());
             _expectedIncomeCSVFile = new CSVFile<ExpectedIncomeRecord>(expectedIncomeFileIO);
             _expectedIncomeFile = new ExpectedIncomeFile(_expectedIncomeCSVFile);
         }
