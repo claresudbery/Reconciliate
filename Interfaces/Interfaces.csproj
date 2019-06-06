@@ -65,7 +65,6 @@
     <Compile Include="ICellSet.cs" />
     <Compile Include="IDataFile.cs" />
     <Compile Include="IReconciliationInterface.cs" />
-    <Compile Include="ISpreadsheet.cs" />
     <Compile Include="IFileIO.cs" />
     <Compile Include="IInputOutput.cs" />
     <Compile Include="IPotentialMatch.cs" />

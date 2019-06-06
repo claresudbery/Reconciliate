@@ -596,34 +596,11 @@ namespace ConsoleCatchall.Console.Reconciliation
             return reconciliationInterface;
         }
 
-        // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
-        // We loaded it up into memory in the previous file-specific method.
-        // Then some budget amounts were added to that file (in memory).
-        // Other budget amounts (like CredCard1 balance) were written directly to the spreadsheet before this too.
-        // Now we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
-        // Then we write all that data away into the 'owned' csv file (eg BankOut.csv).
-        public void MergePendingAndBudgetAndUnreconciled<TRecordType>(
-            IFileIO<TRecordType> fileIO,
-            string sheetName,
-            string ownedFileName,
-            ISpreadsheet spreadsheet,
-            ICSVFile<TRecordType> pendingFile,
-            BudgetingMonths budgetingMonths) where TRecordType : ICSVRecord, new()
-        {
-            _inputOutput.OutputLine("Merging unreconciled rows from spreadsheet with pending and budget data...");
-            spreadsheet.AddUnreconciledRowsToCsvFile<TRecordType>(sheetName, pendingFile);
-
-            _inputOutput.OutputLine("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
-            pendingFile.WriteToFileAsSourceLines(ownedFileName);
-
-            _inputOutput.OutputLine("...");
-        }
-
         public ReconciliationInterface<TThirdPartyType, TOwnedType>
             LoadBankAndBankIn<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 IFileIO<TOwnedType> pendingFileIO,
-                ICSVFile<TOwnedType> pendingFile,
+                ICSVFile<BankRecord> pendingFile,
                 BudgetingMonths budgetingMonths,
                 DataLoadingInformation dataLoadingInfo)
             where TThirdPartyType : ICSVRecord, new()
@@ -639,10 +616,20 @@ namespace ConsoleCatchall.Console.Reconciliation
             spreadsheet.AddBudgetedBankInDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.MonthlyBudgetData);
             _inputOutput.OutputLine("Updating source lines for output...");
             pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
+            
+            _inputOutput.OutputLine("Merging unreconciled rows from spreadsheet with pending and budget data...");
+            spreadsheet.AddUnreconciledRowsToCsvFile(dataLoadingInfo.SheetName, pendingFile);
+            _inputOutput.OutputLine("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
+            pendingFile.WriteToFileAsSourceLines(dataLoadingInfo.FilePaths.OwnedFileName);
+            _inputOutput.OutputLine("...");
 
-            MergePendingAndBudgetAndUnreconciled(pendingFileIO, dataLoadingInfo.SheetName, dataLoadingInfo.FilePaths.OwnedFileName, spreadsheet, pendingFile, budgetingMonths);
-            BankAndBankIn_MergeBespokeDataWithPendingFile<TOwnedType>(
-                _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+            // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
+            // We loaded it up into memory in the previous file-specific method.
+            // Then some budget amounts were added to that file (in memory).
+            // Other budget amounts (like CredCard1 balance) were written directly to the spreadsheet before this too.
+            // Now we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
+            // Then we write all that data away into the 'owned' csv file (eg BankOut.csv).
+            BankAndBankIn_MergeBespokeDataWithPendingFile(_inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
 
             var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
             var ownedFileIO = new FileIO<TOwnedType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
@@ -659,7 +646,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             LoadBankAndBankOut<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 IFileIO<TOwnedType> pendingFileIO,
-                ICSVFile<TOwnedType> pendingFile,
+                ICSVFile<BankRecord> pendingFile,
                 BudgetingMonths budgetingMonths,
                 DataLoadingInformation dataLoadingInfo)
             where TThirdPartyType : ICSVRecord, new()
@@ -680,9 +667,19 @@ namespace ConsoleCatchall.Console.Reconciliation
             _inputOutput.OutputLine("Updating source lines for output...");
             pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
 
-            MergePendingAndBudgetAndUnreconciled(pendingFileIO, dataLoadingInfo.SheetName, dataLoadingInfo.FilePaths.OwnedFileName, spreadsheet, pendingFile, budgetingMonths);
-            BankAndBankOut_MergeBespokeDataWithPendingFile<TOwnedType>(
-                _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+            // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
+            // We loaded it up into memory in the previous file-specific method.
+            // Then some budget amounts were added to that file (in memory).
+            // Other budget amounts (like CredCard1 balance) were written directly to the spreadsheet before this too.
+            // Now we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
+            // Then we write all that data away into the 'owned' csv file (eg BankOut.csv).
+            _inputOutput.OutputLine("Merging unreconciled rows from spreadsheet with pending and budget data...");
+            spreadsheet.AddUnreconciledRowsToCsvFile(dataLoadingInfo.SheetName, pendingFile);
+            _inputOutput.OutputLine("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
+            pendingFile.WriteToFileAsSourceLines(dataLoadingInfo.FilePaths.OwnedFileName);
+            _inputOutput.OutputLine("...");
+
+            BankAndBankOut_MergeBespokeDataWithPendingFile(_inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
 
             var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
             var ownedFileIO = new FileIO<TOwnedType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
@@ -699,7 +696,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             LoadCredCard1AndCredCard1InOut<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 IFileIO<TOwnedType> pendingFileIO,
-                ICSVFile<TOwnedType> pendingFile,
+                ICSVFile<CredCard1InOutRecord> pendingFile,
                 BudgetingMonths budgetingMonths,
                 DataLoadingInformation dataLoadingInfo)
             where TThirdPartyType : ICSVRecord, new()
@@ -716,8 +713,19 @@ namespace ConsoleCatchall.Console.Reconciliation
             _inputOutput.OutputLine("Updating source lines for output...");
             pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
 
-            MergePendingAndBudgetAndUnreconciled(pendingFileIO, dataLoadingInfo.SheetName, dataLoadingInfo.FilePaths.OwnedFileName, spreadsheet, pendingFile, budgetingMonths);
-            CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile<TOwnedType>(
+            // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
+            // We loaded it up into memory in the previous file-specific method.
+            // Then some budget amounts were added to that file (in memory).
+            // Other budget amounts (like CredCard1 balance) were written directly to the spreadsheet before this too.
+            // Now we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
+            // Then we write all that data away into the 'owned' csv file (eg BankOut.csv).
+            _inputOutput.OutputLine("Merging unreconciled rows from spreadsheet with pending and budget data...");
+            spreadsheet.AddUnreconciledRowsToCsvFile(dataLoadingInfo.SheetName, pendingFile);
+            _inputOutput.OutputLine("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
+            pendingFile.WriteToFileAsSourceLines(dataLoadingInfo.FilePaths.OwnedFileName);
+            _inputOutput.OutputLine("...");
+
+            CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile(
                 _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
 
             var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
@@ -735,7 +743,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             LoadCredCard2AndCredCard2InOut<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 IFileIO<TOwnedType> pendingFileIO,
-                ICSVFile<TOwnedType> pendingFile,
+                ICSVFile<CredCard2InOutRecord> pendingFile,
                 BudgetingMonths budgetingMonths,
                 DataLoadingInformation dataLoadingInfo)
             where TThirdPartyType : ICSVRecord, new()
@@ -752,8 +760,19 @@ namespace ConsoleCatchall.Console.Reconciliation
             _inputOutput.OutputLine("Updating source lines for output...");
             pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
 
-            MergePendingAndBudgetAndUnreconciled(pendingFileIO, dataLoadingInfo.SheetName, dataLoadingInfo.FilePaths.OwnedFileName, spreadsheet, pendingFile, budgetingMonths);
-            CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile<TOwnedType>(
+            // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
+            // We loaded it up into memory in the previous file-specific method.
+            // Then some budget amounts were added to that file (in memory).
+            // Other budget amounts (like CredCard1 balance) were written directly to the spreadsheet before this too.
+            // Now we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
+            // Then we write all that data away into the 'owned' csv file (eg BankOut.csv).
+            _inputOutput.OutputLine("Merging unreconciled rows from spreadsheet with pending and budget data...");
+            spreadsheet.AddUnreconciledRowsToCsvFile(dataLoadingInfo.SheetName, pendingFile);
+            _inputOutput.OutputLine("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
+            pendingFile.WriteToFileAsSourceLines(dataLoadingInfo.FilePaths.OwnedFileName);
+            _inputOutput.OutputLine("...");
+
+            CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
                 _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
 
             var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
@@ -786,28 +805,28 @@ namespace ConsoleCatchall.Console.Reconciliation
                     {
                         reconciliationInterface =
                             LoadBankAndBankIn<TThirdPartyType, TOwnedType>(
-                                spreadsheet, pendingFileIO, pendingFile, budgetingMonths, BankAndBankInData.LoadingInfo);
+                                spreadsheet, pendingFileIO, (ICSVFile<BankRecord>)pendingFile, budgetingMonths, BankAndBankInData.LoadingInfo);
                     }
                     break;
                 case ReconciliationType.BankAndBankOut:
                     {
                         reconciliationInterface =
                             LoadBankAndBankOut<TThirdPartyType, TOwnedType>(
-                                spreadsheet, pendingFileIO, pendingFile, budgetingMonths, BankAndBankOutData.LoadingInfo);
+                                spreadsheet, pendingFileIO, (ICSVFile<BankRecord>)pendingFile, budgetingMonths, BankAndBankOutData.LoadingInfo);
                     }
                     break;
                 case ReconciliationType.CredCard1AndCredCard1InOut:
                     {
                         reconciliationInterface =
                             LoadCredCard1AndCredCard1InOut<TThirdPartyType, TOwnedType>(
-                                spreadsheet, pendingFileIO, pendingFile, budgetingMonths, CredCard1AndCredCard1InOutData.LoadingInfo);
+                                spreadsheet, pendingFileIO, (ICSVFile<CredCard1InOutRecord>)pendingFile, budgetingMonths, CredCard1AndCredCard1InOutData.LoadingInfo);
                     }
                     break;
                 case ReconciliationType.CredCard2AndCredCard2InOut:
                     {
                         reconciliationInterface =
                             LoadCredCard2AndCredCard2InOut<TThirdPartyType, TOwnedType>(
-                                spreadsheet, pendingFileIO, pendingFile, budgetingMonths, CredCard2AndCredCard2InOutData.LoadingInfo);
+                                spreadsheet, pendingFileIO, (ICSVFile<CredCard2InOutRecord>)pendingFile, budgetingMonths, CredCard2AndCredCard2InOutData.LoadingInfo);
                     }
                     break;
                 default:
@@ -836,13 +855,12 @@ namespace ConsoleCatchall.Console.Reconciliation
             return budgetingMonths;
         }
 
-        public void BankAndBankIn_MergeBespokeDataWithPendingFile<TOwnedType>(
+        public void BankAndBankIn_MergeBespokeDataWithPendingFile(
                 IInputOutput inputOutput,
                 ISpreadsheet spreadsheet,
-                ICSVFile<TOwnedType> pendingFile,
+                ICSVFile<BankRecord> pendingFile,
                 BudgetingMonths budgetingMonths,
                 DataLoadingInformation dataLoadingInfo)
-            where TOwnedType : ICSVRecord, new()
         {
             inputOutput.OutputLine(ReconConsts.LoadingExpenses);
             var expectedIncomeFileIO = new FileIO<ExpectedIncomeRecord>(new FakeSpreadsheetRepoFactory());
@@ -852,22 +870,21 @@ namespace ConsoleCatchall.Console.Reconciliation
             spreadsheet.AddUnreconciledRowsToCsvFile<ExpectedIncomeRecord>(MainSheetNames.ExpectedIn, expectedIncomeFile.File);
             expectedIncomeCSVFile.PopulateSourceRecordsFromRecords();
             expectedIncomeFile.FilterForEmployerExpensesOnly();
-            expectedIncomeFile.CopyToPendingFile((ICSVFile<BankRecord>)pendingFile);
+            expectedIncomeFile.CopyToPendingFile(pendingFile);
             expectedIncomeCSVFile.PopulateRecordsFromOriginalFileLoad();
         }
 
-        public void BankAndBankOut_MergeBespokeDataWithPendingFile<TOwnedType>(
+        public void BankAndBankOut_MergeBespokeDataWithPendingFile(
                 IInputOutput inputOutput,
                 ISpreadsheet spreadsheet,
-                ICSVFile<TOwnedType> pendingFile,
+                ICSVFile<BankRecord> pendingFile,
                 BudgetingMonths budgetingMonths,
                 DataLoadingInformation dataLoadingInfo)
-            where TOwnedType : ICSVRecord, new()
         {
             BankAndBankOut_AddMostRecentCreditCardDirectDebits(
                 inputOutput,
                 spreadsheet,
-                (ICSVFile<BankRecord>)pendingFile,
+                pendingFile,
                 ReconConsts.CredCard1Name,
                 ReconConsts.CredCard1DdDescription);
 
@@ -917,13 +934,12 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public void CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile<TOwnedType>(
+        public void CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile(
                 IInputOutput inputOutput,
                 ISpreadsheet spreadsheet,
-                ICSVFile<TOwnedType> pendingFile,
+                ICSVFile<CredCard1InOutRecord> pendingFile,
                 BudgetingMonths budgetingMonths,
                 DataLoadingInformation dataLoadingInfo)
-            where TOwnedType : ICSVRecord, new()
         {
             var mostRecentCredCardDirectDebit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
                 MainSheetNames.BankOut,
@@ -941,7 +957,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 if (double.TryParse(input, out newBalance))
                 {
-                    (pendingFile as ICSVFile<CredCard1InOutRecord>).Records.Add(new CredCard1InOutRecord
+                    pendingFile.Records.Add(new CredCard1InOutRecord
                     {
                         Date = nextDate,
                         Description = ReconConsts.CredCard1RegularPymtDescription,
@@ -968,13 +984,12 @@ namespace ConsoleCatchall.Console.Reconciliation
                 codeColumn: 4);
         }
 
-        public void CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile<TOwnedType>(
+        public void CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
                 IInputOutput inputOutput,
                 ISpreadsheet spreadsheet,
-                ICSVFile<TOwnedType> pendingFile,
+                ICSVFile<CredCard2InOutRecord> pendingFile,
                 BudgetingMonths budgetingMonths,
                 DataLoadingInformation dataLoadingInfo)
-            where TOwnedType : ICSVRecord, new()
         {
             var mostRecentCredCardDirectDebit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
                 MainSheetNames.BankOut,
@@ -992,7 +1007,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 if (double.TryParse(input, out newBalance))
                 {
-                    (pendingFile as ICSVFile<CredCard2InOutRecord>).Records.Add(new CredCard2InOutRecord
+                    pendingFile.Records.Add(new CredCard2InOutRecord
                     {
                         Date = nextDate,
                         Description = ReconConsts.CredCard2RegularPymtDescription,

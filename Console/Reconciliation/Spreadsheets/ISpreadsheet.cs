@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces.DTOs;
 
 namespace Interfaces
 {
-    public interface ISpreadsheet
+    internal interface ISpreadsheet
     {
         ICellRow ReadLastRow(String sheetName);
         int FindRowNumberOfLastDividerRow(string sheetName);
@@ -35,23 +36,22 @@ namespace Interfaces
             int codeColumn);
         DateTime GetNextUnplannedMonth();
 
-        void AddBudgetedBankInDataToPendingFile<TRecordType>(
+        void AddBudgetedBankInDataToPendingFile(
             BudgetingMonths budgetingMonths,
-            ICSVFile<TRecordType> pendingFile,
-            BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new();
-        void AddBudgetedBankOutDataToPendingFile<TRecordType>(
+            ICSVFile<BankRecord> pendingFile,
+            BudgetItemListData budgetItemListData);
+        void AddBudgetedBankOutDataToPendingFile(
             BudgetingMonths budgetingMonths,
-            ICSVFile<TRecordType> pendingFile,
+            ICSVFile<BankRecord> pendingFile,
             BudgetItemListData monthlyBudgetItemListData,
-            BudgetItemListData annualBudgetItemListData) where TRecordType : ICSVRecord, new();
-        void AddBudgetedCredCard2InOutDataToPendingFile<TRecordType>(
+            BudgetItemListData annualBudgetItemListData);
+        void AddBudgetedCredCard1InOutDataToPendingFile(
             BudgetingMonths budgetingMonths,
-            ICSVFile<TRecordType> pendingFile,
-            BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new();
-        void AddBudgetedCredCard1InOutDataToPendingFile<TRecordType>(
+            ICSVFile<CredCard1InOutRecord> pendingFile,
+            BudgetItemListData budgetItemListData);
+        void AddBudgetedCredCard2InOutDataToPendingFile(
             BudgetingMonths budgetingMonths,
-            ICSVFile<TRecordType> pendingFile,
-            BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new();
-
+            ICSVFile<CredCard2InOutRecord> pendingFile,
+            BudgetItemListData budgetItemListData);
     }
 }
