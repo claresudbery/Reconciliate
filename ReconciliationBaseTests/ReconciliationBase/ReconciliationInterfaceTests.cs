@@ -63,7 +63,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             Assert.AreEqual(previousLastMatchDescription, currentMatches[numPreviousMatches - 1].ActualRecords[0].Description);
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         public void M_WhenMatchingIsDone_AllRecordsAreProcessed()
         {
@@ -111,7 +110,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             }
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         public void M_WhenMatchingIsDoneForNonMatchingRecords_AllRecordsAreProcessed()
         {
@@ -168,7 +166,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             VerifyIsOutputAmongstAllMatches(MatchDescription + "05b", numTimes: 4);
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         [TestCase(true)]
         [TestCase(false)]
@@ -208,7 +205,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             Assert.AreEqual(actualBankRecords[1].Description, reconciliator.CurrentSourceDescription());
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         [TestCase(true)]
         [TestCase(false)]
@@ -242,7 +238,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _mockInputOutput.Verify(x => x.Output("Writing new data..."), Times.Once);
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         public void M_WhenOwnedRecordIsDeletedAfterAutoMatching_ShouldUpdateListOfMatches()
         {
@@ -315,7 +310,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             Assert.AreEqual(1, _numTimesCalled);
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         [TestCase(true)]
         [TestCase(false)]
@@ -366,7 +360,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 Times.Exactly(2));
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         [TestCase(true)]
         [TestCase(false)]
@@ -405,7 +398,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 Times.Exactly(2));
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         public void M_WhenOwnedRecordIsDeletedAfterAutoMatching_IfNoMatchesAreLeft_ShouldShowMessage_AndMoveOnToNextThirdPartyRecord()
         {
@@ -476,7 +468,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 Times.Never);
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         public void M_DespiteAMixtureOfDeletionsAfterAutoMatching_AllRecordsShouldBeOutputToUser()
         {
@@ -601,7 +592,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             }
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         public void M_AfterAMixtureOfDeletionsDuringAutoMatching_TheNumberOfRecordsFinallyReconciledShouldBeCorrect()
         {
@@ -708,7 +698,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             Assert.AreEqual(actualBankRecords.Count - 2, reconciliator.NumThirdPartyRecords(), "NumThirdPartyRecords");
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         public void M_WhenSemiAutoMatchHasDifferentAmount_WillAddExplanatoryTextAndChangeAmount()
         {
@@ -735,7 +724,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             Assert.AreEqual(actualBankRecords[0].MainAmount(), bankRecords[0].ReconciledAmount);
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         public void M_IfUserPressesEnter_WhenAskedForSemiAutoMatchChoice_NoErrorShouldOccur()
         {
@@ -769,7 +757,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             Assert.IsFalse(exceptionThrown);
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         public void M_IfUserPressesEnter_WhenAskedForAutoMatchChoice_NoErrorShouldOccur()
         {
@@ -803,7 +790,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             Assert.IsFalse(exceptionThrown);
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         public void M_IfUserPressesEnter_WhenAskedForFinalMatchChoice_NoErrorShouldOccur()
         {
@@ -840,7 +826,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             Assert.IsFalse(exceptionThrown);
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         public void M_IfUserPressesEnter_WhenAskedWhetherToGoAgainOrFinish_NoErrorShouldOccur()
         {
@@ -873,7 +858,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             Assert.IsFalse(exceptionThrown);
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         public void M_IfUserPressesEnter_WhenAskedWhichRecordToDelete_NoErrorShouldOccur()
         {
@@ -907,7 +891,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 Times.Never);
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         public void M_IfUserPressesEnter_WhenAskedWhetherToDeleteThirdPartyRecord_NoErrorShouldOccur()
         {
@@ -938,7 +921,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 Times.Never);
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         public void M_WhenRecursivelyHandlingAutoMatches_IfMatchesAreRemoved_CorrectResultsAreShown()
         {
@@ -970,7 +952,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             Assert.AreEqual(6, text2Lines.Count(), "text2 source and match are shown for both auto matchings and also final match.");
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [Test]
         public void M_WhenRecursivelyHandlingFinalMatches_IfMatchesAreRemoved_CorrectResultsAreShown()
         {
@@ -1003,7 +984,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             Assert.AreEqual(4, text2Lines.Count(), "text2 source and match are shown for both final match showings.");
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [TestCase(TransactionMatchType.Auto, "10")]
         [TestCase(TransactionMatchType.Auto, "0,3,6")]
         [TestCase(TransactionMatchType.Final, "1")]
@@ -1045,7 +1025,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             Assert.AreEqual(4, text1Lines.Count(), "source and match are shown for auto match and final match.");
         }
 
-        [Ignore("Temporary ignore while I get the AutoMatching stuff working with no genericism")]
         [TestCase(TransactionMatchType.SemiAuto)]
         [TestCase(TransactionMatchType.Manual)]
         public void M_WhenChoosingMatch_IfBadIndexEntered_ThenErrorShownAndUserAskedAgain(TransactionMatchType TransactionMatchType)
