@@ -56,42 +56,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             _mockInputOutput = new Mock<IInputOutput>();
         }
 
-        [Test]
-        public void M_WillNotDeleteUnreconciledRowsWhenMergingPendingWithUnreconciled()
-        {
-            // Arrange
-            var mockInputOutput = new Mock<IInputOutput>();
-            var reconciliate = new ReconciliationIntro(mockInputOutput.Object);
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
-            var mockPendingFile = new Mock<ICSVFile<BankRecord>>();
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankOutFileIO = new Mock<IFileIO<BankRecord>>();
-            var budgetingMonths = new BudgetingMonths();
-            mockPendingFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), It.IsAny<char>()))
-                .Returns(new List<BankRecord>());
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<ActualBankRecord>());
-            mockBankOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<BankRecord>());
-            var loadingInfo = DummyLoader.LoadingInfo;
-
-            // Act
-            reconciliate.LoadFilesAndMergeData(
-                mockSpreadsheet.Object,
-                mockPendingFileIO.Object,
-                mockPendingFile.Object,
-                mockActualBankFileIO.Object,
-                mockBankOutFileIO.Object,
-                budgetingMonths,
-                loadingInfo);
-
-            // Assert
-            mockSpreadsheet
-                .Verify(x => x.DeleteUnreconciledRows(It.IsAny<string>()),
-                    Times.Never);
-        }
-
         [TestCase(1, 4, "Jan", "Apr", 4)]
         [TestCase(1, 10, "Jan", "Oct", 10)]
         [TestCase(12, 3, "Dec", "Mar", 4)]
@@ -351,50 +315,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             // Assert
             Assert.IsTrue(_outputSingleLineRecordedMessages.Contains(ReconConsts.DefaultUnplannedMonth));
             Assert.AreEqual(defaultMonth, result.NextUnplannedMonth);
-        }
-
-        [Test]
-        public void LoadFilesAndMergeData_WillNotLoadData_WhenTesting()
-        {
-            // Arrange
-            var mockInputOutput = new Mock<IInputOutput>();
-            var reconciliate = new ReconciliationIntro(mockInputOutput.Object);
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
-            var mockPendingFile = new Mock<ICSVFile<BankRecord>>();
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankOutFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<ActualBankRecord>());
-            mockBankOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<BankRecord>());
-            var budgetingMonths = new BudgetingMonths();
-            var loadingInfo = DummyLoader.LoadingInfo;
-            loadingInfo.FilePaths.MainPath = "This is not a path";
-            bool exceptionThrown = false;
-
-            // Act
-            try
-            {
-                reconciliate.LoadFilesAndMergeData(
-                    mockSpreadsheet.Object,
-                    mockPendingFileIO.Object,
-                    mockPendingFile.Object,
-                    mockActualBankFileIO.Object,
-                    mockBankOutFileIO.Object,
-                    budgetingMonths,
-                    loadingInfo);
-            }
-            catch (DirectoryNotFoundException)
-            {
-                exceptionThrown = true;
-
-                // Clean up
-                loadingInfo.FilePaths.MainPath = ReconConsts.DefaultFilePath;
-            }
-
-            // Assert
-            Assert.IsFalse(exceptionThrown);
         }
     }
 }
