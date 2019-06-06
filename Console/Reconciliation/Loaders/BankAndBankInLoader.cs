@@ -67,6 +67,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             BudgetingMonths budgetingMonths,
             DataLoadingInformation<ActualBankRecord, BankRecord> dataLoadingInfo)
         {
+            // When we don't have loaders any more, this functionality will have to exist in another switch statement,
+            // in ReconciliationIntro, with separate functions for each type. See ReconciliationIntro.MergeOtherData.
+            // Just copy this Code wholesale - no need to trace back through commits.
             inputOutput.OutputLine(ReconConsts.LoadingExpenses);
             var expectedIncomeFileIO = new FileIO<ExpectedIncomeRecord>(new FakeSpreadsheetRepoFactory());
             var expectedIncomeCSVFile = new CSVFile<ExpectedIncomeRecord>(expectedIncomeFileIO);

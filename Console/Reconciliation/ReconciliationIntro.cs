@@ -664,6 +664,9 @@ namespace ConsoleCatchall.Console.Reconciliation
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
+            // When we don't have loaders any more, this functionality will have to exist in another switch statement,
+            // in ReconciliationIntro, with separate functions for each type. See ReconciliationIntro.MergeOtherData.
+            // Just copy this Code wholesale - no need to trace back through commits.
             dataLoadingInfo.Loader.MergeBespokeDataWithPendingFile(_inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
         }
 
