@@ -8,7 +8,7 @@ using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
-    internal class CredCard1AndCredCard1InOutLoader : ILoader<CredCard1Record, CredCard1InOutRecord>
+    internal class CredCard1AndCredCard1InOutData : ILoader<CredCard1Record, CredCard1InOutRecord>
     {
         public DataLoadingInformation<CredCard1Record, CredCard1InOutRecord> LoadingInfo()
         {

@@ -13,7 +13,7 @@ using NUnit.Framework;
 namespace ConsoleCatchallTests.Reconciliation.Loaders
 {
     [TestFixture]
-    public class CredCard1AndCredCard1InOutLoaderTests
+    public class CredCard1AndCredCard1InOutDataTests
     {
         private void AssertDirectDebitDetailsAreCorrect(
             CredCard1InOutRecord credCard1InOutRecord, 
@@ -99,8 +99,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var pendingRecords = new List<CredCard1InOutRecord>();
             mockPendingFile.Setup(x => x.Records).Returns(pendingRecords);
             var budgetingMonths = new BudgetingMonths();
-            var loadingInfo = new CredCard1AndCredCard1InOutLoader().LoadingInfo();
-            var credCard1AndCredCard1InOutLoader = new CredCard1AndCredCard1InOutLoader();
+            var loadingInfo = new CredCard1AndCredCard1InOutData().LoadingInfo();
+            var credCard1AndCredCard1InOutLoader = new CredCard1AndCredCard1InOutData();
 
             // Act
             credCard1AndCredCard1InOutLoader.MergeBespokeDataWithPendingFile(
@@ -149,8 +149,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var pendingRecords = new List<CredCard1InOutRecord>();
             mockPendingFile.Setup(x => x.Records).Returns(pendingRecords);
             var budgetingMonths = new BudgetingMonths();
-            var loadingInfo = new CredCard1AndCredCard1InOutLoader().LoadingInfo();
-            var credCard1AndCredCard1InOutLoader = new CredCard1AndCredCard1InOutLoader();
+            var loadingInfo = new CredCard1AndCredCard1InOutData().LoadingInfo();
+            var credCard1AndCredCard1InOutLoader = new CredCard1AndCredCard1InOutData();
 
             // Act
             credCard1AndCredCard1InOutLoader.MergeBespokeDataWithPendingFile(

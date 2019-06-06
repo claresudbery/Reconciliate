@@ -7,7 +7,7 @@ using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
-    internal class BankAndBankOutLoader : ILoader<ActualBankRecord, BankRecord>
+    internal class BankAndBankOutData : ILoader<ActualBankRecord, BankRecord>
     {
         public DataLoadingInformation<ActualBankRecord, BankRecord> LoadingInfo()
         {

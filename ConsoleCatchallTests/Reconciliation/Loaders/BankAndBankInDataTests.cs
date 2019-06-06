@@ -11,7 +11,7 @@ using NUnit.Framework;
 namespace ConsoleCatchallTests.Reconciliation.Loaders
 {
     [TestFixture]
-    public class BankAndBankInLoaderTests
+    public class BankAndBankInDataTests
     {
         [Test]
         public void M_MergeBespokeDataWithPendingFile_WillMergeUnreconciledEmployerExpensesWithPendingFile()
@@ -34,8 +34,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var pendingRecords = new List<BankRecord>();
             mockPendingFile.Setup(x => x.Records).Returns(pendingRecords);
             var budgetingMonths = new BudgetingMonths();
-            var loadingInfo = new BankAndBankInLoader().LoadingInfo();
-            var bankAndBankInLoader = new BankAndBankInLoader();
+            var loadingInfo = new BankAndBankInData().LoadingInfo();
+            var bankAndBankInLoader = new BankAndBankInData();
 
             // Act
             bankAndBankInLoader.MergeBespokeDataWithPendingFile(
