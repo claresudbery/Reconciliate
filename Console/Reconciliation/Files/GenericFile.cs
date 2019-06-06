@@ -22,5 +22,20 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
         {
             File.PopulateRecordsFromOriginalFileLoad();
         }
+
+        public void FilterForPositiveRecordsOnly()
+        {
+            File.FilterForPositiveRecordsOnly();
+        }
+
+        public void FilterForNegativeRecordsOnly()
+        {
+            File.FilterForNegativeRecordsOnly();
+        }
+
+        public void SwapSignsOfAllAmounts()
+        {
+            File.SwapSignsOfAllAmounts();
+        }
     }
 }

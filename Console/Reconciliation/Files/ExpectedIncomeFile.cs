@@ -24,6 +24,21 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             RefreshFileContents();
         }
 
+        public void FilterForPositiveRecordsOnly()
+        {
+            File.FilterForPositiveRecordsOnly();
+        }
+
+        public void FilterForNegativeRecordsOnly()
+        {
+            File.FilterForNegativeRecordsOnly();
+        }
+
+        public void SwapSignsOfAllAmounts()
+        {
+            File.SwapSignsOfAllAmounts();
+        }
+
         public void RefreshFileContents()
         {
             FilterForEmployerExpensesOnly();
