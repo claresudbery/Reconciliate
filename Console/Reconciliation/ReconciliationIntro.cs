@@ -188,7 +188,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void DoBankAndBankInMatching(FilePaths mainFilePaths)
         {
-            var loadingInfo = new BankAndBankInData().LoadingInfo();
+            var loadingInfo = BankAndBankInData.LoadingInfo;
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
             // !! TO DO: Pass ReconciliationType into LoadCorrectFiles
@@ -213,7 +213,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void DoCredCard1AndCredCard1InOutMatching(FilePaths mainFilePaths)
         {
-            var loadingInfo = new CredCard1AndCredCard1InOutData().LoadingInfo();
+            var loadingInfo = CredCard1AndCredCard1InOutData.LoadingInfo;
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
             ReconciliationInterface<CredCard1Record, CredCard1InOutRecord> reconciliationInterface
@@ -225,7 +225,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void DoCredCard2AndCredCard2InOutMatching(FilePaths mainFilePaths)
         {
-            var loadingInfo = new CredCard2AndCredCard2InOutData().LoadingInfo();
+            var loadingInfo = CredCard2AndCredCard2InOutData.LoadingInfo;
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
             ReconciliationInterface<CredCard2Record, CredCard2InOutRecord> reconciliationInterface

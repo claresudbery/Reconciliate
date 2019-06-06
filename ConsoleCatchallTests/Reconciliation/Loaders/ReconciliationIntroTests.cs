@@ -74,7 +74,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns(new List<ActualBankRecord>());
             mockBankOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord>());
-            var loadingInfo = new DummyLoader().LoadingInfo();
+            var loadingInfo = DummyLoader.LoadingInfo;
 
             // Act
             reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
@@ -425,7 +425,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mockBankOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord>());
             var budgetingMonths = new BudgetingMonths();
-            var loadingInfo = new DummyLoader().LoadingInfo();
+            var loadingInfo = DummyLoader.LoadingInfo;
             loadingInfo.FilePaths.MainPath = "This is not a path";
             bool exceptionThrown = false;
 

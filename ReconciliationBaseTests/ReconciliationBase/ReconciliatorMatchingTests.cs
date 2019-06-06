@@ -124,7 +124,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
 
             // Act
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(
-                new BankAndBankInData().LoadingInfo(),
+                BankAndBankInData.LoadingInfo,
                 mockActualBankFile.Object,
                 mockBankFile.Object);
 

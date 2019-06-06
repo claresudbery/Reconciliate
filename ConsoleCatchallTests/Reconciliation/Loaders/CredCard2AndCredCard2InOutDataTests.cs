@@ -100,8 +100,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var pendingRecords = new List<CredCard2InOutRecord>();
             mockPendingFile.Setup(x => x.Records).Returns(pendingRecords);
             var budgetingMonths = new BudgetingMonths();
-            var loadingInfo = new CredCard2AndCredCard2InOutData().LoadingInfo();
-            var credCard2AndCredCard2InOutLoader = new CredCard2AndCredCard2InOutData();
+            var loadingInfo = CredCard2AndCredCard2InOutData.LoadingInfo;
             var reconciliationIntro = new ReconciliationIntro(mockInputOutput.Object);
 
             // Act
@@ -151,8 +150,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var pendingRecords = new List<CredCard2InOutRecord>();
             mockPendingFile.Setup(x => x.Records).Returns(pendingRecords);
             var budgetingMonths = new BudgetingMonths();
-            var loadingInfo = new CredCard2AndCredCard2InOutData().LoadingInfo();
-            var credCard2AndCredCard2InOutLoader = new CredCard2AndCredCard2InOutData();
+            var loadingInfo = CredCard2AndCredCard2InOutData.LoadingInfo;
             var reconciliationIntro = new ReconciliationIntro(mockInputOutput.Object);
 
             // Act
