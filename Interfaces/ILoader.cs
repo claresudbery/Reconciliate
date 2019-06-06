@@ -6,10 +6,6 @@ namespace Interfaces
         where TThirdPartyType : ICSVRecord, new()
         where TOwnedType : ICSVRecord, new()
     {
-        IDataFile<TThirdPartyType> CreateNewThirdPartyFile(IFileIO<TThirdPartyType> thirdPartyFileIO);
-
-        IDataFile<TOwnedType> CreateNewOwnedFile(IFileIO<TOwnedType> ownedFileIO);
-
         void MergeBespokeDataWithPendingFile(
             IInputOutput inputOutput,
             ISpreadsheet spreadsheet,

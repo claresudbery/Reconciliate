@@ -697,8 +697,8 @@ namespace ConsoleCatchall.Console.Reconciliation
             _inputOutput.OutputLine("Loading data back in from 'owned' and 'third party' files...");
             thirdPartyFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
             ownedFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            var thirdPartyFile = dataLoadingInfo.Loader.CreateNewThirdPartyFile(thirdPartyFileIO);
-            var ownedFile = dataLoadingInfo.Loader.CreateNewOwnedFile(ownedFileIO);
+            var thirdPartyFile = new GenericFile<TThirdPartyType>(new CSVFile<TThirdPartyType>(thirdPartyFileIO));
+            var ownedFile = new GenericFile<TOwnedType>(new CSVFile<TOwnedType>(ownedFileIO));
 
             var reconciliator = new Reconciliator<TThirdPartyType, TOwnedType>(
                 dataLoadingInfo,

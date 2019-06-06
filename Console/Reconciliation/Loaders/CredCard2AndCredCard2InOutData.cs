@@ -39,18 +39,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             };
         }
 
-        public IDataFile<CredCard2Record> CreateNewThirdPartyFile(IFileIO<CredCard2Record> thirdPartyFileIO)
-        {
-            var csvFile = new CSVFile<CredCard2Record>(thirdPartyFileIO);
-            return new GenericFile<CredCard2Record>(csvFile);
-        }
-
-        public IDataFile<CredCard2InOutRecord> CreateNewOwnedFile(IFileIO<CredCard2InOutRecord> ownedFileIO)
-        {
-            var csvFile = new CSVFile<CredCard2InOutRecord>(ownedFileIO);
-            return new GenericFile<CredCard2InOutRecord>(csvFile);
-        }
-
         public void MergeBespokeDataWithPendingFile(
             IInputOutput inputOutput,
             ISpreadsheet spreadsheet,

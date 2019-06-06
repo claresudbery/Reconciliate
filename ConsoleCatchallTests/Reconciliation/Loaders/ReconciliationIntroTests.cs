@@ -426,8 +426,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mockBankOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord>());
             var mockLoader = new Mock<ILoader<ActualBankRecord, BankRecord>>();
-            mockLoader.Setup(x => x.CreateNewThirdPartyFile(It.IsAny<IFileIO<ActualBankRecord>>())).Returns(new ActualBankInFile(new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object)));
-            mockLoader.Setup(x => x.CreateNewOwnedFile(It.IsAny<IFileIO<BankRecord>>())).Returns(new GenericFile<BankRecord>(new CSVFile<BankRecord>(mockBankOutFileIO.Object)));
             var loadingInfo = new DataLoadingInformation<ActualBankRecord, BankRecord>
             {
                 Loader = mockLoader.Object,

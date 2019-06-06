@@ -45,18 +45,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             };
         }
 
-        public IDataFile<ActualBankRecord> CreateNewThirdPartyFile(IFileIO<ActualBankRecord> thirdPartyFileIO)
-        {
-            var csvFile = new CSVFile<ActualBankRecord>(thirdPartyFileIO);
-            return new ActualBankOutFile(csvFile);
-        }
-
-        public IDataFile<BankRecord> CreateNewOwnedFile(IFileIO<BankRecord> ownedFileIO)
-        {
-            var csvFile = new CSVFile<BankRecord>(ownedFileIO);
-            return new GenericFile<BankRecord>(csvFile);
-        }
-
         public void MergeBespokeDataWithPendingFile(
             IInputOutput inputOutput,
             ISpreadsheet spreadsheet,
