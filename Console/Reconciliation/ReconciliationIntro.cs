@@ -201,7 +201,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void DoBankAndBankOutMatching(FilePaths mainFilePaths)
         {
-            var loadingInfo = new BankAndBankOutData().TempLoadingInfo();
+            var loadingInfo = BankAndBankOutData.LoadingInfo;
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
             ReconciliationInterface<ActualBankRecord, BankRecord> reconciliationInterface
