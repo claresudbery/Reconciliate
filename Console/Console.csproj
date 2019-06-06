@@ -44,13 +44,10 @@
     <Compile Include="Reconciliation\ReconciliationType.cs" />
     <Compile Include="Reconciliation\Utils\Clock.cs" />
     <Compile Include="Reconciliation\Files\GenericFile.cs" />
-    <Compile Include="Reconciliation\Files\CredCard1File.cs" />
-    <Compile Include="Reconciliation\Files\ActualBankInFile.cs" />
     <Compile Include="Reconciliation\Loaders\CredCard2AndCredCard2InOutData.cs" />
     <Compile Include="Reconciliation\Loaders\CredCard1AndCredCard1InOutData.cs" />
     <Compile Include="Reconciliation\Loaders\BankAndBankInData.cs" />
     <Compile Include="Reconciliation\Loaders\BankAndBankOutData.cs" />
-    <Compile Include="Reconciliation\Files\ActualBankOutFile.cs" />
     <Compile Include="Reconciliation\Records\ExpectedIncomeRecord.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeCellSet.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeCellRow.cs" />

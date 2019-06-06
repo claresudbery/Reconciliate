@@ -86,9 +86,6 @@
     <Compile Include="Reconciliation\Records\ExpectedIncomeRecordTests.cs" />
     <Compile Include="Reconciliation\Records\ConsoleLineTests.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetFactoryTests.cs" />
-    <Compile Include="Reconciliation\Files\CredCard1FileTests.cs" />
-    <Compile Include="Reconciliation\Files\ActualBankInFileTests.cs" />
-    <Compile Include="Reconciliation\Files\ActualBankOutFileTests.cs" />
     <Compile Include="Reconciliation\Extensions\StringExtensionTests.cs" />
     <Compile Include="Reconciliation\Spreadsheets\SpreadsheetTests.cs" />
     <Compile Include="Reconciliation\Spreadsheets\MockSpreadsheetFactoryTests.cs" />
