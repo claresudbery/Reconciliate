@@ -48,7 +48,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void DoAutomaticMatching()
         {
-            //Reconciliator.DoAutoMatching();
+            Reconciliator.DoAutoMatching();
             RecursivelyShowAutoMatchesAndGetChoices();
         }
 

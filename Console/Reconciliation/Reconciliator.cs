@@ -527,7 +527,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 : 0;
         }
 
-        public List<AutoMatchedRecord<TThirdPartyType>> DoAutoMatching()
+        public List<AutoMatchedRecord<TThirdPartyType>> ReturnAutoMatches()
         {
             _autoMatches = new List<AutoMatchedRecord<TThirdPartyType>>();
             var index = 0;
@@ -713,6 +713,11 @@ namespace ConsoleCatchall.Console.Reconciliation
             ChangeAmountAndDescriptionToMatchThirdPartyRecord(
                 _latestRecordForMatching.SourceRecord,
                 _latestRecordForMatching.Matches[matchIndex].ActualRecords[0]);
+        }
+
+        public void DoAutoMatching()
+        {
+            ReturnAutoMatches();
         }
     }
 }

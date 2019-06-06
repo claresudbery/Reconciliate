@@ -27,8 +27,8 @@ namespace Interfaces
         void DeleteSpecificThirdPartyRecord(int specifiedIndex);
         void DeleteSpecificOwnedRecordFromListOfMatches(int specifiedIndex);
         int NumPotentialMatches();
+        void DoAutoMatching();
         List<ConsoleLine> GetFinalMatchesForConsole();
-        //List<AutoMatchedRecord<TThirdPartyType>> DoAutoMatching();
         List<ConsoleLine> GetAutoMatchesForConsole();
         void RemoveAutoMatch(int matchIndex);
         void RemoveMultipleAutoMatches(List<int> matchIndices);

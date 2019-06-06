@@ -1997,7 +1997,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
 
             // Assert
             foreach (var recordForMatching in autoMatchedItems)
@@ -2073,7 +2073,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
 
             // Assert
             Assert.AreEqual(2, autoMatchedItems.Count, "should be correct number of auto-matching results");
@@ -2107,7 +2107,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
 
             // Assert
             Assert.AreEqual(autoMatchedItems[0].Match.ActualRecords[0], autoMatchedItems[0].SourceRecord.Match);
@@ -2138,7 +2138,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
 
             // Assert
             Assert.IsTrue(autoMatchedItems[0].SourceRecord.Matched);
@@ -2170,7 +2170,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
 
             // Assert
             Assert.AreEqual(1, autoMatchedItems.Count);
@@ -2205,7 +2205,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
 
             // Assert
             Assert.AreEqual(1, autoMatchedItems.Count);
@@ -2242,7 +2242,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
 
             // Assert
             Assert.AreEqual(date1, autoMatchedItems[0].SourceRecord.Date);
@@ -2275,7 +2275,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
 
             // Assert
             Assert.AreEqual(0, autoMatchedItems.Count);
@@ -2315,7 +2315,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
 
             // Assert
             Assert.AreEqual(0, autoMatchedItems[0].Index);
@@ -2345,7 +2345,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
 
             // Act
             var refetchedAutoMatchedItems = reconciliator.GetAutoMatches();
@@ -2405,7 +2405,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
 
             // Act
-            reconciliator.DoAutoMatching();
+            reconciliator.ReturnAutoMatches();
 
             // Assert
             bool foundOne = reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -2450,7 +2450,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             const int matchIndex = 1;
             const int numRecordsAtStart = 3;
             // The where clause is redundant, but it's here for parity with the reassignment of autoMatchedItems below.
-            var autoMatchedItems = reconciliator.DoAutoMatching().Where(x => x.SourceRecord.Matched).ToList();
+            var autoMatchedItems = reconciliator.ReturnAutoMatches().Where(x => x.SourceRecord.Matched).ToList();
             Assert.AreEqual(numRecordsAtStart, autoMatchedItems.Count);
             Assert.AreEqual(matchIndex, autoMatchedItems[1].Index);
             Assert.AreEqual(text2, autoMatchedItems[1].SourceRecord.Description);
@@ -2505,7 +2505,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
             const int numRecordsAtStart = 5;
             // The where clause is redundant, but it's here for parity with the reassignment of autoMatchedItems below.
-            var autoMatchedItems = reconciliator.DoAutoMatching().Where(x => x.SourceRecord.Matched).ToList();
+            var autoMatchedItems = reconciliator.ReturnAutoMatches().Where(x => x.SourceRecord.Matched).ToList();
             Assert.AreEqual(numRecordsAtStart, autoMatchedItems.Count);
             List<IPotentialMatch> originalMatches = new List<IPotentialMatch>();
             List<int> matchIndices = new List<int> { 1, 2, 3 };
@@ -2564,7 +2564,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
-            var autoMatchedItems = reconciliator.DoAutoMatching();
+            var autoMatchedItems = reconciliator.ReturnAutoMatches();
             List<IPotentialMatch> originalMatches = new List<IPotentialMatch>();
             List<int> matchIndices = new List<int> { 1, 2, 3 };
             foreach (var matchIndex in matchIndices)
@@ -2803,7 +2803,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
-            reconciliator.DoAutoMatching();
+            reconciliator.ReturnAutoMatches();
             var numMatches = 2;
 
             // Act
@@ -2852,7 +2852,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var credCard2InOutFile = new CSVFile<CredCard2InOutRecord>(mockCredCard2InOutFileIO.Object);
             credCard2InOutFile.Load();
             var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(credCard2File, credCard2InOutFile);
-            reconciliator.DoAutoMatching();
+            reconciliator.ReturnAutoMatches();
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.MatchCurrentRecord(0);
             var numMatches = 3;
@@ -2898,7 +2898,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
-            reconciliator.DoAutoMatching();
+            reconciliator.ReturnAutoMatches();
             bool exceptionThrown = false;
             string errorMessage = "";
 
@@ -2951,7 +2951,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
-            reconciliator.DoAutoMatching();
+            reconciliator.ReturnAutoMatches();
             bool exceptionThrown = false;
             string errorMessage = "";
 

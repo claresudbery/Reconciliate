@@ -112,7 +112,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
 
         public void DoAutoMatching()
         {
-            _reconciliator.DoAutoMatching();
+            _reconciliator.ReturnAutoMatches();
         }
 
         public List<ConsoleLine> GetAutoMatchesForConsole()
@@ -199,11 +199,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
         {
             return _reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
         }
-
-        //List<AutoMatchedRecord<CredCard2Record>> IReconciliator<CredCard2Record, CredCard2InOutRecord>.DoAutoMatching()
-        //{
-        //    return _reconciliator.DoAutoMatching();
-        //}
 
         public void RefreshFiles()
         {
