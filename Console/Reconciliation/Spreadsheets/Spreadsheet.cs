@@ -214,6 +214,61 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             return bankRecord.Description;
         }
 
+        public void AddBudgetedBankInDataToPendingFile<TRecordType>(
+            BudgetingMonths budgetingMonths,
+            ICSVFile<TRecordType> pendingFile,
+            BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new()
+        {
+            var baseRecords = GetAllBudgetItems<TRecordType>(budgetItemListData);
+            AddRecordsToPendingFileForEverySpecifiedMonth<TRecordType>(
+                baseRecords,
+                (ICSVFile<TRecordType>)pendingFile,
+                budgetingMonths);
+        }
+
+        public void AddBudgetedBankOutDataToPendingFile<TRecordType>(
+            BudgetingMonths budgetingMonths,
+            ICSVFile<TRecordType> pendingFile,
+            BudgetItemListData monthlyBudgetItemListData,
+            BudgetItemListData annualBudgetItemListData) where TRecordType : ICSVRecord, new()
+        {
+            var monthlyRecords = GetAllBudgetItems<TRecordType>(monthlyBudgetItemListData);
+            AddRecordsToPendingFileForEverySpecifiedMonth<TRecordType>(
+                monthlyRecords,
+                (ICSVFile<TRecordType>)pendingFile,
+                budgetingMonths);
+
+            var annualRecords = GetAllBudgetItems<TRecordType>(annualBudgetItemListData);
+            AddRecordsToPendingFileForRecordsThatHaveMatchingMonths<TRecordType>(
+                annualRecords,
+                (ICSVFile<TRecordType>)pendingFile,
+                budgetingMonths);
+        }
+
+        public void AddBudgetedCredCard1InOutDataToPendingFile<TRecordType>(
+            BudgetingMonths budgetingMonths,
+            ICSVFile<TRecordType> pendingFile,
+            BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new()
+        {
+            var baseRecords = GetAllBudgetItems<TRecordType>(budgetItemListData);
+            AddRecordsToPendingFileForEverySpecifiedMonth<TRecordType>(
+                baseRecords,
+                (ICSVFile<TRecordType>)pendingFile,
+                budgetingMonths);
+        }
+
+        public void AddBudgetedCredCard2InOutDataToPendingFile<TRecordType>(
+            BudgetingMonths budgetingMonths,
+            ICSVFile<TRecordType> pendingFile,
+            BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new()
+        {
+            var baseRecords = GetAllBudgetItems<TRecordType>(budgetItemListData);
+            AddRecordsToPendingFileForEverySpecifiedMonth<TRecordType>(
+                baseRecords,
+                (ICSVFile<TRecordType>)pendingFile,
+                budgetingMonths);
+        }
+
         public void AddBudgetedAnnualDataToPendingFile<TRecordType>(
             BudgetingMonths budgetingMonths,
             ICSVFile<TRecordType> pendingFile,

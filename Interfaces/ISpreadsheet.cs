@@ -43,5 +43,24 @@ namespace Interfaces
             BudgetingMonths budgetingMonths,
             ICSVFile<TRecordType> pendingFile,
             BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new();
+
+        void AddBudgetedBankInDataToPendingFile<TRecordType>(
+            BudgetingMonths budgetingMonths,
+            ICSVFile<TRecordType> pendingFile,
+            BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new();
+        void AddBudgetedBankOutDataToPendingFile<TRecordType>(
+            BudgetingMonths budgetingMonths,
+            ICSVFile<TRecordType> pendingFile,
+            BudgetItemListData monthlyBudgetItemListData,
+            BudgetItemListData annualBudgetItemListData) where TRecordType : ICSVRecord, new();
+        void AddBudgetedCredCard2InOutDataToPendingFile<TRecordType>(
+            BudgetingMonths budgetingMonths,
+            ICSVFile<TRecordType> pendingFile,
+            BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new();
+        void AddBudgetedCredCard1InOutDataToPendingFile<TRecordType>(
+            BudgetingMonths budgetingMonths,
+            ICSVFile<TRecordType> pendingFile,
+            BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new();
+
     }
 }

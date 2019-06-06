@@ -636,11 +636,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             _inputOutput.OutputLine("Converting source line separators...");
             pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
             _inputOutput.OutputLine(ReconConsts.MergingSomeBudgetData);
-            spreadsheet.AddBudgetedMonthlyDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.MonthlyBudgetData);
-            if (null != dataLoadingInfo.AnnualBudgetData)
-            {
-                spreadsheet.AddBudgetedAnnualDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.AnnualBudgetData);
-            }
+            spreadsheet.AddBudgetedBankInDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.MonthlyBudgetData);
             _inputOutput.OutputLine("Updating source lines for output...");
             pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
 
@@ -676,11 +672,11 @@ namespace ConsoleCatchall.Console.Reconciliation
             _inputOutput.OutputLine("Converting source line separators...");
             pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
             _inputOutput.OutputLine(ReconConsts.MergingSomeBudgetData);
-            spreadsheet.AddBudgetedMonthlyDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.MonthlyBudgetData);
-            if (null != dataLoadingInfo.AnnualBudgetData)
-            {
-                spreadsheet.AddBudgetedAnnualDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.AnnualBudgetData);
-            }
+            spreadsheet.AddBudgetedBankOutDataToPendingFile(
+                budgetingMonths, 
+                pendingFile, 
+                dataLoadingInfo.MonthlyBudgetData,
+                dataLoadingInfo.AnnualBudgetData);
             _inputOutput.OutputLine("Updating source lines for output...");
             pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
 
@@ -716,11 +712,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             _inputOutput.OutputLine("Converting source line separators...");
             pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
             _inputOutput.OutputLine(ReconConsts.MergingSomeBudgetData);
-            spreadsheet.AddBudgetedMonthlyDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.MonthlyBudgetData);
-            if (null != dataLoadingInfo.AnnualBudgetData)
-            {
-                spreadsheet.AddBudgetedAnnualDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.AnnualBudgetData);
-            }
+            spreadsheet.AddBudgetedCredCard1InOutDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.MonthlyBudgetData);
             _inputOutput.OutputLine("Updating source lines for output...");
             pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
 
@@ -756,11 +748,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             _inputOutput.OutputLine("Converting source line separators...");
             pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
             _inputOutput.OutputLine(ReconConsts.MergingSomeBudgetData);
-            spreadsheet.AddBudgetedMonthlyDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.MonthlyBudgetData);
-            if (null != dataLoadingInfo.AnnualBudgetData)
-            {
-                spreadsheet.AddBudgetedAnnualDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.AnnualBudgetData);
-            }
+            spreadsheet.AddBudgetedCredCard2InOutDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.MonthlyBudgetData);
             _inputOutput.OutputLine("Updating source lines for output...");
             pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
 
