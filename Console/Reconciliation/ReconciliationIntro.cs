@@ -192,7 +192,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             var loadingInfo = BankAndBankInData.LoadingInfo;
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
-            // !! TO DO: Pass ReconciliationType into LoadCorrectFiles
             ReconciliationInterface reconciliationInterface
                 = reconciliationIntro.LoadCorrectFiles<ActualBankRecord, BankRecord>(
                     loadingInfo, 
@@ -597,14 +596,12 @@ namespace ConsoleCatchall.Console.Reconciliation
         }
 
         public ReconciliationInterface
-            LoadBankAndBankIn<TThirdPartyType, TOwnedType>(
+            LoadBankAndBankIn(
                 ISpreadsheet spreadsheet,
-                IFileIO<TOwnedType> pendingFileIO,
+                IFileIO<ActualBankRecord> pendingFileIO,
                 ICSVFile<BankRecord> pendingFile,
                 BudgetingMonths budgetingMonths,
                 DataLoadingInformation dataLoadingInfo)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
         {
             pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
             _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
@@ -643,14 +640,12 @@ namespace ConsoleCatchall.Console.Reconciliation
         }
 
         public ReconciliationInterface
-            LoadBankAndBankOut<TThirdPartyType, TOwnedType>(
+            LoadBankAndBankOut(
                 ISpreadsheet spreadsheet,
-                IFileIO<TOwnedType> pendingFileIO,
+                IFileIO<ActualBankRecord> pendingFileIO,
                 ICSVFile<BankRecord> pendingFile,
                 BudgetingMonths budgetingMonths,
                 DataLoadingInformation dataLoadingInfo)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
         {
             pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
             _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
@@ -693,14 +688,12 @@ namespace ConsoleCatchall.Console.Reconciliation
         }
 
         public ReconciliationInterface
-            LoadCredCard1AndCredCard1InOut<TThirdPartyType, TOwnedType>(
+            LoadCredCard1AndCredCard1InOut(
                 ISpreadsheet spreadsheet,
-                IFileIO<TOwnedType> pendingFileIO,
+                IFileIO<CredCard1Record> pendingFileIO,
                 ICSVFile<CredCard1InOutRecord> pendingFile,
                 BudgetingMonths budgetingMonths,
                 DataLoadingInformation dataLoadingInfo)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
         {
             pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
             _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
@@ -740,14 +733,12 @@ namespace ConsoleCatchall.Console.Reconciliation
         }
 
         public ReconciliationInterface
-            LoadCredCard2AndCredCard2InOut<TThirdPartyType, TOwnedType>(
+            LoadCredCard2AndCredCard2InOut(
                 ISpreadsheet spreadsheet,
-                IFileIO<TOwnedType> pendingFileIO,
+                IFileIO<CredCard2Record> pendingFileIO,
                 ICSVFile<CredCard2InOutRecord> pendingFile,
                 BudgetingMonths budgetingMonths,
                 DataLoadingInformation dataLoadingInfo)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
         {
             pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
             _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
@@ -804,29 +795,45 @@ namespace ConsoleCatchall.Console.Reconciliation
                 case ReconciliationType.BankAndBankIn:
                     {
                         reconciliationInterface =
-                            LoadBankAndBankIn<TThirdPartyType, TOwnedType>(
-                                spreadsheet, pendingFileIO, (ICSVFile<BankRecord>)pendingFile, budgetingMonths, BankAndBankInData.LoadingInfo);
+                            LoadBankAndBankIn(
+                                spreadsheet,
+                                (IFileIO<ActualBankRecord>)pendingFileIO, 
+                                (ICSVFile<BankRecord>)pendingFile, 
+                                budgetingMonths, 
+                                BankAndBankInData.LoadingInfo);
                     }
                     break;
                 case ReconciliationType.BankAndBankOut:
                     {
                         reconciliationInterface =
-                            LoadBankAndBankOut<TThirdPartyType, TOwnedType>(
-                                spreadsheet, pendingFileIO, (ICSVFile<BankRecord>)pendingFile, budgetingMonths, BankAndBankOutData.LoadingInfo);
+                            LoadBankAndBankOut(
+                                spreadsheet,
+                                (IFileIO<ActualBankRecord>)pendingFileIO, 
+                                (ICSVFile<BankRecord>)pendingFile, 
+                                budgetingMonths, 
+                                BankAndBankOutData.LoadingInfo);
                     }
                     break;
                 case ReconciliationType.CredCard1AndCredCard1InOut:
                     {
                         reconciliationInterface =
-                            LoadCredCard1AndCredCard1InOut<TThirdPartyType, TOwnedType>(
-                                spreadsheet, pendingFileIO, (ICSVFile<CredCard1InOutRecord>)pendingFile, budgetingMonths, CredCard1AndCredCard1InOutData.LoadingInfo);
+                            LoadCredCard1AndCredCard1InOut(
+                                spreadsheet,
+                                (IFileIO<CredCard1Record>)pendingFileIO, 
+                                (ICSVFile<CredCard1InOutRecord>)pendingFile, 
+                                budgetingMonths, 
+                                CredCard1AndCredCard1InOutData.LoadingInfo);
                     }
                     break;
                 case ReconciliationType.CredCard2AndCredCard2InOut:
                     {
                         reconciliationInterface =
-                            LoadCredCard2AndCredCard2InOut<TThirdPartyType, TOwnedType>(
-                                spreadsheet, pendingFileIO, (ICSVFile<CredCard2InOutRecord>)pendingFile, budgetingMonths, CredCard2AndCredCard2InOutData.LoadingInfo);
+                            LoadCredCard2AndCredCard2InOut(
+                                spreadsheet,
+                                (IFileIO<CredCard2Record>)pendingFileIO, 
+                                (ICSVFile<CredCard2InOutRecord>)pendingFile, 
+                                budgetingMonths, 
+                                CredCard2AndCredCard2InOutData.LoadingInfo);
                     }
                     break;
                 default:
