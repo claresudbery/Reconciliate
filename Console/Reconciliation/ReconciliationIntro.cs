@@ -4,7 +4,6 @@ using System.Globalization;
 using System.IO;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
-using ConsoleCatchall.Console.Reconciliation.Matchers;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
 using ConsoleCatchall.Console.Reconciliation.Utils;
@@ -23,7 +22,6 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private ISpreadsheetRepoFactory _spreadsheetFactory = new FakeSpreadsheetRepoFactory();
         private readonly IInputOutput _inputOutput;
-        private IMatcher _matcher = null;
 
         public ReconciliationIntro(IInputOutput inputOutput)
         {
@@ -177,7 +175,6 @@ namespace ConsoleCatchall.Console.Reconciliation
                 ThirdPartyFileName = _thirdPartyFileName,
                 OwnedFileName = _ownedFileName
             };
-            _matcher.DoMatching(mainFilePaths);
 
             switch (_reconciliationType)
             {
@@ -342,33 +339,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             _inputOutput.OutputLine("");
         }
 
-        private IMatcher GetMatcherReconciliatonTypeFromUser()
-        {
-            IMatcher result = null;
-
-            _inputOutput.OutputLine("");
-            _inputOutput.OutputLine("What type are your third party and owned files?");
-            _inputOutput.OutputOptions(new List<string>
-            {
-                ReconConsts.Accounting_Type_01,
-                ReconConsts.Accounting_Type_02,
-                ReconConsts.Accounting_Type_03,
-                ReconConsts.Accounting_Type_04,
-            });
-
-            string input = _inputOutput.GetGenericInput(ReconConsts.FourAccountingTypes);
-
-            switch (input)
-            {
-                case "1": result = new CredCard1AndCredCard1InOutMatcher(_inputOutput, _spreadsheetFactory); break;
-                case "2": result = new CredCard2AndCredCard2InOutMatcher(_inputOutput, _spreadsheetFactory); break;
-                case "3": result = new BankAndBankInMatcher(_inputOutput, _spreadsheetFactory); break;
-                case "4": result = new BankAndBankOutMatcher(_inputOutput, _spreadsheetFactory); break;
-            }
-
-            return result;
-        }
-
         private ReconciliationType GetReconciliatonTypeFromUser()
         {
             ReconciliationType result = ReconciliationType.Unknown;
@@ -478,39 +448,33 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             bool success = true;
             _reconciliationType = ReconciliationType.Unknown;
-            _matcher = null;
 
             switch (input)
             {
                 case "1": {
                     success = false;
-                    _matcher = GetMatcherReconciliatonTypeFromUser();
                     _reconciliationType = GetReconciliatonTypeFromUser();
                 } break;
                 case "2": {
                     _ownedFileName = ReconConsts.DefaultCredCard1InOutFileName;
                     _thirdPartyFileName = ReconConsts.DefaultCredCard1FileName;
-                    _matcher = new CredCard1AndCredCard1InOutMatcher(_inputOutput, _spreadsheetFactory);
                     _reconciliationType = ReconciliationType.CredCard1AndCredCard1InOut;
                 } break;
                 case "3": {
                     _ownedFileName = ReconConsts.DefaultCredCard2InOutFileName;
                     _thirdPartyFileName = ReconConsts.DefaultCredCard2FileName;
-                    _matcher = new CredCard2AndCredCard2InOutMatcher(_inputOutput, _spreadsheetFactory);
                     _reconciliationType = ReconciliationType.CredCard2AndCredCard2InOut;
                 } break;
                 case "4":
                 {
                     _ownedFileName = ReconConsts.DefaultBankInFileName;
                     _thirdPartyFileName = ReconConsts.DefaultBankFileName;
-                    _matcher = new BankAndBankInMatcher(_inputOutput, _spreadsheetFactory);
                     _reconciliationType = ReconciliationType.BankAndBankIn;
                 } break;
                 case "5":
                 {
                     _ownedFileName = ReconConsts.DefaultBankOutFileName;
                     _thirdPartyFileName = ReconConsts.DefaultBankFileName;
-                    _matcher = new BankAndBankOutMatcher(_inputOutput, _spreadsheetFactory);
                     _reconciliationType = ReconciliationType.BankAndBankOut;
                 } break;
             }
