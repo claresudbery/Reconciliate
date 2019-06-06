@@ -191,8 +191,11 @@ namespace ConsoleCatchall.Console.Reconciliation
             var loadingInfo = new BankAndBankInData().LoadingInfo();
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
+            // !! TO DO: Pass ReconciliationType into LoadCorrectFiles
             ReconciliationInterface<ActualBankRecord, BankRecord> reconciliationInterface
-                = reconciliationIntro.LoadCorrectFiles<ActualBankRecord, BankRecord>(loadingInfo, _spreadsheetFactory);
+                = reconciliationIntro.LoadCorrectFiles<ActualBankRecord, BankRecord>(
+                    loadingInfo, 
+                    _spreadsheetFactory);
             reconciliationInterface?.DoTheMatching();
         }
 
@@ -202,7 +205,9 @@ namespace ConsoleCatchall.Console.Reconciliation
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
             ReconciliationInterface<ActualBankRecord, BankRecord> reconciliationInterface
-                = reconciliationIntro.LoadCorrectFiles<ActualBankRecord, BankRecord>(loadingInfo, _spreadsheetFactory);
+                = reconciliationIntro.LoadCorrectFiles<ActualBankRecord, BankRecord>(
+                    loadingInfo,
+                    _spreadsheetFactory);
             reconciliationInterface?.DoTheMatching();
         }
 
@@ -212,7 +217,9 @@ namespace ConsoleCatchall.Console.Reconciliation
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
             ReconciliationInterface<CredCard1Record, CredCard1InOutRecord> reconciliationInterface
-                = reconciliationIntro.LoadCorrectFiles<CredCard1Record, CredCard1InOutRecord>(loadingInfo, _spreadsheetFactory);
+                = reconciliationIntro.LoadCorrectFiles<CredCard1Record, CredCard1InOutRecord>(
+                    loadingInfo,
+                    _spreadsheetFactory);
             reconciliationInterface?.DoTheMatching();
         }
 
@@ -222,7 +229,9 @@ namespace ConsoleCatchall.Console.Reconciliation
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
             ReconciliationInterface<CredCard2Record, CredCard2InOutRecord> reconciliationInterface
-                = reconciliationIntro.LoadCorrectFiles<CredCard2Record, CredCard2InOutRecord>(loadingInfo, _spreadsheetFactory);
+                = reconciliationIntro.LoadCorrectFiles<CredCard2Record, CredCard2InOutRecord>(
+                    loadingInfo,
+                    _spreadsheetFactory);
             reconciliationInterface?.DoTheMatching();
         }
 
@@ -567,7 +576,13 @@ namespace ConsoleCatchall.Console.Reconciliation
 
                 reconciliationInterface =
                     LoadFilesAndMergeData<TThirdPartyType, TOwnedType>(
-                        spreadsheet, pendingFileIO, pendingFile, thirdPartyFileIO, ownedFileIO, budgetingMonths, dataLoadingInfo);
+                        spreadsheet, 
+                        pendingFileIO, 
+                        pendingFile, 
+                        thirdPartyFileIO, 
+                        ownedFileIO, 
+                        budgetingMonths, 
+                        dataLoadingInfo);
             }
             finally
             {
@@ -645,7 +660,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 ICSVFile<TOwnedType> pendingFile,
                 BudgetingMonths budgetingMonths,
                 DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
-                where TThirdPartyType : ICSVRecord, new()
+            where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
             _inputOutput.OutputLine("Merging budget data with pending data...");
@@ -664,10 +679,213 @@ namespace ConsoleCatchall.Console.Reconciliation
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
-            // When we don't have loaders any more, this functionality will have to exist in another switch statement,
-            // in ReconciliationIntro, with separate functions for each type. See ReconciliationIntro.MergeOtherData.
-            // Just copy this Code wholesale - no need to trace back through commits.
+            switch (_reconciliationType)
+            {
+                case ReconciliationType.BankAndBankIn: BankAndBankIn_MergeBespokeDataWithPendingFile(
+                    _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+                    break;
+                case ReconciliationType.BankAndBankOut:
+                    BankAndBankOut_MergeBespokeDataWithPendingFile(
+                        _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+                    break;
+                case ReconciliationType.CredCard1AndCredCard1InOut:
+                    CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile(
+                        _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+                    break;
+                case ReconciliationType.CredCard2AndCredCard2InOut:
+                    CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
+                        _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+                    break;
+            }
+
             dataLoadingInfo.Loader.MergeBespokeDataWithPendingFile(_inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+        }
+
+        private void BankAndBankIn_MergeBespokeDataWithPendingFile<TThirdPartyType, TOwnedType>(
+                IInputOutput inputOutput,
+                ISpreadsheet spreadsheet,
+                ICSVFile<TOwnedType> pendingFile,
+                BudgetingMonths budgetingMonths,
+                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            inputOutput.OutputLine(ReconConsts.LoadingExpenses);
+            var expectedIncomeFileIO = new FileIO<ExpectedIncomeRecord>(new FakeSpreadsheetRepoFactory());
+            var expectedIncomeCSVFile = new CSVFile<ExpectedIncomeRecord>(expectedIncomeFileIO);
+            expectedIncomeCSVFile.Load(false);
+            var expectedIncomeFile = new ExpectedIncomeFile(expectedIncomeCSVFile);
+            spreadsheet.AddUnreconciledRowsToCsvFile<ExpectedIncomeRecord>(MainSheetNames.ExpectedIn, expectedIncomeFile.File);
+            expectedIncomeCSVFile.PopulateSourceRecordsFromRecords();
+            expectedIncomeFile.FilterForEmployerExpensesOnly();
+            expectedIncomeFile.CopyToPendingFile((CSVFile<BankRecord>)pendingFile);
+            expectedIncomeCSVFile.PopulateRecordsFromOriginalFileLoad();
+        }
+
+        private void BankAndBankOut_MergeBespokeDataWithPendingFile<TThirdPartyType, TOwnedType>(
+                IInputOutput inputOutput,
+                ISpreadsheet spreadsheet,
+                ICSVFile<TOwnedType> pendingFile,
+                BudgetingMonths budgetingMonths,
+                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            BankAndBankOut_AddMostRecentCreditCardDirectDebits(
+                inputOutput,
+                spreadsheet,
+                (CSVFile<BankRecord>)pendingFile,
+                ReconConsts.CredCard1Name,
+                ReconConsts.CredCard1DdDescription);
+
+            BankAndBankOut_AddMostRecentCreditCardDirectDebits(
+                inputOutput,
+                spreadsheet,
+                (CSVFile<BankRecord>)pendingFile,
+                ReconConsts.CredCard2Name,
+                ReconConsts.CredCard2DdDescription);
+        }
+
+        private void BankAndBankOut_AddMostRecentCreditCardDirectDebits(
+            IInputOutput inputOutput,
+            ISpreadsheet spreadsheet,
+            ICSVFile<BankRecord> pendingFile,
+            string credCardName,
+            string directDebitDescription)
+        {
+            var mostRecentCredCardDirectDebit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
+                MainSheetNames.BankOut,
+                directDebitDescription,
+                new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn });
+
+            var nextDate = mostRecentCredCardDirectDebit.Date.AddMonths(1);
+            var input = inputOutput.GetInput(string.Format(
+                ReconConsts.AskForCredCardDirectDebit,
+                credCardName,
+                nextDate.ToShortDateString()));
+            while (input != "0")
+            {
+                double amount;
+                if (double.TryParse(input, out amount))
+                {
+                    pendingFile.Records.Add(new BankRecord
+                    {
+                        Date = nextDate,
+                        Description = directDebitDescription,
+                        Type = "POS",
+                        UnreconciledAmount = amount
+                    });
+                }
+                nextDate = nextDate.Date.AddMonths(1);
+                input = inputOutput.GetInput(string.Format(
+                    ReconConsts.AskForCredCardDirectDebit,
+                    credCardName,
+                    nextDate.ToShortDateString()));
+            }
+        }
+
+        public void CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile<TThirdPartyType, TOwnedType>(
+                IInputOutput inputOutput,
+                ISpreadsheet spreadsheet,
+                ICSVFile<TOwnedType> pendingFile,
+                BudgetingMonths budgetingMonths,
+                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            var mostRecentCredCardDirectDebit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
+                MainSheetNames.BankOut,
+                ReconConsts.CredCard1DdDescription,
+                new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn });
+
+            var statementDate = new DateTime();
+            var nextDate = mostRecentCredCardDirectDebit.Date.AddMonths(1);
+            var input = inputOutput.GetInput(string.Format(
+                ReconConsts.AskForCredCardDirectDebit,
+                ReconConsts.CredCard1Name,
+                nextDate.ToShortDateString()));
+            double newBalance = 0;
+            while (input != "0")
+            {
+                if (double.TryParse(input, out newBalance))
+                {
+                    (pendingFile as CSVFile<CredCard1InOutRecord>).Records.Add(new CredCard1InOutRecord
+                    {
+                        Date = nextDate,
+                        Description = ReconConsts.CredCard1RegularPymtDescription,
+                        UnreconciledAmount = newBalance
+                    });
+                }
+                statementDate = nextDate.AddMonths(-1);
+                nextDate = nextDate.Date.AddMonths(1);
+                input = inputOutput.GetInput(string.Format(
+                    ReconConsts.AskForCredCardDirectDebit,
+                    ReconConsts.CredCard1Name,
+                    nextDate.ToShortDateString()));
+            }
+
+            spreadsheet.UpdateBalanceOnTotalsSheet(
+                Codes.CredCard1Bal,
+                newBalance * -1,
+                string.Format(
+                    ReconConsts.CredCardBalanceDescription,
+                    ReconConsts.CredCard1Name,
+                    $"{statementDate.ToString("MMM")} {statementDate.Year}"),
+                balanceColumn: 5,
+                textColumn: 6,
+                codeColumn: 4);
+        }
+
+        public void CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile<TThirdPartyType, TOwnedType>(
+                IInputOutput inputOutput,
+                ISpreadsheet spreadsheet,
+                ICSVFile<TOwnedType> pendingFile,
+                BudgetingMonths budgetingMonths,
+                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            var mostRecentCredCardDirectDebit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
+                MainSheetNames.BankOut,
+                ReconConsts.CredCard2DdDescription,
+                new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn });
+
+            var statementDate = new DateTime();
+            var nextDate = mostRecentCredCardDirectDebit.Date.AddMonths(1);
+            var input = inputOutput.GetInput(string.Format(
+                ReconConsts.AskForCredCardDirectDebit,
+                ReconConsts.CredCard2Name,
+                nextDate.ToShortDateString()));
+            double newBalance = 0;
+            while (input != "0")
+            {
+                if (double.TryParse(input, out newBalance))
+                {
+                    (pendingFile as CSVFile<CredCard2InOutRecord>).Records.Add(new CredCard2InOutRecord
+                    {
+                        Date = nextDate,
+                        Description = ReconConsts.CredCard2RegularPymtDescription,
+                        UnreconciledAmount = newBalance
+                    });
+                }
+                statementDate = nextDate.AddMonths(-1);
+                nextDate = nextDate.Date.AddMonths(1);
+                input = inputOutput.GetInput(string.Format(
+                    ReconConsts.AskForCredCardDirectDebit,
+                    ReconConsts.CredCard2Name,
+                    nextDate.ToShortDateString()));
+            }
+
+            spreadsheet.UpdateBalanceOnTotalsSheet(
+                Codes.CredCard2Bal,
+                newBalance * -1,
+                string.Format(
+                    ReconConsts.CredCardBalanceDescription,
+                    ReconConsts.CredCard2Name,
+                    $"{statementDate.ToString("MMM")} {statementDate.Year}"),
+                balanceColumn: 5,
+                textColumn: 6,
+                codeColumn: 4);
         }
 
         private void MergeUnreconciledData<TThirdPartyType, TOwnedType>(
