@@ -410,48 +410,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         }
 
         [Test]
-        public void M_WillCallMergeBespokeDataWithPendingFile_ForPassedInLoader()
-        {
-            // Arrange
-            var mockInputOutput = new Mock<IInputOutput>();
-            var reconciliate = new ReconciliationIntro(mockInputOutput.Object);
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
-            var mockPendingFile = new Mock<ICSVFile<BankRecord>>();
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankOutFileIO = new Mock<IFileIO<BankRecord>>();
-            var budgetingMonths = new BudgetingMonths();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<ActualBankRecord>());
-            mockBankOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<BankRecord>());
-            var mockLoader = new Mock<ILoader<ActualBankRecord, BankRecord>>();
-            var loadingInfo = new DataLoadingInformation<ActualBankRecord, BankRecord>
-            {
-                Loader = mockLoader.Object,
-                FilePaths = new FilePaths()
-            };
-
-            // Act
-            reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
-                mockSpreadsheet.Object,
-                mockPendingFileIO.Object,
-                mockPendingFile.Object,
-                mockActualBankFileIO.Object,
-                mockBankOutFileIO.Object,
-                budgetingMonths,
-                loadingInfo);
-
-            // Assert
-            mockLoader.Verify(x => x.MergeBespokeDataWithPendingFile(
-                mockInputOutput.Object,
-                mockSpreadsheet.Object,
-                mockPendingFile.Object,
-                budgetingMonths,
-                loadingInfo), Times.Exactly(1));
-        }
-
-        [Test]
         public void LoadFilesAndMergeData_WillNotLoadData_WhenTesting()
         {
             // Arrange

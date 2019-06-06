@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ConsoleCatchall.Console.Reconciliation;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
@@ -36,9 +37,10 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var budgetingMonths = new BudgetingMonths();
             var loadingInfo = new BankAndBankInData().LoadingInfo();
             var bankAndBankInLoader = new BankAndBankInData();
+            var reconciliationIntro = new ReconciliationIntro(mockInputOutput.Object);
 
             // Act
-            bankAndBankInLoader.MergeBespokeDataWithPendingFile(
+            reconciliationIntro.BankAndBankIn_MergeBespokeDataWithPendingFile(
                 mockInputOutput.Object,
                 spreadsheet,
                 mockPendingFile.Object,

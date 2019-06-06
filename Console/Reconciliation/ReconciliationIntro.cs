@@ -697,11 +697,9 @@ namespace ConsoleCatchall.Console.Reconciliation
                         _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
                     break;
             }
-
-            dataLoadingInfo.Loader.MergeBespokeDataWithPendingFile(_inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
         }
 
-        private void BankAndBankIn_MergeBespokeDataWithPendingFile<TThirdPartyType, TOwnedType>(
+        public void BankAndBankIn_MergeBespokeDataWithPendingFile<TThirdPartyType, TOwnedType>(
                 IInputOutput inputOutput,
                 ISpreadsheet spreadsheet,
                 ICSVFile<TOwnedType> pendingFile,
@@ -718,11 +716,11 @@ namespace ConsoleCatchall.Console.Reconciliation
             spreadsheet.AddUnreconciledRowsToCsvFile<ExpectedIncomeRecord>(MainSheetNames.ExpectedIn, expectedIncomeFile.File);
             expectedIncomeCSVFile.PopulateSourceRecordsFromRecords();
             expectedIncomeFile.FilterForEmployerExpensesOnly();
-            expectedIncomeFile.CopyToPendingFile((CSVFile<BankRecord>)pendingFile);
+            expectedIncomeFile.CopyToPendingFile((ICSVFile<BankRecord>)pendingFile);
             expectedIncomeCSVFile.PopulateRecordsFromOriginalFileLoad();
         }
 
-        private void BankAndBankOut_MergeBespokeDataWithPendingFile<TThirdPartyType, TOwnedType>(
+        public void BankAndBankOut_MergeBespokeDataWithPendingFile<TThirdPartyType, TOwnedType>(
                 IInputOutput inputOutput,
                 ISpreadsheet spreadsheet,
                 ICSVFile<TOwnedType> pendingFile,
@@ -734,14 +732,14 @@ namespace ConsoleCatchall.Console.Reconciliation
             BankAndBankOut_AddMostRecentCreditCardDirectDebits(
                 inputOutput,
                 spreadsheet,
-                (CSVFile<BankRecord>)pendingFile,
+                (ICSVFile<BankRecord>)pendingFile,
                 ReconConsts.CredCard1Name,
                 ReconConsts.CredCard1DdDescription);
 
             BankAndBankOut_AddMostRecentCreditCardDirectDebits(
                 inputOutput,
                 spreadsheet,
-                (CSVFile<BankRecord>)pendingFile,
+                (ICSVFile<BankRecord>)pendingFile,
                 ReconConsts.CredCard2Name,
                 ReconConsts.CredCard2DdDescription);
         }
@@ -809,7 +807,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 if (double.TryParse(input, out newBalance))
                 {
-                    (pendingFile as CSVFile<CredCard1InOutRecord>).Records.Add(new CredCard1InOutRecord
+                    (pendingFile as ICSVFile<CredCard1InOutRecord>).Records.Add(new CredCard1InOutRecord
                     {
                         Date = nextDate,
                         Description = ReconConsts.CredCard1RegularPymtDescription,
@@ -861,7 +859,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 if (double.TryParse(input, out newBalance))
                 {
-                    (pendingFile as CSVFile<CredCard2InOutRecord>).Records.Add(new CredCard2InOutRecord
+                    (pendingFile as ICSVFile<CredCard2InOutRecord>).Records.Add(new CredCard2InOutRecord
                     {
                         Date = nextDate,
                         Description = ReconConsts.CredCard2RegularPymtDescription,

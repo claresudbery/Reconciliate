@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ConsoleCatchall.Console.Reconciliation;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
@@ -101,9 +102,10 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var budgetingMonths = new BudgetingMonths();
             var loadingInfo = new CredCard1AndCredCard1InOutData().LoadingInfo();
             var credCard1AndCredCard1InOutLoader = new CredCard1AndCredCard1InOutData();
+            var reconciliationIntro = new ReconciliationIntro(mockInputOutput.Object);
 
             // Act
-            credCard1AndCredCard1InOutLoader.MergeBespokeDataWithPendingFile(
+            reconciliationIntro.CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile(
                 mockInputOutput.Object,
                 spreadsheet,
                 mockPendingFile.Object,
@@ -151,9 +153,10 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var budgetingMonths = new BudgetingMonths();
             var loadingInfo = new CredCard1AndCredCard1InOutData().LoadingInfo();
             var credCard1AndCredCard1InOutLoader = new CredCard1AndCredCard1InOutData();
+            var reconciliationIntro = new ReconciliationIntro(mockInputOutput.Object);
 
             // Act
-            credCard1AndCredCard1InOutLoader.MergeBespokeDataWithPendingFile(
+            reconciliationIntro.CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile(
                 mockInputOutput.Object,
                 mockSpreadsheet.Object,
                 mockPendingFile.Object,
