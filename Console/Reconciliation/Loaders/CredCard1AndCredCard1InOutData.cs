@@ -4,7 +4,7 @@ using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
-    internal class CredCard1AndCredCard1InOutData
+    internal static class CredCard1AndCredCard1InOutData
     {
         public static DataLoadingInformation<CredCard1Record, CredCard1InOutRecord> LoadingInfo =
             new DataLoadingInformation<CredCard1Record, CredCard1InOutRecord>
