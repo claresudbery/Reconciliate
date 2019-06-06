@@ -110,7 +110,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mockPendingFile.Setup(x => x.Records).Returns(pendingRecords);
             var budgetingMonths = new BudgetingMonths();
             var loadingInfo = BankAndBankOutData.LoadingInfo;
-            var bankAndBankOutLoader = new BankAndBankOutData();
             var reconciliationIntro = new ReconciliationIntro(mockInputOutput.Object);
 
             // Act
