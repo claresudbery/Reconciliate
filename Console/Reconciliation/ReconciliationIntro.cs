@@ -5,6 +5,7 @@ using System.IO;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Matchers;
+using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
 using ConsoleCatchall.Console.Reconciliation.Utils;
 using Interfaces;
@@ -177,6 +178,55 @@ namespace ConsoleCatchall.Console.Reconciliation
                 OwnedFileName = _ownedFileName
             };
             _matcher.DoMatching(mainFilePaths);
+
+            switch (_reconciliationType)
+            {
+                case ReconciliationType.BankAndBankIn: DoBankAndBankInMatching(mainFilePaths); break;
+                case ReconciliationType.BankAndBankOut: DoBankAndBankOutMatching(mainFilePaths); break;
+                case ReconciliationType.CredCard1AndCredCard1InOut: DoCredCard1AndCredCard1InOutMatching(mainFilePaths); break;
+                case ReconciliationType.CredCard2AndCredCard2InOut: DoCredCard2AndCredCard2InOutMatching(mainFilePaths); break;
+                default: _inputOutput.OutputLine("I don't know what files to load! Terminating now."); break;
+            }
+        }
+
+        private void DoBankAndBankInMatching(FilePaths mainFilePaths)
+        {
+            var loadingInfo = new BankAndBankInLoader().LoadingInfo();
+            loadingInfo.FilePaths = mainFilePaths;
+            var reconciliationIntro = new ReconciliationIntro(_inputOutput);
+            ReconciliationInterface<ActualBankRecord, BankRecord> reconciliationInterface
+                = reconciliationIntro.LoadCorrectFiles<ActualBankRecord, BankRecord>(loadingInfo, _spreadsheetFactory);
+            reconciliationInterface?.DoTheMatching();
+        }
+
+        private void DoBankAndBankOutMatching(FilePaths mainFilePaths)
+        {
+            var loadingInfo = new BankAndBankOutLoader().LoadingInfo();
+            loadingInfo.FilePaths = mainFilePaths;
+            var reconciliationIntro = new ReconciliationIntro(_inputOutput);
+            ReconciliationInterface<ActualBankRecord, BankRecord> reconciliationInterface
+                = reconciliationIntro.LoadCorrectFiles<ActualBankRecord, BankRecord>(loadingInfo, _spreadsheetFactory);
+            reconciliationInterface?.DoTheMatching();
+        }
+
+        private void DoCredCard1AndCredCard1InOutMatching(FilePaths mainFilePaths)
+        {
+            var loadingInfo = new CredCard1AndCredCard1InOutLoader().LoadingInfo();
+            loadingInfo.FilePaths = mainFilePaths;
+            var reconciliationIntro = new ReconciliationIntro(_inputOutput);
+            ReconciliationInterface<CredCard1Record, CredCard1InOutRecord> reconciliationInterface
+                = reconciliationIntro.LoadCorrectFiles<CredCard1Record, CredCard1InOutRecord>(loadingInfo, _spreadsheetFactory);
+            reconciliationInterface?.DoTheMatching();
+        }
+
+        private void DoCredCard2AndCredCard2InOutMatching(FilePaths mainFilePaths)
+        {
+            var loadingInfo = new CredCard2AndCredCard2InOutLoader().LoadingInfo();
+            loadingInfo.FilePaths = mainFilePaths;
+            var reconciliationIntro = new ReconciliationIntro(_inputOutput);
+            ReconciliationInterface<CredCard2Record, CredCard2InOutRecord> reconciliationInterface
+                = reconciliationIntro.LoadCorrectFiles<CredCard2Record, CredCard2InOutRecord>(loadingInfo, _spreadsheetFactory);
+            reconciliationInterface?.DoTheMatching();
         }
 
         private void CreatePendingCsvs()
@@ -427,6 +477,7 @@ namespace ConsoleCatchall.Console.Reconciliation
         private bool SetFileDetailsAccordingToUserInput(string input)
         {
             bool success = true;
+            _reconciliationType = ReconciliationType.Unknown;
             _matcher = null;
 
             switch (input)
@@ -434,28 +485,33 @@ namespace ConsoleCatchall.Console.Reconciliation
                 case "1": {
                     success = false;
                     _matcher = GetMatcherReconciliatonTypeFromUser();
+                    _reconciliationType = GetReconciliatonTypeFromUser();
                 } break;
                 case "2": {
                     _ownedFileName = ReconConsts.DefaultCredCard1InOutFileName;
                     _thirdPartyFileName = ReconConsts.DefaultCredCard1FileName;
                     _matcher = new CredCard1AndCredCard1InOutMatcher(_inputOutput, _spreadsheetFactory);
+                    _reconciliationType = ReconciliationType.CredCard1AndCredCard1InOut;
                 } break;
                 case "3": {
                     _ownedFileName = ReconConsts.DefaultCredCard2InOutFileName;
                     _thirdPartyFileName = ReconConsts.DefaultCredCard2FileName;
                     _matcher = new CredCard2AndCredCard2InOutMatcher(_inputOutput, _spreadsheetFactory);
+                    _reconciliationType = ReconciliationType.CredCard2AndCredCard2InOut;
                 } break;
                 case "4":
                 {
                     _ownedFileName = ReconConsts.DefaultBankInFileName;
                     _thirdPartyFileName = ReconConsts.DefaultBankFileName;
                     _matcher = new BankAndBankInMatcher(_inputOutput, _spreadsheetFactory);
+                    _reconciliationType = ReconciliationType.BankAndBankIn;
                 } break;
                 case "5":
                 {
                     _ownedFileName = ReconConsts.DefaultBankOutFileName;
                     _thirdPartyFileName = ReconConsts.DefaultBankFileName;
                     _matcher = new BankAndBankOutMatcher(_inputOutput, _spreadsheetFactory);
+                    _reconciliationType = ReconciliationType.BankAndBankOut;
                 } break;
             }
 
