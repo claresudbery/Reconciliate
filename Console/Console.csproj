@@ -43,7 +43,6 @@
     <Compile Include="Reconciliation\Loaders\DummyLoader.cs" />
     <Compile Include="Reconciliation\ReconciliationType.cs" />
     <Compile Include="Reconciliation\Utils\Clock.cs" />
-    <Compile Include="Reconciliation\Matchers\CredCard2AndCredCard2InOutMatcher.cs" />
     <Compile Include="Reconciliation\Files\GenericFile.cs" />
     <Compile Include="Reconciliation\Files\CredCard1File.cs" />
     <Compile Include="Reconciliation\Files\ActualBankInFile.cs" />
@@ -52,9 +51,6 @@
     <Compile Include="Reconciliation\Loaders\BankAndBankInLoader.cs" />
     <Compile Include="Reconciliation\Loaders\BankAndBankOutLoader.cs" />
     <Compile Include="Reconciliation\Files\ActualBankOutFile.cs" />
-    <Compile Include="Reconciliation\Matchers\CredCard1AndCredCard1InOutMatcher.cs" />
-    <Compile Include="Reconciliation\Matchers\BankAndBankInMatcher.cs" />
-    <Compile Include="Reconciliation\Matchers\BankAndBankOutMatcher.cs" />
     <Compile Include="Reconciliation\Records\ExpectedIncomeRecord.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeCellSet.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeCellRow.cs" />
