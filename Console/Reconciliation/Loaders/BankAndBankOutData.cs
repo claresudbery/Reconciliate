@@ -36,7 +36,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     EndDivider = Dividers.AnnualTotal,
                     FirstColumnNumber = 2,
                     LastColumnNumber = 6
-                }
+                },
+                ThirdPartyFileLoadAction = ThirdPartyFileLoadAction.FilterForNegativeRecordsOnly
             };
     }
 }

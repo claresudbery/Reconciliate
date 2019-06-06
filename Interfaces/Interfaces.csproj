@@ -44,6 +44,7 @@
     <Compile Include="Constants\PocketMoneySheetNames.cs" />
     <Compile Include="Constants\ReconConsts.cs" />
     <Compile Include="Constants\PlanningSheetNames.cs" />
+    <Compile Include="Constants\ThirdPartyFileLoadAction.cs" />
     <Compile Include="Constants\WorkingMode.cs" />
     <Compile Include="Constants\XmlReader.cs" />
     <Compile Include="DTOs\AutoMatchedRecord.cs" />

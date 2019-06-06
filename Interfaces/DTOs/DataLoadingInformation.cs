@@ -1,3 +1,5 @@
+using Interfaces.Constants;
+
 namespace Interfaces.DTOs
 {
     public class DataLoadingInformation<TThirdPartyType, TOwnedType>
@@ -13,5 +15,6 @@ namespace Interfaces.DTOs
         public string OwnedFileDescriptor { get; set; }
         public BudgetItemListData MonthlyBudgetData { get; set; }
         public BudgetItemListData AnnualBudgetData { get; set; }
-    }
+        public ThirdPartyFileLoadAction ThirdPartyFileLoadAction { get; set; }
+}
 }

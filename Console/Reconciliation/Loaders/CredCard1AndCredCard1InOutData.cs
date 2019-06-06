@@ -29,7 +29,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     FirstColumnNumber = 2,
                     LastColumnNumber = 5
                 },
-                AnnualBudgetData = null
+                AnnualBudgetData = null,
+                ThirdPartyFileLoadAction = ThirdPartyFileLoadAction.FilterForPositiveRecordsOnly
             };
     }
 }
