@@ -134,6 +134,84 @@ namespace ReconciliationBaseTests.ReconciliationBase
         }
 
         [Test]
+        public void Constructor_WillFilterForPositiveRecords_WhenBankAndBankIn()
+        {
+            // Arrange
+            var mockActualBankFile = new Mock<IDataFile<ActualBankRecord>>();
+            var mockBankFile = new Mock<IDataFile<BankRecord>>();
+            mockActualBankFile.Setup(x => x.File).Returns(new Mock<ICSVFile<ActualBankRecord>>().Object);
+            mockBankFile.Setup(x => x.File).Returns(new Mock<ICSVFile<BankRecord>>().Object);
+
+            // Act
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(
+                BankAndBankInData.LoadingInfo,
+                mockActualBankFile.Object,
+                mockBankFile.Object);
+
+            // Assert
+            mockActualBankFile.Verify(x => x.FilterForPositiveRecordsOnly());
+        }
+
+        [Test]
+        public void Constructor_WillFilterForNegativeRecords_WhenBankAndBankOut()
+        {
+            // Arrange
+            var mockActualBankFile = new Mock<IDataFile<ActualBankRecord>>();
+            var mockBankFile = new Mock<IDataFile<BankRecord>>();
+            mockActualBankFile.Setup(x => x.File).Returns(new Mock<ICSVFile<ActualBankRecord>>().Object);
+            mockBankFile.Setup(x => x.File).Returns(new Mock<ICSVFile<BankRecord>>().Object);
+
+            // Act
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(
+                BankAndBankOutData.LoadingInfo,
+                mockActualBankFile.Object,
+                mockBankFile.Object);
+
+            // Assert
+            mockActualBankFile.Verify(x => x.FilterForNegativeRecordsOnly());
+        }
+
+        [Test]
+        public void Constructor_WillSwapSignsOfAllAmounts_WhenCredCard1AndCredCard1InOut()
+        {
+            // Arrange
+            var mockCredCard1File = new Mock<IDataFile<CredCard1Record>>();
+            var mockCredCard1InOutFile = new Mock<IDataFile<CredCard1InOutRecord>>();
+            mockCredCard1File.Setup(x => x.File).Returns(new Mock<ICSVFile<CredCard1Record>>().Object);
+            mockCredCard1InOutFile.Setup(x => x.File).Returns(new Mock<ICSVFile<CredCard1InOutRecord>>().Object);
+
+            // Act
+            var reconciliator = new Reconciliator<CredCard1Record, CredCard1InOutRecord>(
+                CredCard1AndCredCard1InOutData.LoadingInfo,
+                mockCredCard1File.Object,
+                mockCredCard1InOutFile.Object);
+
+            // Assert
+            mockCredCard1File.Verify(x => x.SwapSignsOfAllAmounts());
+        }
+
+        [Test]
+        public void Constructor_WillPerformNoAction_WhenCredCard2AndCredCard2InOut()
+        {
+            // Arrange
+            var mockCredCard2File = new Mock<IDataFile<CredCard2Record>>();
+            var mockCredCard2InOutFile = new Mock<IDataFile<CredCard2InOutRecord>>();
+            mockCredCard2File.Setup(x => x.File).Returns(new Mock<ICSVFile<CredCard2Record>>().Object);
+            mockCredCard2InOutFile.Setup(x => x.File).Returns(new Mock<ICSVFile<CredCard2InOutRecord>>().Object);
+
+            // Act
+            var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(
+                CredCard2AndCredCard2InOutData.LoadingInfo,
+                mockCredCard2File.Object,
+                mockCredCard2InOutFile.Object);
+
+            // Assert
+            mockCredCard2File.Verify(x => x.FilterForPositiveRecordsOnly(), Times.Never);
+            mockCredCard2File.Verify(x => x.FilterForNegativeRecordsOnly(), Times.Never);
+            mockCredCard2File.Verify(x => x.SwapSignsOfAllAmounts(), Times.Never);
+        }
+
+        [Test]
         public void R_CanFindSingleMatchForActualBankAndBankIn()
         {
             // Arrange

@@ -97,13 +97,13 @@ namespace ConsoleCatchall.Console.Reconciliation
             switch (dataLoadingInfo.ThirdPartyFileLoadAction)
             {
                 case ThirdPartyFileLoadAction.FilterForPositiveRecordsOnly:
-                    //thirdPartyFile.FilterForPositiveRecordsOnly();
+                    thirdPartyFile.FilterForPositiveRecordsOnly();
                     break;
                 case ThirdPartyFileLoadAction.FilterForNegativeRecordsOnly:
-                    //thirdPartyFile.FilterForNegativeRecordsOnly();
+                    thirdPartyFile.FilterForNegativeRecordsOnly();
                     break;
                 case ThirdPartyFileLoadAction.SwapSignsOfAllAmounts:
-                    //thirdPartyFile.SwapSignsOfAllAmounts();
+                    thirdPartyFile.SwapSignsOfAllAmounts();
                     break;
                 case ThirdPartyFileLoadAction.NoAction:
                 default: break;
