@@ -161,5 +161,7 @@ namespace Interfaces.Constants
 
         public const int DdDescriptionColumn = 15;
         public const int DescriptionColumn = 5;
+
+        public static string BadMatchNumber = "Bad match number.";
     }
 }

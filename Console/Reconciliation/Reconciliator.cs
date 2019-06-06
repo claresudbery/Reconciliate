@@ -7,7 +7,6 @@ using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Utils;
 using Interfaces;
 using Interfaces.Constants;
-using Interfaces.Delegates;
 using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation
@@ -692,6 +691,28 @@ namespace ConsoleCatchall.Console.Reconciliation
         public List<string> UnmatchedOwnedRecords()
         {
             return OwnedFile.UnmatchedRecordsAsCsv();
+        }
+
+        public void MarkLatestMatchIndex(int matchIndex)
+        {
+            try
+            {
+                MatchRecords(_latestRecordForMatching.SourceRecord,
+                    _latestRecordForMatching.Matches[matchIndex].ActualRecords[0]);
+            }
+            catch (ArgumentOutOfRangeException exception)
+            {
+                throw new ArgumentOutOfRangeException(BadMatchNumber, exception);
+            }
+        }
+
+        public void MatchNonMatchingRecord(int matchIndex)
+        {
+            MarkLatestMatchIndex(matchIndex);
+
+            ChangeAmountAndDescriptionToMatchThirdPartyRecord(
+                _latestRecordForMatching.SourceRecord,
+                _latestRecordForMatching.Matches[matchIndex].ActualRecords[0]);
         }
     }
 }
