@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using ConsoleCatchall.Console.Reconciliation.Files;
-using ConsoleCatchall.Console.Reconciliation.Records;
-using Interfaces;
+﻿using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces.Constants;
 using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
-    internal class CredCard2AndCredCard2InOutData : ILoader<CredCard2Record, CredCard2InOutRecord>
+    internal class CredCard2AndCredCard2InOutData
     {
         public DataLoadingInformation<CredCard2Record, CredCard2InOutRecord> LoadingInfo()
         {
@@ -26,7 +22,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 SheetName = MainSheetNames.CredCard2,
                 ThirdPartyDescriptor = ReconConsts.CredCard2Descriptor,
                 OwnedFileDescriptor = ReconConsts.CredCard2InOutDescriptor,
-                Loader = this,
                 MonthlyBudgetData = new BudgetItemListData
                 {
                     SheetName = MainSheetNames.BudgetOut,
@@ -37,59 +32,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 },
                 AnnualBudgetData = null
             };
-        }
-
-        public void MergeBespokeDataWithPendingFile(
-            IInputOutput inputOutput,
-            ISpreadsheet spreadsheet,
-            ICSVFile<CredCard2InOutRecord> pendingFile,
-            BudgetingMonths budgetingMonths,
-            DataLoadingInformation<CredCard2Record, CredCard2InOutRecord> dataLoadingInfo)
-        {
-            // When we don't have loaders any more, this functionality will have to exist in another switch statement,
-            // in ReconciliationIntro, with separate functions for each type. See ReconciliationIntro.MergeOtherData.
-            // Just copy this Code wholesale - no need to trace back through commits.
-            var mostRecentCredCardDirectDebit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
-                MainSheetNames.BankOut, 
-                ReconConsts.CredCard2DdDescription, 
-                new List<int>{ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn});
-
-            var statementDate = new DateTime();
-            var nextDate = mostRecentCredCardDirectDebit.Date.AddMonths(1);
-            var input = inputOutput.GetInput(string.Format(
-                ReconConsts.AskForCredCardDirectDebit, 
-                ReconConsts.CredCard2Name,
-                nextDate.ToShortDateString()));
-            double newBalance = 0;
-            while (input != "0")
-            {
-                if (double.TryParse(input, out newBalance))
-                {
-                    pendingFile.Records.Add(new CredCard2InOutRecord
-                    {
-                        Date = nextDate,
-                        Description = ReconConsts.CredCard2RegularPymtDescription,
-                        UnreconciledAmount = newBalance
-                    });
-                }
-                statementDate = nextDate.AddMonths(-1);
-                nextDate = nextDate.Date.AddMonths(1);
-                input = inputOutput.GetInput(string.Format(
-                    ReconConsts.AskForCredCardDirectDebit,
-                    ReconConsts.CredCard2Name, 
-                    nextDate.ToShortDateString()));
-            }
-
-            spreadsheet.UpdateBalanceOnTotalsSheet(
-                Codes.CredCard2Bal,
-                newBalance * -1,
-                string.Format(
-                    ReconConsts.CredCardBalanceDescription,
-                    ReconConsts.CredCard2Name,
-                    $"{statementDate.ToString("MMM")} {statementDate.Year}"),
-                balanceColumn: 5,
-                textColumn: 6,
-                codeColumn: 4);
         }
     }
 }

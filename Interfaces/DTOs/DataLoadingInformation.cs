@@ -13,6 +13,5 @@ namespace Interfaces.DTOs
         public string OwnedFileDescriptor { get; set; }
         public BudgetItemListData MonthlyBudgetData { get; set; }
         public BudgetItemListData AnnualBudgetData { get; set; }
-        public ILoader<TThirdPartyType, TOwnedType> Loader { get; set; }
     }
 }

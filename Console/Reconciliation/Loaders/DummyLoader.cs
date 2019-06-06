@@ -6,7 +6,7 @@ using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
-    internal class DummyLoader : ILoader<ActualBankRecord, BankRecord>
+    internal class DummyLoader
     {
         public DataLoadingInformation<ActualBankRecord, BankRecord> LoadingInfo()
         {
@@ -24,7 +24,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 SheetName = MainSheetNames.BankOut,
                 ThirdPartyDescriptor = ReconConsts.CredCard2Descriptor,
                 OwnedFileDescriptor = ReconConsts.CredCard2InOutDescriptor,
-                Loader = this,
                 MonthlyBudgetData = new BudgetItemListData
                 {
                     SheetName = MainSheetNames.BudgetOut,
@@ -35,15 +34,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 },
                 AnnualBudgetData = null
             };
-        }
-
-        public void MergeBespokeDataWithPendingFile(
-            IInputOutput inputOutput,
-            ISpreadsheet spreadsheet,
-            ICSVFile<BankRecord> pendingFile,
-            BudgetingMonths budgetingMonths,
-            DataLoadingInformation<ActualBankRecord, BankRecord> dataLoadingInfo)
-        {
         }
     }
 }

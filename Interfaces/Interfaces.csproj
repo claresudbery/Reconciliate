@@ -63,7 +63,6 @@
     <Compile Include="ICSVRecord.cs" />
     <Compile Include="ICellSet.cs" />
     <Compile Include="IDataFile.cs" />
-    <Compile Include="ILoader.cs" />
     <Compile Include="IReconciliationInterface.cs" />
     <Compile Include="ISpreadsheet.cs" />
     <Compile Include="IFileIO.cs" />
