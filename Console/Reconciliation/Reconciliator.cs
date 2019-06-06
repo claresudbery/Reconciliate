@@ -64,6 +64,8 @@ namespace ConsoleCatchall.Console.Reconciliation
             _thirdPartyFile.Load();
             _ownedFile.Load();
 
+            PerformThirdPartyFileLoadAction(dataLoadingInfo, _thirdPartyFile);
+
             _worksheetName = dataLoadingInfo.SheetName;
 
             Reset();
@@ -84,6 +86,28 @@ namespace ConsoleCatchall.Console.Reconciliation
             _worksheetName = worksheetName;
 
             Reset();
+        }
+
+        private void PerformThirdPartyFileLoadAction<TThirdPartyType, TOwnedType>(
+                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo,
+                IDataFile<TThirdPartyType> thirdPartyFile)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            switch (dataLoadingInfo.ThirdPartyFileLoadAction)
+            {
+                case ThirdPartyFileLoadAction.FilterForPositiveRecordsOnly:
+                    //thirdPartyFile.FilterForPositiveRecordsOnly();
+                    break;
+                case ThirdPartyFileLoadAction.FilterForNegativeRecordsOnly:
+                    //thirdPartyFile.FilterForNegativeRecordsOnly();
+                    break;
+                case ThirdPartyFileLoadAction.SwapSignsOfAllAmounts:
+                    //thirdPartyFile.SwapSignsOfAllAmounts();
+                    break;
+                case ThirdPartyFileLoadAction.NoAction:
+                default: break;
+            }
         }
 
         public bool FindReconciliationMatchesForNextThirdPartyRecord()

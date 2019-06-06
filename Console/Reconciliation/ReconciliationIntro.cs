@@ -908,14 +908,13 @@ namespace ConsoleCatchall.Console.Reconciliation
                 DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo,
                 IFileIO<TThirdPartyType> thirdPartyFileIO,
                 IFileIO<TOwnedType> ownedFileIO)
-            where TThirdPartyType : ICSVRecord, new() where TOwnedType : ICSVRecord, new()
+            where TThirdPartyType : ICSVRecord, new() 
+            where TOwnedType : ICSVRecord, new()
         {
             _inputOutput.OutputLine("Loading data back in from 'owned' and 'third party' files...");
             thirdPartyFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
             ownedFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            // !! TO DO: When this code is type-specific again, turn it back so that CredCard1 gets a CredCard1File
-            // and BankAndBankIn gets an ActualBankInFile. The difference happens when RefreshFileContents is called.
-            // This appears to have no test coverage, so that also needs fixing.
+
             var thirdPartyFile = new GenericFile<TThirdPartyType>(new CSVFile<TThirdPartyType>(thirdPartyFileIO));
             var ownedFile = new GenericFile<TOwnedType>(new CSVFile<TOwnedType>(ownedFileIO));
 
