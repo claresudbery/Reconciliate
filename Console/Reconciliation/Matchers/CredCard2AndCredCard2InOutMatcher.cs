@@ -5,7 +5,7 @@ using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Matchers
 {
-    internal class CredCard2AndCredCard2InOutMatcher : IMatcher
+    internal class CredCard2AndCredCard2InOutMatcher
     {
         private readonly IInputOutput _inputOutput;
         private readonly ISpreadsheetRepoFactory _spreadsheetFactory;

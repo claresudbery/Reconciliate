@@ -5,7 +5,7 @@ using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Matchers
 {
-    internal class BankAndBankOutMatcher : IMatcher
+    internal class BankAndBankOutMatcher
     {
         private readonly IInputOutput _inputOutput;
         private readonly ISpreadsheetRepoFactory _spreadsheetFactory;

@@ -6,7 +6,7 @@ using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Matchers
 {
-    internal class BankAndBankInMatcher : IMatcher
+    internal class BankAndBankInMatcher
     {
         public List<ExpectedIncomeRecord> MatchedExpectedIncomeRecords;
 
