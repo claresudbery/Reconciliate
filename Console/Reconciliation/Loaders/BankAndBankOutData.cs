@@ -6,7 +6,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
     internal class BankAndBankOutData
     {
-        public DataLoadingInformation<ActualBankRecord, BankRecord> LoadingInfo()
+        public DataLoadingInformation<ActualBankRecord, BankRecord> TempLoadingInfo()
         {
             return new DataLoadingInformation<ActualBankRecord, BankRecord>
             {

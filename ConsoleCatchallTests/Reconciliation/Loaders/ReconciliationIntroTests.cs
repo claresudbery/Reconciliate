@@ -369,7 +369,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns(new List<ActualBankRecord>());
             mockBankOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord>());
-            var loadingInfo = new BankAndBankOutData().LoadingInfo();
+            var loadingInfo = new BankAndBankOutData().TempLoadingInfo();
             SetUpForLoaderBespokeStuff(mockInputOutput, mockSpreadsheet);
 
             // Act
@@ -463,7 +463,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var pendingFile = new CSVFile<BankRecord>(mockPendingFileIO.Object);
             mockPendingFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord>{new BankRecord()});
-            var loadingInfo = new BankAndBankOutData().LoadingInfo();
+            var loadingInfo = new BankAndBankOutData().TempLoadingInfo();
             bool exceptionThrown = false;
 
             // Act
