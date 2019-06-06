@@ -396,35 +396,5 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             // Assert
             Assert.IsFalse(exceptionThrown);
         }
-
-        [Test]
-        public void WhenLoadingPendingData_WillConvertSourceLineSeparatorsAfterLoading()
-        {
-            // Arrange
-            var mockInputOutput = new Mock<IInputOutput>();
-            var reconciliate = new ReconciliationIntro(mockInputOutput.Object);
-            var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
-            var pendingFile = new CSVFile<BankRecord>(mockPendingFileIO.Object);
-            mockPendingFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<BankRecord>{new BankRecord()});
-            var loadingInfo = BankAndBankOutData.LoadingInfo;
-            bool exceptionThrown = false;
-
-            // Act
-            try
-            {
-                reconciliate.LoadPendingData<ActualBankRecord, BankRecord>(
-                    mockPendingFileIO.Object,
-                    pendingFile,
-                    loadingInfo);
-            }
-            catch (NullReferenceException)
-            {
-                exceptionThrown = true;
-            }
-
-            // Assert
-            Assert.IsFalse(exceptionThrown);
-        }
     }
 }
