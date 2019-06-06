@@ -35,15 +35,6 @@ namespace Interfaces
             int codeColumn);
         DateTime GetNextUnplannedMonth();
 
-        void AddBudgetedMonthlyDataToPendingFile<TRecordType>(
-            BudgetingMonths budgetingMonths,
-            ICSVFile<TRecordType> pendingFile,
-            BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new();
-        void AddBudgetedAnnualDataToPendingFile<TRecordType>(
-            BudgetingMonths budgetingMonths,
-            ICSVFile<TRecordType> pendingFile,
-            BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new();
-
         void AddBudgetedBankInDataToPendingFile<TRecordType>(
             BudgetingMonths budgetingMonths,
             ICSVFile<TRecordType> pendingFile,

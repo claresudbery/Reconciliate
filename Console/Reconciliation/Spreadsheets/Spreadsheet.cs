@@ -269,30 +269,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 budgetingMonths);
         }
 
-        public void AddBudgetedAnnualDataToPendingFile<TRecordType>(
-            BudgetingMonths budgetingMonths,
-            ICSVFile<TRecordType> pendingFile,
-            BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new()
-        {
-            var annualRecords = GetAllBudgetItems<TRecordType>(budgetItemListData);
-            AddRecordsToPendingFileForRecordsThatHaveMatchingMonths<TRecordType>(
-                annualRecords,
-                (ICSVFile<TRecordType>)pendingFile,
-                budgetingMonths);
-        }
-
-        public void AddBudgetedMonthlyDataToPendingFile<TRecordType>(
-            BudgetingMonths budgetingMonths,
-            ICSVFile<TRecordType> pendingFile,
-            BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new()
-        {
-            var baseRecords = GetAllBudgetItems<TRecordType>(budgetItemListData);
-            AddRecordsToPendingFileForEverySpecifiedMonth<TRecordType>(
-                baseRecords,
-                (ICSVFile<TRecordType>)pendingFile,
-                budgetingMonths);
-        }
-
         private void AddRecordsToPendingFileForEverySpecifiedMonth<TRecordType>(
             IEnumerable<TRecordType> baseRecords, 
             ICSVFile<TRecordType> pendingFile,
