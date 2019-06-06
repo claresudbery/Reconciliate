@@ -1,29 +1,28 @@
 using System.Collections.Generic;
 using ConsoleCatchall.Console.Reconciliation.Files;
+using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
 {
-    internal class BankReconciliator<TThirdPartyType, TOwnedType> : IReconciliator<TThirdPartyType, TOwnedType>
-        where TThirdPartyType : ICSVRecord, new()
-        where TOwnedType : ICSVRecord, new()
+    internal class BankReconciliator : IReconciliator
     {
-        private readonly Reconciliator<TThirdPartyType, TOwnedType> _reconciliator;
-        public ICSVFile<TThirdPartyType> ThirdPartyFile { get; set; }
-        public ICSVFile<TOwnedType> OwnedFile { get; set; }
+        private readonly Reconciliator<ActualBankRecord, BankRecord> _reconciliator;
+        public ICSVFile<ActualBankRecord> ThirdPartyFile { get; set; }
+        public ICSVFile<BankRecord> OwnedFile { get; set; }
 
         public BankReconciliator(
-            IFileIO<TThirdPartyType> actualBankFileIO,
-            IFileIO<TOwnedType> bankFileIO)
+            IFileIO<ActualBankRecord> actualBankFileIO,
+            IFileIO<BankRecord> bankFileIO)
         {
-            ThirdPartyFile = new CSVFile<TThirdPartyType>(actualBankFileIO);
+            ThirdPartyFile = new CSVFile<ActualBankRecord>(actualBankFileIO);
             ThirdPartyFile.Load();
 
-            OwnedFile = new CSVFile<TOwnedType>(bankFileIO);
+            OwnedFile = new CSVFile<BankRecord>(bankFileIO);
             OwnedFile.Load();
 
-            _reconciliator = new Reconciliator<TThirdPartyType, TOwnedType>(ThirdPartyFile, OwnedFile);
+            _reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(ThirdPartyFile, OwnedFile);
         }
 
         public void FilterForNegativeRecordsOnly()
@@ -201,10 +200,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
             return _reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
         }
 
-        List<AutoMatchedRecord<TThirdPartyType>> IReconciliator<TThirdPartyType, TOwnedType>.DoAutoMatching()
-        {
-            return _reconciliator.DoAutoMatching();
-        }
+        //List<AutoMatchedRecord<ActualBankRecord>> IReconciliator<ActualBankRecord, BankRecord>.DoAutoMatching()
+        //{
+        //    return _reconciliator.DoAutoMatching();
+        //}
 
         public void RefreshFiles()
         {

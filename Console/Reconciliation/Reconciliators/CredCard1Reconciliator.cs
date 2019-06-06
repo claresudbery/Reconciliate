@@ -1,30 +1,28 @@
 using System.Collections.Generic;
 using ConsoleCatchall.Console.Reconciliation.Files;
+using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
 {
-    internal class CredCard1Reconciliator<TThirdPartyType, TOwnedType> : IReconciliator<TThirdPartyType, TOwnedType>
-        where TThirdPartyType : ICSVRecord, new()
-        where TOwnedType : ICSVRecord, new()
+    internal class CredCard1Reconciliator : IReconciliator
     {
-        private readonly Reconciliator<TThirdPartyType, TOwnedType> _reconciliator;
-        public ICSVFile<TThirdPartyType> ThirdPartyFile { get; set; }
-        public ICSVFile<TOwnedType> OwnedFile { get; set; }
-        private string _worksheetName = "CredCard1";
+        private readonly Reconciliator<CredCard1Record, CredCard1InOutRecord> _reconciliator;
+        public ICSVFile<CredCard1Record> ThirdPartyFile { get; set; }
+        public ICSVFile<CredCard1InOutRecord> OwnedFile { get; set; }
 
         public CredCard1Reconciliator(
-            IFileIO<TThirdPartyType> credCard1FileIO,
-            IFileIO<TOwnedType> credCard1InOutFileIO)
+            IFileIO<CredCard1Record> credCard1FileIO,
+            IFileIO<CredCard1InOutRecord> credCard1InOutFileIO)
         {
-            ThirdPartyFile = new CSVFile<TThirdPartyType>(credCard1FileIO);
+            ThirdPartyFile = new CSVFile<CredCard1Record>(credCard1FileIO);
             ThirdPartyFile.Load();
 
-            OwnedFile = new CSVFile<TOwnedType>(credCard1InOutFileIO);
+            OwnedFile = new CSVFile<CredCard1InOutRecord>(credCard1InOutFileIO);
             OwnedFile.Load();
 
-            _reconciliator = new Reconciliator<TThirdPartyType, TOwnedType>(ThirdPartyFile, OwnedFile);
+            _reconciliator = new Reconciliator<CredCard1Record, CredCard1InOutRecord>(ThirdPartyFile, OwnedFile);
         }
 
         public void FilterForNegativeRecordsOnly()
@@ -202,10 +200,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
             return _reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
         }
 
-        List<AutoMatchedRecord<TThirdPartyType>> IReconciliator<TThirdPartyType, TOwnedType>.DoAutoMatching()
-        {
-            return _reconciliator.DoAutoMatching();
-        }
+        //List<AutoMatchedRecord<CredCard1Record>> IReconciliator<CredCard1Record, CredCard1InOutRecord>.DoAutoMatching()
+        //{
+        //    return _reconciliator.DoAutoMatching();
+        //}
 
         public void RefreshFiles()
         {

@@ -1,15 +1,10 @@
 using System.Collections.Generic;
-using Interfaces.Delegates;
 using Interfaces.DTOs;
 
 namespace Interfaces
 {
-    public interface IReconciliator<TThirdPartyType, TOwnedType>
-        where TThirdPartyType : ICSVRecord, new()
-        where TOwnedType : ICSVRecord, new()
+    public interface IReconciliator
     {
-        ICSVFile<TThirdPartyType> ThirdPartyFile { get; set; }
-        ICSVFile<TOwnedType> OwnedFile { get; set; }
         bool FindReconciliationMatchesForNextThirdPartyRecord();
         bool MoveToNextUnmatchedThirdPartyRecordForManualMatching();
         bool NotAtEnd();
@@ -33,7 +28,7 @@ namespace Interfaces
         void DeleteSpecificOwnedRecordFromListOfMatches(int specifiedIndex);
         int NumPotentialMatches();
         List<ConsoleLine> GetFinalMatchesForConsole();
-        List<AutoMatchedRecord<TThirdPartyType>> DoAutoMatching();
+        //List<AutoMatchedRecord<TThirdPartyType>> DoAutoMatching();
         List<ConsoleLine> GetAutoMatchesForConsole();
         void RemoveAutoMatch(int matchIndex);
         void RemoveMultipleAutoMatches(List<int> matchIndices);

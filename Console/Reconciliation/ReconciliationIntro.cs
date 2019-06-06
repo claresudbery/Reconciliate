@@ -193,7 +193,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
             // !! TO DO: Pass ReconciliationType into LoadCorrectFiles
-            ReconciliationInterface<ActualBankRecord, BankRecord> reconciliationInterface
+            ReconciliationInterface reconciliationInterface
                 = reconciliationIntro.LoadCorrectFiles<ActualBankRecord, BankRecord>(
                     loadingInfo, 
                     _spreadsheetFactory);
@@ -205,7 +205,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             var loadingInfo = BankAndBankOutData.LoadingInfo;
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
-            ReconciliationInterface<ActualBankRecord, BankRecord> reconciliationInterface
+            ReconciliationInterface reconciliationInterface
                 = reconciliationIntro.LoadCorrectFiles<ActualBankRecord, BankRecord>(
                     loadingInfo,
                     _spreadsheetFactory);
@@ -217,7 +217,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             var loadingInfo = CredCard1AndCredCard1InOutData.LoadingInfo;
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
-            ReconciliationInterface<CredCard1Record, CredCard1InOutRecord> reconciliationInterface
+            ReconciliationInterface reconciliationInterface
                 = reconciliationIntro.LoadCorrectFiles<CredCard1Record, CredCard1InOutRecord>(
                     loadingInfo,
                     _spreadsheetFactory);
@@ -229,7 +229,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             var loadingInfo = CredCard2AndCredCard2InOutData.LoadingInfo;
             loadingInfo.FilePaths = mainFilePaths;
             var reconciliationIntro = new ReconciliationIntro(_inputOutput);
-            ReconciliationInterface<CredCard2Record, CredCard2InOutRecord> reconciliationInterface
+            ReconciliationInterface reconciliationInterface
                 = reconciliationIntro.LoadCorrectFiles<CredCard2Record, CredCard2InOutRecord>(
                     loadingInfo,
                     _spreadsheetFactory);
@@ -551,7 +551,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public ReconciliationInterface<TThirdPartyType, TOwnedType>
+        public ReconciliationInterface
             LoadCorrectFiles<TThirdPartyType, TOwnedType>(
                 DataLoadingInformation dataLoadingInfo,
                 ISpreadsheetRepoFactory spreadsheetFactory)
@@ -560,7 +560,7 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             _inputOutput.OutputLine("Loading data...");
 
-            ReconciliationInterface<TThirdPartyType, TOwnedType> reconciliationInterface = null;
+            ReconciliationInterface reconciliationInterface = null;
 
             try
             {
@@ -596,7 +596,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             return reconciliationInterface;
         }
 
-        public ReconciliationInterface<TThirdPartyType, TOwnedType>
+        public ReconciliationInterface
             LoadBankAndBankIn<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 IFileIO<TOwnedType> pendingFileIO,
@@ -631,10 +631,10 @@ namespace ConsoleCatchall.Console.Reconciliation
             // Then we write all that data away into the 'owned' csv file (eg BankOut.csv).
             BankAndBankIn_MergeBespokeDataWithPendingFile(_inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
 
-            var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
-            var ownedFileIO = new FileIO<TOwnedType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            var reconciliator = new BankReconciliator<TThirdPartyType, TOwnedType>(thirdPartyFileIO, ownedFileIO);
-            var reconciliationInterface = new ReconciliationInterface<TThirdPartyType, TOwnedType>(
+            var thirdPartyFileIO = new FileIO<ActualBankRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
+            var ownedFileIO = new FileIO<BankRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
+            var reconciliator = new BankReconciliator(thirdPartyFileIO, ownedFileIO);
+            var reconciliationInterface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,
                 dataLoadingInfo.ThirdPartyDescriptor,
@@ -642,7 +642,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             return reconciliationInterface;
         }
 
-        public ReconciliationInterface<TThirdPartyType, TOwnedType>
+        public ReconciliationInterface
             LoadBankAndBankOut<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 IFileIO<TOwnedType> pendingFileIO,
@@ -681,10 +681,10 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             BankAndBankOut_MergeBespokeDataWithPendingFile(_inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
 
-            var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
-            var ownedFileIO = new FileIO<TOwnedType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            var reconciliator = new BankReconciliator<TThirdPartyType, TOwnedType>(thirdPartyFileIO, ownedFileIO);
-            var reconciliationInterface = new ReconciliationInterface<TThirdPartyType, TOwnedType>(
+            var thirdPartyFileIO = new FileIO<ActualBankRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
+            var ownedFileIO = new FileIO<BankRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
+            var reconciliator = new BankReconciliator(thirdPartyFileIO, ownedFileIO);
+            var reconciliationInterface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,
                 dataLoadingInfo.ThirdPartyDescriptor,
@@ -692,7 +692,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             return reconciliationInterface;
         }
 
-        public ReconciliationInterface<TThirdPartyType, TOwnedType>
+        public ReconciliationInterface
             LoadCredCard1AndCredCard1InOut<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 IFileIO<TOwnedType> pendingFileIO,
@@ -728,10 +728,10 @@ namespace ConsoleCatchall.Console.Reconciliation
             CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile(
                 _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
 
-            var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
-            var ownedFileIO = new FileIO<TOwnedType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            var reconciliator = new CredCard1Reconciliator<TThirdPartyType, TOwnedType>(thirdPartyFileIO, ownedFileIO);
-            var reconciliationInterface = new ReconciliationInterface<TThirdPartyType, TOwnedType>(
+            var thirdPartyFileIO = new FileIO<CredCard1Record>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
+            var ownedFileIO = new FileIO<CredCard1InOutRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
+            var reconciliator = new CredCard1Reconciliator(thirdPartyFileIO, ownedFileIO);
+            var reconciliationInterface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,
                 dataLoadingInfo.ThirdPartyDescriptor,
@@ -739,7 +739,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             return reconciliationInterface;
         }
 
-        public ReconciliationInterface<TThirdPartyType, TOwnedType>
+        public ReconciliationInterface
             LoadCredCard2AndCredCard2InOut<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 IFileIO<TOwnedType> pendingFileIO,
@@ -775,10 +775,10 @@ namespace ConsoleCatchall.Console.Reconciliation
             CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
                 _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
 
-            var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
-            var ownedFileIO = new FileIO<TOwnedType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            var reconciliator = new CredCard2Reconciliator<TThirdPartyType, TOwnedType>(thirdPartyFileIO, ownedFileIO);
-            var reconciliationInterface = new ReconciliationInterface<TThirdPartyType, TOwnedType>(
+            var thirdPartyFileIO = new FileIO<CredCard2Record>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
+            var ownedFileIO = new FileIO<CredCard2InOutRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
+            var reconciliator = new CredCard2Reconciliator(thirdPartyFileIO, ownedFileIO);
+            var reconciliationInterface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,
                 dataLoadingInfo.ThirdPartyDescriptor,
@@ -786,7 +786,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             return reconciliationInterface;
         }
 
-        public ReconciliationInterface<TThirdPartyType, TOwnedType>
+        public ReconciliationInterface
             LoadFilesAndMergeData<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 IFileIO<TOwnedType> pendingFileIO,
@@ -798,7 +798,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
-            ReconciliationInterface<TThirdPartyType, TOwnedType> reconciliationInterface = null;
+            ReconciliationInterface reconciliationInterface = null;
             switch (_reconciliationType)
             {
                 case ReconciliationType.BankAndBankIn:

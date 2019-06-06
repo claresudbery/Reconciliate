@@ -8,13 +8,11 @@ using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation
 {
-    internal class ReconciliationInterface<TThirdPartyType, TOwnedType>
-        where TThirdPartyType : ICSVRecord, new()
-        where TOwnedType : ICSVRecord, new()
+    internal class ReconciliationInterface
     {
         private readonly IInputOutput _inputOutput;
 
-        public IReconciliator<TThirdPartyType, TOwnedType> Reconciliator { get; private set; }
+        public IReconciliator Reconciliator { get; private set; }
         public string ThirdPartyDescriptor { get; private set; }
         public string OwnedFileDescriptor { get; private set; }
 
@@ -22,7 +20,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         public ReconciliationInterface(
             IInputOutput inputOutput,
-            IReconciliator<TThirdPartyType, TOwnedType> reconciliator,
+            IReconciliator reconciliator,
             string thirdPartyDescriptor,
             string ownedFileDescriptor)
         {
@@ -50,7 +48,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void DoAutomaticMatching()
         {
-            Reconciliator.DoAutoMatching();
+            //Reconciliator.DoAutoMatching();
             RecursivelyShowAutoMatchesAndGetChoices();
         }
 

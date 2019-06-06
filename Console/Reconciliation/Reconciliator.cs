@@ -11,9 +11,9 @@ using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation
 {
-    internal class Reconciliator<TThirdPartyType, TOwnedType> : IReconciliator<TThirdPartyType, TOwnedType>
-                where TThirdPartyType : ICSVRecord, new()
-                where TOwnedType : ICSVRecord, new()
+    internal class Reconciliator<TThirdPartyType, TOwnedType> : IReconciliator
+        where TThirdPartyType : ICSVRecord, new()
+        where TOwnedType : ICSVRecord, new()
     {
         public const string CannotDeleteCurrentRecordNoMatching = "Cannot delete current record if no matching has been done yet.";
         public const string CannotDeleteMatchedRecordNoMatching = "Cannot delete matched record if no matching has been done yet.";
