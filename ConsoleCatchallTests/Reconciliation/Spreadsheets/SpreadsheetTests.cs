@@ -232,7 +232,77 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         }
 
         [Test]
-        public void M_CanReadAllBudgetItems()
+        public void M_CanReadAllMonthlyBankOutBudgetItems()
+        {
+            // Arrange
+            var budgetItemListData = new BudgetItemListData
+            {
+                SheetName = MainSheetNames.BudgetOut,
+                StartDivider = Dividers.SODDs,
+                EndDivider = Dividers.CredCard1,
+                FirstColumnNumber = 2,
+                LastColumnNumber = 6
+            };
+            const int expectedFirstRowNumber = 11;
+            const int expectedLastRowNumber = 25;
+            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
+            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(
+                    budgetItemListData.SheetName, budgetItemListData.StartDivider, 2))
+                .Returns(expectedFirstRowNumber - 1);
+            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(
+                    budgetItemListData.SheetName, budgetItemListData.EndDivider, 2))
+                .Returns(expectedLastRowNumber + 1);
+            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+
+            // Act
+            spreadsheet.GetAllMonthlyBankOutBudgetItems<BankRecord>(budgetItemListData);
+
+            // Assert
+            mockSpreadsheetRepo.Verify(x => x.GetRowsAsRecords<BankRecord>(
+                budgetItemListData.SheetName,
+                expectedFirstRowNumber,
+                expectedLastRowNumber,
+                budgetItemListData.FirstColumnNumber,
+                budgetItemListData.LastColumnNumber));
+        }
+
+        [Test]
+        public void M_CanReadAllMonthlyBankInBudgetItems()
+        {
+            // Arrange
+            var budgetItemListData = new BudgetItemListData
+            {
+                SheetName = MainSheetNames.BudgetIn,
+                StartDivider = Dividers.Date,
+                EndDivider = Dividers.Total,
+                FirstColumnNumber = 2,
+                LastColumnNumber = 6
+            };
+            const int expectedFirstRowNumber = 3;
+            const int expectedLastRowNumber = 44;
+            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
+            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(
+                    budgetItemListData.SheetName, budgetItemListData.StartDivider, 2))
+                .Returns(expectedFirstRowNumber - 1);
+            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(
+                    budgetItemListData.SheetName, budgetItemListData.EndDivider, 2))
+                .Returns(expectedLastRowNumber + 1);
+            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+
+            // Act
+            spreadsheet.GetAllMonthlyBankInBudgetItems<BankRecord>(budgetItemListData);
+
+            // Assert
+            mockSpreadsheetRepo.Verify(x => x.GetRowsAsRecords<BankRecord>(
+                budgetItemListData.SheetName,
+                expectedFirstRowNumber,
+                expectedLastRowNumber,
+                budgetItemListData.FirstColumnNumber,
+                budgetItemListData.LastColumnNumber));
+        }
+
+        [Test]
+        public void M_CanReadAllMonthlyCredCard1BudgetItems()
         {
             // Arrange
             var budgetItemListData = new BudgetItemListData
@@ -255,10 +325,80 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
 
             // Act
-            spreadsheet.GetAllBudgetItems<CredCard1InOutRecord>(budgetItemListData);
+            spreadsheet.GetAllMonthlyCredCard1BudgetItems<CredCard1InOutRecord>(budgetItemListData);
 
             // Assert
             mockSpreadsheetRepo.Verify(x => x.GetRowsAsRecords<CredCard1InOutRecord>(
+                budgetItemListData.SheetName,
+                expectedFirstRowNumber,
+                expectedLastRowNumber,
+                budgetItemListData.FirstColumnNumber,
+                budgetItemListData.LastColumnNumber));
+        }
+
+        [Test]
+        public void M_CanReadAllMonthlyCredCard2BudgetItems()
+        {
+            // Arrange
+            var budgetItemListData = new BudgetItemListData
+            {
+                SheetName = MainSheetNames.BudgetOut,
+                StartDivider = Dividers.CredCard2,
+                EndDivider = Dividers.SODDTotal,
+                FirstColumnNumber = 2,
+                LastColumnNumber = 5
+            };
+            const int expectedFirstRowNumber = 50;
+            const int expectedLastRowNumber = 60;
+            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
+            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(
+                    budgetItemListData.SheetName, budgetItemListData.StartDivider, 2))
+                .Returns(expectedFirstRowNumber - 1);
+            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(
+                    budgetItemListData.SheetName, budgetItemListData.EndDivider, 2))
+                .Returns(expectedLastRowNumber + 1);
+            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+
+            // Act
+            spreadsheet.GetAllMonthlyCredCard2BudgetItems<CredCard2InOutRecord>(budgetItemListData);
+
+            // Assert
+            mockSpreadsheetRepo.Verify(x => x.GetRowsAsRecords<CredCard2InOutRecord>(
+                budgetItemListData.SheetName,
+                expectedFirstRowNumber,
+                expectedLastRowNumber,
+                budgetItemListData.FirstColumnNumber,
+                budgetItemListData.LastColumnNumber));
+        }
+
+        [Test]
+        public void M_CanReadAllAnnualBudgetItems()
+        {
+            // Arrange
+            var budgetItemListData = new BudgetItemListData
+            {
+                SheetName = MainSheetNames.BudgetOut,
+                StartDivider = Dividers.AnnualSODDs,
+                EndDivider = Dividers.AnnualTotal,
+                FirstColumnNumber = 2,
+                LastColumnNumber = 6
+            };
+            const int expectedFirstRowNumber = 1;
+            const int expectedLastRowNumber = 11;
+            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
+            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(
+                    budgetItemListData.SheetName, budgetItemListData.StartDivider, 2))
+                .Returns(expectedFirstRowNumber - 1);
+            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(
+                    budgetItemListData.SheetName, budgetItemListData.EndDivider, 2))
+                .Returns(expectedLastRowNumber + 1);
+            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+
+            // Act
+            spreadsheet.GetAllAnnualBudgetItems<BankRecord>(budgetItemListData);
+
+            // Assert
+            mockSpreadsheetRepo.Verify(x => x.GetRowsAsRecords<BankRecord>(
                 budgetItemListData.SheetName,
                 expectedFirstRowNumber,
                 expectedLastRowNumber,

@@ -78,7 +78,71 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             return csvFile;
         }
 
-        public List<TRecordType> GetAllBudgetItems<TRecordType>(BudgetItemListData budgetItemListData)
+        public List<TRecordType> GetAllMonthlyBankInBudgetItems<TRecordType>(BudgetItemListData budgetItemListData)
+            where TRecordType : ICSVRecord, new()
+        {
+            int firstRowNumber = _spreadsheetIO
+                                     .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.StartDivider) + 1;
+            int lastRowNumber = _spreadsheetIO
+                                    .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.EndDivider) - 1;
+
+            return _spreadsheetIO.GetRowsAsRecords<TRecordType>(
+                budgetItemListData.SheetName,
+                firstRowNumber,
+                lastRowNumber,
+                budgetItemListData.FirstColumnNumber,
+                budgetItemListData.LastColumnNumber);
+        }
+
+        public List<TRecordType> GetAllMonthlyBankOutBudgetItems<TRecordType>(BudgetItemListData budgetItemListData)
+            where TRecordType : ICSVRecord, new()
+        {
+            int firstRowNumber = _spreadsheetIO
+                                     .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.StartDivider) + 1;
+            int lastRowNumber = _spreadsheetIO
+                                    .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.EndDivider) - 1;
+
+            return _spreadsheetIO.GetRowsAsRecords<TRecordType>(
+                budgetItemListData.SheetName,
+                firstRowNumber,
+                lastRowNumber,
+                budgetItemListData.FirstColumnNumber,
+                budgetItemListData.LastColumnNumber);
+        }
+
+        public List<TRecordType> GetAllMonthlyCredCard1BudgetItems<TRecordType>(BudgetItemListData budgetItemListData)
+            where TRecordType : ICSVRecord, new()
+        {
+            int firstRowNumber = _spreadsheetIO
+                                     .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.StartDivider) + 1;
+            int lastRowNumber = _spreadsheetIO
+                                    .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.EndDivider) - 1;
+
+            return _spreadsheetIO.GetRowsAsRecords<TRecordType>(
+                budgetItemListData.SheetName,
+                firstRowNumber,
+                lastRowNumber,
+                budgetItemListData.FirstColumnNumber,
+                budgetItemListData.LastColumnNumber);
+        }
+
+        public List<TRecordType> GetAllMonthlyCredCard2BudgetItems<TRecordType>(BudgetItemListData budgetItemListData)
+            where TRecordType : ICSVRecord, new()
+        {
+            int firstRowNumber = _spreadsheetIO
+                                     .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.StartDivider) + 1;
+            int lastRowNumber = _spreadsheetIO
+                                    .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.EndDivider) - 1;
+
+            return _spreadsheetIO.GetRowsAsRecords<TRecordType>(
+                budgetItemListData.SheetName,
+                firstRowNumber,
+                lastRowNumber,
+                budgetItemListData.FirstColumnNumber,
+                budgetItemListData.LastColumnNumber);
+        }
+
+        public List<TRecordType> GetAllAnnualBudgetItems<TRecordType>(BudgetItemListData budgetItemListData)
             where TRecordType : ICSVRecord, new()
         {
             int firstRowNumber = _spreadsheetIO
@@ -219,7 +283,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ICSVFile<TRecordType> pendingFile,
             BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new()
         {
-            var baseRecords = GetAllBudgetItems<TRecordType>(budgetItemListData);
+            var baseRecords = GetAllMonthlyBankInBudgetItems<TRecordType>(budgetItemListData);
             AddRecordsToPendingFileForEverySpecifiedMonth<TRecordType>(
                 baseRecords,
                 (ICSVFile<TRecordType>)pendingFile,
@@ -232,13 +296,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             BudgetItemListData monthlyBudgetItemListData,
             BudgetItemListData annualBudgetItemListData) where TRecordType : ICSVRecord, new()
         {
-            var monthlyRecords = GetAllBudgetItems<TRecordType>(monthlyBudgetItemListData);
+            var monthlyRecords = GetAllMonthlyBankOutBudgetItems<TRecordType>(monthlyBudgetItemListData);
             AddRecordsToPendingFileForEverySpecifiedMonth<TRecordType>(
                 monthlyRecords,
                 (ICSVFile<TRecordType>)pendingFile,
                 budgetingMonths);
 
-            var annualRecords = GetAllBudgetItems<TRecordType>(annualBudgetItemListData);
+            var annualRecords = GetAllAnnualBudgetItems<TRecordType>(annualBudgetItemListData);
             AddRecordsToPendingFileForRecordsThatHaveMatchingMonths<TRecordType>(
                 annualRecords,
                 (ICSVFile<TRecordType>)pendingFile,
@@ -250,7 +314,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ICSVFile<TRecordType> pendingFile,
             BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new()
         {
-            var baseRecords = GetAllBudgetItems<TRecordType>(budgetItemListData);
+            var baseRecords = GetAllMonthlyCredCard1BudgetItems<TRecordType>(budgetItemListData);
             AddRecordsToPendingFileForEverySpecifiedMonth<TRecordType>(
                 baseRecords,
                 (ICSVFile<TRecordType>)pendingFile,
@@ -262,7 +326,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ICSVFile<TRecordType> pendingFile,
             BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new()
         {
-            var baseRecords = GetAllBudgetItems<TRecordType>(budgetItemListData);
+            var baseRecords = GetAllMonthlyCredCard2BudgetItems<TRecordType>(budgetItemListData);
             AddRecordsToPendingFileForEverySpecifiedMonth<TRecordType>(
                 baseRecords,
                 (ICSVFile<TRecordType>)pendingFile,
