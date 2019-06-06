@@ -1,13 +1,12 @@
-﻿using ConsoleCatchall.Console.Reconciliation.Records;
-using Interfaces.Constants;
+﻿using Interfaces.Constants;
 using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
     internal class DummyLoader
     {
-        public static DataLoadingInformation<ActualBankRecord, BankRecord> LoadingInfo = 
-            new DataLoadingInformation<ActualBankRecord, BankRecord>
+        public static DataLoadingInformation LoadingInfo =
+            new DataLoadingInformation
             {
                 FilePaths = new FilePaths
                 {

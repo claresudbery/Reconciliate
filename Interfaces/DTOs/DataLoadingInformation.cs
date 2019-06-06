@@ -2,9 +2,7 @@ using Interfaces.Constants;
 
 namespace Interfaces.DTOs
 {
-    public class DataLoadingInformation<TThirdPartyType, TOwnedType>
-        where TThirdPartyType : ICSVRecord, new()
-        where TOwnedType : ICSVRecord, new()
+    public class DataLoadingInformation
     {
         public FilePaths FilePaths { get; set; }
         public char DefaultSeparator { get; set; }
@@ -16,5 +14,5 @@ namespace Interfaces.DTOs
         public BudgetItemListData MonthlyBudgetData { get; set; }
         public BudgetItemListData AnnualBudgetData { get; set; }
         public ThirdPartyFileLoadAction ThirdPartyFileLoadAction { get; set; }
-}
+    }
 }

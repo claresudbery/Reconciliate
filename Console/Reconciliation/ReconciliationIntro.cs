@@ -552,7 +552,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         public ReconciliationInterface<TThirdPartyType, TOwnedType>
             LoadCorrectFiles<TThirdPartyType, TOwnedType>(
-                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo,
+                DataLoadingInformation dataLoadingInfo,
                 ISpreadsheetRepoFactory spreadsheetFactory)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
@@ -610,14 +610,14 @@ namespace ConsoleCatchall.Console.Reconciliation
                 IFileIO<TThirdPartyType> thirdPartyFileIO,
                 IFileIO<TOwnedType> ownedFileIO,
                 BudgetingMonths budgetingMonths,
-                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
+                DataLoadingInformation dataLoadingInfo)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
-            LoadPendingData(pendingFileIO, pendingFile, dataLoadingInfo);
-            MergeBudgetData(spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
-            MergeOtherData(spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
-            MergeUnreconciledData(spreadsheet, pendingFile, dataLoadingInfo);
+            LoadPendingData<TThirdPartyType, TOwnedType>(pendingFileIO, pendingFile, dataLoadingInfo);
+            MergeBudgetData<TThirdPartyType, TOwnedType>(spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+            MergeOtherData<TThirdPartyType, TOwnedType>(spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+            MergeUnreconciledData<TThirdPartyType, TOwnedType>(spreadsheet, pendingFile, dataLoadingInfo);
             var reconciliator = LoadThirdPartyAndOwnedFilesIntoReconciliator<TThirdPartyType, TOwnedType>(dataLoadingInfo, thirdPartyFileIO, ownedFileIO);
             var reconciliationInterface = CreateReconciliationInterface(dataLoadingInfo, reconciliator);
             return reconciliationInterface;
@@ -626,7 +626,7 @@ namespace ConsoleCatchall.Console.Reconciliation
         public void LoadPendingData<TThirdPartyType, TOwnedType>(
             IFileIO<TOwnedType> pendingFileIO,
             ICSVFile<TOwnedType> pendingFile,
-            DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
+            DataLoadingInformation dataLoadingInfo)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
@@ -659,7 +659,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 ISpreadsheet spreadsheet,
                 ICSVFile<TOwnedType> pendingFile,
                 BudgetingMonths budgetingMonths,
-                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
+                DataLoadingInformation dataLoadingInfo)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
@@ -675,37 +675,37 @@ namespace ConsoleCatchall.Console.Reconciliation
                 ISpreadsheet spreadsheet,
                 ICSVFile<TOwnedType> pendingFile,
                 BudgetingMonths budgetingMonths,
-                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
+                DataLoadingInformation dataLoadingInfo)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
             switch (_reconciliationType)
             {
-                case ReconciliationType.BankAndBankIn: BankAndBankIn_MergeBespokeDataWithPendingFile(
-                    _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+                case ReconciliationType.BankAndBankIn:
+                    BankAndBankIn_MergeBespokeDataWithPendingFile<TOwnedType>(
+                        _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
                     break;
                 case ReconciliationType.BankAndBankOut:
-                    BankAndBankOut_MergeBespokeDataWithPendingFile(
+                    BankAndBankOut_MergeBespokeDataWithPendingFile<TOwnedType>(
                         _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
                     break;
                 case ReconciliationType.CredCard1AndCredCard1InOut:
-                    CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile(
+                    CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile<TOwnedType>(
                         _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
                     break;
                 case ReconciliationType.CredCard2AndCredCard2InOut:
-                    CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
+                    CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile<TOwnedType>(
                         _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
                     break;
             }
         }
 
-        public void BankAndBankIn_MergeBespokeDataWithPendingFile<TThirdPartyType, TOwnedType>(
+        public void BankAndBankIn_MergeBespokeDataWithPendingFile<TOwnedType>(
                 IInputOutput inputOutput,
                 ISpreadsheet spreadsheet,
                 ICSVFile<TOwnedType> pendingFile,
                 BudgetingMonths budgetingMonths,
-                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
-            where TThirdPartyType : ICSVRecord, new()
+                DataLoadingInformation dataLoadingInfo)
             where TOwnedType : ICSVRecord, new()
         {
             inputOutput.OutputLine(ReconConsts.LoadingExpenses);
@@ -720,13 +720,12 @@ namespace ConsoleCatchall.Console.Reconciliation
             expectedIncomeCSVFile.PopulateRecordsFromOriginalFileLoad();
         }
 
-        public void BankAndBankOut_MergeBespokeDataWithPendingFile<TThirdPartyType, TOwnedType>(
+        public void BankAndBankOut_MergeBespokeDataWithPendingFile<TOwnedType>(
                 IInputOutput inputOutput,
                 ISpreadsheet spreadsheet,
                 ICSVFile<TOwnedType> pendingFile,
                 BudgetingMonths budgetingMonths,
-                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
-            where TThirdPartyType : ICSVRecord, new()
+                DataLoadingInformation dataLoadingInfo)
             where TOwnedType : ICSVRecord, new()
         {
             BankAndBankOut_AddMostRecentCreditCardDirectDebits(
@@ -782,13 +781,12 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public void CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile<TThirdPartyType, TOwnedType>(
+        public void CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile<TOwnedType>(
                 IInputOutput inputOutput,
                 ISpreadsheet spreadsheet,
                 ICSVFile<TOwnedType> pendingFile,
                 BudgetingMonths budgetingMonths,
-                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
-            where TThirdPartyType : ICSVRecord, new()
+                DataLoadingInformation dataLoadingInfo)
             where TOwnedType : ICSVRecord, new()
         {
             var mostRecentCredCardDirectDebit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
@@ -834,13 +832,12 @@ namespace ConsoleCatchall.Console.Reconciliation
                 codeColumn: 4);
         }
 
-        public void CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile<TThirdPartyType, TOwnedType>(
+        public void CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile<TOwnedType>(
                 IInputOutput inputOutput,
                 ISpreadsheet spreadsheet,
                 ICSVFile<TOwnedType> pendingFile,
                 BudgetingMonths budgetingMonths,
-                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
-            where TThirdPartyType : ICSVRecord, new()
+                DataLoadingInformation dataLoadingInfo)
             where TOwnedType : ICSVRecord, new()
         {
             var mostRecentCredCardDirectDebit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
@@ -889,7 +886,7 @@ namespace ConsoleCatchall.Console.Reconciliation
         private void MergeUnreconciledData<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 ICSVFile<TOwnedType> pendingFile,
-                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo)
+                DataLoadingInformation dataLoadingInfo)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
@@ -905,7 +902,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private Reconciliator<TThirdPartyType, TOwnedType>
             LoadThirdPartyAndOwnedFilesIntoReconciliator<TThirdPartyType, TOwnedType>(
-                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo,
+                DataLoadingInformation dataLoadingInfo,
                 IFileIO<TThirdPartyType> thirdPartyFileIO,
                 IFileIO<TOwnedType> ownedFileIO)
             where TThirdPartyType : ICSVRecord, new() 
@@ -928,7 +925,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private ReconciliationInterface<TThirdPartyType, TOwnedType>
             CreateReconciliationInterface<TThirdPartyType, TOwnedType>(
-                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo,
+                DataLoadingInformation dataLoadingInfo,
                 Reconciliator<TThirdPartyType, TOwnedType> reconciliator)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()

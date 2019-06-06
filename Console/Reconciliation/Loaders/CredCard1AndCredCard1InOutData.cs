@@ -1,13 +1,12 @@
-﻿using ConsoleCatchall.Console.Reconciliation.Records;
-using Interfaces.Constants;
+﻿using Interfaces.Constants;
 using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
     internal static class CredCard1AndCredCard1InOutData
     {
-        public static DataLoadingInformation<CredCard1Record, CredCard1InOutRecord> LoadingInfo =
-            new DataLoadingInformation<CredCard1Record, CredCard1InOutRecord>
+        public static DataLoadingInformation LoadingInfo =
+            new DataLoadingInformation
             {
                 FilePaths = new FilePaths
                 {

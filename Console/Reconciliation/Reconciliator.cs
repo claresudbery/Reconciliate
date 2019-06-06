@@ -55,7 +55,7 @@ namespace ConsoleCatchall.Console.Reconciliation
         }
 
         public Reconciliator(
-            DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo,
+            DataLoadingInformation dataLoadingInfo,
             IDataFile<TThirdPartyType> thirdPartyFile,
             IDataFile<TOwnedType> ownedFile)
         {
@@ -88,11 +88,10 @@ namespace ConsoleCatchall.Console.Reconciliation
             Reset();
         }
 
-        private void PerformThirdPartyFileLoadAction<TThirdPartyType, TOwnedType>(
-                DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo,
+        private void PerformThirdPartyFileLoadAction<TThirdPartyType>(
+                DataLoadingInformation dataLoadingInfo,
                 IDataFile<TThirdPartyType> thirdPartyFile)
             where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
         {
             switch (dataLoadingInfo.ThirdPartyFileLoadAction)
             {
