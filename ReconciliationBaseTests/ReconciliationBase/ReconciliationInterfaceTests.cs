@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ConsoleCatchall.Console.Reconciliation;
+using ConsoleCatchall.Console.Reconciliation.Reconciliators;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.Constants;
@@ -44,7 +45,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                     new BankRecord {UnreconciledAmount = AmountForMatching, Description = "Match02"},
                     new BankRecord {UnreconciledAmount = AmountForMatching, Description = "Match03"}
                 });
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var reconciliationInterface = new ReconciliationInterface<ActualBankRecord, BankRecord>(_mockInputOutput.Object, reconciliator, "ActualBank", "Bank In");
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             var previousMatches = reconciliator.CurrentPotentialMatches();
@@ -86,7 +87,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching + 50, Description = MatchDescription + "05a"},
                 new BankRecord {UnreconciledAmount = AmountForMatching + 50, Description = MatchDescription + "05b"}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var reconciliationInterface = new ReconciliationInterface<ActualBankRecord, BankRecord>(_mockInputOutput.Object, reconciliator, "ActualBank", "Bank In");
 
             // Act
@@ -137,7 +138,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching + 50, Description = MatchDescription + "05a"},
                 new BankRecord {UnreconciledAmount = AmountForMatching + 50, Description = MatchDescription + "05b"}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var reconciliationInterface = new ReconciliationInterface<ActualBankRecord, BankRecord>(_mockInputOutput.Object, reconciliator, "ActualBank", "Bank In");
 
             // Act
@@ -182,7 +183,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                     new BankRecord {UnreconciledAmount = AmountForMatching, Description = "Match02"},
                     new BankRecord {UnreconciledAmount = AmountForMatching, Description = "Match03"}
                 });
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             SetupToDeleteThirdPartyRecord(actualBankRecords[0].Description);
             SetupToChooseMatch(actualBankRecords[1].Description, 0);
             SetupToExitAtTheEnd();
@@ -218,7 +219,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 .Returns(new List<BankRecord> {
                     new BankRecord {UnreconciledAmount = AmountForMatching, Description = "Match01"}
                 });
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             SetupToDeleteThirdPartyRecord(actualBankRecords[0].Description);
             SetupToExitAtTheEnd();
             var reconciliationInterface = new ReconciliationInterface<ActualBankRecord, BankRecord>(_mockInputOutput.Object, reconciliator, "ActualBank", "Bank In");
@@ -252,7 +253,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching, Description = "Match03"}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var indexOfDeletedRecord = 1;
             SetupToDeleteOwnedRecordOnceOnly(actualBankRecords[0].Description, indexOfDeletedRecord, 0);
             SetupToExitAtTheEnd();
@@ -287,7 +288,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching, Description = "Match03"}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var indexOfDeletedRecord = 2;
             SetupToDeleteOwnedRecordOnceOnly(actualBankRecords[0].Description, indexOfDeletedRecord, 0);
             SetupToExitAtTheEnd();
@@ -325,7 +326,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching, Description = "Match03"}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var indexTooHigh = bankRecords.Count + 1;
             SetupToDeleteOwnedRecordOnceOnly(actualBankRecords[0].Description, indexTooHigh, 0);
             SetupToExitAtTheEnd();
@@ -375,7 +376,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching, Description = "Match03"}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var indexOfDeletedRecord = 1;
             SetupToDeleteOwnedRecordOnceOnly(actualBankRecords[0].Description, indexOfDeletedRecord, 0);
             SetupToExitAtTheEnd();
@@ -411,7 +412,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching + 10, Description = "Match02"}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var indexOfDeletedRecord = 0;
             SetupToDeleteOwnedRecordOnceOnly(actualBankRecords[0].Description, indexOfDeletedRecord, 0);
             SetupToChooseMatch(actualBankRecords[1].Description, 0);
@@ -446,7 +447,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching, Description = "Match01"}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var indexOfDeletedRecord = 0;
             SetupToDeleteOwnedRecordOnceOnly(actualBankRecords[0].Description, indexOfDeletedRecord, 0);
             SetupToExitAtTheEnd();
@@ -496,7 +497,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             List<string> bankRecordDescriptions = bankRecords.Select(x => x.Description).ToList();
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var indexOfDeletedRecord = 0;
             SetupToDeleteOwnedRecordOnceOnly(actualBankRecords[0].Description, indexOfDeletedRecord, 0);
             SetupToDeleteOwnedRecordTwiceOnly(actualBankRecords[1].Description, indexOfDeletedRecord, 0);
@@ -556,7 +557,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             List<string> bankRecordDescriptions = bankRecords.Select(x => x.Description).ToList();
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var indexOfDeletedRecord = 0;
             SetupToDeleteOwnedRecordOnceOnly(actualBankRecords[0].Description, indexOfDeletedRecord, 0);
             SetupToDeleteOwnedRecordTwiceOnly(actualBankRecords[1].Description, indexOfDeletedRecord, 0);
@@ -618,7 +619,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching + 60, Description = "Match06b"}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var indexOfDeletedRecord = 0;
             SetupToDeleteOwnedRecordOnceOnly(actualBankRecords[0].Description, indexOfDeletedRecord, 0);
             SetupToDeleteOwnedRecordTwiceOnly(actualBankRecords[1].Description, indexOfDeletedRecord, 0);
@@ -671,7 +672,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching, Description = "Match10"}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var indexOfDeletedRecord = 0;
             SetupToDeleteOwnedRecordOnceOnly(actualBankRecords[0].Description, indexOfDeletedRecord, 0);
             SetupToDeleteOwnedRecordTwiceOnly(actualBankRecords[1].Description, indexOfDeletedRecord, 0);
@@ -710,7 +711,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching + 1, Description = commonDescription}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             SetupForAllMatchesChosenWithIndexZero();
             SetupToExitAtTheEnd();
             var reconciliationInterface = new ReconciliationInterface<ActualBankRecord, BankRecord>(_mockInputOutput.Object, reconciliator, "ActualBank", "Bank In");
@@ -735,7 +736,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching + 1, Description = "Match00"}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             SetupToExitAtTheEnd();
             var reconciliationInterface = new ReconciliationInterface<ActualBankRecord, BankRecord>(_mockInputOutput.Object, reconciliator, "ActualBank", "Bank In");
             bool exceptionThrown = false;
@@ -768,7 +769,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching, Description = "Source00"}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             _mockInputOutput.Setup(x => x.GetGenericInput(ReconConsts.GoAgainFinish)).Returns("2");
             var reconciliationInterface = new ReconciliationInterface<ActualBankRecord, BankRecord>(_mockInputOutput.Object, reconciliator, "ActualBank", "Bank In");
             bool exceptionThrown = false;
@@ -801,7 +802,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching, Description = "Match00"}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             _mockInputOutput.Setup(x =>
                     x.GetInput(ReconConsts.EnterNumberOfMatch, It.IsAny<string>()))
                 .Returns("0");
@@ -837,7 +838,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching, Description = "Match00"}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var reconciliationInterface = new ReconciliationInterface<ActualBankRecord, BankRecord>(_mockInputOutput.Object, reconciliator, "ActualBank", "Bank In");
             bool exceptionThrown = false;
 
@@ -876,7 +877,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _mockInputOutput.Setup(x =>
                     x.GetInput(ReconConsts.WhetherToDeleteThirdParty, actualBankRecords[0].Description))
                 .Returns("N");
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var reconciliationInterface = new ReconciliationInterface<ActualBankRecord, BankRecord>(_mockInputOutput.Object, reconciliator, "ActualBank", "Bank In");
 
             // Act
@@ -906,7 +907,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                     x.GetInput(ReconConsts.EnterNumberOfMatch, actualBankRecords[0].Description))
                 .Returns("D")
                 .Returns("");
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             var reconciliationInterface = new ReconciliationInterface<ActualBankRecord, BankRecord>(_mockInputOutput.Object, reconciliator, "ActualBank", "Bank In");
 
             // Act
@@ -936,7 +937,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching, Description = text2}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             SetupToRemoveAutoMatch();
             // Use self-shunt for this one.
             var reconciliationInterface = new ReconciliationInterface<ActualBankRecord, BankRecord>(this, reconciliator, "ActualBank", "Bank In");
@@ -967,7 +968,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching + 10, Description = text2}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             SetupForAllMatchesChosenWithIndexZero();
             SetupToRemoveFinalMatch();
             // Use self-shunt for this one.
@@ -1001,7 +1002,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching, Description = text1}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             SetupForAllMatchesChosenWithIndexZero();
             if (TransactionMatchType == TransactionMatchType.Auto)
             {
@@ -1041,7 +1042,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 new BankRecord {UnreconciledAmount = AmountForMatching + 100, Description = "something else"}};
             _mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(bankRecords);
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", _mockActualBankFileIO.Object, _mockBankFileIO.Object);
+            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(_mockActualBankFileIO.Object, _mockBankFileIO.Object);
             ClearSelfShuntVariables();
             if (TransactionMatchType == TransactionMatchType.SemiAuto)
             {

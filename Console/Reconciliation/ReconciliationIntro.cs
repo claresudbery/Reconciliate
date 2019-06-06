@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
+using ConsoleCatchall.Console.Reconciliation.Reconciliators;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
 using ConsoleCatchall.Console.Reconciliation.Utils;
@@ -649,7 +650,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
             var ownedFileIO = new FileIO<TOwnedType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            var reconciliator = new Reconciliator<TThirdPartyType, TOwnedType>(dataLoadingInfo.SheetName, thirdPartyFileIO, ownedFileIO);
+            var reconciliator = new BankReconciliator<TThirdPartyType, TOwnedType>(thirdPartyFileIO, ownedFileIO);
             var reconciliationInterface = new ReconciliationInterface<TThirdPartyType, TOwnedType>(
                 new InputOutput(),
                 reconciliator,
@@ -689,7 +690,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
             var ownedFileIO = new FileIO<TOwnedType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            var reconciliator = new Reconciliator<TThirdPartyType, TOwnedType>(dataLoadingInfo.SheetName, thirdPartyFileIO, ownedFileIO);
+            var reconciliator = new BankReconciliator<TThirdPartyType, TOwnedType>(thirdPartyFileIO, ownedFileIO);
             var reconciliationInterface = new ReconciliationInterface<TThirdPartyType, TOwnedType>(
                 new InputOutput(),
                 reconciliator,
@@ -729,7 +730,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
             var ownedFileIO = new FileIO<TOwnedType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            var reconciliator = new Reconciliator<TThirdPartyType, TOwnedType>(dataLoadingInfo.SheetName, thirdPartyFileIO, ownedFileIO);
+            var reconciliator = new CredCard1Reconciliator<TThirdPartyType, TOwnedType>(thirdPartyFileIO, ownedFileIO);
             var reconciliationInterface = new ReconciliationInterface<TThirdPartyType, TOwnedType>(
                 new InputOutput(),
                 reconciliator,
@@ -769,7 +770,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
             var ownedFileIO = new FileIO<TOwnedType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            var reconciliator = new Reconciliator<TThirdPartyType, TOwnedType>(dataLoadingInfo.SheetName, thirdPartyFileIO, ownedFileIO);
+            var reconciliator = new CredCard2Reconciliator<TThirdPartyType, TOwnedType>(thirdPartyFileIO, ownedFileIO);
             var reconciliationInterface = new ReconciliationInterface<TThirdPartyType, TOwnedType>(
                 new InputOutput(),
                 reconciliator,
