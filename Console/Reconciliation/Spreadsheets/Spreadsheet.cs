@@ -78,15 +78,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             return csvFile;
         }
 
-        public List<TRecordType> GetAllMonthlyBankInBudgetItems<TRecordType>(BudgetItemListData budgetItemListData)
-            where TRecordType : ICSVRecord, new()
+        public List<BankRecord> GetAllMonthlyBankInBudgetItems(BudgetItemListData budgetItemListData)
         {
             int firstRowNumber = _spreadsheetIO
                                      .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.StartDivider) + 1;
             int lastRowNumber = _spreadsheetIO
                                     .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.EndDivider) - 1;
 
-            return _spreadsheetIO.GetRowsAsRecords<TRecordType>(
+            return _spreadsheetIO.GetRowsAsRecords<BankRecord>(
                 budgetItemListData.SheetName,
                 firstRowNumber,
                 lastRowNumber,
@@ -94,15 +93,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 budgetItemListData.LastColumnNumber);
         }
 
-        public List<TRecordType> GetAllMonthlyBankOutBudgetItems<TRecordType>(BudgetItemListData budgetItemListData)
-            where TRecordType : ICSVRecord, new()
+        public List<BankRecord> GetAllMonthlyBankOutBudgetItems(BudgetItemListData budgetItemListData)
         {
             int firstRowNumber = _spreadsheetIO
                                      .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.StartDivider) + 1;
             int lastRowNumber = _spreadsheetIO
                                     .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.EndDivider) - 1;
 
-            return _spreadsheetIO.GetRowsAsRecords<TRecordType>(
+            return _spreadsheetIO.GetRowsAsRecords<BankRecord>(
                 budgetItemListData.SheetName,
                 firstRowNumber,
                 lastRowNumber,
@@ -110,15 +108,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 budgetItemListData.LastColumnNumber);
         }
 
-        public List<TRecordType> GetAllMonthlyCredCard1BudgetItems<TRecordType>(BudgetItemListData budgetItemListData)
-            where TRecordType : ICSVRecord, new()
+        public List<CredCard1InOutRecord> GetAllMonthlyCredCard1BudgetItems(BudgetItemListData budgetItemListData)
         {
             int firstRowNumber = _spreadsheetIO
                                      .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.StartDivider) + 1;
             int lastRowNumber = _spreadsheetIO
                                     .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.EndDivider) - 1;
 
-            return _spreadsheetIO.GetRowsAsRecords<TRecordType>(
+            return _spreadsheetIO.GetRowsAsRecords<CredCard1InOutRecord>(
                 budgetItemListData.SheetName,
                 firstRowNumber,
                 lastRowNumber,
@@ -126,15 +123,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 budgetItemListData.LastColumnNumber);
         }
 
-        public List<TRecordType> GetAllMonthlyCredCard2BudgetItems<TRecordType>(BudgetItemListData budgetItemListData)
-            where TRecordType : ICSVRecord, new()
+        public List<CredCard2InOutRecord> GetAllMonthlyCredCard2BudgetItems(BudgetItemListData budgetItemListData)
         {
             int firstRowNumber = _spreadsheetIO
                                      .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.StartDivider) + 1;
             int lastRowNumber = _spreadsheetIO
                                     .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.EndDivider) - 1;
 
-            return _spreadsheetIO.GetRowsAsRecords<TRecordType>(
+            return _spreadsheetIO.GetRowsAsRecords<CredCard2InOutRecord>(
                 budgetItemListData.SheetName,
                 firstRowNumber,
                 lastRowNumber,
@@ -283,7 +279,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ICSVFile<BankRecord> pendingFile,
             BudgetItemListData budgetItemListData)
         {
-            var baseRecords = GetAllMonthlyBankInBudgetItems<BankRecord>(budgetItemListData);
+            var baseRecords = GetAllMonthlyBankInBudgetItems(budgetItemListData);
             AddRecordsToPendingFileForEverySpecifiedMonth(
                 baseRecords,
                 pendingFile,
@@ -296,7 +292,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             BudgetItemListData monthlyBudgetItemListData,
             BudgetItemListData annualBudgetItemListData)
         {
-            var monthlyRecords = GetAllMonthlyBankOutBudgetItems<BankRecord>(monthlyBudgetItemListData);
+            var monthlyRecords = GetAllMonthlyBankOutBudgetItems(monthlyBudgetItemListData);
             AddRecordsToPendingFileForEverySpecifiedMonth(
                 monthlyRecords,
                 pendingFile,
@@ -314,7 +310,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ICSVFile<CredCard1InOutRecord> pendingFile,
             BudgetItemListData budgetItemListData)
         {
-            var baseRecords = GetAllMonthlyCredCard1BudgetItems<CredCard1InOutRecord>(budgetItemListData);
+            var baseRecords = GetAllMonthlyCredCard1BudgetItems(budgetItemListData);
             AddRecordsToPendingFileForEverySpecifiedMonth(
                 baseRecords,
                 pendingFile,
@@ -326,7 +322,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ICSVFile<CredCard2InOutRecord> pendingFile,
             BudgetItemListData budgetItemListData)
         {
-            var baseRecords = GetAllMonthlyCredCard2BudgetItems<CredCard2InOutRecord>(budgetItemListData);
+            var baseRecords = GetAllMonthlyCredCard2BudgetItems(budgetItemListData);
             AddRecordsToPendingFileForEverySpecifiedMonth(
                 baseRecords,
                 pendingFile,

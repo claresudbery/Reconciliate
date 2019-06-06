@@ -255,7 +255,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
 
             // Act
-            spreadsheet.GetAllMonthlyBankOutBudgetItems<BankRecord>(budgetItemListData);
+            spreadsheet.GetAllMonthlyBankOutBudgetItems(budgetItemListData);
 
             // Assert
             mockSpreadsheetRepo.Verify(x => x.GetRowsAsRecords<BankRecord>(
@@ -290,7 +290,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
 
             // Act
-            spreadsheet.GetAllMonthlyBankInBudgetItems<BankRecord>(budgetItemListData);
+            spreadsheet.GetAllMonthlyBankInBudgetItems(budgetItemListData);
 
             // Assert
             mockSpreadsheetRepo.Verify(x => x.GetRowsAsRecords<BankRecord>(
@@ -325,7 +325,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
 
             // Act
-            spreadsheet.GetAllMonthlyCredCard1BudgetItems<CredCard1InOutRecord>(budgetItemListData);
+            spreadsheet.GetAllMonthlyCredCard1BudgetItems(budgetItemListData);
 
             // Assert
             mockSpreadsheetRepo.Verify(x => x.GetRowsAsRecords<CredCard1InOutRecord>(
@@ -360,7 +360,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
 
             // Act
-            spreadsheet.GetAllMonthlyCredCard2BudgetItems<CredCard2InOutRecord>(budgetItemListData);
+            spreadsheet.GetAllMonthlyCredCard2BudgetItems(budgetItemListData);
 
             // Assert
             mockSpreadsheetRepo.Verify(x => x.GetRowsAsRecords<CredCard2InOutRecord>(
