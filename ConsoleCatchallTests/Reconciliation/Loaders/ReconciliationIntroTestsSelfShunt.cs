@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace ConsoleCatchallTests.Reconciliation.Loaders
 {
     [TestFixture]
-    public partial class FileLoaderTests : IInputOutput
+    public partial class ReconciliationIntroTests : IInputOutput
     {
         readonly List<List<string>> _outputAllLinesRecordedDescriptions = new List<List<string>>();
         readonly List<string> _outputSingleLineRecordedMessages = new List<string>();

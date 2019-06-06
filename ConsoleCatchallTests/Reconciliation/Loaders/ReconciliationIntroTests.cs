@@ -17,7 +17,7 @@ using NUnit.Framework;
 namespace ConsoleCatchallTests.Reconciliation.Loaders
 {
     [TestFixture]
-    public partial class FileLoaderTests : IInputOutput
+    public partial class ReconciliationIntroTests : IInputOutput
     {
         private Mock<IInputOutput> _mockInputOutput;
 
