@@ -453,7 +453,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             return success;
         }
 
-        private bool SetFileDetailsAccordingToUserInput(string input)
+        public bool SetFileDetailsAccordingToUserInput(string input)
         {
             bool success = true;
             _reconciliationType = ReconciliationType.Unknown;
@@ -596,12 +596,176 @@ namespace ConsoleCatchall.Console.Reconciliation
         }
 
         // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
-        // We load it up into memory.
-        // Then some budget amounts are added to that file (in memory).
-        // Other budget amounts (like CredCard1 balance) have been written directly to the spreadsheet before this.
-        // Then we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
-        // Then we write all that data away into the 'owned' csv file (eg BankOut.csv). Then we read it back in again!
-        // Also we load up the third party data, and pass it all on to the reconciliation interface.
+        // We loaded it up into memory in the previous file-specific method.
+        // Then some budget amounts were added to that file (in memory).
+        // Other budget amounts (like CredCard1 balance) were written directly to the spreadsheet before this too.
+        // Now we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
+        // Then we write all that data away into the 'owned' csv file (eg BankOut.csv).
+        public void MergePendingAndBudgetAndUnreconciled<TRecordType>(
+            IFileIO<TRecordType> fileIO,
+            string sheetName,
+            string ownedFileName,
+            ISpreadsheet spreadsheet,
+            ICSVFile<TRecordType> pendingFile,
+            BudgetingMonths budgetingMonths) where TRecordType : ICSVRecord, new()
+        {
+            _inputOutput.OutputLine("Merging unreconciled rows from spreadsheet with pending and budget data...");
+            spreadsheet.AddUnreconciledRowsToCsvFile<TRecordType>(sheetName, pendingFile);
+
+            _inputOutput.OutputLine("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
+            pendingFile.WriteToFileAsSourceLines(ownedFileName);
+
+            _inputOutput.OutputLine("...");
+        }
+
+        public ReconciliationInterface<TThirdPartyType, TOwnedType>
+            LoadBankAndBankIn<TThirdPartyType, TOwnedType>(
+                ISpreadsheet spreadsheet,
+                IFileIO<TOwnedType> pendingFileIO,
+                ICSVFile<TOwnedType> pendingFile,
+                BudgetingMonths budgetingMonths,
+                DataLoadingInformation dataLoadingInfo)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
+            _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
+            // The separator we loaded with had to match the source. Then we convert it here to match its destination.
+            pendingFile.Load(true, dataLoadingInfo.DefaultSeparator);
+            _inputOutput.OutputLine("Converting source line separators...");
+            pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
+            _inputOutput.OutputLine(ReconConsts.MergingSomeBudgetData);
+            spreadsheet.AddBudgetedMonthlyDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.MonthlyBudgetData);
+            if (null != dataLoadingInfo.AnnualBudgetData)
+            {
+                spreadsheet.AddBudgetedAnnualDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.AnnualBudgetData);
+            }
+            _inputOutput.OutputLine("Updating source lines for output...");
+            pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
+
+            MergePendingAndBudgetAndUnreconciled(pendingFileIO, dataLoadingInfo.SheetName, dataLoadingInfo.FilePaths.OwnedFileName, spreadsheet, pendingFile, budgetingMonths);
+            var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
+            var ownedFileIO = new FileIO<TOwnedType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
+            var reconciliator = new Reconciliator<TThirdPartyType, TOwnedType>(dataLoadingInfo.SheetName, thirdPartyFileIO, ownedFileIO);
+            var reconciliationInterface = new ReconciliationInterface<TThirdPartyType, TOwnedType>(
+                new InputOutput(),
+                reconciliator,
+                dataLoadingInfo.ThirdPartyDescriptor,
+                dataLoadingInfo.OwnedFileDescriptor);
+            return reconciliationInterface;
+        }
+
+        public ReconciliationInterface<TThirdPartyType, TOwnedType>
+            LoadBankAndBankOut<TThirdPartyType, TOwnedType>(
+                ISpreadsheet spreadsheet,
+                IFileIO<TOwnedType> pendingFileIO,
+                ICSVFile<TOwnedType> pendingFile,
+                BudgetingMonths budgetingMonths,
+                DataLoadingInformation dataLoadingInfo)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
+            _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
+            // The separator we loaded with had to match the source. Then we convert it here to match its destination.
+            pendingFile.Load(true, dataLoadingInfo.DefaultSeparator);
+            _inputOutput.OutputLine("Converting source line separators...");
+            pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
+            _inputOutput.OutputLine(ReconConsts.MergingSomeBudgetData);
+            spreadsheet.AddBudgetedMonthlyDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.MonthlyBudgetData);
+            if (null != dataLoadingInfo.AnnualBudgetData)
+            {
+                spreadsheet.AddBudgetedAnnualDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.AnnualBudgetData);
+            }
+            _inputOutput.OutputLine("Updating source lines for output...");
+            pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
+
+            MergePendingAndBudgetAndUnreconciled(pendingFileIO, dataLoadingInfo.SheetName, dataLoadingInfo.FilePaths.OwnedFileName, spreadsheet, pendingFile, budgetingMonths);
+            var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
+            var ownedFileIO = new FileIO<TOwnedType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
+            var reconciliator = new Reconciliator<TThirdPartyType, TOwnedType>(dataLoadingInfo.SheetName, thirdPartyFileIO, ownedFileIO);
+            var reconciliationInterface = new ReconciliationInterface<TThirdPartyType, TOwnedType>(
+                new InputOutput(),
+                reconciliator,
+                dataLoadingInfo.ThirdPartyDescriptor,
+                dataLoadingInfo.OwnedFileDescriptor);
+            return reconciliationInterface;
+        }
+
+        public ReconciliationInterface<TThirdPartyType, TOwnedType>
+            LoadCredCard1AndCredCard1InOut<TThirdPartyType, TOwnedType>(
+                ISpreadsheet spreadsheet,
+                IFileIO<TOwnedType> pendingFileIO,
+                ICSVFile<TOwnedType> pendingFile,
+                BudgetingMonths budgetingMonths,
+                DataLoadingInformation dataLoadingInfo)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
+            _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
+            // The separator we loaded with had to match the source. Then we convert it here to match its destination.
+            pendingFile.Load(true, dataLoadingInfo.DefaultSeparator);
+            _inputOutput.OutputLine("Converting source line separators...");
+            pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
+            _inputOutput.OutputLine(ReconConsts.MergingSomeBudgetData);
+            spreadsheet.AddBudgetedMonthlyDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.MonthlyBudgetData);
+            if (null != dataLoadingInfo.AnnualBudgetData)
+            {
+                spreadsheet.AddBudgetedAnnualDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.AnnualBudgetData);
+            }
+            _inputOutput.OutputLine("Updating source lines for output...");
+            pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
+
+            MergePendingAndBudgetAndUnreconciled(pendingFileIO, dataLoadingInfo.SheetName, dataLoadingInfo.FilePaths.OwnedFileName, spreadsheet, pendingFile, budgetingMonths);
+            var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
+            var ownedFileIO = new FileIO<TOwnedType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
+            var reconciliator = new Reconciliator<TThirdPartyType, TOwnedType>(dataLoadingInfo.SheetName, thirdPartyFileIO, ownedFileIO);
+            var reconciliationInterface = new ReconciliationInterface<TThirdPartyType, TOwnedType>(
+                new InputOutput(),
+                reconciliator,
+                dataLoadingInfo.ThirdPartyDescriptor,
+                dataLoadingInfo.OwnedFileDescriptor);
+            return reconciliationInterface;
+        }
+
+        public ReconciliationInterface<TThirdPartyType, TOwnedType>
+            LoadCredCard2AndCredCard2InOut<TThirdPartyType, TOwnedType>(
+                ISpreadsheet spreadsheet,
+                IFileIO<TOwnedType> pendingFileIO,
+                ICSVFile<TOwnedType> pendingFile,
+                BudgetingMonths budgetingMonths,
+                DataLoadingInformation dataLoadingInfo)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
+            _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
+            // The separator we loaded with had to match the source. Then we convert it here to match its destination.
+            pendingFile.Load(true, dataLoadingInfo.DefaultSeparator);
+            _inputOutput.OutputLine("Converting source line separators...");
+            pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
+            _inputOutput.OutputLine(ReconConsts.MergingSomeBudgetData);
+            spreadsheet.AddBudgetedMonthlyDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.MonthlyBudgetData);
+            if (null != dataLoadingInfo.AnnualBudgetData)
+            {
+                spreadsheet.AddBudgetedAnnualDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.AnnualBudgetData);
+            }
+            _inputOutput.OutputLine("Updating source lines for output...");
+            pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
+
+            MergePendingAndBudgetAndUnreconciled(pendingFileIO, dataLoadingInfo.SheetName, dataLoadingInfo.FilePaths.OwnedFileName, spreadsheet, pendingFile, budgetingMonths);
+            var thirdPartyFileIO = new FileIO<TThirdPartyType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
+            var ownedFileIO = new FileIO<TOwnedType>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
+            var reconciliator = new Reconciliator<TThirdPartyType, TOwnedType>(dataLoadingInfo.SheetName, thirdPartyFileIO, ownedFileIO);
+            var reconciliationInterface = new ReconciliationInterface<TThirdPartyType, TOwnedType>(
+                new InputOutput(),
+                reconciliator,
+                dataLoadingInfo.ThirdPartyDescriptor,
+                dataLoadingInfo.OwnedFileDescriptor);
+            return reconciliationInterface;
+        }
+
         public ReconciliationInterface<TThirdPartyType, TOwnedType>
             LoadFilesAndMergeData<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
@@ -614,12 +778,43 @@ namespace ConsoleCatchall.Console.Reconciliation
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
-            LoadPendingData<TThirdPartyType, TOwnedType>(pendingFileIO, pendingFile, dataLoadingInfo);
-            MergeBudgetData<TThirdPartyType, TOwnedType>(spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
-            MergeOtherData<TThirdPartyType, TOwnedType>(spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
-            MergeUnreconciledData<TThirdPartyType, TOwnedType>(spreadsheet, pendingFile, dataLoadingInfo);
-            var reconciliator = LoadThirdPartyAndOwnedFilesIntoReconciliator<TThirdPartyType, TOwnedType>(dataLoadingInfo, thirdPartyFileIO, ownedFileIO);
-            var reconciliationInterface = CreateReconciliationInterface(dataLoadingInfo, reconciliator);
+            ReconciliationInterface<TThirdPartyType, TOwnedType> reconciliationInterface = null;
+            switch (_reconciliationType)
+            {
+                case ReconciliationType.BankAndBankIn:
+                    {
+                        reconciliationInterface =
+                            LoadBankAndBankIn<TThirdPartyType, TOwnedType>(
+                                spreadsheet, pendingFileIO, pendingFile, budgetingMonths, BankAndBankInData.LoadingInfo);
+                    }
+                    break;
+                case ReconciliationType.BankAndBankOut:
+                    {
+                        reconciliationInterface =
+                            LoadBankAndBankOut<TThirdPartyType, TOwnedType>(
+                                spreadsheet, pendingFileIO, pendingFile, budgetingMonths, BankAndBankOutData.LoadingInfo);
+                    }
+                    break;
+                case ReconciliationType.CredCard1AndCredCard1InOut:
+                    {
+                        reconciliationInterface =
+                            LoadCredCard1AndCredCard1InOut<TThirdPartyType, TOwnedType>(
+                                spreadsheet, pendingFileIO, pendingFile, budgetingMonths, CredCard1AndCredCard1InOutData.LoadingInfo);
+                    }
+                    break;
+                case ReconciliationType.CredCard2AndCredCard2InOut:
+                    {
+                        reconciliationInterface =
+                            LoadCredCard2AndCredCard2InOut<TThirdPartyType, TOwnedType>(
+                                spreadsheet, pendingFileIO, pendingFile, budgetingMonths, CredCard2AndCredCard2InOutData.LoadingInfo);
+                    }
+                    break;
+                default:
+                    {
+                        _inputOutput.OutputLine("I don't know what files to load! Terminating now.");
+                    }
+                    break;
+            }
             return reconciliationInterface;
         }
 

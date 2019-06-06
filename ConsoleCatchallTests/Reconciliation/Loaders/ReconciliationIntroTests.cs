@@ -77,7 +77,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var loadingInfo = DummyLoader.LoadingInfo;
 
             // Act
-            reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
+            reconciliate.LoadFilesAndMergeData(
                 mockSpreadsheet.Object,
                 mockPendingFileIO.Object,
                 mockPendingFile.Object,
@@ -354,62 +354,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         }
 
         [Test]
-        public void LoadFilesAndMergeData_WillUseAllTheCorrectDataToLoadSpreadsheetAndPendingAndBudgetedDataForBankIn()
-        {
-            // Arrange
-            var mockInputOutput = new Mock<IInputOutput>();
-            var reconciliate = new ReconciliationIntro(mockInputOutput.Object);
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
-            var mockPendingFile = new Mock<ICSVFile<BankRecord>>();
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankOutFileIO = new Mock<IFileIO<BankRecord>>();
-            var budgetingMonths = new BudgetingMonths();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<ActualBankRecord>());
-            mockBankOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<BankRecord>());
-            var loadingInfo = BankAndBankOutData.LoadingInfo;
-            SetUpForLoaderBespokeStuff(mockInputOutput, mockSpreadsheet);
-
-            // Act
-            var reconciliationInterface = reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
-                mockSpreadsheet.Object,
-                mockPendingFileIO.Object,
-                mockPendingFile.Object,
-                mockActualBankFileIO.Object,
-                mockBankOutFileIO.Object,
-                budgetingMonths,
-                loadingInfo);
-
-            // Assert
-            mockPendingFileIO.Verify(x => x.SetFilePaths(loadingInfo.FilePaths.MainPath, loadingInfo.PendingFileName));
-            mockActualBankFileIO.Verify(x => x.SetFilePaths(loadingInfo.FilePaths.MainPath, loadingInfo.FilePaths.ThirdPartyFileName));
-            mockBankOutFileIO.Verify(x => x.SetFilePaths(loadingInfo.FilePaths.MainPath, loadingInfo.FilePaths.OwnedFileName));
-            mockPendingFile.Verify(x => x.Load(true, loadingInfo.DefaultSeparator, true));
-            mockPendingFile.Verify(x => x.ConvertSourceLineSeparators(loadingInfo.DefaultSeparator, loadingInfo.LoadingSeparator));
-            mockSpreadsheet.Verify(x => x.AddBudgetedMonthlyDataToPendingFile(
-                budgetingMonths,
-                It.IsAny<ICSVFile<BankRecord>>(),
-                It.Is<BudgetItemListData>(y => y == loadingInfo.MonthlyBudgetData)));
-            mockSpreadsheet.Verify(x => x.AddBudgetedAnnualDataToPendingFile(
-                budgetingMonths,
-                It.IsAny<ICSVFile<BankRecord>>(),
-                It.Is<BudgetItemListData>(y => y == loadingInfo.AnnualBudgetData)));
-            mockPendingFile.Verify(x => x.UpdateSourceLinesForOutput(loadingInfo.LoadingSeparator));
-            mockSpreadsheet.Verify(x => x.AddUnreconciledRowsToCsvFile(loadingInfo.SheetName, It.IsAny<ICSVFile<BankRecord>>()));
-            mockPendingFile.Verify(x => x.WriteToFileAsSourceLines(loadingInfo.FilePaths.OwnedFileName));
-            mockInputOutput.Verify(x => x.OutputLine("Loading data from pending file (which you should have already split out, if necessary)..."));
-            mockInputOutput.Verify(x => x.OutputLine("Merging budget data with pending data..."));
-            mockInputOutput.Verify(x => x.OutputLine("Merging unreconciled rows from spreadsheet with pending and budget data..."));
-            mockInputOutput.Verify(x => x.OutputLine("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file..."));
-            mockInputOutput.Verify(x => x.OutputLine("Loading data back in from 'owned' and 'third party' files..."));
-            mockInputOutput.Verify(x => x.OutputLine("Creating reconciliation interface..."));
-            Assert.AreEqual(loadingInfo.ThirdPartyDescriptor, reconciliationInterface.ThirdPartyDescriptor, "Third Party Descriptor");
-            Assert.AreEqual(loadingInfo.OwnedFileDescriptor, reconciliationInterface.OwnedFileDescriptor, "Owned File Descriptor");
-        }
-
-        [Test]
         public void LoadFilesAndMergeData_WillNotLoadData_WhenTesting()
         {
             // Arrange
@@ -432,7 +376,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             // Act
             try
             {
-                reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
+                reconciliate.LoadFilesAndMergeData(
                     mockSpreadsheet.Object,
                     mockPendingFileIO.Object,
                     mockPendingFile.Object,
