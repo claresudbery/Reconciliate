@@ -56,43 +56,9 @@ namespace ConsoleCatchall.Console.Reconciliation
             Reset();
         }
 
-        public Reconciliator(
-            DataLoadingInformation dataLoadingInfo,
-            IDataFile<TThirdPartyType> thirdPartyFile,
-            IDataFile<TOwnedType> ownedFile)
-        {
-            _thirdPartyFile = thirdPartyFile;
-            _ownedFile = ownedFile;
-            _thirdPartyFile.Load();
-            _ownedFile.Load();
-
-            PerformThirdPartyFileLoadAction(dataLoadingInfo, _thirdPartyFile);
-
-            _worksheetName = dataLoadingInfo.SheetName;
-
-            Reset();
-        }
-
-        public Reconciliator(
-            string worksheetName,
-            IFileIO<TThirdPartyType> thirdPartyFileIO,
-            IFileIO<TOwnedType> ownedFileIO)
-        {
-            var thirdPartyCSVFile = new CSVFile<TThirdPartyType>(thirdPartyFileIO);
-            var ownedCSVFile = new CSVFile<TOwnedType>(ownedFileIO);
-            _thirdPartyFile = new GenericFile<TThirdPartyType>(thirdPartyCSVFile);
-            _ownedFile = new GenericFile<TOwnedType>(ownedCSVFile);
-            ThirdPartyFile.Load();
-            OwnedFile.Load();
-
-            _worksheetName = worksheetName;
-
-            Reset();
-        }
-
         private void PerformThirdPartyFileLoadAction<TThirdPartyType>(
-            ThirdPartyFileLoadAction thirdPartyFileLoadAction,
-            ICSVFile<TThirdPartyType> thirdPartyCSVFile)
+                ThirdPartyFileLoadAction thirdPartyFileLoadAction,
+                ICSVFile<TThirdPartyType> thirdPartyCSVFile)
             where TThirdPartyType : ICSVRecord, new()
         {
             switch (thirdPartyFileLoadAction)
@@ -105,27 +71,6 @@ namespace ConsoleCatchall.Console.Reconciliation
                     break;
                 case ThirdPartyFileLoadAction.SwapSignsOfAllAmounts:
                     thirdPartyCSVFile.SwapSignsOfAllAmounts();
-                    break;
-                case ThirdPartyFileLoadAction.NoAction:
-                default: break;
-            }
-        }
-
-        private void PerformThirdPartyFileLoadAction<TThirdPartyType>(
-                DataLoadingInformation dataLoadingInfo,
-                IDataFile<TThirdPartyType> thirdPartyFile)
-            where TThirdPartyType : ICSVRecord, new()
-        {
-            switch (dataLoadingInfo.ThirdPartyFileLoadAction)
-            {
-                case ThirdPartyFileLoadAction.FilterForPositiveRecordsOnly:
-                    thirdPartyFile.FilterForPositiveRecordsOnly();
-                    break;
-                case ThirdPartyFileLoadAction.FilterForNegativeRecordsOnly:
-                    thirdPartyFile.FilterForNegativeRecordsOnly();
-                    break;
-                case ThirdPartyFileLoadAction.SwapSignsOfAllAmounts:
-                    thirdPartyFile.SwapSignsOfAllAmounts();
                     break;
                 case ThirdPartyFileLoadAction.NoAction:
                 default: break;

@@ -8,10 +8,6 @@ namespace Interfaces
             char? overrideSeparator = null,
             bool orderOnLoad = true);
 
-        void FilterForPositiveRecordsOnly();
-        void FilterForNegativeRecordsOnly();
-        void SwapSignsOfAllAmounts();
-
         void RefreshFileContents();
     }
 }
