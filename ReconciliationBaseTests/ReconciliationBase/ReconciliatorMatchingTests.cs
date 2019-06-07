@@ -189,7 +189,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankInFile.Reload();
             _actualBankFile.FilterForPositiveRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -206,7 +206,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _bankOutFile.Reload();
             _actualBankFile.Reload();
             _actualBankFile.FilterForNegativeRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankOutFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankOutFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -223,7 +223,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _credCard1InOutFile.Reload();
             _credCard1File.Reload();
             _credCard1File.FilterForNegativeRecordsOnly();
-            var reconciliator = new Reconciliator<CredCard1Record, CredCard1InOutRecord>(_credCard1File, _credCard1InOutFile);
+            var reconciliator = new Reconciliator<CredCard1Record, CredCard1InOutRecord>(_credCard1File, _credCard1InOutFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
 
             // Act
@@ -240,7 +240,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _credCard2InOutFile.Reload();
             _credCard2File.Reload();
-            var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(_credCard2File, _credCard2InOutFile);
+            var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(_credCard2File, _credCard2InOutFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -256,7 +256,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankInFile.Reload();
             _actualBankFile.FilterForPositiveRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
 
@@ -290,7 +290,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
 
@@ -308,7 +308,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankInFile.Reload();
             _actualBankFile.FilterForPositiveRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
 
@@ -329,7 +329,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankInFile.Reload();
             _actualBankFile.FilterForPositiveRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -347,7 +347,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankInFile.Reload();
             _actualBankFile.FilterForPositiveRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -375,7 +375,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _bankInFile.Reload();
             _actualBankFile.Reload();
             _actualBankFile.FilterForPositiveRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -402,7 +402,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankInFile.Reload();
             _actualBankFile.FilterForPositiveRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -439,7 +439,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             bool exceptionThrown = false;
             string errorMessage = "";
@@ -467,7 +467,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _bankOutFile.Reload();
             _actualBankFile.Reload();
             _actualBankFile.FilterForNegativeRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankOutFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankOutFile, ThirdPartyFileLoadAction.NoAction);
             
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -501,7 +501,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankInFile.Reload();
             _actualBankFile.FilterForPositiveRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             var matchedRecord = reconciliator.CurrentRecordForMatching();
             Assert.AreEqual("'ZZZSpecialDescription001", matchedRecord.SourceRecord.Description);
@@ -542,7 +542,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act & Assert
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -569,7 +569,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _bankInFile.Reload();
             _actualBankFile.Reload();
             _actualBankFile.FilterForPositiveRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.MatchCurrentRecord(0);
@@ -604,7 +604,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
@@ -626,7 +626,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
             var actualBankFile = new CSVFile<ActualBankRecord>(fileIO);
             actualBankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             for (int count = 1; count <= actualBankFile.Records.Count; count++)
             {
@@ -649,7 +649,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
             var actualBankFile = new CSVFile<ActualBankRecord>(fileIO);
             actualBankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             for (int count = 1; count <= actualBankFile.Records.Count - 1; count++)
             {
@@ -686,7 +686,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
             var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.MatchCurrentRecord(0);
             // Replicate what happens when you've finished semi-automated matching and you go back to the beginning for manual matching.
@@ -708,7 +708,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _bankInFile.Reload();
             _actualBankFile.Reload();
             _actualBankFile.FilterForPositiveRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
@@ -739,7 +739,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
             var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
@@ -775,7 +775,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
             var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
@@ -814,7 +814,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
             var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
@@ -858,7 +858,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
             var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
@@ -889,7 +889,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
             var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
@@ -920,7 +920,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
             var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
@@ -939,7 +939,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _bankInFile.Reload();
             _actualBankFile.Reload();
             _actualBankFile.FilterForPositiveRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
@@ -973,7 +973,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
             var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
 
             // Act
@@ -1004,7 +1004,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
             var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
 
             // Act
@@ -1035,7 +1035,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
             var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
 
             // Act
@@ -1067,7 +1067,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
             var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
             reconciliator.MatchCurrentRecord(0);
 
@@ -1090,7 +1090,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _bankInFile.Reload();
             _actualBankFile.Reload();
             _actualBankFile.FilterForPositiveRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
@@ -1117,7 +1117,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _bankInFile.Reload();
             _actualBankFile.Reload();
             _actualBankFile.FilterForPositiveRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
@@ -1145,7 +1145,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 "06/4/2017^£24.99^^TILL^5TH NEAREST BY DATE^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 "06/2/2017,POS,'DIVIDE YOUR GREEN,24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1172,7 +1172,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 "06/4/2017^£24.99^^TILL^5TH NEAREST BY DATE^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 "06/2/2017,POS,'DIVIDE YOUR GREEN,24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1207,7 +1207,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
             var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             var foundOne = reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1231,7 +1231,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
             var actualBankFile = new CSVFile<ActualBankRecord>(fileIO);
             actualBankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1252,7 +1252,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
             var actualBankFile = new CSVFile<ActualBankRecord>(fileIO);
             actualBankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1275,7 +1275,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
             var actualBankFile = new CSVFile<ActualBankRecord>(fileIO);
             actualBankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             for (int count = 1; count <= actualBankFile.Records.Count; count++)
             {
@@ -1298,7 +1298,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
             var actualBankFile = new CSVFile<ActualBankRecord>(fileIO);
             actualBankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             for (int count = 1; count <= actualBankFile.Records.Count; count++)
             {
@@ -1319,7 +1319,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _bankInFile.Reload();
             _actualBankFile.Reload();
             _actualBankFile.FilterForPositiveRecordsOnly();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             for (int count = 1; count <= _bankInFile.Records.Count; count++)
             {
@@ -1342,7 +1342,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
             var actualBankFile = new CSVFile<ActualBankRecord>(fileIO);
             actualBankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1369,7 +1369,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/02/2017^£24.99^^TILL^{description}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,{descriptionWithApostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1391,7 +1391,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                     $"02/02/2017^£24.99^^TILL^{descriptionWithoutApostrophe}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,{descriptionWithLeadingApostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1414,7 +1414,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/02/2017^£24.99^^TILL^{descriptionContainingSourceDescription}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,{descriptionWithLeadingApostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1436,7 +1436,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/02/2017^£24.99^^TILL^{description}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,{description},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1459,7 +1459,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/02/2017^£24.99^^TILL^{descriptionWithoutPunctuation}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,{originalDescription},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1482,7 +1482,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/02/2017^£24.99^^TILL^{descriptionWithLessPunctuation}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,{originalDescription},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1505,7 +1505,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/02/2017^£24.99^^TILL^{caseInsensitiveMatch}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,{originalDescription},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1527,7 +1527,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/02/2017^£24.99^^TILL^{partialMatch}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,{originalDescription},100.00,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1551,7 +1551,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/02/2017^£{partialAmountMatch}^^TILL^OTHER^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,THIS,{amountForMatching},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1579,7 +1579,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/{expectedMonth + 1}/2017^£24.99^^TILL^{description}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/{expectedMonth}/2017,POS,{descriptionWithApostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1607,7 +1607,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"{closestMatchingDay}/{expectedMonth + 1}/2017^£24.99^^TILL^{description}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"{exactDate},POS,{descriptionWithApostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1632,7 +1632,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"06/{expectedMonth + 1}/2017^£24.99^^TILL^SOME OTHER DESCRIPTION^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/{expectedMonth}/2017,POS,{descriptionWithApostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1657,7 +1657,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"06/4/2017^{someOtherAmount}^^TILL^{description}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/3/2017,POS,{descriptionWithApostrophe},{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1708,7 +1708,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"{originalDate}^{someOtherAmount}^^TILL^{description}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"{originalDate},POS,{descriptionWithApostrophe},{originalAmountString},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1754,7 +1754,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"{originalDate}^{someOtherAmount}^^TILL^SOME OTHER DESCRIPTION^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"{originalDate},POS,{descriptionWithApostrophe},{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1777,7 +1777,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/02/2017^£{someOtherAmount}^^TILL^{candidateDescription}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,{sourceDescription},{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1806,7 +1806,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/02/2017^£{someOtherAmount}^^TILL^{candidateDescription}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,{sourceDescription},{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1829,7 +1829,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/02/2017^£{someOtherAmount}^^TILL^{candidateDescription}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,DIVIDE YOUR {targetWord},{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1854,7 +1854,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/02/2017^£{someOtherAmount}^^TILL^{candidateDescription}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,DIVIDE YOUR '{targetWord}:,{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1880,7 +1880,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/02/2017^£{someOtherAmount}^^TILL^{candidateDescription}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,DIVIDE YOUR '{targetWord}:,{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1905,7 +1905,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/02/2017^£{someOtherAmount}^^TILL^SOMETHING {targetWord}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,DIVIDE YOUR '{targetWord}:,{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1930,7 +1930,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 $"02/02/2017^£{someOtherAmount}^^TILL^{candidateDescription}^^^^^"});
             var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,{originalDescription},{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
@@ -1966,7 +1966,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
@@ -2003,7 +2003,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             var mockActualBankFile = new Mock<ICSVFile<ActualBankRecord>>().Object;
             var mockBankFile = new Mock<ICSVFile<BankRecord>>().Object;
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(mockActualBankFile, mockBankFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(mockActualBankFile, mockBankFile, ThirdPartyFileLoadAction.NoAction);
             var source = $"This string contains the{punctuation}word that we want";
             var target = $"Also has missing {punctuation}word{punctuation} required";
 
@@ -2042,7 +2042,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
@@ -2076,7 +2076,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
@@ -2107,7 +2107,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
@@ -2139,7 +2139,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
@@ -2174,7 +2174,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
@@ -2211,7 +2211,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
@@ -2244,7 +2244,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
@@ -2284,7 +2284,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
@@ -2316,7 +2316,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
             List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.ReturnAutoMatches();
 
             // Act
@@ -2338,7 +2338,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             var autoMatchedItems = reconciliator.GetAutoMatches();
@@ -2374,7 +2374,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
 
             // Act
             reconciliator.ReturnAutoMatches();
@@ -2418,7 +2418,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
             const int matchIndex = 1;
             const int numRecordsAtStart = 3;
             // The where clause is redundant, but it's here for parity with the reassignment of autoMatchedItems below.
@@ -2474,7 +2474,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
             const int numRecordsAtStart = 5;
             // The where clause is redundant, but it's here for parity with the reassignment of autoMatchedItems below.
             var autoMatchedItems = reconciliator.ReturnAutoMatches().Where(x => x.SourceRecord.Matched).ToList();
@@ -2535,7 +2535,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
             var autoMatchedItems = reconciliator.ReturnAutoMatches();
             List<IPotentialMatch> originalMatches = new List<IPotentialMatch>();
             List<int> matchIndices = new List<int> { 1, 2, 3 };
@@ -2590,7 +2590,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
             const int matchIndex = 1;
             const int numRecordsAtStart = 3;
             for (int count = 1; count <= numRecordsAtStart; count++)
@@ -2648,7 +2648,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
             const int numRecordsAtStart = 5;
             for (int count = 1; count <= numRecordsAtStart; count++)
             {
@@ -2712,7 +2712,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
             const int numRecordsAtStart = 5;
             for (int count = 1; count <= numRecordsAtStart; count++)
             {
@@ -2774,7 +2774,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.ReturnAutoMatches();
             var numMatches = 2;
 
@@ -2823,7 +2823,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             credCard2File.Load();
             var credCard2InOutFile = new CSVFile<CredCard2InOutRecord>(mockCredCard2InOutFileIO.Object);
             credCard2InOutFile.Load();
-            var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(credCard2File, credCard2InOutFile);
+            var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(credCard2File, credCard2InOutFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.ReturnAutoMatches();
             reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             reconciliator.MatchCurrentRecord(0);
@@ -2869,7 +2869,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.ReturnAutoMatches();
             bool exceptionThrown = false;
             string errorMessage = "";
@@ -2922,7 +2922,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             actualBankFile.Load();
             var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
             bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile, ThirdPartyFileLoadAction.NoAction);
             reconciliator.ReturnAutoMatches();
             bool exceptionThrown = false;
             string errorMessage = "";

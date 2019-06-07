@@ -606,7 +606,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             
             var thirdPartyFileIO = new FileIO<ActualBankRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
             var ownedFileIO = new FileIO<BankRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            var reconciliator = new BankReconciliator(thirdPartyFileIO, ownedFileIO);
+            var reconciliator = new BankReconciliator(thirdPartyFileIO, ownedFileIO, dataLoadingInfo);
             var reconciliationInterface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,
@@ -658,7 +658,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             var thirdPartyFileIO = new FileIO<ActualBankRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
             var ownedFileIO = new FileIO<BankRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            var reconciliator = new BankReconciliator(thirdPartyFileIO, ownedFileIO);
+            var reconciliator = new BankReconciliator(thirdPartyFileIO, ownedFileIO, dataLoadingInfo);
             var reconciliationInterface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,

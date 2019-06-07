@@ -43,7 +43,7 @@ namespace ConsoleCatchall.Console.Reconciliation
         public Reconciliator(
             ICSVFile<TThirdPartyType> thirdPartyCSVFile,
             ICSVFile<TOwnedType> ownedCSVFile,
-            ThirdPartyFileLoadAction thirdPartyFileLoadAction = ThirdPartyFileLoadAction.NoAction,
+            ThirdPartyFileLoadAction thirdPartyFileLoadAction,
             string worksheetName = "")
         {
             _thirdPartyFile = new GenericFile<TThirdPartyType>(thirdPartyCSVFile);

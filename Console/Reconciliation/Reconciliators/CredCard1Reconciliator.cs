@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ConsoleCatchall.Console.Reconciliation.Files;
+using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.DTOs;
@@ -22,7 +23,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
             OwnedFile = new CSVFile<CredCard1InOutRecord>(credCard1InOutFileIO);
             OwnedFile.Load();
 
-            _reconciliator = new Reconciliator<CredCard1Record, CredCard1InOutRecord>(ThirdPartyFile, OwnedFile);
+            _reconciliator = new Reconciliator<CredCard1Record, CredCard1InOutRecord>(
+                ThirdPartyFile,
+                OwnedFile,
+                CredCard1AndCredCard1InOutData.LoadingInfo.ThirdPartyFileLoadAction,
+                CredCard1AndCredCard1InOutData.LoadingInfo.SheetName);
         }
 
         public void FilterForNegativeRecordsOnly()

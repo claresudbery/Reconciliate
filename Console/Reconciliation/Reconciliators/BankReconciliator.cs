@@ -14,7 +14,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
 
         public BankReconciliator(
             IFileIO<ActualBankRecord> actualBankFileIO,
-            IFileIO<BankRecord> bankFileIO)
+            IFileIO<BankRecord> bankFileIO,
+            DataLoadingInformation loadingInfo)
         {
             ThirdPartyFile = new CSVFile<ActualBankRecord>(actualBankFileIO);
             ThirdPartyFile.Load();
@@ -22,7 +23,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
             OwnedFile = new CSVFile<BankRecord>(bankFileIO);
             OwnedFile.Load();
 
-            _reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(ThirdPartyFile, OwnedFile);
+            _reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(
+                ThirdPartyFile, 
+                OwnedFile,
+                loadingInfo.ThirdPartyFileLoadAction,
+                loadingInfo.SheetName);
         }
 
         public void FilterForNegativeRecordsOnly()
