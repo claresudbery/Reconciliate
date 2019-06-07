@@ -41,15 +41,15 @@ namespace ConsoleCatchall.Console.Reconciliation
         private readonly List<string> _reservedWords = new List<string>{"AND","THE","OR","WITH"};
 
         public Reconciliator(
-            ICSVFile<TThirdPartyType> thirdPartyFile,
-            ICSVFile<TOwnedType> ownedFile,
+            ICSVFile<TThirdPartyType> thirdPartyCSVFile,
+            ICSVFile<TOwnedType> ownedCSVFile,
             ThirdPartyFileLoadAction thirdPartyFileLoadAction = ThirdPartyFileLoadAction.NoAction,
             string worksheetName = "")
         {
-            _thirdPartyFile = new GenericFile<TThirdPartyType>(thirdPartyFile);
-            _ownedFile = new GenericFile<TOwnedType>(ownedFile);
+            _thirdPartyFile = new GenericFile<TThirdPartyType>(thirdPartyCSVFile);
+            _ownedFile = new GenericFile<TOwnedType>(ownedCSVFile);
 
-            PerformThirdPartyFileLoadAction(thirdPartyFileLoadAction, thirdPartyFile);
+            PerformThirdPartyFileLoadAction(thirdPartyFileLoadAction, thirdPartyCSVFile);
 
             _worksheetName = worksheetName;
 
