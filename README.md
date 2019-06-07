@@ -1,3 +1,11 @@
+## Refactoring Example  
+If you see this text, it means you are in the Refactor-genericise-start branch of this code base.  
+This branch has been created to demonstrate some refactoring code.  
+It is NOT the most up to date version of the code. It will contain bugs.  
+Also, it is deliberately in need of refactoring. Because that's the point. :)  
+Note: This branch was based off the Refactor-eg-genericise branch, where I deliberately unravelled a lot of code for demonstration purposes.  
+(It took flippin' ages. I don't think I'm going to do that again.)  
+
 ## Reconciliation:   
 This code has been designed to speed up my slightly idiosyncratic accounting process - I can't guarantee it'll be any use to anyone else!  
 Follow the instructions on screen.  
