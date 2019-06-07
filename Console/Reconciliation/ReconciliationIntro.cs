@@ -177,52 +177,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 OwnedFileName = _ownedFileName
             };
 
-            switch (_reconciliationType)
-            {
-                case ReconciliationType.BankAndBankIn: DoBankAndBankInMatching(mainFilePaths); break;
-                case ReconciliationType.BankAndBankOut: DoBankAndBankOutMatching(mainFilePaths); break;
-                case ReconciliationType.CredCard1AndCredCard1InOut: DoCredCard1AndCredCard1InOutMatching(mainFilePaths); break;
-                case ReconciliationType.CredCard2AndCredCard2InOut: DoCredCard2AndCredCard2InOutMatching(mainFilePaths); break;
-                default: _inputOutput.OutputLine("I don't know what files to load! Terminating now."); break;
-            }
-        }
-
-        private void DoBankAndBankInMatching(FilePaths mainFilePaths)
-        {
-            var loadingInfo = BankAndBankInData.LoadingInfo;
-            loadingInfo.FilePaths = mainFilePaths;
-            var reconciliationIntro = new ReconciliationIntro(_inputOutput);
-            ReconciliationInterface reconciliationInterface = reconciliationIntro.LoadCorrectFiles(loadingInfo);
-            reconciliationInterface?.DoTheMatching();
-        }
-
-        private void DoBankAndBankOutMatching(FilePaths mainFilePaths)
-        {
-            var loadingInfo = BankAndBankOutData.LoadingInfo;
-            loadingInfo.FilePaths = mainFilePaths;
-            var reconciliationIntro = new ReconciliationIntro(_inputOutput);
-            ReconciliationInterface reconciliationInterface
-                = reconciliationIntro.LoadCorrectFiles(loadingInfo);
-            reconciliationInterface?.DoTheMatching();
-        }
-
-        private void DoCredCard1AndCredCard1InOutMatching(FilePaths mainFilePaths)
-        {
-            var loadingInfo = CredCard1AndCredCard1InOutData.LoadingInfo;
-            loadingInfo.FilePaths = mainFilePaths;
-            var reconciliationIntro = new ReconciliationIntro(_inputOutput);
-            ReconciliationInterface reconciliationInterface
-                = reconciliationIntro.LoadCorrectFiles(loadingInfo);
-            reconciliationInterface?.DoTheMatching();
-        }
-
-        private void DoCredCard2AndCredCard2InOutMatching(FilePaths mainFilePaths)
-        {
-            var loadingInfo = CredCard2AndCredCard2InOutData.LoadingInfo;
-            loadingInfo.FilePaths = mainFilePaths;
-            var reconciliationIntro = new ReconciliationIntro(_inputOutput);
-            ReconciliationInterface reconciliationInterface
-                = reconciliationIntro.LoadCorrectFiles(loadingInfo);
+            var reconciliationInterface = LoadCorrectFiles(mainFilePaths);
             reconciliationInterface?.DoTheMatching();
         }
 
@@ -541,7 +496,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public ReconciliationInterface LoadCorrectFiles(DataLoadingInformation dataLoadingInfo)
+        public ReconciliationInterface LoadCorrectFiles(FilePaths mainFilePaths)
         {
             _inputOutput.OutputLine("Loading data...");
 
@@ -564,7 +519,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                                 LoadBankAndBankIn(
                                     spreadsheet,
                                     budgetingMonths,
-                                    BankAndBankInData.LoadingInfo);
+                                    mainFilePaths);
                         }
                         break;
                     case ReconciliationType.BankAndBankOut:
@@ -573,7 +528,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                                 LoadBankAndBankOut(
                                     spreadsheet,
                                     budgetingMonths,
-                                    BankAndBankOutData.LoadingInfo);
+                                    mainFilePaths);
                         }
                         break;
                     case ReconciliationType.CredCard1AndCredCard1InOut:
@@ -582,7 +537,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                                 LoadCredCard1AndCredCard1InOut(
                                     spreadsheet,
                                     budgetingMonths,
-                                    CredCard1AndCredCard1InOutData.LoadingInfo);
+                                    mainFilePaths);
                         }
                         break;
                     case ReconciliationType.CredCard2AndCredCard2InOut:
@@ -591,7 +546,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                                 LoadCredCard2AndCredCard2InOut(
                                     spreadsheet,
                                     budgetingMonths,
-                                    CredCard2AndCredCard2InOutData.LoadingInfo);
+                                    mainFilePaths);
                         }
                         break;
                     default:
@@ -616,10 +571,14 @@ namespace ConsoleCatchall.Console.Reconciliation
             LoadBankAndBankIn(
                 ISpreadsheet spreadsheet,
                 BudgetingMonths budgetingMonths,
-                DataLoadingInformation dataLoadingInfo)
+                FilePaths mainFilePaths)
         {
+            var dataLoadingInfo = BankAndBankInData.LoadingInfo;
+            dataLoadingInfo.FilePaths = mainFilePaths;
+
             var pendingFileIO = new FileIO<BankRecord>(_spreadsheetFactory);
             var pendingFile = new CSVFile<BankRecord>(pendingFileIO);
+            pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
 
             _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
             // The separator we loaded with had to match the source. Then we convert it here to match its destination.
@@ -660,10 +619,14 @@ namespace ConsoleCatchall.Console.Reconciliation
             LoadBankAndBankOut(
                 ISpreadsheet spreadsheet,
                 BudgetingMonths budgetingMonths,
-                DataLoadingInformation dataLoadingInfo)
+                FilePaths mainFilePaths)
         {
+            var dataLoadingInfo = BankAndBankOutData.LoadingInfo;
+            dataLoadingInfo.FilePaths = mainFilePaths;
+
             var pendingFileIO = new FileIO<BankRecord>(_spreadsheetFactory);
             var pendingFile = new CSVFile<BankRecord>(pendingFileIO);
+            pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
 
             _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
             // The separator we loaded with had to match the source. Then we convert it here to match its destination.
@@ -708,10 +671,14 @@ namespace ConsoleCatchall.Console.Reconciliation
             LoadCredCard1AndCredCard1InOut(
                 ISpreadsheet spreadsheet,
                 BudgetingMonths budgetingMonths,
-                DataLoadingInformation dataLoadingInfo)
+                FilePaths mainFilePaths)
         {
+            var dataLoadingInfo = CredCard1AndCredCard1InOutData.LoadingInfo;
+            dataLoadingInfo.FilePaths = mainFilePaths;
+
             var pendingFileIO = new FileIO<CredCard1InOutRecord>(_spreadsheetFactory);
             var pendingFile = new CSVFile<CredCard1InOutRecord>(pendingFileIO);
+            pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
 
             _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
             // The separator we loaded with had to match the source. Then we convert it here to match its destination.
@@ -753,10 +720,14 @@ namespace ConsoleCatchall.Console.Reconciliation
             LoadCredCard2AndCredCard2InOut(
                 ISpreadsheet spreadsheet,
                 BudgetingMonths budgetingMonths,
-                DataLoadingInformation dataLoadingInfo)
+                FilePaths mainFilePaths)
         {
+            var dataLoadingInfo = CredCard2AndCredCard2InOutData.LoadingInfo;
+            dataLoadingInfo.FilePaths = mainFilePaths;
+
             var pendingFileIO = new FileIO<CredCard2InOutRecord>(_spreadsheetFactory);
             var pendingFile = new CSVFile<CredCard2InOutRecord>(pendingFileIO);
+            pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
 
             _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
             // The separator we loaded with had to match the source. Then we convert it here to match its destination.

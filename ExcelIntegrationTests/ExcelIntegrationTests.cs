@@ -828,6 +828,7 @@ namespace ExcelIntegrationTests
             Assert.AreEqual(expectedError, errorMessage);
         }
 
+        //[Ignore("NCrunch has stopped coping with the closing / reopening of a spreadsheet. Runs fine in other test runners.")]
         [Test]
         [Parallelizable(ParallelScope.None)]
         public void UpdatedAmountIsStillPresentAfterSpreadsheetIsClosedAndReopened()
