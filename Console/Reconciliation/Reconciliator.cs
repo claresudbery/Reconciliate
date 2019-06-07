@@ -43,10 +43,13 @@ namespace ConsoleCatchall.Console.Reconciliation
         public Reconciliator(
             ICSVFile<TThirdPartyType> thirdPartyFile,
             ICSVFile<TOwnedType> ownedFile,
+            ThirdPartyFileLoadAction thirdPartyFileLoadAction = ThirdPartyFileLoadAction.NoAction,
             string worksheetName = "")
         {
             _thirdPartyFile = new GenericFile<TThirdPartyType>(thirdPartyFile);
             _ownedFile = new GenericFile<TOwnedType>(ownedFile);
+
+            PerformThirdPartyFileLoadAction(thirdPartyFileLoadAction, thirdPartyFile);
 
             _worksheetName = worksheetName;
 
@@ -85,6 +88,27 @@ namespace ConsoleCatchall.Console.Reconciliation
             _worksheetName = worksheetName;
 
             Reset();
+        }
+
+        private void PerformThirdPartyFileLoadAction<TThirdPartyType>(
+            ThirdPartyFileLoadAction thirdPartyFileLoadAction,
+            ICSVFile<TThirdPartyType> thirdPartyCSVFile)
+            where TThirdPartyType : ICSVRecord, new()
+        {
+            switch (thirdPartyFileLoadAction)
+            {
+                case ThirdPartyFileLoadAction.FilterForPositiveRecordsOnly:
+                    thirdPartyCSVFile.FilterForPositiveRecordsOnly();
+                    break;
+                case ThirdPartyFileLoadAction.FilterForNegativeRecordsOnly:
+                    thirdPartyCSVFile.FilterForNegativeRecordsOnly();
+                    break;
+                case ThirdPartyFileLoadAction.SwapSignsOfAllAmounts:
+                    thirdPartyCSVFile.SwapSignsOfAllAmounts();
+                    break;
+                case ThirdPartyFileLoadAction.NoAction:
+                default: break;
+            }
         }
 
         private void PerformThirdPartyFileLoadAction<TThirdPartyType>(
