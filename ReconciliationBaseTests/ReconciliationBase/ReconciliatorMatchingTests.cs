@@ -148,7 +148,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
         }
 
         [Test]
-        public void Constructor_WillSwapSignsOfAllAmounts_WhenCredCard1AndCredCard1InOut()
+        public void Constructor_WillPerformNoAction_WhenCredCard1AndCredCard1InOut()
         {
             // Arrange
             var mockCredCard1File = new Mock<ICSVFile<CredCard1Record>>();
@@ -161,7 +161,9 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 CredCard1AndCredCard1InOutData.LoadingInfo.ThirdPartyFileLoadAction);
 
             // Assert
-            mockCredCard1File.Verify(x => x.SwapSignsOfAllAmounts());
+            mockCredCard1File.Verify(x => x.FilterForPositiveRecordsOnly(), Times.Never);
+            mockCredCard1File.Verify(x => x.FilterForNegativeRecordsOnly(), Times.Never);
+            mockCredCard1File.Verify(x => x.SwapSignsOfAllAmounts(), Times.Never);
         }
 
         [Test]

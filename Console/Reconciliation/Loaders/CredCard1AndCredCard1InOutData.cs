@@ -29,7 +29,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     LastColumnNumber = 5
                 },
                 AnnualBudgetData = null,
-                ThirdPartyFileLoadAction = ThirdPartyFileLoadAction.SwapSignsOfAllAmounts
+                // CredCard1Record.Load is already multiplying all mounts by -1, so no need to SwapSignsOfAllAmounts here.
+                ThirdPartyFileLoadAction = ThirdPartyFileLoadAction.NoAction
             };
     }
 }
