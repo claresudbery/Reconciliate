@@ -34,9 +34,12 @@ Sadly I am not able to share with you which providers are currently coded.
 This might be a good place to start, because then you can see how the data works. Instructions for manual testing are in readme.md.  
  
 ### How to Get Set Up  
- 
+
+A) Set up your config:  
 1) You should create a config file, using your-project-path/spreadsheet-samples/SampleConfig.xml as a base.  
 2) You should put the path to your config file in C:/Config/Config.xml.  
+
+B) Create a spreadsheet:  
 3) You should have a Microsoft Excel spreadsheet, whose name and path you set in the config file you created at the start.  
 4) Your spreadsheet should have a set of worksheets which match the sheets set in your-project-path/Interfaces/Constants/MainSheetNames.cs (the actual sheet names are in your config - get the config element names from MainSheetNames.cs). You can see an example in with the files used for manual testing (see readme.md).  
 5) Optional: You can rename the worksheets in your spreadsheet, but make sure you update the corresponding values in your config.  
