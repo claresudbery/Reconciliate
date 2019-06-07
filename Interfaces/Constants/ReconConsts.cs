@@ -141,6 +141,7 @@ namespace Interfaces.Constants
         public const string EnterDeletionIndex = "Enter the index of the record to delete.";
         public const string NoMatchesLeft = "There are no matches left for this record, so we'll move onto the next record.";
         public const string WritingNewData = "Writing new data...";
+        public const string Finished = "All done!";
         public const string BadTallyMatchedItems = "Something is wrong! The number of matched owned records doesn't tally with the number of matched third party records!";
         public const string BadTallyNumMatchedThirdParty = "Something is wrong! The number of matched third party records is greater than the number of owned records!";
         public const string BadTallyNumMatchedOwned = "Something is wrong! The number of matched owned records is greater than the number of third party records!";

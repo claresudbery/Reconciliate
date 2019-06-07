@@ -239,8 +239,11 @@ namespace ConsoleCatchall.Console.Reconciliation
         public void Finish()
         {
             ShowWarnings();
-            _inputOutput.Output(ReconConsts.WritingNewData);
+            _inputOutput.OutputLine(ReconConsts.WritingNewData);
             Reconciliator.Finish("recon");
+            _inputOutput.OutputLine(ReconConsts.Finished);
+            _inputOutput.OutputLine("");
+            _inputOutput.OutputLine("");
         }
 
         private void ActOnChoicesForAutoMatching()
