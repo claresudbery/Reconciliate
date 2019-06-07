@@ -1,0 +1,10 @@
+Date, Type, Description, Value, Balance, Account Name, Account Number
+,,,,,,
+6/11/2018,BAC,'Apple,-22.00,0.00,'Envelope,228822-99933422
+7/11/2018,BAC,'Banana,-32.00,0.00,'Envelope,228822-99933422
+11/11/2018,BAC,'BankOut transaction from ActualBank.csv,-44.00,0.00,'Env,2288
+12/11/2018,BAC,'CRED CARD 1 PAYMENT DESCRIPTION ON STATEMENTS,-1000.00,0.00,'Env,2288
+13/11/2018,BAC,'CRED CARD 2 PAYMENT DESCRIPTION ON STATEMENTS,-2000.00,0.00,'Env,2288
+10/11/2018,BAC,'Cucumber,222.00,0.00,'Envelope,228822-99933422
+11/11/2018,BAC,'Doughnut Pumpernickel,333.00,0.00,'Envelope,228822-99933422
+11/11/2018,BAC,'BankIn transaction from ActualBank.csv,444.00,0.00,'Env,2288

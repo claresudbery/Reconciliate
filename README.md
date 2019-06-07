@@ -8,6 +8,14 @@ NB:
 	Expenses:  
 	When doing real accounting: Just hit ignore for all the Expenses matches for now, because it's not fully implemented yet.  
 
+## Manual Testing
+
+If you want to do a quick manual end to end test, there are files in /reconciliation-samples/For debugging which you can use.  
+They contain simple data which is hopefully easy enough to reason about.  
+You need to copy the .txt and .csv files into the folder you have configured as DefaultFilePath in your xml config.  
+You can copy the spreadsheet (*.xlsx) into the folder you have configured as SourceDebugSpreadsheetPath in your xml config.  
+Then you can run the software in one of the debug modes.  
+	
 ## .Net Core   
 
 If you want to run the code in .Net Core:   
