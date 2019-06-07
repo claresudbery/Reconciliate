@@ -243,7 +243,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             Reconciliator.Finish("recon");
             _inputOutput.OutputLine(ReconConsts.Finished);
             _inputOutput.OutputLine("");
-            _inputOutput.OutputLine("");
         }
 
         private void ActOnChoicesForAutoMatching()

@@ -235,8 +235,8 @@ namespace ConsoleCatchall.Console.Reconciliation
             _inputOutput.OutputLine("*** It's an up to date copy of the main spreadsheet. It lives here: ***");
             _inputOutput.OutputLine($"***  {ReconConsts.MainSpreadsheetPath}/{ReconConsts.BackupSubFolder}  ***");
             _inputOutput.OutputLine("***                                                                 ***");
-            _inputOutput.OutputLine("***        You can find debug versions of BankOutPending.csv        ***");
-            _inputOutput.OutputLine($"***            and Bank.csv in {ReconConsts.DefaultFilePath}/DEBUG              ***"); 
+            _inputOutput.OutputLine("***  You can find debug versions of all csv files and a spreadsheet ***");
+            _inputOutput.OutputLine($"***     in [project root]/reconciliation-samples/For debugging     ***"); 
             _inputOutput.OutputLine("***                                                                 ***");
             _inputOutput.OutputLine("***********************************************************************");
             _inputOutput.OutputLine("***********************************************************************");
