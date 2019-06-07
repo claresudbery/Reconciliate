@@ -14,7 +14,10 @@ If you want to do a quick manual end to end test, there are files in /reconcilia
 They contain simple data which is hopefully easy enough to reason about.  
 You need to copy the .txt and .csv files into the folder you have configured as DefaultFilePath in your xml config.  
 You can copy the spreadsheet (*.xlsx) into the folder you have configured as SourceDebugSpreadsheetPath in your xml config.  
+You need to be sure that all file names match what you have in your config. If you haven't edited your config then everything will work as-is, as long as you have followed the instructions to set up your config in ReconciliationProcess.txt.  
 Then you can run the software in one of the debug modes.  
+Note that at the time of writing, when running in debug mode the debug spreadsheet is recreated every time you do a different type of reconciliation.  
+So, for instance, if you do Bank In then Bank Out, you won’t see Bank In stuff unless you look at the spreadsheet between the two reconciliations.  
 	
 ## .Net Core   
 
