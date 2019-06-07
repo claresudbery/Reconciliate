@@ -1,16 +1,16 @@
 All CredCard2, bank out, bank in
 
 Bank Out 
-1/11/18,11.00,,BankOut transaction from pending.txt
-6/11/18,22.00,,Apple
-7/11/18,33.50,,Banana
+1/6/19,11.00,,Type1,BankOut transaction from pending.txt
+6/6/19,22.00,,Type2,Aubergine
+7/6/19,33.50,,Type3,Banana
 
 Bank In
-3/11/18,111.00,,BankIn transaction from pending.txt
-10/11/18,222.00,,Cucumber 
-11/11/18,333.00,,Doughnut Platypus
+3/6/19,111.00,,Type1,BankIn transaction from pending.txt
+10/6/19,222.00,,Type2,Cheese 
+11/6/19,333.00,,Type3,Doughnut Platypus
 
 CredCard2
-1/1118,55.00,,CredCard2 transaction from pending.txt
-2/11/18,66.00,,Egg
-3/11/18,77.00,,Fennel
+1/6/19,55.00,,CredCard2 transaction from pending.txt
+2/6/19,66.00,,Eglantine
+3/6/19,77.00,,Fennel
