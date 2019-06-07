@@ -239,7 +239,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             }
 
             // Assert
-            _mockInputOutput.Verify(x => x.Output("Writing new data..."), Times.Once);
+            _mockInputOutput.Verify(x => x.OutputLine("Writing new data..."), Times.Once);
         }
 
         [Test]
