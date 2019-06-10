@@ -4,27 +4,18 @@
 # to be used for .Net conversion.
 
 # To run this script on my Windows machine:
-#	your-root-project-path/UpdateDotNetFrameworkProjectFiles.sh
+#	your-root-project-path/UpdateDotNetFrameworkProjectFiles.sh your-root-project-path
 # To run this script on my Macbook:
 #   First (one time only per machine) run this: 
 #       chmod u+x your-root-project-path/UpdateDotNetFrameworkProjectFiles.sh
 #   Then to run the script each time:
-#	    your-root-project-path/UpdateDotNetFrameworkProjectFiles.sh mac
+#	    your-root-project-path/UpdateDotNetFrameworkProjectFiles.sh your-root-project-path
 
 # Arguments are as follows:
-#	$1 is used to determine path to root of project 
-#		"mac" is Mac: your-root-project-path
-#		anything else, or unpopulated, is Windows: your-root-project-path
+#	$1 is used to set path to root of project 
+#		eg C:/Reconciliate
 
-echo "determine project path"
-echo "Not storing paths in this script any more - needs fixing - see project_path variable in script - can just use same method of passing path in used in DotNetConversion.sh"
-project_path="XXXXXXX"
-default_os="win"
-# ${1:-default_os} means that if the first argument ($1) is not populated, use $default_os instead
-if [ ${1:-default_os} = "mac" ]
-then
-	project_path="XXXXXXX"
-fi
+project_path=$1
 echo "project path is $project_path"
 
 echo "get to the correct location"
@@ -57,6 +48,6 @@ cp ./Interfaces/Interfaces.csproj "$backup_folder"
 echo "SpreadsheetRepoFactoryFactory: create backup of SpreadsheetRepoFactoryFactory.cs"
 cp ./Console/Reconciliation/Spreadsheets/SpreadsheetRepoFactoryFactory.cs "$backup_folder" 
 
-# ConsoleCatchall.sln
-echo "Solution: create backup of ConsoleCatchall.sln"
-cp ./ConsoleCatchall.sln "$backup_folder" 
+# Reconciliate.sln
+echo "Solution: create backup of Reconciliate.sln"
+cp ./Reconciliate.sln "$backup_folder" 

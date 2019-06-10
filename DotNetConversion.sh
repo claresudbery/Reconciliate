@@ -2,58 +2,29 @@
 
 # This script will convert the Reconciliate project from .Net to .Net Framework or vice versa.
 
-# To run this script on my Windows machine:
+# To run this script on a Windows machine:
 #	Either: Convert to .Net Core:
-#		your-root-project-path/DotNetConversion.sh tocore win
-#		...or if you are not clare and need to specify a root project path: 
-#		(actually at the moment even if you are Clare, because hard coded paths have been removed)
-#			your-root-project-path/DotNetConversion.sh tocore your-root-project-path
+#		your-root-project-path/DotNetConversion.sh tocore your-root-project-path
 #	Or: Convert to .Net Framework:
-#		your-root-project-path/DotNetConversion.sh tofram win
-#		...or if you are not clare and need to specify a root project path: 
-#		(actually at the moment even if you are Clare, because hard coded paths have been removed)
-#			your-root-project-path/DotNetConversion.sh tofram your-root-project-path
+#		your-root-project-path/DotNetConversion.sh tofram your-root-project-path
 # To run this script on a Macbook:
 #   First (one time only per machine) run this: 
 #       chmod u+x your-root-project-path/DotNetConversion.sh
 #			(replace path with your own)
 #   Then to run the script each time:
 #	    Either: Convert to .Net Core:
-#           your-root-project-path/DotNetConversion.sh tocore mac
-#			...or if you are not clare and need to specify a root project path: 
-#			(actually at the moment even if you are Clare, because hard coded paths have been removed)
-#           	your-root-project-path/DotNetConversion.sh tocore your-root-project-path
+#           your-root-project-path/DotNetConversion.sh tocore your-root-project-path
 #	    Or: Convert to .Net Framework:
-#		    your-root-project-path/DotNetConversion.sh tofram mac
-#			...or if you are not clare and need to specify a root project path: 
-#			(actually at the moment even if you are Clare, because hard coded paths have been removed)
-#		    	your-root-project-path/DotNetConversion.sh tofram your-root-project-path
+#		    your-root-project-path/DotNetConversion.sh tofram your-root-project-path
 
 # Arguments are as follows:
 #	$1 is used to determine whether converting to .Net Core or to .Net Standard
 #		"tocore" means convert to a .Net Core project
 #		anything else will be .Net Framework
-#	$2 is used to determine path to root of project 
-#		"mac" is Clare's Mac: clare-mac-root-project-path
-#		"win" is Clare's Windows path: clare-win-root-project-path 
-# 		If you want to specify your own path, just provide an actual path (see example above)
+#	$2 is used to set path to root of project 
+#		eg C:/Reconciliate
 
-echo "determine project path"
-echo "Not storing paths in this script any more - needs fixing - see project_path variable in script (or just use the parameter and pass your path in)"
-project_path="XXXXXXX"
-default_os="win"
-# ${2:-default_os} means that if the second argument ($2) is not populated, use $default_os instead
-if [ ${2:-default_os} = "mac" ]
-then
-	project_path="XXXXXXX"
-else 
-	if [ ${2:-default_os} = "win" ]
-	then
-		project_path="XXXXXXX"
-	else
-		project_path=$2
-	fi
-fi
+project_path=$2
 echo "project path is $project_path"
 
 echo "get to the correct location"
