@@ -75,31 +75,22 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Reconciliation\Files\ExpectedIncomeFileTests.cs" />
-    <Compile Include="Reconciliation\Loaders\CredCard2AndCredCard2InOutLoaderTests.cs" />
-    <Compile Include="Reconciliation\Loaders\CredCard1AndCredCard1InOutLoaderTests.cs" />
-    <Compile Include="Reconciliation\Loaders\BankAndBankOutLoaderTests.cs" />
-    <Compile Include="Reconciliation\Loaders\BankAndBankInLoaderTests.cs" />
+    <Compile Include="Reconciliation\Loaders\CredCard2AndCredCard2InOutDataTests.cs" />
+    <Compile Include="Reconciliation\Loaders\CredCard1AndCredCard1InOutDataTests.cs" />
+    <Compile Include="Reconciliation\Loaders\BankAndBankOutDataTests.cs" />
+    <Compile Include="Reconciliation\Loaders\BankAndBankInDataTests.cs" />
+    <Compile Include="Reconciliation\Loaders\ReconciliationIntroTests.cs" />
+    <Compile Include="Reconciliation\Loaders\ReconciliationIntroTestsSelfShunt.cs" />
     <Compile Include="Reconciliation\Matchers\BankAndBankInMatcherTests.cs" />
     <Compile Include="Reconciliation\Matchers\BankAndBankInMatcherTestsSelfShunt.cs" />
     <Compile Include="Reconciliation\Records\ExpectedIncomeRecordTests.cs" />
     <Compile Include="Reconciliation\Records\ConsoleLineTests.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetFactoryTests.cs" />
-    <Compile Include="Reconciliation\Files\CredCard1FileTests.cs" />
-    <Compile Include="Reconciliation\Files\ActualBankInFileTests.cs" />
-    <Compile Include="Reconciliation\Loaders\FileLoaderTests.cs" />
-    <Compile Include="Reconciliation\Loaders\FileLoaderTestsSelfShunt.cs" />
-    <Compile Include="Reconciliation\ReconciliationIntroTestsSelfShunt.cs" />
-    <Compile Include="Reconciliation\ReconciliationInterfaceTestsHelperMethods.cs" />
-    <Compile Include="Reconciliation\Files\ActualBankOutFileTests.cs" />
     <Compile Include="Reconciliation\Extensions\StringExtensionTests.cs" />
     <Compile Include="Reconciliation\Spreadsheets\SpreadsheetTests.cs" />
     <Compile Include="Reconciliation\Spreadsheets\MockSpreadsheetFactoryTests.cs" />
-    <Compile Include="Reconciliation\ReconciliationInterfaceTestsSelfShunt.cs" />
-    <Compile Include="Reconciliation\ReconciliationIntroTests.cs" />
     <Compile Include="Reconciliation\Loaders\PendingCsvFileCreatorTests.cs" />
     <Compile Include="Reconciliation\Files\IOFileTests.cs" />
-    <Compile Include="Reconciliation\ReconciliationInterfaceTests.cs" />
-    <Compile Include="Reconciliation\ReconciliatorDeletionTests.cs" />
     <Compile Include="Reconciliation\Records\CredCard2InOutRecordTests.cs" />
     <Compile Include="Reconciliation\Records\CredCard2RecordTests.cs" />
     <Compile Include="Reconciliation\Records\ActualBankRecordTests.cs" />
@@ -109,7 +100,6 @@
     <Compile Include="FunctionalCarWheelTests.cs" />
     <Compile Include="LinqExperiments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reconciliation\ReconciliatorMatchingTests.cs" />
     <Compile Include="Reconciliation\Records\CredCard1RecordTests.cs" />
     <Compile Include="Reconciliation\Utils\BudgetingMonthsTests.cs" />
     <Compile Include="Reconciliation\Utils\XmlReaderTests.cs" />

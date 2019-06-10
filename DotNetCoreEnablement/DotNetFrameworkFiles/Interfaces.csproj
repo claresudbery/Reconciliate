@@ -44,6 +44,7 @@
     <Compile Include="Constants\PocketMoneySheetNames.cs" />
     <Compile Include="Constants\ReconConsts.cs" />
     <Compile Include="Constants\PlanningSheetNames.cs" />
+    <Compile Include="Constants\ThirdPartyFileLoadAction.cs" />
     <Compile Include="Constants\WorkingMode.cs" />
     <Compile Include="Constants\XmlReader.cs" />
     <Compile Include="DTOs\AutoMatchedRecord.cs" />
@@ -56,7 +57,6 @@
     <Compile Include="DTOs\FilePaths.cs" />
     <Compile Include="DTOs\Rankings.cs" />
     <Compile Include="DTOs\RecordForMatching.cs" />
-    <Compile Include="IBankAndBankInLoader.cs" />
     <Compile Include="ICellRow.cs" />
     <Compile Include="IClock.cs" />
     <Compile Include="ICSVFile.cs" />
@@ -64,10 +64,7 @@
     <Compile Include="ICSVRecord.cs" />
     <Compile Include="ICellSet.cs" />
     <Compile Include="IDataFile.cs" />
-    <Compile Include="ILoader.cs" />
-    <Compile Include="IMatcher.cs" />
     <Compile Include="IReconciliationInterface.cs" />
-    <Compile Include="ISpreadsheet.cs" />
     <Compile Include="IFileIO.cs" />
     <Compile Include="IInputOutput.cs" />
     <Compile Include="IPotentialMatch.cs" />
