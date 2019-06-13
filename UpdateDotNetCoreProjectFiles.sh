@@ -3,28 +3,19 @@
 # This script makes sure the most up to date versions of .Net Core files are in the DotNetEnablement folder, 
 # to be used for .Net conversion.
 
-# To run this script on my Windows machine:
-#	your-root-project-path/UpdateDotNetCoreProjectFiles.sh
-# To run this script on my Macbook:
+# To run this script on a Windows machine:
+#	your-root-project-path/UpdateDotNetCoreProjectFiles.sh your-root-project-path
+# To run this script on a Macbook:
 #   First (one time only per machine) run this: 
 #       chmod u+x your-root-project-path/UpdateDotNetCoreProjectFiles.sh
 #   Then to run the script each time:
-#	    your-root-project-path/UpdateDotNetCoreProjectFiles.sh mac
+#	    your-root-project-path/UpdateDotNetCoreProjectFiles.sh your-root-project-path 
 
 # Arguments are as follows:
-#	$1 is used to determine path to root of project 
-#		"mac" is Mac: your-root-project-path
-#		anything else, or unpopulated, is Windows: your-root-project-path
+#	$1 is used to set path to root of project 
+#		eg C:/Reconciliate
 
-echo "determine project path"
-echo "Not storing paths in this script any more - needs fixing - see project_path variable in script - can just use same method of passing path in used in DotNetConversion.sh"
-project_path="XXXXXXX"
-default_os="win"
-# ${1:-default_os} means that if the first argument ($1) is not populated, use $default_os instead
-if [ ${1:-default_os} = "mac" ]
-then
-	project_path="XXXXXXX"
-fi
+project_path=$1
 echo "project path is $project_path"
 
 echo "get to the correct location"
