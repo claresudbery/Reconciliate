@@ -86,7 +86,7 @@ cp "$source_folder/Interfaces.csproj" ./Interfaces
 # SpreadsheetRepoFactoryFactory.cs
 echo "SpreadsheetRepoFactoryFactory: create backup of SpreadsheetRepoFactoryFactory.cs and replace with new"
 mv ./Console/Reconciliation/Spreadsheets/SpreadsheetRepoFactoryFactory.cs "$dest_folder/SpreadsheetRepoFactoryFactory.cs.$(date +%F_%H:%M:%S)"
-cp "$source_folder/SpreadsheetRepoFactoryFactory.cs" ./Console/Spreadsheets
+cp "$source_folder/SpreadsheetRepoFactoryFactory.cs" ./Console/Reconciliation/Spreadsheets
 
 # ConsoleCatchall.sln
 echo "Solution: create backup of ConsoleCatchall.sln and replace with new"
@@ -96,9 +96,11 @@ cp "$source_folder/ConsoleCatchall.sln" ./
 # ${1:-default_action} means that if the first argument ($1) is not populated, use $default_action instead
 if [ ${1:-default_action} = "tocore" ]
 then
-	echo "Building ExcelLibrary and ExcelIntegrationTests, to avoid errors in Rider on the Mac about missing dlls"
+	echo "Building ExcelLibrary, to avoid errors in Rider on the Mac about missing dlls"
 	cd ExcelLibrary
 	dotnet build
+
+	echo "Building ExcelIntegrationTests, to avoid errors in Rider on the Mac about missing dlls"
 	cd ..
 	cd ExcelIntegrationTests
 	dotnet build
