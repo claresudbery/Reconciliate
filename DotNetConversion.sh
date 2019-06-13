@@ -88,10 +88,10 @@ echo "SpreadsheetRepoFactoryFactory: create backup of SpreadsheetRepoFactoryFact
 mv ./Console/Reconciliation/Spreadsheets/SpreadsheetRepoFactoryFactory.cs "$dest_folder/SpreadsheetRepoFactoryFactory.cs.$(date +%F_%H:%M:%S)"
 cp "$source_folder/SpreadsheetRepoFactoryFactory.cs" ./Console/Reconciliation/Spreadsheets
 
-# ConsoleCatchall.sln
-echo "Solution: create backup of ConsoleCatchall.sln and replace with new"
-mv ./ConsoleCatchall.sln "$dest_folder/ConsoleCatchall.sln.$(date +%F_%H:%M:%S)"
-cp "$source_folder/ConsoleCatchall.sln" ./
+# Reconciliate.sln
+echo "Solution: create backup of Reconciliate.sln and replace with new"
+mv ./Reconciliate.sln "$dest_folder/Reconciliate.sln.$(date +%F_%H:%M:%S)"
+cp "$source_folder/Reconciliate.sln" ./
 
 # ${1:-default_action} means that if the first argument ($1) is not populated, use $default_action instead
 if [ ${1:-default_action} = "tocore" ]
