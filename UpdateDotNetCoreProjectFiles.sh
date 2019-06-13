@@ -48,6 +48,6 @@ cp ./Interfaces/Interfaces.csproj "$backup_folder"
 echo "SpreadsheetRepoFactoryFactory: create backup of SpreadsheetRepoFactoryFactory.cs"
 cp ./Console/Reconciliation/Spreadsheets/SpreadsheetRepoFactoryFactory.cs "$backup_folder" 
 
-# ConsoleCatchall.sln
-echo "Solution: create backup of ConsoleCatchall.sln"
-cp ./ConsoleCatchall.sln "$backup_folder" 
+# Reconciliate.sln
+echo "Solution: create backup of Reconciliate.sln"
+cp ./Reconciliate.sln "$backup_folder" 

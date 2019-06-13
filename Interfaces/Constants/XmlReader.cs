@@ -6,13 +6,28 @@ namespace Interfaces.Constants
 {
     public class XmlReader
     {
-        public string XmlFilePath => ReadXml(ReconConsts.ConfigPathProperty, Path.Combine(ReconConsts.ConfigFilePath,ReconConsts.ConfigFileName));
+        public string XmlFilePath => ReadXml(
+            FilePathConsts.ConfigPathProperty, 
+            Path.Combine(FilePathConsts.ConfigFilePath, FilePathConsts.ConfigFileName));
 
         readonly XElement _loadedConfig;
 
         public XmlReader()
         {
-            _loadedConfig = XElement.Load(XmlFilePath);
+            _loadedConfig = LoadXml(XmlFilePath);
+        }
+
+        private XElement LoadXml(string xmlFilePath)
+        {
+            try 
+            {
+                return XElement.Load(xmlFilePath);
+            }
+            catch (System.Exception e)
+            {
+                System.Console.WriteLine($"Error: {e.Message}");
+            }  
+            return null;
         }
 
         public string ReadXml(string xmlProperty)
@@ -22,7 +37,7 @@ namespace Interfaces.Constants
 
         public string ReadXml(string xmlProperty, string xmlFilePath)
         {
-            var temp_config = XElement.Load(xmlFilePath);
+            var temp_config = LoadXml(xmlFilePath);
             return temp_config.Descendants(xmlProperty).First().Value;
         }
     }

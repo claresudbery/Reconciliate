@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using ConsoleCatchall.Console.Reconciliation;
+using Interfaces.Constants;
 
 namespace ConsoleCatchall.Console
 {
@@ -11,6 +12,13 @@ namespace ConsoleCatchall.Console
         static void Main(string[] args)
         {
             SetCorrectDateFormatting();
+
+            // If running in .Net Core mode, you'll use args to pass in the path to your main config.
+            // (particularly important on a Mac, where C:/Config will not work)
+            if (args.Length > 0)
+            {
+                FilePathConsts.ConfigFilePath = args[0];
+            }
 
             try
             {
