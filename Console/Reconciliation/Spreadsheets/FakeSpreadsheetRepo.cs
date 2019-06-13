@@ -22,17 +22,16 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         public int LastRowNumber(string sheetName)
         {
             int result = 0;
-            switch (sheetName) 
-            {
-                case MainSheetNames.BankIn: result = 6; break;
-                case MainSheetNames.BankOut: result = 8; break;
-                case MainSheetNames.CredCard1: result = 6; break;
-                case MainSheetNames.CredCard2: result = 6; break;
-                case MainSheetNames.ExpectedIn: result = 8; break;
-                case MainSheetNames.ExpectedOut: result = 20; break;
-                case MainSheetNames.CredCard3: result = 5; break;
-                case MainSheetNames.Savings: result = 4; break;
-            }
+
+            if (sheetName == MainSheetNames.BankIn) {result = 6;}
+            else if (sheetName == MainSheetNames.BankOut) {result = 8;}
+            else if (sheetName == MainSheetNames.CredCard1) {result = 6;}
+            else if (sheetName == MainSheetNames.CredCard2) {result = 6;}
+            else if (sheetName == MainSheetNames.ExpectedIn) {result = 8;}
+            else if (sheetName == MainSheetNames.ExpectedOut) {result = 20;}
+            else if (sheetName == MainSheetNames.CredCard3) {result = 5;}
+            else if (sheetName == MainSheetNames.Savings) {result = 4;}
+
             return result;
         }
 
