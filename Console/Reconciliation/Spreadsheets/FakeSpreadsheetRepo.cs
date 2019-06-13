@@ -21,24 +21,19 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public int LastRowNumber(string sheetName)
         {
-            if (sheetName == MainSheetNames.ExpectedIn)
+            int result = 0;
+            switch (sheetName) 
             {
-                return 13;
+                case MainSheetNames.BankIn: result = 6; break;
+                case MainSheetNames.BankOut: result = 8; break;
+                case MainSheetNames.CredCard1: result = 6; break;
+                case MainSheetNames.CredCard2: result = 6; break;
+                case MainSheetNames.ExpectedIn: result = 8; break;
+                case MainSheetNames.ExpectedOut: result = 20; break;
+                case MainSheetNames.CredCard3: result = 5; break;
+                case MainSheetNames.Savings: result = 4; break;
             }
-            return 0;
-        }
-
-        public int FindFirstEmptyRowInColumn(string sheetName, int columnNumber)
-        {
-            return 0;
-        }
-
-        public void AppendCsvRecord(string sheetName, ICSVRecord csvRecord)
-        {
-        }
-
-        public void RemoveLastRow(string sheetName)
-        {
+            return result;
         }
 
         public ICellRow ReadSpecifiedRow(string sheetName, int rowNumber)
@@ -64,18 +59,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             return new FakeCellRow();
         }
 
-        public ICellRow ReadSpecifiedRow(string sheetName, int rowNumber, int startColumn, int endColumn)
+        public int FindFirstEmptyRowInColumn(string sheetName, int columnNumber)
         {
-            return new FakeCellRow();
-        }
-
-        public ICellRow ReadSpecifiedRow(int rowNumber)
-        {
-            return new FakeCellRow();
-        }
-
-        public void AppendCsvFile<TRecordType>(string sheetName, ICSVFile<TRecordType> csvFile) where TRecordType : ICSVRecord, new()
-        {
+            return 0;
         }
 
         public int FindRowNumberOfLastRowContainingCell(string sheetName, string targetCellText, int expectedColumnNumber = 2)
@@ -95,6 +81,64 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         public double GetAmount(string sheetName, string code, int column)
         {
             return 0;
+        }
+
+        public double GetAmount(string sheetName, int row, int column)
+        {
+            return 0;
+        }
+
+        public DateTime GetDate(string sheetName, int row, int column)
+        {
+            return new DateTime();
+        }
+
+        public string GetText(string sheetName, int row, int column)
+        {
+            return "fake";
+        }
+
+        public int FindRowNumberOfFirstRowContainingCell(string sheetName, string targetCellText, int expectedColumnNumber = 2)
+        {
+            return 0;
+        }
+
+        public ICellRow ReadLastRow(string sheetName)
+        {
+            return new FakeCellRow();
+        }
+
+        public string ReadLastRowAsCsv(string sheetName, ICSVRecord csvRecord)
+        {
+            return "";
+        }
+
+        public List<TRecordType> GetRowsAsRecords<TRecordType>(string sheetName, int firstRowNumber, int lastRowNumber, int firstColumnNumber,
+            int lastColumnNumber) where TRecordType : ICSVRecord, new()
+        {
+            return new List<TRecordType>();
+        }
+
+        public ICellRow ReadSpecifiedRow(string sheetName, int rowNumber, int startColumn, int endColumn)
+        {
+            return new FakeCellRow();
+        }
+
+        public ICellRow ReadSpecifiedRow(int rowNumber)
+        {
+            return new FakeCellRow();
+        }
+
+        public void AppendCsvRecord(string sheetName, ICSVRecord csvRecord)
+        {
+        }
+
+        public void RemoveLastRow(string sheetName)
+        {
+        }
+
+        public void AppendCsvFile<TRecordType>(string sheetName, ICSVFile<TRecordType> csvFile) where TRecordType : ICSVRecord, new()
+        {
         }
 
         public void UpdateDate(string sheetName, int dateRow, int dateColumn, DateTime newDate)
@@ -118,26 +162,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         {
         }
 
-        public double GetAmount(string sheetName, int row, int column)
-        {
-            return 0;
-        }
-
-        public DateTime GetDate(string sheetName, int row, int column)
-        {
-            return new DateTime();
-        }
-
-        public string GetText(string sheetName, int row, int column)
-        {
-            return "fake";
-        }
-
-        public int FindRowNumberOfFirstRowContainingCell(string sheetName, string targetCellText, int expectedColumnNumber = 2)
-        {
-            return 0;
-        }
-
         public void InsertNewRow(string sheetName, int newRowNumber, Dictionary<int, object> cellValues)
         {
         }
@@ -146,24 +170,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         {
         }
 
-        public ICellRow ReadLastRow(string sheetName)
-        {
-            return new FakeCellRow();
-        }
-
-        public string ReadLastRowAsCsv(string sheetName, ICSVRecord csvRecord)
-        {
-            return "";
-        }
-
         public void DeleteSpecifiedRows(string sheetName, int firstRowNumber, int lastRowNumber)
         {
-        }
-
-        public List<TRecordType> GetRowsAsRecords<TRecordType>(string sheetName, int firstRowNumber, int lastRowNumber, int firstColumnNumber,
-            int lastColumnNumber) where TRecordType : ICSVRecord, new()
-        {
-            return new List<TRecordType>();
         }
     }
 }
