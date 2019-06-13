@@ -7,13 +7,6 @@ namespace Interfaces.Constants
     {
         static readonly XmlReader _xmlReader = new XmlReader();
 
-        public const string ConfigFileName = "Config.xml";
-        public const string SampleConfigFileName = "SampleConfig.xml";
-        // This will get overwritten if a different path is passed into Program.cs from the command line
-        // - eg if you are running the code in .Net Core on a Mac
-        public static string ConfigFilePath = @"C:/Config";
-        public const string ConfigPathProperty = "MainConfigFilePath";
-
         public static string TestValueDoNotChange => _xmlReader.ReadXml(nameof(TestValueDoNotChange));
 
         public static string MainSpreadsheetPath => _xmlReader.ReadXml(nameof(MainSpreadsheetPath));

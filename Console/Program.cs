@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using ConsoleCatchall.Console.Reconciliation;
+using Interfaces.Constants;
 
 namespace ConsoleCatchall.Console
 {
@@ -16,7 +17,7 @@ namespace ConsoleCatchall.Console
             // (particularly important on a Mac, where C:/Config will not work)
             if (args.Length > 0)
             {
-                ReconConsts.ConfigFilePath = args[0];
+                FilePathConsts.ConfigFilePath = args[0];
             }
 
             try

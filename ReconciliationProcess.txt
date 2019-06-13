@@ -40,6 +40,8 @@ A) Set up your config:
 2a) If on a Mac, create a folder for your main config and copy Config.xml into it.  
 2b) On Windows, create your main config by copying Config.xml to C:/Config/Config.xml.  
 3) Set the path to your reconciliation config file in [main-config-folder]/Config.xml.  
+! Caution ! You can't use ~ to represent the home folder in your paths.   
+You have to use /Users/yourusername (or whatever).  
 
 B) Create a spreadsheet:  
 3) You should have a Microsoft Excel spreadsheet, whose name and path you set in the config file you created at the start.  
