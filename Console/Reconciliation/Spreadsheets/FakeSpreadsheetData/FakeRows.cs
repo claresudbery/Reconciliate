@@ -13,20 +13,21 @@ namespace Console.Reconciliation.Spreadsheets.FakeSpreadsheetData
             { MainSheetNames.BankIn,
                 new List<ICellRow> {
                     new FakeCellRow().WithFakeData(new List<object> { "Headers" }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 1).ToOADate(), null, "x", "ABC", "already reconciled", null, (double)5 }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 2).ToOADate(), null, "x", "ABC", "already reconciled", null, (double)10 }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 3).ToOADate(), null, "x", "ABC", "already reconciled", (double)12345, (double)15 }),
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 1).ToOADate(), null, "x", "ABC", "already reconciled", null, (double)5, null, null, null, null, new DateTime(2019, 5, 1).ToOADate(), (double)5, "BAC", "\"already reconciled\"" }),
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 2).ToOADate(), null, "x", "ABC", "already reconciled", null, (double)10, null, null, null, null, new DateTime(2019, 5, 2).ToOADate(), (double)10, "BAC", "\"already reconciled\"" }),
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 3).ToOADate(), null, "x", "ABC", "already reconciled", (double)12345, (double)15, null, null, null, null, new DateTime(2019, 5, 3).ToOADate(), (double)15, "BAC", "\"already reconciled\"" }),
                     new FakeCellRow().WithFakeData(new List<object> { null, "divider" }),
                     new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 31).ToOADate(), (double)5.05, null, "ABC", "left over from previous reconciliation" })
                 }},
             { MainSheetNames.BankOut,
                 new List<ICellRow> {
                     new FakeCellRow().WithFakeData(new List<object> { "Headers" }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 1).ToOADate(), null, "x", "ABC", "already reconciled", null, (double)5 }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 2).ToOADate(), null, "x", "ABC", "already reconciled", null, (double)10 }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 3).ToOADate(), null, "x", "ABC", "already reconciled", (double)12345, (double)15 }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 12).ToOADate(), null, "x", "ABC", "CREDIT CARD 1", null, (double)500 }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 13).ToOADate(), null, "x", "ABC", "CREDIT CARD 2", null, (double)1500 }),
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 1).ToOADate(), null, "x", "ABC", "already reconciled", null, (double)5, null, null, null, null, new DateTime(2019, 5, 1).ToOADate(), (double)5, "BAC", "\"already reconciled\"" }),
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 2).ToOADate(), null, "x", "ABC", "already reconciled", null, (double)10, null, null, null, null, new DateTime(2019, 5, 2).ToOADate(), (double)10, "BAC", "\"already reconciled\"" }),
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 3).ToOADate(), null, "x", "ABC", "already reconciled", (double)12345, (double)15, null, null, null, null, new DateTime(2019, 5, 3).ToOADate(), (double)15, "BAC", "\"already reconciled\"" }),
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 4).ToOADate(), null, "x", "ABC", "Mortgage description", null, (double)1000, null, null, null, null, new DateTime(2019, 5, 4).ToOADate(), (double)1000, "BAC", "\"Mortgage description\"" }),
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 12).ToOADate(), null, "x", "ABC", "CREDIT CARD 1", null, (double)500, null, null, null, null, new DateTime(2019, 5, 12).ToOADate(), (double)500, "BAC", "\"CRED CARD 1\"" }),
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 13).ToOADate(), null, "x", "ABC", "CREDIT CARD 2", null, (double)1500, null, null, null, null, new DateTime(2019, 5, 13).ToOADate(), (double)1500, "BAC", "\"CRED CARD 2\"" }),
                     new FakeCellRow().WithFakeData(new List<object> { null, "divider" }),
                     new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 31).ToOADate(), (double)5.05, null, "ABC", "left over from previous reconciliation" })
                 }},
@@ -99,11 +100,41 @@ namespace Console.Reconciliation.Spreadsheets.FakeSpreadsheetData
                 }},
             { MainSheetNames.BudgetIn,
                 new List<ICellRow> {
-                    new FakeCellRow().WithFakeData(new List<object> { "Headers" })
+                    new FakeCellRow().WithFakeData(new List<object> { "Headers" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code001", new DateTime(2019, 6, 1).ToOADate(), (double)21.76, null, "POS", "Bank monthly incoming transaction 01" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code002", new DateTime(2019, 6, 2).ToOADate(), (double)15.60, null, "PCL", "Bank monthly incoming transaction 02" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code003", new DateTime(2019, 6, 3).ToOADate(), (double)54.97, null, "POS", "Bank monthly incoming transaction 03" }),
+                    new FakeCellRow().WithFakeData(new List<object> { null, "Total" })
                 }},
             { MainSheetNames.BudgetOut,
                 new List<ICellRow> {
-                    new FakeCellRow().WithFakeData(new List<object> { "Headers" })
+                    new FakeCellRow().WithFakeData(new List<object> { "Headers" }),
+                    new FakeCellRow().WithFakeData(new List<object> { null, "Expenses" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code010", new DateTime(1900, 1, 1).ToOADate(), (double)5, null, "POS",  "Monthly expense 001" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code011", new DateTime(1900, 1, 1).ToOADate(), (double)10, null, "PCL", "Monthly expense 002" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code012", new DateTime(1900, 1, 1).ToOADate(), (double)15, null, "POS", "Monthly expense 003" }),
+                    new FakeCellRow().WithFakeData(new List<object> { null, "Expenses Total", (double)45 }),
+                    new FakeCellRow().WithFakeData(new List<object> { null }),
+                    new FakeCellRow().WithFakeData(new List<object> { null, "SODDs" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code013", new DateTime(2019, 6, 1).ToOADate(), (double)35, null, "POS", "Bank monthly outgoing transaction 01" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code014", new DateTime(2019, 6, 2).ToOADate(), (double)45, null, "PCL", "Bank monthly outgoing transaction 02" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code015", new DateTime(2019, 6, 3).ToOADate(), (double)55, null, "POS", "Bank monthly outgoing transaction 03" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code042", new DateTime(2019, 6, 4).ToOADate(), (double)1000, null, "POS", "Mortgage description" }),
+                    new FakeCellRow().WithFakeData(new List<object> { null, "CredCard1 cred card" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code016", new DateTime(2019, 6, 1).ToOADate(), (double)65, null, "CredCard1 monthly transaction 01" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code017", new DateTime(2019, 6, 2).ToOADate(), (double)75, null, "CredCard1 monthly transaction 02" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code018", new DateTime(2019, 6, 3).ToOADate(), (double)85, null, "CredCard1 monthly transaction 03" }),
+                    new FakeCellRow().WithFakeData(new List<object> { null, "CredCard2 cred card" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code019", new DateTime(2019, 6, 1).ToOADate(), (double)95, null,  "CredCard2 monthly transaction 01" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code020", new DateTime(2019, 6, 2).ToOADate(), (double)105, null, "CredCard2 monthly transaction 02" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code021", new DateTime(2019, 6, 3).ToOADate(), (double)115, null, "CredCard2 monthly transaction 03" }),
+                    new FakeCellRow().WithFakeData(new List<object> { null, "SODDTotal", (double)1675 }),
+                    new FakeCellRow().WithFakeData(new List<object> { null }),
+                    new FakeCellRow().WithFakeData(new List<object> { null, "AnnualSODDs" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code022", new DateTime(2019, 1, 1).ToOADate(), (double)125, null, "POS", "Annual budgeted amount 001" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code023", new DateTime(2019, 7, 1).ToOADate(), (double)135, null, "PCL", "Annual budgeted amount 002" }),
+                    new FakeCellRow().WithFakeData(new List<object> { "Code024", new DateTime(2019, 11, 1).ToOADate(), (double)145, null, "POS","Annual budgeted amount 003" }),
+                    new FakeCellRow().WithFakeData(new List<object> { null, "AnnualTotal", (double)405 })
                 }}
         };
     }

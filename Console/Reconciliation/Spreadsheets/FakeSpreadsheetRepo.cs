@@ -47,7 +47,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             int result = 0;
 
             if (sheetName == MainSheetNames.BankIn) {result = 6;}
-            else if (sheetName == MainSheetNames.BankOut) {result = 8;}
+            else if (sheetName == MainSheetNames.BankOut) {result = 9;}
             else if (sheetName == MainSheetNames.CredCard1) {result = 6;}
             else if (sheetName == MainSheetNames.CredCard2) {result = 6;}
             else if (sheetName == MainSheetNames.ExpectedIn) {result = 8;}
@@ -73,15 +73,17 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         public int FindRowNumberOfLastRowContainingCell(string sheetName, string targetCellText, int expectedColumnNumber = 2)
         {
             DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, targetSubText {targetCellText}");
-            return FakeRowNumbersForText.Data.ContainsKey(sheetName) 
-                ? FakeRowNumbersForText.Data[sheetName][targetCellText] 
+            return FakeRowNumbersForCell.Data.ContainsKey(sheetName) 
+                ? FakeRowNumbersForCell.Data[sheetName][targetCellText] 
                 : 2;
         }
 
         public int FindRowNumberOfLastRowWithCellContainingText(string sheetName, string targetSubText, List<int> expectedColumnNumbers)
         {
             DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, targetSubText {targetSubText}");
-            return 2;
+            return FakeRowNumbersForText.Data.ContainsKey(sheetName) 
+                ? FakeRowNumbersForText.Data[sheetName][targetSubText] 
+                : 2;
         }
 
         public double GetAmount(string sheetName, string code, int column)
@@ -135,13 +137,25 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public ICellRow ReadSpecifiedRow(string sheetName, int rowNumber, int startColumn, int endColumn)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, rowNumber {rowNumber}, startColumn {startColumn}, endColumn {endColumn}");
-            return new FakeCellRow();
+            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()} with start/end cols: sheetName {sheetName}, rowNumber {rowNumber}, startColumn {startColumn}, endColumn {endColumn}");
+            
+            var fullRow = FakeRows.Data.ContainsKey(sheetName)
+                ? FakeRows.Data[sheetName][rowNumber - 1] 
+                : new FakeCellRow();
+
+            List<object> partialRow = new List<object>(); 
+            for (int colIndex = startColumn; colIndex <= endColumn; colIndex++)
+            {
+                partialRow.Add(fullRow.ReadCell(colIndex - 1));
+            }
+            
+            var result = new FakeCellRow().WithFakeData(partialRow);
+            return result;
         }
 
         public ICellRow ReadSpecifiedRow(int rowNumber)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: rowNumber {rowNumber}");
+            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()} with row number only: rowNumber {rowNumber}");
             return new FakeCellRow();
         }
 
