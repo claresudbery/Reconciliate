@@ -46,6 +46,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             }
         }
 
+        public void AppendToFileAsSourceLine(string sourceLine)
+        {
+            using (StreamWriter outputFile = new StreamWriter(FilePath + "/" + FileName + ".csv", true))
+            {
+                outputFile.WriteLine(sourceLine);
+            }
+        }
+
         public void WriteBackToMainSpreadsheet(ICSVFile<TRecordType> csvFile, string worksheetName)
         {
             ISpreadsheetRepo spreadsheetRepo = _spreadsheetFactory.CreateSpreadsheetRepo();
