@@ -33,20 +33,20 @@ namespace Console.Reconciliation.Spreadsheets.FakeSpreadsheetData
             { MainSheetNames.CredCard1,
                 new List<ICellRow> {
                     new FakeCellRow().WithFakeData(new List<object> { "Headers" }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 1).ToOADate(), null, "x", "already reconciled", (double)5, null, null, new DateTime(2019, 5, 1).ToOADate(), (double)5, "ALREADY RECONCILED" }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 2).ToOADate(), null, "x", "already reconciled", (double)10, null, null, new DateTime(2019, 5, 2).ToOADate(), (double)10, "ALREADY RECONCILED" }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 3).ToOADate(), null, "x", "already reconciled", (double)15, null, null, new DateTime(2019, 5, 3).ToOADate(), (double)15, "ALREADY RECONCILED" }),
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 1).ToOADate(), (double)0, "x", "already reconciled", (double)5, null, null, new DateTime(2019, 5, 1).ToOADate(), (double)5, "ALREADY RECONCILED" }),
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 2).ToOADate(), (double)0, "x", "already reconciled", (double)10, null, null, new DateTime(2019, 5, 2).ToOADate(), (double)10, "ALREADY RECONCILED" }),
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 3).ToOADate(), (double)0, "x", "already reconciled", (double)15, null, null, new DateTime(2019, 5, 3).ToOADate(), (double)15, "ALREADY RECONCILED" }),
                     new FakeCellRow().WithFakeData(new List<object> { null, "divider" }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 31).ToOADate(), (double)10.00, null, "left over from previous reconciliation" })
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 31).ToOADate(), (double)10.00, null, "left over from previous reconciliation", (double)0 })
                 }},
             { MainSheetNames.CredCard2,
                 new List<ICellRow> {
                     new FakeCellRow().WithFakeData(new List<object> { "Headers" }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 1).ToOADate(), null, "x", "already reconciled", (double)5, null, null, new DateTime(2019, 5, 1).ToOADate(), (double)5, "ALREADY RECONCILED" }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 2).ToOADate(), null, "x", "already reconciled", (double)10, null, null, new DateTime(2019, 5, 2).ToOADate(), (double)10, "ALREADY RECONCILED" }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 3).ToOADate(), null, "x", "already reconciled", (double)15, null, null, new DateTime(2019, 5, 3).ToOADate(), (double)15, "ALREADY RECONCILED" }),
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 1).ToOADate(), (double)0, "x", "already reconciled", (double)5, null, null, new DateTime(2019, 5, 1).ToOADate(), (double)5, "ALREADY RECONCILED" }),
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 2).ToOADate(), (double)0, "x", "already reconciled", (double)10, null, null, new DateTime(2019, 5, 2).ToOADate(), (double)10, "ALREADY RECONCILED" }),
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 3).ToOADate(), (double)0, "x", "already reconciled", (double)15, null, null, new DateTime(2019, 5, 3).ToOADate(), (double)15, "ALREADY RECONCILED" }),
                     new FakeCellRow().WithFakeData(new List<object> { null, "divider" }),
-                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 31).ToOADate(), (double)10.00, null, "left over from previous reconciliation" })
+                    new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 31).ToOADate(), (double)10.00, null, "left over from previous reconciliation", (double)0 })
                 }},
             { MainSheetNames.ExpectedIn,
                 new List<ICellRow> {
