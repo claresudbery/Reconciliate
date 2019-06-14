@@ -17,8 +17,18 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
     {
         FileIO<BankRecord> DebugLog = new FileIO<BankRecord>(
             new FakeSpreadsheetRepoFactory(), 
-            @"C:/Temp/ManualTesting",
+            ReconConsts.DefaultFilePath,
             "FakeSpreadsheetDataInfo");
+
+        public FakeSpreadsheetRepo()
+        {
+            DebugLog.AppendToFileAsSourceLine("*******************************************************************************");
+            DebugLog.AppendToFileAsSourceLine("*******************************************************************************");
+            DebugLog.AppendToFileAsSourceLine("**                             NEW RUN OF INFO                               **");
+            DebugLog.AppendToFileAsSourceLine($"**                            {DateTime.Now}                                 **");
+            DebugLog.AppendToFileAsSourceLine("*******************************************************************************");
+            DebugLog.AppendToFileAsSourceLine("*******************************************************************************");
+        }
 
         public void Dispose()
         {
