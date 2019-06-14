@@ -96,6 +96,14 @@ namespace Console.Reconciliation.Spreadsheets.FakeSpreadsheetData
                     new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 1).ToOADate(), (double)100, (double)100 }),
                     new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 2).ToOADate(), (double)100, (double)200 }),
                     new FakeCellRow().WithFakeData(new List<object> { new DateTime(2019, 5, 3).ToOADate(), (double)100, (double)300 }),
+                }},
+            { MainSheetNames.BudgetIn,
+                new List<ICellRow> {
+                    new FakeCellRow().WithFakeData(new List<object> { "Headers" })
+                }},
+            { MainSheetNames.BudgetOut,
+                new List<ICellRow> {
+                    new FakeCellRow().WithFakeData(new List<object> { "Headers" })
                 }}
         };
     }
