@@ -13,7 +13,7 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         public XmlReaderTests()
         {
             string currentPath = TestContext.CurrentContext.TestDirectory;
-            _sampleXmlConfigFilePath = Path.Combine(TestHelper.FullyQualifiedSpreadsheetFilePath(currentPath), ReconConsts.SampleConfigFileName);
+            _sampleXmlConfigFilePath = Path.Combine(TestHelper.FullyQualifiedSpreadsheetFilePath(currentPath), FilePathConsts.SampleConfigFileName);
         }
 
         [Test]
