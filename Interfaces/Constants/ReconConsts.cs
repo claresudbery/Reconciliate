@@ -7,11 +7,6 @@ namespace Interfaces.Constants
     {
         static readonly XmlReader _xmlReader = new XmlReader();
 
-        public const string ConfigFileName = "Config.xml";
-        public const string SampleConfigFileName = "SampleConfig.xml";
-        public const string ConfigFilePath = @"C:/Config";
-        public const string ConfigPathProperty = "MainConfigFilePath";
-
         public static string TestValueDoNotChange => _xmlReader.ReadXml(nameof(TestValueDoNotChange));
 
         public static string MainSpreadsheetPath => _xmlReader.ReadXml(nameof(MainSpreadsheetPath));
@@ -162,5 +157,7 @@ namespace Interfaces.Constants
 
         public const int DdDescriptionColumn = 15;
         public const int DescriptionColumn = 5;
+
+        public static string BadMatchNumber = "Bad match number.";
     }
 }
