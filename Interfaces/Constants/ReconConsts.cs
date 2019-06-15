@@ -2,7 +2,7 @@
 {
     public static class ReconConsts
     {
-        static readonly XmlReader _xmlReader = new XmlReader();
+        static readonly MyXmlReader _xmlReader = new MyXmlReader();
 
         public static string TestValueDoNotChange => _xmlReader.ReadXml(nameof(TestValueDoNotChange));
 

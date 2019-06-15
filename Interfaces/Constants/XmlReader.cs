@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace Interfaces.Constants
 {
-    public class XmlReader
+    public class MyXmlReader
     {
         public string XmlFilePath => ReadXml(
             FilePathConsts.ConfigPathProperty, 
@@ -12,7 +12,7 @@ namespace Interfaces.Constants
 
         readonly XElement _loadedConfig;
 
-        public XmlReader()
+        public MyXmlReader()
         {
             _loadedConfig = LoadXml(XmlFilePath);
         }

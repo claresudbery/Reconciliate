@@ -2,7 +2,7 @@
 {
     public static class Dividers
     {
-        static readonly XmlReader _xmlReader = new XmlReader();
+        static readonly MyXmlReader _xmlReader = new MyXmlReader();
 
         public static string DividerText => _xmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.DividerText)}");
         public static string Expenses => _xmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.Expenses)}");

@@ -2,7 +2,7 @@
 {
     public static class MainSheetNames
     {
-        static readonly XmlReader _xmlReader = new XmlReader();
+        static readonly MyXmlReader _xmlReader = new MyXmlReader();
 
         public static string BankIn => _xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BankIn)}");
         public static string BankOut => _xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BankOut)}");

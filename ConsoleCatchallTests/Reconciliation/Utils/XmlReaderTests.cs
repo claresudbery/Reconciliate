@@ -19,7 +19,7 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         [Test]
         public void Can_Read_Path_From_Config()
         {
-            var xmlReader = new XmlReader();
+            var xmlReader = new MyXmlReader();
             Assert.AreEqual("This value should always be this string.", xmlReader.ReadXml(nameof(ReconConsts.TestValueDoNotChange), _sampleXmlConfigFilePath));
         }
 
@@ -170,14 +170,14 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         [TestCase(nameof(Codes.Expenses), "Acme Expenses")]
         public void Temp_Test_For_New_Config_Values(string elementName, string elementValue)
         {
-            var xmlReader = new XmlReader();
+            var xmlReader = new MyXmlReader();
             Assert.AreEqual(elementValue, xmlReader.ReadXml(elementName, _sampleXmlConfigFilePath));
         }
 
         [Test]
         public void Temp_Test_For_New_Config_Values_With_Compound_Names()
         {
-            var xmlReader = new XmlReader();
+            var xmlReader = new MyXmlReader();
 
             Assert.AreEqual(xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BudgetOut)}", _sampleXmlConfigFilePath), "Budget Out", _sampleXmlConfigFilePath);
             Assert.AreEqual(xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BudgetIn)}", _sampleXmlConfigFilePath), "Budget In", _sampleXmlConfigFilePath);
