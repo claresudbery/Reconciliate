@@ -19,7 +19,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ReconConsts.DefaultFilePath,
             "FakeSpreadsheetDataInfo");
 
-        readonly LastRowNumbers _lastRowNumbers = new LastRowNumbers();
+        private readonly FakeRowNumbersForCell _fakeRowNumbersForCell = new FakeRowNumbersForCell();
+        private readonly FakeRowNumbersForText _fakeRowNumbersForText = new FakeRowNumbersForText();
+        private readonly FakeRows _fakeRows = new FakeRows();
+        private readonly LastRowNumbers _lastRowNumbers = new LastRowNumbers();
 
         public FakeSpreadsheetRepo()
         {
@@ -53,7 +56,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         public ICellRow ReadSpecifiedRow(string sheetName, int rowNumber)
         {
             DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, rowNumber {rowNumber}");
-            return FakeRows.Data.ContainsKey(sheetName)? FakeRows.Data[sheetName][rowNumber - 1] : new FakeCellRow();
+
+            return _fakeRows.Data.ContainsKey(sheetName)
+                ? _fakeRows.Data[sheetName][rowNumber - 1] 
+                : new FakeCellRow();
         }
 
         public int FindFirstEmptyRowInColumn(string sheetName, int columnNumber)
@@ -65,16 +71,16 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         public int FindRowNumberOfLastRowContainingCell(string sheetName, string targetCellText, int expectedColumnNumber = 2)
         {
             DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, targetSubText {targetCellText}");
-            return FakeRowNumbersForCell.Data.ContainsKey(sheetName) 
-                ? FakeRowNumbersForCell.Data[sheetName][targetCellText] 
+            return _fakeRowNumbersForCell.Data.ContainsKey(sheetName) 
+                ? _fakeRowNumbersForCell.Data[sheetName][targetCellText] 
                 : 2;
         }
 
         public int FindRowNumberOfLastRowWithCellContainingText(string sheetName, string targetSubText, List<int> expectedColumnNumbers)
         {
             DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, targetSubText {targetSubText}");
-            return FakeRowNumbersForText.Data.ContainsKey(sheetName) 
-                ? FakeRowNumbersForText.Data[sheetName][targetSubText] 
+            return _fakeRowNumbersForText.Data.ContainsKey(sheetName) 
+                ? _fakeRowNumbersForText.Data[sheetName][targetSubText] 
                 : 2;
         }
 
@@ -131,8 +137,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         {
             DebugLog.AppendToFileAsSourceLine($"{GetMethodName()} with start/end cols: sheetName {sheetName}, rowNumber {rowNumber}, startColumn {startColumn}, endColumn {endColumn}");
             
-            var fullRow = FakeRows.Data.ContainsKey(sheetName)
-                ? FakeRows.Data[sheetName][rowNumber - 1] 
+            var fullRow = _fakeRows.Data.ContainsKey(sheetName)
+                ? _fakeRows.Data[sheetName][rowNumber - 1] 
                 : new FakeCellRow();
 
             List<object> partialRow = new List<object>(); 

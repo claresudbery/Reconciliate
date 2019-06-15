@@ -3,9 +3,9 @@ using Interfaces.Constants;
 
 namespace Console.Reconciliation.Spreadsheets.FakeSpreadsheetData
 {
-    internal static class FakeRowNumbersForText
+    internal class FakeRowNumbersForText
     {
-        public static Dictionary<string, Dictionary<string, int>> Data = new Dictionary<string, Dictionary<string, int>>
+        public Dictionary<string, Dictionary<string, int>> Data { get; } = new Dictionary<string, Dictionary<string, int>>
         {
             { MainSheetNames.BankOut,
                 new Dictionary<string, int> {

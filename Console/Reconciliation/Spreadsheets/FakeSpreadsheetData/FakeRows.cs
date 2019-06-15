@@ -6,9 +6,9 @@ using Interfaces.Constants;
 
 namespace Console.Reconciliation.Spreadsheets.FakeSpreadsheetData
 {
-    internal static class FakeRows
+    internal class FakeRows
     {
-        public static Dictionary<string, List<ICellRow>> Data = new Dictionary<string, List<ICellRow>>
+        public Dictionary<string, List<ICellRow>> Data { get; } = new Dictionary<string, List<ICellRow>>
         {
             { MainSheetNames.BankIn,
                 new List<ICellRow> {
