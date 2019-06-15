@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Interfaces;
 
-namespace Console.Reconciliation.Spreadsheets
+namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 {
     internal class FakeCellRow : ICellRow
     {

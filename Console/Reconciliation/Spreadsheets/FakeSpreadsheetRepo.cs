@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Console.Reconciliation.Spreadsheets.FakeSpreadsheetData;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Records;
+using ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetData;
 using Interfaces;
 using Interfaces.Constants;
 
-namespace Console.Reconciliation.Spreadsheets
+namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 {
     // There is a distinction between FakeSpreadsheetRepo and DebugSpreadsheetRepo:
     // FakeSpreadsheetRepo does no Excel file access at all, and is used in .Net.

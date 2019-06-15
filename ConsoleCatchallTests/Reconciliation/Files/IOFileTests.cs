@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Console.Reconciliation.Spreadsheets;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Records;
+using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
 using Interfaces;
 using Moq;
 using NUnit.Framework;

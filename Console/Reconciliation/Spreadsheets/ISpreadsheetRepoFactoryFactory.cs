@@ -1,6 +1,6 @@
 ﻿using Interfaces;
 
-namespace Console.Reconciliation.Spreadsheets
+namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 {
     internal interface ISpreadsheetRepoFactoryFactory
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Interfaces;
 using Interfaces.Constants;
 
-namespace Console.Reconciliation.Spreadsheets.FakeSpreadsheetData
+namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetData
 {
     internal class FakeRows
     {

@@ -4,7 +4,7 @@ using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.DTOs;
 
-namespace Console.Reconciliation.Spreadsheets
+namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 {
     internal interface ISpreadsheet
     {
