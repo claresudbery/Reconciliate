@@ -4,7 +4,6 @@ using ConsoleCatchall.Console.Reconciliation.Records;
 using ExcelLibrary;
 using Interfaces;
 using Interfaces.Constants;
-using Moq;
 using NUnit.Framework;
 
 namespace ExcelIntegrationTests.Records
