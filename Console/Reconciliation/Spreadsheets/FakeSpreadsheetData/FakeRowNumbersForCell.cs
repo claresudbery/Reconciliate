@@ -36,7 +36,10 @@ namespace Console.Reconciliation.Spreadsheets.FakeSpreadsheetData
                 new Dictionary<string, int> {
                     {"Code042", 12},
                     {"CredCard1 cred card", 13},
-                    {"CredCard2 cred card", 17}
+                    {"CredCard2 cred card", 17},
+                    {"SODDTotal", 21},
+                    {"AnnualSODDs", 23},
+                    {"AnnualTotal", 27}
                 }}
         };
     }
