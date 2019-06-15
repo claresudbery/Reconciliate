@@ -49,6 +49,10 @@ Gotcha: Errors about "dll already in use":
 	Delete relevant bin folders  
 	Switch from Debug to Release, rebuild, go back to Debug, rebuild again  
 	Close and reopen VS  
+Gotcha when switching back from .Net Core to .Net Framework: "dll / exe could not be found"	
+	Delete bin and obj folders for shared projects
+	Close and reopen VS
+	Rebuild all
 	
 An example of a C# app with a Windows interface that edits an Excel spreadsheet:  
 https://www.codeproject.com/Tips/696864/Working-with-Excel-Using-Csharp    
