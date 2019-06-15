@@ -9,8 +9,8 @@ namespace Console.Reconciliation.Spreadsheets.FakeSpreadsheetData
         {
             { MainSheetNames.BankOut,
                 new Dictionary<string, int> {
-                    {"CREDIT CARD 1", 6},
-                    {"CREDIT CARD 2", 7}
+                    {ReconConsts.CredCard1DdDescription, 6},
+                    {ReconConsts.CredCard2DdDescription, 7}
                 }}
         };
     }

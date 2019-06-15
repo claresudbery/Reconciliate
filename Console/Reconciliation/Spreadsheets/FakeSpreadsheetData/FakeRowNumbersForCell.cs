@@ -9,37 +9,38 @@ namespace Console.Reconciliation.Spreadsheets.FakeSpreadsheetData
         {
             { MainSheetNames.BankIn,
                 new Dictionary<string, int> {
-                    {"divider", 5}
+                    {Dividers.DividerText, 5}
                 }},
             { MainSheetNames.BankOut,
                 new Dictionary<string, int> {
-                    {"Mortgage description", 5},
-                    {"divider", 8},
+                    {FakeSpreadsheetRepo.FakeMortgageDescription, 5},
+                    {Dividers.DividerText, 8},
                 }},
             { MainSheetNames.CredCard1,
                 new Dictionary<string, int> {
-                    {"divider", 5}
+                    {Dividers.DividerText, 5}
                 }},
             { MainSheetNames.CredCard2,
                 new Dictionary<string, int> {
-                    {"divider", 5}
+                    {Dividers.DividerText, 5}
                 }},
             { MainSheetNames.ExpectedIn,
                 new Dictionary<string, int> {
-                    {"divider", 5}
+                    {Dividers.DividerText, 5}
                 }},
             { MainSheetNames.BudgetIn,
                 new Dictionary<string, int> {
-                    {"Total", 5}
+                    {Dividers.Date, 1},
+                    {Dividers.Total, 5}
                 }},
             { MainSheetNames.BudgetOut,
                 new Dictionary<string, int> {
-                    {"Code042", 12},
-                    {"CredCard1 cred card", 13},
-                    {"CredCard2 cred card", 17},
-                    {"SODDTotal", 21},
-                    {"AnnualSODDs", 23},
-                    {"AnnualTotal", 27}
+                    {Codes.Code042, 12},
+                    {Dividers.CredCard1, 13},
+                    {Dividers.CredCard2, 17},
+                    {Dividers.SODDTotal, 21},
+                    {Dividers.AnnualSODDs, 23},
+                    {Dividers.AnnualTotal, 27}
                 }}
         };
     }

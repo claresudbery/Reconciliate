@@ -24,6 +24,8 @@ namespace Console.Reconciliation.Spreadsheets
         private readonly FakeRows _fakeRows = new FakeRows();
         private readonly LastRowNumbers _lastRowNumbers = new LastRowNumbers();
 
+        public static string FakeMortgageDescription = "Mortgage description";
+
         public FakeSpreadsheetRepo()
         {
             DebugLog.AppendToFileAsSourceLine("*******************************************************************************");
