@@ -1,5 +1,5 @@
 ﻿using System;
-using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
+using Console.Reconciliation.Spreadsheets;
 using NUnit.Framework;
 
 namespace ConsoleCatchallTests.Reconciliation.Spreadsheets

@@ -1,6 +1,6 @@
 ﻿using Interfaces;
 
-namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
+namespace Console.Reconciliation.Spreadsheets
 {
     internal class FakeCellSet : ICellSet
     {

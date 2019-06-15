@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using ConsoleCatchall.Console.Reconciliation.Records;
+using Interfaces;
 using Interfaces.DTOs;
 
-namespace Interfaces
+namespace Console.Reconciliation.Spreadsheets
 {
     internal interface ISpreadsheet
     {

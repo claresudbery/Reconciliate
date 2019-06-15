@@ -6,7 +6,7 @@ using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
 
-namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
+namespace Console.Reconciliation.Spreadsheets
 {
     internal class Spreadsheet : ISpreadsheet
     {

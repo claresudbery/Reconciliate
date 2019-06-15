@@ -7,7 +7,7 @@ using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.Constants;
 
-namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
+namespace Console.Reconciliation.Spreadsheets
 {
     // There is a distinction between FakeSpreadsheetRepo and DebugSpreadsheetRepo:
     // FakeSpreadsheetRepo does no Excel file access at all, and is used in .Net.
