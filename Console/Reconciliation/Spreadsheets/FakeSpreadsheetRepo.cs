@@ -126,11 +126,30 @@ namespace Console.Reconciliation.Spreadsheets
             return "";
         }
 
-        public List<TRecordType> GetRowsAsRecords<TRecordType>(string sheetName, int firstRowNumber, int lastRowNumber, int firstColumnNumber,
+        // To do: Stop having this method on this interface - this is common code that could exist somewhere independently.
+        public List<TRecordType> GetRowsAsRecords<TRecordType>(
+            string sheetName, 
+            int firstRowNumber, 
+            int lastRowNumber, 
+            int firstColumnNumber,
             int lastColumnNumber) where TRecordType : ICSVRecord, new()
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, firstRowNumber {firstRowNumber}, lastRowNumber {lastRowNumber}, firstColumnNumber {firstColumnNumber}");
-            return new List<TRecordType>();
+            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, firstRowNumber {firstRowNumber}, lastRowNumber {lastRowNumber}, firstColumnNumber {firstColumnNumber}, lastColumnNumber {lastColumnNumber}");
+
+            List<TRecordType> records = new List<TRecordType>();
+
+            for (int rowNumber = firstRowNumber; rowNumber <= lastRowNumber; rowNumber++)
+            {
+                var csvRecord = new TRecordType();
+                csvRecord.ReadFromSpreadsheetRow(ReadSpecifiedRow(
+                    sheetName,
+                    rowNumber,
+                    firstColumnNumber,
+                    lastColumnNumber));
+                records.Add(csvRecord);
+            }
+
+            return records;
         }
 
         public ICellRow ReadSpecifiedRow(string sheetName, int rowNumber, int startColumn, int endColumn)
