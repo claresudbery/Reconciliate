@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Interfaces.DTOs;
-
-namespace Interfaces.Constants
+﻿namespace Interfaces.Constants
 {
     public static class ReconConsts
     {

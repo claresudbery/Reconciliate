@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using Console.Reconciliation.Spreadsheets;
 using ConsoleCatchall.Console.Reconciliation;
-using ConsoleCatchall.Console.Reconciliation.Files;
-using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchallTests.Reconciliation.TestUtils;
 using Interfaces;
 using Interfaces.Constants;
-using Interfaces.DTOs;
 using Moq;
 using NUnit.Framework;
 
