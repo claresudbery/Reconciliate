@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\Dividers.cs" />
+    <Compile Include="Constants\FilePathConsts.cs" />
     <Compile Include="Constants\MainSheetNames.cs" />
     <Compile Include="Constants\Codes.cs" />
     <Compile Include="Constants\PocketMoneySheetNames.cs" />

@@ -45,6 +45,10 @@
     <Compile Include="Reconciliation\Reconciliators\CredCard2Reconciliator.cs" />
     <Compile Include="Reconciliation\Reconciliators\CredCard1Reconciliator.cs" />
     <Compile Include="Reconciliation\Reconciliators\BankReconciliator.cs" />
+    <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\FakeRowNumbersForCell.cs" />
+    <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\FakeRowNumbersForText.cs" />
+    <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\FakeRows.cs" />
+    <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\LastRowNumbers.cs" />
     <Compile Include="Reconciliation\Spreadsheets\ISpreadsheet.cs" />
     <Compile Include="Reconciliation\Utils\Clock.cs" />
     <Compile Include="Reconciliation\Files\GenericFile.cs" />
