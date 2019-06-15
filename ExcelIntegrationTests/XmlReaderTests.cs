@@ -10,7 +10,7 @@ namespace ExcelIntegrationTests
         [Test]
         public void Temp_Test_For_New_Config_Values()
         {
-            var xmlReader = new XmlReader();
+            var xmlReader = new MyXmlReader();
 
             Assert.AreEqual(xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.CredCard1)}"), "CredCard1");
             Assert.AreEqual(xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.TestRecord)}"), "TestRecord");

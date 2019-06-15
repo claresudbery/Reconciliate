@@ -4,7 +4,7 @@ namespace ExcelIntegrationTests.TestUtils
 {
     public static class TestSheetNames
     {
-        static readonly XmlReader _xmlReader = new XmlReader();
+        static readonly MyXmlReader _xmlReader = new MyXmlReader();
 
         public static string Bank => _xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Bank)}");
         public static string CredCard1 => _xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.CredCard1)}");

@@ -2,7 +2,7 @@
 {
     public static class Codes
     {
-        static readonly XmlReader _xmlReader = new XmlReader();
+        static readonly MyXmlReader _xmlReader = new MyXmlReader();
 
         public static string BankBal => _xmlReader.ReadXml(nameof(BankBal));
         public static string CredCard1Bal => _xmlReader.ReadXml(nameof(CredCard1Bal));

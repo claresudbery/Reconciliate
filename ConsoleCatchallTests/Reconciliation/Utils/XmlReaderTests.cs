@@ -1,4 +1,5 @@
 using System.IO;
+using System.Xml;
 using ConsoleCatchallTests.Reconciliation.TestUtils;
 using Interfaces.Constants;
 using NUnit.Framework;
@@ -6,11 +7,11 @@ using NUnit.Framework;
 namespace ConsoleCatchallTests.Reconciliation.Utils
 {
     [TestFixture]
-    public class XmlReaderTests
+    public class MyXmlReaderTests
     {
         private string _sampleXmlConfigFilePath;
 
-        public XmlReaderTests()
+        public MyXmlReaderTests()
         {
             string currentPath = TestContext.CurrentContext.TestDirectory;
             _sampleXmlConfigFilePath = Path.Combine(TestHelper.FullyQualifiedSpreadsheetFilePath(currentPath), FilePathConsts.SampleConfigFileName);
@@ -19,7 +20,7 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         [Test]
         public void Can_Read_Path_From_Config()
         {
-            var xmlReader = new XmlReader();
+            var xmlReader = new MyXmlReader();
             Assert.AreEqual("This value should always be this string.", xmlReader.ReadXml(nameof(ReconConsts.TestValueDoNotChange), _sampleXmlConfigFilePath));
         }
 
@@ -170,14 +171,14 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         [TestCase(nameof(Codes.Expenses), "Acme Expenses")]
         public void Test_Config_Values_All_Present(string elementName, string elementValue)
         {
-            var xmlReader = new XmlReader();
+            var xmlReader = new MyXmlReader();
             Assert.AreEqual(elementValue, xmlReader.ReadXml(elementName, _sampleXmlConfigFilePath));
         }
 
         [Test]
         public void Temp_Test_For_New_Config_Values_With_Compound_Names()
         {
-            var xmlReader = new XmlReader();
+            var xmlReader = new MyXmlReader();
 
             Assert.AreEqual(xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BudgetOut)}", _sampleXmlConfigFilePath), "Budget Out", _sampleXmlConfigFilePath);
             Assert.AreEqual(xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BudgetIn)}", _sampleXmlConfigFilePath), "Budget In", _sampleXmlConfigFilePath);
