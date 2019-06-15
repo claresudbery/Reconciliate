@@ -35,6 +35,7 @@ namespace Console.Reconciliation.Spreadsheets.FakeSpreadsheetData
                 }},
             { MainSheetNames.BudgetOut,
                 new Dictionary<string, int> {
+                    {Dividers.SODDs, 8},
                     {Codes.Code042, 12},
                     {Dividers.CredCard1, 13},
                     {Dividers.CredCard2, 17},

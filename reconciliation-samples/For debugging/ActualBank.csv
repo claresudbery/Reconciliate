@@ -7,6 +7,7 @@ Date, Type, Description, Value, Balance, Account Name, Account Number
 2/6/2019,BAC,"'Bank monthly outgoing transaction 02",-45.00,0.00,"'Envelope","'228822-99933422",
 3/6/2019,BAC,"'Bank monthly incoming transaction 03",54.97,0.00,"'Envelope","'228822-99933422",
 3/6/2019,BAC,"'Bank monthly outgoing transaction 03",-55.00,0.00,"'Envelope","'228822-99933422",
+4/6/2019,BAC,"'Mortgage description",-1000.00,0.00,"'Envelope","'228822-99933422",
 6/6/2019,BAC,"'Aubergine",-22.00,0.00,"'Envelope","'228822-99933422",
 7/6/2019,BAC,"'Banana",-32.00,0.00,"'Envelope","'228822-99933422",
 11/6/2019,BAC,"'BankOut transaction from ActualBank.csv",-44.00,0.00,"'Env","'2288",
