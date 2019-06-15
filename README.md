@@ -50,7 +50,7 @@ Gotcha: Errors about "dll already in use":
 	Switch from Debug to Release, rebuild, go back to Debug, rebuild again  
 	Close and reopen VS  
 Gotcha when switching back from .Net Core to .Net Framework: "dll / exe could not be found"	
-	Delete bin and obj folders for shared projects
+	Delete bin and obj folders for projects that are in both .Net Core and .Net Framework
 	Close and reopen VS
 	Rebuild all
 	
