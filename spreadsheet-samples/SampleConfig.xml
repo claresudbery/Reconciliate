@@ -4,14 +4,14 @@
 	<!--ReconConsts-->
 	<!--**************-->
 	<TestValueDoNotChange>This value should always be this string.</TestValueDoNotChange>
-	<MainSpreadsheetPath>C:/Your/Spreadsheet/Path</MainSpreadsheetPath>
-	<DefaultFilePath>C:/Your/Csv/Path</DefaultFilePath>
+	<MainSpreadsheetPath>C:/Development/Reconciliate/reconciliation-samples/For-debugging</MainSpreadsheetPath>
+	<DefaultFilePath>C:/Development/Reconciliate/reconciliation-samples/For-debugging</DefaultFilePath>
 	<MainSpreadsheetFileName>Your-Spreadsheet.xlsx</MainSpreadsheetFileName>
-	<TestBackupFilePath>C:/Your/Spreadsheet/Backups</TestBackupFilePath>
-	<SourceDebugSpreadsheetPath>C:/Your/Debug/Spreadsheet</SourceDebugSpreadsheetPath>
-	<BackupSubFolder>Backup-Spreadsheet-Folder</BackupSubFolder>
+	<TestBackupFilePath>C:/Temp/ManualTesting/TestSpreadsheetBackups</TestBackupFilePath>
+	<SourceDebugSpreadsheetPath>C:/Development/Reconciliate/reconciliation-samples/For-debugging</SourceDebugSpreadsheetPath>
+	<BackupSubFolder>SpreadsheetBackups</BackupSubFolder>
 	<DebugSpreadsheetFileName>debug-backup-spreadsheet.xlsx</DebugSpreadsheetFileName>
-	<PocketMoneySpreadsheetPath>C:/Your/Spreadsheet/Path/Pocket-Money-Spreadsheet.xlsx</PocketMoneySpreadsheetPath>
+	<PocketMoneySpreadsheetPath>C:/Development/Reconciliate/reconciliation-samples/For-debugging/Pocket-Money-Spreadsheet.xlsx</PocketMoneySpreadsheetPath>
     <FiveFileOptions>1.EnterFile, 2.CredCard1InOut, 3.CredCard2InOut, 4.BankIn, 5.BankOut</FiveFileOptions>
     <FourAccountingTypes>1.CredCard1, 2.CredCard2, 3.ActualBankIn, 4.ActualBankOut</FourAccountingTypes>
     <FourFileNameOptions>1.EnterFileName, 2.CredCard1File, 3.CredCard2File, 4.ActualBankFile</FourFileNameOptions>

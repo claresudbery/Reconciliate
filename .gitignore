@@ -222,3 +222,14 @@ reconciliation-samples/temp-actualBank-file.csv
 
 # Jetbrains Rider
 .idea
+reconciliation-samples/For-debugging/CredCard2InOut-recon.csv
+reconciliation-samples/For-debugging/CredCard1InOut.csv
+reconciliation-samples/For-debugging/BankInPending.csv
+reconciliation-samples/For-debugging/BankIn.csv
+reconciliation-samples/For-debugging/CredCard2InOutPending.csv
+reconciliation-samples/For-debugging/CredCard2InOut.csv
+reconciliation-samples/For-debugging/CredCard1InOut-recon.csv
+reconciliation-samples/For-debugging/BankOutPending.csv
+reconciliation-samples/For-debugging/BankOut.csv
+reconciliation-samples/For-debugging/BankOut-recon.csv
+reconciliation-samples/For-debugging/BankIn-recon.csv
