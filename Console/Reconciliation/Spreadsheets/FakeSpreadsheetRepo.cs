@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using Console.Reconciliation.Spreadsheets.FakeSpreadsheetData;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Records;
@@ -19,6 +18,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             new FakeSpreadsheetRepoFactory(), 
             ReconConsts.DefaultFilePath,
             "FakeSpreadsheetDataInfo");
+
+        readonly LastRowNumbers _lastRowNumbers = new LastRowNumbers();
 
         public FakeSpreadsheetRepo()
         {
@@ -44,18 +45,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         {
             DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}");
 
-            int result = 0;
-
-            if (sheetName == MainSheetNames.BankIn) {result = 6;}
-            else if (sheetName == MainSheetNames.BankOut) {result = 9;}
-            else if (sheetName == MainSheetNames.CredCard1) {result = 6;}
-            else if (sheetName == MainSheetNames.CredCard2) {result = 6;}
-            else if (sheetName == MainSheetNames.ExpectedIn) {result = 8;}
-            else if (sheetName == MainSheetNames.ExpectedOut) {result = 20;}
-            else if (sheetName == MainSheetNames.CredCard3) {result = 5;}
-            else if (sheetName == MainSheetNames.Savings) {result = 4;}
-
-            return result;
+            return _lastRowNumbers.Data.ContainsKey(sheetName)
+                ? _lastRowNumbers.Data[sheetName]
+                : 2;
         }
 
         public ICellRow ReadSpecifiedRow(string sheetName, int rowNumber)
