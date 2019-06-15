@@ -13,7 +13,7 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         public XmlReaderTests()
         {
             string currentPath = TestContext.CurrentContext.TestDirectory;
-            _sampleXmlConfigFilePath = Path.Combine(TestHelper.FullyQualifiedSpreadsheetFilePath(currentPath), ReconConsts.SampleConfigFileName);
+            _sampleXmlConfigFilePath = Path.Combine(TestHelper.FullyQualifiedSpreadsheetFilePath(currentPath), FilePathConsts.SampleConfigFileName);
         }
 
         [Test]
@@ -23,14 +23,14 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             Assert.AreEqual("This value should always be this string.", xmlReader.ReadXml(nameof(ReconConsts.TestValueDoNotChange), _sampleXmlConfigFilePath));
         }
 
-        [TestCase(nameof(ReconConsts.MainSpreadsheetPath), @"C:/Your/Spreadsheet/Path")]
-        [TestCase(nameof(ReconConsts.DefaultFilePath), @"C:/Your/Csv/Path")]
+        [TestCase(nameof(ReconConsts.MainSpreadsheetPath), @"C:/Development/Reconciliate/reconciliation-samples/For-debugging")]
+        [TestCase(nameof(ReconConsts.DefaultFilePath), @"C:/Development/Reconciliate/reconciliation-samples/For-debugging")]
         [TestCase(nameof(ReconConsts.MainSpreadsheetFileName), @"Your-Spreadsheet.xlsx")]
-        [TestCase(nameof(ReconConsts.TestBackupFilePath), @"C:/Your/Spreadsheet/Backups")]
-        [TestCase(nameof(ReconConsts.SourceDebugSpreadsheetPath), @"C:/Your/Debug/Spreadsheet")]
-        [TestCase(nameof(ReconConsts.BackupSubFolder), "Backup-Spreadsheet-Folder")]
+        [TestCase(nameof(ReconConsts.TestBackupFilePath), @"C:/Temp/ManualTesting/TestSpreadsheetBackups")]
+        [TestCase(nameof(ReconConsts.SourceDebugSpreadsheetPath), @"C:/Development/Reconciliate/reconciliation-samples/For-debugging")]
+        [TestCase(nameof(ReconConsts.BackupSubFolder), "SpreadsheetBackups")]
         [TestCase(nameof(ReconConsts.DebugSpreadsheetFileName), @"debug-backup-spreadsheet.xlsx")]
-        [TestCase(nameof(ReconConsts.PocketMoneySpreadsheetPath), @"C:/Your/Spreadsheet/Path/Pocket-Money-Spreadsheet.xlsx")]
+        [TestCase(nameof(ReconConsts.PocketMoneySpreadsheetPath), @"C:/Development/Reconciliate/reconciliation-samples/For-debugging/Pocket-Money-Spreadsheet.xlsx")]
         [TestCase(nameof(ReconConsts.FiveFileOptions), "1.EnterFile, 2.CredCard1InOut, 3.CredCard2InOut, 4.BankIn, 5.BankOut")]
         [TestCase(nameof(ReconConsts.FourAccountingTypes), "1.CredCard1, 2.CredCard2, 3.ActualBankIn, 4.ActualBankOut")]
         [TestCase(nameof(ReconConsts.FourFileNameOptions), "1.EnterFileName, 2.CredCard1File, 3.CredCard2File, 4.ActualBankFile")]

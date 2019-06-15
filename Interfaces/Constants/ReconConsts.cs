@@ -96,7 +96,7 @@
 
         public const string ConfirmBadMonth = "Your input was 0 or invalid. Would you like to proceed without adding monthly / annual budget amounts? Enter Y for Yes";
 
-        public const string ConfirmMonthInterval = "Going from {0} to {1} means you will budgeting for {2} months. Would you like to proceed? Enter Y for Yes";
+        public const string ConfirmMonthInterval = "Going from {0} to {1} means you will budgeting for {2} month(s). Would you like to proceed? Enter Y for Yes";
 
         public const string ConfirmNoMonthlyBudgeting =
             "You have chosen to continue without adding any monthly or annual budgeting amounts.";
