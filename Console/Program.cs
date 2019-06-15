@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using ConsoleCatchall.Console.Reconciliation;
-using Interfaces.Constants;
 
 namespace ConsoleCatchall.Console
 {

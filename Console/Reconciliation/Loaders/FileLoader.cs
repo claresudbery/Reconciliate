@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using ConsoleCatchall.Console.Reconciliation.Files;
-using ConsoleCatchall.Console.Reconciliation.Matchers;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
 using Interfaces;
 using Interfaces.Constants;

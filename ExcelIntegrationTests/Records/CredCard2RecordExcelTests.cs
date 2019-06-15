@@ -1,6 +1,5 @@
 ﻿using System;
 using ConsoleCatchall.Console.Reconciliation.Records;
-using Interfaces;
 using NUnit.Framework;
 
 namespace ExcelIntegrationTests.Records

@@ -1,6 +1,4 @@
-﻿using Interfaces.DTOs;
-
-namespace Interfaces
+﻿namespace Interfaces
 {
     public interface IBankAndBankInLoader
     {
