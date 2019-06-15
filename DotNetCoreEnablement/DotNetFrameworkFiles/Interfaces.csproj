@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\Dividers.cs" />
+    <Compile Include="Constants\FilePathConsts.cs" />
     <Compile Include="Constants\MainSheetNames.cs" />
     <Compile Include="Constants\Codes.cs" />
     <Compile Include="Constants\PocketMoneySheetNames.cs" />
@@ -46,7 +47,7 @@
     <Compile Include="Constants\PlanningSheetNames.cs" />
     <Compile Include="Constants\ThirdPartyFileLoadAction.cs" />
     <Compile Include="Constants\WorkingMode.cs" />
-    <Compile Include="Constants\XmlReader.cs" />
+    <Compile Include="Constants\MyXmlReader.cs" />
     <Compile Include="DTOs\AutoMatchedRecord.cs" />
     <Compile Include="DTOs\BudgetingMonths.cs" />
     <Compile Include="DTOs\BudgetItemListData.cs" />
