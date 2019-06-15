@@ -47,7 +47,7 @@
     <Compile Include="Constants\PlanningSheetNames.cs" />
     <Compile Include="Constants\ThirdPartyFileLoadAction.cs" />
     <Compile Include="Constants\WorkingMode.cs" />
-    <Compile Include="Constants\XmlReader.cs" />
+    <Compile Include="Constants\MyXmlReader.cs" />
     <Compile Include="DTOs\AutoMatchedRecord.cs" />
     <Compile Include="DTOs\BudgetingMonths.cs" />
     <Compile Include="DTOs\BudgetItemListData.cs" />
