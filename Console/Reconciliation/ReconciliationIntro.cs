@@ -16,6 +16,8 @@ namespace ConsoleCatchall.Console.Reconciliation
 {
     internal class ReconciliationIntro
     {
+        #region Properties, member vars and constructor
+
         private string _path = "";
         private string _thirdPartyFileName = "";
         private string _ownedFileName = "";
@@ -28,6 +30,10 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             _inputOutput = inputOutput;
         }
+
+        #endregion Properties, member vars and constructor
+
+        #region User Instructions and Input
 
         public void Start()
         {
@@ -106,95 +112,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             _spreadsheetFactory = new SpreadsheetRepoFactoryFactory().GetFactory(filePath);
         }
 
-        public void CopySourceSpreadsheetToDebugSpreadsheet(string sourceSpreadsheetPath, string mainSpreadsheetPath)
-        {
-            string sourceFilePath = Path.Combine(sourceSpreadsheetPath, ReconConsts.MainSpreadsheetFileName);
-            if (File.Exists(sourceFilePath))
-            {
-                string debugFilePath = Path.Combine(
-                    mainSpreadsheetPath, 
-                    ReconConsts.BackupSubFolder,
-                    ReconConsts.DebugSpreadsheetFileName);
-                File.Copy(sourceFilePath, debugFilePath, true);
-            }
-            else
-            {
-                throw new Exception($"Can't find file: {sourceFilePath}");
-            }
-        }
-
-        public void CreateBackupOfRealSpreadsheet(IClock clock, string spreadsheetPath)
-        {
-            string sourceFilePath = Path.Combine(spreadsheetPath, ReconConsts.MainSpreadsheetFileName);
-            if (File.Exists(sourceFilePath))
-            {
-                string fileNamePrefix = $"{ReconConsts.BackupSubFolder}\\real_backup_";
-                fileNamePrefix = fileNamePrefix + clock.NowDateTime();
-                fileNamePrefix = fileNamePrefix.Replace(" ", "_").Replace(":", "-").Replace("/", "-");
-                string backupFileName = fileNamePrefix + "_" + ReconConsts.MainSpreadsheetFileName;
-                string backupFilePath = spreadsheetPath + "\\" + backupFileName;
-
-                File.Copy(sourceFilePath, backupFilePath, true);
-            }
-            else
-            {
-                throw new Exception($"Can't find file: {sourceFilePath}");
-            }
-        }
-
-        public void InjectSpreadsheetFactory(ISpreadsheetRepoFactory spreadsheetFactory)
-        {
-            _spreadsheetFactory = spreadsheetFactory;
-        }
-
-        public void DoActualReconciliation(WorkingMode workingMode)
-        {
-            try
-            {
-                ShowInstructions(workingMode);
-                GetPathAndFileNames();
-                DoMatching();
-            }
-            catch (Exception exception)
-            {
-                if (exception.Message.ToUpper() == "EXIT")
-                {
-                    _inputOutput.OutputLine("Taking you back to the main screen so you can start again if you want.");
-                }
-                else
-                {
-                    _inputOutput.ShowError(exception);
-                }
-            }
-        }
-
-        private void DoMatching()
-        {
-            var mainFilePaths = new FilePaths
-            {
-                MainPath = _path,
-                ThirdPartyFileName = _thirdPartyFileName,
-                OwnedFileName = _ownedFileName
-            };
-
-            var reconciliationInterface = LoadCorrectFiles(mainFilePaths);
-            reconciliationInterface?.DoTheMatching();
-        }
-
-        private void CreatePendingCsvs()
-        {
-            try
-            {
-                GetPath();
-                var pendingCsvFileCreator = new PendingCsvFileCreator(_path);
-                pendingCsvFileCreator.CreateAndPopulateAllCsvs();
-            }
-            catch (Exception e)
-            {
-                _inputOutput.OutputLine(e.Message);
-            }
-        }
-
         private void ShowInstructions(WorkingMode workingMode)
         {
             _inputOutput.OutputLine("Here's how it works:");
@@ -236,7 +153,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             _inputOutput.OutputLine($"***  {ReconConsts.MainSpreadsheetPath}/{ReconConsts.BackupSubFolder}  ***");
             _inputOutput.OutputLine("***                                                                 ***");
             _inputOutput.OutputLine("***  You can find debug versions of all csv files and a spreadsheet ***");
-            _inputOutput.OutputLine($"***     in [project root]/reconciliation-samples/For debugging     ***"); 
+            _inputOutput.OutputLine($"***     in [project root]/reconciliation-samples/For debugging     ***");
             _inputOutput.OutputLine("***                                                                 ***");
             _inputOutput.OutputLine("***********************************************************************");
             _inputOutput.OutputLine("***********************************************************************");
@@ -399,53 +316,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             return success;
         }
 
-        public bool SetFileDetailsAccordingToUserInput(string input)
-        {
-            bool success = true;
-            _reconciliationType = ReconciliationType.Unknown;
-
-            switch (input)
-            {
-                case "1": {
-                    success = false;
-                    _reconciliationType = GetReconciliatonTypeFromUser();
-                } break;
-                case "2": {
-                    _ownedFileName = ReconConsts.DefaultCredCard1InOutFileName;
-                    _thirdPartyFileName = ReconConsts.DefaultCredCard1FileName;
-                    _reconciliationType = ReconciliationType.CredCard1AndCredCard1InOut;
-                } break;
-                case "3": {
-                    _ownedFileName = ReconConsts.DefaultCredCard2InOutFileName;
-                    _thirdPartyFileName = ReconConsts.DefaultCredCard2FileName;
-                    _reconciliationType = ReconciliationType.CredCard2AndCredCard2InOut;
-                } break;
-                case "4":
-                {
-                    _ownedFileName = ReconConsts.DefaultBankInFileName;
-                    _thirdPartyFileName = ReconConsts.DefaultBankFileName;
-                    _reconciliationType = ReconciliationType.BankAndBankIn;
-                } break;
-                case "5":
-                {
-                    _ownedFileName = ReconConsts.DefaultBankOutFileName;
-                    _thirdPartyFileName = ReconConsts.DefaultBankFileName;
-                    _reconciliationType = ReconciliationType.BankAndBankOut;
-                } break;
-            }
-
-            if (success)
-            {
-                _path = ReconConsts.DefaultFilePath;
-                _inputOutput.OutputLine("You are using the following defaults:");
-                _inputOutput.OutputLine("File path will be " + _path);
-                _inputOutput.OutputLine("Third party file name will be " + _thirdPartyFileName + ".csv");
-                _inputOutput.OutputLine("Owned file name will be " + _ownedFileName + ".csv");
-            }
-
-            return success;
-        }
-
         private void GetOwnedFileName()
         {
             _inputOutput.OutputLine("");
@@ -469,30 +339,182 @@ namespace ConsoleCatchall.Console.Reconciliation
             switch (input)
             {
                 case "1":
+                {
+                    _ownedFileName = _inputOutput.GetInput(ReconConsts.EnterOwnedFileName);
+                }
+                    break;
+                case "2":
+                {
+                    _ownedFileName = ReconConsts.DefaultCredCard1InOutFileName;
+                }
+                    break;
+                case "3":
+                {
+                    _ownedFileName = ReconConsts.DefaultCredCard2InOutFileName;
+                }
+                    break;
+                case "4":
+                {
+                    _ownedFileName = ReconConsts.DefaultBankInFileName;
+                }
+                    break;
+                case "5":
+                {
+                    _ownedFileName = ReconConsts.DefaultBankOutFileName;
+                }
+                    break;
+            }
+        }
+
+        public bool SetFileDetailsAccordingToUserInput(string input)
+        {
+            bool success = true;
+            _reconciliationType = ReconciliationType.Unknown;
+
+            switch (input)
+            {
+                case "1":
                     {
-                        _ownedFileName = _inputOutput.GetInput(ReconConsts.EnterOwnedFileName);
+                        success = false;
+                        _reconciliationType = GetReconciliatonTypeFromUser();
                     }
                     break;
                 case "2":
                     {
                         _ownedFileName = ReconConsts.DefaultCredCard1InOutFileName;
+                        _thirdPartyFileName = ReconConsts.DefaultCredCard1FileName;
+                        _reconciliationType = ReconciliationType.CredCard1AndCredCard1InOut;
                     }
                     break;
                 case "3":
                     {
                         _ownedFileName = ReconConsts.DefaultCredCard2InOutFileName;
+                        _thirdPartyFileName = ReconConsts.DefaultCredCard2FileName;
+                        _reconciliationType = ReconciliationType.CredCard2AndCredCard2InOut;
                     }
                     break;
                 case "4":
                     {
                         _ownedFileName = ReconConsts.DefaultBankInFileName;
+                        _thirdPartyFileName = ReconConsts.DefaultBankFileName;
+                        _reconciliationType = ReconciliationType.BankAndBankIn;
                     }
                     break;
                 case "5":
                     {
                         _ownedFileName = ReconConsts.DefaultBankOutFileName;
+                        _thirdPartyFileName = ReconConsts.DefaultBankFileName;
+                        _reconciliationType = ReconciliationType.BankAndBankOut;
                     }
                     break;
+            }
+
+            if (success)
+            {
+                _path = ReconConsts.DefaultFilePath;
+                _inputOutput.OutputLine("You are using the following defaults:");
+                _inputOutput.OutputLine("File path will be " + _path);
+                _inputOutput.OutputLine("Third party file name will be " + _thirdPartyFileName + ".csv");
+                _inputOutput.OutputLine("Owned file name will be " + _ownedFileName + ".csv");
+            }
+
+            return success;
+        }
+
+        public void DoActualReconciliation(WorkingMode workingMode)
+        {
+            try
+            {
+                ShowInstructions(workingMode);
+                GetPathAndFileNames();
+                DoMatching();
+            }
+            catch (Exception exception)
+            {
+                if (exception.Message.ToUpper() == "EXIT")
+                {
+                    _inputOutput.OutputLine("Taking you back to the main screen so you can start again if you want.");
+                }
+                else
+                {
+                    _inputOutput.ShowError(exception);
+                }
+            }
+        }
+
+        private void DoMatching()
+        {
+            var mainFilePaths = new FilePaths
+            {
+                MainPath = _path,
+                ThirdPartyFileName = _thirdPartyFileName,
+                OwnedFileName = _ownedFileName
+            };
+
+            var reconciliationInterface = LoadCorrectFiles(mainFilePaths);
+            reconciliationInterface?.DoTheMatching();
+        }
+
+        #endregion User Instructions and Input
+
+        #region Debug Spreadsheet Operations
+
+        public void CopySourceSpreadsheetToDebugSpreadsheet(string sourceSpreadsheetPath, string mainSpreadsheetPath)
+        {
+            string sourceFilePath = Path.Combine(sourceSpreadsheetPath, ReconConsts.MainSpreadsheetFileName);
+            if (File.Exists(sourceFilePath))
+            {
+                string debugFilePath = Path.Combine(
+                    mainSpreadsheetPath, 
+                    ReconConsts.BackupSubFolder,
+                    ReconConsts.DebugSpreadsheetFileName);
+                File.Copy(sourceFilePath, debugFilePath, true);
+            }
+            else
+            {
+                throw new Exception($"Can't find file: {sourceFilePath}");
+            }
+        }
+
+        public void CreateBackupOfRealSpreadsheet(IClock clock, string spreadsheetPath)
+        {
+            string sourceFilePath = Path.Combine(spreadsheetPath, ReconConsts.MainSpreadsheetFileName);
+            if (File.Exists(sourceFilePath))
+            {
+                string fileNamePrefix = $"{ReconConsts.BackupSubFolder}\\real_backup_";
+                fileNamePrefix = fileNamePrefix + clock.NowDateTime();
+                fileNamePrefix = fileNamePrefix.Replace(" ", "_").Replace(":", "-").Replace("/", "-");
+                string backupFileName = fileNamePrefix + "_" + ReconConsts.MainSpreadsheetFileName;
+                string backupFilePath = spreadsheetPath + "\\" + backupFileName;
+
+                File.Copy(sourceFilePath, backupFilePath, true);
+            }
+            else
+            {
+                throw new Exception($"Can't find file: {sourceFilePath}");
+            }
+        }
+
+        public void InjectSpreadsheetFactory(ISpreadsheetRepoFactory spreadsheetFactory)
+        {
+            _spreadsheetFactory = spreadsheetFactory;
+        }
+
+        #endregion Debug Spreadsheet Operations
+
+        #region File loading
+
+        private void CreatePendingCsvs()
+        {
+            try
+            {
+                GetPath();
+                var pendingCsvFileCreator = new PendingCsvFileCreator(_path);
+                pendingCsvFileCreator.CreateAndPopulateAllCsvs();
+            }
+            catch (Exception e)
+            {
+                _inputOutput.OutputLine(e.Message);
             }
         }
 
@@ -765,23 +787,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             return reconciliationInterface;
         }
 
-        public BudgetingMonths RecursivelyAskForBudgetingMonths(ISpreadsheet spreadsheet)
-        {
-            DateTime nextUnplannedMonth = GetNextUnplannedMonth(spreadsheet);
-            int lastMonthForBudgetPlanning = GetLastMonthForBudgetPlanning(spreadsheet, nextUnplannedMonth.Month);
-            var budgetingMonths = new BudgetingMonths
-            {
-                NextUnplannedMonth = nextUnplannedMonth.Month,
-                LastMonthForBudgetPlanning = lastMonthForBudgetPlanning,
-                StartYear = nextUnplannedMonth.Year
-            };
-            if (lastMonthForBudgetPlanning != 0)
-            {
-                budgetingMonths.LastMonthForBudgetPlanning = ConfirmBudgetingMonthChoicesWithUser(budgetingMonths, spreadsheet);
-            }
-            return budgetingMonths;
-        }
-
         public void BankAndBankIn_MergeBespokeDataWithPendingFile(
                 IInputOutput inputOutput,
                 ISpreadsheet spreadsheet,
@@ -961,6 +966,27 @@ namespace ConsoleCatchall.Console.Reconciliation
                 codeColumn: 4);
         }
 
+        #endregion File loading
+
+        #region Get budgeting months
+
+        public BudgetingMonths RecursivelyAskForBudgetingMonths(ISpreadsheet spreadsheet)
+        {
+            DateTime nextUnplannedMonth = GetNextUnplannedMonth(spreadsheet);
+            int lastMonthForBudgetPlanning = GetLastMonthForBudgetPlanning(spreadsheet, nextUnplannedMonth.Month);
+            var budgetingMonths = new BudgetingMonths
+            {
+                NextUnplannedMonth = nextUnplannedMonth.Month,
+                LastMonthForBudgetPlanning = lastMonthForBudgetPlanning,
+                StartYear = nextUnplannedMonth.Year
+            };
+            if (lastMonthForBudgetPlanning != 0)
+            {
+                budgetingMonths.LastMonthForBudgetPlanning = ConfirmBudgetingMonthChoicesWithUser(budgetingMonths, spreadsheet);
+            }
+            return budgetingMonths;
+        }
+
         private DateTime GetNextUnplannedMonth(ISpreadsheet spreadsheet)
         {
             DateTime defaultMonth = DateTime.Today;
@@ -1090,5 +1116,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
             return newResult;
         }
+
+        #endregion Get budgeting months
     }
 }
