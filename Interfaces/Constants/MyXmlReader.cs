@@ -10,11 +10,11 @@ namespace Interfaces.Constants
             FilePathConsts.ConfigPathProperty, 
             Path.Combine(FilePathConsts.ConfigFilePath, FilePathConsts.ConfigFileName));
 
-        readonly XElement _loadedConfig;
+        readonly XElement _loaded_config;
 
         public MyXmlReader()
         {
-            _loadedConfig = Load_xml(Xml_file_path);
+            _loaded_config = Load_xml(Xml_file_path);
         }
 
         private XElement Load_xml(string xmlFilePath)
@@ -32,7 +32,7 @@ namespace Interfaces.Constants
 
         public string Read_xml(string xmlProperty)
         {
-            return _loadedConfig.Descendants(xmlProperty).First().Value;
+            return _loaded_config.Descendants(xmlProperty).First().Value;
         }
 
         public string Read_xml(string xmlProperty, string xmlFilePath)

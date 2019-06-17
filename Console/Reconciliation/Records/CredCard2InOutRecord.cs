@@ -20,7 +20,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public double Reconciled_amount { get; set; }
 
         private char _separator = '^';
-        private int _expectedNumberOfFieldsPerRow = 5;
+        private int _expected_number_of_fields_per_row = 5;
 
         public const int DateIndex = 0;
         public const int UnreconciledAmountIndex = 1;
@@ -45,7 +45,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             var separator = overrideSeparator ?? _separator;
             Source_line = csvLine;
             var values = csvLine.Split(separator);
-            values = StringHelper.Make_sure_there_are_at_least_enough_string_values(_expectedNumberOfFieldsPerRow, values);
+            values = StringHelper.Make_sure_there_are_at_least_enough_string_values(_expected_number_of_fields_per_row, values);
 
             Date = values[DateIndex] != "" && values[DateIndex].Is_numeric()
                 ? Convert.ToDateTime(values[DateIndex], StringHelper.Culture()) 

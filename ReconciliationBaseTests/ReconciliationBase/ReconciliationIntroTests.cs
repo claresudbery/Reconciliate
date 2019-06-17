@@ -11,7 +11,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
     [TestFixture]
     public partial class ReconciliationIntroTests : IInputOutput
     {
-        private Mock<IInputOutput> _mockInputOutput;
+        private Mock<IInputOutput> _mock_input_output;
 
         [OneTimeSetUp]
         public void One_time_set_up()
@@ -22,7 +22,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [SetUp]
         public void Set_up()
         {
-            _mockInputOutput = new Mock<IInputOutput>();
+            _mock_input_output = new Mock<IInputOutput>();
         }
 
         [Test]

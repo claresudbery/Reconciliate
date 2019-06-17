@@ -15,7 +15,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
     [TestFixture]
     public class CSVFileTests
     {
-        private string _csvFilePath;
+        private string _csv_file_path;
 
         public CSVFileTests()
         {
@@ -26,7 +26,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         private void Populate_csv_file_path()
         {
             string current_path = TestContext.CurrentContext.TestDirectory;
-            _csvFilePath = TestHelper.Fully_qualified_csv_file_path(current_path);
+            _csv_file_path = TestHelper.Fully_qualified_csv_file_path(current_path);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Can_load_csv_file()
         {
             // Act & Arrange
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankOut-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankOut-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load();
 
@@ -57,7 +57,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Will_order_records_by_date_on_loading_by_default()
         {
             // Act & Arrange
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load();
 
@@ -76,7 +76,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             bool order_by_date = false;
 
             // Act
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load(
                 true,
@@ -95,7 +95,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Can_load_bank_out_records()
         {
             // Act & Arrange
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankOut-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankOut-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load();
 
@@ -110,7 +110,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         {
             // Act & Arrange
             const bool doNotOrderByDate = false;
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load(
                 true,
@@ -127,7 +127,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Can_load_cred_card1_records()
         {
             // Act & Arrange
-            var file_io = new FileIO<CredCard1Record>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "CredCard1-Statement");
+            var file_io = new FileIO<CredCard1Record>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "CredCard1-Statement");
             var csv_file = new CSVFile<CredCard1Record>(file_io);
             csv_file.Load();
 
@@ -141,7 +141,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Can_load_cred_card1_in_out_records()
         {
             // Act & Arrange
-            var file_io = new FileIO<CredCard1InOutRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "CredCard1InOut-formatted-date-only");
+            var file_io = new FileIO<CredCard1InOutRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "CredCard1InOut-formatted-date-only");
             var csv_file = new CSVFile<CredCard1InOutRecord>(file_io);
             csv_file.Load();
 
@@ -156,7 +156,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         {
             // Act & Arrange
             const bool doNotOrderByDate = false;
-            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "ActualBank-sample");
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "ActualBank-sample");
             var csv_file = new CSVFile<ActualBankRecord>(file_io);
             csv_file.Load(
                 true,
@@ -174,7 +174,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         {
             // Arrange
             const bool doNotOrderByDate = false;
-            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "ActualBank-sample");
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "ActualBank-sample");
             var csv_file = new CSVFile<ActualBankRecord>(file_io);
             csv_file.Load(
                 true,
@@ -194,7 +194,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Can_filter_for_negative_records_only()
         {
             // Arrange
-            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "ActualBank-sample");
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "ActualBank-sample");
             var csv_file = new CSVFile<ActualBankRecord>(file_io);
             csv_file.Load();
 
@@ -239,7 +239,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void When_filtering_for_negative_records_all_are_converted_to_positive()
         {
             // Arrange
-            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "ActualBank-sample");
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "ActualBank-sample");
             var csv_file = new CSVFile<ActualBankRecord>(file_io);
             csv_file.Load();
 
@@ -254,7 +254,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Can_output_unmatched_records_as_csv_in_date_order()
         {
             // Arrange
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load();
             csv_file.Reset_all_matches();
@@ -274,7 +274,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Can_output_matched_records_as_csv_in_date_order()
         {
             // Arrange
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load();
             foreach (var record in csv_file.Records)
@@ -298,7 +298,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         {
             // Arrange
             const bool doNotOrderByDate = false;
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load(
                 true,
@@ -324,7 +324,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         {
             // Arrange
             const bool doNotOrderByDate = false;
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load(
                 true,
@@ -350,7 +350,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void When_ordering_records_for_spreadsheet_will_insert_divider_between_matched_and_non_matched()
         {
             // Arrange
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load();
             csv_file.Records[0].Matched = true;
@@ -374,7 +374,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void When_ordering_records_for_spreadsheet_if_no_matched_then_no_divider()
         {
             // Arrange
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load();
 
@@ -394,7 +394,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void When_ordering_records_for_spreadsheet_if_no_unmatched_then_divider_is_at_end()
         {
             // Arrange
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load();
             csv_file.Records[0].Matched = true;
@@ -419,7 +419,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Can_output_all_records_as_source_line_ordered_by_date()
         {
             // Arrange
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load();
 
@@ -438,7 +438,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Can_convert_commas_to_little_hats_for_bank_in()
         {
             // Arrange
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-with-commas");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-with-commas");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load(true, ',');
 
@@ -456,7 +456,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Can_convert_commas_to_little_hats_for_cred_card2_in_out()
         {
             // Arrange
-            var file_io = new FileIO<CredCard2InOutRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "CredCard2InOut-with-commas");
+            var file_io = new FileIO<CredCard2InOutRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "CredCard2InOut-with-commas");
             var csv_file = new CSVFile<CredCard2InOutRecord>(file_io);
             csv_file.Load(true, ',');
 
@@ -476,7 +476,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Can_convert_commas_to_little_hats_for_cred_card1_in_out()
         {
             // Arrange
-            var file_io = new FileIO<CredCard1InOutRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "CredCard1InOut-with-commas");
+            var file_io = new FileIO<CredCard1InOutRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "CredCard1InOut-with-commas");
             var csv_file = new CSVFile<CredCard1InOutRecord>(file_io);
             csv_file.Load(true, ',');
 
@@ -495,7 +495,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Can_write_new_contents_to_csv()
         {
             // Arrange
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load();
             var new_bank_record = new BankRecord();
@@ -509,7 +509,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Write_to_csv_file("testing");
 
             // Assert
-            var file_io_test_file = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only-testing");
+            var file_io_test_file = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only-testing");
             var new_csv_file = new CSVFile<BankRecord>(file_io_test_file);
             new_csv_file.Load(
                 true,
@@ -528,7 +528,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Can_write_new_contents_as_source_lines()
         {
             // Arrange
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load();
             var new_bank_record = new BankRecord();
@@ -543,7 +543,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
 
             // Assert
             List<string> new_file_lines = new List<string>();
-            using (var file_stream = File.OpenRead(_csvFilePath + "/" + "BankIn-formatted-date-only-testing" + ".csv"))
+            using (var file_stream = File.OpenRead(_csv_file_path + "/" + "BankIn-formatted-date-only-testing" + ".csv"))
             using (var reader = new StreamReader(file_stream))
             {
                 while (!reader.EndOfStream)
@@ -567,7 +567,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Can_write_descriptions_containing_commas()
         {
             // Arrange
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load();
             var new_bank_record = new BankRecord();
@@ -581,7 +581,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Write_to_csv_file("testing");
 
             // Assert
-            var file_io_test_file = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only-testing");
+            var file_io_test_file = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only-testing");
             var new_csv_file = new CSVFile<BankRecord>(file_io_test_file);
             new_csv_file.Load(
                 true,
@@ -594,7 +594,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void Can_write_amounts_containing_commas()
         {
             // Arrange
-            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load();
             var new_bank_record = new BankRecord();
@@ -606,7 +606,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Write_to_csv_file("testing");
 
             // Assert
-            var file_io_test_file = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only-testing");
+            var file_io_test_file = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only-testing");
             var new_csv_file = new CSVFile<BankRecord>(file_io_test_file);
             new_csv_file.Load(
                 true,

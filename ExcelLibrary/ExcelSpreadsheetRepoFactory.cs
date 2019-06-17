@@ -4,25 +4,25 @@ namespace ExcelLibrary
 {
     public class ExcelSpreadsheetRepoFactory : ISpreadsheetRepoFactory
     {
-        private ExcelSpreadsheetRepo _excelSpreadsheet;
-        private readonly string _spreadsheetFileNameAndPath;
+        private ExcelSpreadsheetRepo _excel_spreadsheet;
+        private readonly string _spreadsheet_file_name_and_path;
 
         public ExcelSpreadsheetRepoFactory(string spreadsheetFileNameAndPath)
         {
-            _spreadsheetFileNameAndPath = spreadsheetFileNameAndPath;
+            _spreadsheet_file_name_and_path = spreadsheetFileNameAndPath;
         }
 
         public ISpreadsheetRepo Create_spreadsheet_repo()
         {
-            _excelSpreadsheet = new ExcelSpreadsheetRepo(_spreadsheetFileNameAndPath);
-            return _excelSpreadsheet;
+            _excel_spreadsheet = new ExcelSpreadsheetRepo(_spreadsheet_file_name_and_path);
+            return _excel_spreadsheet;
         }
 
         public void Dispose_of_spreadsheet_repo()
         {
-            if (_excelSpreadsheet != null)
+            if (_excel_spreadsheet != null)
             {
-                _excelSpreadsheet.Dispose();
+                _excel_spreadsheet.Dispose();
             }
         }
     }

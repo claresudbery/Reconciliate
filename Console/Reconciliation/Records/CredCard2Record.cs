@@ -19,7 +19,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public double Amount { get; set; }
 
         private char _separator = ',';
-        private int _expectedNumberOfFieldsPerRow = 4;
+        private int _expected_number_of_fields_per_row = 4;
 
         public const int DateIndex = 0;
         public const int AmountIndex = 2;
@@ -44,7 +44,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             csvLine = csvLine.Replace_commas_surrounded_by_spaces();
             Source_line = csvLine;
             var values = csvLine.Split(_separator);
-            values = StringHelper.Make_sure_there_are_at_least_enough_string_values(_expectedNumberOfFieldsPerRow, values);
+            values = StringHelper.Make_sure_there_are_at_least_enough_string_values(_expected_number_of_fields_per_row, values);
 
             Date = values[DateIndex] != "" && values[DateIndex].Is_numeric()
                 ? DateTime.ParseExact(values[DateIndex], "dd/MM/yyyy", CultureInfo.InvariantCulture)
@@ -63,7 +63,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         // Not currently used because the format of the file changed and they don't seem to use commas any more - and it's not the last field any more.
         private string Get_amount_with_possible_comma(string[] values)
         {
-            if (values.Length == _expectedNumberOfFieldsPerRow + 1)
+            if (values.Length == _expected_number_of_fields_per_row + 1)
             {
                 // This happens when the amount contains a comma.
                 values[3] = values[3] + values[4];

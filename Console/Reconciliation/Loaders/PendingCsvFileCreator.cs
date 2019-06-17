@@ -13,21 +13,21 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         public static string CredCard2InOutPendingFileName = ReconConsts.Default_cred_card2_in_out_pending_file_name;
         public const string PendingSourceFileName = "Pending.txt";
 
-        private readonly string _bankOutPendingFilePath;
-        private readonly string _bankInPendingFilePath;
-        private readonly string _credCard2InOutPendingFilePath;
-        private readonly string _pendingSourceFilePath;
+        private readonly string _bank_out_pending_file_path;
+        private readonly string _bank_in_pending_file_path;
+        private readonly string _cred_card2_in_out_pending_file_path;
+        private readonly string _pending_source_file_path;
 
-        private readonly String _filePath;
+        private readonly String _file_path;
 
         public PendingCsvFileCreator(String filePath)
         {
-            _filePath = filePath;
+            _file_path = filePath;
 
-            _bankOutPendingFilePath = _filePath + "/" + BankOutPendingFileName + ".csv";
-            _bankInPendingFilePath = _filePath + "/" + BankInPendingFileName + ".csv";
-            _credCard2InOutPendingFilePath = _filePath + "/" + CredCard2InOutPendingFileName + ".csv";
-            _pendingSourceFilePath = _filePath + "/" + PendingSourceFileName;
+            _bank_out_pending_file_path = _file_path + "/" + BankOutPendingFileName + ".csv";
+            _bank_in_pending_file_path = _file_path + "/" + BankInPendingFileName + ".csv";
+            _cred_card2_in_out_pending_file_path = _file_path + "/" + CredCard2InOutPendingFileName + ".csv";
+            _pending_source_file_path = _file_path + "/" + PendingSourceFileName;
         }
 
         private IEnumerable<string> Read_lines(string filePath)
@@ -48,7 +48,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         {
             Create_files();
 
-            var all_lines = Read_lines(_pendingSourceFilePath);
+            var all_lines = Read_lines(_pending_source_file_path);
 
             Populate_bank_out_csv(all_lines);
             Populate_bank_in_csv(all_lines);
@@ -57,17 +57,17 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
         private void Populate_bank_out_csv(IEnumerable<string> allLines)
         {
-            Populate_csv_file(allLines, ReconConsts.Bank_out_header, _bankOutPendingFilePath);
+            Populate_csv_file(allLines, ReconConsts.Bank_out_header, _bank_out_pending_file_path);
         }
 
         private void Populate_bank_in_csv(IEnumerable<string> allLines)
         {
-            Populate_csv_file(allLines, ReconConsts.Bank_in_header, _bankInPendingFilePath);
+            Populate_csv_file(allLines, ReconConsts.Bank_in_header, _bank_in_pending_file_path);
         }
 
         private void Populate_cred_card2_csv(IEnumerable<string> allLines)
         {
-            Populate_csv_file(allLines, ReconConsts.Cred_card2_header, _credCard2InOutPendingFilePath);
+            Populate_csv_file(allLines, ReconConsts.Cred_card2_header, _cred_card2_in_out_pending_file_path);
         }
 
         private void Populate_csv_file(IEnumerable<string> allLines, string headerString, string filePath)
@@ -78,9 +78,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
         private void Create_files()
         {
-            File.Create(_bankOutPendingFilePath).Dispose();
-            File.Create(_bankInPendingFilePath).Dispose();
-            File.Create(_credCard2InOutPendingFilePath).Dispose();
+            File.Create(_bank_out_pending_file_path).Dispose();
+            File.Create(_bank_in_pending_file_path).Dispose();
+            File.Create(_cred_card2_in_out_pending_file_path).Dispose();
         }
 
         private IEnumerable<string> Find_subset_of_lines(IEnumerable<string> allLines, string subsectionHeader)

@@ -10,7 +10,7 @@ namespace Interfaces.DTOs
         public string Amount_string { get; set; }
         public string Description_string { get; set; }
 
-        private List<ConsoleSnippet> _consoleSnippets;
+        private List<ConsoleSnippet> _console_snippets;
 
         public string As_text_line()
         {
@@ -28,19 +28,19 @@ namespace Interfaces.DTOs
 
         public List<ConsoleSnippet> Get_console_snippets(IPotentialMatch potentialMatch)
         {
-            if (_consoleSnippets == null)
+            if (_console_snippets == null)
             {
-                _consoleSnippets = new List<ConsoleSnippet>();
+                _console_snippets = new List<ConsoleSnippet>();
             }
             else
             {
-                _consoleSnippets.Clear();
+                _console_snippets.Clear();
             }
-            _consoleSnippets.Add(Index_as_console_snippet());
-            _consoleSnippets.Add(Date_as_console_snippet(potentialMatch));
-            _consoleSnippets.Add(Amount_as_console_snippet(potentialMatch));
-            _consoleSnippets.Add(Description_as_console_snippet(potentialMatch));
-            return _consoleSnippets;
+            _console_snippets.Add(Index_as_console_snippet());
+            _console_snippets.Add(Date_as_console_snippet(potentialMatch));
+            _console_snippets.Add(Amount_as_console_snippet(potentialMatch));
+            _console_snippets.Add(Description_as_console_snippet(potentialMatch));
+            return _console_snippets;
         }
 
         private static ConsoleColour Get_colour(bool fullMatch, bool partialMatch)

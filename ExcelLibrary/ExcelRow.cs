@@ -5,20 +5,20 @@ namespace ExcelLibrary
 {
     public class ExcelRow : ICellRow
     {
-        private List<object> _excelCells;
+        private List<object> _excel_cells;
 
         public ExcelRow(List<object> excelCells)
         {
-            _excelCells = excelCells;
+            _excel_cells = excelCells;
         }
 
         public object Read_cell(int columnNumber)
         {
-            return _excelCells[columnNumber];
+            return _excel_cells[columnNumber];
         }
 
         public int Count {
-            get { return _excelCells.Count; }
+            get { return _excel_cells.Count; }
             set { }
         }
     }

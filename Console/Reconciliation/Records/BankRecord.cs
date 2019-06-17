@@ -26,7 +26,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public const string EssentialFields = "date, unreconciled amount, type or description";
 
         private char _separator = '^';
-        private int _expectedNumberOfFieldsPerRow = 10;
+        private int _expected_number_of_fields_per_row = 10;
 
         public const int DateIndex = 0;
         public const int UnreconciledAmountIndex = 1;
@@ -55,7 +55,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             char separator = overrideSeparator ?? _separator;
             Source_line = csvLine;
             string[] values = Split_values_based_on_separator_and_handle_commas_in_amounts(csvLine, separator);
-            values = StringHelper.Make_sure_there_are_at_least_enough_string_values(_expectedNumberOfFieldsPerRow, values);
+            values = StringHelper.Make_sure_there_are_at_least_enough_string_values(_expected_number_of_fields_per_row, values);
 
             Date = values[DateIndex] != "" && values[DateIndex].Is_numeric()
                 ? Convert.ToDateTime(values[DateIndex], StringHelper.Culture())
@@ -114,7 +114,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         {
             var values = csvLine.Split(separator);
 
-            if (values.Length > _expectedNumberOfFieldsPerRow)
+            if (values.Length > _expected_number_of_fields_per_row)
             {
                 // This happens when the amount contains a comma.
                 if (!string.IsNullOrEmpty(values[UnreconciledAmountIndex]))

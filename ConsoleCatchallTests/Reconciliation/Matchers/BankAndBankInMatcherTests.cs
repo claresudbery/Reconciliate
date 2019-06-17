@@ -7,12 +7,12 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
     [TestFixture]
     public partial class BankAndBankInMatcherTests : IInputOutput
     {
-        private Mock<IInputOutput> _mockInputOutput;
+        private Mock<IInputOutput> _mock_input_output;
 
         [SetUp]
         public void Set_up()
         {
-            _mockInputOutput = new Mock<IInputOutput>();
+            _mock_input_output = new Mock<IInputOutput>();
         }
 
         [Test]

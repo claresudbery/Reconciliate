@@ -10,32 +10,32 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 {
     internal class Spreadsheet : ISpreadsheet
     {
-        private readonly ISpreadsheetRepo _spreadsheetIO;
+        private readonly ISpreadsheetRepo _spreadsheet_io;
 
         public Spreadsheet(ISpreadsheetRepo spreadsheetIO)
         {
-            _spreadsheetIO = spreadsheetIO;
+            _spreadsheet_io = spreadsheetIO;
         }
 
         public ICellRow Read_last_row(String sheetName)
         {
-            return _spreadsheetIO.Read_last_row(sheetName);
+            return _spreadsheet_io.Read_last_row(sheetName);
         }
 
         public String Read_last_row_as_csv(String sheetName, ICSVRecord csvRecord)
         {
-            return _spreadsheetIO.Read_last_row_as_csv(sheetName, csvRecord);
+            return _spreadsheet_io.Read_last_row_as_csv(sheetName, csvRecord);
         }
 
         public String Read_specified_row_as_csv(String sheetName, int rowNumber, ICSVRecord csvRecord)
         {
-            csvRecord.Read_from_spreadsheet_row(_spreadsheetIO.Read_specified_row(sheetName, rowNumber));
+            csvRecord.Read_from_spreadsheet_row(_spreadsheet_io.Read_specified_row(sheetName, rowNumber));
             return csvRecord.To_csv();
         }
 
         public int Find_row_number_of_last_divider_row(string sheetName)
         {
-            return _spreadsheetIO.Find_row_number_of_last_row_containing_cell(
+            return _spreadsheet_io.Find_row_number_of_last_row_containing_cell(
                 sheetName,
                 Dividers.Divider_text);
         }
@@ -43,12 +43,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         public void Add_unreconciled_rows_to_csv_file<TRecordType>(string sheetName, ICSVFile<TRecordType> csvFile) where TRecordType : ICSVRecord, new()
         {
             int divider_row_number = Find_row_number_of_last_divider_row(sheetName);
-            int last_row_number = _spreadsheetIO.Last_row_number(sheetName);
+            int last_row_number = _spreadsheet_io.Last_row_number(sheetName);
 
             for (int row_number = divider_row_number + 1; row_number <= last_row_number; row_number++)
             {
                 var csv_record = new TRecordType();
-                csv_record.Read_from_spreadsheet_row(_spreadsheetIO.Read_specified_row(sheetName, row_number));
+                csv_record.Read_from_spreadsheet_row(_spreadsheet_io.Read_specified_row(sheetName, row_number));
                 csvFile.Records.Add(csv_record);
             }
 
@@ -57,14 +57,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public void Append_csv_file<TRecordType>(string sheetName, ICSVFile<TRecordType> csvFile) where TRecordType : ICSVRecord, new()
         {
-            _spreadsheetIO.Append_csv_file(sheetName, csvFile);
+            _spreadsheet_io.Append_csv_file(sheetName, csvFile);
         }
 
         public void Delete_unreconciled_rows(string sheetName)
         {
-            int last_row_number = _spreadsheetIO.Last_row_number(sheetName);
+            int last_row_number = _spreadsheet_io.Last_row_number(sheetName);
             int divider_row_number = Find_row_number_of_last_divider_row(sheetName);
-            _spreadsheetIO.Delete_specified_rows(sheetName, divider_row_number + 1, last_row_number);
+            _spreadsheet_io.Delete_specified_rows(sheetName, divider_row_number + 1, last_row_number);
         }
 
         public ICSVFile<TRecordType> Read_unreconciled_rows_as_csv_file<TRecordType>(
@@ -80,12 +80,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public List<BankRecord> Get_all_monthly_bank_in_budget_items(BudgetItemListData budgetItemListData)
         {
-            int first_row_number = _spreadsheetIO
+            int first_row_number = _spreadsheet_io
                                      .Find_row_number_of_last_row_containing_cell(budgetItemListData.Sheet_name, budgetItemListData.Start_divider) + 1;
-            int last_row_number = _spreadsheetIO
+            int last_row_number = _spreadsheet_io
                                     .Find_row_number_of_last_row_containing_cell(budgetItemListData.Sheet_name, budgetItemListData.End_divider) - 1;
 
-            return _spreadsheetIO.Get_rows_as_records<BankRecord>(
+            return _spreadsheet_io.Get_rows_as_records<BankRecord>(
                 budgetItemListData.Sheet_name,
                 first_row_number,
                 last_row_number,
@@ -95,12 +95,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public List<BankRecord> Get_all_monthly_bank_out_budget_items(BudgetItemListData budgetItemListData)
         {
-            int first_row_number = _spreadsheetIO
+            int first_row_number = _spreadsheet_io
                                      .Find_row_number_of_last_row_containing_cell(budgetItemListData.Sheet_name, budgetItemListData.Start_divider) + 1;
-            int last_row_number = _spreadsheetIO
+            int last_row_number = _spreadsheet_io
                                     .Find_row_number_of_last_row_containing_cell(budgetItemListData.Sheet_name, budgetItemListData.End_divider) - 1;
 
-            return _spreadsheetIO.Get_rows_as_records<BankRecord>(
+            return _spreadsheet_io.Get_rows_as_records<BankRecord>(
                 budgetItemListData.Sheet_name,
                 first_row_number,
                 last_row_number,
@@ -110,12 +110,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public List<CredCard1InOutRecord> Get_all_monthly_cred_card1_budget_items(BudgetItemListData budgetItemListData)
         {
-            int first_row_number = _spreadsheetIO
+            int first_row_number = _spreadsheet_io
                                      .Find_row_number_of_last_row_containing_cell(budgetItemListData.Sheet_name, budgetItemListData.Start_divider) + 1;
-            int last_row_number = _spreadsheetIO
+            int last_row_number = _spreadsheet_io
                                     .Find_row_number_of_last_row_containing_cell(budgetItemListData.Sheet_name, budgetItemListData.End_divider) - 1;
 
-            return _spreadsheetIO.Get_rows_as_records<CredCard1InOutRecord>(
+            return _spreadsheet_io.Get_rows_as_records<CredCard1InOutRecord>(
                 budgetItemListData.Sheet_name,
                 first_row_number,
                 last_row_number,
@@ -125,12 +125,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public List<CredCard2InOutRecord> Get_all_monthly_cred_card2_budget_items(BudgetItemListData budgetItemListData)
         {
-            int first_row_number = _spreadsheetIO
+            int first_row_number = _spreadsheet_io
                                      .Find_row_number_of_last_row_containing_cell(budgetItemListData.Sheet_name, budgetItemListData.Start_divider) + 1;
-            int last_row_number = _spreadsheetIO
+            int last_row_number = _spreadsheet_io
                                     .Find_row_number_of_last_row_containing_cell(budgetItemListData.Sheet_name, budgetItemListData.End_divider) - 1;
 
-            return _spreadsheetIO.Get_rows_as_records<CredCard2InOutRecord>(
+            return _spreadsheet_io.Get_rows_as_records<CredCard2InOutRecord>(
                 budgetItemListData.Sheet_name,
                 first_row_number,
                 last_row_number,
@@ -141,12 +141,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         public List<TRecordType> Get_all_annual_budget_items<TRecordType>(BudgetItemListData budgetItemListData)
             where TRecordType : ICSVRecord, new()
         {
-            int first_row_number = _spreadsheetIO
+            int first_row_number = _spreadsheet_io
                                      .Find_row_number_of_last_row_containing_cell(budgetItemListData.Sheet_name, budgetItemListData.Start_divider) + 1;
-            int last_row_number = _spreadsheetIO
+            int last_row_number = _spreadsheet_io
                                     .Find_row_number_of_last_row_containing_cell(budgetItemListData.Sheet_name, budgetItemListData.End_divider) - 1;
 
-            return _spreadsheetIO.Get_rows_as_records<TRecordType>(
+            return _spreadsheet_io.Get_rows_as_records<TRecordType>(
                 budgetItemListData.Sheet_name,
                 first_row_number,
                 last_row_number,
@@ -159,9 +159,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             const int dateColumn = 1;
             const int amountColumn = 4;
             var sheet_name = PocketMoneySheetNames.Second_child;
-            int row = _spreadsheetIO.Find_row_number_of_last_row_containing_cell(sheet_name, shortDateTime, dateColumn);
+            int row = _spreadsheet_io.Find_row_number_of_last_row_containing_cell(sheet_name, shortDateTime, dateColumn);
 
-            return _spreadsheetIO.Get_amount(sheet_name, row, amountColumn);
+            return _spreadsheet_io.Get_amount(sheet_name, row, amountColumn);
         }
 
         public double Get_planning_expenses_already_done()
@@ -169,7 +169,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             var sheet_name = PlanningSheetNames.Expenses;
             const int row = 2;
             const int column = 4;
-            return _spreadsheetIO.Get_amount(sheet_name, row, column);
+            return _spreadsheet_io.Get_amount(sheet_name, row, column);
         }
 
         public double Get_planning_money_paid_by_guests()
@@ -177,7 +177,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             var sheet_name = PlanningSheetNames.Deposits;
             const int row = 2;
             const int column = 4;
-            return _spreadsheetIO.Get_amount(sheet_name, row, column);
+            return _spreadsheet_io.Get_amount(sheet_name, row, column);
         }
 
         public void Insert_new_row_on_expected_out(double newAmount, string newNotes)
@@ -185,7 +185,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             const int codeColumn = 4;
             const int amountColumn = 2;
             const int notesColumn = 4;
-            int new_row_number = _spreadsheetIO.Find_row_number_of_first_row_containing_cell(
+            int new_row_number = _spreadsheet_io.Find_row_number_of_first_row_containing_cell(
                 MainSheetNames.Expected_out,
                 ReconConsts.ExpectedOutInsertionPoint,
                 codeColumn);
@@ -196,7 +196,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 { notesColumn, newNotes }
             };
 
-            _spreadsheetIO.Insert_new_row(MainSheetNames.Expected_out, new_row_number, cell_values);
+            _spreadsheet_io.Insert_new_row(MainSheetNames.Expected_out, new_row_number, cell_values);
         }
 
         public void Add_new_transaction_to_cred_card3(DateTime newDate, double newAmount, string newDescription)
@@ -212,7 +212,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 { descriptionColumn, newDescription }
             };
 
-            _spreadsheetIO.Append_new_row(MainSheetNames.Cred_card3, cell_values);
+            _spreadsheet_io.Append_new_row(MainSheetNames.Cred_card3, cell_values);
         }
 
         public void Add_new_transaction_to_savings(DateTime newDate, double newAmount)
@@ -220,10 +220,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             var sheet_name = MainSheetNames.Savings;
 
             int first_column_number = 1;
-            int row_number = _spreadsheetIO.Find_first_empty_row_in_column(sheet_name, first_column_number);
+            int row_number = _spreadsheet_io.Find_first_empty_row_in_column(sheet_name, first_column_number);
 
-            _spreadsheetIO.Update_date(sheet_name, row_number, first_column_number, newDate);
-            _spreadsheetIO.Update_amount(sheet_name, row_number, first_column_number + 1, newAmount);
+            _spreadsheet_io.Update_date(sheet_name, row_number, first_column_number, newDate);
+            _spreadsheet_io.Update_amount(sheet_name, row_number, first_column_number + 1, newAmount);
         }
 
         public DateTime Get_next_unplanned_month()
@@ -240,11 +240,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         {
             var bank_record = new BankRecord();
 
-            var row_number_of_last_relevant_payment = _spreadsheetIO.Find_row_number_of_last_row_containing_cell(
+            var row_number_of_last_relevant_payment = _spreadsheet_io.Find_row_number_of_last_row_containing_cell(
                 MainSheetNames.Bank_out,
                 description,
                 BankRecord.DescriptionIndex + 1);
-            var bank_out_row = _spreadsheetIO.Read_specified_row(
+            var bank_out_row = _spreadsheet_io.Read_specified_row(
                 MainSheetNames.Bank_out,
                 row_number_of_last_relevant_payment);
             bank_record.Read_from_spreadsheet_row(bank_out_row);
@@ -260,11 +260,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             const int budgetOutFirstBankRecordColumnNumber = 2;
             const int budgetOutLastBankRecordColumnNumber = 6;
 
-            var row_number_of_budget_item = _spreadsheetIO.Find_row_number_of_last_row_containing_cell(
+            var row_number_of_budget_item = _spreadsheet_io.Find_row_number_of_last_row_containing_cell(
                 MainSheetNames.Budget_out,
                 budgetItemCode,
                 budget_out_code_column);
-            var budget_item_row = _spreadsheetIO.Read_specified_row(
+            var budget_item_row = _spreadsheet_io.Read_specified_row(
                 MainSheetNames.Budget_out,
                 row_number_of_budget_item,
                 budgetOutFirstBankRecordColumnNumber,
@@ -395,12 +395,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 List<int> expectedColumnNumbers)
             where TRecordType : ICSVRecord, new()
         {
-            var row_number = _spreadsheetIO.Find_row_number_of_last_row_with_cell_containing_text(
+            var row_number = _spreadsheet_io.Find_row_number_of_last_row_with_cell_containing_text(
                 sheetName, 
                 textToSearchFor,
                 expectedColumnNumbers);
             var csv_record = new TRecordType();
-            csv_record.Read_from_spreadsheet_row(_spreadsheetIO.Read_specified_row(sheetName, row_number));
+            csv_record.Read_from_spreadsheet_row(_spreadsheet_io.Read_specified_row(sheetName, row_number));
 
             return csv_record;
         }
@@ -413,7 +413,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             int textColumn,
             int codeColumn)
         {
-            _spreadsheetIO.Update_amount_and_text(
+            _spreadsheet_io.Update_amount_and_text(
                 MainSheetNames.Totals,
                 balanceCode,
                 newBalance,

@@ -19,16 +19,16 @@ namespace ConsoleCatchall.Console.Reconciliation
         #region Properties, member vars and constructor
 
         private string _path = "";
-        private string _thirdPartyFileName = "";
-        private string _ownedFileName = "";
-        private ReconciliationType _reconciliationType;
+        private string _third_party_file_name = "";
+        private string _owned_file_name = "";
+        private ReconciliationType _reconciliation_type;
 
-        private ISpreadsheetRepoFactory _spreadsheetFactory = new FakeSpreadsheetRepoFactory();
-        private readonly IInputOutput _inputOutput;
+        private ISpreadsheetRepoFactory _spreadsheet_factory = new FakeSpreadsheetRepoFactory();
+        private readonly IInputOutput _input_output;
 
         public ReconciliationIntro(IInputOutput inputOutput)
         {
-            _inputOutput = inputOutput;
+            _input_output = inputOutput;
         }
 
         #endregion Properties, member vars and constructor
@@ -37,14 +37,14 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         public void Start()
         {
-            _inputOutput.Output_line("");
-            _inputOutput.Output_options(new List<string>
+            _input_output.Output_line("");
+            _input_output.Output_options(new List<string>
             {
                 ReconConsts.Load_pending_csvs,
                 "2. Do actual reconciliation."
             });
 
-            string input = _inputOutput.Get_generic_input(ReconConsts.PendingOrReconciliate);
+            string input = _input_output.Get_generic_input(ReconConsts.PendingOrReconciliate);
 
             switch (input)
             {
@@ -55,8 +55,8 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         public void Decide_on_debug()
         {
-            _inputOutput.Output_line("");
-            _inputOutput.Output_options(new List<string>
+            _input_output.Output_line("");
+            _input_output.Output_options(new List<string>
             {
                 $"1. Debug Mode A: Copy live sheet to debug version in [live location]/{ReconConsts.Backup_sub_folder}, and work on it from there.",
                 $"2. Debug Mode B: Copy sheet from {ReconConsts.Source_debug_spreadsheet_path} to [live location]/{ReconConsts.Backup_sub_folder}, and work on it from there.",
@@ -64,7 +64,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 "4. Work in REAL mode"
             });
 
-            string input = _inputOutput.Get_generic_input(ReconConsts.DebugOrReal);
+            string input = _input_output.Get_generic_input(ReconConsts.DebugOrReal);
 
             WorkingMode working_mode = WorkingMode.DebugA;
             switch (input)
@@ -85,7 +85,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 ReconConsts.Main_spreadsheet_path, 
                 ReconConsts.Backup_sub_folder, 
                 ReconConsts.Debug_spreadsheet_file_name);
-            _spreadsheetFactory = new SpreadsheetRepoFactoryFactory().Get_factory(debug_file_path);
+            _spreadsheet_factory = new SpreadsheetRepoFactoryFactory().Get_factory(debug_file_path);
         }
 
         public void Debug_mode_b()
@@ -95,12 +95,12 @@ namespace ConsoleCatchall.Console.Reconciliation
                 ReconConsts.Main_spreadsheet_path,
                 ReconConsts.Backup_sub_folder,
                 ReconConsts.Debug_spreadsheet_file_name);
-            _spreadsheetFactory = new SpreadsheetRepoFactoryFactory().Get_factory(debug_file_path);
+            _spreadsheet_factory = new SpreadsheetRepoFactoryFactory().Get_factory(debug_file_path);
         }
 
         public void Debug_mode_c()
         {
-            _spreadsheetFactory = new FakeSpreadsheetRepoFactory();
+            _spreadsheet_factory = new FakeSpreadsheetRepoFactory();
         }
 
         private void Real_mode()
@@ -109,28 +109,28 @@ namespace ConsoleCatchall.Console.Reconciliation
             string file_path = Path.Combine(
                 ReconConsts.Main_spreadsheet_path,
                 ReconConsts.Main_spreadsheet_file_name);
-            _spreadsheetFactory = new SpreadsheetRepoFactoryFactory().Get_factory(file_path);
+            _spreadsheet_factory = new SpreadsheetRepoFactoryFactory().Get_factory(file_path);
         }
 
         private void Show_instructions(WorkingMode workingMode)
         {
-            _inputOutput.Output_line("Here's how it works:");
-            _inputOutput.Output_line("                                      ****");
-            _inputOutput.Output_line(ReconConsts.Instructions_line_01);
-            _inputOutput.Output_line("                                      ****");
-            _inputOutput.Output_line(ReconConsts.Instructions_line_02);
-            _inputOutput.Output_line(ReconConsts.Instructions_line_03);
-            _inputOutput.Output_line(ReconConsts.Instructions_line_04);
-            _inputOutput.Output_line("                                      ****");
-            _inputOutput.Output_line(ReconConsts.Instructions_line_05);
-            _inputOutput.Output_line(ReconConsts.Instructions_line_06);
-            _inputOutput.Output_line(ReconConsts.Instructions_line_07);
-            _inputOutput.Output_line(ReconConsts.Instructions_line_08);
-            _inputOutput.Output_line(ReconConsts.Instructions_line_09);
-            _inputOutput.Output_line("                                      ****");
-            _inputOutput.Output_line(ReconConsts.Instructions_line_10);
-            _inputOutput.Output_line(ReconConsts.Instructions_line_11);
-            _inputOutput.Output_line("");
+            _input_output.Output_line("Here's how it works:");
+            _input_output.Output_line("                                      ****");
+            _input_output.Output_line(ReconConsts.Instructions_line_01);
+            _input_output.Output_line("                                      ****");
+            _input_output.Output_line(ReconConsts.Instructions_line_02);
+            _input_output.Output_line(ReconConsts.Instructions_line_03);
+            _input_output.Output_line(ReconConsts.Instructions_line_04);
+            _input_output.Output_line("                                      ****");
+            _input_output.Output_line(ReconConsts.Instructions_line_05);
+            _input_output.Output_line(ReconConsts.Instructions_line_06);
+            _input_output.Output_line(ReconConsts.Instructions_line_07);
+            _input_output.Output_line(ReconConsts.Instructions_line_08);
+            _input_output.Output_line(ReconConsts.Instructions_line_09);
+            _input_output.Output_line("                                      ****");
+            _input_output.Output_line(ReconConsts.Instructions_line_10);
+            _input_output.Output_line(ReconConsts.Instructions_line_11);
+            _input_output.Output_line("");
 
             switch (workingMode)
             {
@@ -143,81 +143,81 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void Show_debug_a_data_message()
         {
-            _inputOutput.Output_line("***********************************************************************");
-            _inputOutput.Output_line("***********************************************************************");
-            _inputOutput.Output_line("***                                                                 ***");
-            _inputOutput.Output_line("***                    WORKING IN DEBUG MODE A!                     ***");
-            _inputOutput.Output_line("***                 DEBUG SPREADSHEET WILL BE USED!                 ***");
-            _inputOutput.Output_line("***                                                                 ***");
-            _inputOutput.Output_line("*** It's an up to date copy of the main spreadsheet. It lives here: ***");
-            _inputOutput.Output_line($"***  {ReconConsts.Main_spreadsheet_path}/{ReconConsts.Backup_sub_folder}  ***");
-            _inputOutput.Output_line("***                                                                 ***");
-            _inputOutput.Output_line("***  You can find debug versions of all csv files and a spreadsheet ***");
-            _inputOutput.Output_line($"***     in [project root]/reconciliation-samples/For debugging     ***");
-            _inputOutput.Output_line("***                                                                 ***");
-            _inputOutput.Output_line("***********************************************************************");
-            _inputOutput.Output_line("***********************************************************************");
-            _inputOutput.Output_line("");
+            _input_output.Output_line("***********************************************************************");
+            _input_output.Output_line("***********************************************************************");
+            _input_output.Output_line("***                                                                 ***");
+            _input_output.Output_line("***                    WORKING IN DEBUG MODE A!                     ***");
+            _input_output.Output_line("***                 DEBUG SPREADSHEET WILL BE USED!                 ***");
+            _input_output.Output_line("***                                                                 ***");
+            _input_output.Output_line("*** It's an up to date copy of the main spreadsheet. It lives here: ***");
+            _input_output.Output_line($"***  {ReconConsts.Main_spreadsheet_path}/{ReconConsts.Backup_sub_folder}  ***");
+            _input_output.Output_line("***                                                                 ***");
+            _input_output.Output_line("***  You can find debug versions of all csv files and a spreadsheet ***");
+            _input_output.Output_line($"***     in [project root]/reconciliation-samples/For debugging     ***");
+            _input_output.Output_line("***                                                                 ***");
+            _input_output.Output_line("***********************************************************************");
+            _input_output.Output_line("***********************************************************************");
+            _input_output.Output_line("");
         }
 
         private void Show_debug_b_data_message()
         {
-            _inputOutput.Output_line("***********************************************************************");
-            _inputOutput.Output_line("***********************************************************************");
-            _inputOutput.Output_line("***                                                                 ***");
-            _inputOutput.Output_line("***                    WORKING IN DEBUG MODE B!                     ***");
-            _inputOutput.Output_line("***                 DEBUG SPREADSHEET WILL BE USED!                 ***");
-            _inputOutput.Output_line("***                                                                 ***");
-            _inputOutput.Output_line("***      We'll copy the spreadsheet from the following folder:      ***");
-            _inputOutput.Output_line($"***                {ReconConsts.Source_debug_spreadsheet_path}                 ***");
-            _inputOutput.Output_line("***              The working copy will be placed here:              ***");
-            _inputOutput.Output_line($"***  {ReconConsts.Main_spreadsheet_path}/{ReconConsts.Backup_sub_folder}  ***");
-            _inputOutput.Output_line("***                                                                 ***");
-            _inputOutput.Output_line("***  You can find debug versions of all csv files and a spreadsheet ***");
-            _inputOutput.Output_line($"***     in [project root]/reconciliation-samples/For debugging     ***");
-            _inputOutput.Output_line("***                                                                 ***");
-            _inputOutput.Output_line("***********************************************************************");
-            _inputOutput.Output_line("***********************************************************************");
-            _inputOutput.Output_line("");
+            _input_output.Output_line("***********************************************************************");
+            _input_output.Output_line("***********************************************************************");
+            _input_output.Output_line("***                                                                 ***");
+            _input_output.Output_line("***                    WORKING IN DEBUG MODE B!                     ***");
+            _input_output.Output_line("***                 DEBUG SPREADSHEET WILL BE USED!                 ***");
+            _input_output.Output_line("***                                                                 ***");
+            _input_output.Output_line("***      We'll copy the spreadsheet from the following folder:      ***");
+            _input_output.Output_line($"***                {ReconConsts.Source_debug_spreadsheet_path}                 ***");
+            _input_output.Output_line("***              The working copy will be placed here:              ***");
+            _input_output.Output_line($"***  {ReconConsts.Main_spreadsheet_path}/{ReconConsts.Backup_sub_folder}  ***");
+            _input_output.Output_line("***                                                                 ***");
+            _input_output.Output_line("***  You can find debug versions of all csv files and a spreadsheet ***");
+            _input_output.Output_line($"***     in [project root]/reconciliation-samples/For debugging     ***");
+            _input_output.Output_line("***                                                                 ***");
+            _input_output.Output_line("***********************************************************************");
+            _input_output.Output_line("***********************************************************************");
+            _input_output.Output_line("");
         }
 
         private void Show_debug_c_data_message()
         {
-            _inputOutput.Output_line("***********************************************************************");
-            _inputOutput.Output_line("***********************************************************************");
-            _inputOutput.Output_line("***                                                                 ***");
-            _inputOutput.Output_line("***                    WORKING IN DEBUG MODE C!                     ***");
-            _inputOutput.Output_line("***                  NO SPREADSHEET WILL BE USED!                   ***");
-            _inputOutput.Output_line("***                                                                 ***");
-            _inputOutput.Output_line("***                 Using fake spreadsheet factory.                 ***");
-            _inputOutput.Output_line("***                                                                 ***");
-            _inputOutput.Output_line("***********************************************************************");
-            _inputOutput.Output_line("***********************************************************************");
-            _inputOutput.Output_line("");
+            _input_output.Output_line("***********************************************************************");
+            _input_output.Output_line("***********************************************************************");
+            _input_output.Output_line("***                                                                 ***");
+            _input_output.Output_line("***                    WORKING IN DEBUG MODE C!                     ***");
+            _input_output.Output_line("***                  NO SPREADSHEET WILL BE USED!                   ***");
+            _input_output.Output_line("***                                                                 ***");
+            _input_output.Output_line("***                 Using fake spreadsheet factory.                 ***");
+            _input_output.Output_line("***                                                                 ***");
+            _input_output.Output_line("***********************************************************************");
+            _input_output.Output_line("***********************************************************************");
+            _input_output.Output_line("");
         }
 
         private void Show_real_data_message()
         {
-            _inputOutput.Output_line("***********************************************************************************");
-            _inputOutput.Output_line("***********************************************************************************");
-            _inputOutput.Output_line("***                                                                             ***");
-            _inputOutput.Output_line("***                            WORKING IN REAL MODE!                            ***");
-            _inputOutput.Output_line("***                      REAL SPREADSHEET WILL BE UPDATED!                      ***");
-            _inputOutput.Output_line("***                                                                             ***");
-            _inputOutput.Output_line("*** (unless you're in .Net Core, in which case you're in debug mode by default) ***");
-            _inputOutput.Output_line("***                                                                             ***");
-            _inputOutput.Output_line("***********************************************************************************");
-            _inputOutput.Output_line("***********************************************************************************");
-            _inputOutput.Output_line("");
+            _input_output.Output_line("***********************************************************************************");
+            _input_output.Output_line("***********************************************************************************");
+            _input_output.Output_line("***                                                                             ***");
+            _input_output.Output_line("***                            WORKING IN REAL MODE!                            ***");
+            _input_output.Output_line("***                      REAL SPREADSHEET WILL BE UPDATED!                      ***");
+            _input_output.Output_line("***                                                                             ***");
+            _input_output.Output_line("*** (unless you're in .Net Core, in which case you're in debug mode by default) ***");
+            _input_output.Output_line("***                                                                             ***");
+            _input_output.Output_line("***********************************************************************************");
+            _input_output.Output_line("***********************************************************************************");
+            _input_output.Output_line("");
         }
 
         private ReconciliationType Get_reconciliaton_type_from_user()
         {
             ReconciliationType result = ReconciliationType.Unknown;
 
-            _inputOutput.Output_line("");
-            _inputOutput.Output_line("What type are your third party and owned files?");
-            _inputOutput.Output_options(new List<string>
+            _input_output.Output_line("");
+            _input_output.Output_line("What type are your third party and owned files?");
+            _input_output.Output_options(new List<string>
             {
                 ReconConsts.Accounting_type_01,
                 ReconConsts.Accounting_type_02,
@@ -225,7 +225,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 ReconConsts.Accounting_type_04,
             });
 
-            string input = _inputOutput.Get_generic_input(ReconConsts.Four_accounting_types);
+            string input = _input_output.Get_generic_input(ReconConsts.Four_accounting_types);
 
             switch (input)
             {
@@ -240,7 +240,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void Get_path_and_file_names()
         {
-            _inputOutput.Output_line("Mathematical dude! Let's do some reconciliating. Type Exit at any time to leave (although to be honest I'm not sure that actually works...)");
+            _input_output.Output_line("Mathematical dude! Let's do some reconciliating. Type Exit at any time to leave (although to be honest I'm not sure that actually works...)");
 
             bool using_defaults = Get_all_file_details();
 
@@ -254,28 +254,28 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void Get_path()
         {
-            _inputOutput.Output_line("");
-            _inputOutput.Output_line("Would you like to enter a file path or use the default?");
-            _inputOutput.Output_options(new List<string>
+            _input_output.Output_line("");
+            _input_output.Output_line("Would you like to enter a file path or use the default?");
+            _input_output.Output_options(new List<string>
             {
                 "1. Enter a path",
                 $"2. Use default ({ReconConsts.Default_file_path})"
             });
 
-            string input = _inputOutput.Get_generic_input(ReconConsts.PathOrDefault);
+            string input = _input_output.Get_generic_input(ReconConsts.PathOrDefault);
 
             switch (input)
             {
-                case "1": _path = _inputOutput.Get_input(ReconConsts.EnterCsvPath); break;
+                case "1": _path = _input_output.Get_input(ReconConsts.EnterCsvPath); break;
                 case "2": _path = ReconConsts.Default_file_path; break;
             }
         }
 
         private void Get_third_party_file_name()
         {
-            _inputOutput.Output_line("");
-            _inputOutput.Output_line("Would you like to enter a file name for your third party csv file, or use a default?");
-            _inputOutput.Output_options(new List<string>
+            _input_output.Output_line("");
+            _input_output.Output_line("Would you like to enter a file name for your third party csv file, or use a default?");
+            _input_output.Output_options(new List<string>
             {
                 "1. Enter a file name",
                 string.Format(ReconConsts.File_name_option_02, ReconConsts.Default_cred_card1_file_name),
@@ -283,14 +283,14 @@ namespace ConsoleCatchall.Console.Reconciliation
                 string.Format(ReconConsts.File_name_option_04, ReconConsts.Default_bank_file_name)
             });
 
-            string input = _inputOutput.Get_generic_input(ReconConsts.Four_file_name_options);
+            string input = _input_output.Get_generic_input(ReconConsts.Four_file_name_options);
 
             switch (input)
             {
-                case "1": _thirdPartyFileName = _inputOutput.Get_input(ReconConsts.EnterThirdPartyFileName); break;
-                case "2": _thirdPartyFileName = ReconConsts.Default_cred_card1_file_name; break;
-                case "3": _thirdPartyFileName = ReconConsts.Default_cred_card2_file_name; break;
-                case "4": _thirdPartyFileName = ReconConsts.Default_bank_file_name; break;
+                case "1": _third_party_file_name = _input_output.Get_input(ReconConsts.EnterThirdPartyFileName); break;
+                case "2": _third_party_file_name = ReconConsts.Default_cred_card1_file_name; break;
+                case "3": _third_party_file_name = ReconConsts.Default_cred_card2_file_name; break;
+                case "4": _third_party_file_name = ReconConsts.Default_bank_file_name; break;
             }
         }
 
@@ -298,9 +298,9 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             bool success = true;
 
-            _inputOutput.Output_line("");
-            _inputOutput.Output_line("Would you like to enter your own file details, or use defaults?");
-            _inputOutput.Output_options(new List<string>
+            _input_output.Output_line("");
+            _input_output.Output_line("Would you like to enter your own file details, or use defaults?");
+            _input_output.Output_options(new List<string>
             {
                 "1. Enter my own file details",
                 ReconConsts.File_details_02,
@@ -309,7 +309,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 ReconConsts.File_details_05,
             });
 
-            string input = _inputOutput.Get_generic_input(ReconConsts.Five_file_details);
+            string input = _input_output.Get_generic_input(ReconConsts.Five_file_details);
 
             success = Set_file_details_according_to_user_input(input);
 
@@ -318,9 +318,9 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void Get_owned_file_name()
         {
-            _inputOutput.Output_line("");
-            _inputOutput.Output_line("Would you like to enter a file name for your own csv file, or use a default?");
-            _inputOutput.Output_options(new List<string>
+            _input_output.Output_line("");
+            _input_output.Output_line("Would you like to enter a file name for your own csv file, or use a default?");
+            _input_output.Output_options(new List<string>
             {
                 "1. Enter a file name",
                 string.Format(ReconConsts.File_option_02, ReconConsts.Default_cred_card1_in_out_file_name),
@@ -329,7 +329,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 string.Format(ReconConsts.File_option_05, ReconConsts.DefaultBankOutFileName),
             });
 
-            string input = _inputOutput.Get_generic_input(ReconConsts.Five_file_options);
+            string input = _input_output.Get_generic_input(ReconConsts.Five_file_options);
 
             Capture_owned_file_name(input);
         }
@@ -340,27 +340,27 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 case "1":
                 {
-                    _ownedFileName = _inputOutput.Get_input(ReconConsts.EnterOwnedFileName);
+                    _owned_file_name = _input_output.Get_input(ReconConsts.EnterOwnedFileName);
                 }
                     break;
                 case "2":
                 {
-                    _ownedFileName = ReconConsts.Default_cred_card1_in_out_file_name;
+                    _owned_file_name = ReconConsts.Default_cred_card1_in_out_file_name;
                 }
                     break;
                 case "3":
                 {
-                    _ownedFileName = ReconConsts.Default_cred_card2_in_out_file_name;
+                    _owned_file_name = ReconConsts.Default_cred_card2_in_out_file_name;
                 }
                     break;
                 case "4":
                 {
-                    _ownedFileName = ReconConsts.DefaultBankInFileName;
+                    _owned_file_name = ReconConsts.DefaultBankInFileName;
                 }
                     break;
                 case "5":
                 {
-                    _ownedFileName = ReconConsts.DefaultBankOutFileName;
+                    _owned_file_name = ReconConsts.DefaultBankOutFileName;
                 }
                     break;
             }
@@ -369,42 +369,42 @@ namespace ConsoleCatchall.Console.Reconciliation
         public bool Set_file_details_according_to_user_input(string input)
         {
             bool success = true;
-            _reconciliationType = ReconciliationType.Unknown;
+            _reconciliation_type = ReconciliationType.Unknown;
 
             switch (input)
             {
                 case "1":
                     {
                         success = false;
-                        _reconciliationType = Get_reconciliaton_type_from_user();
+                        _reconciliation_type = Get_reconciliaton_type_from_user();
                     }
                     break;
                 case "2":
                     {
-                        _ownedFileName = ReconConsts.Default_cred_card1_in_out_file_name;
-                        _thirdPartyFileName = ReconConsts.Default_cred_card1_file_name;
-                        _reconciliationType = ReconciliationType.CredCard1AndCredCard1InOut;
+                        _owned_file_name = ReconConsts.Default_cred_card1_in_out_file_name;
+                        _third_party_file_name = ReconConsts.Default_cred_card1_file_name;
+                        _reconciliation_type = ReconciliationType.CredCard1AndCredCard1InOut;
                     }
                     break;
                 case "3":
                     {
-                        _ownedFileName = ReconConsts.Default_cred_card2_in_out_file_name;
-                        _thirdPartyFileName = ReconConsts.Default_cred_card2_file_name;
-                        _reconciliationType = ReconciliationType.CredCard2AndCredCard2InOut;
+                        _owned_file_name = ReconConsts.Default_cred_card2_in_out_file_name;
+                        _third_party_file_name = ReconConsts.Default_cred_card2_file_name;
+                        _reconciliation_type = ReconciliationType.CredCard2AndCredCard2InOut;
                     }
                     break;
                 case "4":
                     {
-                        _ownedFileName = ReconConsts.DefaultBankInFileName;
-                        _thirdPartyFileName = ReconConsts.Default_bank_file_name;
-                        _reconciliationType = ReconciliationType.BankAndBankIn;
+                        _owned_file_name = ReconConsts.DefaultBankInFileName;
+                        _third_party_file_name = ReconConsts.Default_bank_file_name;
+                        _reconciliation_type = ReconciliationType.BankAndBankIn;
                     }
                     break;
                 case "5":
                     {
-                        _ownedFileName = ReconConsts.DefaultBankOutFileName;
-                        _thirdPartyFileName = ReconConsts.Default_bank_file_name;
-                        _reconciliationType = ReconciliationType.BankAndBankOut;
+                        _owned_file_name = ReconConsts.DefaultBankOutFileName;
+                        _third_party_file_name = ReconConsts.Default_bank_file_name;
+                        _reconciliation_type = ReconciliationType.BankAndBankOut;
                     }
                     break;
             }
@@ -412,10 +412,10 @@ namespace ConsoleCatchall.Console.Reconciliation
             if (success)
             {
                 _path = ReconConsts.Default_file_path;
-                _inputOutput.Output_line("You are using the following defaults:");
-                _inputOutput.Output_line("File path will be " + _path);
-                _inputOutput.Output_line("Third party file name will be " + _thirdPartyFileName + ".csv");
-                _inputOutput.Output_line("Owned file name will be " + _ownedFileName + ".csv");
+                _input_output.Output_line("You are using the following defaults:");
+                _input_output.Output_line("File path will be " + _path);
+                _input_output.Output_line("Third party file name will be " + _third_party_file_name + ".csv");
+                _input_output.Output_line("Owned file name will be " + _owned_file_name + ".csv");
             }
 
             return success;
@@ -433,11 +433,11 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 if (exception.Message.ToUpper() == "EXIT")
                 {
-                    _inputOutput.Output_line("Taking you back to the main screen so you can start again if you want.");
+                    _input_output.Output_line("Taking you back to the main screen so you can start again if you want.");
                 }
                 else
                 {
-                    _inputOutput.Show_error(exception);
+                    _input_output.Show_error(exception);
                 }
             }
         }
@@ -447,8 +447,8 @@ namespace ConsoleCatchall.Console.Reconciliation
             var main_file_paths = new FilePaths
             {
                 Main_path = _path,
-                Third_party_file_name = _thirdPartyFileName,
-                Owned_file_name = _ownedFileName
+                Third_party_file_name = _third_party_file_name,
+                Owned_file_name = _owned_file_name
             };
 
             var reconciliation_interface = Load_correct_files(main_file_paths);
@@ -497,7 +497,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         public void Inject_spreadsheet_factory(ISpreadsheetRepoFactory spreadsheetFactory)
         {
-            _spreadsheetFactory = spreadsheetFactory;
+            _spreadsheet_factory = spreadsheetFactory;
         }
 
         #endregion Debug Spreadsheet Operations
@@ -514,13 +514,13 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
             catch (Exception e)
             {
-                _inputOutput.Output_line(e.Message);
+                _input_output.Output_line(e.Message);
             }
         }
 
         public ReconciliationInterface Load_correct_files(FilePaths mainFilePaths)
         {
-            _inputOutput.Output_line("Loading data...");
+            _input_output.Output_line("Loading data...");
 
             ReconciliationInterface reconciliation_interface = null;
 
@@ -529,11 +529,11 @@ namespace ConsoleCatchall.Console.Reconciliation
                 // NB This is the only function the spreadsheet is used in, until the very end (Reconciliator.Finish, called from
                 // ReconciliationInterface), when another spreadsheet instance gets created by FileIO so it can call 
                 // WriteBackToMainSpreadsheet. Between now and then, everything is done using csv files.
-                var spreadsheet_repo = _spreadsheetFactory.Create_spreadsheet_repo();
+                var spreadsheet_repo = _spreadsheet_factory.Create_spreadsheet_repo();
                 var spreadsheet = new Spreadsheet(spreadsheet_repo);
                 BudgetingMonths budgeting_months = Recursively_ask_for_budgeting_months(spreadsheet);
 
-                switch (_reconciliationType)
+                switch (_reconciliation_type)
                 {
                     case ReconciliationType.BankAndBankIn:
                         {
@@ -573,18 +573,18 @@ namespace ConsoleCatchall.Console.Reconciliation
                         break;
                     default:
                         {
-                            _inputOutput.Output_line("I don't know what files to load! Terminating now.");
+                            _input_output.Output_line("I don't know what files to load! Terminating now.");
                         }
                         break;
                 }
             }
             finally
             {
-                _spreadsheetFactory.Dispose_of_spreadsheet_repo();
+                _spreadsheet_factory.Dispose_of_spreadsheet_repo();
             }
 
-            _inputOutput.Output_line("");
-            _inputOutput.Output_line("");
+            _input_output.Output_line("");
+            _input_output.Output_line("");
 
             return reconciliation_interface;
         }
@@ -598,20 +598,20 @@ namespace ConsoleCatchall.Console.Reconciliation
             var data_loading_info = BankAndBankInData.LoadingInfo;
             data_loading_info.File_paths = mainFilePaths;
 
-            var pending_file_io = new FileIO<BankRecord>(_spreadsheetFactory);
+            var pending_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
             var pending_file = new CSVFile<BankRecord>(pending_file_io);
             pending_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.Pending_file_name);
 
-            _inputOutput.Output_line(ReconConsts.LoadingDataFromPendingFile);
+            _input_output.Output_line(ReconConsts.LoadingDataFromPendingFile);
             // The separator we loaded with had to match the source. Then we convert it here to match its destination.
             pending_file.Load(true, data_loading_info.Default_separator);
-            _inputOutput.Output_line("Converting source line separators...");
+            _input_output.Output_line("Converting source line separators...");
             pending_file.Convert_source_line_separators(data_loading_info.Default_separator, data_loading_info.Loading_separator);
-            _inputOutput.Output_line(ReconConsts.MergingSomeBudgetData);
+            _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
             spreadsheet.Add_budgeted_bank_in_data_to_pending_file(budgetingMonths, pending_file, data_loading_info.Monthly_budget_data);
-            _inputOutput.Output_line("Merging bespoke data with pending file...");
-            BankAndBankIn_MergeBespokeDataWithPendingFile(_inputOutput, spreadsheet, pending_file, budgetingMonths, data_loading_info);
-            _inputOutput.Output_line("Updating source lines for output...");
+            _input_output.Output_line("Merging bespoke data with pending file...");
+            BankAndBankIn_MergeBespokeDataWithPendingFile(_input_output, spreadsheet, pending_file, budgetingMonths, data_loading_info);
+            _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
 
             // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
@@ -620,14 +620,14 @@ namespace ConsoleCatchall.Console.Reconciliation
             // Other budget amounts (like CredCard1 balance) were written directly to the spreadsheet before this too.
             // Now we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
             // Then we write all that data away into the 'owned' csv file (eg BankOutPending.csv).
-            _inputOutput.Output_line("Merging unreconciled rows from spreadsheet with pending and budget data...");
+            _input_output.Output_line("Merging unreconciled rows from spreadsheet with pending and budget data...");
             spreadsheet.Add_unreconciled_rows_to_csv_file(data_loading_info.Sheet_name, pending_file);
-            _inputOutput.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
+            _input_output.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
             pending_file.Write_to_file_as_source_lines(data_loading_info.File_paths.Owned_file_name);
-            _inputOutput.Output_line("...");
+            _input_output.Output_line("...");
             
-            var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheetFactory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
-            var owned_file_io = new FileIO<BankRecord>(_spreadsheetFactory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
+            var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
+            var owned_file_io = new FileIO<BankRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
             var reconciliator = new BankReconciliator(third_party_file_io, owned_file_io, data_loading_info);
             var reconciliation_interface = new ReconciliationInterface(
                 new InputOutput(),
@@ -646,24 +646,24 @@ namespace ConsoleCatchall.Console.Reconciliation
             var data_loading_info = BankAndBankOutData.LoadingInfo;
             data_loading_info.File_paths = mainFilePaths;
 
-            var pending_file_io = new FileIO<BankRecord>(_spreadsheetFactory);
+            var pending_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
             var pending_file = new CSVFile<BankRecord>(pending_file_io);
             pending_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.Pending_file_name);
 
-            _inputOutput.Output_line(ReconConsts.LoadingDataFromPendingFile);
+            _input_output.Output_line(ReconConsts.LoadingDataFromPendingFile);
             // The separator we loaded with had to match the source. Then we convert it here to match its destination.
             pending_file.Load(true, data_loading_info.Default_separator);
-            _inputOutput.Output_line("Converting source line separators...");
+            _input_output.Output_line("Converting source line separators...");
             pending_file.Convert_source_line_separators(data_loading_info.Default_separator, data_loading_info.Loading_separator);
-            _inputOutput.Output_line(ReconConsts.MergingSomeBudgetData);
+            _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
             spreadsheet.Add_budgeted_bank_out_data_to_pending_file(
                 budgetingMonths, 
                 pending_file, 
                 data_loading_info.Monthly_budget_data,
                 data_loading_info.Annual_budget_data);
-            _inputOutput.Output_line("Merging bespoke data with pending file...");
-            BankAndBankOut_MergeBespokeDataWithPendingFile(_inputOutput, spreadsheet, pending_file, budgetingMonths, data_loading_info);
-            _inputOutput.Output_line("Updating source lines for output...");
+            _input_output.Output_line("Merging bespoke data with pending file...");
+            BankAndBankOut_MergeBespokeDataWithPendingFile(_input_output, spreadsheet, pending_file, budgetingMonths, data_loading_info);
+            _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
 
             // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
@@ -672,14 +672,14 @@ namespace ConsoleCatchall.Console.Reconciliation
             // Other budget amounts (like CredCard1 balance) were written directly to the spreadsheet before this too.
             // Now we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
             // Then we write all that data away into the 'owned' csv file (eg BankOutPending.csv).
-            _inputOutput.Output_line("Merging unreconciled rows from spreadsheet with pending and budget data...");
+            _input_output.Output_line("Merging unreconciled rows from spreadsheet with pending and budget data...");
             spreadsheet.Add_unreconciled_rows_to_csv_file(data_loading_info.Sheet_name, pending_file);
-            _inputOutput.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
+            _input_output.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
             pending_file.Write_to_file_as_source_lines(data_loading_info.File_paths.Owned_file_name);
-            _inputOutput.Output_line("...");
+            _input_output.Output_line("...");
 
-            var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheetFactory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
-            var owned_file_io = new FileIO<BankRecord>(_spreadsheetFactory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
+            var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
+            var owned_file_io = new FileIO<BankRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
             var reconciliator = new BankReconciliator(third_party_file_io, owned_file_io, data_loading_info);
             var reconciliation_interface = new ReconciliationInterface(
                 new InputOutput(),
@@ -698,21 +698,21 @@ namespace ConsoleCatchall.Console.Reconciliation
             var data_loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
             data_loading_info.File_paths = mainFilePaths;
 
-            var pending_file_io = new FileIO<CredCard1InOutRecord>(_spreadsheetFactory);
+            var pending_file_io = new FileIO<CredCard1InOutRecord>(_spreadsheet_factory);
             var pending_file = new CSVFile<CredCard1InOutRecord>(pending_file_io);
             pending_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.Pending_file_name);
 
-            _inputOutput.Output_line(ReconConsts.LoadingDataFromPendingFile);
+            _input_output.Output_line(ReconConsts.LoadingDataFromPendingFile);
             // The separator we loaded with had to match the source. Then we convert it here to match its destination.
             pending_file.Load(true, data_loading_info.Default_separator);
-            _inputOutput.Output_line("Converting source line separators...");
+            _input_output.Output_line("Converting source line separators...");
             pending_file.Convert_source_line_separators(data_loading_info.Default_separator, data_loading_info.Loading_separator);
-            _inputOutput.Output_line(ReconConsts.MergingSomeBudgetData);
+            _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
             spreadsheet.Add_budgeted_cred_card1_in_out_data_to_pending_file(budgetingMonths, pending_file, data_loading_info.Monthly_budget_data);
-            _inputOutput.Output_line("Merging bespoke data with pending file...");
+            _input_output.Output_line("Merging bespoke data with pending file...");
             CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile(
-                _inputOutput, spreadsheet, pending_file, budgetingMonths, data_loading_info);
-            _inputOutput.Output_line("Updating source lines for output...");
+                _input_output, spreadsheet, pending_file, budgetingMonths, data_loading_info);
+            _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
             
             // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
@@ -721,14 +721,14 @@ namespace ConsoleCatchall.Console.Reconciliation
             // Other budget amounts (like CredCard1 balance) were written directly to the spreadsheet before this too.
             // Now we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
             // Then we write all that data away into the 'owned' csv file (eg BankOutPending.csv).
-            _inputOutput.Output_line("Merging unreconciled rows from spreadsheet with pending and budget data...");
+            _input_output.Output_line("Merging unreconciled rows from spreadsheet with pending and budget data...");
             spreadsheet.Add_unreconciled_rows_to_csv_file(data_loading_info.Sheet_name, pending_file);
-            _inputOutput.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
+            _input_output.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
             pending_file.Write_to_file_as_source_lines(data_loading_info.File_paths.Owned_file_name);
-            _inputOutput.Output_line("...");
+            _input_output.Output_line("...");
 
-            var third_party_file_io = new FileIO<CredCard1Record>(_spreadsheetFactory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
-            var owned_file_io = new FileIO<CredCard1InOutRecord>(_spreadsheetFactory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
+            var third_party_file_io = new FileIO<CredCard1Record>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
+            var owned_file_io = new FileIO<CredCard1InOutRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
             var reconciliator = new CredCard1Reconciliator(third_party_file_io, owned_file_io);
             var reconciliation_interface = new ReconciliationInterface(
                 new InputOutput(),
@@ -747,21 +747,21 @@ namespace ConsoleCatchall.Console.Reconciliation
             var data_loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
             data_loading_info.File_paths = mainFilePaths;
 
-            var pending_file_io = new FileIO<CredCard2InOutRecord>(_spreadsheetFactory);
+            var pending_file_io = new FileIO<CredCard2InOutRecord>(_spreadsheet_factory);
             var pending_file = new CSVFile<CredCard2InOutRecord>(pending_file_io);
             pending_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.Pending_file_name);
 
-            _inputOutput.Output_line(ReconConsts.LoadingDataFromPendingFile);
+            _input_output.Output_line(ReconConsts.LoadingDataFromPendingFile);
             // The separator we loaded with had to match the source. Then we convert it here to match its destination.
             pending_file.Load(true, data_loading_info.Default_separator);
-            _inputOutput.Output_line("Converting source line separators...");
+            _input_output.Output_line("Converting source line separators...");
             pending_file.Convert_source_line_separators(data_loading_info.Default_separator, data_loading_info.Loading_separator);
-            _inputOutput.Output_line(ReconConsts.MergingSomeBudgetData);
+            _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
             spreadsheet.Add_budgeted_cred_card2_in_out_data_to_pending_file(budgetingMonths, pending_file, data_loading_info.Monthly_budget_data);
-            _inputOutput.Output_line("Merging bespoke data with pending file...");
+            _input_output.Output_line("Merging bespoke data with pending file...");
             CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
-                _inputOutput, spreadsheet, pending_file, budgetingMonths, data_loading_info);
-            _inputOutput.Output_line("Updating source lines for output...");
+                _input_output, spreadsheet, pending_file, budgetingMonths, data_loading_info);
+            _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
 
             // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
@@ -770,14 +770,14 @@ namespace ConsoleCatchall.Console.Reconciliation
             // Other budget amounts (like CredCard1 balance) were written directly to the spreadsheet before this too.
             // Now we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
             // Then we write all that data away into the 'owned' csv file (eg BankOutPending.csv).
-            _inputOutput.Output_line("Merging unreconciled rows from spreadsheet with pending and budget data...");
+            _input_output.Output_line("Merging unreconciled rows from spreadsheet with pending and budget data...");
             spreadsheet.Add_unreconciled_rows_to_csv_file(data_loading_info.Sheet_name, pending_file);
-            _inputOutput.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
+            _input_output.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
             pending_file.Write_to_file_as_source_lines(data_loading_info.File_paths.Owned_file_name);
-            _inputOutput.Output_line("...");
+            _input_output.Output_line("...");
 
-            var third_party_file_io = new FileIO<CredCard2Record>(_spreadsheetFactory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
-            var owned_file_io = new FileIO<CredCard2InOutRecord>(_spreadsheetFactory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
+            var third_party_file_io = new FileIO<CredCard2Record>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
+            var owned_file_io = new FileIO<CredCard2InOutRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
             var reconciliator = new CredCard2Reconciliator(third_party_file_io, owned_file_io);
             var reconciliation_interface = new ReconciliationInterface(
                 new InputOutput(),
@@ -998,7 +998,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
             catch (Exception)
             {
-                string new_month = _inputOutput.Get_input(ReconConsts.CantFindMortgageRow);
+                string new_month = _input_output.Get_input(ReconConsts.CantFindMortgageRow);
                 try
                 {
                     if (!String.IsNullOrEmpty(new_month) && Char.IsDigit(new_month[0]))
@@ -1031,7 +1031,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             if (bad_input)
             {
-                _inputOutput.Output_line(ReconConsts.DefaultUnplannedMonth);
+                _input_output.Output_line(ReconConsts.DefaultUnplannedMonth);
                 next_unplanned_month = default_month;
             }
 
@@ -1042,7 +1042,7 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             string next_unplanned_month_as_string = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(nextUnplannedMonth);
             var request_to_enter_month = String.Format(ReconConsts.EnterMonths, next_unplanned_month_as_string);
-            string month = _inputOutput.Get_input(request_to_enter_month);
+            string month = _input_output.Get_input(request_to_enter_month);
             int result = 0;
 
             try
@@ -1093,7 +1093,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             var confirmation_text = String.Format(ReconConsts.ConfirmMonthInterval, first_month, second_month, month_span);
 
-            return _inputOutput.Get_input(confirmation_text);
+            return _input_output.Get_input(confirmation_text);
         }
 
         private int Handle_zero_month_choice_result(int chosenMonth, ISpreadsheet spreadsheet, int nextUnplannedMonth)
@@ -1101,12 +1101,12 @@ namespace ConsoleCatchall.Console.Reconciliation
             var new_result = chosenMonth;
             if (chosenMonth == 0)
             {
-                var input = _inputOutput.Get_input(ReconConsts.ConfirmBadMonth);
+                var input = _input_output.Get_input(ReconConsts.ConfirmBadMonth);
 
                 if (!String.IsNullOrEmpty(input) && input.ToUpper() == "Y")
                 {
                     new_result = 0;
-                    _inputOutput.Output_line(ReconConsts.ConfirmNoMonthlyBudgeting);
+                    _input_output.Output_line(ReconConsts.ConfirmNoMonthlyBudgeting);
                 }
                 else
                 {

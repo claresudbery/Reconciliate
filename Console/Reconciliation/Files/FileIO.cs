@@ -8,13 +8,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
 {
     internal class FileIO<TRecordType> : IFileIO<TRecordType> where TRecordType : ICSVRecord, new()
     {
-        private readonly ISpreadsheetRepoFactory _spreadsheetFactory;
+        private readonly ISpreadsheetRepoFactory _spreadsheet_factory;
         public string File_path { get; set; }
         public string File_name { get; set; }
 
         public FileIO(ISpreadsheetRepoFactory spreadsheetFactory, string filePath = "", string fileName = "")
         {
-            _spreadsheetFactory = spreadsheetFactory;
+            _spreadsheet_factory = spreadsheetFactory;
             Set_file_paths(filePath, fileName);
         }
 
@@ -56,7 +56,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
 
         public void Write_back_to_main_spreadsheet(ICSVFile<TRecordType> csvFile, string worksheetName)
         {
-            ISpreadsheetRepo spreadsheet_repo = _spreadsheetFactory.Create_spreadsheet_repo();
+            ISpreadsheetRepo spreadsheet_repo = _spreadsheet_factory.Create_spreadsheet_repo();
             var spreadsheet = new Spreadsheet(spreadsheet_repo);
             try
             {

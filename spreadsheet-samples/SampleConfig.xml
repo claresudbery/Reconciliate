@@ -192,11 +192,11 @@
 	<Dividers.Divider_text>divider</Dividers.Divider_text>
 	<Dividers.Expenses>Expenses</Dividers.Expenses>
 	<Dividers.Expenses_total>Expenses Total</Dividers.Expenses_total>
-	<Dividers.SODDS>SODDs</Dividers.SODDS>
+	<Dividers.Sodds>SODDs</Dividers.Sodds>
 	<Dividers.Cred_card1>CredCard1 cred card</Dividers.Cred_card1>
 	<Dividers.Cred_card2>CredCard2 cred card</Dividers.Cred_card2>
 	<Dividers.SODD_total>SODDTotal</Dividers.SODD_total>
-	<Dividers.Annual_SODDS>AnnualSODDs</Dividers.Annual_SODDS>
+	<Dividers.Annual_sodds>AnnualSODDs</Dividers.Annual_sodds>
 	<Dividers.Annual_total>AnnualTotal</Dividers.Annual_total>
 	<Dividers.Date>Date</Dividers.Date>
 	<Dividers.Total>Total</Dividers.Total>

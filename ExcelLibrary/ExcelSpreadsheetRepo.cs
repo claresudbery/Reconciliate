@@ -12,28 +12,28 @@ namespace ExcelLibrary
     {
         // !! Don't use this variable, always use the InnerSpreadsheet property, so you get 
         // the protection re file availability.
-        private readonly HiddenExcelSpreadsheet _innerSpreadsheet;
+        private readonly HiddenExcelSpreadsheet _inner_spreadsheet;
 
         public ExcelSpreadsheetRepo(string spreadsheetFileNameAndPath)
         {
-            _innerSpreadsheet = new HiddenExcelSpreadsheet(spreadsheetFileNameAndPath);
+            _inner_spreadsheet = new HiddenExcelSpreadsheet(spreadsheetFileNameAndPath);
         }
 
         private HiddenExcelSpreadsheet Inner_spreadsheet
         {
             get
             {
-                if (!_innerSpreadsheet.File_available)
+                if (!_inner_spreadsheet.File_available)
                 {
                     throw new Exception("Spreadsheet not available (do you have it open?)");
                 }
-                return _innerSpreadsheet;
+                return _inner_spreadsheet;
             }
         }
 
         public void Dispose()
         {
-            _innerSpreadsheet.Dispose();
+            _inner_spreadsheet.Dispose();
         }
 
         public ICellSet Current_cells(String sheetName)
@@ -202,39 +202,39 @@ namespace ExcelLibrary
 
         private class HiddenExcelSpreadsheet : IDisposable
         {
-            private String _spreadsheetFileNameAndPath;
+            private String _spreadsheet_file_name_and_path;
             private Workbooks _workbooks = null;
             private Workbook _workbook = null;
             private Sheets _worksheets = null;
-            private List<Worksheet> _openedWorksheets = new List<Worksheet>();
-            private Worksheet _currentWorksheet = null;
+            private List<Worksheet> _opened_worksheets = new List<Worksheet>();
+            private Worksheet _current_worksheet = null;
             private Application _application = null;
-            private String _currentSheetName = String.Empty;
-            private bool _fileAvailable = false;
+            private String _current_sheet_name = String.Empty;
+            private bool _file_available = false;
 
             public bool File_available
             {
-                get { return _fileAvailable; }
+                get { return _file_available; }
             }
 
             public HiddenExcelSpreadsheet(String spreadsheetFileNameAndPath)
             {
-                _spreadsheetFileNameAndPath = spreadsheetFileNameAndPath;
-                _fileAvailable = false;
-                if (Is_file_available(_spreadsheetFileNameAndPath))
+                _spreadsheet_file_name_and_path = spreadsheetFileNameAndPath;
+                _file_available = false;
+                if (Is_file_available(_spreadsheet_file_name_and_path))
                 {
-                    _fileAvailable = true;
+                    _file_available = true;
                     _application = new Application();
                     _application.Visible = false;
                     _workbooks = _application.Workbooks;
-                    _workbook = _workbooks.Open(_spreadsheetFileNameAndPath);
+                    _workbook = _workbooks.Open(_spreadsheet_file_name_and_path);
                     _worksheets = _workbook.Sheets;
                 }
             }
 
             public void Dispose()
             {
-                if (_fileAvailable)
+                if (_file_available)
                 {
                     // Cleanup
                     _workbook.Close(false);
@@ -253,7 +253,7 @@ namespace ExcelLibrary
                     while (Marshal.ReleaseComObject(_worksheets) != 0)
                     {
                     }
-                    foreach (var sheet in _openedWorksheets)
+                    foreach (var sheet in _opened_worksheets)
                     {
                         while (Marshal.ReleaseComObject(sheet) != 0)
                         {
@@ -286,15 +286,15 @@ namespace ExcelLibrary
             public Range Current_cells(String sheetName)
             {
                 Open_sheet(sheetName);
-                return _currentWorksheet.Cells;
+                return _current_worksheet.Cells;
             }
 
             private void Open_sheet(String sheetName)
             {
-                _currentWorksheet = (Worksheet) _worksheets[sheetName];
-                if (!_openedWorksheets.Contains(_currentWorksheet))
+                _current_worksheet = (Worksheet) _worksheets[sheetName];
+                if (!_opened_worksheets.Contains(_current_worksheet))
                 {
-                    _openedWorksheets.Add(_currentWorksheet);
+                    _opened_worksheets.Add(_current_worksheet);
                 }
             }
 
@@ -302,7 +302,7 @@ namespace ExcelLibrary
             {
                 Open_sheet(sheetName);
                 var new_row_number = Last_row_number(sheetName) + 1;
-                csvRecord.Populate_spreadsheet_row(new ExcelRange(_currentWorksheet.Cells), new_row_number);
+                csvRecord.Populate_spreadsheet_row(new ExcelRange(_current_worksheet.Cells), new_row_number);
 
                 _workbook.Save();
             }
@@ -314,7 +314,7 @@ namespace ExcelLibrary
 
                 foreach (var cell_value in cellValues)
                 {
-                    _currentWorksheet.Cells[new_row_number, cell_value.Key] = cell_value.Value;
+                    _current_worksheet.Cells[new_row_number, cell_value.Key] = cell_value.Value;
                 }
 
                 _workbook.Save();
@@ -325,13 +325,13 @@ namespace ExcelLibrary
                 Open_sheet(sheetName);
                 var last_row_number = Last_row_number(sheetName);
 
-                var used_range = _currentWorksheet.UsedRange;
+                var used_range = _current_worksheet.UsedRange;
                 var used_columns = used_range.Columns;
                 var num_used_columns = used_columns.Count;
 
                 for (int index = 1; index <= num_used_columns; index++)
                 {
-                    _currentWorksheet.Cells[last_row_number, index] = String.Empty;
+                    _current_worksheet.Cells[last_row_number, index] = String.Empty;
                 }
 
                 _workbook.Save();
@@ -340,7 +340,7 @@ namespace ExcelLibrary
             public int Last_row_number(String sheetName)
             {
                 Open_sheet(sheetName);
-                var cells = _currentWorksheet.Cells;
+                var cells = _current_worksheet.Cells;
                 var special_cells = cells.SpecialCells(XlCellType.xlCellTypeLastCell);
                 return special_cells.Row;
             }
@@ -349,7 +349,7 @@ namespace ExcelLibrary
             {
                 Open_sheet(sheetName);
 
-                var used_range = _currentWorksheet.UsedRange;
+                var used_range = _current_worksheet.UsedRange;
                 Range first_cell_in_column = used_range.Cells[1, columnNumber] as Range;
                 Range last_full_cell_in_column = first_cell_in_column.End[XlDirection.xlDown];
 
@@ -365,7 +365,7 @@ namespace ExcelLibrary
             public ICellRow Read_specified_row(int rowNumber)
             {
                 var values = new List<object>();
-                var used_range = _currentWorksheet.UsedRange;
+                var used_range = _current_worksheet.UsedRange;
                 var used_columns = used_range.Columns;
                 var num_used_columns = used_columns.Count;
 
@@ -386,7 +386,7 @@ namespace ExcelLibrary
             private ICellRow Read_specified_row(int rowNumber, int startColumn, int endColumn)
             {
                 var values = new List<object>();
-                var used_range = _currentWorksheet.UsedRange;
+                var used_range = _current_worksheet.UsedRange;
 
                 for (int column_count = startColumn; column_count <= endColumn; column_count++)
                 {
@@ -399,7 +399,7 @@ namespace ExcelLibrary
             private Object Read_specified_cell(String sheetName, int row, int column)
             {
                 Open_sheet(sheetName);
-                var used_range = _currentWorksheet.UsedRange;
+                var used_range = _current_worksheet.UsedRange;
                 var cell_value = (used_range.Cells[row, column] as Range)?.Value2;
                 return cell_value;
             }
@@ -413,7 +413,7 @@ namespace ExcelLibrary
 
                 foreach (var csv_record in ordered_records)
                 {
-                    csv_record.Populate_spreadsheet_row(new ExcelRange(_currentWorksheet.Cells), new_row_number);
+                    csv_record.Populate_spreadsheet_row(new ExcelRange(_current_worksheet.Cells), new_row_number);
                     new_row_number++;
                 }
 
@@ -431,12 +431,12 @@ namespace ExcelLibrary
                 if (cell_containing_last_target_text == null)
                 {
                     throw new Exception(String.Format(ReconConsts.MissingCodeInWorksheet, targetCellText,
-                        _currentWorksheet.Name));
+                        _current_worksheet.Name));
                 }
                 if (cell_containing_last_target_text.Column != expectedColumnNumber)
                 {
                     throw new Exception(String.Format(ReconConsts.CodeInWrongPlace, targetCellText,
-                        _currentWorksheet.Name));
+                        _current_worksheet.Name));
                 }
 
                 return cell_containing_last_target_text.Row;
@@ -453,12 +453,12 @@ namespace ExcelLibrary
                 if (cell_containing_last_target_text == null)
                 {
                     throw new Exception(String.Format(ReconConsts.MissingCodeInWorksheet, targetSubText,
-                        _currentWorksheet.Name));
+                        _current_worksheet.Name));
                 }
                 if (!expectedColumnNumbers.Contains(cell_containing_last_target_text.Column))
                 {
                     throw new Exception(String.Format(ReconConsts.CodeInWrongPlace, targetSubText,
-                        _currentWorksheet.Name));
+                        _current_worksheet.Name));
                 }
 
                 return cell_containing_last_target_text.Row;
@@ -475,12 +475,12 @@ namespace ExcelLibrary
                 if (cell_containing_last_target_text == null)
                 {
                     throw new Exception(String.Format(ReconConsts.MissingCodeInWorksheet, targetCellText,
-                        _currentWorksheet.Name));
+                        _current_worksheet.Name));
                 }
                 if (cell_containing_last_target_text.Column != expectedColumnNumber)
                 {
                     throw new Exception(String.Format(ReconConsts.CodeInWrongPlace, targetCellText,
-                        _currentWorksheet.Name));
+                        _current_worksheet.Name));
                 }
 
                 return cell_containing_last_target_text.Row;
@@ -488,7 +488,7 @@ namespace ExcelLibrary
 
             private Range Find_first_cell_containing_text(string textToSearchFor)
             {
-                var used_range = _currentWorksheet.UsedRange;
+                var used_range = _current_worksheet.UsedRange;
                 return used_range.Find(textToSearchFor, Type.Missing,
                     XlFindLookIn.xlValues, XlLookAt.xlWhole,
                     XlSearchOrder.xlByRows, XlSearchDirection.xlNext, false,
@@ -500,7 +500,7 @@ namespace ExcelLibrary
                 Range current_find = null;
                 Range first_find = null;
                 Range last_find = null;
-                var used_range = _currentWorksheet.UsedRange;
+                var used_range = _current_worksheet.UsedRange;
 
                 if (fullTextMatch)
                 {
@@ -542,7 +542,7 @@ namespace ExcelLibrary
             {
                 Open_sheet(sheetName);
 
-                var used_range = _currentWorksheet.UsedRange;
+                var used_range = _current_worksheet.UsedRange;
                 for (int row_count = lastRowNumber; row_count >= firstRowNumber; row_count--)
                 {
                     var first_cell_in_row = (Range)used_range.Cells[row_count, 1];
@@ -594,7 +594,7 @@ namespace ExcelLibrary
             private void Update_cell(string sheetName, int row, int column, Object newValue)
             {
                 Open_sheet(sheetName);
-                _currentWorksheet.Cells[row, column] = newValue;
+                _current_worksheet.Cells[row, column] = newValue;
                 _workbook.Save();
             }
 
@@ -631,8 +631,8 @@ namespace ExcelLibrary
                 int row = Find_row_number_of_last_row_containing_cell(sheetName, amountCode, codeColumn);
 
                 Open_sheet(sheetName);
-                _currentWorksheet.Cells[row, amountColumn] = newAmount;
-                _currentWorksheet.Cells[row, textColumn] = newText;
+                _current_worksheet.Cells[row, amountColumn] = newAmount;
+                _current_worksheet.Cells[row, textColumn] = newText;
                 _workbook.Save();
             }
 
@@ -676,14 +676,14 @@ namespace ExcelLibrary
             {
                 Open_sheet(sheetName);
 
-                var used_range = _currentWorksheet.UsedRange;
+                var used_range = _current_worksheet.UsedRange;
                 var first_cell_in_row = (Range)used_range.Cells[newRowNumber, 1];
                 var row_to_insert_before = first_cell_in_row.EntireRow;
                 row_to_insert_before.Insert(XlInsertShiftDirection.xlShiftDown);
 
                 foreach (var cell_value in cellValues)
                 {
-                    _currentWorksheet.Cells[newRowNumber, cell_value.Key] = cell_value.Value;
+                    _current_worksheet.Cells[newRowNumber, cell_value.Key] = cell_value.Value;
                 }
 
                 _workbook.Save();
