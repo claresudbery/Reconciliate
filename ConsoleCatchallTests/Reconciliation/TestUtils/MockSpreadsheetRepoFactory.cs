@@ -6,9 +6,9 @@ namespace ConsoleCatchallTests.Reconciliation.TestUtils
     {
         private ISpreadsheetRepo _mock_spreadsheet;
 
-        public MockSpreadsheetRepoFactory(ISpreadsheetRepo mockSpreadsheet)
+        public MockSpreadsheetRepoFactory(ISpreadsheetRepo mock_spreadsheet)
         {
-            _mock_spreadsheet = mockSpreadsheet;
+            _mock_spreadsheet = mock_spreadsheet;
         }
 
         public ISpreadsheetRepo Create_spreadsheet_repo()

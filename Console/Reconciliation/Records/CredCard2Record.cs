@@ -29,9 +29,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public const int AmountSpreadsheetIndex = CredCard2InOutRecord.MatchOffset + 1;
         public const int DescriptionSpreadsheetIndex = CredCard2InOutRecord.MatchOffset + 2;
 
-        public void Create_from_match(DateTime date, double amount, string type, string description, int extraInfo, ICSVRecord matchedRecord)
+        public void Create_from_match(DateTime date, double amount, string type, string description, int extra_info, ICSVRecord matched_record)
         {
-            Match = matchedRecord;
+            Match = matched_record;
             Matched = true;
 
             Date = date;
@@ -39,11 +39,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             Description = description;
         }
 
-        public void Load(string csvLine, char? overrideSeparator = null)
+        public void Load(string csv_line, char? override_separator = null)
         {
-            csvLine = csvLine.Replace_commas_surrounded_by_spaces();
-            Source_line = csvLine;
-            var values = csvLine.Split(_separator);
+            csv_line = csv_line.Replace_commas_surrounded_by_spaces();
+            Source_line = csv_line;
+            var values = csv_line.Split(_separator);
             values = StringHelper.Make_sure_there_are_at_least_enough_string_values(_expected_number_of_fields_per_row, values);
 
             Date = values[DateIndex] != "" && values[DateIndex].Is_numeric()
@@ -74,15 +74,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 : values[3].Trim_amount(); 
         }
 
-        public string To_csv(bool formatCurrency = true)
+        public string To_csv(bool format_currency = true)
         {
-            return To_string(',', formatCurrency);
+            return To_string(',', format_currency);
         }
 
-        public string To_string(char separator = ',', bool formatCurrency = true)
+        public string To_string(char separator = ',', bool format_currency = true)
         {
             return Date.ToString(@"dd\/MM\/yyyy") + separator
-                + Amount.To_csv_string(formatCurrency) + separator
+                + Amount.To_csv_string(format_currency) + separator
                 + Description.Encase_in_escaped_quotes_if_not_already_encased();
         }
 
@@ -97,18 +97,18 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             };
         }
 
-        public void Populate_spreadsheet_row(ICellSet cellSet, int rowNumber)
+        public void Populate_spreadsheet_row(ICellSet cell_set, int row_number)
         {
-            cellSet.Populate_cell(rowNumber, DateSpreadsheetIndex + 1, Date);
-            cellSet.Populate_cell(rowNumber, AmountSpreadsheetIndex + 1, Amount);
-            cellSet.Populate_cell(rowNumber, DescriptionSpreadsheetIndex + 1, Description);
+            cell_set.Populate_cell(row_number, DateSpreadsheetIndex + 1, Date);
+            cell_set.Populate_cell(row_number, AmountSpreadsheetIndex + 1, Amount);
+            cell_set.Populate_cell(row_number, DescriptionSpreadsheetIndex + 1, Description);
         }
 
-        public void Read_from_spreadsheet_row(ICellRow cellSet)
+        public void Read_from_spreadsheet_row(ICellRow cell_set)
         {
-            Date = DateTime.FromOADate((double)cellSet.Read_cell(DateIndex));
-            Amount = (Double)cellSet.Read_cell(AmountIndex);
-            Description = (String)cellSet.Read_cell(DescriptionIndex);
+            Date = DateTime.FromOADate((double)cell_set.Read_cell(DateIndex));
+            Amount = (Double)cell_set.Read_cell(AmountIndex);
+            Description = (String)cell_set.Read_cell(DescriptionIndex);
         }
 
         public bool Main_amount_is_negative()
@@ -134,9 +134,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             return Amount;
         }
 
-        public void Change_main_amount(double newValue)
+        public void Change_main_amount(double new_value)
         {
-            Amount = newValue;
+            Amount = new_value;
         }
 
         public string Transaction_type()
@@ -149,9 +149,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             return 0;
         }
 
-        public ICSVRecord With_date(DateTime newDate)
+        public ICSVRecord With_date(DateTime new_date)
         {
-            Date = newDate;
+            Date = new_date;
             return this;
         }
 
@@ -166,9 +166,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             };
         }
 
-        public void Update_source_line_for_output(char outputSeparator)
+        public void Update_source_line_for_output(char output_separator)
         {
-            Source_line = To_string(outputSeparator);
+            Source_line = To_string(output_separator);
         }
 
         public void Reconcile()
@@ -176,9 +176,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             // Do nothing.
         }
 
-        public void Convert_source_line_separators(char originalSeparator, char newSeparator)
+        public void Convert_source_line_separators(char original_separator, char new_separator)
         {
-            Source_line = Source_line.Convert_separators(originalSeparator, newSeparator);
+            Source_line = Source_line.Convert_separators(original_separator, new_separator);
         }
     }
 }

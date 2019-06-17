@@ -21,10 +21,10 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _output_all_lines_recorded_descriptions.Add(options.Select(x => x.Console_lines[0].Description_string).ToList());
         }
 
-        public void Output_all_lines(List<ConsoleLine> consoleLines)
+        public void Output_all_lines(List<ConsoleLine> console_lines)
         {
-            _mock_input_output.Object.Output_all_lines(consoleLines);
-            _output_all_lines_recorded_console_lines.AddRange(consoleLines);
+            _mock_input_output.Object.Output_all_lines(console_lines);
+            _output_all_lines_recorded_console_lines.AddRange(console_lines);
         }
 
         public void Output_options(List<string> options)
@@ -37,9 +37,9 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _mock_input_output.Object.Output_all_lines_except_the_first(options);
         }
 
-        public void Output_line(List<ConsoleSnippet> consoleSnippets)
+        public void Output_line(List<ConsoleSnippet> console_snippets)
         {
-            _mock_input_output.Object.Output_line(consoleSnippets);
+            _mock_input_output.Object.Output_line(console_snippets);
         }
 
         public void Output_line(ConsoleLine line)
@@ -65,19 +65,19 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _output_single_line_recorded_messages.Add(text);
         }
 
-        public void Output_string_list(List<string> stringList)
+        public void Output_string_list(List<string> string_list)
         {
-            _mock_input_output.Object.Output_string_list(stringList);
+            _mock_input_output.Object.Output_string_list(string_list);
         }
 
-        public string Get_input(string explanatoryMessage, string debugDescription = "")
+        public string Get_input(string explanatory_message, string debug_description = "")
         {
-            return _mock_input_output.Object.Get_input(explanatoryMessage, debugDescription);
+            return _mock_input_output.Object.Get_input(explanatory_message, debug_description);
         }
 
-        public string Get_generic_input(string debugDescription)
+        public string Get_generic_input(string debug_description)
         {
-            return _mock_input_output.Object.Get_generic_input(debugDescription);
+            return _mock_input_output.Object.Get_generic_input(debug_description);
         }
 
         public void Show_error(Exception exception)

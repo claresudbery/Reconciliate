@@ -16,11 +16,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             File = file;
         }
 
-        public void Load(bool loadFile = true,
-            char? overrideSeparator = null,
-            bool orderOnLoad = true)
+        public void Load(bool load_file = true,
+            char? override_separator = null,
+            bool order_on_load = true)
         {
-            File.Load(loadFile, overrideSeparator, orderOnLoad);
+            File.Load(load_file, override_separator, order_on_load);
             Refresh_file_contents();
         }
 
@@ -34,16 +34,16 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             File.Remove_records(x => x.Code != Codes.Expenses);
         }
 
-        public void Copy_to_pending_file(ICSVFile<BankRecord> pendingFile)
+        public void Copy_to_pending_file(ICSVFile<BankRecord> pending_file)
         {
             List<BankRecord> records_as_bank_records = File.Records.Select(x => x.Convert_to_bank_record()).ToList();
             foreach (var bank_record in records_as_bank_records)
             {
-                pendingFile.Records.Add(bank_record);
+                pending_file.Records.Add(bank_record);
             }
         }
 
-        public void Update_expected_income_record_when_matched(ICSVRecord sourceRecord, ICSVRecord match)
+        public void Update_expected_income_record_when_matched(ICSVRecord source_record, ICSVRecord match)
         {
             if (File.Records != null)
             {
@@ -56,10 +56,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
                 {
                     var matching_record = matching_records.ElementAt(0);
 
-                    matching_record.Match = sourceRecord;
+                    matching_record.Match = source_record;
                     matching_record.Matched = true;
-                    matching_record.Date_paid = sourceRecord.Date;
-                    matching_record.Total_paid = sourceRecord.Main_amount();
+                    matching_record.Date_paid = source_record.Date;
+                    matching_record.Total_paid = source_record.Main_amount();
                 }
             }
         }

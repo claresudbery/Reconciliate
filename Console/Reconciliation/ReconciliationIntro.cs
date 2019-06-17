@@ -26,9 +26,9 @@ namespace ConsoleCatchall.Console.Reconciliation
         private ISpreadsheetRepoFactory _spreadsheet_factory = new FakeSpreadsheetRepoFactory();
         private readonly IInputOutput _input_output;
 
-        public ReconciliationIntro(IInputOutput inputOutput)
+        public ReconciliationIntro(IInputOutput input_output)
         {
-            _input_output = inputOutput;
+            _input_output = input_output;
         }
 
         #endregion Properties, member vars and constructor
@@ -112,7 +112,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             _spreadsheet_factory = new SpreadsheetRepoFactoryFactory().Get_factory(file_path);
         }
 
-        private void Show_instructions(WorkingMode workingMode)
+        private void Show_instructions(WorkingMode working_mode)
         {
             _input_output.Output_line("Here's how it works:");
             _input_output.Output_line("                                      ****");
@@ -132,7 +132,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             _input_output.Output_line(ReconConsts.Instructions_line_11);
             _input_output.Output_line("");
 
-            switch (workingMode)
+            switch (working_mode)
             {
                 case WorkingMode.DebugA: Show_debug_a_data_message(); break;
                 case WorkingMode.DebugB: Show_debug_b_data_message(); break;
@@ -421,11 +421,11 @@ namespace ConsoleCatchall.Console.Reconciliation
             return success;
         }
 
-        public void Do_actual_reconciliation(WorkingMode workingMode)
+        public void Do_actual_reconciliation(WorkingMode working_mode)
         {
             try
             {
-                Show_instructions(workingMode);
+                Show_instructions(working_mode);
                 Get_path_and_file_names();
                 Do_matching();
             }
@@ -459,13 +459,13 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         #region Debug Spreadsheet Operations
 
-        public void Copy_source_spreadsheet_to_debug_spreadsheet(string sourceSpreadsheetPath, string mainSpreadsheetPath)
+        public void Copy_source_spreadsheet_to_debug_spreadsheet(string source_spreadsheet_path, string main_spreadsheet_path)
         {
-            string source_file_path = Path.Combine(sourceSpreadsheetPath, ReconConsts.Main_spreadsheet_file_name);
+            string source_file_path = Path.Combine(source_spreadsheet_path, ReconConsts.Main_spreadsheet_file_name);
             if (File.Exists(source_file_path))
             {
                 string debug_file_path = Path.Combine(
-                    mainSpreadsheetPath, 
+                    main_spreadsheet_path, 
                     ReconConsts.Backup_sub_folder,
                     ReconConsts.Debug_spreadsheet_file_name);
                 File.Copy(source_file_path, debug_file_path, true);
@@ -476,16 +476,16 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public void Create_backup_of_real_spreadsheet(IClock clock, string spreadsheetPath)
+        public void Create_backup_of_real_spreadsheet(IClock clock, string spreadsheet_path)
         {
-            string source_file_path = Path.Combine(spreadsheetPath, ReconConsts.Main_spreadsheet_file_name);
+            string source_file_path = Path.Combine(spreadsheet_path, ReconConsts.Main_spreadsheet_file_name);
             if (File.Exists(source_file_path))
             {
                 string file_name_prefix = $"{ReconConsts.Backup_sub_folder}\\real_backup_";
                 file_name_prefix = file_name_prefix + clock.Now_date_time();
                 file_name_prefix = file_name_prefix.Replace(" ", "_").Replace(":", "-").Replace("/", "-");
                 string backup_file_name = file_name_prefix + "_" + ReconConsts.Main_spreadsheet_file_name;
-                string backup_file_path = spreadsheetPath + "\\" + backup_file_name;
+                string backup_file_path = spreadsheet_path + "\\" + backup_file_name;
 
                 File.Copy(source_file_path, backup_file_path, true);
             }
@@ -495,9 +495,9 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public void Inject_spreadsheet_factory(ISpreadsheetRepoFactory spreadsheetFactory)
+        public void Inject_spreadsheet_factory(ISpreadsheetRepoFactory spreadsheet_factory)
         {
-            _spreadsheet_factory = spreadsheetFactory;
+            _spreadsheet_factory = spreadsheet_factory;
         }
 
         #endregion Debug Spreadsheet Operations
@@ -518,7 +518,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public ReconciliationInterface Load_correct_files(FilePaths mainFilePaths)
+        public ReconciliationInterface Load_correct_files(FilePaths main_file_paths)
         {
             _input_output.Output_line("Loading data...");
 
@@ -541,7 +541,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                                 Load_bank_and_bank_in(
                                     spreadsheet,
                                     budgeting_months,
-                                    mainFilePaths);
+                                    main_file_paths);
                         }
                         break;
                     case ReconciliationType.BankAndBankOut:
@@ -550,7 +550,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                                 Load_bank_and_bank_out(
                                     spreadsheet,
                                     budgeting_months,
-                                    mainFilePaths);
+                                    main_file_paths);
                         }
                         break;
                     case ReconciliationType.CredCard1AndCredCard1InOut:
@@ -559,7 +559,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                                 Load_cred_card1_and_cred_card1_in_out(
                                     spreadsheet,
                                     budgeting_months,
-                                    mainFilePaths);
+                                    main_file_paths);
                         }
                         break;
                     case ReconciliationType.CredCard2AndCredCard2InOut:
@@ -568,7 +568,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                                 Load_cred_card2_and_cred_card2_in_out(
                                     spreadsheet,
                                     budgeting_months,
-                                    mainFilePaths);
+                                    main_file_paths);
                         }
                         break;
                     default:
@@ -592,11 +592,11 @@ namespace ConsoleCatchall.Console.Reconciliation
         public ReconciliationInterface
             Load_bank_and_bank_in(
                 ISpreadsheet spreadsheet,
-                BudgetingMonths budgetingMonths,
-                FilePaths mainFilePaths)
+                BudgetingMonths budgeting_months,
+                FilePaths main_file_paths)
         {
             var data_loading_info = BankAndBankInData.LoadingInfo;
-            data_loading_info.File_paths = mainFilePaths;
+            data_loading_info.File_paths = main_file_paths;
 
             var pending_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
             var pending_file = new CSVFile<BankRecord>(pending_file_io);
@@ -608,9 +608,9 @@ namespace ConsoleCatchall.Console.Reconciliation
             _input_output.Output_line("Converting source line separators...");
             pending_file.Convert_source_line_separators(data_loading_info.Default_separator, data_loading_info.Loading_separator);
             _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
-            spreadsheet.Add_budgeted_bank_in_data_to_pending_file(budgetingMonths, pending_file, data_loading_info.Monthly_budget_data);
+            spreadsheet.Add_budgeted_bank_in_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
             _input_output.Output_line("Merging bespoke data with pending file...");
-            BankAndBankIn_MergeBespokeDataWithPendingFile(_input_output, spreadsheet, pending_file, budgetingMonths, data_loading_info);
+            BankAndBankIn_MergeBespokeDataWithPendingFile(_input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
             _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
 
@@ -640,11 +640,11 @@ namespace ConsoleCatchall.Console.Reconciliation
         public ReconciliationInterface
             Load_bank_and_bank_out(
                 ISpreadsheet spreadsheet,
-                BudgetingMonths budgetingMonths,
-                FilePaths mainFilePaths)
+                BudgetingMonths budgeting_months,
+                FilePaths main_file_paths)
         {
             var data_loading_info = BankAndBankOutData.LoadingInfo;
-            data_loading_info.File_paths = mainFilePaths;
+            data_loading_info.File_paths = main_file_paths;
 
             var pending_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
             var pending_file = new CSVFile<BankRecord>(pending_file_io);
@@ -657,12 +657,12 @@ namespace ConsoleCatchall.Console.Reconciliation
             pending_file.Convert_source_line_separators(data_loading_info.Default_separator, data_loading_info.Loading_separator);
             _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
             spreadsheet.Add_budgeted_bank_out_data_to_pending_file(
-                budgetingMonths, 
+                budgeting_months, 
                 pending_file, 
                 data_loading_info.Monthly_budget_data,
                 data_loading_info.Annual_budget_data);
             _input_output.Output_line("Merging bespoke data with pending file...");
-            BankAndBankOut_MergeBespokeDataWithPendingFile(_input_output, spreadsheet, pending_file, budgetingMonths, data_loading_info);
+            BankAndBankOut_MergeBespokeDataWithPendingFile(_input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
             _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
 
@@ -692,11 +692,11 @@ namespace ConsoleCatchall.Console.Reconciliation
         public ReconciliationInterface
             Load_cred_card1_and_cred_card1_in_out(
                 ISpreadsheet spreadsheet,
-                BudgetingMonths budgetingMonths,
-                FilePaths mainFilePaths)
+                BudgetingMonths budgeting_months,
+                FilePaths main_file_paths)
         {
             var data_loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
-            data_loading_info.File_paths = mainFilePaths;
+            data_loading_info.File_paths = main_file_paths;
 
             var pending_file_io = new FileIO<CredCard1InOutRecord>(_spreadsheet_factory);
             var pending_file = new CSVFile<CredCard1InOutRecord>(pending_file_io);
@@ -708,10 +708,10 @@ namespace ConsoleCatchall.Console.Reconciliation
             _input_output.Output_line("Converting source line separators...");
             pending_file.Convert_source_line_separators(data_loading_info.Default_separator, data_loading_info.Loading_separator);
             _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
-            spreadsheet.Add_budgeted_cred_card1_in_out_data_to_pending_file(budgetingMonths, pending_file, data_loading_info.Monthly_budget_data);
+            spreadsheet.Add_budgeted_cred_card1_in_out_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
             _input_output.Output_line("Merging bespoke data with pending file...");
             CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile(
-                _input_output, spreadsheet, pending_file, budgetingMonths, data_loading_info);
+                _input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
             _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
             
@@ -741,11 +741,11 @@ namespace ConsoleCatchall.Console.Reconciliation
         public ReconciliationInterface
             Load_cred_card2_and_cred_card2_in_out(
                 ISpreadsheet spreadsheet,
-                BudgetingMonths budgetingMonths,
-                FilePaths mainFilePaths)
+                BudgetingMonths budgeting_months,
+                FilePaths main_file_paths)
         {
             var data_loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
-            data_loading_info.File_paths = mainFilePaths;
+            data_loading_info.File_paths = main_file_paths;
 
             var pending_file_io = new FileIO<CredCard2InOutRecord>(_spreadsheet_factory);
             var pending_file = new CSVFile<CredCard2InOutRecord>(pending_file_io);
@@ -757,10 +757,10 @@ namespace ConsoleCatchall.Console.Reconciliation
             _input_output.Output_line("Converting source line separators...");
             pending_file.Convert_source_line_separators(data_loading_info.Default_separator, data_loading_info.Loading_separator);
             _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
-            spreadsheet.Add_budgeted_cred_card2_in_out_data_to_pending_file(budgetingMonths, pending_file, data_loading_info.Monthly_budget_data);
+            spreadsheet.Add_budgeted_cred_card2_in_out_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
             _input_output.Output_line("Merging bespoke data with pending file...");
             CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
-                _input_output, spreadsheet, pending_file, budgetingMonths, data_loading_info);
+                _input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
             _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
 
@@ -788,13 +788,13 @@ namespace ConsoleCatchall.Console.Reconciliation
         }
 
         public void BankAndBankIn_MergeBespokeDataWithPendingFile(
-                IInputOutput inputOutput,
+                IInputOutput input_output,
                 ISpreadsheet spreadsheet,
-                ICSVFile<BankRecord> pendingFile,
-                BudgetingMonths budgetingMonths,
-                DataLoadingInformation dataLoadingInfo)
+                ICSVFile<BankRecord> pending_file,
+                BudgetingMonths budgeting_months,
+                DataLoadingInformation data_loading_info)
         {
-            inputOutput.Output_line(ReconConsts.Loading_expenses);
+            input_output.Output_line(ReconConsts.Loading_expenses);
             var expected_income_file_io = new FileIO<ExpectedIncomeRecord>(new FakeSpreadsheetRepoFactory());
             var expected_income_csv_file = new CSVFile<ExpectedIncomeRecord>(expected_income_file_io);
             expected_income_csv_file.Load(false);
@@ -802,76 +802,76 @@ namespace ConsoleCatchall.Console.Reconciliation
             spreadsheet.Add_unreconciled_rows_to_csv_file<ExpectedIncomeRecord>(MainSheetNames.Expected_in, expected_income_file.File);
             expected_income_csv_file.Populate_source_records_from_records();
             expected_income_file.Filter_for_employer_expenses_only();
-            expected_income_file.Copy_to_pending_file(pendingFile);
+            expected_income_file.Copy_to_pending_file(pending_file);
             expected_income_csv_file.Populate_records_from_original_file_load();
         }
 
         public void BankAndBankOut_MergeBespokeDataWithPendingFile(
-                IInputOutput inputOutput,
+                IInputOutput input_output,
                 ISpreadsheet spreadsheet,
-                ICSVFile<BankRecord> pendingFile,
-                BudgetingMonths budgetingMonths,
-                DataLoadingInformation dataLoadingInfo)
+                ICSVFile<BankRecord> pending_file,
+                BudgetingMonths budgeting_months,
+                DataLoadingInformation data_loading_info)
         {
             BankAndBankOut_AddMostRecentCreditCardDirectDebits(
-                inputOutput,
+                input_output,
                 spreadsheet,
-                pendingFile,
+                pending_file,
                 ReconConsts.Cred_card1_name,
                 ReconConsts.Cred_card1_dd_description);
 
             BankAndBankOut_AddMostRecentCreditCardDirectDebits(
-                inputOutput,
+                input_output,
                 spreadsheet,
-                (ICSVFile<BankRecord>)pendingFile,
+                (ICSVFile<BankRecord>)pending_file,
                 ReconConsts.Cred_card2_name,
                 ReconConsts.Cred_card2_dd_description);
         }
 
         private void BankAndBankOut_AddMostRecentCreditCardDirectDebits(
-            IInputOutput inputOutput,
+            IInputOutput input_output,
             ISpreadsheet spreadsheet,
-            ICSVFile<BankRecord> pendingFile,
-            string credCardName,
-            string directDebitDescription)
+            ICSVFile<BankRecord> pending_file,
+            string cred_card_name,
+            string direct_debit_description)
         {
             var most_recent_cred_card_direct_debit = spreadsheet.Get_most_recent_row_containing_text<BankRecord>(
                 MainSheetNames.Bank_out,
-                directDebitDescription,
+                direct_debit_description,
                 new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn });
 
             var next_date = most_recent_cred_card_direct_debit.Date.AddMonths(1);
-            var input = inputOutput.Get_input(string.Format(
+            var input = input_output.Get_input(string.Format(
                 ReconConsts.AskForCredCardDirectDebit,
-                credCardName,
+                cred_card_name,
                 next_date.ToShortDateString()));
             while (input != "0")
             {
                 double amount;
                 if (double.TryParse(input, out amount))
                 {
-                    pendingFile.Records.Add(new BankRecord
+                    pending_file.Records.Add(new BankRecord
                     {
                         Date = next_date,
-                        Description = directDebitDescription,
+                        Description = direct_debit_description,
                         Type = "POS",
                         Unreconciled_amount = amount
                     });
                 }
                 next_date = next_date.Date.AddMonths(1);
-                input = inputOutput.Get_input(string.Format(
+                input = input_output.Get_input(string.Format(
                     ReconConsts.AskForCredCardDirectDebit,
-                    credCardName,
+                    cred_card_name,
                     next_date.ToShortDateString()));
             }
         }
 
         public void CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile(
-                IInputOutput inputOutput,
+                IInputOutput input_output,
                 ISpreadsheet spreadsheet,
-                ICSVFile<CredCard1InOutRecord> pendingFile,
-                BudgetingMonths budgetingMonths,
-                DataLoadingInformation dataLoadingInfo)
+                ICSVFile<CredCard1InOutRecord> pending_file,
+                BudgetingMonths budgeting_months,
+                DataLoadingInformation data_loading_info)
         {
             var most_recent_cred_card_direct_debit = spreadsheet.Get_most_recent_row_containing_text<BankRecord>(
                 MainSheetNames.Bank_out,
@@ -880,7 +880,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             var statement_date = new DateTime();
             var next_date = most_recent_cred_card_direct_debit.Date.AddMonths(1);
-            var input = inputOutput.Get_input(string.Format(
+            var input = input_output.Get_input(string.Format(
                 ReconConsts.AskForCredCardDirectDebit,
                 ReconConsts.Cred_card1_name,
                 next_date.ToShortDateString()));
@@ -889,7 +889,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 if (double.TryParse(input, out new_balance))
                 {
-                    pendingFile.Records.Add(new CredCard1InOutRecord
+                    pending_file.Records.Add(new CredCard1InOutRecord
                     {
                         Date = next_date,
                         Description = ReconConsts.Cred_card1_regular_pymt_description,
@@ -898,7 +898,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 }
                 statement_date = next_date.AddMonths(-1);
                 next_date = next_date.Date.AddMonths(1);
-                input = inputOutput.Get_input(string.Format(
+                input = input_output.Get_input(string.Format(
                     ReconConsts.AskForCredCardDirectDebit,
                     ReconConsts.Cred_card1_name,
                     next_date.ToShortDateString()));
@@ -911,17 +911,17 @@ namespace ConsoleCatchall.Console.Reconciliation
                     ReconConsts.CredCardBalanceDescription,
                     ReconConsts.Cred_card1_name,
                     $"{statement_date.ToString("MMM")} {statement_date.Year}"),
-                balanceColumn: 5,
-                textColumn: 6,
-                codeColumn: 4);
+                balance_column: 5,
+                text_column: 6,
+                code_column: 4);
         }
 
         public void CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
-                IInputOutput inputOutput,
+                IInputOutput input_output,
                 ISpreadsheet spreadsheet,
-                ICSVFile<CredCard2InOutRecord> pendingFile,
-                BudgetingMonths budgetingMonths,
-                DataLoadingInformation dataLoadingInfo)
+                ICSVFile<CredCard2InOutRecord> pending_file,
+                BudgetingMonths budgeting_months,
+                DataLoadingInformation data_loading_info)
         {
             var most_recent_cred_card_direct_debit = spreadsheet.Get_most_recent_row_containing_text<BankRecord>(
                 MainSheetNames.Bank_out,
@@ -930,7 +930,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             var statement_date = new DateTime();
             var next_date = most_recent_cred_card_direct_debit.Date.AddMonths(1);
-            var input = inputOutput.Get_input(string.Format(
+            var input = input_output.Get_input(string.Format(
                 ReconConsts.AskForCredCardDirectDebit,
                 ReconConsts.Cred_card2_name,
                 next_date.ToShortDateString()));
@@ -939,7 +939,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 if (double.TryParse(input, out new_balance))
                 {
-                    pendingFile.Records.Add(new CredCard2InOutRecord
+                    pending_file.Records.Add(new CredCard2InOutRecord
                     {
                         Date = next_date,
                         Description = ReconConsts.Cred_card2_regular_pymt_description,
@@ -948,7 +948,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 }
                 statement_date = next_date.AddMonths(-1);
                 next_date = next_date.Date.AddMonths(1);
-                input = inputOutput.Get_input(string.Format(
+                input = input_output.Get_input(string.Format(
                     ReconConsts.AskForCredCardDirectDebit,
                     ReconConsts.Cred_card2_name,
                     next_date.ToShortDateString()));
@@ -961,9 +961,9 @@ namespace ConsoleCatchall.Console.Reconciliation
                     ReconConsts.CredCardBalanceDescription,
                     ReconConsts.Cred_card2_name,
                     $"{statement_date.ToString("MMM")} {statement_date.Year}"),
-                balanceColumn: 5,
-                textColumn: 6,
-                codeColumn: 4);
+                balance_column: 5,
+                text_column: 6,
+                code_column: 4);
         }
 
         #endregion File loading
@@ -1038,9 +1038,9 @@ namespace ConsoleCatchall.Console.Reconciliation
             return next_unplanned_month;
         }
 
-        private int Get_last_month_for_budget_planning(ISpreadsheet spreadsheet, int nextUnplannedMonth)
+        private int Get_last_month_for_budget_planning(ISpreadsheet spreadsheet, int next_unplanned_month)
         {
-            string next_unplanned_month_as_string = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(nextUnplannedMonth);
+            string next_unplanned_month_as_string = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(next_unplanned_month);
             var request_to_enter_month = String.Format(ReconConsts.EnterMonths, next_unplanned_month_as_string);
             string month = _input_output.Get_input(request_to_enter_month);
             int result = 0;
@@ -1061,45 +1061,45 @@ namespace ConsoleCatchall.Console.Reconciliation
                 // Ignore it and return zero by default.
             }
 
-            result = Handle_zero_month_choice_result(result, spreadsheet, nextUnplannedMonth);
+            result = Handle_zero_month_choice_result(result, spreadsheet, next_unplanned_month);
             return result;
         }
 
-        private int Confirm_budgeting_month_choices_with_user(BudgetingMonths budgetingMonths, ISpreadsheet spreadsheet)
+        private int Confirm_budgeting_month_choices_with_user(BudgetingMonths budgeting_months, ISpreadsheet spreadsheet)
         {
-            var new_result = budgetingMonths.Last_month_for_budget_planning;
-            string input = Get_response_to_budgeting_months_confirmation_message(budgetingMonths);
+            var new_result = budgeting_months.Last_month_for_budget_planning;
+            string input = Get_response_to_budgeting_months_confirmation_message(budgeting_months);
 
             if (!String.IsNullOrEmpty(input) && input.ToUpper() == "Y")
             {
                 // I know this doesn't really do anything but I found the if statement easier to parse this way round.
-                new_result = budgetingMonths.Last_month_for_budget_planning;
+                new_result = budgeting_months.Last_month_for_budget_planning;
             }
             else
             {
                 // Recursion ftw!
-                new_result = Get_last_month_for_budget_planning(spreadsheet, budgetingMonths.Next_unplanned_month);
+                new_result = Get_last_month_for_budget_planning(spreadsheet, budgeting_months.Next_unplanned_month);
             }
 
             return new_result;
         }
 
-        private string Get_response_to_budgeting_months_confirmation_message(BudgetingMonths budgetingMonths)
+        private string Get_response_to_budgeting_months_confirmation_message(BudgetingMonths budgeting_months)
         {
-            string first_month = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(budgetingMonths.Next_unplanned_month);
-            string second_month = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(budgetingMonths.Last_month_for_budget_planning);
+            string first_month = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(budgeting_months.Next_unplanned_month);
+            string second_month = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(budgeting_months.Last_month_for_budget_planning);
 
-            int month_span = budgetingMonths.Num_budgeting_months();
+            int month_span = budgeting_months.Num_budgeting_months();
 
             var confirmation_text = String.Format(ReconConsts.ConfirmMonthInterval, first_month, second_month, month_span);
 
             return _input_output.Get_input(confirmation_text);
         }
 
-        private int Handle_zero_month_choice_result(int chosenMonth, ISpreadsheet spreadsheet, int nextUnplannedMonth)
+        private int Handle_zero_month_choice_result(int chosen_month, ISpreadsheet spreadsheet, int next_unplanned_month)
         {
-            var new_result = chosenMonth;
-            if (chosenMonth == 0)
+            var new_result = chosen_month;
+            if (chosen_month == 0)
             {
                 var input = _input_output.Get_input(ReconConsts.ConfirmBadMonth);
 
@@ -1111,7 +1111,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 else
                 {
                     // Recursion ftw!
-                    new_result = Get_last_month_for_budget_planning(spreadsheet, nextUnplannedMonth);
+                    new_result = Get_last_month_for_budget_planning(spreadsheet, next_unplanned_month);
                 }
             }
             return new_result;

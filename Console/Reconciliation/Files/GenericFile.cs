@@ -6,16 +6,16 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
     {
         public ICSVFile<TRecordType> File { get; set; }
 
-        public GenericFile(ICSVFile<TRecordType> csvFile)
+        public GenericFile(ICSVFile<TRecordType> csv_file)
         {
-            File = csvFile;
+            File = csv_file;
         }
 
-        public void Load(bool loadFile = true,
-            char? overrideSeparator = null,
-            bool orderOnLoad = true)
+        public void Load(bool load_file = true,
+            char? override_separator = null,
+            bool order_on_load = true)
         {
-            File.Load(loadFile, overrideSeparator, orderOnLoad);
+            File.Load(load_file, override_separator, order_on_load);
         }
 
         public void Refresh_file_contents()

@@ -7,11 +7,11 @@ namespace Interfaces.DTOs
         public int Index { get; private set; }
 
         public AutoMatchedRecord(
-            TThirdPartyType sourceRecord,
+            TThirdPartyType source_record,
             IPotentialMatch match,
             int index)
         {
-            SourceRecord = sourceRecord;
+            SourceRecord = source_record;
             Match = match;
             Index = index;
         }

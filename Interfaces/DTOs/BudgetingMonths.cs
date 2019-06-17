@@ -25,14 +25,14 @@ namespace Interfaces.DTOs
             return Budgeting_start_date().AddMonths(Num_budgeting_months() - 1);
         }
 
-        public int Get_months_to_plan_after_specified_date(DateTime previousDate)
+        public int Get_months_to_plan_after_specified_date(DateTime previous_date)
         {
             int result = 0;
             var budgeting_end_date = Budgeting_end_date();
 
-            while (previousDate < budgeting_end_date)
+            while (previous_date < budgeting_end_date)
             {
-                previousDate = previousDate.AddMonths(1);
+                previous_date = previous_date.AddMonths(1);
                 result++;
             }
 

@@ -14,25 +14,25 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
         private List<TRecordType> Source_records { get; set; }
         public List<TRecordType> Records { get; set; }
 
-        public CSVFile(IFileIO<TRecordType> fileIO)
+        public CSVFile(IFileIO<TRecordType> file_io)
         {
-            File_io = fileIO;
+            File_io = file_io;
         }
 
         public void Load(
-            bool loadFile = true, 
-            char? overrideSeparator = null,
-            bool orderOnLoad = true)
+            bool load_file = true, 
+            char? override_separator = null,
+            bool order_on_load = true)
         {
             File_contents = new List<string>();
             Records = new List<TRecordType>();
             Source_records = new List<TRecordType>();
-            if (loadFile)
+            if (load_file)
             {
-                Source_records = File_io.Load(File_contents, overrideSeparator);
+                Source_records = File_io.Load(File_contents, override_separator);
                 if (Source_records != null)
                 {
-                    if (orderOnLoad)
+                    if (order_on_load)
                     {
                         Order_by_date();
                     }
@@ -68,16 +68,16 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             }
         }
 
-        public void Remove_record_permanently(TRecordType recordToRemove)
+        public void Remove_record_permanently(TRecordType record_to_remove)
         {
-            Source_records.Remove(recordToRemove);
-            Records.Remove(recordToRemove);
+            Source_records.Remove(record_to_remove);
+            Records.Remove(record_to_remove);
         }
 
-        public void Add_record_permanently(TRecordType recordToAdd)
+        public void Add_record_permanently(TRecordType record_to_add)
         {
-            Source_records.Add(recordToAdd);
-            Records.Add(recordToAdd);
+            Source_records.Add(record_to_add);
+            Records.Add(record_to_add);
         }
 
         private void Order_by_date()
@@ -101,10 +101,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             }
         }
 
-        public void Remove_records(System.Predicate<TRecordType> filterPredicate)
+        public void Remove_records(System.Predicate<TRecordType> filter_predicate)
         {
             Populate_records_from_original_file_load();
-            Records.RemoveAll(filterPredicate);
+            Records.RemoveAll(filter_predicate);
         }
 
         public void Swap_signs_of_all_amounts()
@@ -116,11 +116,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             }
         }
 
-        public void Copy_records_to_csv_file(ICSVFile<TRecordType> targetFile)
+        public void Copy_records_to_csv_file(ICSVFile<TRecordType> target_file)
         {
             foreach (var record in Records)
             {
-                targetFile.Records.Add(record);
+                target_file.Records.Add(record);
             }
         }
 
@@ -177,34 +177,34 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
                 .ToList();
         }
 
-        public void Write_to_csv_file(string fileSuffix)
+        public void Write_to_csv_file(string file_suffix)
         {
-            File_io.Write_to_csv_file(fileSuffix, All_records_as_csv());
+            File_io.Write_to_csv_file(file_suffix, All_records_as_csv());
         }
 
-        public void Write_to_file_as_source_lines(string newFileName)
+        public void Write_to_file_as_source_lines(string new_file_name)
         {
-            File_io.Write_to_file_as_source_lines(newFileName, All_records_as_source_lines());
+            File_io.Write_to_file_as_source_lines(new_file_name, All_records_as_source_lines());
         }
 
-        public void Write_back_to_main_spreadsheet(string worksheetName)
+        public void Write_back_to_main_spreadsheet(string worksheet_name)
         {
-            File_io.Write_back_to_main_spreadsheet(this, worksheetName);
+            File_io.Write_back_to_main_spreadsheet(this, worksheet_name);
         }
 
-        public void Convert_source_line_separators(char originalSeparator, char newSeparator)
+        public void Convert_source_line_separators(char original_separator, char new_separator)
         {
             foreach (var record in Records)
             {
-                record.Convert_source_line_separators(originalSeparator, newSeparator);
+                record.Convert_source_line_separators(original_separator, new_separator);
             }
         }
 
-        public void Update_source_lines_for_output(char outputSeparator)
+        public void Update_source_lines_for_output(char output_separator)
         {
             foreach (var record in Records)
             {
-                record.Update_source_line_for_output(outputSeparator);
+                record.Update_source_line_for_output(output_separator);
             }
         }
 

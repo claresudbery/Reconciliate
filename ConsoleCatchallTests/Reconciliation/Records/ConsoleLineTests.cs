@@ -64,14 +64,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         [Test]
         [TestCase(6)]
         [TestCase(10)]
-        public void WillSetDateTextColourAsWhite_IfDateRankingIsGreaterThanFive(int dateRanking)
+        public void WillSetDateTextColourAsWhite_IfDateRankingIsGreaterThanFive(int date_ranking)
         {
             // Arrange
             var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings
                 {
-                    Date = dateRanking
+                    Date = date_ranking
                 }
             };
             var console_line = new ConsoleLine { Date_string = "10/10/2018" };
@@ -86,14 +86,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         [Test]
         [TestCase(1)]
         [TestCase(2)]
-        public void WillSetDateTextColourAsDarkYellow_IfDateRankingIsLessThanOrEqualToTwo(int dateRanking)
+        public void WillSetDateTextColourAsDarkYellow_IfDateRankingIsLessThanOrEqualToTwo(int date_ranking)
         {
             // Arrange
             var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings
                 {
-                    Date = dateRanking
+                    Date = date_ranking
                 },
             };
             var console_line = new ConsoleLine { Date_string = "10/10/2018" };

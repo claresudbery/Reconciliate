@@ -17,11 +17,11 @@ namespace Interfaces.Constants
             _loaded_config = Load_xml(Xml_file_path);
         }
 
-        private XElement Load_xml(string xmlFilePath)
+        private XElement Load_xml(string xml_file_path)
         {
             try 
             {
-                return XElement.Load(xmlFilePath);
+                return XElement.Load(xml_file_path);
             }
             catch (System.Exception e)
             {
@@ -30,15 +30,15 @@ namespace Interfaces.Constants
             return null;
         }
 
-        public string Read_xml(string xmlProperty)
+        public string Read_xml(string xml_property)
         {
-            return _loaded_config.Descendants(xmlProperty).First().Value;
+            return _loaded_config.Descendants(xml_property).First().Value;
         }
 
-        public string Read_xml(string xmlProperty, string xmlFilePath)
+        public string Read_xml(string xml_property, string xml_file_path)
         {
-            var temp_config = Load_xml(xmlFilePath);
-            return temp_config.Descendants(xmlProperty).First().Value;
+            var temp_config = Load_xml(xml_file_path);
+            return temp_config.Descendants(xml_property).First().Value;
         }
     }
 }

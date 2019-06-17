@@ -6,53 +6,53 @@ namespace Interfaces
     public interface ISpreadsheetRepo
     {
         void Dispose();
-        int Last_row_number(String sheetName);
-        int Find_first_empty_row_in_column(string sheetName, int columnNumber);
+        int Last_row_number(String sheet_name);
+        int Find_first_empty_row_in_column(string sheet_name, int column_number);
         int Find_row_number_of_first_row_containing_cell(
-            string sheetName,
-            string targetCellText,
-            int expectedColumnNumber = 2);
+            string sheet_name,
+            string target_cell_text,
+            int expected_column_number = 2);
         int Find_row_number_of_last_row_containing_cell(
-            string sheetName,
-            string targetCellText,
-            int expectedColumnNumber = 2);
+            string sheet_name,
+            string target_cell_text,
+            int expected_column_number = 2);
         int Find_row_number_of_last_row_with_cell_containing_text(
-            string sheetName,
-            string targetSubText,
-            List<int> expectedColumnNumbers);
-        ICellRow Read_specified_row(String sheetName, int rowNumber);
-        ICellRow Read_specified_row(String sheetName, int rowNumber, int startColumn, int endColumn);
-        ICellRow Read_specified_row(int rowNumber);
-        ICellSet Current_cells(String sheetName);
+            string sheet_name,
+            string target_sub_text,
+            List<int> expected_column_numbers);
+        ICellRow Read_specified_row(String sheet_name, int row_number);
+        ICellRow Read_specified_row(String sheet_name, int row_number, int start_column, int end_column);
+        ICellRow Read_specified_row(int row_number);
+        ICellSet Current_cells(String sheet_name);
         List<TRecordType> Get_rows_as_records<TRecordType>(
-            string sheetName,
-            int firstRowNumber,
-            int lastRowNumber,
-            int firstColumnNumber,
-            int lastColumnNumber) where TRecordType : ICSVRecord, new();
-        ICellRow Read_last_row(String sheetName);
-        String Read_last_row_as_csv(String sheetName, ICSVRecord csvRecord);
-        void Append_csv_record(String sheetName, ICSVRecord csvRecord);
-        void Append_csv_file<TRecordType>(string sheetName, ICSVFile<TRecordType> csvFile) where TRecordType : ICSVRecord, new();
-        void Remove_last_row(String sheetName);
-        void Delete_specified_rows(String sheetName, int firstRowNumber, int lastRowNumber);
-        DateTime Get_date(string sheetName, int row, int column);
-        string Get_text(string sheetName, int row, int column);
-        double Get_amount(string sheetName, int row, int column);
-        double Get_amount(string sheetName, string code, int amountColumn = 3);
-        void Update_date(string sheetName, int dateRow, int dateColumn, DateTime newDate);
-        void Update_text(string sheetName, int textRow, int textColumn, string newText);
-        void Update_amount(string sheetName, int amountRow, int amountColumn, double newAmount);
-        void Update_amount(string sheetName, string amountCode, double newAmount, int amountColumn = 2, int codeColumn = 1);
+            string sheet_name,
+            int first_row_number,
+            int last_row_number,
+            int first_column_number,
+            int last_column_number) where TRecordType : ICSVRecord, new();
+        ICellRow Read_last_row(String sheet_name);
+        String Read_last_row_as_csv(String sheet_name, ICSVRecord csv_record);
+        void Append_csv_record(String sheet_name, ICSVRecord csv_record);
+        void Append_csv_file<TRecordType>(string sheet_name, ICSVFile<TRecordType> csv_file) where TRecordType : ICSVRecord, new();
+        void Remove_last_row(String sheet_name);
+        void Delete_specified_rows(String sheet_name, int first_row_number, int last_row_number);
+        DateTime Get_date(string sheet_name, int row, int column);
+        string Get_text(string sheet_name, int row, int column);
+        double Get_amount(string sheet_name, int row, int column);
+        double Get_amount(string sheet_name, string code, int amount_column = 3);
+        void Update_date(string sheet_name, int date_row, int date_column, DateTime new_date);
+        void Update_text(string sheet_name, int text_row, int text_column, string new_text);
+        void Update_amount(string sheet_name, int amount_row, int amount_column, double new_amount);
+        void Update_amount(string sheet_name, string amount_code, double new_amount, int amount_column = 2, int code_column = 1);
         void Update_amount_and_text(
-            string sheetName,
-            string amountCode,
-            double newAmount,
-            string newText,
-            int amountColumn = 2,
-            int textColumn = 3,
-            int codeColumn = 1);
-        void Insert_new_row(string sheetName, int newRowNumber, Dictionary<int, object> cellValues);
-        void Append_new_row(string sheetName, Dictionary<int, object> cellValues);
+            string sheet_name,
+            string amount_code,
+            double new_amount,
+            string new_text,
+            int amount_column = 2,
+            int text_column = 3,
+            int code_column = 1);
+        void Insert_new_row(string sheet_name, int new_row_number, Dictionary<int, object> cell_values);
+        void Append_new_row(string sheet_name, Dictionary<int, object> cell_values);
     }
 }

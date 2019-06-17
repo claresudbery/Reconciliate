@@ -7,14 +7,14 @@ namespace ExcelLibrary
     {
         private List<object> _excel_cells;
 
-        public ExcelRow(List<object> excelCells)
+        public ExcelRow(List<object> excel_cells)
         {
-            _excel_cells = excelCells;
+            _excel_cells = excel_cells;
         }
 
-        public object Read_cell(int columnNumber)
+        public object Read_cell(int column_number)
         {
-            return _excel_cells[columnNumber];
+            return _excel_cells[column_number];
         }
 
         public int Count {

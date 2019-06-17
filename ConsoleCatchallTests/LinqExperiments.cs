@@ -34,20 +34,20 @@ namespace ConsoleCatchallTests
                         Previous_elements = new List<List<char>> {names[0]},
                         Characters_in_common = new List<char>()
                     },
-                    (resultSoFar, nextElement) =>
+                    (result_so_far, next_element) =>
                         new Thing1()
                         {
-                            Previous_elements = resultSoFar.Previous_elements.Union(new List<List<char>> {nextElement}).ToList(),
-                            Characters_in_common = resultSoFar.Previous_elements
+                            Previous_elements = result_so_far.Previous_elements.Union(new List<List<char>> {next_element}).ToList(),
+                            Characters_in_common = result_so_far.Previous_elements
                                 .Aggregate(
-                                    nextElement.Intersect(resultSoFar.Previous_elements[0])
+                                    next_element.Intersect(result_so_far.Previous_elements[0])
                                         .ToList(),
-                                    (backResultSoFar, nextBackElement) => 
-                                    backResultSoFar.Union(
-                                        nextElement
-                                        .Intersect(nextBackElement))
+                                    (back_result_so_far, next_back_element) => 
+                                    back_result_so_far.Union(
+                                        next_element
+                                        .Intersect(next_back_element))
                                         .ToList())
-                                .Union(resultSoFar.Characters_in_common)
+                                .Union(result_so_far.Characters_in_common)
                                 .ToList()
                         }).Characters_in_common;
 

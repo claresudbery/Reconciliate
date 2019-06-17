@@ -18,7 +18,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
-        public void M_CanDeleteCurrentThirdPartyRecord(int indexOfDeletedRecord)
+        public void M_CanDeleteCurrentThirdPartyRecord(int index_of_deleted_record)
         {
             // Arrange
             var amount_for_matching = 23.45;
@@ -39,9 +39,9 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
             bank_file.Load();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file, ThirdPartyFileLoadAction.NoAction);
-            Assert.IsTrue(indexOfDeletedRecord < actual_bank_file.Records.Count);
-            var description_of_deleted_record = actual_bank_file.Records[indexOfDeletedRecord].Description;
-            for (int record_count = 0; record_count <= indexOfDeletedRecord; record_count++)
+            Assert.IsTrue(index_of_deleted_record < actual_bank_file.Records.Count);
+            var description_of_deleted_record = actual_bank_file.Records[index_of_deleted_record].Description;
+            for (int record_count = 0; record_count <= index_of_deleted_record; record_count++)
             {
                 reconciliator.Find_reconciliation_matches_for_next_third_party_record();
             }
@@ -132,7 +132,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [TestCase(0)]
         [TestCase(1)]
         public void M_WhenCurrentThirdPartyRecordIsDeleted_CurrentIndexIsRewoundSoThatNextRecordForSemiAutoMatchingWillBeNextRecord
-            (int deletedRecordIndex)
+            (int deleted_record_index)
         {
             // Arrange
             var amount_for_matching = 23.45;
@@ -155,11 +155,11 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
             bank_file.Load();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file, ThirdPartyFileLoadAction.NoAction);
-            for (int record_count = 0; record_count <= deletedRecordIndex; record_count++)
+            for (int record_count = 0; record_count <= deleted_record_index; record_count++)
             {
                 reconciliator.Find_reconciliation_matches_for_next_third_party_record();
             }
-            Assert.AreEqual(actual_bank_file.Records[deletedRecordIndex].Description, 
+            Assert.AreEqual(actual_bank_file.Records[deleted_record_index].Description, 
                 reconciliator.Current_record_for_matching().SourceRecord.Description,
                 "CurrentRecordForMatching - Description before record deleted");
 
@@ -171,10 +171,10 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var current_record_for_matching = reconciliator.Current_record_for_matching();
             Assert.AreEqual(true, records_still_available_for_matching, "recordsStillAvailableForMatching");
             // Note that because a record has been deleted, Records[deletedRecordIndex] is now the record AFTER the deleted record.
-            Assert.AreEqual(actual_bank_file.Records[deletedRecordIndex].Description, 
+            Assert.AreEqual(actual_bank_file.Records[deleted_record_index].Description, 
                 current_record_for_matching.SourceRecord.Description,
                 "CurrentRecordForMatching - Description after record deleted");
-            Assert.AreEqual(bank_file.Records[deletedRecordIndex + 1].Description, 
+            Assert.AreEqual(bank_file.Records[deleted_record_index + 1].Description, 
                 current_record_for_matching.Matches[0].Actual_records[0].Description,
                 "First match after record deleted");
         }
@@ -183,7 +183,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [TestCase(0)]
         [TestCase(1)]
         public void M_WhenCurrentThirdPartyRecordIsDeleted_CurrentIndexIsRewoundSoThatNextRecordForManualMatchingWillBeNextRecord
-            (int deletedRecordIndex)
+            (int deleted_record_index)
         {
             // Arrange
             var amount_for_matching = 23.45;
@@ -207,11 +207,11 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
             bank_file.Load();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file, ThirdPartyFileLoadAction.NoAction);
-            for (int record_count = 0; record_count <= deletedRecordIndex; record_count++)
+            for (int record_count = 0; record_count <= deleted_record_index; record_count++)
             {
                 reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
             }
-            Assert.AreEqual(actual_bank_file.Records[deletedRecordIndex].Description,
+            Assert.AreEqual(actual_bank_file.Records[deleted_record_index].Description,
                 reconciliator.Current_record_for_matching().SourceRecord.Description,
                 "CurrentRecordForMatching - Description before record deleted");
 
@@ -223,7 +223,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var current_record_for_matching = reconciliator.Current_record_for_matching();
             Assert.AreEqual(true, records_still_available_for_matching, "recordsStillAvailableForMatching");
             // Note that because a record has been deleted, Records[deletedRecordIndex] is now the record AFTER the deleted record.
-            Assert.AreEqual(actual_bank_file.Records[deletedRecordIndex].Description,
+            Assert.AreEqual(actual_bank_file.Records[deleted_record_index].Description,
                 current_record_for_matching.SourceRecord.Description,
                 "CurrentRecordForMatching - Description after record deleted");
             Assert.AreEqual(bank_file.Records[0].Description,
@@ -501,7 +501,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [TestCase(0)]
         [TestCase(1)]
         public void M_WhenCurrentThirdPartyRecordIsDeletedViaSpecificDelete_CurrentIndexIsRewoundSoThatNextRecordForSemiAutoMatchingWillBeNextRecord
-            (int deletedRecordIndex)
+            (int deleted_record_index)
         {//xxxxxx
             // Arrange
             var amount_for_matching = 23.45;
@@ -524,26 +524,26 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
             bank_file.Load();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file, ThirdPartyFileLoadAction.NoAction);
-            for (int record_count = 0; record_count <= deletedRecordIndex; record_count++)
+            for (int record_count = 0; record_count <= deleted_record_index; record_count++)
             {
                 reconciliator.Find_reconciliation_matches_for_next_third_party_record();
             }
-            Assert.AreEqual(actual_bank_file.Records[deletedRecordIndex].Description,
+            Assert.AreEqual(actual_bank_file.Records[deleted_record_index].Description,
                 reconciliator.Current_record_for_matching().SourceRecord.Description,
                 "CurrentRecordForMatching - Description before record deleted");
 
             // Act
-            reconciliator.Delete_specific_third_party_record(deletedRecordIndex);
+            reconciliator.Delete_specific_third_party_record(deleted_record_index);
 
             // Assert
             var records_still_available_for_matching = reconciliator.Find_reconciliation_matches_for_next_third_party_record();
             var current_record_for_matching = reconciliator.Current_record_for_matching();
             Assert.AreEqual(true, records_still_available_for_matching, "recordsStillAvailableForMatching");
             // Note that because a record has been deleted, Records[deletedRecordIndex] is now the record AFTER the deleted record.
-            Assert.AreEqual(actual_bank_file.Records[deletedRecordIndex].Description,
+            Assert.AreEqual(actual_bank_file.Records[deleted_record_index].Description,
                 current_record_for_matching.SourceRecord.Description,
                 "CurrentRecordForMatching - Description after record deleted");
-            Assert.AreEqual(bank_file.Records[deletedRecordIndex + 1].Description,
+            Assert.AreEqual(bank_file.Records[deleted_record_index + 1].Description,
                 current_record_for_matching.Matches[0].Actual_records[0].Description,
                 "First match after record deleted");
         }
@@ -965,7 +965,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
-        public void M_CanDeleteSpecifiedOwnedRecordAfterSemiAutoMatching(int indexOfDeletedRecord)
+        public void M_CanDeleteSpecifiedOwnedRecordAfterSemiAutoMatching(int index_of_deleted_record)
         {//xxxxxx
             // Arrange
             var amount_for_matching = 23.45;
@@ -987,14 +987,14 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
             bank_file.Load();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file, ThirdPartyFileLoadAction.NoAction);
-            Assert.IsTrue(indexOfDeletedRecord < bank_file.Records.Count);
+            Assert.IsTrue(index_of_deleted_record < bank_file.Records.Count);
             reconciliator.Find_reconciliation_matches_for_next_third_party_record();
-            var description_of_deleted_record = reconciliator.Current_record_for_matching().Matches[indexOfDeletedRecord].Actual_records[0].Description;
+            var description_of_deleted_record = reconciliator.Current_record_for_matching().Matches[index_of_deleted_record].Actual_records[0].Description;
             var previous_num_third_party_records = actual_bank_file.Records.Count;
             var previous_num_owned_records = bank_file.Records.Count;
 
             // Act
-            reconciliator.Delete_specific_owned_record_from_list_of_matches(indexOfDeletedRecord);
+            reconciliator.Delete_specific_owned_record_from_list_of_matches(index_of_deleted_record);
 
             // Assert
             Assert.AreEqual(previous_num_third_party_records, actual_bank_file.Records.Count);
@@ -1006,7 +1006,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
-        public void M_CanDeleteSpecifiedOwnedRecordAfterManualMatching(int indexOfDeletedRecord)
+        public void M_CanDeleteSpecifiedOwnedRecordAfterManualMatching(int index_of_deleted_record)
         {//xxxxxx
             // Arrange
             var amount_for_matching = 23.45;
@@ -1028,14 +1028,14 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
             bank_file.Load();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file, ThirdPartyFileLoadAction.NoAction);
-            Assert.IsTrue(indexOfDeletedRecord < bank_file.Records.Count);
+            Assert.IsTrue(index_of_deleted_record < bank_file.Records.Count);
             reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
-            var description_of_deleted_record = reconciliator.Current_record_for_matching().Matches[indexOfDeletedRecord].Actual_records[0].Description;
+            var description_of_deleted_record = reconciliator.Current_record_for_matching().Matches[index_of_deleted_record].Actual_records[0].Description;
             var previous_num_third_party_records = actual_bank_file.Records.Count;
             var previous_num_owned_records = bank_file.Records.Count;
 
             // Act
-            reconciliator.Delete_specific_owned_record_from_list_of_matches(indexOfDeletedRecord);
+            reconciliator.Delete_specific_owned_record_from_list_of_matches(index_of_deleted_record);
 
             // Assert
             Assert.AreEqual(previous_num_third_party_records, actual_bank_file.Records.Count);
@@ -1046,7 +1046,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [Test]
         [TestCase(true)]
         [TestCase(false)]
-        public void M_WhenSpecifiedOwnedRecordIsDeleted_MatchesAreRenumbered(bool manualMatching)
+        public void M_WhenSpecifiedOwnedRecordIsDeleted_MatchesAreRenumbered(bool manual_matching)
         {
             // Arrange
             var amount_for_matching = 23.45;
@@ -1067,7 +1067,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
             bank_file.Load();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file, ThirdPartyFileLoadAction.NoAction);
-            if (manualMatching)
+            if (manual_matching)
             {
                 reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
             }

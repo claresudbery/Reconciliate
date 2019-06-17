@@ -42,20 +42,20 @@ namespace ConsoleCatchall.Console
             }
         }
 
-        public void Output_all_lines(List<ConsoleLine> consoleLines)
+        public void Output_all_lines(List<ConsoleLine> console_lines)
         {
-            foreach (var line in consoleLines)
+            foreach (var line in console_lines)
             {
                 Output_line_with_index(line);
             }
         }
 
-        public void Output_line(List<ConsoleSnippet> consoleSnippets)
+        public void Output_line(List<ConsoleSnippet> console_snippets)
         {
-            for (int snippet_index = 0; snippet_index < consoleSnippets.Count; snippet_index++)
+            for (int snippet_index = 0; snippet_index < console_snippets.Count; snippet_index++)
             {
-                System.Console.ForegroundColor = Get_colour(consoleSnippets[snippet_index].Text_colour);
-                System.Console.Write(consoleSnippets[snippet_index].Text);
+                System.Console.ForegroundColor = Get_colour(console_snippets[snippet_index].Text_colour);
+                System.Console.Write(console_snippets[snippet_index].Text);
                 System.Console.ResetColor();
             }
             System.Console.WriteLine("");
@@ -100,23 +100,23 @@ namespace ConsoleCatchall.Console
             }
         }
 
-        public void Output_string_list(List<string> stringList)
+        public void Output_string_list(List<string> string_list)
         {
-            foreach (var output in stringList)
+            foreach (var output in string_list)
             {
                 System.Console.WriteLine(output);
             }
         }
 
-        public string Get_input(string explanatoryMessage, string debugDescription = "")
+        public string Get_input(string explanatory_message, string debug_description = "")
         {
             System.Console.WriteLine("");
-            System.Console.WriteLine(explanatoryMessage);
+            System.Console.WriteLine(explanatory_message);
 
-            return Get_generic_input(explanatoryMessage);
+            return Get_generic_input(explanatory_message);
         }
 
-        public string Get_generic_input(string debugDescription)
+        public string Get_generic_input(string debug_description)
         {
             string result = System.Console.ReadLine();
             Check_for_exit(result);

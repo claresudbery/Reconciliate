@@ -13,21 +13,21 @@ namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
         public ICSVFile<BankRecord> Owned_file { get; set; }
 
         public BankReconciliator(
-            IFileIO<ActualBankRecord> actualBankFileIO,
-            IFileIO<BankRecord> bankFileIO,
-            DataLoadingInformation loadingInfo)
+            IFileIO<ActualBankRecord> actual_bank_file_io,
+            IFileIO<BankRecord> bank_file_io,
+            DataLoadingInformation loading_info)
         {
-            Third_party_file = new CSVFile<ActualBankRecord>(actualBankFileIO);
+            Third_party_file = new CSVFile<ActualBankRecord>(actual_bank_file_io);
             Third_party_file.Load();
 
-            Owned_file = new CSVFile<BankRecord>(bankFileIO);
+            Owned_file = new CSVFile<BankRecord>(bank_file_io);
             Owned_file.Load();
 
             _reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(
                 Third_party_file, 
                 Owned_file,
-                loadingInfo.Third_party_file_load_action,
-                loadingInfo.Sheet_name);
+                loading_info.Third_party_file_load_action,
+                loading_info.Sheet_name);
         }
 
         public void Filter_for_negative_records_only()
@@ -80,14 +80,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
             _reconciliator.Delete_current_third_party_record();
         }
 
-        public void Delete_specific_third_party_record(int specifiedIndex)
+        public void Delete_specific_third_party_record(int specified_index)
         {
-            _reconciliator.Delete_specific_third_party_record(specifiedIndex);
+            _reconciliator.Delete_specific_third_party_record(specified_index);
         }
 
-        public void Delete_specific_owned_record_from_list_of_matches(int specifiedIndex)
+        public void Delete_specific_owned_record_from_list_of_matches(int specified_index)
         {
-            _reconciliator.Delete_specific_owned_record_from_list_of_matches(specifiedIndex);
+            _reconciliator.Delete_specific_owned_record_from_list_of_matches(specified_index);
         }
 
         public int Num_potential_matches()
@@ -100,14 +100,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
             return _reconciliator.Current_potential_matches();
         }
 
-        public void Mark_latest_match_index(int matchIndex)
+        public void Mark_latest_match_index(int match_index)
         {
-            _reconciliator.Mark_latest_match_index(matchIndex);
+            _reconciliator.Mark_latest_match_index(match_index);
         }
 
-        public void Match_non_matching_record(int matchIndex)
+        public void Match_non_matching_record(int match_index)
         {
-            _reconciliator.Match_non_matching_record(matchIndex);
+            _reconciliator.Match_non_matching_record(match_index);
         }
 
         public List<ConsoleLine> Get_final_matches_for_console()
@@ -125,24 +125,24 @@ namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
             return _reconciliator.Get_auto_matches_for_console();
         }
 
-        public void Remove_auto_match(int matchIndex)
+        public void Remove_auto_match(int match_index)
         {
-            _reconciliator.Remove_auto_match(matchIndex);
+            _reconciliator.Remove_auto_match(match_index);
         }
 
-        public void Remove_multiple_auto_matches(List<int> matchIndices)
+        public void Remove_multiple_auto_matches(List<int> match_indices)
         {
-            _reconciliator.Remove_multiple_auto_matches(matchIndices);
+            _reconciliator.Remove_multiple_auto_matches(match_indices);
         }
 
-        public void Remove_final_match(int matchIndex)
+        public void Remove_final_match(int match_index)
         {
-            _reconciliator.Remove_final_match(matchIndex);
+            _reconciliator.Remove_final_match(match_index);
         }
 
-        public void Remove_multiple_final_matches(List<int> matchIndices)
+        public void Remove_multiple_final_matches(List<int> match_indices)
         {
-            _reconciliator.Remove_multiple_final_matches(matchIndices);
+            _reconciliator.Remove_multiple_final_matches(match_indices);
         }
 
         public int Num_third_party_records()
@@ -190,14 +190,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
             _reconciliator.Rewind();
         }
 
-        public void Finish(string fileSuffix)
+        public void Finish(string file_suffix)
         {
-            _reconciliator.Finish(fileSuffix);
+            _reconciliator.Finish(file_suffix);
         }
 
-        public void Match_current_record(int matchIndex)
+        public void Match_current_record(int match_index)
         {
-            _reconciliator.Match_current_record(matchIndex);
+            _reconciliator.Match_current_record(match_index);
         }
 
         public bool Move_to_next_unmatched_third_party_record_for_manual_matching()

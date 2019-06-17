@@ -48,10 +48,10 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             }
         }
 
-        private IEnumerable<string> Read_lines(string filePath)
+        private IEnumerable<string> Read_lines(string file_path)
         {
             var lines = new List<string>();
-            using (var file_stream = File.OpenRead(filePath))
+            using (var file_stream = File.OpenRead(file_path))
             using (var reader = new StreamReader(file_stream))
             {
                 while (!reader.EndOfStream)

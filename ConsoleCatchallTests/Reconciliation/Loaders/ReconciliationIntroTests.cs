@@ -18,25 +18,25 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     {
         private Mock<IInputOutput> _mock_input_output;
 
-        private void Set_up_for_loader_bespoke_stuff(Mock<IInputOutput> mockInputOutput, Mock<ISpreadsheet> mockSpreadsheet)
+        private void Set_up_for_loader_bespoke_stuff(Mock<IInputOutput> mock_input_output, Mock<ISpreadsheet> mock_spreadsheet)
         {
             DateTime last_direct_debit_date = new DateTime(2018, 12, 17);
             var next_direct_debit_date01 = last_direct_debit_date.AddMonths(1);
             var bank_record = new BankRecord { Date = last_direct_debit_date };
 
-            mockInputOutput.Setup(x => x.Get_input(string.Format(
+            mock_input_output.Setup(x => x.Get_input(string.Format(
                 ReconConsts.AskForCredCardDirectDebit,
                 ReconConsts.Cred_card2_name,
                 next_direct_debit_date01.ToShortDateString()), "")).Returns("0");
-            mockSpreadsheet.Setup(x => x.Get_most_recent_row_containing_text<BankRecord>(
+            mock_spreadsheet.Setup(x => x.Get_most_recent_row_containing_text<BankRecord>(
                     MainSheetNames.Bank_out, ReconConsts.Cred_card2_dd_description, new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
                 .Returns(bank_record);
 
-            mockInputOutput.Setup(x => x.Get_input(string.Format(
+            mock_input_output.Setup(x => x.Get_input(string.Format(
                 ReconConsts.AskForCredCardDirectDebit, 
                 ReconConsts.Cred_card1_name,
                 next_direct_debit_date01.ToShortDateString()), "")).Returns("0");
-            mockSpreadsheet.Setup(x => x.Get_most_recent_row_containing_text<BankRecord>(
+            mock_spreadsheet.Setup(x => x.Get_most_recent_row_containing_text<BankRecord>(
                     MainSheetNames.Bank_out, ReconConsts.Cred_card1_dd_description, new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
                 .Returns(bank_record);
         }
@@ -63,16 +63,16 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         [TestCase(9, 9, "Sep", "Sep", 1)]
         [TestCase(10, 9, "Oct", "Sep", 12)]
         public void RecursivelyAskForBudgetingMonths_WillCheckResultsWithUserAndAskForConfirmation(
-            int nextUnplannedMonth, int userInput, string firstMonth, string secondMonth, int monthSpan)
+            int next_unplanned_month, int user_input, string first_month, string second_month, int month_span)
         {
             // Arrange
-            DateTime unplanned_month = new DateTime(2018, nextUnplannedMonth, 1);
+            DateTime unplanned_month = new DateTime(2018, next_unplanned_month, 1);
             _get_input_messages.Clear();
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(unplanned_month);
-            string confirmation_text = string.Format(ReconConsts.ConfirmMonthInterval, firstMonth, secondMonth, monthSpan);
+            string confirmation_text = string.Format(ReconConsts.ConfirmMonthInterval, first_month, second_month, month_span);
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns($"{userInput}")
+                .Returns($"{user_input}")
                 .Returns("Y");
             // Use self-shunt to avoid infinite recursion:
             var reconciliate = new ReconciliationIntro(this);
@@ -141,14 +141,14 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         [TestCase("1")]
         [TestCase("")]
         [TestCase("12")]
-        public void RecursivelyAskForBudgetingMonths_WillOnlyReturnANumberBetweenZeroAndTwelve(string userInput)
+        public void RecursivelyAskForBudgetingMonths_WillOnlyReturnANumberBetweenZeroAndTwelve(string user_input)
         {
             // Arrange
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             DateTime next_unplanned_month = new DateTime(2018, 11, 1);
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(userInput)
+                .Returns(user_input)
                 .Returns("Y")
                 .Returns("Y");
             var reconciliate = new ReconciliationIntro(_mock_input_output.Object);
@@ -167,7 +167,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         [TestCase("df")]
         [TestCase("-")]
         [TestCase("")]
-        public void RecursivelyAskForBudgetingMonths_WillAskForConfirmation_IfUserGivesBadOrZeroInput(string userInput)
+        public void RecursivelyAskForBudgetingMonths_WillAskForConfirmation_IfUserGivesBadOrZeroInput(string user_input)
         {
             // Arrange
             _get_input_messages.Clear();
@@ -175,7 +175,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             DateTime next_unplanned_month = new DateTime(2018, 10, 1);
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns($"{userInput}")
+                .Returns($"{user_input}")
                 .Returns("Y")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:
@@ -292,7 +292,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         [TestCase("df")]
         [TestCase("-")]
         [TestCase("")]
-        public void IfCantFindNextUnplannedMonth_AndUserEntersBadInput_WillDefaultToThisMonth(string badInput)
+        public void IfCantFindNextUnplannedMonth_AndUserEntersBadInput_WillDefaultToThisMonth(string bad_input)
         {
             // Arrange
             var default_month = DateTime.Today.Month;
@@ -300,7 +300,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Throws(new Exception());
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(badInput)
+                .Returns(bad_input)
                 .Returns("1")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:

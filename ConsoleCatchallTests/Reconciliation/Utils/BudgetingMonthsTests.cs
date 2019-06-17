@@ -13,22 +13,22 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         [TestCase(10, 1, 4)]
         [TestCase(6, 5, 12)]
         public void Will_calculate_num_budgeting_months_based_on_stored_data(
-            int nextUnplannedMonth, 
-            int lastMonthForBudgetPlanning, 
-            int expectedResult)
+            int next_unplanned_month, 
+            int last_month_for_budget_planning, 
+            int expected_result)
         {
             // Arrange 
             var budgeting_months = new BudgetingMonths
             {
-                Next_unplanned_month = nextUnplannedMonth,
-                Last_month_for_budget_planning = lastMonthForBudgetPlanning
+                Next_unplanned_month = next_unplanned_month,
+                Last_month_for_budget_planning = last_month_for_budget_planning
             };
 
             // Act
             var result = budgeting_months.Num_budgeting_months();
 
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            Assert.AreEqual(expected_result, result);
         }
 
         [Test]
@@ -52,26 +52,26 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         [TestCase(12, 2, 2018, 2, 2019)]
         [TestCase(1, 4, 2019, 4, 2019)]
         public void Will_calculate_budgeting_end_date_using_budgeting_start_date_and_num_budgeting_months(
-            int nextUnplannedMonth,
-            int lastMonthForBudgetPlanning,
-            int startYear,
-            int expectedMonth,
-            int expectedYear)
+            int next_unplanned_month,
+            int last_month_for_budget_planning,
+            int start_year,
+            int expected_month,
+            int expected_year)
         {
             // Arrange 
             var budgeting_months = new BudgetingMonths
             {
-                Next_unplanned_month = nextUnplannedMonth,
-                Last_month_for_budget_planning = lastMonthForBudgetPlanning,
-                Start_year = startYear
+                Next_unplanned_month = next_unplanned_month,
+                Last_month_for_budget_planning = last_month_for_budget_planning,
+                Start_year = start_year
             };
             
             // Act
             var result = budgeting_months.Budgeting_end_date();
 
             // Assert
-            Assert.AreEqual(result.Month, expectedMonth);
-            Assert.AreEqual(result.Year, expectedYear);
+            Assert.AreEqual(result.Month, expected_month);
+            Assert.AreEqual(result.Year, expected_year);
         }
 
         [TestCase(12, 2, 2018, 12, 2018, 2)]
@@ -79,27 +79,27 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         [TestCase(12, 2, 2018, 11, 2018, 3)]
         [TestCase(12, 2, 2018, 10, 2018, 4)]
         public void Will_calculate_months_to_plan_after_specified_date_using_num_budgeting_months_and_specified_date(
-            int nextUnplannedMonth,
-            int lastMonthForBudgetPlanning,
-            int startYear,
-            int specifiedMonth,
-            int specifiedYear,
-            int expectedResult)
+            int next_unplanned_month,
+            int last_month_for_budget_planning,
+            int start_year,
+            int specified_month,
+            int specified_year,
+            int expected_result)
         {
             // Arrange 
             var budgeting_months = new BudgetingMonths
             {
-                Next_unplanned_month = nextUnplannedMonth,
-                Last_month_for_budget_planning = lastMonthForBudgetPlanning,
-                Start_year = startYear
+                Next_unplanned_month = next_unplanned_month,
+                Last_month_for_budget_planning = last_month_for_budget_planning,
+                Start_year = start_year
             };
-            var specified_date = new DateTime(specifiedYear, specifiedMonth, 1);
+            var specified_date = new DateTime(specified_year, specified_month, 1);
 
             // Act
             var result = budgeting_months.Get_months_to_plan_after_specified_date(specified_date);
 
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            Assert.AreEqual(expected_result, result);
         }
     }
 }

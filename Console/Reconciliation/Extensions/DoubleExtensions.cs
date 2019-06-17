@@ -5,9 +5,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Extensions
 {
     internal static class DoubleExtensions
     {
-        public static string To_csv_string(this double source, bool formatCurrency)
+        public static string To_csv_string(this double source, bool format_currency)
         {
-            if (formatCurrency)
+            if (format_currency)
             {
                 var result = string.Format(StringHelper.Culture(), "{0:C}", source);
                 if (result.Contains(","))
@@ -22,9 +22,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Extensions
             }
         }
 
-        public static double Proximity_score(this double source, double otherAmount)
+        public static double Proximity_score(this double source, double other_amount)
         {
-            var result = Math.Abs(source - otherAmount);
+            var result = Math.Abs(source - other_amount);
             return result;
         }
     }

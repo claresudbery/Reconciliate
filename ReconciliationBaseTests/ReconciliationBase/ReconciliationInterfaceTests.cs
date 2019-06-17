@@ -98,16 +98,16 @@ namespace ReconciliationBaseTests.ReconciliationBase
             for (int actual_bank_count = 0; actual_bank_count < actual_bank_lines.Count; actual_bank_count++)
             {
                 Assert.IsTrue(actual_bank_lines[actual_bank_count].Matched, $"actualBank record {actual_bank_count} should be matched");
-                Verify_is_output_as_console_line(actual_bank_lines[actual_bank_count].Description, numTimes:1);
+                Verify_is_output_as_console_line(actual_bank_lines[actual_bank_count].Description, num_times:1);
 
                 var first_of_each_bank_pair = actual_bank_count * 2;
                 Assert.IsTrue(bank_lines[first_of_each_bank_pair].Matched, $"bank record {first_of_each_bank_pair} should be matched");
-                Verify_is_output_as_console_snippet(bank_lines[first_of_each_bank_pair].Description, numTimes: 1);
+                Verify_is_output_as_console_snippet(bank_lines[first_of_each_bank_pair].Description, num_times: 1);
 
                 // Every other line in bankLines won't get matched.
                 var second_of_each_bank_pair = (actual_bank_count * 2) + 1;
                 Assert.IsFalse(bank_lines[second_of_each_bank_pair].Matched, $"bank record {second_of_each_bank_pair} should NOT be matched");
-                Verify_is_output_amongst_non_prioritised_matches(bank_lines[second_of_each_bank_pair].Description, numTimes: 1);
+                Verify_is_output_amongst_non_prioritised_matches(bank_lines[second_of_each_bank_pair].Description, num_times: 1);
             }
         }
 
@@ -159,18 +159,18 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // so each one gets output to console one more time than the one before.
             for (int bank_count = 0; bank_count < 4; bank_count++)
             {
-                Verify_is_output_amongst_all_matches($"{MatchDescription}0{bank_count + 1}b", numTimes: bank_count + 1);
+                Verify_is_output_amongst_all_matches($"{MatchDescription}0{bank_count + 1}b", num_times: bank_count + 1);
             }
             // The very last bank line is never matched.
             var last_bank_line = bank_lines.Count - 1;
             Assert.IsFalse(bank_lines[last_bank_line].Matched, $"bank record {last_bank_line} should NOT be matched");
-            Verify_is_output_amongst_all_matches(MatchDescription + "05b", numTimes: 4);
+            Verify_is_output_amongst_all_matches(MatchDescription + "05b", num_times: 4);
         }
 
         [Test]
         [TestCase(true)]
         [TestCase(false)]
-        public void M_WhenCurrentThirdPartyRecordIsDeleted_ShouldTryToMatchNextRecord(bool autoMatching)
+        public void M_WhenCurrentThirdPartyRecordIsDeleted_ShouldTryToMatchNextRecord(bool auto_matching)
         {
             // Arrange
             var actual_bank_records = new List<ActualBankRecord>{
@@ -192,7 +192,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var previous_num_third_party_records = reconciliator.Num_third_party_records();
 
             // Act
-            if (autoMatching)
+            if (auto_matching)
             {
                 reconciliation_interface.Do_the_matching();
             }
@@ -209,7 +209,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [Test]
         [TestCase(true)]
         [TestCase(false)]
-        public void M_WhenCurrentThirdPartyRecordIsDeleted_IfThereAreNoRecordsLeft_ShouldMoveOn(bool autoMatching)
+        public void M_WhenCurrentThirdPartyRecordIsDeleted_IfThereAreNoRecordsLeft_ShouldMoveOn(bool auto_matching)
         {
             // Arrange
             var actual_bank_records = new List<ActualBankRecord>{
@@ -226,7 +226,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var reconciliation_interface = new ReconciliationInterface(_mock_input_output.Object, reconciliator, "ActualBank", "Bank In");
 
             // Act
-            if (autoMatching)
+            if (auto_matching)
             {
                 reconciliation_interface.Do_the_matching();
             }
@@ -267,8 +267,8 @@ namespace ReconciliationBaseTests.ReconciliationBase
 
             // Assert
             // The records that aren't deleted should get output twice.
-            Verify_is_output_as_console_snippet(bank_records[1].Description, numTimes: 2);
-            Verify_is_output_amongst_non_prioritised_matches(bank_records[3].Description, numTimes: 2);
+            Verify_is_output_as_console_snippet(bank_records[1].Description, num_times: 2);
+            Verify_is_output_amongst_non_prioritised_matches(bank_records[3].Description, num_times: 2);
             // The record that's deleted should only get output once.
             _mock_input_output.Verify();
             Assert.AreEqual(1, _num_times_called);
@@ -303,9 +303,9 @@ namespace ReconciliationBaseTests.ReconciliationBase
 
             // Assert
             // The records that aren't deleted should get output twice.
-            Verify_is_output_amongst_all_matches(description_of_matched_record, numTimes: 2);
-            Verify_is_output_amongst_all_matches(bank_records[1].Description, numTimes: 2);
-            Verify_is_output_amongst_all_matches(bank_records[3].Description, numTimes: 2);
+            Verify_is_output_amongst_all_matches(description_of_matched_record, num_times: 2);
+            Verify_is_output_amongst_all_matches(bank_records[1].Description, num_times: 2);
+            Verify_is_output_amongst_all_matches(bank_records[3].Description, num_times: 2);
             // The record that's deleted should only get output once.
             _mock_input_output.Verify();
             Assert.AreEqual(1, _num_times_called);
@@ -314,7 +314,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [Test]
         [TestCase(true)]
         [TestCase(false)]
-        public void M_WhenOwnedRecordDeletionResultsInAnError_ThenUserNotified_AndAskedForNewInput(bool autoMatching)
+        public void M_WhenOwnedRecordDeletionResultsInAnError_ThenUserNotified_AndAskedForNewInput(bool auto_matching)
         {
             // Arrange
             var actual_bank_records = new List<ActualBankRecord>{
@@ -337,7 +337,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             bool exception_thrown = false;
             try
             {
-                if (autoMatching)
+                if (auto_matching)
                 {
                     reconciliation_interface.Do_the_matching();
                 }
@@ -364,7 +364,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [Test]
         [TestCase(true)]
         [TestCase(false)]
-        public void M_WhenOwnedRecordIsDeleted_IfMatchesStillExist_ShouldNotMoveOnToNextThirdPartyRecord(bool autoMatching)
+        public void M_WhenOwnedRecordIsDeleted_IfMatchesStillExist_ShouldNotMoveOnToNextThirdPartyRecord(bool auto_matching)
         {
             // Arrange
             var actual_bank_records = new List<ActualBankRecord>{
@@ -384,7 +384,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var reconciliation_interface = new ReconciliationInterface(_mock_input_output.Object, reconciliator, "ActualBank", "Bank In");
 
             // Act
-            if (autoMatching)
+            if (auto_matching)
             {
                 reconciliation_interface.Do_the_matching();
             }
@@ -990,8 +990,8 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [TestCase(TransactionMatchType.Final, "1")]
         [TestCase(TransactionMatchType.Final, "25,26")]
         public void M_WhenRemovingMatches_IfBadIndexEntered_ThenErrorShownAndUserAskedAgain(
-            TransactionMatchType transactionMatchType, 
-            string matchIndices)
+            TransactionMatchType transaction_match_type, 
+            string match_indices)
         {
             // Arrange
             var text1 = "Source00";
@@ -1005,13 +1005,13 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 .Returns(bank_records);
             var reconciliator = new BankReconciliator(_mock_actual_bank_file_io.Object, _mock_bank_file_io.Object, BankAndBankInData.LoadingInfo);
             Setup_for_all_matches_chosen_with_index_zero();
-            if (transactionMatchType == TransactionMatchType.Auto)
+            if (transaction_match_type == TransactionMatchType.Auto)
             {
-                Setup_to_remove_auto_match(matchIndices);
+                Setup_to_remove_auto_match(match_indices);
             }
             else
             {
-                Setup_to_remove_final_match(matchIndices);
+                Setup_to_remove_final_match(match_indices);
             }
             // Use self-shunt for this one.
             var reconciliation_interface = new ReconciliationInterface(this, reconciliator, "ActualBank", "Bank In");
@@ -1028,7 +1028,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
 
         [TestCase(TransactionMatchType.SemiAuto)]
         [TestCase(TransactionMatchType.Manual)]
-        public void M_WhenChoosingMatch_IfBadIndexEntered_ThenErrorShownAndUserAskedAgain(TransactionMatchType transactionMatchType)
+        public void M_WhenChoosingMatch_IfBadIndexEntered_ThenErrorShownAndUserAskedAgain(TransactionMatchType transaction_match_type)
         {
             // Arrange
             var text1 = "Source00";
@@ -1045,7 +1045,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 .Returns(bank_records);
             var reconciliator = new BankReconciliator(_mock_actual_bank_file_io.Object, _mock_bank_file_io.Object, BankAndBankInData.LoadingInfo);
             Clear_self_shunt_variables();
-            if (transactionMatchType == TransactionMatchType.SemiAuto)
+            if (transaction_match_type == TransactionMatchType.SemiAuto)
             {
                 _mock_input_output.SetupSequence(x =>
                         x.Get_input(ReconConsts.EnterNumberOfMatch, It.IsAny<string>()))

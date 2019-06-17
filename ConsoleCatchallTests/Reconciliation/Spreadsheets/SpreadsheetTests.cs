@@ -30,20 +30,20 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         }
 
         private BudgetDataSetup<TRecordType> When_adding_budgeted_data_to_spreadsheet<TRecordType>(
-            int firstMonth,
-            int lastMonth,
-            string sheetName,
-            Mock<ISpreadsheetRepo> mockSpreadsheetRepo,
-            string firstDivider,
-            string secondDivider,
-            int secondBudgetOutColumn,
-            int defaultDay = 5) where TRecordType : ICSVRecord, new()
+            int first_month,
+            int last_month,
+            string sheet_name,
+            Mock<ISpreadsheetRepo> mock_spreadsheet_repo,
+            string first_divider,
+            string second_divider,
+            int second_budget_out_column,
+            int default_day = 5) where TRecordType : ICSVRecord, new()
         {
             // Arrange
             var budgeting_months = new BudgetingMonths
             {
-                Next_unplanned_month = firstMonth,
-                Last_month_for_budget_planning = lastMonth,
+                Next_unplanned_month = first_month,
+                Last_month_for_budget_planning = last_month,
                 Start_year = 2018
             };
             var first_monthly_row = 3;
@@ -53,17 +53,17 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             string desc2 = "second monthly record";
             var monthly_records = new List<TRecordType>
             {
-                new TRecordType {Date = new DateTime(budgeting_months.Start_year, firstMonth, defaultDay), Description = desc1},
-                new TRecordType {Date = new DateTime(budgeting_months.Start_year, firstMonth, 20), Description = desc2}
+                new TRecordType {Date = new DateTime(budgeting_months.Start_year, first_month, default_day), Description = desc1},
+                new TRecordType {Date = new DateTime(budgeting_months.Start_year, first_month, 20), Description = desc2}
             };
-            mockSpreadsheetRepo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheetName, firstDivider, 2)).Returns(first_monthly_row);
-            mockSpreadsheetRepo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheetName, secondDivider, 2)).Returns(last_monthly_row);
-            mockSpreadsheetRepo.Setup(x => x.Get_rows_as_records<TRecordType>(
-                sheetName,
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, first_divider, 2)).Returns(first_monthly_row);
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, second_divider, 2)).Returns(last_monthly_row);
+            mock_spreadsheet_repo.Setup(x => x.Get_rows_as_records<TRecordType>(
+                sheet_name,
                 first_monthly_row + 1,
                 last_monthly_row - 1,
                 first_budget_out_column,
-                secondBudgetOutColumn)).Returns(monthly_records);
+                second_budget_out_column)).Returns(monthly_records);
 
             return new BudgetDataSetup<TRecordType>
             {
@@ -75,32 +75,32 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         }
 
         private void Assert_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged<TRecordType>(
-            int firstMonth,
-            int lastMonth,
-            int monthlyRecordCount,
-            List<TRecordType> pendingFileRecords,
-            BudgetingMonths budgetingMonths,
+            int first_month,
+            int last_month,
+            int monthly_record_count,
+            List<TRecordType> pending_file_records,
+            BudgetingMonths budgeting_months,
             string desc1,
             string desc2) where TRecordType : ICSVRecord, new()
         {
             // Arrange
-            var num_repetitions = lastMonth >= firstMonth
-                ? (lastMonth - firstMonth) + 1
-                : ((lastMonth + 12) - firstMonth) + 1;
-            var total_records = num_repetitions * monthlyRecordCount;
+            var num_repetitions = last_month >= first_month
+                ? (last_month - first_month) + 1
+                : ((last_month + 12) - first_month) + 1;
+            var total_records = num_repetitions * monthly_record_count;
 
             // Assert
-            Assert.AreEqual(total_records, pendingFileRecords.Count, "total num records");
-            Assert.AreEqual(num_repetitions, pendingFileRecords.Count(x => x.Description == desc1), "num repetitions of desc1");
-            Assert.AreEqual(num_repetitions, pendingFileRecords.Count(x => x.Description == desc2), "num repetitions of desc2");
-            var desc1_records = pendingFileRecords.Where(x => x.Description == desc1)
+            Assert.AreEqual(total_records, pending_file_records.Count, "total num records");
+            Assert.AreEqual(num_repetitions, pending_file_records.Count(x => x.Description == desc1), "num repetitions of desc1");
+            Assert.AreEqual(num_repetitions, pending_file_records.Count(x => x.Description == desc2), "num repetitions of desc2");
+            var desc1_records = pending_file_records.Where(x => x.Description == desc1)
                 .OrderBy(x => x.Date).ToList();
             int index = 0;
-            int final_month = lastMonth >= firstMonth ? lastMonth : lastMonth + 12;
-            for (int month = firstMonth; month <= final_month; month++)
+            int final_month = last_month >= first_month ? last_month : last_month + 12;
+            for (int month = first_month; month <= final_month; month++)
             {
                 var expected_month = month <= 12 ? month : month - 12;
-                var expected_year = month <= 12 ? budgetingMonths.Start_year : budgetingMonths.Start_year + 1;
+                var expected_year = month <= 12 ? budgeting_months.Start_year : budgeting_months.Start_year + 1;
                 Assert.AreEqual(expected_month, desc1_records[index].Date.Month, "correct month");
                 Assert.AreEqual(expected_year, desc1_records[index].Date.Year, "correct year");
                 index++;
@@ -654,7 +654,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         [TestCase(1, 2)]
         [TestCase(12, 1)]
         public void M_WhenAddingBudgetedBankOutDataToSpreadsheet_WillAddAnnualBankOutTransactionsToPendingFile_IfMonthMatchesBudgetingMonths(
-            int firstMonth, int lastMonth)
+            int first_month, int last_month)
         {
             // Arrange
             var sheet_name = MainSheetNames.Budget_out;
@@ -674,9 +674,9 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             string desc3 = "annual record with non-matching month";
             var annual_bank_records = new List<BankRecord>
             {
-                new BankRecord { Date = new DateTime(2018, firstMonth, 1), Description = desc1 },
-                new BankRecord { Date = new DateTime(2018, lastMonth, 1), Description = desc2 },
-                new BankRecord { Date = new DateTime(2018, lastMonth + 2, 1), Description = desc3 }
+                new BankRecord { Date = new DateTime(2018, first_month, 1), Description = desc1 },
+                new BankRecord { Date = new DateTime(2018, last_month, 1), Description = desc2 },
+                new BankRecord { Date = new DateTime(2018, last_month + 2, 1), Description = desc3 }
             };
             mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, Dividers.Annual_sodds, 2)).Returns(first_annual_row);
             mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, Dividers.Annual_total, 2)).Returns(last_annual_row);
@@ -684,8 +684,8 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             // Everything else:
             var budgeting_months = new BudgetingMonths
             {
-                Next_unplanned_month = firstMonth,
-                Last_month_for_budget_planning = lastMonth,
+                Next_unplanned_month = first_month,
+                Last_month_for_budget_planning = last_month,
                 Start_year = 2018
             };
             var pending_file_records = new List<BankRecord>();
@@ -717,7 +717,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             Assert.AreEqual(1, pending_file_records.Count(x => x.Description == desc1), "num repetitions of matching record");
             Assert.AreEqual(1, pending_file_records.Count(x => x.Description == desc2), "num repetitions of other matching record");
             Assert.AreEqual(0, pending_file_records.Count(x => x.Description == desc3), "num repetitions of non-matching record");
-            var expected_record2_year = lastMonth >= firstMonth
+            var expected_record2_year = last_month >= first_month
                 ? budgeting_months.Start_year
                 : budgeting_months.Start_year + 1;
             Assert.AreEqual(expected_record2_year, pending_file_records[1].Date.Year);
@@ -729,7 +729,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         [TestCase(12, 4)]
         [TestCase(10, 1)]
         public void M2_WhenAddingBudgetedBankOutDataToSpreadsheet_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged(
-            int firstMonth, int lastMonth)
+            int first_month, int last_month)
         {
             // Arrange
             var sheet_name = MainSheetNames.Budget_out;
@@ -743,8 +743,8 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             mock_spreadsheet_repo.Setup(x => x.Get_rows_as_records<BankRecord>(sheet_name, first_annual_row + 1, last_annual_row - 1, 2, 6)).Returns(annual_bank_records);
             // Everything else:
             var budget_data_setup = When_adding_budgeted_data_to_spreadsheet<BankRecord>(
-                firstMonth,
-                lastMonth,
+                first_month,
+                last_month,
                 sheet_name,
                 mock_spreadsheet_repo,
                 Dividers.Sodds,
@@ -776,8 +776,8 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
 
             // Assert
             Assert_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged<BankRecord>(
-                firstMonth,
-                lastMonth,
+                first_month,
+                last_month,
                 budget_data_setup.MonthlyRecords.Count,
                 pending_file_records,
                 budget_data_setup.BudgetingMonths,
@@ -791,14 +791,14 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         [TestCase(12, 4)]
         [TestCase(10, 1)]
         public void M_WhenAddingBudgetedBankInDataToSpreadsheet_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged(
-            int firstMonth, int lastMonth)
+            int first_month, int last_month)
         {
             // Arrange
             var sheet_name = MainSheetNames.Budget_in;
             var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
             var budget_data_setup = When_adding_budgeted_data_to_spreadsheet<BankRecord>(
-                firstMonth,
-                lastMonth,
+                first_month,
+                last_month,
                 sheet_name,
                 mock_spreadsheet_repo,
                 Dividers.Date,
@@ -822,8 +822,8 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
 
             // Assert
             Assert_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged<BankRecord>(
-                firstMonth,
-                lastMonth,
+                first_month,
+                last_month,
                 budget_data_setup.MonthlyRecords.Count,
                 pending_file_records,
                 budget_data_setup.BudgetingMonths,
@@ -837,14 +837,14 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         [TestCase(12, 4)]
         [TestCase(10, 1)]
         public void M_WhenAddingBudgetedCredCard1InOutDataToSpreadsheet_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged(
-            int firstMonth, int lastMonth)
+            int first_month, int last_month)
         {
             // Arrange
             var sheet_name = MainSheetNames.Budget_out;
             var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
             var budget_data_setup = When_adding_budgeted_data_to_spreadsheet<CredCard1InOutRecord>(
-                firstMonth,
-                lastMonth,
+                first_month,
+                last_month,
                 sheet_name,
                 mock_spreadsheet_repo,
                 Dividers.Cred_card1,
@@ -868,8 +868,8 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
 
             // Assert
             Assert_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged<CredCard1InOutRecord>(
-                firstMonth,
-                lastMonth,
+                first_month,
+                last_month,
                 budget_data_setup.MonthlyRecords.Count,
                 pending_file_records,
                 budget_data_setup.BudgetingMonths,
@@ -883,14 +883,14 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         [TestCase(12, 4)]
         [TestCase(10, 1)]
         public void M_WhenAddingBudgetedCredCard2InOutDataToSpreadsheet_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged(
-            int firstMonth, int lastMonth)
+            int first_month, int last_month)
         {
             // Arrange
             var sheet_name = MainSheetNames.Budget_out;
             var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
             var budget_data_setup = When_adding_budgeted_data_to_spreadsheet<CredCard2InOutRecord>(
-                firstMonth,
-                lastMonth,
+                first_month,
+                last_month,
                 sheet_name,
                 mock_spreadsheet_repo,
                 Dividers.Cred_card2,
@@ -914,8 +914,8 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
 
             // Assert
             Assert_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged<CredCard2InOutRecord>(
-                firstMonth,
-                lastMonth,
+                first_month,
+                last_month,
                 budget_data_setup.MonthlyRecords.Count,
                 pending_file_records,
                 budget_data_setup.BudgetingMonths,
@@ -1159,7 +1159,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
                 Dividers.Date,
                 Dividers.Total,
                 6,
-                defaultDay: 31);
+                default_day: 31);
             var pending_file_records = new List<BankRecord>();
             var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
             mock_pending_file.Setup(x => x.Records).Returns(pending_file_records);

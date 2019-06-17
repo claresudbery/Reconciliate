@@ -7,9 +7,9 @@ namespace ExcelLibrary
         private ExcelSpreadsheetRepo _excel_spreadsheet;
         private readonly string _spreadsheet_file_name_and_path;
 
-        public ExcelSpreadsheetRepoFactory(string spreadsheetFileNameAndPath)
+        public ExcelSpreadsheetRepoFactory(string spreadsheet_file_name_and_path)
         {
-            _spreadsheet_file_name_and_path = spreadsheetFileNameAndPath;
+            _spreadsheet_file_name_and_path = spreadsheet_file_name_and_path;
         }
 
         public ISpreadsheetRepo Create_spreadsheet_repo()

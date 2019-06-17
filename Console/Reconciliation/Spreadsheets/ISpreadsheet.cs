@@ -8,51 +8,51 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 {
     internal interface ISpreadsheet
     {
-        ICellRow Read_last_row(String sheetName);
-        int Find_row_number_of_last_divider_row(string sheetName);
-        String Read_last_row_as_csv(String sheetName, ICSVRecord csvRecord);
-        String Read_specified_row_as_csv(String sheetName, int rowNumber, ICSVRecord csvRecord);
-        void Add_unreconciled_rows_to_csv_file<TRecordType>(string sheetName, ICSVFile<TRecordType> csvFile) where TRecordType : ICSVRecord, new();
-        void Append_csv_file<TRecordType>(string sheetName, ICSVFile<TRecordType> csvFile) where TRecordType : ICSVRecord, new();
+        ICellRow Read_last_row(String sheet_name);
+        int Find_row_number_of_last_divider_row(string sheet_name);
+        String Read_last_row_as_csv(String sheet_name, ICSVRecord csv_record);
+        String Read_specified_row_as_csv(String sheet_name, int row_number, ICSVRecord csv_record);
+        void Add_unreconciled_rows_to_csv_file<TRecordType>(string sheet_name, ICSVFile<TRecordType> csv_file) where TRecordType : ICSVRecord, new();
+        void Append_csv_file<TRecordType>(string sheet_name, ICSVFile<TRecordType> csv_file) where TRecordType : ICSVRecord, new();
         ICSVFile<TRecordType> Read_unreconciled_rows_as_csv_file<TRecordType>(
-            ICSVFileFactory<TRecordType> csvFileFactory,
-            String sheetName) where TRecordType : ICSVRecord, new();
-        void Delete_unreconciled_rows(string sheetName);
-        double Get_second_child_pocket_money_amount(string shortDateTime);
+            ICSVFileFactory<TRecordType> csv_file_factory,
+            String sheet_name) where TRecordType : ICSVRecord, new();
+        void Delete_unreconciled_rows(string sheet_name);
+        double Get_second_child_pocket_money_amount(string short_date_time);
         TRecordType Get_most_recent_row_containing_text<TRecordType>(
-            string sheetName,
-            string textToSearchFor,
-            List<int> expectedColumnNumbers)
+            string sheet_name,
+            string text_to_search_for,
+            List<int> expected_column_numbers)
             where TRecordType : ICSVRecord, new();
         double Get_planning_expenses_already_done();
         double Get_planning_money_paid_by_guests();
-        void Insert_new_row_on_expected_out(double newAmount, string newNotes);
-        void Add_new_transaction_to_savings(DateTime newDate, double newAmount);
+        void Insert_new_row_on_expected_out(double new_amount, string new_notes);
+        void Add_new_transaction_to_savings(DateTime new_date, double new_amount);
         void Update_balance_on_totals_sheet(
-            string balanceCode,
-            double newBalance,
-            string newText,
-            int balanceColumn,
-            int textColumn,
-            int codeColumn);
+            string balance_code,
+            double new_balance,
+            string new_text,
+            int balance_column,
+            int text_column,
+            int code_column);
         DateTime Get_next_unplanned_month();
 
         void Add_budgeted_bank_in_data_to_pending_file(
-            BudgetingMonths budgetingMonths,
-            ICSVFile<BankRecord> pendingFile,
-            BudgetItemListData budgetItemListData);
+            BudgetingMonths budgeting_months,
+            ICSVFile<BankRecord> pending_file,
+            BudgetItemListData budget_item_list_data);
         void Add_budgeted_bank_out_data_to_pending_file(
-            BudgetingMonths budgetingMonths,
-            ICSVFile<BankRecord> pendingFile,
-            BudgetItemListData monthlyBudgetItemListData,
-            BudgetItemListData annualBudgetItemListData);
+            BudgetingMonths budgeting_months,
+            ICSVFile<BankRecord> pending_file,
+            BudgetItemListData monthly_budget_item_list_data,
+            BudgetItemListData annual_budget_item_list_data);
         void Add_budgeted_cred_card1_in_out_data_to_pending_file(
-            BudgetingMonths budgetingMonths,
-            ICSVFile<CredCard1InOutRecord> pendingFile,
-            BudgetItemListData budgetItemListData);
+            BudgetingMonths budgeting_months,
+            ICSVFile<CredCard1InOutRecord> pending_file,
+            BudgetItemListData budget_item_list_data);
         void Add_budgeted_cred_card2_in_out_data_to_pending_file(
-            BudgetingMonths budgetingMonths,
-            ICSVFile<CredCard2InOutRecord> pendingFile,
-            BudgetItemListData budgetItemListData);
+            BudgetingMonths budgeting_months,
+            ICSVFile<CredCard2InOutRecord> pending_file,
+            BudgetItemListData budget_item_list_data);
     }
 }

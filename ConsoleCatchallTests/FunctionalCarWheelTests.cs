@@ -49,13 +49,13 @@ namespace ConsoleCatchallTests
         [TestCase(5, 20)]
         [TestCase(30, 120)]
         [TestCase(17, 68)]
-        public void WithManyVehicles_AndWheelsIsVehiclesTimes4_TheyAreAllCars(int numVehicles, int numWheels)
+        public void WithManyVehicles_AndWheelsIsVehiclesTimes4_TheyAreAllCars(int num_vehicles, int num_wheels)
         {
             // Act
-            int num_cars = Find_number_of_cars(numVehicles, numWheels);
+            int num_cars = Find_number_of_cars(num_vehicles, num_wheels);
 
             // Assert
-            Assert.AreEqual(numVehicles, num_cars);
+            Assert.AreEqual(num_vehicles, num_cars);
         }
 
         [Test]
@@ -142,10 +142,10 @@ namespace ConsoleCatchallTests
             Assert.AreEqual(1, num_cars);
         }
 
-        private int Find_number_of_cars(int numVehicles, int numWheels)
+        private int Find_number_of_cars(int num_vehicles, int num_wheels)
         {
-            int num_wheels_if_all_vehicles_are_motorbikes = numVehicles*2;
-            int num_leftover_wheels = numWheels - num_wheels_if_all_vehicles_are_motorbikes;
+            int num_wheels_if_all_vehicles_are_motorbikes = num_vehicles*2;
+            int num_leftover_wheels = num_wheels - num_wheels_if_all_vehicles_are_motorbikes;
 
             int num_cars = num_leftover_wheels / 2;
 

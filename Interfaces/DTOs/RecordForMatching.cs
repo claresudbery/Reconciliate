@@ -8,10 +8,10 @@ namespace Interfaces.DTOs
         public List<IPotentialMatch> Matches { get; private set; }
 
         public RecordForMatching(
-            TThirdPartyType sourceRecord,
+            TThirdPartyType source_record,
             List<IPotentialMatch> matches)
         {
-            SourceRecord = sourceRecord;
+            SourceRecord = source_record;
             Matches = matches;
         }
     }

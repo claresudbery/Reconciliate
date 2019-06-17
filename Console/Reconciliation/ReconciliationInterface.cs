@@ -19,15 +19,15 @@ namespace ConsoleCatchall.Console.Reconciliation
         private bool _doing_semi_automatic_matching = false;
 
         public ReconciliationInterface(
-            IInputOutput inputOutput,
+            IInputOutput input_output,
             IReconciliator reconciliator,
-            string thirdPartyDescriptor,
-            string ownedFileDescriptor)
+            string third_party_descriptor,
+            string owned_file_descriptor)
         {
-            _input_output = inputOutput;
+            _input_output = input_output;
             Reconciliator = reconciliator;
-            Third_party_descriptor = thirdPartyDescriptor;
-            Owned_file_descriptor = ownedFileDescriptor;
+            Third_party_descriptor = third_party_descriptor;
+            Owned_file_descriptor = owned_file_descriptor;
         }
 
         public void Do_the_matching()
@@ -93,12 +93,12 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        private void Show_auto_matches(List<ConsoleLine> autoMatches)
+        private void Show_auto_matches(List<ConsoleLine> auto_matches)
         {
             _input_output.Output_line("");
             _input_output.Output_line($"Here are the automatic matches based on amount, text and date within {PotentialMatch.PartialDateMatchThreshold} days:");
             _input_output.Output_line("");
-            _input_output.Output_all_lines(autoMatches);
+            _input_output.Output_all_lines(auto_matches);
             _input_output.Output_line("");
             _input_output.Output_line("You can reverse one match by entering the index of the match...");
             _input_output.Output_line("...or you can reverse multiple matches, by entering a comma-separated list of indices.");
@@ -166,7 +166,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        private void Show_final_matches(List<ConsoleLine> finalMatches)
+        private void Show_final_matches(List<ConsoleLine> final_matches)
         {
             _input_output.Output_line("");
             _input_output.Output_line($"There are {Reconciliator.Num_unmatched_third_party_records()} unmatched records from {Third_party_descriptor}:");
@@ -178,7 +178,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             
             _input_output.Output_line("");
             _input_output.Output_line($"{Reconciliator.Num_matched_third_party_records()} records have been matched:");
-            _input_output.Output_all_lines(finalMatches);
+            _input_output.Output_all_lines(final_matches);
             _input_output.Output_line("");
             
             _input_output.Output_line("You can reverse one match by entering the index of the match...");

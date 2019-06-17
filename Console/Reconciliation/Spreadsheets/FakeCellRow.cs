@@ -12,19 +12,19 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         private List<object> _fake_cells = new List<object>();
 
-        public FakeCellRow With_fake_data(List<object> fakeData)
+        public FakeCellRow With_fake_data(List<object> fake_data)
         {
-            _fake_cells = fakeData;
+            _fake_cells = fake_data;
             return this;
         }
 
-        public void Populate_cell(int rowNumber, int columnNumber, object cellContent)
+        public void Populate_cell(int row_number, int column_number, object cell_content)
         {
         }
 
-        public object Read_cell(int columnNumber)
+        public object Read_cell(int column_number)
         {
-            return _fake_cells[columnNumber];
+            return _fake_cells[column_number];
         }
     }
 }

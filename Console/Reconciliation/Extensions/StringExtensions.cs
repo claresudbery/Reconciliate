@@ -61,9 +61,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Extensions
                 : source.Substring(1);
         }
 
-        public static string Convert_separators(this string source, char originalSeparator, char newSeparator)
+        public static string Convert_separators(this string source, char original_separator, char new_separator)
         {
-            return source.Replace(originalSeparator, newSeparator);
+            return source.Replace(original_separator, new_separator);
         }
 
         private static void Throw_error_if_string_is_empty(string source)

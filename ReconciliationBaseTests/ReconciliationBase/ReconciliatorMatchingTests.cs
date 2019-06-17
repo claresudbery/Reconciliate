@@ -71,45 +71,45 @@ namespace ReconciliationBaseTests.ReconciliationBase
         }
 
         private CSVFile<TRecordType> Create_csv_file<TRecordType>(
-            string fileName,
-            string[] textLines) where TRecordType : ICSVRecord, new()
+            string file_name,
+            string[] text_lines) where TRecordType : ICSVRecord, new()
         {
-            var full_file_path = _absoluteCSVFilePath + "/" + fileName + ".csv";
-            File.WriteAllLines(full_file_path, textLines);
-            var file_io = new FileIO<TRecordType>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, fileName);
+            var full_file_path = _absoluteCSVFilePath + "/" + file_name + ".csv";
+            File.WriteAllLines(full_file_path, text_lines);
+            var file_io = new FileIO<TRecordType>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, file_name);
             var csv_file = new CSVFile<TRecordType>(file_io);
             csv_file.Load();
             return csv_file;
         }
 
-        private void Assert_match_is_no_longer_matched(IPotentialMatch originalMatch)
+        private void Assert_match_is_no_longer_matched(IPotentialMatch original_match)
         {
-            foreach (var actual_record in originalMatch.Actual_records)
+            foreach (var actual_record in original_match.Actual_records)
             {
                 Assert.IsFalse(actual_record.Matched);
                 Assert.IsNull(actual_record.Match);
             }
         }
 
-        private void Assert_match_is_matched(IPotentialMatch originalMatch)
+        private void Assert_match_is_matched(IPotentialMatch original_match)
         {
-            foreach (var actual_record in originalMatch.Actual_records)
+            foreach (var actual_record in original_match.Actual_records)
             {
                 Assert.IsTrue(actual_record.Matched);
             }
         }
 
-        private void Assert_source_record_is_not_matched(AutoMatchedRecord<ActualBankRecord> autoMatchedItem)
+        private void Assert_source_record_is_not_matched(AutoMatchedRecord<ActualBankRecord> auto_matched_item)
         {
-            Assert.IsFalse(autoMatchedItem.SourceRecord.Matched);
-            Assert.IsNull(autoMatchedItem.Match);
-            Assert.IsNull(autoMatchedItem.SourceRecord.Match);
+            Assert.IsFalse(auto_matched_item.SourceRecord.Matched);
+            Assert.IsNull(auto_matched_item.Match);
+            Assert.IsNull(auto_matched_item.SourceRecord.Match);
         }
 
-        private void Assert_record_is_no_longer_matched(ICSVRecord originalMatch)
+        private void Assert_record_is_no_longer_matched(ICSVRecord original_match)
         {
-            Assert.IsFalse(originalMatch.Matched);
-            Assert.IsNull(originalMatch.Match);
+            Assert.IsFalse(original_match.Matched);
+            Assert.IsNull(original_match.Match);
         }
 
         [Test]
@@ -1796,13 +1796,13 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [TestCase("the")]
         [TestCase("or")]
         [TestCase("with")]
-        public void Will_not_find_partial_match_if_candidate_description_contains_reserved_word_from_original(string targetWord)
+        public void Will_not_find_partial_match_if_candidate_description_contains_reserved_word_from_original(string target_word)
         {
             // Arrange
             var original_amount = "24.99";
             var some_other_amount = "66.66";
-            var candidate_description = $"SOMETHING {targetWord} SOMETHING";
-            var source_description = $"DIVIDE {targetWord} GREEN";
+            var candidate_description = $"SOMETHING {target_word} SOMETHING";
+            var source_description = $"DIVIDE {target_word} GREEN";
             var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
                 $"02/02/2017^£{some_other_amount}^^TILL^{candidate_description}^^^^^"});
             var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
@@ -1814,7 +1814,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
 
             // Assert
             var matches = reconciliator.Current_potential_matches();
-            Assert.AreEqual(null, matches, $"Should not match on '{targetWord}'");
+            Assert.AreEqual(null, matches, $"Should not match on '{target_word}'");
         }
 
         [Test]
@@ -2850,7 +2850,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
 
         [TestCase(TransactionMatchType.Auto)]
         [TestCase(TransactionMatchType.Final)]
-        public void M_WhenAttemptingToRemoveMatchWithBadIndex_ErrorIsThrown(TransactionMatchType transactionMatchType)
+        public void M_WhenAttemptingToRemoveMatchWithBadIndex_ErrorIsThrown(TransactionMatchType transaction_match_type)
         {
             // Arrange
             var amount1 = 22.23;
@@ -2878,7 +2878,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Act
             try
             {
-                if (transactionMatchType == TransactionMatchType.Auto)
+                if (transaction_match_type == TransactionMatchType.Auto)
                 {
                     reconciliator.Remove_auto_match(3);
                 }
@@ -2900,7 +2900,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
 
         [TestCase(TransactionMatchType.Auto)]
         [TestCase(TransactionMatchType.Final)]
-        public void M_WhenAttemptingToRemoveMultipleMatchesWithBadIndices_ErrorIsThrown(TransactionMatchType transactionMatchType)
+        public void M_WhenAttemptingToRemoveMultipleMatchesWithBadIndices_ErrorIsThrown(TransactionMatchType transaction_match_type)
         {
             // Arrange
             var amount1 = 22.23;
@@ -2931,7 +2931,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Act
             try
             {
-                if (transactionMatchType == TransactionMatchType.Auto)
+                if (transaction_match_type == TransactionMatchType.Auto)
                 {
                     reconciliator.Remove_multiple_auto_matches(new List<int> { 0, 1, 2 });
                 }

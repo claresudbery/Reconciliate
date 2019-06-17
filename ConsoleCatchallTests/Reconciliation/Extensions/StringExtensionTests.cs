@@ -60,13 +60,13 @@ namespace ConsoleCatchallTests.Reconciliation.Extensions
         [TestCase("text ,23.45", "text,23.45")]
         [TestCase("text, 23.45", "text; 23.45")]
         [TestCase("text , 23.45", "text ; 23.45")]
-        public void Can_replace_commas_surrounded_by_spaces(string source, string expectedResult)
+        public void Can_replace_commas_surrounded_by_spaces(string source, string expected_result)
         {
             // Act
             var result = source.Replace_commas_surrounded_by_spaces();
 
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            Assert.AreEqual(expected_result, result);
         }
 
         [TestCase("text ,text", "text ,text")]
@@ -78,13 +78,13 @@ namespace ConsoleCatchallTests.Reconciliation.Extensions
         [TestCase("text ,-23.45", "text,-23.45")]
         [TestCase("text     ,-23.45", "text,-23.45")]
         [TestCase("PAYMENT FOR STUFF -  ,-433.96", "PAYMENT FOR STUFF -,-433.96")]
-        public void Can_get_rid_of_spaces_before_comma_before_digit(string source, string expectedResult)
+        public void Can_get_rid_of_spaces_before_comma_before_digit(string source, string expected_result)
         {
             // Act
             var result = source.Get_rid_of_spaces_before_comma_before_digit();
 
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            Assert.AreEqual(expected_result, result);
         }
     }
 }

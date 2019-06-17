@@ -168,10 +168,10 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         [TestCase(nameof(Codes.Cred_card1_bal), "CredCard1 Balance")]
         [TestCase(nameof(Codes.Cred_card2_bal), "CredCard2 Balance")]
         [TestCase(nameof(Codes.Expenses), "Acme Expenses")]
-        public void Test_Config_Values_All_Present(string elementName, string elementValue)
+        public void Test_Config_Values_All_Present(string element_name, string element_value)
         {
             var xml_reader = new MyXmlReader();
-            Assert.AreEqual(elementValue, xml_reader.Read_xml(elementName, _sample_xml_config_file_path));
+            Assert.AreEqual(element_value, xml_reader.Read_xml(element_name, _sample_xml_config_file_path));
         }
 
         [Test]
