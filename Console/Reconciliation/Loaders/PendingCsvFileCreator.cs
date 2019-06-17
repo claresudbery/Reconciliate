@@ -33,8 +33,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         private IEnumerable<string> ReadLines(string filePath)
         {
             var lines = new List<string>();
-            using (var fileStream = File.OpenRead(filePath))
-            using (var reader = new StreamReader(fileStream))
+            using (var file_stream = File.OpenRead(filePath))
+            using (var reader = new StreamReader(file_stream))
             {
                 while (!reader.EndOfStream)
                 {
@@ -48,11 +48,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         {
             CreateFiles();
 
-            var allLines = ReadLines(_pendingSourceFilePath);
+            var all_lines = ReadLines(_pendingSourceFilePath);
 
-            PopulateBankOutCsv(allLines);
-            PopulateBankInCsv(allLines);
-            PopulateCredCard2Csv(allLines);
+            PopulateBankOutCsv(all_lines);
+            PopulateBankInCsv(all_lines);
+            PopulateCredCard2Csv(all_lines);
         }
 
         private void PopulateBankOutCsv(IEnumerable<string> allLines)
@@ -72,8 +72,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
         private void PopulateCsvFile(IEnumerable<string> allLines, string headerString, string filePath)
         {
-            IEnumerable<string> relevantLines = FindSubsetOfLines(allLines, headerString).ToList();
-            File.WriteAllLines(filePath, relevantLines);
+            IEnumerable<string> relevant_lines = FindSubsetOfLines(allLines, headerString).ToList();
+            File.WriteAllLines(filePath, relevant_lines);
         }
 
         private void CreateFiles()
@@ -86,36 +86,36 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         private IEnumerable<string> FindSubsetOfLines(IEnumerable<string> allLines, string subsectionHeader)
         {
             var lines = allLines.ToList();
-            var subsetOfLines = new List<string>();
-            int lineIndex = 0;
-            bool headerFound = false;
-            while (headerFound == false && lineIndex < lines.Count)
+            var subset_of_lines = new List<string>();
+            int line_index = 0;
+            bool header_found = false;
+            while (header_found == false && line_index < lines.Count)
             {
-                if (lines[lineIndex].ToUpper().StartsWith(subsectionHeader.ToUpper()))
+                if (lines[line_index].ToUpper().StartsWith(subsectionHeader.ToUpper()))
                 {
-                    headerFound = true;
+                    header_found = true;
                 }
-                lineIndex++;
+                line_index++;
             }
 
-            if (headerFound)
+            if (header_found)
             {
-                bool subsetStillHasLines = true;
-                while (subsetStillHasLines && lineIndex < lines.Count)
+                bool subset_still_has_lines = true;
+                while (subset_still_has_lines && line_index < lines.Count)
                 {
-                    if (lines[lineIndex] == String.Empty)
+                    if (lines[line_index] == String.Empty)
                     {
-                        subsetStillHasLines = false;
+                        subset_still_has_lines = false;
                     }
                     else
                     {
-                        subsetOfLines.Add(lines[lineIndex]);
+                        subset_of_lines.Add(lines[line_index]);
                     }
-                    lineIndex++;
+                    line_index++;
                 }
             }
 
-            return subsetOfLines;
+            return subset_of_lines;
         }
     }
 }

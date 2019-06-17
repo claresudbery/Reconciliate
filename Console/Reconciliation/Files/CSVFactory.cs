@@ -8,13 +8,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
     {
         public ICSVFile<TRecordType> CreateCSVFile(bool loadFile = true, char? overrideSeparator = null, bool orderOnLoad = true)
         {
-            var fileIO = new FileIO<TRecordType>(
+            var file_io = new FileIO<TRecordType>(
                 new SpreadsheetRepoFactoryFactory()
                     .GetFactory(ReconConsts.MainSpreadsheetPath + "/" + ReconConsts.MainSpreadsheetFileName), 
                 "", "");
-            var csvFile = new CSVFile<TRecordType>(fileIO);
-            csvFile.Load(false);
-            return csvFile;
+            var csv_file = new CSVFile<TRecordType>(file_io);
+            csv_file.Load(false);
+            return csv_file;
         }
     }
 }

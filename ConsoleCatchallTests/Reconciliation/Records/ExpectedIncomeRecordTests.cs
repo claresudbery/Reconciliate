@@ -16,7 +16,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void WillPopulateExpectedIncomeRecordCells()
         {
             // Arrange
-            var expectedIncomeRecord = new ExpectedIncomeRecord
+            var expected_income_record = new ExpectedIncomeRecord
             {
                 Date = DateTime.Today,
                 UnreconciledAmount = 80.20,
@@ -26,20 +26,20 @@ namespace ConsoleCatchallTests.Reconciliation.Records
                 TotalPaid = 42.34,
                 Description = "description"
             };
-            var mockCells = new Mock<ICellSet>();
+            var mock_cells = new Mock<ICellSet>();
             var row = 10;
 
             // Act 
-            expectedIncomeRecord.PopulateSpreadsheetRow(mockCells.Object, row);
+            expected_income_record.PopulateSpreadsheetRow(mock_cells.Object, row);
 
             // Assert
-            mockCells.Verify(x => x.PopulateCell(row, ExpectedIncomeRecord.DateIndex + 1, expectedIncomeRecord.Date), "Date");
-            mockCells.Verify(x => x.PopulateCell(row, ExpectedIncomeRecord.UnreconciledAmountIndex + 1, expectedIncomeRecord.UnreconciledAmount), "UnreconciledAmount");
-            mockCells.Verify(x => x.PopulateCell(row, ExpectedIncomeRecord.CodeIndex + 1, expectedIncomeRecord.Code), "Code");
-            mockCells.Verify(x => x.PopulateCell(row, ExpectedIncomeRecord.ReconciledAmountIndex + 1, expectedIncomeRecord.ReconciledAmount), "ReconciledAmount");
-            mockCells.Verify(x => x.PopulateCell(row, ExpectedIncomeRecord.DatePaidIndex + 1, expectedIncomeRecord.DatePaid), "DatePaid");
-            mockCells.Verify(x => x.PopulateCell(row, ExpectedIncomeRecord.TotalPaidIndex + 1, expectedIncomeRecord.TotalPaid), "TotalPaid");
-            mockCells.Verify(x => x.PopulateCell(row, ExpectedIncomeRecord.DescriptionIndex + 1, expectedIncomeRecord.Description), "Description");
+            mock_cells.Verify(x => x.PopulateCell(row, ExpectedIncomeRecord.DateIndex + 1, expected_income_record.Date), "Date");
+            mock_cells.Verify(x => x.PopulateCell(row, ExpectedIncomeRecord.UnreconciledAmountIndex + 1, expected_income_record.UnreconciledAmount), "UnreconciledAmount");
+            mock_cells.Verify(x => x.PopulateCell(row, ExpectedIncomeRecord.CodeIndex + 1, expected_income_record.Code), "Code");
+            mock_cells.Verify(x => x.PopulateCell(row, ExpectedIncomeRecord.ReconciledAmountIndex + 1, expected_income_record.ReconciledAmount), "ReconciledAmount");
+            mock_cells.Verify(x => x.PopulateCell(row, ExpectedIncomeRecord.DatePaidIndex + 1, expected_income_record.DatePaid), "DatePaid");
+            mock_cells.Verify(x => x.PopulateCell(row, ExpectedIncomeRecord.TotalPaidIndex + 1, expected_income_record.TotalPaid), "TotalPaid");
+            mock_cells.Verify(x => x.PopulateCell(row, ExpectedIncomeRecord.DescriptionIndex + 1, expected_income_record.Description), "Description");
         }
 
         [Test]
@@ -47,15 +47,15 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void WillInsertDividerTextInSecondCellWhenExpectedIncomeRecordIsDivider()
         {
             // Arrange
-            var expectedIncomeRecord = new ExpectedIncomeRecord {Divider = true};
-            var rowNumber = 10;
-            var mockCells = new Mock<ICellSet>();
+            var expected_income_record = new ExpectedIncomeRecord {Divider = true};
+            var row_number = 10;
+            var mock_cells = new Mock<ICellSet>();
 
             // Act 
-            expectedIncomeRecord.PopulateSpreadsheetRow(mockCells.Object, rowNumber);
+            expected_income_record.PopulateSpreadsheetRow(mock_cells.Object, row_number);
 
             // Assert
-            mockCells.Verify(x => x.PopulateCell(rowNumber, ExpectedIncomeRecord.DividerIndex + 1, ReconConsts.DividerText));
+            mock_cells.Verify(x => x.PopulateCell(row_number, ExpectedIncomeRecord.DividerIndex + 1, ReconConsts.DividerText));
         }
 
         [Test]
@@ -63,35 +63,35 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void WillReadFromExpectedIncomeRecordCells()
         {
             // Arrange
-            DateTime expectedDate = DateTime.Today;
-            Double expectedUnreconciledAmount = 5.20;
-            String expectedCode = "ABC";
-            Double expectedReconciledAmount = 7567.89;
-            DateTime expectedDatePaid = DateTime.Today.AddDays(1);
-            Double expectedTotalPaid = 42.45;
-            String expectedDescription = "description4";
-            var mockCells = new Mock<ICellRow>();
-            mockCells.Setup(x => x.Count).Returns(20);
-            mockCells.Setup(x => x.ReadCell(ExpectedIncomeRecord.DateIndex)).Returns(expectedDate.ToOADate());
-            mockCells.Setup(x => x.ReadCell(ExpectedIncomeRecord.UnreconciledAmountIndex)).Returns(expectedUnreconciledAmount);
-            mockCells.Setup(x => x.ReadCell(ExpectedIncomeRecord.CodeIndex)).Returns(expectedCode);
-            mockCells.Setup(x => x.ReadCell(ExpectedIncomeRecord.ReconciledAmountIndex)).Returns(expectedReconciledAmount);
-            mockCells.Setup(x => x.ReadCell(ExpectedIncomeRecord.DatePaidIndex)).Returns(expectedDatePaid.ToOADate());
-            mockCells.Setup(x => x.ReadCell(ExpectedIncomeRecord.TotalPaidIndex)).Returns(expectedTotalPaid);
-            mockCells.Setup(x => x.ReadCell(ExpectedIncomeRecord.DescriptionIndex)).Returns(expectedDescription);
-            var expectedIncomeRecord = new ExpectedIncomeRecord();
+            DateTime expected_date = DateTime.Today;
+            Double expected_unreconciled_amount = 5.20;
+            String expected_code = "ABC";
+            Double expected_reconciled_amount = 7567.89;
+            DateTime expected_date_paid = DateTime.Today.AddDays(1);
+            Double expected_total_paid = 42.45;
+            String expected_description = "description4";
+            var mock_cells = new Mock<ICellRow>();
+            mock_cells.Setup(x => x.Count).Returns(20);
+            mock_cells.Setup(x => x.ReadCell(ExpectedIncomeRecord.DateIndex)).Returns(expected_date.ToOADate());
+            mock_cells.Setup(x => x.ReadCell(ExpectedIncomeRecord.UnreconciledAmountIndex)).Returns(expected_unreconciled_amount);
+            mock_cells.Setup(x => x.ReadCell(ExpectedIncomeRecord.CodeIndex)).Returns(expected_code);
+            mock_cells.Setup(x => x.ReadCell(ExpectedIncomeRecord.ReconciledAmountIndex)).Returns(expected_reconciled_amount);
+            mock_cells.Setup(x => x.ReadCell(ExpectedIncomeRecord.DatePaidIndex)).Returns(expected_date_paid.ToOADate());
+            mock_cells.Setup(x => x.ReadCell(ExpectedIncomeRecord.TotalPaidIndex)).Returns(expected_total_paid);
+            mock_cells.Setup(x => x.ReadCell(ExpectedIncomeRecord.DescriptionIndex)).Returns(expected_description);
+            var expected_income_record = new ExpectedIncomeRecord();
 
             // Act 
-            expectedIncomeRecord.ReadFromSpreadsheetRow(mockCells.Object);
+            expected_income_record.ReadFromSpreadsheetRow(mock_cells.Object);
 
             // Assert
-            Assert.AreEqual(expectedDate, expectedIncomeRecord.Date);
-            Assert.AreEqual(expectedUnreconciledAmount, expectedIncomeRecord.UnreconciledAmount);
-            Assert.AreEqual(expectedCode, expectedIncomeRecord.Code);
-            Assert.AreEqual(expectedReconciledAmount, expectedIncomeRecord.ReconciledAmount);
-            Assert.AreEqual(expectedDatePaid, expectedIncomeRecord.DatePaid);
-            Assert.AreEqual(expectedTotalPaid, expectedIncomeRecord.TotalPaid);
-            Assert.AreEqual(expectedDescription, expectedIncomeRecord.Description);
+            Assert.AreEqual(expected_date, expected_income_record.Date);
+            Assert.AreEqual(expected_unreconciled_amount, expected_income_record.UnreconciledAmount);
+            Assert.AreEqual(expected_code, expected_income_record.Code);
+            Assert.AreEqual(expected_reconciled_amount, expected_income_record.ReconciledAmount);
+            Assert.AreEqual(expected_date_paid, expected_income_record.DatePaid);
+            Assert.AreEqual(expected_total_paid, expected_income_record.TotalPaid);
+            Assert.AreEqual(expected_description, expected_income_record.Description);
         }
 
         [Test]
@@ -99,16 +99,16 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void WillCopeWithExpectedInCellsWhenNotAllCellsArePopulated()
         {
             // Arrange
-            var expectedIncomeRecord = new ExpectedIncomeRecord();
-            var mockCells = new Mock<ICellRow>();
-            var expectedCode = "expectedCode";
-            mockCells.Setup(x => x.ReadCell(ExpectedIncomeRecord.CodeIndex)).Returns(expectedCode);
+            var expected_income_record = new ExpectedIncomeRecord();
+            var mock_cells = new Mock<ICellRow>();
+            var expected_code = "expectedCode";
+            mock_cells.Setup(x => x.ReadCell(ExpectedIncomeRecord.CodeIndex)).Returns(expected_code);
 
             // Act 
-            expectedIncomeRecord.ReadFromSpreadsheetRow(mockCells.Object);
+            expected_income_record.ReadFromSpreadsheetRow(mock_cells.Object);
 
             // Assert
-            Assert.AreEqual(expectedCode, expectedIncomeRecord.Code);
+            Assert.AreEqual(expected_code, expected_income_record.Code);
         }
 
         [Test]
@@ -117,37 +117,37 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             TestHelper.SetCorrectDateFormatting();
-            DateTime expectedDate = DateTime.Today;
-            Double expectedUnreconciledAmount = 5.21;
-            String expectedCode = "ABC";
-            Double expectedReconciledAmount = 567.89;
-            DateTime expectedDatePaid = DateTime.Today.AddDays(1);
-            Double expectedTotalPaid = 42.45;
-            String expectedDescription = "description4";
-            var mockCells = new Mock<ICellRow>();
-            mockCells.Setup(x => x.Count).Returns(20);
-            mockCells.Setup(x => x.ReadCell(ExpectedIncomeRecord.DateIndex)).Returns(expectedDate.ToOADate());
-            mockCells.Setup(x => x.ReadCell(ExpectedIncomeRecord.UnreconciledAmountIndex)).Returns(expectedUnreconciledAmount);
-            mockCells.Setup(x => x.ReadCell(ExpectedIncomeRecord.CodeIndex)).Returns(expectedCode);
-            mockCells.Setup(x => x.ReadCell(ExpectedIncomeRecord.ReconciledAmountIndex)).Returns(expectedReconciledAmount);
-            mockCells.Setup(x => x.ReadCell(ExpectedIncomeRecord.DatePaidIndex)).Returns(expectedDatePaid.ToOADate());
-            mockCells.Setup(x => x.ReadCell(ExpectedIncomeRecord.TotalPaidIndex)).Returns(expectedTotalPaid);
-            mockCells.Setup(x => x.ReadCell(ExpectedIncomeRecord.DescriptionIndex)).Returns(expectedDescription);
-            String expectedSourceLine = 
-                $"{expectedDate.ToShortDateString()}"
-                +$",£{expectedUnreconciledAmount}"
-                + $",{expectedCode}"
-                + $",£{expectedReconciledAmount}"
-                + $",{expectedDatePaid.ToShortDateString()}"
-                + $",£{expectedTotalPaid}"
-                + $",{expectedDescription}";
-            var expectedIncomeRecord = new ExpectedIncomeRecord();
+            DateTime expected_date = DateTime.Today;
+            Double expected_unreconciled_amount = 5.21;
+            String expected_code = "ABC";
+            Double expected_reconciled_amount = 567.89;
+            DateTime expected_date_paid = DateTime.Today.AddDays(1);
+            Double expected_total_paid = 42.45;
+            String expected_description = "description4";
+            var mock_cells = new Mock<ICellRow>();
+            mock_cells.Setup(x => x.Count).Returns(20);
+            mock_cells.Setup(x => x.ReadCell(ExpectedIncomeRecord.DateIndex)).Returns(expected_date.ToOADate());
+            mock_cells.Setup(x => x.ReadCell(ExpectedIncomeRecord.UnreconciledAmountIndex)).Returns(expected_unreconciled_amount);
+            mock_cells.Setup(x => x.ReadCell(ExpectedIncomeRecord.CodeIndex)).Returns(expected_code);
+            mock_cells.Setup(x => x.ReadCell(ExpectedIncomeRecord.ReconciledAmountIndex)).Returns(expected_reconciled_amount);
+            mock_cells.Setup(x => x.ReadCell(ExpectedIncomeRecord.DatePaidIndex)).Returns(expected_date_paid.ToOADate());
+            mock_cells.Setup(x => x.ReadCell(ExpectedIncomeRecord.TotalPaidIndex)).Returns(expected_total_paid);
+            mock_cells.Setup(x => x.ReadCell(ExpectedIncomeRecord.DescriptionIndex)).Returns(expected_description);
+            String expected_source_line = 
+                $"{expected_date.ToShortDateString()}"
+                +$",£{expected_unreconciled_amount}"
+                + $",{expected_code}"
+                + $",£{expected_reconciled_amount}"
+                + $",{expected_date_paid.ToShortDateString()}"
+                + $",£{expected_total_paid}"
+                + $",{expected_description}";
+            var expected_income_record = new ExpectedIncomeRecord();
 
             // Act 
-            expectedIncomeRecord.ReadFromSpreadsheetRow(mockCells.Object);
+            expected_income_record.ReadFromSpreadsheetRow(mock_cells.Object);
 
             // Assert
-            Assert.AreEqual(expectedSourceLine, expectedIncomeRecord.SourceLine);
+            Assert.AreEqual(expected_source_line, expected_income_record.SourceLine);
         }
 
         [Test]
@@ -155,37 +155,37 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             TestHelper.SetCorrectDateFormatting();
-            DateTime expectedDate = DateTime.Today;
-            Double expectedUnreconciledAmount = 5.21;
-            String expectedCode = "ABC";
-            Double expectedReconciledAmount = 567.89;
-            DateTime expectedDatePaid = DateTime.Today.AddDays(1);
-            Double expectedTotalPaid = 42.45;
-            String expectedDescription = "description4";
-            var expectedIncomeRecord = new ExpectedIncomeRecord
+            DateTime expected_date = DateTime.Today;
+            Double expected_unreconciled_amount = 5.21;
+            String expected_code = "ABC";
+            Double expected_reconciled_amount = 567.89;
+            DateTime expected_date_paid = DateTime.Today.AddDays(1);
+            Double expected_total_paid = 42.45;
+            String expected_description = "description4";
+            var expected_income_record = new ExpectedIncomeRecord
             {
-                Date = expectedDate,
-                UnreconciledAmount = expectedUnreconciledAmount,
-                Code = expectedCode,
-                ReconciledAmount = expectedReconciledAmount,
-                DatePaid = expectedDatePaid,
-                TotalPaid = expectedTotalPaid,
-                Description = expectedDescription
+                Date = expected_date,
+                UnreconciledAmount = expected_unreconciled_amount,
+                Code = expected_code,
+                ReconciledAmount = expected_reconciled_amount,
+                DatePaid = expected_date_paid,
+                TotalPaid = expected_total_paid,
+                Description = expected_description
             };
-            String expectedSourceLine =
-                $"{expectedDate.ToShortDateString()}"
-                + $",£{expectedUnreconciledAmount}"
-                + $",{expectedCode}"
-                + $",£{expectedReconciledAmount}"
-                + $",{expectedDatePaid.ToShortDateString()}"
-                + $",£{expectedTotalPaid}"
-                + $",\"{expectedDescription}\"";
+            String expected_source_line =
+                $"{expected_date.ToShortDateString()}"
+                + $",£{expected_unreconciled_amount}"
+                + $",{expected_code}"
+                + $",£{expected_reconciled_amount}"
+                + $",{expected_date_paid.ToShortDateString()}"
+                + $",£{expected_total_paid}"
+                + $",\"{expected_description}\"";
 
             // Act 
-            string constructedCsvLine = expectedIncomeRecord.ToCsv();
+            string constructed_csv_line = expected_income_record.ToCsv();
 
             // Assert
-            Assert.AreEqual(expectedSourceLine, constructedCsvLine);
+            Assert.AreEqual(expected_source_line, constructed_csv_line);
         }
 
         [Test]
@@ -193,22 +193,22 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             TestHelper.SetCorrectDateFormatting();
-            DateTime expectedDate = DateTime.Today;
-            Double expectedUnreconciledAmount = 5555.21;
-            var expectedIncomeRecord = new ExpectedIncomeRecord
+            DateTime expected_date = DateTime.Today;
+            Double expected_unreconciled_amount = 5555.21;
+            var expected_income_record = new ExpectedIncomeRecord
             {
-                Date = expectedDate,
-                UnreconciledAmount = expectedUnreconciledAmount,
+                Date = expected_date,
+                UnreconciledAmount = expected_unreconciled_amount,
             };
-            String expectedCsvLine =
-                $"{expectedDate.ToShortDateString()}"
+            String expected_csv_line =
+                $"{expected_date.ToShortDateString()}"
                 + $",\"£5,555.21\",,,,,";
 
             // Act 
-            string constructedCsvLine = expectedIncomeRecord.ToCsv();
+            string constructed_csv_line = expected_income_record.ToCsv();
 
             // Assert
-            Assert.AreEqual(expectedCsvLine, constructedCsvLine);
+            Assert.AreEqual(expected_csv_line, constructed_csv_line);
         }
 
         [Test]
@@ -216,14 +216,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             TestHelper.SetCorrectDateFormatting();
-            var expectedIncomeRecord = new ExpectedIncomeRecord();
-            String expectedCsvLine =$",,,,,,";
+            var expected_income_record = new ExpectedIncomeRecord();
+            String expected_csv_line =$",,,,,,";
 
             // Act 
-            string constructedCsvLine = expectedIncomeRecord.ToCsv();
+            string constructed_csv_line = expected_income_record.ToCsv();
 
             // Assert
-            Assert.AreEqual(expectedCsvLine, constructedCsvLine);
+            Assert.AreEqual(expected_csv_line, constructed_csv_line);
         }
 
         [Test]
@@ -231,20 +231,20 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var amount = 123.55;
-            var amountWithPoundSign = $"£{amount}";
-            var expectedIncomeRecord = new ExpectedIncomeRecord
+            var amount_with_pound_sign = $"£{amount}";
+            var expected_income_record = new ExpectedIncomeRecord
             {
                 UnreconciledAmount = amount,
                 ReconciledAmount = amount,
                 TotalPaid = amount,
             };
-            String expectedCsvLine = $",{amountWithPoundSign},,{amountWithPoundSign},,{amountWithPoundSign},";
+            String expected_csv_line = $",{amount_with_pound_sign},,{amount_with_pound_sign},,{amount_with_pound_sign},";
 
             // Act 
-            string constructedCsvLine = expectedIncomeRecord.ToCsv();
+            string constructed_csv_line = expected_income_record.ToCsv();
 
             // Assert
-            Assert.AreEqual(expectedCsvLine, constructedCsvLine);
+            Assert.AreEqual(expected_csv_line, constructed_csv_line);
         }
 
         [Test]
@@ -253,44 +253,44 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             TestHelper.SetCorrectDateFormatting();
-            DateTime expectedDate = DateTime.Today;
-            Double expectedUnreconciledAmount = 5.21;
-            String expectedCode = "ABC";
-            Double expectedReconciledAmount = 567.89;
-            DateTime expectedDatePaid = DateTime.Today.AddDays(1);
-            Double expectedTotalPaid = 42.45;
-            String expectedDescription = "description4";
-            var expectedIncomeRecord = new ExpectedIncomeRecord
+            DateTime expected_date = DateTime.Today;
+            Double expected_unreconciled_amount = 5.21;
+            String expected_code = "ABC";
+            Double expected_reconciled_amount = 567.89;
+            DateTime expected_date_paid = DateTime.Today.AddDays(1);
+            Double expected_total_paid = 42.45;
+            String expected_description = "description4";
+            var expected_income_record = new ExpectedIncomeRecord
             {
-                Date = expectedDate,
-                UnreconciledAmount = expectedUnreconciledAmount,
-                Code = expectedCode,
-                ReconciledAmount = expectedReconciledAmount,
-                DatePaid = expectedDatePaid,
-                TotalPaid = expectedTotalPaid,
-                Description = expectedDescription
+                Date = expected_date,
+                UnreconciledAmount = expected_unreconciled_amount,
+                Code = expected_code,
+                ReconciledAmount = expected_reconciled_amount,
+                DatePaid = expected_date_paid,
+                TotalPaid = expected_total_paid,
+                Description = expected_description
             };
-            String expectedSourceLine =
-                $"{expectedDate.ToShortDateString()}"
-                + $",£{expectedUnreconciledAmount}"
-                + $",{expectedCode}"
-                + $",£{expectedReconciledAmount}"
-                + $",{expectedDatePaid.ToShortDateString()}"
-                + $",£{expectedTotalPaid}"
-                + $",\"{expectedDescription}\"";
+            String expected_source_line =
+                $"{expected_date.ToShortDateString()}"
+                + $",£{expected_unreconciled_amount}"
+                + $",{expected_code}"
+                + $",£{expected_reconciled_amount}"
+                + $",{expected_date_paid.ToShortDateString()}"
+                + $",£{expected_total_paid}"
+                + $",\"{expected_description}\"";
 
             // Act 
-            expectedIncomeRecord.UpdateSourceLineForOutput(',');
+            expected_income_record.UpdateSourceLineForOutput(',');
 
             // Assert
-            Assert.AreEqual(expectedSourceLine, expectedIncomeRecord.SourceLine);
+            Assert.AreEqual(expected_source_line, expected_income_record.SourceLine);
         }
 
         [Test]
         public void WhenCopyingRecordWillCopyAllImportantData()
         {
             // Arrange
-            var expectedIncomeRecord = new ExpectedIncomeRecord
+            var expected_income_record = new ExpectedIncomeRecord
             {
                 Date = DateTime.Today,
                 UnreconciledAmount = 80.20,
@@ -300,73 +300,73 @@ namespace ConsoleCatchallTests.Reconciliation.Records
                 TotalPaid = 42.34,
                 Description = "description"
             };
-            expectedIncomeRecord.UpdateSourceLineForOutput(',');
+            expected_income_record.UpdateSourceLineForOutput(',');
 
             // Act 
-            var copiedRecord = (ExpectedIncomeRecord)expectedIncomeRecord.Copy();
+            var copied_record = (ExpectedIncomeRecord)expected_income_record.Copy();
 
             // Assert
-            Assert.AreEqual(expectedIncomeRecord.Date, copiedRecord.Date);
-            Assert.AreEqual(expectedIncomeRecord.UnreconciledAmount, copiedRecord.UnreconciledAmount);
-            Assert.AreEqual(expectedIncomeRecord.Code, copiedRecord.Code);
-            Assert.AreEqual(expectedIncomeRecord.ReconciledAmount, copiedRecord.ReconciledAmount);
-            Assert.AreEqual(expectedIncomeRecord.DatePaid, copiedRecord.DatePaid);
-            Assert.AreEqual(expectedIncomeRecord.TotalPaid, copiedRecord.TotalPaid);
-            Assert.AreEqual(expectedIncomeRecord.Description, copiedRecord.Description);
-            Assert.AreEqual(expectedIncomeRecord.SourceLine, copiedRecord.SourceLine);
+            Assert.AreEqual(expected_income_record.Date, copied_record.Date);
+            Assert.AreEqual(expected_income_record.UnreconciledAmount, copied_record.UnreconciledAmount);
+            Assert.AreEqual(expected_income_record.Code, copied_record.Code);
+            Assert.AreEqual(expected_income_record.ReconciledAmount, copied_record.ReconciledAmount);
+            Assert.AreEqual(expected_income_record.DatePaid, copied_record.DatePaid);
+            Assert.AreEqual(expected_income_record.TotalPaid, copied_record.TotalPaid);
+            Assert.AreEqual(expected_income_record.Description, copied_record.Description);
+            Assert.AreEqual(expected_income_record.SourceLine, copied_record.SourceLine);
         }
 
         [Test]
         public void WhenCopyingRecordWillCreateNewObject()
         {
             // Arrange
-            DateTime originalDate = DateTime.Today;
-            Double originalUnreconciledAmount = 5.21;
-            String originalCode = "ABC";
-            Double originalReconciledAmount = 567.89;
-            DateTime originalDatePaid = DateTime.Today.AddDays(1);
-            Double originalTotalPaid = 42.45;
-            String originalDescription = "description4";
-            var expectedIncomeRecord = new ExpectedIncomeRecord
+            DateTime original_date = DateTime.Today;
+            Double original_unreconciled_amount = 5.21;
+            String original_code = "ABC";
+            Double original_reconciled_amount = 567.89;
+            DateTime original_date_paid = DateTime.Today.AddDays(1);
+            Double original_total_paid = 42.45;
+            String original_description = "description4";
+            var expected_income_record = new ExpectedIncomeRecord
             {
-                Date = originalDate,
-                UnreconciledAmount = originalUnreconciledAmount,
-                Code = originalCode,
-                ReconciledAmount = originalReconciledAmount,
-                DatePaid = originalDatePaid,
-                TotalPaid = originalTotalPaid,
-                Description = originalDescription,
+                Date = original_date,
+                UnreconciledAmount = original_unreconciled_amount,
+                Code = original_code,
+                ReconciledAmount = original_reconciled_amount,
+                DatePaid = original_date_paid,
+                TotalPaid = original_total_paid,
+                Description = original_description,
             };
-            expectedIncomeRecord.UpdateSourceLineForOutput(',');
-            var originalSourceLine = expectedIncomeRecord.SourceLine;
+            expected_income_record.UpdateSourceLineForOutput(',');
+            var original_source_line = expected_income_record.SourceLine;
 
             // Act 
-            var copiedRecord = (ExpectedIncomeRecord)expectedIncomeRecord.Copy();
-            copiedRecord.Date = copiedRecord.Date.AddDays(1);
-            copiedRecord.UnreconciledAmount = copiedRecord.UnreconciledAmount + 1;
-            copiedRecord.Code = copiedRecord.Code + "something else";
-            copiedRecord.ReconciledAmount = copiedRecord.ReconciledAmount + 1;
-            copiedRecord.DatePaid = copiedRecord.DatePaid.AddDays(1);
-            copiedRecord.TotalPaid = copiedRecord.TotalPaid + 1;
-            copiedRecord.Description = copiedRecord.Description + "something else";
-            copiedRecord.UpdateSourceLineForOutput(',');
+            var copied_record = (ExpectedIncomeRecord)expected_income_record.Copy();
+            copied_record.Date = copied_record.Date.AddDays(1);
+            copied_record.UnreconciledAmount = copied_record.UnreconciledAmount + 1;
+            copied_record.Code = copied_record.Code + "something else";
+            copied_record.ReconciledAmount = copied_record.ReconciledAmount + 1;
+            copied_record.DatePaid = copied_record.DatePaid.AddDays(1);
+            copied_record.TotalPaid = copied_record.TotalPaid + 1;
+            copied_record.Description = copied_record.Description + "something else";
+            copied_record.UpdateSourceLineForOutput(',');
 
             // Assert
-            Assert.AreEqual(originalDate, expectedIncomeRecord.Date);
-            Assert.AreEqual(originalUnreconciledAmount, expectedIncomeRecord.UnreconciledAmount);
-            Assert.AreEqual(originalCode, expectedIncomeRecord.Code);
-            Assert.AreEqual(originalReconciledAmount, expectedIncomeRecord.ReconciledAmount);
-            Assert.AreEqual(originalDatePaid, expectedIncomeRecord.DatePaid);
-            Assert.AreEqual(originalTotalPaid, expectedIncomeRecord.TotalPaid);
-            Assert.AreEqual(originalDescription, expectedIncomeRecord.Description);
-            Assert.AreEqual(originalSourceLine, expectedIncomeRecord.SourceLine);
+            Assert.AreEqual(original_date, expected_income_record.Date);
+            Assert.AreEqual(original_unreconciled_amount, expected_income_record.UnreconciledAmount);
+            Assert.AreEqual(original_code, expected_income_record.Code);
+            Assert.AreEqual(original_reconciled_amount, expected_income_record.ReconciledAmount);
+            Assert.AreEqual(original_date_paid, expected_income_record.DatePaid);
+            Assert.AreEqual(original_total_paid, expected_income_record.TotalPaid);
+            Assert.AreEqual(original_description, expected_income_record.Description);
+            Assert.AreEqual(original_source_line, expected_income_record.SourceLine);
         }
 
         [Test]
         public void WillConvertToABankRecord()
         {
             // Arrange
-            var expectedIncomeRecord = new ExpectedIncomeRecord
+            var expected_income_record = new ExpectedIncomeRecord
             {
                 Date = DateTime.Today,
                 UnreconciledAmount = 80.20,
@@ -378,13 +378,13 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             };
 
             // Act
-            BankRecord result = expectedIncomeRecord.ConvertToBankRecord();
+            BankRecord result = expected_income_record.ConvertToBankRecord();
 
             // Assert
-            Assert.AreEqual(expectedIncomeRecord.Date, result.Date);
-            Assert.AreEqual(expectedIncomeRecord.UnreconciledAmount, result.UnreconciledAmount);
-            Assert.AreEqual(expectedIncomeRecord.Code, result.Type);
-            Assert.AreEqual(expectedIncomeRecord.Description, result.Description);
+            Assert.AreEqual(expected_income_record.Date, result.Date);
+            Assert.AreEqual(expected_income_record.UnreconciledAmount, result.UnreconciledAmount);
+            Assert.AreEqual(expected_income_record.Code, result.Type);
+            Assert.AreEqual(expected_income_record.Description, result.Description);
         }
     }
 }

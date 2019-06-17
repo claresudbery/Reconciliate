@@ -211,17 +211,17 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
         public List<TRecordType> RecordsOrderedForSpreadsheet()
         {
             var divider = new TRecordType {Divider = true};
-            var matchedRecords = Records.Where(x => x.Matched);
-            var unmatchedRecords = Records.Where(x => !x.Matched);
+            var matched_records = Records.Where(x => x.Matched);
+            var unmatched_records = Records.Where(x => !x.Matched);
 
-            var result = matchedRecords
+            var result = matched_records
                 .OrderBy(x => x.Date)
                 .ToList();
             if (result.Count > 0)
             {
                 result.Add(divider);
             }
-            result.AddRange(unmatchedRecords.OrderBy(x => x.Date));
+            result.AddRange(unmatched_records.OrderBy(x => x.Date));
 
             return result;
         }

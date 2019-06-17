@@ -13,19 +13,19 @@ namespace ExcelIntegrationTests.Records
         public void WillReadFromCredCard2RecordCells()
         {
             // Arrange
-            DateTime expectedDate = new DateTime(year: 2018, month: 3, day: 22);
-            Double expectedAmount = 12.38;
-            String expectedDescription = "some data";
-            var credCard2Record = new CredCard2Record();
+            DateTime expected_date = new DateTime(year: 2018, month: 3, day: 22);
+            Double expected_amount = 12.38;
+            String expected_description = "some data";
+            var cred_card2_record = new CredCard2Record();
             var cells = _spreadsheet.ReadLastRow("CredCard2");
 
             // Act 
-            credCard2Record.ReadFromSpreadsheetRow(cells);
+            cred_card2_record.ReadFromSpreadsheetRow(cells);
 
             // Assert
-            Assert.AreEqual(expectedDate, credCard2Record.Date);
-            Assert.AreEqual(expectedAmount, credCard2Record.Amount);
-            Assert.AreEqual(expectedDescription, credCard2Record.Description);
+            Assert.AreEqual(expected_date, cred_card2_record.Date);
+            Assert.AreEqual(expected_amount, cred_card2_record.Amount);
+            Assert.AreEqual(expected_description, cred_card2_record.Description);
         }
     }
 }

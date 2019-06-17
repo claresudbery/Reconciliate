@@ -13,17 +13,17 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var index = 23;
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings()
             };
-            var consoleLine = new ConsoleLine { Index = index };
+            var console_line = new ConsoleLine { Index = index };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual($"{index}. ", consoleSnippets[0].Text);
+            Assert.AreEqual($"{index}. ", console_snippets[0].Text);
         }
 
         [Test]
@@ -31,34 +31,34 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var index = 23;
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings()
             };
-            var consoleLine = new ConsoleLine { Index = index };
+            var console_line = new ConsoleLine { Index = index };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(ConsoleColour.White, consoleSnippets[0].TextColour);
+            Assert.AreEqual(ConsoleColour.White, console_snippets[0].TextColour);
         }
 
         [Test]
         public void WillSetDateAsSecondConsoleSnippet()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings()
             };
-            var consoleLine = new ConsoleLine { DateString = "10/10/2018" };
+            var console_line = new ConsoleLine { DateString = "10/10/2018" };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(consoleLine.DateString + ",", consoleSnippets[1].Text);
+            Assert.AreEqual(console_line.DateString + ",", console_snippets[1].Text);
         }
 
         [Test]
@@ -67,20 +67,20 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void WillSetDateTextColourAsWhite_IfDateRankingIsGreaterThanFive(int dateRanking)
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings
                 {
                     Date = dateRanking
                 }
             };
-            var consoleLine = new ConsoleLine { DateString = "10/10/2018" };
+            var console_line = new ConsoleLine { DateString = "10/10/2018" };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(ConsoleColour.White, consoleSnippets[1].TextColour);
+            Assert.AreEqual(ConsoleColour.White, console_snippets[1].TextColour);
         }
 
         [Test]
@@ -89,81 +89,81 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void WillSetDateTextColourAsDarkYellow_IfDateRankingIsLessThanOrEqualToTwo(int dateRanking)
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings
                 {
                     Date = dateRanking
                 },
             };
-            var consoleLine = new ConsoleLine { DateString = "10/10/2018" };
+            var console_line = new ConsoleLine { DateString = "10/10/2018" };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(ConsoleColour.DarkYellow, consoleSnippets[1].TextColour);
+            Assert.AreEqual(ConsoleColour.DarkYellow, console_snippets[1].TextColour);
         }
 
         [Test]
         public void WillSetDateTextColourAsGreen_IfDateRankingIsZero()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings
                 {
                     Date = 0
                 },
             };
-            var consoleLine = new ConsoleLine { DateString = "10/10/2018" };
+            var console_line = new ConsoleLine { DateString = "10/10/2018" };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(ConsoleColour.Green, consoleSnippets[1].TextColour);
+            Assert.AreEqual(ConsoleColour.Green, console_snippets[1].TextColour);
         }
 
         [Test]
         public void WillSetDateTextColourAsWhite_IfRankingsAreNull()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = null
             };
-            var consoleLine = new ConsoleLine { DateString = "10/10/2018" };
+            var console_line = new ConsoleLine { DateString = "10/10/2018" };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(ConsoleColour.White, consoleSnippets[1].TextColour);
+            Assert.AreEqual(ConsoleColour.White, console_snippets[1].TextColour);
         }
 
         [Test]
         public void WillSetAmountAsThirdConsoleSnippet()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings()
             };
-            var consoleLine = new ConsoleLine { AmountString = "£34.55" };
+            var console_line = new ConsoleLine { AmountString = "£34.55" };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(consoleLine.AmountString + ",", consoleSnippets[2].Text);
+            Assert.AreEqual(console_line.AmountString + ",", console_snippets[2].Text);
         }
 
         [Test]
         public void WillSetAmountTextColourAsWhite_IfAmountIsNotAMatch()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings
                 {
@@ -171,20 +171,20 @@ namespace ConsoleCatchallTests.Reconciliation.Records
                 },
                 AmountMatch = true // AmountMatch should be ignored - AmountRanking is used instead
             };
-            var consoleLine = new ConsoleLine { AmountString = "£34.55" };
+            var console_line = new ConsoleLine { AmountString = "£34.55" };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(ConsoleColour.White, consoleSnippets[2].TextColour);
+            Assert.AreEqual(ConsoleColour.White, console_snippets[2].TextColour);
         }
 
         [Test]
         public void WillSetAmountTextColourAsDarkYellow_IfAmountIsAPartialMatch()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings
                 {
@@ -192,20 +192,20 @@ namespace ConsoleCatchallTests.Reconciliation.Records
                 },
                 AmountMatch = false // AmountMatch should be ignored - AmountRanking is used instead
             };
-            var consoleLine = new ConsoleLine { AmountString = "£34.55" };
+            var console_line = new ConsoleLine { AmountString = "£34.55" };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(ConsoleColour.DarkYellow, consoleSnippets[2].TextColour);
+            Assert.AreEqual(ConsoleColour.DarkYellow, console_snippets[2].TextColour);
         }
 
         [Test]
         public void WillSetAmountTextColourAsGreen_IfAmountRankingIsZero()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings
                 {
@@ -213,188 +213,188 @@ namespace ConsoleCatchallTests.Reconciliation.Records
                 },
                 AmountMatch = false // AmountMatch should be ignored - AmountRanking is used instead
             };
-            var consoleLine = new ConsoleLine { AmountString = "£34.55" };
+            var console_line = new ConsoleLine { AmountString = "£34.55" };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(ConsoleColour.Green, consoleSnippets[2].TextColour);
+            Assert.AreEqual(ConsoleColour.Green, console_snippets[2].TextColour);
         }
 
         [Test]
         public void WillSetAmountTextColourAsWhite_IfRankingsAreNull()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = null,
                 AmountMatch = false // AmountMatch should be ignored - AmountRanking is used instead
             };
-            var consoleLine = new ConsoleLine { AmountString = "£34.55" };
+            var console_line = new ConsoleLine { AmountString = "£34.55" };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(ConsoleColour.White, consoleSnippets[2].TextColour);
+            Assert.AreEqual(ConsoleColour.White, console_snippets[2].TextColour);
         }
 
         [Test]
         public void WillSetDescriptionAsFourthConsoleSnippet()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings()
             };
-            var consoleLine = new ConsoleLine { DescriptionString = "Some description" };
+            var console_line = new ConsoleLine { DescriptionString = "Some description" };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(consoleLine.DescriptionString, consoleSnippets[3].Text);
+            Assert.AreEqual(console_line.DescriptionString, console_snippets[3].Text);
         }
 
         [Test]
         public void WillSetDescriptionTextColourAsWhite_IfThereIsNoTextMatch()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 FullTextMatch = false,
                 PartialTextMatch = false,
                 Rankings = new Rankings()
             };
-            var consoleLine = new ConsoleLine { DescriptionString = "Some description" };
+            var console_line = new ConsoleLine { DescriptionString = "Some description" };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(ConsoleColour.White, consoleSnippets[3].TextColour);
+            Assert.AreEqual(ConsoleColour.White, console_snippets[3].TextColour);
         }
 
         [Test]
         public void WillSetDescriptionTextColourAsDarkYellow_IfThereIsAPartialTextMatch()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 FullTextMatch = false,
                 PartialTextMatch = true,
                 Rankings = new Rankings()
             };
-            var consoleLine = new ConsoleLine { DescriptionString = "Some description" };
+            var console_line = new ConsoleLine { DescriptionString = "Some description" };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(ConsoleColour.DarkYellow, consoleSnippets[3].TextColour);
+            Assert.AreEqual(ConsoleColour.DarkYellow, console_snippets[3].TextColour);
         }
 
         [Test]
         public void WillSetDescriptionTextColourAsGreen_IfThereIsAFullTextMatch()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 FullTextMatch = true,
                 PartialTextMatch = true,
                 Rankings = new Rankings()
             };
-            var consoleLine = new ConsoleLine { DescriptionString = "Some description" };
+            var console_line = new ConsoleLine { DescriptionString = "Some description" };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(ConsoleColour.Green, consoleSnippets[3].TextColour);
+            Assert.AreEqual(ConsoleColour.Green, console_snippets[3].TextColour);
         }
         [Test]
         public void WillRegenerateConsoleSnippetIfIndexChanges()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings()
             };
-            var consoleLine = new ConsoleLine { Index = 1 };
+            var console_line = new ConsoleLine { Index = 1 };
             // This is to test for a buug which only happens if you call GetConsoleSnippets() twice, so call it once before the main action.
-            consoleLine.GetConsoleSnippets(potentialMatch);
-            var newIndex = consoleLine.Index + 1;
-            consoleLine.Index = newIndex;
+            console_line.GetConsoleSnippets(potential_match);
+            var new_index = console_line.Index + 1;
+            console_line.Index = new_index;
 
             // Act
-            var newResult = consoleLine.GetConsoleSnippets(potentialMatch);
+            var new_result = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual($"{newIndex}. ", newResult[0].Text, "Index text should be updated");
+            Assert.AreEqual($"{new_index}. ", new_result[0].Text, "Index text should be updated");
         }
 
         [Test]
         public void WillRegenerateConsoleSnippetIfDateChanges()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings()
             };
-            var consoleLine = new ConsoleLine { DateString = "19/10/2018" };
+            var console_line = new ConsoleLine { DateString = "19/10/2018" };
             // This is to test for a buug which only happens if you call GetConsoleSnippets() twice, so call it once before the main action.
-            consoleLine.GetConsoleSnippets(potentialMatch);
-            var newDate = "New " + consoleLine.DateString;
-            consoleLine.DateString = newDate;
+            console_line.GetConsoleSnippets(potential_match);
+            var new_date = "New " + console_line.DateString;
+            console_line.DateString = new_date;
 
             // Act
-            var newResult = consoleLine.GetConsoleSnippets(potentialMatch);
+            var new_result = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual($"{newDate},", newResult[1].Text, "Date text should be updated");
+            Assert.AreEqual($"{new_date},", new_result[1].Text, "Date text should be updated");
         }
 
         [Test]
         public void WillRegenerateConsoleSnippetIfAmountChanges()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings()
             };
-            var consoleLine = new ConsoleLine { AmountString = "£22.34" };
+            var console_line = new ConsoleLine { AmountString = "£22.34" };
             // This is to test for a buug which only happens if you call GetConsoleSnippets() twice, so call it once before the main action.
-            consoleLine.GetConsoleSnippets(potentialMatch);
-            var newAmount = "New " + consoleLine.AmountString;
-            consoleLine.AmountString = newAmount;
+            console_line.GetConsoleSnippets(potential_match);
+            var new_amount = "New " + console_line.AmountString;
+            console_line.AmountString = new_amount;
 
             // Act
-            var newResult = consoleLine.GetConsoleSnippets(potentialMatch);
+            var new_result = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual($"{newAmount},", newResult[2].Text, "Amount text should be updated");
+            Assert.AreEqual($"{new_amount},", new_result[2].Text, "Amount text should be updated");
         }
 
         [Test]
         public void WillRegenerateConsoleSnippetIfDescriptionChanges()
         {
             // Arrange
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings()
             };
-            var consoleLine = new ConsoleLine { DescriptionString = "For Aloysius" };
+            var console_line = new ConsoleLine { DescriptionString = "For Aloysius" };
             // This is to test for a buug which only happens if you call GetConsoleSnippets() twice, so call it once before the main action.
-            consoleLine.GetConsoleSnippets(potentialMatch);
-            var newDescription = "New " + consoleLine.DescriptionString;
-            consoleLine.DescriptionString = newDescription;
+            console_line.GetConsoleSnippets(potential_match);
+            var new_description = "New " + console_line.DescriptionString;
+            console_line.DescriptionString = new_description;
 
             // Act
-            var newResult = consoleLine.GetConsoleSnippets(potentialMatch);
+            var new_result = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual(newDescription, newResult[3].Text, "Description text should be updated");
+            Assert.AreEqual(new_description, new_result[3].Text, "Description text should be updated");
         }
 
         [Test]
@@ -402,17 +402,17 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var index = 23;
-            var potentialMatch = new PotentialMatch
+            var potential_match = new PotentialMatch
             {
                 Rankings = new Rankings()
             };
-            var consoleLine = new ConsoleLine { Index = index };
+            var console_line = new ConsoleLine { Index = index };
 
             // Act
-            var consoleSnippets = consoleLine.GetConsoleSnippets(potentialMatch);
+            var console_snippets = console_line.GetConsoleSnippets(potential_match);
 
             // Assert
-            Assert.AreEqual($"{index}. ", consoleSnippets[0].Text);
+            Assert.AreEqual($"{index}. ", console_snippets[0].Text);
         }
     }
 }

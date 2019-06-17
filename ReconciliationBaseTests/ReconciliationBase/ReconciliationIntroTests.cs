@@ -30,23 +30,23 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             var reconciliate = new ReconciliationIntro(this);
-            var mockClock = new Mock<IClock>();
-            var nowDateTime = DateTime.Now;
-            mockClock.Setup(x => x.NowDateTime()).Returns(nowDateTime);
+            var mock_clock = new Mock<IClock>();
+            var now_date_time = DateTime.Now;
+            mock_clock.Setup(x => x.NowDateTime()).Returns(now_date_time);
 
             // Act
-            reconciliate.CreateBackupOfRealSpreadsheet(mockClock.Object, ReconConsts.TestBackupFilePath);
+            reconciliate.CreateBackupOfRealSpreadsheet(mock_clock.Object, ReconConsts.TestBackupFilePath);
 
             // Assert
             // This test will fail on the Mac, so don't even bother.
-            string sourceFilePath = ReconConsts.TestBackupFilePath + "/" + ReconConsts.MainSpreadsheetFileName;
-            if (File.Exists(sourceFilePath))
+            string source_file_path = ReconConsts.TestBackupFilePath + "/" + ReconConsts.MainSpreadsheetFileName;
+            if (File.Exists(source_file_path))
             {
-                var expectedBackupFile = ReconConsts.TestBackupFilePath
+                var expected_backup_file = ReconConsts.TestBackupFilePath
                                          + @"\SpreadsheetBackups\real_backup_"
-                                         + nowDateTime.ToString().Replace(" ", "_").Replace(":", "-").Replace("/", "-") 
+                                         + now_date_time.ToString().Replace(" ", "_").Replace(":", "-").Replace("/", "-") 
                                          + "_" + ReconConsts.MainSpreadsheetFileName;
-                Assert.IsTrue(File.Exists(expectedBackupFile));
+                Assert.IsTrue(File.Exists(expected_backup_file));
             }
         }
 
@@ -55,19 +55,19 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             var reconciliate = new ReconciliationIntro(this);
-            string debugFilePath = Path.Combine(ReconConsts.TestBackupFilePath, ReconConsts.BackupSubFolder, ReconConsts.DebugSpreadsheetFileName);
-            string sourceFilePath = Path.Combine(ReconConsts.TestBackupFilePath, ReconConsts.MainSpreadsheetFileName);
-            File.Delete(debugFilePath);
-            Assert.IsFalse(File.Exists(debugFilePath));
+            string debug_file_path = Path.Combine(ReconConsts.TestBackupFilePath, ReconConsts.BackupSubFolder, ReconConsts.DebugSpreadsheetFileName);
+            string source_file_path = Path.Combine(ReconConsts.TestBackupFilePath, ReconConsts.MainSpreadsheetFileName);
+            File.Delete(debug_file_path);
+            Assert.IsFalse(File.Exists(debug_file_path));
 
             // Act
             reconciliate.CopySourceSpreadsheetToDebugSpreadsheet(ReconConsts.TestBackupFilePath, ReconConsts.TestBackupFilePath);
 
             // Assert
             // This test will fail on the Mac, so don't even bother.
-            if (File.Exists(sourceFilePath))
+            if (File.Exists(source_file_path))
             {
-                Assert.IsTrue(File.Exists(debugFilePath));
+                Assert.IsTrue(File.Exists(debug_file_path));
             }
         }
     }

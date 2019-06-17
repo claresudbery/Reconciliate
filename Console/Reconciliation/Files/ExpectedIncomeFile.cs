@@ -36,10 +36,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
 
         public void CopyToPendingFile(ICSVFile<BankRecord> pendingFile)
         {
-            List<BankRecord> recordsAsBankRecords = File.Records.Select(x => x.ConvertToBankRecord()).ToList();
-            foreach (var bankRecord in recordsAsBankRecords)
+            List<BankRecord> records_as_bank_records = File.Records.Select(x => x.ConvertToBankRecord()).ToList();
+            foreach (var bank_record in records_as_bank_records)
             {
-                pendingFile.Records.Add(bankRecord);
+                pendingFile.Records.Add(bank_record);
             }
         }
 
@@ -47,19 +47,19 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
         {
             if (File.Records != null)
             {
-                var matchingRecords = File.Records.Where(
+                var matching_records = File.Records.Where(
                     x => x.Description.RemovePunctuation() == match.Description.RemovePunctuation()
                          && x.Date == match.Date
                          && x.MainAmount() == match.MainAmount());
 
-                if (matchingRecords.Count() == 1)
+                if (matching_records.Count() == 1)
                 {
-                    var matchingRecord = matchingRecords.ElementAt(0);
+                    var matching_record = matching_records.ElementAt(0);
 
-                    matchingRecord.Match = sourceRecord;
-                    matchingRecord.Matched = true;
-                    matchingRecord.DatePaid = sourceRecord.Date;
-                    matchingRecord.TotalPaid = sourceRecord.MainAmount();
+                    matching_record.Match = sourceRecord;
+                    matching_record.Matched = true;
+                    matching_record.DatePaid = sourceRecord.Date;
+                    matching_record.TotalPaid = sourceRecord.MainAmount();
                 }
             }
         }

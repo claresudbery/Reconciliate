@@ -12,15 +12,15 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
 
         public MyXmlReaderTests()
         {
-            string currentPath = TestContext.CurrentContext.TestDirectory;
-            _sampleXmlConfigFilePath = Path.Combine(TestHelper.FullyQualifiedSpreadsheetFilePath(currentPath), FilePathConsts.SampleConfigFileName);
+            string current_path = TestContext.CurrentContext.TestDirectory;
+            _sampleXmlConfigFilePath = Path.Combine(TestHelper.FullyQualifiedSpreadsheetFilePath(current_path), FilePathConsts.SampleConfigFileName);
         }
 
         [Test]
         public void Can_Read_Path_From_Config()
         {
-            var xmlReader = new MyXmlReader();
-            Assert.AreEqual("This value should always be this string.", xmlReader.ReadXml(nameof(ReconConsts.TestValueDoNotChange), _sampleXmlConfigFilePath));
+            var xml_reader = new MyXmlReader();
+            Assert.AreEqual("This value should always be this string.", xml_reader.ReadXml(nameof(ReconConsts.TestValueDoNotChange), _sampleXmlConfigFilePath));
         }
 
         [TestCase(nameof(ReconConsts.MainSpreadsheetPath), @"C:/Development/Reconciliate/reconciliation-samples/For-debugging")]
@@ -170,43 +170,43 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         [TestCase(nameof(Codes.Expenses), "Acme Expenses")]
         public void Test_Config_Values_All_Present(string elementName, string elementValue)
         {
-            var xmlReader = new MyXmlReader();
-            Assert.AreEqual(elementValue, xmlReader.ReadXml(elementName, _sampleXmlConfigFilePath));
+            var xml_reader = new MyXmlReader();
+            Assert.AreEqual(elementValue, xml_reader.ReadXml(elementName, _sampleXmlConfigFilePath));
         }
 
         [Test]
         public void Temp_Test_For_New_Config_Values_With_Compound_Names()
         {
-            var xmlReader = new MyXmlReader();
+            var xml_reader = new MyXmlReader();
 
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BudgetOut)}", _sampleXmlConfigFilePath), "Budget Out", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BudgetIn)}", _sampleXmlConfigFilePath), "Budget In", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.ExpectedOut)}", _sampleXmlConfigFilePath), "Expected Out", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.ExpectedIn)}", _sampleXmlConfigFilePath), "Expected In", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Totals)}", _sampleXmlConfigFilePath), "Totals", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Savings)}", _sampleXmlConfigFilePath), "Savings", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BankOut)}", _sampleXmlConfigFilePath), "Bank Out", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BankIn)}", _sampleXmlConfigFilePath), "Bank In", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.CredCard1)}", _sampleXmlConfigFilePath), "CredCard1", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.CredCard2)}", _sampleXmlConfigFilePath), "CredCard2", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.CredCard3)}", _sampleXmlConfigFilePath), "CredCard3", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BudgetOut)}", _sampleXmlConfigFilePath), "Budget Out", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BudgetIn)}", _sampleXmlConfigFilePath), "Budget In", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.ExpectedOut)}", _sampleXmlConfigFilePath), "Expected Out", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.ExpectedIn)}", _sampleXmlConfigFilePath), "Expected In", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Totals)}", _sampleXmlConfigFilePath), "Totals", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Savings)}", _sampleXmlConfigFilePath), "Savings", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BankOut)}", _sampleXmlConfigFilePath), "Bank Out", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BankIn)}", _sampleXmlConfigFilePath), "Bank In", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.CredCard1)}", _sampleXmlConfigFilePath), "CredCard1", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.CredCard2)}", _sampleXmlConfigFilePath), "CredCard2", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.CredCard3)}", _sampleXmlConfigFilePath), "CredCard3", _sampleXmlConfigFilePath);
 
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.DividerText)}", _sampleXmlConfigFilePath), "divider", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.Expenses)}", _sampleXmlConfigFilePath), "Expenses", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.ExpensesTotal)}", _sampleXmlConfigFilePath), "Expenses Total", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.SODDs)}", _sampleXmlConfigFilePath), "SODDs", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.CredCard1)}", _sampleXmlConfigFilePath), "CredCard1 cred card", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.CredCard2)}", _sampleXmlConfigFilePath), "CredCard2 cred card", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.SODDTotal)}", _sampleXmlConfigFilePath), "SODDTotal", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.AnnualSODDs)}", _sampleXmlConfigFilePath), "AnnualSODDs", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.AnnualTotal)}", _sampleXmlConfigFilePath), "AnnualTotal", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.Date)}", _sampleXmlConfigFilePath), "Date", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.Total)}", _sampleXmlConfigFilePath), "Total", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.DividerText)}", _sampleXmlConfigFilePath), "divider", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.Expenses)}", _sampleXmlConfigFilePath), "Expenses", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.ExpensesTotal)}", _sampleXmlConfigFilePath), "Expenses Total", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.SODDs)}", _sampleXmlConfigFilePath), "SODDs", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.CredCard1)}", _sampleXmlConfigFilePath), "CredCard1 cred card", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.CredCard2)}", _sampleXmlConfigFilePath), "CredCard2 cred card", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.SODDTotal)}", _sampleXmlConfigFilePath), "SODDTotal", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.AnnualSODDs)}", _sampleXmlConfigFilePath), "AnnualSODDs", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.AnnualTotal)}", _sampleXmlConfigFilePath), "AnnualTotal", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.Date)}", _sampleXmlConfigFilePath), "Date", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.Total)}", _sampleXmlConfigFilePath), "Total", _sampleXmlConfigFilePath);
 
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(PocketMoneySheetNames)}.{nameof(PocketMoneySheetNames.SecondChild)}", _sampleXmlConfigFilePath), "SecondChild", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(PocketMoneySheetNames)}.{nameof(PocketMoneySheetNames.SecondChild)}", _sampleXmlConfigFilePath), "SecondChild", _sampleXmlConfigFilePath);
 
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(PlanningSheetNames)}.{nameof(PlanningSheetNames.Expenses)}", _sampleXmlConfigFilePath), "Expenses", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(PlanningSheetNames)}.{nameof(PlanningSheetNames.Deposits)}", _sampleXmlConfigFilePath), "Deposits", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(PlanningSheetNames)}.{nameof(PlanningSheetNames.Expenses)}", _sampleXmlConfigFilePath), "Expenses", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(PlanningSheetNames)}.{nameof(PlanningSheetNames.Deposits)}", _sampleXmlConfigFilePath), "Deposits", _sampleXmlConfigFilePath);
         }
     }
 }

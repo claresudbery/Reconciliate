@@ -42,14 +42,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public void AddUnreconciledRowsToCsvFile<TRecordType>(string sheetName, ICSVFile<TRecordType> csvFile) where TRecordType : ICSVRecord, new()
         {
-            int dividerRowNumber = FindRowNumberOfLastDividerRow(sheetName);
-            int lastRowNumber = _spreadsheetIO.LastRowNumber(sheetName);
+            int divider_row_number = FindRowNumberOfLastDividerRow(sheetName);
+            int last_row_number = _spreadsheetIO.LastRowNumber(sheetName);
 
-            for (int rowNumber = dividerRowNumber + 1; rowNumber <= lastRowNumber; rowNumber++)
+            for (int row_number = divider_row_number + 1; row_number <= last_row_number; row_number++)
             {
-                var csvRecord = new TRecordType();
-                csvRecord.ReadFromSpreadsheetRow(_spreadsheetIO.ReadSpecifiedRow(sheetName, rowNumber));
-                csvFile.Records.Add(csvRecord);
+                var csv_record = new TRecordType();
+                csv_record.ReadFromSpreadsheetRow(_spreadsheetIO.ReadSpecifiedRow(sheetName, row_number));
+                csvFile.Records.Add(csv_record);
             }
 
             csvFile.Records = csvFile.Records.OrderBy(record => record.Date).ToList();
@@ -62,78 +62,78 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public void DeleteUnreconciledRows(string sheetName)
         {
-            int lastRowNumber = _spreadsheetIO.LastRowNumber(sheetName);
-            int dividerRowNumber = FindRowNumberOfLastDividerRow(sheetName);
-            _spreadsheetIO.DeleteSpecifiedRows(sheetName, dividerRowNumber + 1, lastRowNumber);
+            int last_row_number = _spreadsheetIO.LastRowNumber(sheetName);
+            int divider_row_number = FindRowNumberOfLastDividerRow(sheetName);
+            _spreadsheetIO.DeleteSpecifiedRows(sheetName, divider_row_number + 1, last_row_number);
         }
 
         public ICSVFile<TRecordType> ReadUnreconciledRowsAsCsvFile<TRecordType>(
             ICSVFileFactory<TRecordType> csvFileFactory,
             String sheetName) where TRecordType : ICSVRecord, new()
         {
-            var csvFile = csvFileFactory.CreateCSVFile(false);
+            var csv_file = csvFileFactory.CreateCSVFile(false);
 
-            AddUnreconciledRowsToCsvFile(sheetName, csvFile);
+            AddUnreconciledRowsToCsvFile(sheetName, csv_file);
 
-            return csvFile;
+            return csv_file;
         }
 
         public List<BankRecord> GetAllMonthlyBankInBudgetItems(BudgetItemListData budgetItemListData)
         {
-            int firstRowNumber = _spreadsheetIO
+            int first_row_number = _spreadsheetIO
                                      .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.StartDivider) + 1;
-            int lastRowNumber = _spreadsheetIO
+            int last_row_number = _spreadsheetIO
                                     .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.EndDivider) - 1;
 
             return _spreadsheetIO.GetRowsAsRecords<BankRecord>(
                 budgetItemListData.SheetName,
-                firstRowNumber,
-                lastRowNumber,
+                first_row_number,
+                last_row_number,
                 budgetItemListData.FirstColumnNumber,
                 budgetItemListData.LastColumnNumber);
         }
 
         public List<BankRecord> GetAllMonthlyBankOutBudgetItems(BudgetItemListData budgetItemListData)
         {
-            int firstRowNumber = _spreadsheetIO
+            int first_row_number = _spreadsheetIO
                                      .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.StartDivider) + 1;
-            int lastRowNumber = _spreadsheetIO
+            int last_row_number = _spreadsheetIO
                                     .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.EndDivider) - 1;
 
             return _spreadsheetIO.GetRowsAsRecords<BankRecord>(
                 budgetItemListData.SheetName,
-                firstRowNumber,
-                lastRowNumber,
+                first_row_number,
+                last_row_number,
                 budgetItemListData.FirstColumnNumber,
                 budgetItemListData.LastColumnNumber);
         }
 
         public List<CredCard1InOutRecord> GetAllMonthlyCredCard1BudgetItems(BudgetItemListData budgetItemListData)
         {
-            int firstRowNumber = _spreadsheetIO
+            int first_row_number = _spreadsheetIO
                                      .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.StartDivider) + 1;
-            int lastRowNumber = _spreadsheetIO
+            int last_row_number = _spreadsheetIO
                                     .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.EndDivider) - 1;
 
             return _spreadsheetIO.GetRowsAsRecords<CredCard1InOutRecord>(
                 budgetItemListData.SheetName,
-                firstRowNumber,
-                lastRowNumber,
+                first_row_number,
+                last_row_number,
                 budgetItemListData.FirstColumnNumber,
                 budgetItemListData.LastColumnNumber);
         }
 
         public List<CredCard2InOutRecord> GetAllMonthlyCredCard2BudgetItems(BudgetItemListData budgetItemListData)
         {
-            int firstRowNumber = _spreadsheetIO
+            int first_row_number = _spreadsheetIO
                                      .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.StartDivider) + 1;
-            int lastRowNumber = _spreadsheetIO
+            int last_row_number = _spreadsheetIO
                                     .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.EndDivider) - 1;
 
             return _spreadsheetIO.GetRowsAsRecords<CredCard2InOutRecord>(
                 budgetItemListData.SheetName,
-                firstRowNumber,
-                lastRowNumber,
+                first_row_number,
+                last_row_number,
                 budgetItemListData.FirstColumnNumber,
                 budgetItemListData.LastColumnNumber);
         }
@@ -141,15 +141,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         public List<TRecordType> GetAllAnnualBudgetItems<TRecordType>(BudgetItemListData budgetItemListData)
             where TRecordType : ICSVRecord, new()
         {
-            int firstRowNumber = _spreadsheetIO
+            int first_row_number = _spreadsheetIO
                                      .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.StartDivider) + 1;
-            int lastRowNumber = _spreadsheetIO
+            int last_row_number = _spreadsheetIO
                                     .FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.EndDivider) - 1;
 
             return _spreadsheetIO.GetRowsAsRecords<TRecordType>(
                 budgetItemListData.SheetName,
-                firstRowNumber,
-                lastRowNumber,
+                first_row_number,
+                last_row_number,
                 budgetItemListData.FirstColumnNumber,
                 budgetItemListData.LastColumnNumber);
         }
@@ -158,26 +158,26 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         {
             const int dateColumn = 1;
             const int amountColumn = 4;
-            var sheetName = PocketMoneySheetNames.SecondChild;
-            int row = _spreadsheetIO.FindRowNumberOfLastRowContainingCell(sheetName, shortDateTime, dateColumn);
+            var sheet_name = PocketMoneySheetNames.SecondChild;
+            int row = _spreadsheetIO.FindRowNumberOfLastRowContainingCell(sheet_name, shortDateTime, dateColumn);
 
-            return _spreadsheetIO.GetAmount(sheetName, row, amountColumn);
+            return _spreadsheetIO.GetAmount(sheet_name, row, amountColumn);
         }
 
         public double GetPlanningExpensesAlreadyDone()
         {
-            var sheetName = PlanningSheetNames.Expenses;
+            var sheet_name = PlanningSheetNames.Expenses;
             const int row = 2;
             const int column = 4;
-            return _spreadsheetIO.GetAmount(sheetName, row, column);
+            return _spreadsheetIO.GetAmount(sheet_name, row, column);
         }
 
         public double GetPlanningMoneyPaidByGuests()
         {
-            var sheetName = PlanningSheetNames.Deposits;
+            var sheet_name = PlanningSheetNames.Deposits;
             const int row = 2;
             const int column = 4;
-            return _spreadsheetIO.GetAmount(sheetName, row, column);
+            return _spreadsheetIO.GetAmount(sheet_name, row, column);
         }
 
         public void InsertNewRowOnExpectedOut(double newAmount, string newNotes)
@@ -185,18 +185,18 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             const int codeColumn = 4;
             const int amountColumn = 2;
             const int notesColumn = 4;
-            int newRowNumber = _spreadsheetIO.FindRowNumberOfFirstRowContainingCell(
+            int new_row_number = _spreadsheetIO.FindRowNumberOfFirstRowContainingCell(
                 MainSheetNames.ExpectedOut,
                 ReconConsts.ExpectedOutInsertionPoint,
                 codeColumn);
 
-            var cellValues = new Dictionary<int, object>()
+            var cell_values = new Dictionary<int, object>()
             {
                 { amountColumn, newAmount },
                 { notesColumn, newNotes }
             };
 
-            _spreadsheetIO.InsertNewRow(MainSheetNames.ExpectedOut, newRowNumber, cellValues);
+            _spreadsheetIO.InsertNewRow(MainSheetNames.ExpectedOut, new_row_number, cell_values);
         }
 
         public void AddNewTransactionToCredCard3(DateTime newDate, double newAmount, string newDescription)
@@ -205,73 +205,73 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             const int amountColumn = 2;
             const int descriptionColumn = 4;
 
-            var cellValues = new Dictionary<int, object>()
+            var cell_values = new Dictionary<int, object>()
             {
                 { dateColumn, newDate.ToOADate() },
                 { amountColumn, newAmount },
                 { descriptionColumn, newDescription }
             };
 
-            _spreadsheetIO.AppendNewRow(MainSheetNames.CredCard3, cellValues);
+            _spreadsheetIO.AppendNewRow(MainSheetNames.CredCard3, cell_values);
         }
 
         public void AddNewTransactionToSavings(DateTime newDate, double newAmount)
         {
-            var sheetName = MainSheetNames.Savings;
+            var sheet_name = MainSheetNames.Savings;
 
-            int firstColumnNumber = 1;
-            int rowNumber = _spreadsheetIO.FindFirstEmptyRowInColumn(sheetName, firstColumnNumber);
+            int first_column_number = 1;
+            int row_number = _spreadsheetIO.FindFirstEmptyRowInColumn(sheet_name, first_column_number);
 
-            _spreadsheetIO.UpdateDate(sheetName, rowNumber, firstColumnNumber, newDate);
-            _spreadsheetIO.UpdateAmount(sheetName, rowNumber, firstColumnNumber + 1, newAmount);
+            _spreadsheetIO.UpdateDate(sheet_name, row_number, first_column_number, newDate);
+            _spreadsheetIO.UpdateAmount(sheet_name, row_number, first_column_number + 1, newAmount);
         }
 
         public DateTime GetNextUnplannedMonth()
         {
-            string mortgageRowDescription = GetBudgetItemDescription(Codes.Code042);
-            BankRecord bankRecord = GetLastBankOutRecordWithSpecifiedDescription(mortgageRowDescription);
+            string mortgage_row_description = GetBudgetItemDescription(Codes.Code042);
+            BankRecord bank_record = GetLastBankOutRecordWithSpecifiedDescription(mortgage_row_description);
 
-            DateTime nextUnplannedMonth = bankRecord.Date.AddMonths(1);
+            DateTime next_unplanned_month = bank_record.Date.AddMonths(1);
 
-            return nextUnplannedMonth;
+            return next_unplanned_month;
         }
 
         private BankRecord GetLastBankOutRecordWithSpecifiedDescription(string description)
         {
-            var bankRecord = new BankRecord();
+            var bank_record = new BankRecord();
 
-            var rowNumberOfLastRelevantPayment = _spreadsheetIO.FindRowNumberOfLastRowContainingCell(
+            var row_number_of_last_relevant_payment = _spreadsheetIO.FindRowNumberOfLastRowContainingCell(
                 MainSheetNames.BankOut,
                 description,
                 BankRecord.DescriptionIndex + 1);
-            var bankOutRow = _spreadsheetIO.ReadSpecifiedRow(
+            var bank_out_row = _spreadsheetIO.ReadSpecifiedRow(
                 MainSheetNames.BankOut,
-                rowNumberOfLastRelevantPayment);
-            bankRecord.ReadFromSpreadsheetRow(bankOutRow);
+                row_number_of_last_relevant_payment);
+            bank_record.ReadFromSpreadsheetRow(bank_out_row);
 
-            return bankRecord;
+            return bank_record;
         }
 
         private string GetBudgetItemDescription(string budgetItemCode)
         {
-            var bankRecord = new BankRecord();
+            var bank_record = new BankRecord();
 
-            int budgetOutCodeColumn = 1;
+            int budget_out_code_column = 1;
             const int budgetOutFirstBankRecordColumnNumber = 2;
             const int budgetOutLastBankRecordColumnNumber = 6;
 
-            var rowNumberOfBudgetItem = _spreadsheetIO.FindRowNumberOfLastRowContainingCell(
+            var row_number_of_budget_item = _spreadsheetIO.FindRowNumberOfLastRowContainingCell(
                 MainSheetNames.BudgetOut,
                 budgetItemCode,
-                budgetOutCodeColumn);
-            var budgetItemRow = _spreadsheetIO.ReadSpecifiedRow(
+                budget_out_code_column);
+            var budget_item_row = _spreadsheetIO.ReadSpecifiedRow(
                 MainSheetNames.BudgetOut,
-                rowNumberOfBudgetItem,
+                row_number_of_budget_item,
                 budgetOutFirstBankRecordColumnNumber,
                 budgetOutLastBankRecordColumnNumber);
-            bankRecord.ReadFromSpreadsheetRow(budgetItemRow);
+            bank_record.ReadFromSpreadsheetRow(budget_item_row);
 
-            return bankRecord.Description;
+            return bank_record.Description;
         }
 
         public void AddBudgetedBankInDataToPendingFile(
@@ -279,9 +279,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ICSVFile<BankRecord> pendingFile,
             BudgetItemListData budgetItemListData)
         {
-            var baseRecords = GetAllMonthlyBankInBudgetItems(budgetItemListData);
+            var base_records = GetAllMonthlyBankInBudgetItems(budgetItemListData);
             AddRecordsToPendingFileForEverySpecifiedMonth(
-                baseRecords,
+                base_records,
                 pendingFile,
                 budgetingMonths);
         }
@@ -292,15 +292,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             BudgetItemListData monthlyBudgetItemListData,
             BudgetItemListData annualBudgetItemListData)
         {
-            var monthlyRecords = GetAllMonthlyBankOutBudgetItems(monthlyBudgetItemListData);
+            var monthly_records = GetAllMonthlyBankOutBudgetItems(monthlyBudgetItemListData);
             AddRecordsToPendingFileForEverySpecifiedMonth(
-                monthlyRecords,
+                monthly_records,
                 pendingFile,
                 budgetingMonths);
 
-            var annualRecords = GetAllAnnualBudgetItems<BankRecord>(annualBudgetItemListData);
+            var annual_records = GetAllAnnualBudgetItems<BankRecord>(annualBudgetItemListData);
             AddRecordsToPendingFileForRecordsThatHaveMatchingMonths(
-                annualRecords,
+                annual_records,
                 pendingFile,
                 budgetingMonths);
         }
@@ -310,9 +310,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ICSVFile<CredCard1InOutRecord> pendingFile,
             BudgetItemListData budgetItemListData)
         {
-            var baseRecords = GetAllMonthlyCredCard1BudgetItems(budgetItemListData);
+            var base_records = GetAllMonthlyCredCard1BudgetItems(budgetItemListData);
             AddRecordsToPendingFileForEverySpecifiedMonth(
-                baseRecords,
+                base_records,
                 pendingFile,
                 budgetingMonths);
         }
@@ -322,9 +322,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ICSVFile<CredCard2InOutRecord> pendingFile,
             BudgetItemListData budgetItemListData)
         {
-            var baseRecords = GetAllMonthlyCredCard2BudgetItems(budgetItemListData);
+            var base_records = GetAllMonthlyCredCard2BudgetItems(budgetItemListData);
             AddRecordsToPendingFileForEverySpecifiedMonth(
-                baseRecords,
+                base_records,
                 pendingFile,
                 budgetingMonths);
         }
@@ -334,22 +334,22 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ICSVFile<TRecordType> pendingFile,
             BudgetingMonths budgetingMonths) where TRecordType : ICSVRecord, new()
         {
-            var finalMonth = budgetingMonths.LastMonthForBudgetPlanning >= budgetingMonths.NextUnplannedMonth
+            var final_month = budgetingMonths.LastMonthForBudgetPlanning >= budgetingMonths.NextUnplannedMonth
                 ? budgetingMonths.LastMonthForBudgetPlanning
                 : budgetingMonths.LastMonthForBudgetPlanning + 12;
-            for (int month = budgetingMonths.NextUnplannedMonth; month <= finalMonth; month++)
+            for (int month = budgetingMonths.NextUnplannedMonth; month <= final_month; month++)
             {
-                int newMonth = month;
-                int newYear = budgetingMonths.StartYear;
+                int new_month = month;
+                int new_year = budgetingMonths.StartYear;
                 if (month > 12)
                 {
-                    newMonth = month - 12;
-                    newYear = newYear + 1;
+                    new_month = month - 12;
+                    new_year = new_year + 1;
                 }
-                var newMonthlyRecords = baseRecords.Select(
+                var new_monthly_records = baseRecords.Select(
                     x => (TRecordType)
-                        WithCorrectDaysPerMonth(x.Copy(), newYear, newMonth));
-                pendingFile.Records.AddRange(newMonthlyRecords);
+                        WithCorrectDaysPerMonth(x.Copy(), new_year, new_month));
+                pendingFile.Records.AddRange(new_monthly_records);
             }
             pendingFile.Records = pendingFile.Records.OrderBy(record => record.Date).ToList();
         }
@@ -359,32 +359,32 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ICSVFile<TRecordType> pendingFile,
             BudgetingMonths budgetingMonths) where TRecordType : ICSVRecord, new()
         {
-            var finalMonth = budgetingMonths.LastMonthForBudgetPlanning >= budgetingMonths.NextUnplannedMonth
+            var final_month = budgetingMonths.LastMonthForBudgetPlanning >= budgetingMonths.NextUnplannedMonth
                 ? budgetingMonths.LastMonthForBudgetPlanning
                 : budgetingMonths.LastMonthForBudgetPlanning + 12;
-            for (int month = budgetingMonths.NextUnplannedMonth; month <= finalMonth; month++)
+            for (int month = budgetingMonths.NextUnplannedMonth; month <= final_month; month++)
             {
-                var newMonth = month;
-                var newYear = budgetingMonths.StartYear;
+                var new_month = month;
+                var new_year = budgetingMonths.StartYear;
                 if (month > 12)
                 {
-                    newMonth = month - 12;
-                    newYear = newYear + 1;
+                    new_month = month - 12;
+                    new_year = new_year + 1;
                 }
-                var newAnnualRecords = baseRecords
-                    .Where(x => x.Date.Month == newMonth)
+                var new_annual_records = baseRecords
+                    .Where(x => x.Date.Month == new_month)
                     .Select(x => (TRecordType)
-                        WithCorrectDaysPerMonth(x.Copy(), newYear, x.Date.Month));
-                pendingFile.Records.AddRange(newAnnualRecords.ToList());
+                        WithCorrectDaysPerMonth(x.Copy(), new_year, x.Date.Month));
+                pendingFile.Records.AddRange(new_annual_records.ToList());
             }
             pendingFile.Records = pendingFile.Records.OrderBy(record => record.Date).ToList();
         }
 
         private ICSVRecord WithCorrectDaysPerMonth(ICSVRecord record, int newYear, int newMonth)
         {
-            int daysInMonth = DateTime.DaysInMonth(newYear, newMonth);
-            int day = record.Date.Day > daysInMonth
-                ? daysInMonth
+            int days_in_month = DateTime.DaysInMonth(newYear, newMonth);
+            int day = record.Date.Day > days_in_month
+                ? days_in_month
                 : record.Date.Day;
             return record.WithDate(new DateTime(newYear, newMonth, day));
         }
@@ -395,14 +395,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 List<int> expectedColumnNumbers)
             where TRecordType : ICSVRecord, new()
         {
-            var rowNumber = _spreadsheetIO.FindRowNumberOfLastRowWithCellContainingText(
+            var row_number = _spreadsheetIO.FindRowNumberOfLastRowWithCellContainingText(
                 sheetName, 
                 textToSearchFor,
                 expectedColumnNumbers);
-            var csvRecord = new TRecordType();
-            csvRecord.ReadFromSpreadsheetRow(_spreadsheetIO.ReadSpecifiedRow(sheetName, rowNumber));
+            var csv_record = new TRecordType();
+            csv_record.ReadFromSpreadsheetRow(_spreadsheetIO.ReadSpecifiedRow(sheetName, row_number));
 
-            return csvRecord;
+            return csv_record;
         }
 
         public void UpdateBalanceOnTotalsSheet(

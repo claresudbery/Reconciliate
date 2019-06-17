@@ -37,42 +37,42 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             Mock<ISpreadsheetRepo> mockSpreadsheetRepo,
             int directDebitRowNumber)
         {
-            var nextDirectDebitDate01 = lastDirectDebitDate.AddMonths(1);
-            var nextDirectDebitDate02 = lastDirectDebitDate.AddMonths(2);
-            var nextDirectDebitDate03 = lastDirectDebitDate.AddMonths(3);
-            double expectedAmount3 = 0;
+            var next_direct_debit_date01 = lastDirectDebitDate.AddMonths(1);
+            var next_direct_debit_date02 = lastDirectDebitDate.AddMonths(2);
+            var next_direct_debit_date03 = lastDirectDebitDate.AddMonths(3);
+            double expected_amount3 = 0;
             mockInputOutput
                 .Setup(x => x.GetInput(
                     string.Format(
                         ReconConsts.AskForCredCardDirectDebit, 
                         credCardName,
-                        nextDirectDebitDate01.ToShortDateString()), ""))
+                        next_direct_debit_date01.ToShortDateString()), ""))
                 .Returns(expectedAmount1.ToString);
             mockInputOutput
                 .Setup(x => x.GetInput(
                     string.Format(
                         ReconConsts.AskForCredCardDirectDebit,
                         credCardName,
-                        nextDirectDebitDate02.ToShortDateString()), ""))
+                        next_direct_debit_date02.ToShortDateString()), ""))
                 .Returns(expectedAmount2.ToString);
             mockInputOutput
                 .Setup(x => x.GetInput(
                     string.Format(
                         ReconConsts.AskForCredCardDirectDebit,
                         credCardName,
-                        nextDirectDebitDate03.ToShortDateString()), ""))
-                .Returns(expectedAmount3.ToString);
-            var mockCellRow = new Mock<ICellRow>();
-            mockCellRow.Setup(x => x.ReadCell(BankRecord.DateIndex)).Returns(lastDirectDebitDate.ToOADate());
-            mockCellRow.Setup(x => x.ReadCell(BankRecord.DescriptionIndex)).Returns(directDebitDescription);
-            mockCellRow.Setup(x => x.ReadCell(BankRecord.TypeIndex)).Returns("Type");
-            mockCellRow.Setup(x => x.ReadCell(BankRecord.UnreconciledAmountIndex)).Returns((double)0);
+                        next_direct_debit_date03.ToShortDateString()), ""))
+                .Returns(expected_amount3.ToString);
+            var mock_cell_row = new Mock<ICellRow>();
+            mock_cell_row.Setup(x => x.ReadCell(BankRecord.DateIndex)).Returns(lastDirectDebitDate.ToOADate());
+            mock_cell_row.Setup(x => x.ReadCell(BankRecord.DescriptionIndex)).Returns(directDebitDescription);
+            mock_cell_row.Setup(x => x.ReadCell(BankRecord.TypeIndex)).Returns("Type");
+            mock_cell_row.Setup(x => x.ReadCell(BankRecord.UnreconciledAmountIndex)).Returns((double)0);
             mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowWithCellContainingText(
                     MainSheetNames.BankOut, directDebitDescription, new List<int> {ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn}))
                 .Returns(directDebitRowNumber);
             mockSpreadsheetRepo.Setup(x => x.ReadSpecifiedRow(
                     MainSheetNames.BankOut, directDebitRowNumber))
-                .Returns(mockCellRow.Object);
+                .Returns(mock_cell_row.Object);
         }
 
         [Test]
@@ -80,41 +80,41 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         {
             // Arrange
             TestHelper.SetCorrectDateFormatting();
-            var mockInputOutput = new Mock<IInputOutput>();
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            double expectedAmount1 = 1234.55;
-            double expectedAmount2 = 5673.99;
-            DateTime lastDirectDebitDate = new DateTime(2018, 12, 17);
-            var nextDirectDebitDate01 = lastDirectDebitDate.AddMonths(1);
-            var nextDirectDebitDate02 = lastDirectDebitDate.AddMonths(2);
+            var mock_input_output = new Mock<IInputOutput>();
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            double expected_amount1 = 1234.55;
+            double expected_amount2 = 5673.99;
+            DateTime last_direct_debit_date = new DateTime(2018, 12, 17);
+            var next_direct_debit_date01 = last_direct_debit_date.AddMonths(1);
+            var next_direct_debit_date02 = last_direct_debit_date.AddMonths(2);
             SetUpForCreditCardData(
                 ReconConsts.CredCard2Name,
                 ReconConsts.CredCard2DdDescription,
-                lastDirectDebitDate,
-                expectedAmount1,
-                expectedAmount2,
-                mockInputOutput,
-                mockSpreadsheetRepo, 1);
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
-            var mockPendingFile = new Mock<ICSVFile<CredCard2InOutRecord>>();
-            var pendingRecords = new List<CredCard2InOutRecord>();
-            mockPendingFile.Setup(x => x.Records).Returns(pendingRecords);
-            var budgetingMonths = new BudgetingMonths();
-            var loadingInfo = CredCard2AndCredCard2InOutData.LoadingInfo;
-            var reconciliationIntro = new ReconciliationIntro(mockInputOutput.Object);
+                last_direct_debit_date,
+                expected_amount1,
+                expected_amount2,
+                mock_input_output,
+                mock_spreadsheet_repo, 1);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            var mock_pending_file = new Mock<ICSVFile<CredCard2InOutRecord>>();
+            var pending_records = new List<CredCard2InOutRecord>();
+            mock_pending_file.Setup(x => x.Records).Returns(pending_records);
+            var budgeting_months = new BudgetingMonths();
+            var loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
+            var reconciliation_intro = new ReconciliationIntro(mock_input_output.Object);
 
             // Act
-            reconciliationIntro.CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
-                mockInputOutput.Object,
+            reconciliation_intro.CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
+                mock_input_output.Object,
                 spreadsheet,
-                mockPendingFile.Object,
-                budgetingMonths,
-                loadingInfo);
+                mock_pending_file.Object,
+                budgeting_months,
+                loading_info);
 
             // Assert
-            Assert.AreEqual(2, pendingRecords.Count);
-            AssertDirectDebitDetailsAreCorrect(pendingRecords[0], nextDirectDebitDate01, expectedAmount1, ReconConsts.CredCard2RegularPymtDescription);
-            AssertDirectDebitDetailsAreCorrect(pendingRecords[1], nextDirectDebitDate02, expectedAmount2, ReconConsts.CredCard2RegularPymtDescription);
+            Assert.AreEqual(2, pending_records.Count);
+            AssertDirectDebitDetailsAreCorrect(pending_records[0], next_direct_debit_date01, expected_amount1, ReconConsts.CredCard2RegularPymtDescription);
+            AssertDirectDebitDetailsAreCorrect(pending_records[1], next_direct_debit_date02, expected_amount2, ReconConsts.CredCard2RegularPymtDescription);
         }
 
         [Test]
@@ -122,53 +122,53 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         {
             // Arrange
             TestHelper.SetCorrectDateFormatting();
-            var mockInputOutput = new Mock<IInputOutput>();
-            double newBalance = 5673.99;
-            DateTime lastDirectDebitDate = new DateTime(2018, 12, 17);
-            var nextDirectDebitDate01 = lastDirectDebitDate.AddMonths(1);
-            var nextDirectDebitDate02 = lastDirectDebitDate.AddMonths(2);
-            mockInputOutput
+            var mock_input_output = new Mock<IInputOutput>();
+            double new_balance = 5673.99;
+            DateTime last_direct_debit_date = new DateTime(2018, 12, 17);
+            var next_direct_debit_date01 = last_direct_debit_date.AddMonths(1);
+            var next_direct_debit_date02 = last_direct_debit_date.AddMonths(2);
+            mock_input_output
                 .Setup(x => x.GetInput(
                     string.Format(
                         ReconConsts.AskForCredCardDirectDebit, 
                         ReconConsts.CredCard2Name,
-                        nextDirectDebitDate01.ToShortDateString()), ""))
-                .Returns(newBalance.ToString);
-            mockInputOutput
+                        next_direct_debit_date01.ToShortDateString()), ""))
+                .Returns(new_balance.ToString);
+            mock_input_output
                 .Setup(x => x.GetInput(
                     string.Format(
                         ReconConsts.AskForCredCardDirectDebit,
                         ReconConsts.CredCard2Name,
-                        nextDirectDebitDate02.ToShortDateString()), ""))
+                        next_direct_debit_date02.ToShortDateString()), ""))
                 .Returns("0");
-            var bankRecord = new BankRecord { Date = lastDirectDebitDate };
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            mockSpreadsheet.Setup(x => x.GetMostRecentRowContainingText<BankRecord>(
+            var bank_record = new BankRecord { Date = last_direct_debit_date };
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_spreadsheet.Setup(x => x.GetMostRecentRowContainingText<BankRecord>(
                     MainSheetNames.BankOut, ReconConsts.CredCard2DdDescription, new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
-                .Returns(bankRecord);
-            var mockPendingFile = new Mock<ICSVFile<CredCard2InOutRecord>>();
-            var pendingRecords = new List<CredCard2InOutRecord>();
-            mockPendingFile.Setup(x => x.Records).Returns(pendingRecords);
-            var budgetingMonths = new BudgetingMonths();
-            var loadingInfo = CredCard2AndCredCard2InOutData.LoadingInfo;
-            var reconciliationIntro = new ReconciliationIntro(mockInputOutput.Object);
+                .Returns(bank_record);
+            var mock_pending_file = new Mock<ICSVFile<CredCard2InOutRecord>>();
+            var pending_records = new List<CredCard2InOutRecord>();
+            mock_pending_file.Setup(x => x.Records).Returns(pending_records);
+            var budgeting_months = new BudgetingMonths();
+            var loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
+            var reconciliation_intro = new ReconciliationIntro(mock_input_output.Object);
 
             // Act
-            reconciliationIntro.CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
-                mockInputOutput.Object,
-                mockSpreadsheet.Object,
-                mockPendingFile.Object,
-                budgetingMonths,
-                loadingInfo);
+            reconciliation_intro.CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
+                mock_input_output.Object,
+                mock_spreadsheet.Object,
+                mock_pending_file.Object,
+                budgeting_months,
+                loading_info);
 
             // Assert
-            mockSpreadsheet.Verify(x => x.UpdateBalanceOnTotalsSheet(
+            mock_spreadsheet.Verify(x => x.UpdateBalanceOnTotalsSheet(
                 Codes.CredCard2Bal,
-                newBalance * -1, 
+                new_balance * -1, 
                 string.Format(
                     ReconConsts.CredCardBalanceDescription,
                     ReconConsts.CredCard2Name,
-                    $"{lastDirectDebitDate.ToString("MMM")} {lastDirectDebitDate.Year}"),
+                    $"{last_direct_debit_date.ToString("MMM")} {last_direct_debit_date.Year}"),
                 5, 6, 4), Times.Exactly(1));
         }
     }

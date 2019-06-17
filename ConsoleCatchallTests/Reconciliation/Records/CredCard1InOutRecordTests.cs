@@ -14,283 +14,283 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void CanReadDateFromCSV()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            string expectedDateAsString = "19/12/2016";
-            string csvLine = String.Format("{0}^£7.99^^ZZZSpecialDescription017^", expectedDateAsString);
-            var expectedDate = Convert.ToDateTime(expectedDateAsString, StringHelper.Culture());
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            string expected_date_as_string = "19/12/2016";
+            string csv_line = String.Format("{0}^£7.99^^ZZZSpecialDescription017^", expected_date_as_string);
+            var expected_date = Convert.ToDateTime(expected_date_as_string, StringHelper.Culture());
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedDate, credCard1InOutRecord.Date);
+            Assert.AreEqual(expected_date, cred_card1_in_out_record.Date);
         }
 
         [Test]
         public void CanReadUnreconciledAmountFromCSV()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            double expectedAmount = 7888.99;
-            string inputAmount = "£" + expectedAmount;
-            string csvLine = String.Format("19/12/2016^{0}^^ZZZSpecialDescription017^", inputAmount);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            double expected_amount = 7888.99;
+            string input_amount = "£" + expected_amount;
+            string csv_line = String.Format("19/12/2016^{0}^^ZZZSpecialDescription017^", input_amount);
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, credCard1InOutRecord.UnreconciledAmount);
+            Assert.AreEqual(expected_amount, cred_card1_in_out_record.UnreconciledAmount);
         }
 
         [Test]
         public void CanReadAmountSurroundedByQuotesFromCSV()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            double expectedAmount = 7888.99;
-            string inputAmount = "£" + expectedAmount;
-            string csvLine = String.Format("19/12/2016^\"{0}\"^^ZZZSpecialDescription017^", inputAmount);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            double expected_amount = 7888.99;
+            string input_amount = "£" + expected_amount;
+            string csv_line = String.Format("19/12/2016^\"{0}\"^^ZZZSpecialDescription017^", input_amount);
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, credCard1InOutRecord.UnreconciledAmount);
+            Assert.AreEqual(expected_amount, cred_card1_in_out_record.UnreconciledAmount);
         }
 
         [Test]
         public void CanReadAmountContainingCommaFromCSV()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            string csvLine = "19/12/2016^£5,678.99^^ZZZSpecialDescription017^";
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            string csv_line = "19/12/2016^£5,678.99^^ZZZSpecialDescription017^";
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(5678.99, credCard1InOutRecord.UnreconciledAmount);
+            Assert.AreEqual(5678.99, cred_card1_in_out_record.UnreconciledAmount);
         }
 
         [Test]
         public void CanReadDataFromCSVWithExtraSeparatorAtEnd()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var expectedDescription = "ZZZSpecialDescription017";
-            string csvLine = String.Format("19/12/2016^£7.99^^{0}^^", expectedDescription);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var expected_description = "ZZZSpecialDescription017";
+            string csv_line = String.Format("19/12/2016^£7.99^^{0}^^", expected_description);
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedDescription, credCard1InOutRecord.Description);
+            Assert.AreEqual(expected_description, cred_card1_in_out_record.Description);
         }
 
         [Test]
         public void CanReadDescriptionFromCSV()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var expectedDescription = "ZZZSpecialDescription017";
-            string csvLine = String.Format("19/12/2016^£7.99^^{0}^", expectedDescription);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var expected_description = "ZZZSpecialDescription017";
+            string csv_line = String.Format("19/12/2016^£7.99^^{0}^", expected_description);
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedDescription, credCard1InOutRecord.Description);
+            Assert.AreEqual(expected_description, cred_card1_in_out_record.Description);
         }
 
         [Test]
         public void CanReadReconciledAmountFromCSV()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var expectedAmount = 238.92;
-            string inputAmount = "£" + expectedAmount;
-            string csvLine = String.Format("19/12/2016^£7.99^^ZZZSpecialDescription017^{0}", inputAmount);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var expected_amount = 238.92;
+            string input_amount = "£" + expected_amount;
+            string csv_line = String.Format("19/12/2016^£7.99^^ZZZSpecialDescription017^{0}", input_amount);
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, credCard1InOutRecord.ReconciledAmount);
+            Assert.AreEqual(expected_amount, cred_card1_in_out_record.ReconciledAmount);
         }
 
         [Test]
         public void CanCopeWithEmptyDate()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var expectedDate = new DateTime(9999, 9, 9);
-            string csvLine = String.Format("^£7.99^^ZZZSpecialDescription017^");
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var expected_date = new DateTime(9999, 9, 9);
+            string csv_line = String.Format("^£7.99^^ZZZSpecialDescription017^");
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedDate, credCard1InOutRecord.Date);
+            Assert.AreEqual(expected_date, cred_card1_in_out_record.Date);
         }
 
         [Test]
         public void CanCopeWithEmptyUnreconciledAmount()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            string csvLine = String.Format("19/12/2016^^^ZZZSpecialDescription017^");
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            string csv_line = String.Format("19/12/2016^^^ZZZSpecialDescription017^");
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, credCard1InOutRecord.UnreconciledAmount);
+            Assert.AreEqual(0, cred_card1_in_out_record.UnreconciledAmount);
         }
 
         [Test]
         public void CanCopeWithEmptyReconciledAmount()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            string csvLine = String.Format("19/12/2016^£7.99^^ZZZSpecialDescription017^");
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            string csv_line = String.Format("19/12/2016^£7.99^^ZZZSpecialDescription017^");
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, credCard1InOutRecord.ReconciledAmount);
+            Assert.AreEqual(0, cred_card1_in_out_record.ReconciledAmount);
         }
 
         [Test]
         public void CanCopeWithBadDate()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var expectedDate = new DateTime(9999, 9, 9);
-            var badDate = "not a date";
-            string csvLine = String.Format("{0}^£7.99^^ZZZSpecialDescription017^", badDate);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var expected_date = new DateTime(9999, 9, 9);
+            var bad_date = "not a date";
+            string csv_line = String.Format("{0}^£7.99^^ZZZSpecialDescription017^", bad_date);
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedDate, credCard1InOutRecord.Date);
+            Assert.AreEqual(expected_date, cred_card1_in_out_record.Date);
         }
 
         [Test]
         public void CanCopeWithBadUnreconciledAmount()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var badAmount = "not an amount";
-            string csvLine = String.Format("19/12/2016^{0}^^ZZZSpecialDescription017^", badAmount);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var bad_amount = "not an amount";
+            string csv_line = String.Format("19/12/2016^{0}^^ZZZSpecialDescription017^", bad_amount);
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, credCard1InOutRecord.UnreconciledAmount);
+            Assert.AreEqual(0, cred_card1_in_out_record.UnreconciledAmount);
         }
 
         [Test]
         public void CanCopeWithBadReconciledAmount()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var badAmount = "not an amount";
-            string csvLine = String.Format("19/12/2016^£7.99^^ZZZSpecialDescription017^{0}", badAmount);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var bad_amount = "not an amount";
+            string csv_line = String.Format("19/12/2016^£7.99^^ZZZSpecialDescription017^{0}", bad_amount);
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, credCard1InOutRecord.ReconciledAmount);
+            Assert.AreEqual(0, cred_card1_in_out_record.ReconciledAmount);
         }
 
         [Test]
         public void CanMakeMainAmountPositive()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var negativeAmount = -23.23;
-            string inputAmount = "-£" + negativeAmount * -1;
-            string csvLine = String.Format("19/12/2016^{0}^^ZZZSpecialDescription017^", inputAmount);
-            credCard1InOutRecord.Load(csvLine);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var negative_amount = -23.23;
+            string input_amount = "-£" + negative_amount * -1;
+            string csv_line = String.Format("19/12/2016^{0}^^ZZZSpecialDescription017^", input_amount);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Act 
-            credCard1InOutRecord.MakeMainAmountPositive();
+            cred_card1_in_out_record.MakeMainAmountPositive();
 
             // Assert
-            Assert.AreEqual(negativeAmount * -1, credCard1InOutRecord.UnreconciledAmount);
+            Assert.AreEqual(negative_amount * -1, cred_card1_in_out_record.UnreconciledAmount);
         }
 
         [Test]
         public void IfMainAmountAlreadyPositiveThenMakingItPositiveHasNoEffect()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var positiveAmount = 23.23;
-            string inputAmount = "£" + positiveAmount;
-            string csvLine = String.Format("19/12/2016^{0}^^ZZZSpecialDescription017^", inputAmount);
-            credCard1InOutRecord.Load(csvLine);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var positive_amount = 23.23;
+            string input_amount = "£" + positive_amount;
+            string csv_line = String.Format("19/12/2016^{0}^^ZZZSpecialDescription017^", input_amount);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Act 
-            credCard1InOutRecord.MakeMainAmountPositive();
+            cred_card1_in_out_record.MakeMainAmountPositive();
 
             // Assert
-            Assert.AreEqual(positiveAmount, credCard1InOutRecord.UnreconciledAmount);
+            Assert.AreEqual(positive_amount, cred_card1_in_out_record.UnreconciledAmount);
         }
 
         [Test]
         public void CsvIsConstructedCorrectlyWithoutMatchedRecord()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            string csvLine = String.Format("19/12/2016^£12.34^^Bantams^£33.44^");
-            credCard1InOutRecord.Load(csvLine);
-            credCard1InOutRecord.Matched = false;
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            string csv_line = String.Format("19/12/2016^£12.34^^Bantams^£33.44^");
+            cred_card1_in_out_record.Load(csv_line);
+            cred_card1_in_out_record.Matched = false;
 
             // Act 
-            string constructedCsvLine = credCard1InOutRecord.ToCsv();
+            string constructed_csv_line = cred_card1_in_out_record.ToCsv();
 
             // Assert
-            Assert.AreEqual("19/12/2016,£12.34,,\"Bantams\",£33.44,", constructedCsvLine);
+            Assert.AreEqual("19/12/2016,£12.34,,\"Bantams\",£33.44,", constructed_csv_line);
         }
 
         [Test]
         public void CsvIsConstructedCorrectlyWithMatchedRecord()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            string csvLine = String.Format("19/12/2016^£12.34^^Bantams^£33.44^");
-            credCard1InOutRecord.Load(csvLine);
-            credCard1InOutRecord.Matched = false;
-            string matchedRecordCsvLine = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE\",-12.33");
-            var matchedRecord = new CredCard1Record();
-            matchedRecord.Load(matchedRecordCsvLine);
-            credCard1InOutRecord.Match = matchedRecord;
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            string csv_line = String.Format("19/12/2016^£12.34^^Bantams^£33.44^");
+            cred_card1_in_out_record.Load(csv_line);
+            cred_card1_in_out_record.Matched = false;
+            string matched_record_csv_line = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE\",-12.33");
+            var matched_record = new CredCard1Record();
+            matched_record.Load(matched_record_csv_line);
+            cred_card1_in_out_record.Match = matched_record;
 
             // Act 
-            string constructedCsvLine = credCard1InOutRecord.ToCsv();
+            string constructed_csv_line = cred_card1_in_out_record.ToCsv();
 
             // Assert
-            Assert.AreEqual("19/12/2016,£12.34,,\"Bantams\",£33.44,,,17/02/2017,£12.33,\"ANY STORE\"", constructedCsvLine);
+            Assert.AreEqual("19/12/2016,£12.34,,\"Bantams\",£33.44,,,17/02/2017,£12.33,\"ANY STORE\"", constructed_csv_line);
         }
 
         [Test]
         public void EmptyFieldsAreOutputAsNothingForCsv()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            string csvLine = String.Format("19/12/2016^^^Bantams^^");
-            credCard1InOutRecord.Load(csvLine);
-            credCard1InOutRecord.Matched = false;
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            string csv_line = String.Format("19/12/2016^^^Bantams^^");
+            cred_card1_in_out_record.Load(csv_line);
+            cred_card1_in_out_record.Matched = false;
 
             // Act 
-            string constructedCsvLine = credCard1InOutRecord.ToCsv();
+            string constructed_csv_line = cred_card1_in_out_record.ToCsv();
 
             // Assert
-            Assert.AreEqual("19/12/2016,,,\"Bantams\",,", constructedCsvLine);
+            Assert.AreEqual("19/12/2016,,,\"Bantams\",,", constructed_csv_line);
         }
 
         // Note that these tests are arguably redundant, as the input uses ^ as a separator, instead of comma.
@@ -299,17 +299,17 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void CanCopeWithInputContainingCommasSurroundedBySpaces()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            double expectedAmount = 12.35;
-            string inputAmount = "£" + expectedAmount;
-            string textContainingCommas = "something ,something , something, something else";
-            string csvLine = String.Format("19/12/2016^^^{0}^{1}", textContainingCommas, inputAmount);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            double expected_amount = 12.35;
+            string input_amount = "£" + expected_amount;
+            string text_containing_commas = "something ,something , something, something else";
+            string csv_line = String.Format("19/12/2016^^^{0}^{1}", text_containing_commas, input_amount);
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, credCard1InOutRecord.ReconciledAmount);
+            Assert.AreEqual(expected_amount, cred_card1_in_out_record.ReconciledAmount);
         }
 
         // Note that these tests are arguably redundant, as the input uses ^ as a separator, instead of comma.
@@ -318,17 +318,17 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void CanCopeWithInputContainingCommasFollowedBySpaces()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            double expectedAmount = 12.35;
-            string inputAmount = "£" + expectedAmount;
-            string textContainingCommas = "something, something, something else";
-            string csvLine = String.Format("19/12/2016^^^{0}^{1}", textContainingCommas, inputAmount);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            double expected_amount = 12.35;
+            string input_amount = "£" + expected_amount;
+            string text_containing_commas = "something, something, something else";
+            string csv_line = String.Format("19/12/2016^^^{0}^{1}", text_containing_commas, input_amount);
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, credCard1InOutRecord.ReconciledAmount);
+            Assert.AreEqual(expected_amount, cred_card1_in_out_record.ReconciledAmount);
         }
 
         // Note that these tests are arguably redundant, as the input uses ^ as a separator, instead of comma.
@@ -337,34 +337,34 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void CanCopeWithInputContainingCommasPrecededBySpaces()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            double expectedAmount = 12.35;
-            string inputAmount = "£" + expectedAmount;
-            string textContainingCommas = "something ,something ,something else";
-            string csvLine = String.Format("19/12/2016^^^{0}^{1}", textContainingCommas, inputAmount);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            double expected_amount = 12.35;
+            string input_amount = "£" + expected_amount;
+            string text_containing_commas = "something ,something ,something else";
+            string csv_line = String.Format("19/12/2016^^^{0}^{1}", text_containing_commas, input_amount);
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, credCard1InOutRecord.ReconciledAmount);
+            Assert.AreEqual(expected_amount, cred_card1_in_out_record.ReconciledAmount);
         }
 
         [Test]
         public void AmountsContainingCommasShouldBeEncasedInQuotes()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var amountContainingComma = "£1,234.55";
-            string csvLine = String.Format("19/12/2016^{0}^^Bantams^", amountContainingComma);
-            credCard1InOutRecord.Load(csvLine);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var amount_containing_comma = "£1,234.55";
+            string csv_line = String.Format("19/12/2016^{0}^^Bantams^", amount_containing_comma);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Act 
-            string constructedCsvLine = credCard1InOutRecord.ToCsv();
+            string constructed_csv_line = cred_card1_in_out_record.ToCsv();
 
             // Assert
-            string expectedCsvLine = String.Format("19/12/2016,\"{0}\",,\"Bantams\",,", amountContainingComma);
-            Assert.AreEqual(expectedCsvLine, constructedCsvLine);
+            string expected_csv_line = String.Format("19/12/2016,\"{0}\",,\"Bantams\",,", amount_containing_comma);
+            Assert.AreEqual(expected_csv_line, constructed_csv_line);
         }
 
         // This doesn't apply to ActualBank and CredCard1 because their input does not have £ signs or commas
@@ -372,15 +372,15 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void ShouldBeAbleToReadUnreconciledAmountsContainingCommas()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var amountContainingComma = "£1,234.55";
-            string csvLine = String.Format("19/12/2016^{0}^^ZZZSpecialDescription017^", amountContainingComma);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var amount_containing_comma = "£1,234.55";
+            string csv_line = String.Format("19/12/2016^{0}^^ZZZSpecialDescription017^", amount_containing_comma);
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(1234.55, credCard1InOutRecord.UnreconciledAmount);
+            Assert.AreEqual(1234.55, cred_card1_in_out_record.UnreconciledAmount);
         }
 
         // This doesn't apply to ActualBank and CredCard1 because their input does not have £ signs or commas
@@ -388,15 +388,15 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void ShouldBeAbleToReadReconciledAmountsContainingCommas()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var amountContainingComma = "£1,234.55";
-            string csvLine = String.Format("19/12/2016^^^ZZZSpecialDescription017^{0}", amountContainingComma);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var amount_containing_comma = "£1,234.55";
+            string csv_line = String.Format("19/12/2016^^^ZZZSpecialDescription017^{0}", amount_containing_comma);
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(1234.55, credCard1InOutRecord.ReconciledAmount);
+            Assert.AreEqual(1234.55, cred_card1_in_out_record.ReconciledAmount);
         }
 
         // This doesn't apply to ActualBank and CredCard1 because their input does not have £ signs or commas
@@ -404,32 +404,32 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void ShouldBeAbleToReadAmountsPrecededByPoundSigns()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var amountWithPoundSign = "£1,234.55";
-            string csvLine = String.Format("19/12/2016^{0}^^ZZZSpecialDescription017^", amountWithPoundSign);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var amount_with_pound_sign = "£1,234.55";
+            string csv_line = String.Format("19/12/2016^{0}^^ZZZSpecialDescription017^", amount_with_pound_sign);
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(1234.55, credCard1InOutRecord.UnreconciledAmount);
+            Assert.AreEqual(1234.55, cred_card1_in_out_record.UnreconciledAmount);
         }
 
         [Test]
         public void AmountsShouldBeWrittenUsingPoundSigns()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var amountWithPoundSign = "£123.55";
-            string csvLine = String.Format("19/12/2016^{0}^^Bantams^", amountWithPoundSign);
-            credCard1InOutRecord.Load(csvLine);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var amount_with_pound_sign = "£123.55";
+            string csv_line = String.Format("19/12/2016^{0}^^Bantams^", amount_with_pound_sign);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Act 
-            string constructedCsvLine = credCard1InOutRecord.ToCsv();
+            string constructed_csv_line = cred_card1_in_out_record.ToCsv();
 
             // Assert
-            string expectedCsvLine = String.Format("19/12/2016,{0},,\"Bantams\",,", amountWithPoundSign);
-            Assert.AreEqual(expectedCsvLine, constructedCsvLine);
+            string expected_csv_line = String.Format("19/12/2016,{0},,\"Bantams\",,", amount_with_pound_sign);
+            Assert.AreEqual(expected_csv_line, constructed_csv_line);
         }
 
         // This doesn't apply to ActualBank and CredCard1 because their input does not have £ signs or commas
@@ -437,101 +437,101 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void ShouldBeAbleToReadNegativeAmounts()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var negativeAmount = "-£123.55";
-            string csvLine = String.Format("19/12/2016^^^ZZZSpecialDescription017^{0}", negativeAmount);
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var negative_amount = "-£123.55";
+            string csv_line = String.Format("19/12/2016^^^ZZZSpecialDescription017^{0}", negative_amount);
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(-123.55, credCard1InOutRecord.ReconciledAmount);
+            Assert.AreEqual(-123.55, cred_card1_in_out_record.ReconciledAmount);
         }
 
         [Test]
         public void ShouldBeAbleToCopeWithEmptyInput()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            string csvLine = String.Empty;
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            string csv_line = String.Empty;
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, credCard1InOutRecord.ReconciledAmount);
+            Assert.AreEqual(0, cred_card1_in_out_record.ReconciledAmount);
         }
 
         [Test]
         public void WillAddDefaultDescriptionIfDescriptionIsUnpopulated()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            string csvLine = "19/12/2016^£123.55^^^";
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            string csv_line = "19/12/2016^£123.55^^^";
 
             // Act 
-            credCard1InOutRecord.Load(csvLine);
+            cred_card1_in_out_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual("Source record had no description", credCard1InOutRecord.Description);
+            Assert.AreEqual("Source record had no description", cred_card1_in_out_record.Description);
         }
 
         [Test]
         public void WhenCopyingRecordWillCopyAllImportantData()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord
+            var cred_card1_in_out_record = new CredCard1InOutRecord
             {
                 Date = DateTime.Today,
                 UnreconciledAmount = 12.34,
                 Description = "Description",
                 ReconciledAmount = 56.78
             };
-            credCard1InOutRecord.UpdateSourceLineForOutput(',');
+            cred_card1_in_out_record.UpdateSourceLineForOutput(',');
 
             // Act 
-            var copiedRecord = (CredCard1InOutRecord)credCard1InOutRecord.Copy();
+            var copied_record = (CredCard1InOutRecord)cred_card1_in_out_record.Copy();
 
             // Assert
-            Assert.AreEqual(credCard1InOutRecord.Date, copiedRecord.Date);
-            Assert.AreEqual(credCard1InOutRecord.UnreconciledAmount, copiedRecord.UnreconciledAmount);
-            Assert.AreEqual(credCard1InOutRecord.Description, copiedRecord.Description);
-            Assert.AreEqual(credCard1InOutRecord.ReconciledAmount, copiedRecord.ReconciledAmount);
-            Assert.AreEqual(credCard1InOutRecord.SourceLine, copiedRecord.SourceLine);
+            Assert.AreEqual(cred_card1_in_out_record.Date, copied_record.Date);
+            Assert.AreEqual(cred_card1_in_out_record.UnreconciledAmount, copied_record.UnreconciledAmount);
+            Assert.AreEqual(cred_card1_in_out_record.Description, copied_record.Description);
+            Assert.AreEqual(cred_card1_in_out_record.ReconciledAmount, copied_record.ReconciledAmount);
+            Assert.AreEqual(cred_card1_in_out_record.SourceLine, copied_record.SourceLine);
         }
 
         [Test]
         public void WhenCopyingRecordWillCreateNewObject()
         {
             // Arrange
-            var originalDate = DateTime.Today;
-            var originalUnreconciledAmount = 12.34;
-            var originalDescription = "Description";
-            var originalReconciledAmount = 56.78;
-            var credCard1InOutRecord = new CredCard1InOutRecord
+            var original_date = DateTime.Today;
+            var original_unreconciled_amount = 12.34;
+            var original_description = "Description";
+            var original_reconciled_amount = 56.78;
+            var cred_card1_in_out_record = new CredCard1InOutRecord
             {
-                Date = originalDate,
-                UnreconciledAmount = originalUnreconciledAmount,
-                Description = originalDescription,
-                ReconciledAmount = originalReconciledAmount
+                Date = original_date,
+                UnreconciledAmount = original_unreconciled_amount,
+                Description = original_description,
+                ReconciledAmount = original_reconciled_amount
             };
-            credCard1InOutRecord.UpdateSourceLineForOutput(',');
-            var originalSourceLine = credCard1InOutRecord.SourceLine;
+            cred_card1_in_out_record.UpdateSourceLineForOutput(',');
+            var original_source_line = cred_card1_in_out_record.SourceLine;
 
             // Act 
-            var copiedRecord = (CredCard1InOutRecord)credCard1InOutRecord.Copy();
-            copiedRecord.Date = copiedRecord.Date.AddDays(1);
-            copiedRecord.UnreconciledAmount = copiedRecord.UnreconciledAmount + 1;
-            copiedRecord.Description = copiedRecord.Description + "something else";
-            copiedRecord.ReconciledAmount = copiedRecord.ReconciledAmount + 1;
-            copiedRecord.UpdateSourceLineForOutput(',');
+            var copied_record = (CredCard1InOutRecord)cred_card1_in_out_record.Copy();
+            copied_record.Date = copied_record.Date.AddDays(1);
+            copied_record.UnreconciledAmount = copied_record.UnreconciledAmount + 1;
+            copied_record.Description = copied_record.Description + "something else";
+            copied_record.ReconciledAmount = copied_record.ReconciledAmount + 1;
+            copied_record.UpdateSourceLineForOutput(',');
 
             // Assert
-            Assert.AreEqual(originalDate, credCard1InOutRecord.Date);
-            Assert.AreEqual(originalUnreconciledAmount, credCard1InOutRecord.UnreconciledAmount);
-            Assert.AreEqual(originalDescription, credCard1InOutRecord.Description);
-            Assert.AreEqual(originalReconciledAmount, credCard1InOutRecord.ReconciledAmount);
-            Assert.AreEqual(originalSourceLine, credCard1InOutRecord.SourceLine);
+            Assert.AreEqual(original_date, cred_card1_in_out_record.Date);
+            Assert.AreEqual(original_unreconciled_amount, cred_card1_in_out_record.UnreconciledAmount);
+            Assert.AreEqual(original_description, cred_card1_in_out_record.Description);
+            Assert.AreEqual(original_reconciled_amount, cred_card1_in_out_record.ReconciledAmount);
+            Assert.AreEqual(original_source_line, cred_card1_in_out_record.SourceLine);
         }
 
         [Test]
@@ -540,7 +540,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var row = 10;
-            var credCard1InOutRecord = new CredCard1InOutRecord
+            var cred_card1_in_out_record = new CredCard1InOutRecord
             {
                 Match = new CredCard1Record
                 {
@@ -549,15 +549,15 @@ namespace ConsoleCatchallTests.Reconciliation.Records
                     Description = "match description"
                 }
             };
-            var mockCells = new Mock<ICellSet>();
+            var mock_cells = new Mock<ICellSet>();
 
             // Act 
-            credCard1InOutRecord.PopulateSpreadsheetRow(mockCells.Object, row);
+            cred_card1_in_out_record.PopulateSpreadsheetRow(mock_cells.Object, row);
 
             // Assert
-            mockCells.Verify(x => x.PopulateCell(row, CredCard1Record.DateSpreadsheetIndex + 1, credCard1InOutRecord.Match.Date), "Date");
-            mockCells.Verify(x => x.PopulateCell(row, CredCard1Record.AmountSpreadsheetIndex + 1, credCard1InOutRecord.Match.MainAmount()), "Amount");
-            mockCells.Verify(x => x.PopulateCell(row, CredCard1Record.DescriptionSpreadsheetIndex + 1, credCard1InOutRecord.Match.Description), "Desc");
+            mock_cells.Verify(x => x.PopulateCell(row, CredCard1Record.DateSpreadsheetIndex + 1, cred_card1_in_out_record.Match.Date), "Date");
+            mock_cells.Verify(x => x.PopulateCell(row, CredCard1Record.AmountSpreadsheetIndex + 1, cred_card1_in_out_record.Match.MainAmount()), "Amount");
+            mock_cells.Verify(x => x.PopulateCell(row, CredCard1Record.DescriptionSpreadsheetIndex + 1, cred_card1_in_out_record.Match.Description), "Desc");
         }
     }
 }

@@ -66,36 +66,36 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             string input = _inputOutput.GetGenericInput(ReconConsts.DebugOrReal);
 
-            WorkingMode workingMode = WorkingMode.DebugA;
+            WorkingMode working_mode = WorkingMode.DebugA;
             switch (input)
             {
-                case "1": { workingMode = WorkingMode.DebugA; DebugModeA(); } break;
-                case "2": { workingMode = WorkingMode.DebugB; DebugModeB(); } break;
-                case "3": { workingMode = WorkingMode.DebugC; DebugModeC(); } break;
-                case "4": { workingMode = WorkingMode.Real; RealMode(); } break;
+                case "1": { working_mode = WorkingMode.DebugA; DebugModeA(); } break;
+                case "2": { working_mode = WorkingMode.DebugB; DebugModeB(); } break;
+                case "3": { working_mode = WorkingMode.DebugC; DebugModeC(); } break;
+                case "4": { working_mode = WorkingMode.Real; RealMode(); } break;
             }
 
-            DoActualReconciliation(workingMode);
+            DoActualReconciliation(working_mode);
         }
 
         public void DebugModeA()
         {
             CopySourceSpreadsheetToDebugSpreadsheet(ReconConsts.MainSpreadsheetPath, ReconConsts.MainSpreadsheetPath);
-            string debugFilePath = Path.Combine(
+            string debug_file_path = Path.Combine(
                 ReconConsts.MainSpreadsheetPath, 
                 ReconConsts.BackupSubFolder, 
                 ReconConsts.DebugSpreadsheetFileName);
-            _spreadsheetFactory = new SpreadsheetRepoFactoryFactory().GetFactory(debugFilePath);
+            _spreadsheetFactory = new SpreadsheetRepoFactoryFactory().GetFactory(debug_file_path);
         }
 
         public void DebugModeB()
         {
             CopySourceSpreadsheetToDebugSpreadsheet(ReconConsts.SourceDebugSpreadsheetPath, ReconConsts.MainSpreadsheetPath);
-            string debugFilePath = Path.Combine(
+            string debug_file_path = Path.Combine(
                 ReconConsts.MainSpreadsheetPath,
                 ReconConsts.BackupSubFolder,
                 ReconConsts.DebugSpreadsheetFileName);
-            _spreadsheetFactory = new SpreadsheetRepoFactoryFactory().GetFactory(debugFilePath);
+            _spreadsheetFactory = new SpreadsheetRepoFactoryFactory().GetFactory(debug_file_path);
         }
 
         public void DebugModeC()
@@ -106,10 +106,10 @@ namespace ConsoleCatchall.Console.Reconciliation
         private void RealMode()
         {
             CreateBackupOfRealSpreadsheet(new Clock(), ReconConsts.MainSpreadsheetPath);
-            string filePath = Path.Combine(
+            string file_path = Path.Combine(
                 ReconConsts.MainSpreadsheetPath,
                 ReconConsts.MainSpreadsheetFileName);
-            _spreadsheetFactory = new SpreadsheetRepoFactoryFactory().GetFactory(filePath);
+            _spreadsheetFactory = new SpreadsheetRepoFactoryFactory().GetFactory(file_path);
         }
 
         private void ShowInstructions(WorkingMode workingMode)
@@ -242,9 +242,9 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             _inputOutput.OutputLine("Mathematical dude! Let's do some reconciliating. Type Exit at any time to leave (although to be honest I'm not sure that actually works...)");
 
-            bool usingDefaults = GetAllFileDetails();
+            bool using_defaults = GetAllFileDetails();
 
-            if (!usingDefaults)
+            if (!using_defaults)
             {
                 GetPath();
                 GetThirdPartyFileName();
@@ -444,15 +444,15 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void DoMatching()
         {
-            var mainFilePaths = new FilePaths
+            var main_file_paths = new FilePaths
             {
                 MainPath = _path,
                 ThirdPartyFileName = _thirdPartyFileName,
                 OwnedFileName = _ownedFileName
             };
 
-            var reconciliationInterface = LoadCorrectFiles(mainFilePaths);
-            reconciliationInterface?.DoTheMatching();
+            var reconciliation_interface = LoadCorrectFiles(main_file_paths);
+            reconciliation_interface?.DoTheMatching();
         }
 
         #endregion User Instructions and Input
@@ -461,37 +461,37 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         public void CopySourceSpreadsheetToDebugSpreadsheet(string sourceSpreadsheetPath, string mainSpreadsheetPath)
         {
-            string sourceFilePath = Path.Combine(sourceSpreadsheetPath, ReconConsts.MainSpreadsheetFileName);
-            if (File.Exists(sourceFilePath))
+            string source_file_path = Path.Combine(sourceSpreadsheetPath, ReconConsts.MainSpreadsheetFileName);
+            if (File.Exists(source_file_path))
             {
-                string debugFilePath = Path.Combine(
+                string debug_file_path = Path.Combine(
                     mainSpreadsheetPath, 
                     ReconConsts.BackupSubFolder,
                     ReconConsts.DebugSpreadsheetFileName);
-                File.Copy(sourceFilePath, debugFilePath, true);
+                File.Copy(source_file_path, debug_file_path, true);
             }
             else
             {
-                throw new Exception($"Can't find file: {sourceFilePath}");
+                throw new Exception($"Can't find file: {source_file_path}");
             }
         }
 
         public void CreateBackupOfRealSpreadsheet(IClock clock, string spreadsheetPath)
         {
-            string sourceFilePath = Path.Combine(spreadsheetPath, ReconConsts.MainSpreadsheetFileName);
-            if (File.Exists(sourceFilePath))
+            string source_file_path = Path.Combine(spreadsheetPath, ReconConsts.MainSpreadsheetFileName);
+            if (File.Exists(source_file_path))
             {
-                string fileNamePrefix = $"{ReconConsts.BackupSubFolder}\\real_backup_";
-                fileNamePrefix = fileNamePrefix + clock.NowDateTime();
-                fileNamePrefix = fileNamePrefix.Replace(" ", "_").Replace(":", "-").Replace("/", "-");
-                string backupFileName = fileNamePrefix + "_" + ReconConsts.MainSpreadsheetFileName;
-                string backupFilePath = spreadsheetPath + "\\" + backupFileName;
+                string file_name_prefix = $"{ReconConsts.BackupSubFolder}\\real_backup_";
+                file_name_prefix = file_name_prefix + clock.NowDateTime();
+                file_name_prefix = file_name_prefix.Replace(" ", "_").Replace(":", "-").Replace("/", "-");
+                string backup_file_name = file_name_prefix + "_" + ReconConsts.MainSpreadsheetFileName;
+                string backup_file_path = spreadsheetPath + "\\" + backup_file_name;
 
-                File.Copy(sourceFilePath, backupFilePath, true);
+                File.Copy(source_file_path, backup_file_path, true);
             }
             else
             {
-                throw new Exception($"Can't find file: {sourceFilePath}");
+                throw new Exception($"Can't find file: {source_file_path}");
             }
         }
 
@@ -509,8 +509,8 @@ namespace ConsoleCatchall.Console.Reconciliation
             try
             {
                 GetPath();
-                var pendingCsvFileCreator = new PendingCsvFileCreator(_path);
-                pendingCsvFileCreator.CreateAndPopulateAllCsvs();
+                var pending_csv_file_creator = new PendingCsvFileCreator(_path);
+                pending_csv_file_creator.CreateAndPopulateAllCsvs();
             }
             catch (Exception e)
             {
@@ -522,52 +522,52 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             _inputOutput.OutputLine("Loading data...");
 
-            ReconciliationInterface reconciliationInterface = null;
+            ReconciliationInterface reconciliation_interface = null;
 
             try
             {
                 // NB This is the only function the spreadsheet is used in, until the very end (Reconciliator.Finish, called from
                 // ReconciliationInterface), when another spreadsheet instance gets created by FileIO so it can call 
                 // WriteBackToMainSpreadsheet. Between now and then, everything is done using csv files.
-                var spreadsheetRepo = _spreadsheetFactory.CreateSpreadsheetRepo();
-                var spreadsheet = new Spreadsheet(spreadsheetRepo);
-                BudgetingMonths budgetingMonths = RecursivelyAskForBudgetingMonths(spreadsheet);
+                var spreadsheet_repo = _spreadsheetFactory.CreateSpreadsheetRepo();
+                var spreadsheet = new Spreadsheet(spreadsheet_repo);
+                BudgetingMonths budgeting_months = RecursivelyAskForBudgetingMonths(spreadsheet);
 
                 switch (_reconciliationType)
                 {
                     case ReconciliationType.BankAndBankIn:
                         {
-                            reconciliationInterface =
+                            reconciliation_interface =
                                 LoadBankAndBankIn(
                                     spreadsheet,
-                                    budgetingMonths,
+                                    budgeting_months,
                                     mainFilePaths);
                         }
                         break;
                     case ReconciliationType.BankAndBankOut:
                         {
-                            reconciliationInterface =
+                            reconciliation_interface =
                                 LoadBankAndBankOut(
                                     spreadsheet,
-                                    budgetingMonths,
+                                    budgeting_months,
                                     mainFilePaths);
                         }
                         break;
                     case ReconciliationType.CredCard1AndCredCard1InOut:
                         {
-                            reconciliationInterface =
+                            reconciliation_interface =
                                 LoadCredCard1AndCredCard1InOut(
                                     spreadsheet,
-                                    budgetingMonths,
+                                    budgeting_months,
                                     mainFilePaths);
                         }
                         break;
                     case ReconciliationType.CredCard2AndCredCard2InOut:
                         {
-                            reconciliationInterface =
+                            reconciliation_interface =
                                 LoadCredCard2AndCredCard2InOut(
                                     spreadsheet,
-                                    budgetingMonths,
+                                    budgeting_months,
                                     mainFilePaths);
                         }
                         break;
@@ -586,7 +586,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             _inputOutput.OutputLine("");
             _inputOutput.OutputLine("");
 
-            return reconciliationInterface;
+            return reconciliation_interface;
         }
 
         public ReconciliationInterface
@@ -595,24 +595,24 @@ namespace ConsoleCatchall.Console.Reconciliation
                 BudgetingMonths budgetingMonths,
                 FilePaths mainFilePaths)
         {
-            var dataLoadingInfo = BankAndBankInData.LoadingInfo;
-            dataLoadingInfo.FilePaths = mainFilePaths;
+            var data_loading_info = BankAndBankInData.LoadingInfo;
+            data_loading_info.FilePaths = mainFilePaths;
 
-            var pendingFileIO = new FileIO<BankRecord>(_spreadsheetFactory);
-            var pendingFile = new CSVFile<BankRecord>(pendingFileIO);
-            pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
+            var pending_file_io = new FileIO<BankRecord>(_spreadsheetFactory);
+            var pending_file = new CSVFile<BankRecord>(pending_file_io);
+            pending_file_io.SetFilePaths(data_loading_info.FilePaths.MainPath, data_loading_info.PendingFileName);
 
             _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
             // The separator we loaded with had to match the source. Then we convert it here to match its destination.
-            pendingFile.Load(true, dataLoadingInfo.DefaultSeparator);
+            pending_file.Load(true, data_loading_info.DefaultSeparator);
             _inputOutput.OutputLine("Converting source line separators...");
-            pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
+            pending_file.ConvertSourceLineSeparators(data_loading_info.DefaultSeparator, data_loading_info.LoadingSeparator);
             _inputOutput.OutputLine(ReconConsts.MergingSomeBudgetData);
-            spreadsheet.AddBudgetedBankInDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.MonthlyBudgetData);
+            spreadsheet.AddBudgetedBankInDataToPendingFile(budgetingMonths, pending_file, data_loading_info.MonthlyBudgetData);
             _inputOutput.OutputLine("Merging bespoke data with pending file...");
-            BankAndBankIn_MergeBespokeDataWithPendingFile(_inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+            BankAndBankIn_MergeBespokeDataWithPendingFile(_inputOutput, spreadsheet, pending_file, budgetingMonths, data_loading_info);
             _inputOutput.OutputLine("Updating source lines for output...");
-            pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
+            pending_file.UpdateSourceLinesForOutput(data_loading_info.LoadingSeparator);
 
             // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
             // We loaded it up into memory in the previous file-specific method.
@@ -621,20 +621,20 @@ namespace ConsoleCatchall.Console.Reconciliation
             // Now we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
             // Then we write all that data away into the 'owned' csv file (eg BankOutPending.csv).
             _inputOutput.OutputLine("Merging unreconciled rows from spreadsheet with pending and budget data...");
-            spreadsheet.AddUnreconciledRowsToCsvFile(dataLoadingInfo.SheetName, pendingFile);
+            spreadsheet.AddUnreconciledRowsToCsvFile(data_loading_info.SheetName, pending_file);
             _inputOutput.OutputLine("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
-            pendingFile.WriteToFileAsSourceLines(dataLoadingInfo.FilePaths.OwnedFileName);
+            pending_file.WriteToFileAsSourceLines(data_loading_info.FilePaths.OwnedFileName);
             _inputOutput.OutputLine("...");
             
-            var thirdPartyFileIO = new FileIO<ActualBankRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
-            var ownedFileIO = new FileIO<BankRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            var reconciliator = new BankReconciliator(thirdPartyFileIO, ownedFileIO, dataLoadingInfo);
-            var reconciliationInterface = new ReconciliationInterface(
+            var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheetFactory, data_loading_info.FilePaths.MainPath, data_loading_info.FilePaths.ThirdPartyFileName);
+            var owned_file_io = new FileIO<BankRecord>(_spreadsheetFactory, data_loading_info.FilePaths.MainPath, data_loading_info.FilePaths.OwnedFileName);
+            var reconciliator = new BankReconciliator(third_party_file_io, owned_file_io, data_loading_info);
+            var reconciliation_interface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,
-                dataLoadingInfo.ThirdPartyDescriptor,
-                dataLoadingInfo.OwnedFileDescriptor);
-            return reconciliationInterface;
+                data_loading_info.ThirdPartyDescriptor,
+                data_loading_info.OwnedFileDescriptor);
+            return reconciliation_interface;
         }
 
         public ReconciliationInterface
@@ -643,28 +643,28 @@ namespace ConsoleCatchall.Console.Reconciliation
                 BudgetingMonths budgetingMonths,
                 FilePaths mainFilePaths)
         {
-            var dataLoadingInfo = BankAndBankOutData.LoadingInfo;
-            dataLoadingInfo.FilePaths = mainFilePaths;
+            var data_loading_info = BankAndBankOutData.LoadingInfo;
+            data_loading_info.FilePaths = mainFilePaths;
 
-            var pendingFileIO = new FileIO<BankRecord>(_spreadsheetFactory);
-            var pendingFile = new CSVFile<BankRecord>(pendingFileIO);
-            pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
+            var pending_file_io = new FileIO<BankRecord>(_spreadsheetFactory);
+            var pending_file = new CSVFile<BankRecord>(pending_file_io);
+            pending_file_io.SetFilePaths(data_loading_info.FilePaths.MainPath, data_loading_info.PendingFileName);
 
             _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
             // The separator we loaded with had to match the source. Then we convert it here to match its destination.
-            pendingFile.Load(true, dataLoadingInfo.DefaultSeparator);
+            pending_file.Load(true, data_loading_info.DefaultSeparator);
             _inputOutput.OutputLine("Converting source line separators...");
-            pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
+            pending_file.ConvertSourceLineSeparators(data_loading_info.DefaultSeparator, data_loading_info.LoadingSeparator);
             _inputOutput.OutputLine(ReconConsts.MergingSomeBudgetData);
             spreadsheet.AddBudgetedBankOutDataToPendingFile(
                 budgetingMonths, 
-                pendingFile, 
-                dataLoadingInfo.MonthlyBudgetData,
-                dataLoadingInfo.AnnualBudgetData);
+                pending_file, 
+                data_loading_info.MonthlyBudgetData,
+                data_loading_info.AnnualBudgetData);
             _inputOutput.OutputLine("Merging bespoke data with pending file...");
-            BankAndBankOut_MergeBespokeDataWithPendingFile(_inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+            BankAndBankOut_MergeBespokeDataWithPendingFile(_inputOutput, spreadsheet, pending_file, budgetingMonths, data_loading_info);
             _inputOutput.OutputLine("Updating source lines for output...");
-            pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
+            pending_file.UpdateSourceLinesForOutput(data_loading_info.LoadingSeparator);
 
             // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
             // We loaded it up into memory in the previous file-specific method.
@@ -673,20 +673,20 @@ namespace ConsoleCatchall.Console.Reconciliation
             // Now we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
             // Then we write all that data away into the 'owned' csv file (eg BankOutPending.csv).
             _inputOutput.OutputLine("Merging unreconciled rows from spreadsheet with pending and budget data...");
-            spreadsheet.AddUnreconciledRowsToCsvFile(dataLoadingInfo.SheetName, pendingFile);
+            spreadsheet.AddUnreconciledRowsToCsvFile(data_loading_info.SheetName, pending_file);
             _inputOutput.OutputLine("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
-            pendingFile.WriteToFileAsSourceLines(dataLoadingInfo.FilePaths.OwnedFileName);
+            pending_file.WriteToFileAsSourceLines(data_loading_info.FilePaths.OwnedFileName);
             _inputOutput.OutputLine("...");
 
-            var thirdPartyFileIO = new FileIO<ActualBankRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
-            var ownedFileIO = new FileIO<BankRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            var reconciliator = new BankReconciliator(thirdPartyFileIO, ownedFileIO, dataLoadingInfo);
-            var reconciliationInterface = new ReconciliationInterface(
+            var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheetFactory, data_loading_info.FilePaths.MainPath, data_loading_info.FilePaths.ThirdPartyFileName);
+            var owned_file_io = new FileIO<BankRecord>(_spreadsheetFactory, data_loading_info.FilePaths.MainPath, data_loading_info.FilePaths.OwnedFileName);
+            var reconciliator = new BankReconciliator(third_party_file_io, owned_file_io, data_loading_info);
+            var reconciliation_interface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,
-                dataLoadingInfo.ThirdPartyDescriptor,
-                dataLoadingInfo.OwnedFileDescriptor);
-            return reconciliationInterface;
+                data_loading_info.ThirdPartyDescriptor,
+                data_loading_info.OwnedFileDescriptor);
+            return reconciliation_interface;
         }
 
         public ReconciliationInterface
@@ -695,25 +695,25 @@ namespace ConsoleCatchall.Console.Reconciliation
                 BudgetingMonths budgetingMonths,
                 FilePaths mainFilePaths)
         {
-            var dataLoadingInfo = CredCard1AndCredCard1InOutData.LoadingInfo;
-            dataLoadingInfo.FilePaths = mainFilePaths;
+            var data_loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
+            data_loading_info.FilePaths = mainFilePaths;
 
-            var pendingFileIO = new FileIO<CredCard1InOutRecord>(_spreadsheetFactory);
-            var pendingFile = new CSVFile<CredCard1InOutRecord>(pendingFileIO);
-            pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
+            var pending_file_io = new FileIO<CredCard1InOutRecord>(_spreadsheetFactory);
+            var pending_file = new CSVFile<CredCard1InOutRecord>(pending_file_io);
+            pending_file_io.SetFilePaths(data_loading_info.FilePaths.MainPath, data_loading_info.PendingFileName);
 
             _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
             // The separator we loaded with had to match the source. Then we convert it here to match its destination.
-            pendingFile.Load(true, dataLoadingInfo.DefaultSeparator);
+            pending_file.Load(true, data_loading_info.DefaultSeparator);
             _inputOutput.OutputLine("Converting source line separators...");
-            pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
+            pending_file.ConvertSourceLineSeparators(data_loading_info.DefaultSeparator, data_loading_info.LoadingSeparator);
             _inputOutput.OutputLine(ReconConsts.MergingSomeBudgetData);
-            spreadsheet.AddBudgetedCredCard1InOutDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.MonthlyBudgetData);
+            spreadsheet.AddBudgetedCredCard1InOutDataToPendingFile(budgetingMonths, pending_file, data_loading_info.MonthlyBudgetData);
             _inputOutput.OutputLine("Merging bespoke data with pending file...");
             CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile(
-                _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+                _inputOutput, spreadsheet, pending_file, budgetingMonths, data_loading_info);
             _inputOutput.OutputLine("Updating source lines for output...");
-            pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
+            pending_file.UpdateSourceLinesForOutput(data_loading_info.LoadingSeparator);
             
             // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
             // We loaded it up into memory in the previous file-specific method.
@@ -722,20 +722,20 @@ namespace ConsoleCatchall.Console.Reconciliation
             // Now we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
             // Then we write all that data away into the 'owned' csv file (eg BankOutPending.csv).
             _inputOutput.OutputLine("Merging unreconciled rows from spreadsheet with pending and budget data...");
-            spreadsheet.AddUnreconciledRowsToCsvFile(dataLoadingInfo.SheetName, pendingFile);
+            spreadsheet.AddUnreconciledRowsToCsvFile(data_loading_info.SheetName, pending_file);
             _inputOutput.OutputLine("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
-            pendingFile.WriteToFileAsSourceLines(dataLoadingInfo.FilePaths.OwnedFileName);
+            pending_file.WriteToFileAsSourceLines(data_loading_info.FilePaths.OwnedFileName);
             _inputOutput.OutputLine("...");
 
-            var thirdPartyFileIO = new FileIO<CredCard1Record>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
-            var ownedFileIO = new FileIO<CredCard1InOutRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            var reconciliator = new CredCard1Reconciliator(thirdPartyFileIO, ownedFileIO);
-            var reconciliationInterface = new ReconciliationInterface(
+            var third_party_file_io = new FileIO<CredCard1Record>(_spreadsheetFactory, data_loading_info.FilePaths.MainPath, data_loading_info.FilePaths.ThirdPartyFileName);
+            var owned_file_io = new FileIO<CredCard1InOutRecord>(_spreadsheetFactory, data_loading_info.FilePaths.MainPath, data_loading_info.FilePaths.OwnedFileName);
+            var reconciliator = new CredCard1Reconciliator(third_party_file_io, owned_file_io);
+            var reconciliation_interface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,
-                dataLoadingInfo.ThirdPartyDescriptor,
-                dataLoadingInfo.OwnedFileDescriptor);
-            return reconciliationInterface;
+                data_loading_info.ThirdPartyDescriptor,
+                data_loading_info.OwnedFileDescriptor);
+            return reconciliation_interface;
         }
 
         public ReconciliationInterface
@@ -744,25 +744,25 @@ namespace ConsoleCatchall.Console.Reconciliation
                 BudgetingMonths budgetingMonths,
                 FilePaths mainFilePaths)
         {
-            var dataLoadingInfo = CredCard2AndCredCard2InOutData.LoadingInfo;
-            dataLoadingInfo.FilePaths = mainFilePaths;
+            var data_loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
+            data_loading_info.FilePaths = mainFilePaths;
 
-            var pendingFileIO = new FileIO<CredCard2InOutRecord>(_spreadsheetFactory);
-            var pendingFile = new CSVFile<CredCard2InOutRecord>(pendingFileIO);
-            pendingFileIO.SetFilePaths(dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.PendingFileName);
+            var pending_file_io = new FileIO<CredCard2InOutRecord>(_spreadsheetFactory);
+            var pending_file = new CSVFile<CredCard2InOutRecord>(pending_file_io);
+            pending_file_io.SetFilePaths(data_loading_info.FilePaths.MainPath, data_loading_info.PendingFileName);
 
             _inputOutput.OutputLine(ReconConsts.LoadingDataFromPendingFile);
             // The separator we loaded with had to match the source. Then we convert it here to match its destination.
-            pendingFile.Load(true, dataLoadingInfo.DefaultSeparator);
+            pending_file.Load(true, data_loading_info.DefaultSeparator);
             _inputOutput.OutputLine("Converting source line separators...");
-            pendingFile.ConvertSourceLineSeparators(dataLoadingInfo.DefaultSeparator, dataLoadingInfo.LoadingSeparator);
+            pending_file.ConvertSourceLineSeparators(data_loading_info.DefaultSeparator, data_loading_info.LoadingSeparator);
             _inputOutput.OutputLine(ReconConsts.MergingSomeBudgetData);
-            spreadsheet.AddBudgetedCredCard2InOutDataToPendingFile(budgetingMonths, pendingFile, dataLoadingInfo.MonthlyBudgetData);
+            spreadsheet.AddBudgetedCredCard2InOutDataToPendingFile(budgetingMonths, pending_file, data_loading_info.MonthlyBudgetData);
             _inputOutput.OutputLine("Merging bespoke data with pending file...");
             CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
-                _inputOutput, spreadsheet, pendingFile, budgetingMonths, dataLoadingInfo);
+                _inputOutput, spreadsheet, pending_file, budgetingMonths, data_loading_info);
             _inputOutput.OutputLine("Updating source lines for output...");
-            pendingFile.UpdateSourceLinesForOutput(dataLoadingInfo.LoadingSeparator);
+            pending_file.UpdateSourceLinesForOutput(data_loading_info.LoadingSeparator);
 
             // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
             // We loaded it up into memory in the previous file-specific method.
@@ -771,20 +771,20 @@ namespace ConsoleCatchall.Console.Reconciliation
             // Now we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
             // Then we write all that data away into the 'owned' csv file (eg BankOutPending.csv).
             _inputOutput.OutputLine("Merging unreconciled rows from spreadsheet with pending and budget data...");
-            spreadsheet.AddUnreconciledRowsToCsvFile(dataLoadingInfo.SheetName, pendingFile);
+            spreadsheet.AddUnreconciledRowsToCsvFile(data_loading_info.SheetName, pending_file);
             _inputOutput.OutputLine("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
-            pendingFile.WriteToFileAsSourceLines(dataLoadingInfo.FilePaths.OwnedFileName);
+            pending_file.WriteToFileAsSourceLines(data_loading_info.FilePaths.OwnedFileName);
             _inputOutput.OutputLine("...");
 
-            var thirdPartyFileIO = new FileIO<CredCard2Record>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.ThirdPartyFileName);
-            var ownedFileIO = new FileIO<CredCard2InOutRecord>(_spreadsheetFactory, dataLoadingInfo.FilePaths.MainPath, dataLoadingInfo.FilePaths.OwnedFileName);
-            var reconciliator = new CredCard2Reconciliator(thirdPartyFileIO, ownedFileIO);
-            var reconciliationInterface = new ReconciliationInterface(
+            var third_party_file_io = new FileIO<CredCard2Record>(_spreadsheetFactory, data_loading_info.FilePaths.MainPath, data_loading_info.FilePaths.ThirdPartyFileName);
+            var owned_file_io = new FileIO<CredCard2InOutRecord>(_spreadsheetFactory, data_loading_info.FilePaths.MainPath, data_loading_info.FilePaths.OwnedFileName);
+            var reconciliator = new CredCard2Reconciliator(third_party_file_io, owned_file_io);
+            var reconciliation_interface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,
-                dataLoadingInfo.ThirdPartyDescriptor,
-                dataLoadingInfo.OwnedFileDescriptor);
-            return reconciliationInterface;
+                data_loading_info.ThirdPartyDescriptor,
+                data_loading_info.OwnedFileDescriptor);
+            return reconciliation_interface;
         }
 
         public void BankAndBankIn_MergeBespokeDataWithPendingFile(
@@ -795,15 +795,15 @@ namespace ConsoleCatchall.Console.Reconciliation
                 DataLoadingInformation dataLoadingInfo)
         {
             inputOutput.OutputLine(ReconConsts.LoadingExpenses);
-            var expectedIncomeFileIO = new FileIO<ExpectedIncomeRecord>(new FakeSpreadsheetRepoFactory());
-            var expectedIncomeCSVFile = new CSVFile<ExpectedIncomeRecord>(expectedIncomeFileIO);
-            expectedIncomeCSVFile.Load(false);
-            var expectedIncomeFile = new ExpectedIncomeFile(expectedIncomeCSVFile);
-            spreadsheet.AddUnreconciledRowsToCsvFile<ExpectedIncomeRecord>(MainSheetNames.ExpectedIn, expectedIncomeFile.File);
-            expectedIncomeCSVFile.PopulateSourceRecordsFromRecords();
-            expectedIncomeFile.FilterForEmployerExpensesOnly();
-            expectedIncomeFile.CopyToPendingFile(pendingFile);
-            expectedIncomeCSVFile.PopulateRecordsFromOriginalFileLoad();
+            var expected_income_file_io = new FileIO<ExpectedIncomeRecord>(new FakeSpreadsheetRepoFactory());
+            var expected_income_csv_file = new CSVFile<ExpectedIncomeRecord>(expected_income_file_io);
+            expected_income_csv_file.Load(false);
+            var expected_income_file = new ExpectedIncomeFile(expected_income_csv_file);
+            spreadsheet.AddUnreconciledRowsToCsvFile<ExpectedIncomeRecord>(MainSheetNames.ExpectedIn, expected_income_file.File);
+            expected_income_csv_file.PopulateSourceRecordsFromRecords();
+            expected_income_file.FilterForEmployerExpensesOnly();
+            expected_income_file.CopyToPendingFile(pendingFile);
+            expected_income_csv_file.PopulateRecordsFromOriginalFileLoad();
         }
 
         public void BankAndBankOut_MergeBespokeDataWithPendingFile(
@@ -835,16 +835,16 @@ namespace ConsoleCatchall.Console.Reconciliation
             string credCardName,
             string directDebitDescription)
         {
-            var mostRecentCredCardDirectDebit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
+            var most_recent_cred_card_direct_debit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
                 MainSheetNames.BankOut,
                 directDebitDescription,
                 new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn });
 
-            var nextDate = mostRecentCredCardDirectDebit.Date.AddMonths(1);
+            var next_date = most_recent_cred_card_direct_debit.Date.AddMonths(1);
             var input = inputOutput.GetInput(string.Format(
                 ReconConsts.AskForCredCardDirectDebit,
                 credCardName,
-                nextDate.ToShortDateString()));
+                next_date.ToShortDateString()));
             while (input != "0")
             {
                 double amount;
@@ -852,17 +852,17 @@ namespace ConsoleCatchall.Console.Reconciliation
                 {
                     pendingFile.Records.Add(new BankRecord
                     {
-                        Date = nextDate,
+                        Date = next_date,
                         Description = directDebitDescription,
                         Type = "POS",
                         UnreconciledAmount = amount
                     });
                 }
-                nextDate = nextDate.Date.AddMonths(1);
+                next_date = next_date.Date.AddMonths(1);
                 input = inputOutput.GetInput(string.Format(
                     ReconConsts.AskForCredCardDirectDebit,
                     credCardName,
-                    nextDate.ToShortDateString()));
+                    next_date.ToShortDateString()));
             }
         }
 
@@ -873,44 +873,44 @@ namespace ConsoleCatchall.Console.Reconciliation
                 BudgetingMonths budgetingMonths,
                 DataLoadingInformation dataLoadingInfo)
         {
-            var mostRecentCredCardDirectDebit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
+            var most_recent_cred_card_direct_debit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
                 MainSheetNames.BankOut,
                 ReconConsts.CredCard1DdDescription,
                 new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn });
 
-            var statementDate = new DateTime();
-            var nextDate = mostRecentCredCardDirectDebit.Date.AddMonths(1);
+            var statement_date = new DateTime();
+            var next_date = most_recent_cred_card_direct_debit.Date.AddMonths(1);
             var input = inputOutput.GetInput(string.Format(
                 ReconConsts.AskForCredCardDirectDebit,
                 ReconConsts.CredCard1Name,
-                nextDate.ToShortDateString()));
-            double newBalance = 0;
+                next_date.ToShortDateString()));
+            double new_balance = 0;
             while (input != "0")
             {
-                if (double.TryParse(input, out newBalance))
+                if (double.TryParse(input, out new_balance))
                 {
                     pendingFile.Records.Add(new CredCard1InOutRecord
                     {
-                        Date = nextDate,
+                        Date = next_date,
                         Description = ReconConsts.CredCard1RegularPymtDescription,
-                        UnreconciledAmount = newBalance
+                        UnreconciledAmount = new_balance
                     });
                 }
-                statementDate = nextDate.AddMonths(-1);
-                nextDate = nextDate.Date.AddMonths(1);
+                statement_date = next_date.AddMonths(-1);
+                next_date = next_date.Date.AddMonths(1);
                 input = inputOutput.GetInput(string.Format(
                     ReconConsts.AskForCredCardDirectDebit,
                     ReconConsts.CredCard1Name,
-                    nextDate.ToShortDateString()));
+                    next_date.ToShortDateString()));
             }
 
             spreadsheet.UpdateBalanceOnTotalsSheet(
                 Codes.CredCard1Bal,
-                newBalance * -1,
+                new_balance * -1,
                 string.Format(
                     ReconConsts.CredCardBalanceDescription,
                     ReconConsts.CredCard1Name,
-                    $"{statementDate.ToString("MMM")} {statementDate.Year}"),
+                    $"{statement_date.ToString("MMM")} {statement_date.Year}"),
                 balanceColumn: 5,
                 textColumn: 6,
                 codeColumn: 4);
@@ -923,44 +923,44 @@ namespace ConsoleCatchall.Console.Reconciliation
                 BudgetingMonths budgetingMonths,
                 DataLoadingInformation dataLoadingInfo)
         {
-            var mostRecentCredCardDirectDebit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
+            var most_recent_cred_card_direct_debit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
                 MainSheetNames.BankOut,
                 ReconConsts.CredCard2DdDescription,
                 new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn });
 
-            var statementDate = new DateTime();
-            var nextDate = mostRecentCredCardDirectDebit.Date.AddMonths(1);
+            var statement_date = new DateTime();
+            var next_date = most_recent_cred_card_direct_debit.Date.AddMonths(1);
             var input = inputOutput.GetInput(string.Format(
                 ReconConsts.AskForCredCardDirectDebit,
                 ReconConsts.CredCard2Name,
-                nextDate.ToShortDateString()));
-            double newBalance = 0;
+                next_date.ToShortDateString()));
+            double new_balance = 0;
             while (input != "0")
             {
-                if (double.TryParse(input, out newBalance))
+                if (double.TryParse(input, out new_balance))
                 {
                     pendingFile.Records.Add(new CredCard2InOutRecord
                     {
-                        Date = nextDate,
+                        Date = next_date,
                         Description = ReconConsts.CredCard2RegularPymtDescription,
-                        UnreconciledAmount = newBalance
+                        UnreconciledAmount = new_balance
                     });
                 }
-                statementDate = nextDate.AddMonths(-1);
-                nextDate = nextDate.Date.AddMonths(1);
+                statement_date = next_date.AddMonths(-1);
+                next_date = next_date.Date.AddMonths(1);
                 input = inputOutput.GetInput(string.Format(
                     ReconConsts.AskForCredCardDirectDebit,
                     ReconConsts.CredCard2Name,
-                    nextDate.ToShortDateString()));
+                    next_date.ToShortDateString()));
             }
 
             spreadsheet.UpdateBalanceOnTotalsSheet(
                 Codes.CredCard2Bal,
-                newBalance * -1,
+                new_balance * -1,
                 string.Format(
                     ReconConsts.CredCardBalanceDescription,
                     ReconConsts.CredCard2Name,
-                    $"{statementDate.ToString("MMM")} {statementDate.Year}"),
+                    $"{statement_date.ToString("MMM")} {statement_date.Year}"),
                 balanceColumn: 5,
                 textColumn: 6,
                 codeColumn: 4);
@@ -972,77 +972,77 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         public BudgetingMonths RecursivelyAskForBudgetingMonths(ISpreadsheet spreadsheet)
         {
-            DateTime nextUnplannedMonth = GetNextUnplannedMonth(spreadsheet);
-            int lastMonthForBudgetPlanning = GetLastMonthForBudgetPlanning(spreadsheet, nextUnplannedMonth.Month);
-            var budgetingMonths = new BudgetingMonths
+            DateTime next_unplanned_month = GetNextUnplannedMonth(spreadsheet);
+            int last_month_for_budget_planning = GetLastMonthForBudgetPlanning(spreadsheet, next_unplanned_month.Month);
+            var budgeting_months = new BudgetingMonths
             {
-                NextUnplannedMonth = nextUnplannedMonth.Month,
-                LastMonthForBudgetPlanning = lastMonthForBudgetPlanning,
-                StartYear = nextUnplannedMonth.Year
+                NextUnplannedMonth = next_unplanned_month.Month,
+                LastMonthForBudgetPlanning = last_month_for_budget_planning,
+                StartYear = next_unplanned_month.Year
             };
-            if (lastMonthForBudgetPlanning != 0)
+            if (last_month_for_budget_planning != 0)
             {
-                budgetingMonths.LastMonthForBudgetPlanning = ConfirmBudgetingMonthChoicesWithUser(budgetingMonths, spreadsheet);
+                budgeting_months.LastMonthForBudgetPlanning = ConfirmBudgetingMonthChoicesWithUser(budgeting_months, spreadsheet);
             }
-            return budgetingMonths;
+            return budgeting_months;
         }
 
         private DateTime GetNextUnplannedMonth(ISpreadsheet spreadsheet)
         {
-            DateTime defaultMonth = DateTime.Today;
-            DateTime nextUnplannedMonth = defaultMonth;
-            bool badInput = false;
+            DateTime default_month = DateTime.Today;
+            DateTime next_unplanned_month = default_month;
+            bool bad_input = false;
             try
             {
-                nextUnplannedMonth = spreadsheet.GetNextUnplannedMonth();
+                next_unplanned_month = spreadsheet.GetNextUnplannedMonth();
             }
             catch (Exception)
             {
-                string newMonth = _inputOutput.GetInput(ReconConsts.CantFindMortgageRow);
+                string new_month = _inputOutput.GetInput(ReconConsts.CantFindMortgageRow);
                 try
                 {
-                    if (!String.IsNullOrEmpty(newMonth) && Char.IsDigit(newMonth[0]))
+                    if (!String.IsNullOrEmpty(new_month) && Char.IsDigit(new_month[0]))
                     {
-                        int actualMonth = Convert.ToInt32(newMonth);
-                        if (actualMonth < 1 || actualMonth > 12)
+                        int actual_month = Convert.ToInt32(new_month);
+                        if (actual_month < 1 || actual_month > 12)
                         {
-                            badInput = true;
+                            bad_input = true;
                         }
                         else
                         {
-                            var year = defaultMonth.Year;
-                            if (actualMonth < defaultMonth.Month)
+                            var year = default_month.Year;
+                            if (actual_month < default_month.Month)
                             {
                                 year++;
                             }
-                            nextUnplannedMonth = new DateTime(year, actualMonth, 1);
+                            next_unplanned_month = new DateTime(year, actual_month, 1);
                         }
                     }
                     else
                     {
-                        badInput = true;
+                        bad_input = true;
                     }
                 }
                 catch (Exception)
                 {
-                    badInput = true;
+                    bad_input = true;
                 }
             }
 
-            if (badInput)
+            if (bad_input)
             {
                 _inputOutput.OutputLine(ReconConsts.DefaultUnplannedMonth);
-                nextUnplannedMonth = defaultMonth;
+                next_unplanned_month = default_month;
             }
 
-            return nextUnplannedMonth;
+            return next_unplanned_month;
         }
 
         private int GetLastMonthForBudgetPlanning(ISpreadsheet spreadsheet, int nextUnplannedMonth)
         {
-            string nextUnplannedMonthAsString = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(nextUnplannedMonth);
-            var requestToEnterMonth = String.Format(ReconConsts.EnterMonths, nextUnplannedMonthAsString);
-            string month = _inputOutput.GetInput(requestToEnterMonth);
+            string next_unplanned_month_as_string = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(nextUnplannedMonth);
+            var request_to_enter_month = String.Format(ReconConsts.EnterMonths, next_unplanned_month_as_string);
+            string month = _inputOutput.GetInput(request_to_enter_month);
             int result = 0;
 
             try
@@ -1067,54 +1067,54 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private int ConfirmBudgetingMonthChoicesWithUser(BudgetingMonths budgetingMonths, ISpreadsheet spreadsheet)
         {
-            var newResult = budgetingMonths.LastMonthForBudgetPlanning;
+            var new_result = budgetingMonths.LastMonthForBudgetPlanning;
             string input = GetResponseToBudgetingMonthsConfirmationMessage(budgetingMonths);
 
             if (!String.IsNullOrEmpty(input) && input.ToUpper() == "Y")
             {
                 // I know this doesn't really do anything but I found the if statement easier to parse this way round.
-                newResult = budgetingMonths.LastMonthForBudgetPlanning;
+                new_result = budgetingMonths.LastMonthForBudgetPlanning;
             }
             else
             {
                 // Recursion ftw!
-                newResult = GetLastMonthForBudgetPlanning(spreadsheet, budgetingMonths.NextUnplannedMonth);
+                new_result = GetLastMonthForBudgetPlanning(spreadsheet, budgetingMonths.NextUnplannedMonth);
             }
 
-            return newResult;
+            return new_result;
         }
 
         private string GetResponseToBudgetingMonthsConfirmationMessage(BudgetingMonths budgetingMonths)
         {
-            string firstMonth = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(budgetingMonths.NextUnplannedMonth);
-            string secondMonth = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(budgetingMonths.LastMonthForBudgetPlanning);
+            string first_month = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(budgetingMonths.NextUnplannedMonth);
+            string second_month = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(budgetingMonths.LastMonthForBudgetPlanning);
 
-            int monthSpan = budgetingMonths.NumBudgetingMonths();
+            int month_span = budgetingMonths.NumBudgetingMonths();
 
-            var confirmationText = String.Format(ReconConsts.ConfirmMonthInterval, firstMonth, secondMonth, monthSpan);
+            var confirmation_text = String.Format(ReconConsts.ConfirmMonthInterval, first_month, second_month, month_span);
 
-            return _inputOutput.GetInput(confirmationText);
+            return _inputOutput.GetInput(confirmation_text);
         }
 
         private int HandleZeroMonthChoiceResult(int chosenMonth, ISpreadsheet spreadsheet, int nextUnplannedMonth)
         {
-            var newResult = chosenMonth;
+            var new_result = chosenMonth;
             if (chosenMonth == 0)
             {
                 var input = _inputOutput.GetInput(ReconConsts.ConfirmBadMonth);
 
                 if (!String.IsNullOrEmpty(input) && input.ToUpper() == "Y")
                 {
-                    newResult = 0;
+                    new_result = 0;
                     _inputOutput.OutputLine(ReconConsts.ConfirmNoMonthlyBudgeting);
                 }
                 else
                 {
                     // Recursion ftw!
-                    newResult = GetLastMonthForBudgetPlanning(spreadsheet, nextUnplannedMonth);
+                    new_result = GetLastMonthForBudgetPlanning(spreadsheet, nextUnplannedMonth);
                 }
             }
-            return newResult;
+            return new_result;
         }
 
         #endregion Get budgeting months

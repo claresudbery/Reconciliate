@@ -28,9 +28,9 @@ namespace Interfaces.DTOs
         public int GetMonthsToPlanAfterSpecifiedDate(DateTime previousDate)
         {
             int result = 0;
-            var budgetingEndDate = BudgetingEndDate();
+            var budgeting_end_date = BudgetingEndDate();
 
-            while (previousDate < budgetingEndDate)
+            while (previousDate < budgeting_end_date)
             {
                 previousDate = previousDate.AddMonths(1);
                 result++;

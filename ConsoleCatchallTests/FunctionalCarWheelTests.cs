@@ -24,10 +24,10 @@ namespace ConsoleCatchallTests
             const int numWheels = 0;
 
             // Act
-            int numCars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = FindNumberOfCars(numVehicles, numWheels);
 
             // Assert
-            Assert.AreEqual(0, numCars);
+            Assert.AreEqual(0, num_cars);
         }
 
         [Test]
@@ -38,10 +38,10 @@ namespace ConsoleCatchallTests
             const int numWheels = 4;
 
             // Act
-            int numCars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = FindNumberOfCars(numVehicles, numWheels);
 
             // Assert
-            Assert.AreEqual(1, numCars);
+            Assert.AreEqual(1, num_cars);
         }
 
         [TestCase(3, 12)]
@@ -52,10 +52,10 @@ namespace ConsoleCatchallTests
         public void WithManyVehicles_AndWheelsIsVehiclesTimes4_TheyAreAllCars(int numVehicles, int numWheels)
         {
             // Act
-            int numCars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = FindNumberOfCars(numVehicles, numWheels);
 
             // Assert
-            Assert.AreEqual(numVehicles, numCars);
+            Assert.AreEqual(numVehicles, num_cars);
         }
 
         [Test]
@@ -66,10 +66,10 @@ namespace ConsoleCatchallTests
             const int numWheels = 2;
 
             // Act
-            int numCars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = FindNumberOfCars(numVehicles, numWheels);
 
             // Assert
-            Assert.AreEqual(0, numCars);
+            Assert.AreEqual(0, num_cars);
         }
 
         [Test]
@@ -80,10 +80,10 @@ namespace ConsoleCatchallTests
             const int numWheels = 4;
 
             // Act
-            int numCars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = FindNumberOfCars(numVehicles, numWheels);
 
             // Assert
-            Assert.AreEqual(0, numCars);
+            Assert.AreEqual(0, num_cars);
         }
 
         [Test]
@@ -94,10 +94,10 @@ namespace ConsoleCatchallTests
             const int numWheels = 6;
 
             // Act
-            int numCars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = FindNumberOfCars(numVehicles, numWheels);
 
             // Assert
-            Assert.AreEqual(1, numCars);
+            Assert.AreEqual(1, num_cars);
         }
 
         [Test]
@@ -108,10 +108,10 @@ namespace ConsoleCatchallTests
             const int numWheels = 12;
 
             // Act
-            int numCars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = FindNumberOfCars(numVehicles, numWheels);
 
             // Assert
-            Assert.AreEqual(2, numCars);
+            Assert.AreEqual(2, num_cars);
         }
 
         [Test]
@@ -122,10 +122,10 @@ namespace ConsoleCatchallTests
             const int numWheels = 10;
 
             // Act
-            int numCars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = FindNumberOfCars(numVehicles, numWheels);
 
             // Assert
-            Assert.AreEqual(2, numCars);
+            Assert.AreEqual(2, num_cars);
         }
 
         [Test]
@@ -136,20 +136,20 @@ namespace ConsoleCatchallTests
             const int numWheels = 8;
 
             // Act
-            int numCars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = FindNumberOfCars(numVehicles, numWheels);
 
             // Assert
-            Assert.AreEqual(1, numCars);
+            Assert.AreEqual(1, num_cars);
         }
 
         private int FindNumberOfCars(int numVehicles, int numWheels)
         {
-            int numWheelsIfAllVehiclesAreMotorbikes = numVehicles*2;
-            int numLeftoverWheels = numWheels - numWheelsIfAllVehiclesAreMotorbikes;
+            int num_wheels_if_all_vehicles_are_motorbikes = numVehicles*2;
+            int num_leftover_wheels = numWheels - num_wheels_if_all_vehicles_are_motorbikes;
 
-            int numCars = numLeftoverWheels / 2;
+            int num_cars = num_leftover_wheels / 2;
 
-            return numCars;
+            return num_cars;
         }
     }
 }

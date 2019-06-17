@@ -11,8 +11,8 @@ namespace ExcelIntegrationTests.Records
 
         private static string TestSpreadsheetPath()
         {
-            string currentPath = TestContext.CurrentContext.TestDirectory;
-            return TestHelper.FullyQualifiedSpreadsheetFilePath(currentPath)
+            string current_path = TestContext.CurrentContext.TestDirectory;
+            return TestHelper.FullyQualifiedSpreadsheetFilePath(current_path)
                    + "/" + "Test-Spreadsheet.xlsx";
         }
 

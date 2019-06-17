@@ -12,18 +12,18 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         {
             // Arrange
             string[] values = { "One", "Two", "Three" };
-            int minValuesRequired = 5;
+            int min_values_required = 5;
 
             // Act
-            string[] newValues = StringHelper.MakeSureThereAreAtLeastEnoughStringValues(minValuesRequired, values);
+            string[] new_values = StringHelper.MakeSureThereAreAtLeastEnoughStringValues(min_values_required, values);
 
             // Assert
-            Assert.AreEqual(minValuesRequired, newValues.Length);
-            Assert.AreEqual(newValues[0], "One");
-            Assert.AreEqual(newValues[1], "Two");
-            Assert.AreEqual(newValues[2], "Three");
-            Assert.AreEqual(newValues[3], String.Empty);
-            Assert.AreEqual(newValues[4], String.Empty);
+            Assert.AreEqual(min_values_required, new_values.Length);
+            Assert.AreEqual(new_values[0], "One");
+            Assert.AreEqual(new_values[1], "Two");
+            Assert.AreEqual(new_values[2], "Three");
+            Assert.AreEqual(new_values[3], String.Empty);
+            Assert.AreEqual(new_values[4], String.Empty);
         }
 
         [Test]
@@ -31,16 +31,16 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         {
             // Arrange
             string[] values = { "One", "Two", "Three" };
-            int minValuesRequired = 2;
+            int min_values_required = 2;
 
             // Act
-            string[] newValues = StringHelper.MakeSureThereAreAtLeastEnoughStringValues(minValuesRequired, values);
+            string[] new_values = StringHelper.MakeSureThereAreAtLeastEnoughStringValues(min_values_required, values);
 
             // Assert
-            Assert.AreEqual(3, newValues.Length);
-            Assert.AreEqual(newValues[0], "One");
-            Assert.AreEqual(newValues[1], "Two");
-            Assert.AreEqual(newValues[2], "Three");
+            Assert.AreEqual(3, new_values.Length);
+            Assert.AreEqual(new_values[0], "One");
+            Assert.AreEqual(new_values[1], "Two");
+            Assert.AreEqual(new_values[2], "Three");
         }
     }
 }

@@ -301,8 +301,8 @@ namespace ExcelLibrary
             public void AppendCsvRecord(String sheetName, ICSVRecord csvRecord)
             {
                 OpenSheet(sheetName);
-                var newRowNumber = LastRowNumber(sheetName) + 1;
-                csvRecord.PopulateSpreadsheetRow(new ExcelRange(_currentWorksheet.Cells), newRowNumber);
+                var new_row_number = LastRowNumber(sheetName) + 1;
+                csvRecord.PopulateSpreadsheetRow(new ExcelRange(_currentWorksheet.Cells), new_row_number);
 
                 _workbook.Save();
             }
@@ -310,11 +310,11 @@ namespace ExcelLibrary
             public void AppendNewRow(string sheetName, Dictionary<int, object> cellValues)
             {
                 OpenSheet(sheetName);
-                var newRowNumber = LastRowNumber(sheetName) + 1;
+                var new_row_number = LastRowNumber(sheetName) + 1;
 
-                foreach (var cellValue in cellValues)
+                foreach (var cell_value in cellValues)
                 {
-                    _currentWorksheet.Cells[newRowNumber, cellValue.Key] = cellValue.Value;
+                    _currentWorksheet.Cells[new_row_number, cell_value.Key] = cell_value.Value;
                 }
 
                 _workbook.Save();
@@ -323,15 +323,15 @@ namespace ExcelLibrary
             public void RemoveLastRow(String sheetName)
             {
                 OpenSheet(sheetName);
-                var lastRowNumber = LastRowNumber(sheetName);
+                var last_row_number = LastRowNumber(sheetName);
 
-                var usedRange = _currentWorksheet.UsedRange;
-                var usedColumns = usedRange.Columns;
-                var numUsedColumns = usedColumns.Count;
+                var used_range = _currentWorksheet.UsedRange;
+                var used_columns = used_range.Columns;
+                var num_used_columns = used_columns.Count;
 
-                for (int index = 1; index <= numUsedColumns; index++)
+                for (int index = 1; index <= num_used_columns; index++)
                 {
-                    _currentWorksheet.Cells[lastRowNumber, index] = String.Empty;
+                    _currentWorksheet.Cells[last_row_number, index] = String.Empty;
                 }
 
                 _workbook.Save();
@@ -341,19 +341,19 @@ namespace ExcelLibrary
             {
                 OpenSheet(sheetName);
                 var cells = _currentWorksheet.Cells;
-                var specialCells = cells.SpecialCells(XlCellType.xlCellTypeLastCell);
-                return specialCells.Row;
+                var special_cells = cells.SpecialCells(XlCellType.xlCellTypeLastCell);
+                return special_cells.Row;
             }
 
             public int FindFirstEmptyRowInColumn(string sheetName, int columnNumber)
             {
                 OpenSheet(sheetName);
 
-                var usedRange = _currentWorksheet.UsedRange;
-                Range firstCellInColumn = usedRange.Cells[1, columnNumber] as Range;
-                Range lastFullCellInColumn = firstCellInColumn.End[XlDirection.xlDown];
+                var used_range = _currentWorksheet.UsedRange;
+                Range first_cell_in_column = used_range.Cells[1, columnNumber] as Range;
+                Range last_full_cell_in_column = first_cell_in_column.End[XlDirection.xlDown];
 
-                return lastFullCellInColumn.Row + 1;
+                return last_full_cell_in_column.Row + 1;
             }
 
             public ICellRow ReadSpecifiedRow(String sheetName, int rowNumber)
@@ -365,13 +365,13 @@ namespace ExcelLibrary
             public ICellRow ReadSpecifiedRow(int rowNumber)
             {
                 var values = new List<object>();
-                var usedRange = _currentWorksheet.UsedRange;
-                var usedColumns = usedRange.Columns;
-                var numUsedColumns = usedColumns.Count;
+                var used_range = _currentWorksheet.UsedRange;
+                var used_columns = used_range.Columns;
+                var num_used_columns = used_columns.Count;
 
-                for (int columnCount = 1; columnCount <= numUsedColumns; columnCount++)
+                for (int column_count = 1; column_count <= num_used_columns; column_count++)
                 {
-                    values.Add((usedRange.Cells[rowNumber, columnCount] as Range).Value2);
+                    values.Add((used_range.Cells[rowNumber, column_count] as Range).Value2);
                 }
 
                 return new ExcelRow(values);
@@ -386,11 +386,11 @@ namespace ExcelLibrary
             private ICellRow ReadSpecifiedRow(int rowNumber, int startColumn, int endColumn)
             {
                 var values = new List<object>();
-                var usedRange = _currentWorksheet.UsedRange;
+                var used_range = _currentWorksheet.UsedRange;
 
-                for (int columnCount = startColumn; columnCount <= endColumn; columnCount++)
+                for (int column_count = startColumn; column_count <= endColumn; column_count++)
                 {
-                    values.Add((usedRange.Cells[rowNumber, columnCount] as Range).Value2);
+                    values.Add((used_range.Cells[rowNumber, column_count] as Range).Value2);
                 }
 
                 return new ExcelRow(values);
@@ -399,22 +399,22 @@ namespace ExcelLibrary
             private Object ReadSpecifiedCell(String sheetName, int row, int column)
             {
                 OpenSheet(sheetName);
-                var usedRange = _currentWorksheet.UsedRange;
-                var cellValue = (usedRange.Cells[row, column] as Range)?.Value2;
-                return cellValue;
+                var used_range = _currentWorksheet.UsedRange;
+                var cell_value = (used_range.Cells[row, column] as Range)?.Value2;
+                return cell_value;
             }
 
             public void AppendCsvFile<TRecordType>(string sheetName, ICSVFile<TRecordType> csvFile)
                 where TRecordType : ICSVRecord, new()
             {
                 OpenSheet(sheetName);
-                var newRowNumber = LastRowNumber(sheetName) + 1;
-                List<TRecordType> orderedRecords = csvFile.RecordsOrderedForSpreadsheet();
+                var new_row_number = LastRowNumber(sheetName) + 1;
+                List<TRecordType> ordered_records = csvFile.RecordsOrderedForSpreadsheet();
 
-                foreach (var csvRecord in orderedRecords)
+                foreach (var csv_record in ordered_records)
                 {
-                    csvRecord.PopulateSpreadsheetRow(new ExcelRange(_currentWorksheet.Cells), newRowNumber);
-                    newRowNumber++;
+                    csv_record.PopulateSpreadsheetRow(new ExcelRange(_currentWorksheet.Cells), new_row_number);
+                    new_row_number++;
                 }
 
                 _workbook.Save();
@@ -426,20 +426,20 @@ namespace ExcelLibrary
                 int expectedColumnNumber = 2)
             {
                 OpenSheet(sheetName);
-                Range cellContainingLastTargetText = FindLastCellContainingText(targetCellText);
+                Range cell_containing_last_target_text = FindLastCellContainingText(targetCellText);
 
-                if (cellContainingLastTargetText == null)
+                if (cell_containing_last_target_text == null)
                 {
                     throw new Exception(String.Format(ReconConsts.MissingCodeInWorksheet, targetCellText,
                         _currentWorksheet.Name));
                 }
-                if (cellContainingLastTargetText.Column != expectedColumnNumber)
+                if (cell_containing_last_target_text.Column != expectedColumnNumber)
                 {
                     throw new Exception(String.Format(ReconConsts.CodeInWrongPlace, targetCellText,
                         _currentWorksheet.Name));
                 }
 
-                return cellContainingLastTargetText.Row;
+                return cell_containing_last_target_text.Row;
             }
 
             public int FindRowNumberOfLastRowWithCellContainingText(
@@ -448,20 +448,20 @@ namespace ExcelLibrary
                 List<int> expectedColumnNumbers)
             {
                 OpenSheet(sheetName);
-                Range cellContainingLastTargetText = FindLastCellContainingText(targetSubText, false);
+                Range cell_containing_last_target_text = FindLastCellContainingText(targetSubText, false);
 
-                if (cellContainingLastTargetText == null)
+                if (cell_containing_last_target_text == null)
                 {
                     throw new Exception(String.Format(ReconConsts.MissingCodeInWorksheet, targetSubText,
                         _currentWorksheet.Name));
                 }
-                if (!expectedColumnNumbers.Contains(cellContainingLastTargetText.Column))
+                if (!expectedColumnNumbers.Contains(cell_containing_last_target_text.Column))
                 {
                     throw new Exception(String.Format(ReconConsts.CodeInWrongPlace, targetSubText,
                         _currentWorksheet.Name));
                 }
 
-                return cellContainingLastTargetText.Row;
+                return cell_containing_last_target_text.Row;
             }
 
             public int FindRowNumberOfFirstRowContainingCell(
@@ -470,26 +470,26 @@ namespace ExcelLibrary
                 int expectedColumnNumber = 2)
             {
                 OpenSheet(sheetName);
-                Range cellContainingLastTargetText = FindFirstCellContainingText(targetCellText);
+                Range cell_containing_last_target_text = FindFirstCellContainingText(targetCellText);
 
-                if (cellContainingLastTargetText == null)
+                if (cell_containing_last_target_text == null)
                 {
                     throw new Exception(String.Format(ReconConsts.MissingCodeInWorksheet, targetCellText,
                         _currentWorksheet.Name));
                 }
-                if (cellContainingLastTargetText.Column != expectedColumnNumber)
+                if (cell_containing_last_target_text.Column != expectedColumnNumber)
                 {
                     throw new Exception(String.Format(ReconConsts.CodeInWrongPlace, targetCellText,
                         _currentWorksheet.Name));
                 }
 
-                return cellContainingLastTargetText.Row;
+                return cell_containing_last_target_text.Row;
             }
 
             private Range FindFirstCellContainingText(string textToSearchFor)
             {
-                var usedRange = _currentWorksheet.UsedRange;
-                return usedRange.Find(textToSearchFor, Type.Missing,
+                var used_range = _currentWorksheet.UsedRange;
+                return used_range.Find(textToSearchFor, Type.Missing,
                     XlFindLookIn.xlValues, XlLookAt.xlWhole,
                     XlSearchOrder.xlByRows, XlSearchDirection.xlNext, false,
                     Type.Missing, Type.Missing);
@@ -497,57 +497,57 @@ namespace ExcelLibrary
 
             private Range FindLastCellContainingText(string textToSearchFor, bool fullTextMatch = true)
             {
-                Range currentFind = null;
-                Range firstFind = null;
-                Range lastFind = null;
-                var usedRange = _currentWorksheet.UsedRange;
+                Range current_find = null;
+                Range first_find = null;
+                Range last_find = null;
+                var used_range = _currentWorksheet.UsedRange;
 
                 if (fullTextMatch)
                 {
-                    currentFind = usedRange.Find(textToSearchFor, Type.Missing,
+                    current_find = used_range.Find(textToSearchFor, Type.Missing,
                         XlFindLookIn.xlValues, XlLookAt.xlWhole,
                         XlSearchOrder.xlByRows, XlSearchDirection.xlNext, false,
                         Type.Missing, Type.Missing);
                 }
                 else
                 {
-                    currentFind = usedRange.Find(textToSearchFor, Type.Missing,
+                    current_find = used_range.Find(textToSearchFor, Type.Missing,
                         XlFindLookIn.xlValues, XlLookAt.xlPart,
                         XlSearchOrder.xlByRows, XlSearchDirection.xlNext, false,
                         Type.Missing, Type.Missing);
                 }
 
-                while (currentFind != null)
+                while (current_find != null)
                 {
                     // Keep track of the first range you find. 
-                    if (firstFind == null)
+                    if (first_find == null)
                     {
-                        firstFind = currentFind;
+                        first_find = current_find;
                     }
                     // If you didn't move to a new range, you are done.
-                    else if (currentFind.get_Address(XlReferenceStyle.xlA1)
-                          == firstFind.get_Address(XlReferenceStyle.xlA1))
+                    else if (current_find.get_Address(XlReferenceStyle.xlA1)
+                          == first_find.get_Address(XlReferenceStyle.xlA1))
                     {
                         break;
                     }
 
-                    lastFind = currentFind;
-                    currentFind = usedRange.FindNext(currentFind);
+                    last_find = current_find;
+                    current_find = used_range.FindNext(current_find);
                 }
 
-                return lastFind;
+                return last_find;
             }
 
             public void DeleteSpecifiedRows(string sheetName, int firstRowNumber, int lastRowNumber)
             {
                 OpenSheet(sheetName);
 
-                var usedRange = _currentWorksheet.UsedRange;
-                for (int rowCount = lastRowNumber; rowCount >= firstRowNumber; rowCount--)
+                var used_range = _currentWorksheet.UsedRange;
+                for (int row_count = lastRowNumber; row_count >= firstRowNumber; row_count--)
                 {
-                    var firstCellInRow = (Range)usedRange.Cells[rowCount, 1];
-                    var rowToDelete = firstCellInRow.EntireRow;
-                    rowToDelete.Delete(Type.Missing);
+                    var first_cell_in_row = (Range)used_range.Cells[row_count, 1];
+                    var row_to_delete = first_cell_in_row.EntireRow;
+                    row_to_delete.Delete(Type.Missing);
                 }
 
                 _workbook.Save();
@@ -560,20 +560,20 @@ namespace ExcelLibrary
                 int firstColumnNumber,
                 int lastColumnNumber) where TRecordType : ICSVRecord, new()
             {
-                List<TRecordType> monthlyBudgetItems = new List<TRecordType>();
+                List<TRecordType> monthly_budget_items = new List<TRecordType>();
 
-                for (int rowNumber = firstRowNumber; rowNumber <= lastRowNumber; rowNumber++)
+                for (int row_number = firstRowNumber; row_number <= lastRowNumber; row_number++)
                 {
-                    var csvRecord = new TRecordType();
-                    csvRecord.ReadFromSpreadsheetRow(ReadSpecifiedRow(
+                    var csv_record = new TRecordType();
+                    csv_record.ReadFromSpreadsheetRow(ReadSpecifiedRow(
                         sheetName,
-                        rowNumber,
+                        row_number,
                         firstColumnNumber,
                         lastColumnNumber));
-                    monthlyBudgetItems.Add(csvRecord);
+                    monthly_budget_items.Add(csv_record);
                 }
 
-                return monthlyBudgetItems;
+                return monthly_budget_items;
             }
 
             public double GetAmount(string sheetName, string amountCode, int amountColumn)
@@ -581,14 +581,14 @@ namespace ExcelLibrary
                 const int codeColumn = 1;
                 int row = FindRowNumberOfLastRowContainingCell(sheetName, amountCode, codeColumn);
 
-                var excelCell = ReadSpecifiedCell(sheetName, row, amountColumn);
+                var excel_cell = ReadSpecifiedCell(sheetName, row, amountColumn);
 
-                if (null == excelCell)
+                if (null == excel_cell)
                 {
                     throw new Exception(ReconConsts.MissingCell + $"{sheetName}, amountCode {amountCode}.");
                 }
 
-                return Math.Round((Double)excelCell, 2);
+                return Math.Round((Double)excel_cell, 2);
             }
 
             private void UpdateCell(string sheetName, int row, int column, Object newValue)
@@ -638,52 +638,52 @@ namespace ExcelLibrary
 
             internal DateTime GetDate(string sheetName, int row, int column)
             {
-                var excelCell = ReadSpecifiedCell(sheetName, row, column);
+                var excel_cell = ReadSpecifiedCell(sheetName, row, column);
 
-                if (null == excelCell)
+                if (null == excel_cell)
                 {
                     throw new Exception(ReconConsts.MissingCell + $"{sheetName}, row {row}, column {column}.");
                 }
 
-                return DateTime.FromOADate((double)excelCell);
+                return DateTime.FromOADate((double)excel_cell);
             }
 
             internal double GetAmount(string sheetName, int row, int column)
             {
-                var excelCell = ReadSpecifiedCell(sheetName, row, column);
+                var excel_cell = ReadSpecifiedCell(sheetName, row, column);
 
-                if (null == excelCell)
+                if (null == excel_cell)
                 {
                     throw new Exception(ReconConsts.MissingCell + $"{sheetName}, row {row}, column {column}.");
                 }
 
-                return Math.Round((Double)excelCell, 2);
+                return Math.Round((Double)excel_cell, 2);
             }
 
             internal string GetText(string sheetName, int row, int column)
             {
-                var excelCell = ReadSpecifiedCell(sheetName, row, column);
+                var excel_cell = ReadSpecifiedCell(sheetName, row, column);
 
-                if (null == excelCell)
+                if (null == excel_cell)
                 {
                     throw new Exception(ReconConsts.MissingCell + $"{sheetName}, row {row}, column {column}.");
                 }
 
-                return (string)excelCell;
+                return (string)excel_cell;
             }
 
             public void InsertNewRow(string sheetName, int newRowNumber, Dictionary<int, object> cellValues)
             {
                 OpenSheet(sheetName);
 
-                var usedRange = _currentWorksheet.UsedRange;
-                var firstCellInRow = (Range)usedRange.Cells[newRowNumber, 1];
-                var rowToInsertBefore = firstCellInRow.EntireRow;
-                rowToInsertBefore.Insert(XlInsertShiftDirection.xlShiftDown);
+                var used_range = _currentWorksheet.UsedRange;
+                var first_cell_in_row = (Range)used_range.Cells[newRowNumber, 1];
+                var row_to_insert_before = first_cell_in_row.EntireRow;
+                row_to_insert_before.Insert(XlInsertShiftDirection.xlShiftDown);
 
-                foreach (var cellValue in cellValues)
+                foreach (var cell_value in cellValues)
                 {
-                    _currentWorksheet.Cells[newRowNumber, cellValue.Key] = cellValue.Value;
+                    _currentWorksheet.Cells[newRowNumber, cell_value.Key] = cell_value.Value;
                 }
 
                 _workbook.Save();
@@ -691,8 +691,8 @@ namespace ExcelLibrary
 
             public ICellRow ReadLastRow(String sheetName)
             {
-                int lastRowNumber = LastRowNumber(sheetName);
-                return ReadSpecifiedRow(lastRowNumber);
+                int last_row_number = LastRowNumber(sheetName);
+                return ReadSpecifiedRow(last_row_number);
             }
 
             public String ReadLastRowAsCsv(String sheetName, ICSVRecord csvRecord)

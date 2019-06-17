@@ -22,13 +22,13 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            var currentPath = TestContext.CurrentContext.TestDirectory;
-            var csvFilePath = TestHelper.FullyQualifiedCSVFilePath(currentPath);
-            _pendingCsvFileCreator = new PendingCsvFileCreator(csvFilePath);
-            _newBankOutPendingFilePath = csvFilePath + "/" + PendingCsvFileCreator.BankOutPendingFileName + ".csv";
-            _newBankInPendingFilePath = csvFilePath + "/" + PendingCsvFileCreator.BankInPendingFileName + ".csv";
-            _newCredCard2InOutPendingFilePath = csvFilePath + "/" + PendingCsvFileCreator.CredCard2InOutPendingFileName + ".csv";
-            _testPendingSourceFilePath = csvFilePath + "/" + PendingCsvFileCreator.PendingSourceFileName;
+            var current_path = TestContext.CurrentContext.TestDirectory;
+            var csv_file_path = TestHelper.FullyQualifiedCSVFilePath(current_path);
+            _pendingCsvFileCreator = new PendingCsvFileCreator(csv_file_path);
+            _newBankOutPendingFilePath = csv_file_path + "/" + PendingCsvFileCreator.BankOutPendingFileName + ".csv";
+            _newBankInPendingFilePath = csv_file_path + "/" + PendingCsvFileCreator.BankInPendingFileName + ".csv";
+            _newCredCard2InOutPendingFilePath = csv_file_path + "/" + PendingCsvFileCreator.CredCard2InOutPendingFileName + ".csv";
+            _testPendingSourceFilePath = csv_file_path + "/" + PendingCsvFileCreator.PendingSourceFileName;
         }
 
         [TearDown]
@@ -51,8 +51,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         private IEnumerable<string> ReadLines(string filePath)
         {
             var lines = new List<string>();
-            using (var fileStream = File.OpenRead(filePath))
-            using (var reader = new StreamReader(fileStream))
+            using (var file_stream = File.OpenRead(filePath))
+            using (var reader = new StreamReader(file_stream))
             {
                 while (!reader.EndOfStream)
                 {
@@ -108,29 +108,29 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         public void BankOutPendingCsvContainsDataAfterBankOutHeader()
         {
             // Arrange
-            string[] pendingLines =
+            string[] pending_lines =
             {
                 ReconConsts.BankOutHeader,
                 "30/9/18,77.10,till,,travel",
                 "30/9/18,99.96,POS,,Divide your greene"
             };
-            File.WriteAllLines(_testPendingSourceFilePath, pendingLines);
+            File.WriteAllLines(_testPendingSourceFilePath, pending_lines);
 
             // Act
             _pendingCsvFileCreator.CreateAndPopulateAllCsvs();
 
             // Assert
-            List<string> newLines = ReadLines(_newBankOutPendingFilePath).ToList();
-            Assert.AreEqual(pendingLines[1], newLines[0]);
-            Assert.AreEqual(pendingLines[2], newLines[1]);
-            Assert.AreEqual(2, newLines.Count);
+            List<string> new_lines = ReadLines(_newBankOutPendingFilePath).ToList();
+            Assert.AreEqual(pending_lines[1], new_lines[0]);
+            Assert.AreEqual(pending_lines[2], new_lines[1]);
+            Assert.AreEqual(2, new_lines.Count);
         }
 
         [Test]
         public void BankInPendingCsvContainsDataAfterBankInHeader()
         {
             // Arrange
-            string[] pendingLines =
+            string[] pending_lines =
             {
                 ReconConsts.BankOutHeader,
                 "30/9/18,77.10,till,,test1",
@@ -141,24 +141,24 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 "30/9/18,99.96,POS,,Divide your pintipoplication",
                 ""
             };
-            File.WriteAllLines(_testPendingSourceFilePath, pendingLines);
+            File.WriteAllLines(_testPendingSourceFilePath, pending_lines);
 
             // Act
             _pendingCsvFileCreator.CreateAndPopulateAllCsvs();
 
             // Assert
-            List<string> newLines = ReadLines(_newBankInPendingFilePath).ToList();
-            Assert.AreEqual(pendingLines[4], newLines[0]);
-            Assert.AreEqual(pendingLines[5], newLines[1]);
-            Assert.AreEqual(pendingLines[6], newLines[2]);
-            Assert.AreEqual(3, newLines.Count);
+            List<string> new_lines = ReadLines(_newBankInPendingFilePath).ToList();
+            Assert.AreEqual(pending_lines[4], new_lines[0]);
+            Assert.AreEqual(pending_lines[5], new_lines[1]);
+            Assert.AreEqual(pending_lines[6], new_lines[2]);
+            Assert.AreEqual(3, new_lines.Count);
         }
 
         [Test]
         public void CredCard2InOutPendingCsvContainsDataAfterCredCard2Header()
         {
             // Arrange
-            string[] pendingLines =
+            string[] pending_lines =
             {
                 ReconConsts.BankOutHeader,
                 "30/9/18,77.10,till,,test1",
@@ -171,23 +171,23 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 "30/9/18,99.96,POS,,Divide your pintipoplication",
                 ""
             };
-            File.WriteAllLines(_testPendingSourceFilePath, pendingLines);
+            File.WriteAllLines(_testPendingSourceFilePath, pending_lines);
 
             // Act
             _pendingCsvFileCreator.CreateAndPopulateAllCsvs();
 
             // Assert
-            List<string> newLines = ReadLines(_newCredCard2InOutPendingFilePath).ToList();
-            Assert.AreEqual(pendingLines[7], newLines[0]);
-            Assert.AreEqual(pendingLines[8], newLines[1]);
-            Assert.AreEqual(2, newLines.Count);
+            List<string> new_lines = ReadLines(_newCredCard2InOutPendingFilePath).ToList();
+            Assert.AreEqual(pending_lines[7], new_lines[0]);
+            Assert.AreEqual(pending_lines[8], new_lines[1]);
+            Assert.AreEqual(2, new_lines.Count);
         }
 
         [Test]
         public void PendingCsvDataStopsAfterBlankLine()
         {
             // Arrange
-            string[] pendingLines =
+            string[] pending_lines =
             {
                 ReconConsts.BankOutHeader,
                 "30/9/18,77.10,till,,travel",
@@ -195,22 +195,22 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 "30/9/18,99.96,POS,,Divide your greene",
                 "30/9/18,99.96,POS,,Divide your kangaroo-boo"
             };
-            File.WriteAllLines(_testPendingSourceFilePath, pendingLines);
+            File.WriteAllLines(_testPendingSourceFilePath, pending_lines);
 
             // Act
             _pendingCsvFileCreator.CreateAndPopulateAllCsvs();
 
             // Assert
-            List<string> newLines = ReadLines(_newBankOutPendingFilePath).ToList();
-            Assert.AreEqual(pendingLines[1], newLines[0]);
-            Assert.AreEqual(1, newLines.Count);
+            List<string> new_lines = ReadLines(_newBankOutPendingFilePath).ToList();
+            Assert.AreEqual(pending_lines[1], new_lines[0]);
+            Assert.AreEqual(1, new_lines.Count);
         }
 
         [Test]
         public void PendingCsvDataCanBeReadWhenThereIsUnrelatedPrecedingData()
         {
             // Arrange
-            string[] pendingLines =
+            string[] pending_lines =
             {
                 ReconConsts.BankInHeader,
                 "30/9/18,77.10,till,,test1",
@@ -224,23 +224,23 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 "30/9/18,99.96,POS,,Divide your greene",
                 "30/9/18,99.96,POS,,Divide your kangaroo-boo"
             };
-            File.WriteAllLines(_testPendingSourceFilePath, pendingLines);
+            File.WriteAllLines(_testPendingSourceFilePath, pending_lines);
 
             // Act
             _pendingCsvFileCreator.CreateAndPopulateAllCsvs();
 
             // Assert
-            List<string> newLines = ReadLines(_newBankOutPendingFilePath).ToList();
-            Assert.AreEqual(pendingLines[6], newLines[0]);
-            Assert.AreEqual(pendingLines[7], newLines[1]);
-            Assert.AreEqual(2, newLines.Count);
+            List<string> new_lines = ReadLines(_newBankOutPendingFilePath).ToList();
+            Assert.AreEqual(pending_lines[6], new_lines[0]);
+            Assert.AreEqual(pending_lines[7], new_lines[1]);
+            Assert.AreEqual(2, new_lines.Count);
         }
 
         [Test]
         public void PendingCsvFileWillBeEmptyIfThereIsNoDataAfterHeader()
         {
             // Arrange
-            string[] pendingLines =
+            string[] pending_lines =
             {
                 ReconConsts.BankInHeader,
                 "30/9/18,77.10,till,,test1",
@@ -252,21 +252,21 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 "30/9/18,99.96,POS,,Divide your greene",
                 "30/9/18,99.96,POS,,Divide your kangaroo-boo"
             };
-            File.WriteAllLines(_testPendingSourceFilePath, pendingLines);
+            File.WriteAllLines(_testPendingSourceFilePath, pending_lines);
 
             // Act
             _pendingCsvFileCreator.CreateAndPopulateAllCsvs();
 
             // Assert
-            List<string> newLines = ReadLines(_newBankOutPendingFilePath).ToList();
-            Assert.AreEqual(0, newLines.Count);
+            List<string> new_lines = ReadLines(_newBankOutPendingFilePath).ToList();
+            Assert.AreEqual(0, new_lines.Count);
         }
 
         [Test]
         public void PendingCsvFileWillBeEmptyIfThereIsNothingAfterAllAfterHeader()
         {
             // Arrange
-            string[] pendingLines =
+            string[] pending_lines =
             {
                 ReconConsts.BankInHeader,
                 "30/9/18,77.10,till,,test1",
@@ -275,21 +275,21 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 "30/9/18,99.96,POS,,test3",
                 ReconConsts.BankOutHeader
             };
-            File.WriteAllLines(_testPendingSourceFilePath, pendingLines);
+            File.WriteAllLines(_testPendingSourceFilePath, pending_lines);
 
             // Act
             _pendingCsvFileCreator.CreateAndPopulateAllCsvs();
 
             // Assert
-            List<string> newLines = ReadLines(_newBankOutPendingFilePath).ToList();
-            Assert.AreEqual(0, newLines.Count);
+            List<string> new_lines = ReadLines(_newBankOutPendingFilePath).ToList();
+            Assert.AreEqual(0, new_lines.Count);
         }
 
         [Test]
         public void PendingCsvFileWillBeEmptyIfThereIsNoHeader()
         {
             // Arrange
-            string[] pendingLines =
+            string[] pending_lines =
             {
                 ReconConsts.BankInHeader,
                 "30/9/18,77.10,till,,test1",
@@ -297,21 +297,21 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 "30/9/18,99.96,POS,,test2",
                 "30/9/18,99.96,POS,,test3"
             };
-            File.WriteAllLines(_testPendingSourceFilePath, pendingLines);
+            File.WriteAllLines(_testPendingSourceFilePath, pending_lines);
 
             // Act
             _pendingCsvFileCreator.CreateAndPopulateAllCsvs();
 
             // Assert
-            List<string> newLines = ReadLines(_newBankOutPendingFilePath).ToList();
-            Assert.AreEqual(0, newLines.Count);
+            List<string> new_lines = ReadLines(_newBankOutPendingFilePath).ToList();
+            Assert.AreEqual(0, new_lines.Count);
         }
 
         [Test]
         public void ShouldThrowExceptionIfThereIsNoSourcePendingFile()
         {
             // Arrange
-            bool exceptionThrown = false;
+            bool exception_thrown = false;
 
             // Act
             try
@@ -320,51 +320,51 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             }
             catch (Exception)
             {
-                exceptionThrown = true;
+                exception_thrown = true;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
+            Assert.IsTrue(exception_thrown);
         }
 
         [Test]
         public void WillStillLoadDataEvenIfHeaderHasInconsistentCapitalisation()
         {
             // Arrange
-            string[] pendingLines =
+            string[] pending_lines =
             {
                 "BAnK ouT",
                 "30/9/18,77.10,till,,travel"
             };
-            File.WriteAllLines(_testPendingSourceFilePath, pendingLines);
+            File.WriteAllLines(_testPendingSourceFilePath, pending_lines);
 
             // Act
             _pendingCsvFileCreator.CreateAndPopulateAllCsvs();
 
             // Assert
-            List<string> newLines = ReadLines(_newBankOutPendingFilePath).ToList();
-            Assert.AreEqual(pendingLines[1], newLines[0]);
-            Assert.AreEqual(1, newLines.Count);
+            List<string> new_lines = ReadLines(_newBankOutPendingFilePath).ToList();
+            Assert.AreEqual(pending_lines[1], new_lines[0]);
+            Assert.AreEqual(1, new_lines.Count);
         }
 
         [Test]
         public void WillStillLoadDataEvenIfHeaderIsFollowedByOtherCharacters()
         {
             // Arrange
-            string[] pendingLines =
+            string[] pending_lines =
             {
                 "Bank Out: ",
                 "30/9/18,77.10,till,,travel"
             };
-            File.WriteAllLines(_testPendingSourceFilePath, pendingLines);
+            File.WriteAllLines(_testPendingSourceFilePath, pending_lines);
 
             // Act
             _pendingCsvFileCreator.CreateAndPopulateAllCsvs();
 
             // Assert
-            List<string> newLines = ReadLines(_newBankOutPendingFilePath).ToList();
-            Assert.AreEqual(pendingLines[1], newLines[0]);
-            Assert.AreEqual(1, newLines.Count);
+            List<string> new_lines = ReadLines(_newBankOutPendingFilePath).ToList();
+            Assert.AreEqual(pending_lines[1], new_lines[0]);
+            Assert.AreEqual(1, new_lines.Count);
         }
     }
 }

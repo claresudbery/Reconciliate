@@ -14,7 +14,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
     // DebugSpreadsheetRepo does real Excel file access but only reads from the live spreadsheet: It writes to a backed-up copy.
     internal class FakeSpreadsheetRepo : ISpreadsheetRepo
     {
-        FileIO<BankRecord> DebugLog = new FileIO<BankRecord>(
+        FileIO<BankRecord> _debugLog = new FileIO<BankRecord>(
             new FakeSpreadsheetRepoFactory(), 
             ReconConsts.DefaultFilePath,
             "FakeSpreadsheetDataInfo");
@@ -28,12 +28,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public FakeSpreadsheetRepo()
         {
-            DebugLog.AppendToFileAsSourceLine("*******************************************************************************");
-            DebugLog.AppendToFileAsSourceLine("*******************************************************************************");
-            DebugLog.AppendToFileAsSourceLine("**                             NEW RUN OF INFO                               **");
-            DebugLog.AppendToFileAsSourceLine($"**                            {DateTime.Now}                                 **");
-            DebugLog.AppendToFileAsSourceLine("*******************************************************************************");
-            DebugLog.AppendToFileAsSourceLine("*******************************************************************************");
+            _debugLog.AppendToFileAsSourceLine("*******************************************************************************");
+            _debugLog.AppendToFileAsSourceLine("*******************************************************************************");
+            _debugLog.AppendToFileAsSourceLine("**                             NEW RUN OF INFO                               **");
+            _debugLog.AppendToFileAsSourceLine($"**                            {DateTime.Now}                                 **");
+            _debugLog.AppendToFileAsSourceLine("*******************************************************************************");
+            _debugLog.AppendToFileAsSourceLine("*******************************************************************************");
         }
 
         public void Dispose()
@@ -42,13 +42,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public ICellSet CurrentCells(string sheetName)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}");
             return new FakeCellSet();
         }
 
         public int LastRowNumber(string sheetName)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}");
 
             return _lastRowNumbers.Data.ContainsKey(sheetName)
                 ? _lastRowNumbers.Data[sheetName]
@@ -57,7 +57,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public ICellRow ReadSpecifiedRow(string sheetName, int rowNumber)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, rowNumber {rowNumber}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, rowNumber {rowNumber}");
 
             return _fakeRows.Data.ContainsKey(sheetName)
                 ? _fakeRows.Data[sheetName][rowNumber - 1] 
@@ -66,13 +66,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public int FindFirstEmptyRowInColumn(string sheetName, int columnNumber)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, columnNumber {columnNumber}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, columnNumber {columnNumber}");
             return 2;
         }
 
         public int FindRowNumberOfLastRowContainingCell(string sheetName, string targetCellText, int expectedColumnNumber = 2)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, targetSubText {targetCellText}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, targetSubText {targetCellText}");
             return _fakeRowNumbersForCell.Data.ContainsKey(sheetName) 
                 ? _fakeRowNumbersForCell.Data[sheetName][targetCellText] 
                 : 2;
@@ -80,7 +80,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public int FindRowNumberOfLastRowWithCellContainingText(string sheetName, string targetSubText, List<int> expectedColumnNumbers)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, targetSubText {targetSubText}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, targetSubText {targetSubText}");
             return _fakeRowNumbersForText.Data.ContainsKey(sheetName) 
                 ? _fakeRowNumbersForText.Data[sheetName][targetSubText] 
                 : 2;
@@ -88,43 +88,43 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public double GetAmount(string sheetName, string code, int column)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, code {code}, column {column}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, code {code}, column {column}");
             return 0;
         }
 
         public double GetAmount(string sheetName, int row, int column)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, row {row}, column {column}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, row {row}, column {column}");
             return 0;
         }
 
         public DateTime GetDate(string sheetName, int row, int column)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, row {row}, column {column}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, row {row}, column {column}");
             return new DateTime();
         }
 
         public string GetText(string sheetName, int row, int column)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, row {row}, column {column}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, row {row}, column {column}");
             return "fake";
         }
 
         public int FindRowNumberOfFirstRowContainingCell(string sheetName, string targetCellText, int expectedColumnNumber = 2)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, targetCellText {targetCellText}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, targetCellText {targetCellText}");
             return 2;
         }
 
         public ICellRow ReadLastRow(string sheetName)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}");
             return new FakeCellRow();
         }
 
         public string ReadLastRowAsCsv(string sheetName, ICSVRecord csvRecord)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}");
             return "";
         }
 
@@ -136,19 +136,19 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             int firstColumnNumber,
             int lastColumnNumber) where TRecordType : ICSVRecord, new()
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, firstRowNumber {firstRowNumber}, lastRowNumber {lastRowNumber}, firstColumnNumber {firstColumnNumber}, lastColumnNumber {lastColumnNumber}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()}: sheetName {sheetName}, firstRowNumber {firstRowNumber}, lastRowNumber {lastRowNumber}, firstColumnNumber {firstColumnNumber}, lastColumnNumber {lastColumnNumber}");
 
             List<TRecordType> records = new List<TRecordType>();
 
-            for (int rowNumber = firstRowNumber; rowNumber <= lastRowNumber; rowNumber++)
+            for (int row_number = firstRowNumber; row_number <= lastRowNumber; row_number++)
             {
-                var csvRecord = new TRecordType();
-                csvRecord.ReadFromSpreadsheetRow(ReadSpecifiedRow(
+                var csv_record = new TRecordType();
+                csv_record.ReadFromSpreadsheetRow(ReadSpecifiedRow(
                     sheetName,
-                    rowNumber,
+                    row_number,
                     firstColumnNumber,
                     lastColumnNumber));
-                records.Add(csvRecord);
+                records.Add(csv_record);
             }
 
             return records;
@@ -156,25 +156,25 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public ICellRow ReadSpecifiedRow(string sheetName, int rowNumber, int startColumn, int endColumn)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()} with start/end cols: sheetName {sheetName}, rowNumber {rowNumber}, startColumn {startColumn}, endColumn {endColumn}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()} with start/end cols: sheetName {sheetName}, rowNumber {rowNumber}, startColumn {startColumn}, endColumn {endColumn}");
             
-            var fullRow = _fakeRows.Data.ContainsKey(sheetName)
+            var full_row = _fakeRows.Data.ContainsKey(sheetName)
                 ? _fakeRows.Data[sheetName][rowNumber - 1] 
                 : new FakeCellRow();
 
-            List<object> partialRow = new List<object>(); 
-            for (int colIndex = startColumn; colIndex <= endColumn; colIndex++)
+            List<object> partial_row = new List<object>(); 
+            for (int col_index = startColumn; col_index <= endColumn; col_index++)
             {
-                partialRow.Add(fullRow.ReadCell(colIndex - 1));
+                partial_row.Add(full_row.ReadCell(col_index - 1));
             }
             
-            var result = new FakeCellRow().WithFakeData(partialRow);
+            var result = new FakeCellRow().WithFakeData(partial_row);
             return result;
         }
 
         public ICellRow ReadSpecifiedRow(int rowNumber)
         {
-            DebugLog.AppendToFileAsSourceLine($"{GetMethodName()} with row number only: rowNumber {rowNumber}");
+            _debugLog.AppendToFileAsSourceLine($"{GetMethodName()} with row number only: rowNumber {rowNumber}");
             return new FakeCellRow();
         }
 

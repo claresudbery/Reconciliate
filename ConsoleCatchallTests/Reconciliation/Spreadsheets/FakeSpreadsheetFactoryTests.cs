@@ -11,22 +11,22 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         public void WillNotAttemptToDisposeNullSpreadsheet()
         {
             // Arrange
-            var fakeSpreadsheetFactory = new FakeSpreadsheetRepoFactory();
+            var fake_spreadsheet_factory = new FakeSpreadsheetRepoFactory();
 
             // Act
-            bool exceptionThrown = false;
+            bool exception_thrown = false;
             try
             {
                 // Because we haven't called the Create method, spreadsheet should be null.
-                fakeSpreadsheetFactory.DisposeOfSpreadsheetRepo();
+                fake_spreadsheet_factory.DisposeOfSpreadsheetRepo();
             }
             catch (Exception)
             {
-                exceptionThrown = true;
+                exception_thrown = true;
             }
 
             // Assert
-            Assert.IsFalse(exceptionThrown, "Exception should not be thrown");
+            Assert.IsFalse(exception_thrown, "Exception should not be thrown");
         }
     }
 }

@@ -18,14 +18,14 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             int expectedResult)
         {
             // Arrange 
-            var budgetingMonths = new BudgetingMonths
+            var budgeting_months = new BudgetingMonths
             {
                 NextUnplannedMonth = nextUnplannedMonth,
                 LastMonthForBudgetPlanning = lastMonthForBudgetPlanning
             };
 
             // Act
-            var result = budgetingMonths.NumBudgetingMonths();
+            var result = budgeting_months.NumBudgetingMonths();
 
             // Assert
             Assert.AreEqual(expectedResult, result);
@@ -35,18 +35,18 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         public void WillCalculateBudgetingStartDateUsingNextUnplannedMonthAndStartYear()
         {
             // Arrange 
-            var budgetingMonths = new BudgetingMonths
+            var budgeting_months = new BudgetingMonths
             {
                 NextUnplannedMonth = 2,
                 StartYear = 2019
             };
 
             // Act
-            var result = budgetingMonths.BudgetingStartDate();
+            var result = budgeting_months.BudgetingStartDate();
 
             // Assert
-            Assert.AreEqual(result.Month, budgetingMonths.NextUnplannedMonth);
-            Assert.AreEqual(result.Year, budgetingMonths.StartYear);
+            Assert.AreEqual(result.Month, budgeting_months.NextUnplannedMonth);
+            Assert.AreEqual(result.Year, budgeting_months.StartYear);
         }
 
         [TestCase(12, 2, 2018, 2, 2019)]
@@ -59,7 +59,7 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             int expectedYear)
         {
             // Arrange 
-            var budgetingMonths = new BudgetingMonths
+            var budgeting_months = new BudgetingMonths
             {
                 NextUnplannedMonth = nextUnplannedMonth,
                 LastMonthForBudgetPlanning = lastMonthForBudgetPlanning,
@@ -67,7 +67,7 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             };
             
             // Act
-            var result = budgetingMonths.BudgetingEndDate();
+            var result = budgeting_months.BudgetingEndDate();
 
             // Assert
             Assert.AreEqual(result.Month, expectedMonth);
@@ -87,16 +87,16 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             int expectedResult)
         {
             // Arrange 
-            var budgetingMonths = new BudgetingMonths
+            var budgeting_months = new BudgetingMonths
             {
                 NextUnplannedMonth = nextUnplannedMonth,
                 LastMonthForBudgetPlanning = lastMonthForBudgetPlanning,
                 StartYear = startYear
             };
-            var specifiedDate = new DateTime(specifiedYear, specifiedMonth, 1);
+            var specified_date = new DateTime(specifiedYear, specifiedMonth, 1);
 
             // Act
-            var result = budgetingMonths.GetMonthsToPlanAfterSpecifiedDate(specifiedDate);
+            var result = budgeting_months.GetMonthsToPlanAfterSpecifiedDate(specified_date);
 
             // Assert
             Assert.AreEqual(expectedResult, result);

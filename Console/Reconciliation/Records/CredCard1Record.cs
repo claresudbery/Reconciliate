@@ -56,11 +56,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
 
             Description = values[DescriptionIndex];
 
-            var simpleAmount = string.IsNullOrEmpty(values[AmountIndex])
+            var simple_amount = string.IsNullOrEmpty(values[AmountIndex])
                 ? String.Empty
                 : values[AmountIndex].TrimAmount();
-            Amount = Convert.ToDouble(simpleAmount != "" && simpleAmount.IsNumeric()
-                ? simpleAmount
+            Amount = Convert.ToDouble(simple_amount != "" && simple_amount.IsNumeric()
+                ? simple_amount
                 : "0");
             Amount = Amount * -1;
         }

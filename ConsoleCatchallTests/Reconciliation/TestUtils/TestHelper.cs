@@ -8,14 +8,14 @@
         public static string RelativeProjectRoot(string currentPath)
         {
             // This is a massive hack, but after a ton of googling and heartache this was the only way I could find!
-            string relativeProjectRoot = "/../../../";
+            string relative_project_root = "/../../../";
 
             if (currentPath.Contains("netcoreapp"))
             {
-                relativeProjectRoot = "/.." + relativeProjectRoot;
+                relative_project_root = "/.." + relative_project_root;
             }
 
-            return relativeProjectRoot;
+            return relative_project_root;
         }
 
         public static string FullyQualifiedFolderPath(string currentPath, string folderName)

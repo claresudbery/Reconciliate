@@ -10,16 +10,16 @@ namespace ExcelIntegrationTests
         [Test]
         public void Temp_Test_For_New_Config_Values()
         {
-            var xmlReader = new MyXmlReader();
+            var xml_reader = new MyXmlReader();
 
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.CredCard1)}"), "CredCard1");
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.TestRecord)}"), "TestRecord");
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.CredCard)}"), "CredCard");
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Bank)}"), "Bank");
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.ActualBank)}"), "ActualBank");
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.BadDivider)}"), "BadDivider");
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.BudgetOut)}"), "Budget Out");
-            Assert.AreEqual(xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.ExpectedOut)}"), "Expected Out");
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.CredCard1)}"), "CredCard1");
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.TestRecord)}"), "TestRecord");
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.CredCard)}"), "CredCard");
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Bank)}"), "Bank");
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.ActualBank)}"), "ActualBank");
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.BadDivider)}"), "BadDivider");
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.BudgetOut)}"), "Budget Out");
+            Assert.AreEqual(xml_reader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.ExpectedOut)}"), "Expected Out");
         }
 
         [Test]

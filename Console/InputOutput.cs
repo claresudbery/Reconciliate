@@ -18,13 +18,13 @@ namespace ConsoleCatchall.Console
 
         public void OutputAllLinesExceptTheFirst(List<IPotentialMatch> options)
         {
-            for (int lineCount = 1; lineCount < options.Count; lineCount++)
+            for (int line_count = 1; line_count < options.Count; line_count++)
             {
-                foreach (var consoleLine in options[lineCount].ConsoleLines)
+                foreach (var console_line in options[line_count].ConsoleLines)
                 {
-                    OutputLine(consoleLine.GetConsoleSnippets(options[lineCount]));
+                    OutputLine(console_line.GetConsoleSnippets(options[line_count]));
                 }
-                if (options[lineCount].ConsoleLines.Count > 1)
+                if (options[line_count].ConsoleLines.Count > 1)
                 {
                     OutputLine("..............");
                 }
@@ -35,9 +35,9 @@ namespace ConsoleCatchall.Console
         {
             foreach (var option in options)
             {
-                foreach (var consoleLine in option.ConsoleLines)
+                foreach (var console_line in option.ConsoleLines)
                 {
-                    OutputLine(consoleLine.GetConsoleSnippets(option));
+                    OutputLine(console_line.GetConsoleSnippets(option));
                 }
             }
         }
@@ -52,10 +52,10 @@ namespace ConsoleCatchall.Console
 
         public void OutputLine(List<ConsoleSnippet> consoleSnippets)
         {
-            for (int snippetIndex = 0; snippetIndex < consoleSnippets.Count; snippetIndex++)
+            for (int snippet_index = 0; snippet_index < consoleSnippets.Count; snippet_index++)
             {
-                System.Console.ForegroundColor = GetColour(consoleSnippets[snippetIndex].TextColour);
-                System.Console.Write(consoleSnippets[snippetIndex].Text);
+                System.Console.ForegroundColor = GetColour(consoleSnippets[snippet_index].TextColour);
+                System.Console.Write(consoleSnippets[snippet_index].Text);
                 System.Console.ResetColor();
             }
             System.Console.WriteLine("");

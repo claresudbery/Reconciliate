@@ -15,28 +15,28 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void WillFilterForEmployerExpenseRecordsWhenLoading()
         {
             // Arrange
-            var mockExpectedIncomeFile = new Mock<ICSVFile<ExpectedIncomeRecord>>();
-            var expectedIncomeFile = new ExpectedIncomeFile(mockExpectedIncomeFile.Object);
+            var mock_expected_income_file = new Mock<ICSVFile<ExpectedIncomeRecord>>();
+            var expected_income_file = new ExpectedIncomeFile(mock_expected_income_file.Object);
 
             // Act
-            expectedIncomeFile.Load();
+            expected_income_file.Load();
 
             // Assert
-            mockExpectedIncomeFile.Verify(x => x.RemoveRecords(It.IsAny<System.Predicate<ExpectedIncomeRecord>>()));
+            mock_expected_income_file.Verify(x => x.RemoveRecords(It.IsAny<System.Predicate<ExpectedIncomeRecord>>()));
         }
 
         [Test]
         public void CanFilterForEmployerExpenseRecordsOnly()
         {
             // Arrange
-            var mockExpectedIncomeFileIO = new Mock<IFileIO<ExpectedIncomeRecord>>();
-            var expectedIncomeCSVFile = new CSVFile<ExpectedIncomeRecord>(mockExpectedIncomeFileIO.Object);
-            var expectedDescription = "description2";
-            var expectedIncomeRecords = new List<ExpectedIncomeRecord>
+            var mock_expected_income_file_io = new Mock<IFileIO<ExpectedIncomeRecord>>();
+            var expected_income_csv_file = new CSVFile<ExpectedIncomeRecord>(mock_expected_income_file_io.Object);
+            var expected_description = "description2";
+            var expected_income_records = new List<ExpectedIncomeRecord>
             {
                 new ExpectedIncomeRecord
                 {
-                    Description = expectedDescription,
+                    Description = expected_description,
                     Code = Codes.Expenses
                 },
                 new ExpectedIncomeRecord
@@ -45,24 +45,24 @@ namespace ConsoleCatchallTests.Reconciliation.Files
                     Code = "other"
                 }
             };
-            mockExpectedIncomeFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(expectedIncomeRecords);
-            expectedIncomeCSVFile.Load();
-            var expectedIncomeFile = new ExpectedIncomeFile(expectedIncomeCSVFile);
+            mock_expected_income_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(expected_income_records);
+            expected_income_csv_file.Load();
+            var expected_income_file = new ExpectedIncomeFile(expected_income_csv_file);
 
             // Act
-            expectedIncomeFile.FilterForEmployerExpensesOnly();
+            expected_income_file.FilterForEmployerExpensesOnly();
 
             // Assert
-            Assert.AreEqual(1, expectedIncomeCSVFile.Records.Count);
-            Assert.AreEqual(expectedDescription, expectedIncomeCSVFile.Records[0].Description);
+            Assert.AreEqual(1, expected_income_csv_file.Records.Count);
+            Assert.AreEqual(expected_description, expected_income_csv_file.Records[0].Description);
         }
 
         [Test]
         public void WillCopyAllRecordsToPendingFile()
         {
             // Arrange
-            var mockExpectedIncomeFile = new Mock<ICSVFile<ExpectedIncomeRecord>>();
-            var expectedIncomeRecords = new List<ExpectedIncomeRecord>
+            var mock_expected_income_file = new Mock<ICSVFile<ExpectedIncomeRecord>>();
+            var expected_income_records = new List<ExpectedIncomeRecord>
             {
                 new ExpectedIncomeRecord
                 {
@@ -73,21 +73,21 @@ namespace ConsoleCatchallTests.Reconciliation.Files
                     Description = "description2"
                 }
             };
-            mockExpectedIncomeFile.Setup(x => x.Records).Returns(expectedIncomeRecords);
-            var expectedIncomeFile = new ExpectedIncomeFile(mockExpectedIncomeFile.Object);
-            var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
-            mockPendingFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<BankRecord>());
-            var pendingFile = new CSVFile<BankRecord>(mockPendingFileIO.Object);
-            pendingFile.Load();
-            Assert.AreEqual(0, pendingFile.Records.Count);
+            mock_expected_income_file.Setup(x => x.Records).Returns(expected_income_records);
+            var expected_income_file = new ExpectedIncomeFile(mock_expected_income_file.Object);
+            var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_pending_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<BankRecord>());
+            var pending_file = new CSVFile<BankRecord>(mock_pending_file_io.Object);
+            pending_file.Load();
+            Assert.AreEqual(0, pending_file.Records.Count);
 
             // Act
-            expectedIncomeFile.CopyToPendingFile(pendingFile);
+            expected_income_file.CopyToPendingFile(pending_file);
 
             // Assert
-            Assert.AreEqual(2, pendingFile.Records.Count);
-            Assert.AreEqual(expectedIncomeFile.File.Records[0].Description, pendingFile.Records[0].Description);
-            Assert.AreEqual(expectedIncomeFile.File.Records[1].Description, pendingFile.Records[1].Description);
+            Assert.AreEqual(2, pending_file.Records.Count);
+            Assert.AreEqual(expected_income_file.File.Records[0].Description, pending_file.Records[0].Description);
+            Assert.AreEqual(expected_income_file.File.Records[1].Description, pending_file.Records[1].Description);
         }
     }
 }

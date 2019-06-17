@@ -26,46 +26,46 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
 
         public void WriteToCsvFile(string fileSuffix, List<string> csvLines)
         {
-            using (StreamWriter outputFile = new StreamWriter(FilePath + "/" + FileName + "-" + fileSuffix + ".csv"))
+            using (StreamWriter output_file = new StreamWriter(FilePath + "/" + FileName + "-" + fileSuffix + ".csv"))
             {
                 foreach (string line in csvLines)
                 {
-                    outputFile.WriteLine(line);
+                    output_file.WriteLine(line);
                 }
             }
         }
 
         public void WriteToFileAsSourceLines(string newFileName, List<string> sourceLines)
         {
-            using (StreamWriter outputFile = new StreamWriter(FilePath + "/" + newFileName + ".csv"))
+            using (StreamWriter output_file = new StreamWriter(FilePath + "/" + newFileName + ".csv"))
             {
                 foreach (string line in sourceLines)
                 {
-                    outputFile.WriteLine(line);
+                    output_file.WriteLine(line);
                 }
             }
         }
 
         public void AppendToFileAsSourceLine(string sourceLine)
         {
-            using (StreamWriter outputFile = new StreamWriter(FilePath + "/" + FileName + ".csv", true))
+            using (StreamWriter output_file = new StreamWriter(FilePath + "/" + FileName + ".csv", true))
             {
-                outputFile.WriteLine(sourceLine);
+                output_file.WriteLine(sourceLine);
             }
         }
 
         public void WriteBackToMainSpreadsheet(ICSVFile<TRecordType> csvFile, string worksheetName)
         {
-            ISpreadsheetRepo spreadsheetRepo = _spreadsheetFactory.CreateSpreadsheetRepo();
-            var spreadsheet = new Spreadsheet(spreadsheetRepo);
+            ISpreadsheetRepo spreadsheet_repo = _spreadsheetFactory.CreateSpreadsheetRepo();
+            var spreadsheet = new Spreadsheet(spreadsheet_repo);
             try
             {
                 WriteBackToSpreadsheet(spreadsheet, csvFile, worksheetName);
-                spreadsheetRepo.Dispose();
+                spreadsheet_repo.Dispose();
             }
             catch (Exception)
             {
-                spreadsheetRepo.Dispose();
+                spreadsheet_repo.Dispose();
                 throw;
             }
         }
@@ -79,33 +79,33 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
         public List<TRecordType> Load(List<string> fileContents, char? overrideSeparator = null)
         {
             var records = new List<TRecordType>();
-            using (var fileStream = File.OpenRead(FilePath + "/" + FileName + ".csv"))
-            using (var reader = new StreamReader(fileStream))
+            using (var file_stream = File.OpenRead(FilePath + "/" + FileName + ".csv"))
+            using (var reader = new StreamReader(file_stream))
             {
                 while (!reader.EndOfStream)
                 {
-                    var newLine = reader.ReadLine();
-                    while (LineIsHeader(newLine))
+                    var new_line = reader.ReadLine();
+                    while (LineIsHeader(new_line))
                     {
-                        newLine = reader.ReadLine();
+                        new_line = reader.ReadLine();
                     }
 
-                    if (newLine != null)
+                    if (new_line != null)
                     {
-                        var newRecord = new TRecordType();
+                        var new_record = new TRecordType();
                         try
                         {
-                            newRecord.Load(newLine, overrideSeparator);
+                            new_record.Load(new_line, overrideSeparator);
                         }
                         catch (Exception exception)
                         {
                             throw new FormatException(
-                                message: "Input not in correct format: " + newRecord.SourceLine + ": " + exception.Message,
+                                message: "Input not in correct format: " + new_record.SourceLine + ": " + exception.Message,
                                 innerException: exception.InnerException);
                         }
 
-                        fileContents.Add(newLine);
-                        records.Add(newRecord);
+                        fileContents.Add(new_line);
+                        records.Add(new_record);
                     }
                 }
             }

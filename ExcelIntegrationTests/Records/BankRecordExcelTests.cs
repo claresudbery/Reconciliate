@@ -16,7 +16,7 @@ namespace ExcelIntegrationTests.Records
         public void WillPopulateBankRecordCells()
         {
             // Arrange
-            var bankRecord = new BankRecord
+            var bank_record = new BankRecord
             {
                 Date = new DateTime(year: 2018, month: 7, day: 1),
                 UnreconciledAmount = 80.20,
@@ -26,24 +26,24 @@ namespace ExcelIntegrationTests.Records
                 ReconciledAmount = 6666.66
             };
             var cells = _spreadsheet.CurrentCells("Bank");
-            var lastRowNumber = _spreadsheet.LastRowNumber("Bank");
-            var previousRecord = new BankRecord();
-            previousRecord.ReadFromSpreadsheetRow(_spreadsheet.ReadLastRow("Bank"));
+            var last_row_number = _spreadsheet.LastRowNumber("Bank");
+            var previous_record = new BankRecord();
+            previous_record.ReadFromSpreadsheetRow(_spreadsheet.ReadLastRow("Bank"));
 
             // Act 
-            bankRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
-            var newRow = _spreadsheet.ReadLastRow("Bank");
+            bank_record.PopulateSpreadsheetRow(cells, last_row_number);
+            var new_row = _spreadsheet.ReadLastRow("Bank");
 
             // Assert
-            Assert.AreEqual(bankRecord.Date, DateTime.FromOADate((double)newRow.ReadCell(0)));
-            Assert.AreEqual(bankRecord.UnreconciledAmount, (Double)newRow.ReadCell(1));
-            Assert.AreEqual(bankRecord.Type, (String)newRow.ReadCell(3));
-            Assert.AreEqual(bankRecord.Description, (String)newRow.ReadCell(4));
-            Assert.AreEqual(bankRecord.ChequeNumber, (Double)newRow.ReadCell(5));
-            Assert.AreEqual(bankRecord.ReconciledAmount, (Double)newRow.ReadCell(6));
+            Assert.AreEqual(bank_record.Date, DateTime.FromOADate((double)new_row.ReadCell(0)));
+            Assert.AreEqual(bank_record.UnreconciledAmount, (Double)new_row.ReadCell(1));
+            Assert.AreEqual(bank_record.Type, (String)new_row.ReadCell(3));
+            Assert.AreEqual(bank_record.Description, (String)new_row.ReadCell(4));
+            Assert.AreEqual(bank_record.ChequeNumber, (Double)new_row.ReadCell(5));
+            Assert.AreEqual(bank_record.ReconciledAmount, (Double)new_row.ReadCell(6));
 
             // Clean up
-            previousRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
+            previous_record.PopulateSpreadsheetRow(cells, last_row_number);
         }
 
         [Test]
@@ -51,21 +51,21 @@ namespace ExcelIntegrationTests.Records
         public void WillInsertDividerTextInSecondCellWhenBankRecordIsDivider()
         {
             // Arrange
-            var bankRecord = new BankRecord {Divider = true};
+            var bank_record = new BankRecord {Divider = true};
             var cells = _spreadsheet.CurrentCells("Bank");
-            var lastRowNumber = _spreadsheet.LastRowNumber("Bank");
-            var previousRecord = new BankRecord();
-            previousRecord.ReadFromSpreadsheetRow(_spreadsheet.ReadLastRow("Bank"));
+            var last_row_number = _spreadsheet.LastRowNumber("Bank");
+            var previous_record = new BankRecord();
+            previous_record.ReadFromSpreadsheetRow(_spreadsheet.ReadLastRow("Bank"));
 
             // Act 
-            bankRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
-            var newRow = _spreadsheet.ReadLastRow("Bank");
+            bank_record.PopulateSpreadsheetRow(cells, last_row_number);
+            var new_row = _spreadsheet.ReadLastRow("Bank");
 
             // Assert
-            Assert.AreEqual(ReconConsts.DividerText, (String)newRow.ReadCell(1));
+            Assert.AreEqual(ReconConsts.DividerText, (String)new_row.ReadCell(1));
 
             // Clean up
-            previousRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
+            previous_record.PopulateSpreadsheetRow(cells, last_row_number);
         }
 
         [Test]
@@ -73,21 +73,21 @@ namespace ExcelIntegrationTests.Records
         public void WillInsertXInCellWhenBankRecordIsMatched()
         {
             // Arrange
-            var bankRecord = new BankRecord {Matched = true};
+            var bank_record = new BankRecord {Matched = true};
             var cells = _spreadsheet.CurrentCells("Bank");
-            var lastRowNumber = _spreadsheet.LastRowNumber("Bank");
-            var previousRecord = new BankRecord();
-            previousRecord.ReadFromSpreadsheetRow(_spreadsheet.ReadLastRow("Bank"));
+            var last_row_number = _spreadsheet.LastRowNumber("Bank");
+            var previous_record = new BankRecord();
+            previous_record.ReadFromSpreadsheetRow(_spreadsheet.ReadLastRow("Bank"));
 
             // Act 
-            bankRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
-            var newRow = _spreadsheet.ReadLastRow("Bank");
+            bank_record.PopulateSpreadsheetRow(cells, last_row_number);
+            var new_row = _spreadsheet.ReadLastRow("Bank");
 
             // Assert
-            Assert.AreEqual("x", (String)newRow.ReadCell(2));
+            Assert.AreEqual("x", (String)new_row.ReadCell(2));
 
             // Clean up
-            previousRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
+            previous_record.PopulateSpreadsheetRow(cells, last_row_number);
         }
 
         [Test]
@@ -95,21 +95,21 @@ namespace ExcelIntegrationTests.Records
         public void WillInsertNullInRelevantCellWhenBankRecordIsNotMatched()
         {
             // Arrange
-            var bankRecord = new BankRecord {Matched = false};
+            var bank_record = new BankRecord {Matched = false};
             var cells = _spreadsheet.CurrentCells("Bank");
-            var lastRowNumber = _spreadsheet.LastRowNumber("Bank");
-            var previousRecord = new BankRecord();
-            previousRecord.ReadFromSpreadsheetRow(_spreadsheet.ReadLastRow("Bank"));
+            var last_row_number = _spreadsheet.LastRowNumber("Bank");
+            var previous_record = new BankRecord();
+            previous_record.ReadFromSpreadsheetRow(_spreadsheet.ReadLastRow("Bank"));
 
             // Act 
-            bankRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
-            var newRow = _spreadsheet.ReadLastRow("Bank");
+            bank_record.PopulateSpreadsheetRow(cells, last_row_number);
+            var new_row = _spreadsheet.ReadLastRow("Bank");
 
             // Assert
-            Assert.AreEqual(null, (String)newRow.ReadCell(2));
+            Assert.AreEqual(null, (String)new_row.ReadCell(2));
 
             // Clean up
-            previousRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
+            previous_record.PopulateSpreadsheetRow(cells, last_row_number);
         }
 
         [Test]
@@ -117,28 +117,28 @@ namespace ExcelIntegrationTests.Records
         public void WillPopulateZeroAmountsAsEmptyBankRecordCells()
         {
             // Arrange
-            var bankRecord = new BankRecord
+            var bank_record = new BankRecord
             {
                 UnreconciledAmount = 0,
                 ChequeNumber = 0,
                 ReconciledAmount = 0
             };
             var cells = _spreadsheet.CurrentCells("Bank");
-            var lastRowNumber = _spreadsheet.LastRowNumber("Bank");
-            var previousRecord = new BankRecord();
-            previousRecord.ReadFromSpreadsheetRow(_spreadsheet.ReadLastRow("Bank"));
+            var last_row_number = _spreadsheet.LastRowNumber("Bank");
+            var previous_record = new BankRecord();
+            previous_record.ReadFromSpreadsheetRow(_spreadsheet.ReadLastRow("Bank"));
 
             // Act 
-            bankRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
-            var newRow = _spreadsheet.ReadLastRow("Bank");
+            bank_record.PopulateSpreadsheetRow(cells, last_row_number);
+            var new_row = _spreadsheet.ReadLastRow("Bank");
 
             // Assert
-            Assert.AreEqual(null, newRow.ReadCell(1));
-            Assert.AreEqual(null, newRow.ReadCell(5));
-            Assert.AreEqual(null, newRow.ReadCell(6));
+            Assert.AreEqual(null, new_row.ReadCell(1));
+            Assert.AreEqual(null, new_row.ReadCell(5));
+            Assert.AreEqual(null, new_row.ReadCell(6));
 
             // Clean up
-            previousRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
+            previous_record.PopulateSpreadsheetRow(cells, last_row_number);
         }
 
         [Test]
@@ -146,25 +146,25 @@ namespace ExcelIntegrationTests.Records
         public void WillReadFromBankRecordCells()
         {
             // Arrange
-            DateTime expectedDate = new DateTime(year: 2018, month: 7, day: 2);
-            Double expectedUnreconciledAmount = 5.20;
-            String expectedType = "ABC";
-            String expectedDescription = "description4";
-            int expectedChequeNumber = 42345;
-            Double expectedReconciledAmount = 7567.89;
-            var bankRecord = new BankRecord();
+            DateTime expected_date = new DateTime(year: 2018, month: 7, day: 2);
+            Double expected_unreconciled_amount = 5.20;
+            String expected_type = "ABC";
+            String expected_description = "description4";
+            int expected_cheque_number = 42345;
+            Double expected_reconciled_amount = 7567.89;
+            var bank_record = new BankRecord();
             var cells = _spreadsheet.ReadLastRow("Bank");
 
             // Act 
-            bankRecord.ReadFromSpreadsheetRow(cells);
+            bank_record.ReadFromSpreadsheetRow(cells);
 
             // Assert
-            Assert.AreEqual(expectedDate, bankRecord.Date);
-            Assert.AreEqual(expectedUnreconciledAmount, bankRecord.UnreconciledAmount);
-            Assert.AreEqual(expectedType, bankRecord.Type);
-            Assert.AreEqual(expectedDescription, bankRecord.Description);
-            Assert.AreEqual(expectedChequeNumber, bankRecord.ChequeNumber);
-            Assert.AreEqual(expectedReconciledAmount, bankRecord.ReconciledAmount);
+            Assert.AreEqual(expected_date, bank_record.Date);
+            Assert.AreEqual(expected_unreconciled_amount, bank_record.UnreconciledAmount);
+            Assert.AreEqual(expected_type, bank_record.Type);
+            Assert.AreEqual(expected_description, bank_record.Description);
+            Assert.AreEqual(expected_cheque_number, bank_record.ChequeNumber);
+            Assert.AreEqual(expected_reconciled_amount, bank_record.ReconciledAmount);
         }
 
         [Test]
@@ -172,22 +172,22 @@ namespace ExcelIntegrationTests.Records
         public void WillCopeWithBankCellsWhenMatchedCellIsNotPopulated()
         {
             // Arrange
-            String expectedDescription = "PASTA PLASTER";
-            var bankRecord = new BankRecord();
+            String expected_description = "PASTA PLASTER";
+            var bank_record = new BankRecord();
             List<object> cells = new List<object>
             {
                 (double)43405,
                 13.95,
                 null,
                 "POS",
-                expectedDescription
+                expected_description
             };
 
             // Act 
-            bankRecord.ReadFromSpreadsheetRow(new ExcelRow(cells));
+            bank_record.ReadFromSpreadsheetRow(new ExcelRow(cells));
 
             // Assert
-            Assert.AreEqual(expectedDescription, bankRecord.Description);
+            Assert.AreEqual(expected_description, bank_record.Description);
         }
 
         [Test]
@@ -195,22 +195,22 @@ namespace ExcelIntegrationTests.Records
         public void WillCopeWithBankCellsWhenUnreconciledAmountIsNotPopulated()
         {
             // Arrange
-            String expectedDescription = "PASTA PLASTER";
-            var bankRecord = new BankRecord();
+            String expected_description = "PASTA PLASTER";
+            var bank_record = new BankRecord();
             List<object> cells = new List<object>
             {
                 (double)43405,
                 null,
                 "x",
                 "POS",
-                expectedDescription
+                expected_description
             };
 
             // Act 
-            bankRecord.ReadFromSpreadsheetRow(new ExcelRow(cells));
+            bank_record.ReadFromSpreadsheetRow(new ExcelRow(cells));
 
             // Assert
-            Assert.AreEqual(expectedDescription, bankRecord.Description);
+            Assert.AreEqual(expected_description, bank_record.Description);
         }
 
         [Test]
@@ -218,25 +218,25 @@ namespace ExcelIntegrationTests.Records
         public void WillReadFromBankRecordCellsWhenValuesAreNull()
         {
             // Arrange
-            DateTime expectedDate = new DateTime(year: 2018, month: 7, day: 1);
-            Double expectedUnreconciledAmount = 5.15;
-            String expectedType = "ABC";
-            String expectedDescription = "description3";
-            int expectedChequeNumber = 0;
-            Double expectedReconciledAmount = 0;
-            var bankRecord = new BankRecord();
+            DateTime expected_date = new DateTime(year: 2018, month: 7, day: 1);
+            Double expected_unreconciled_amount = 5.15;
+            String expected_type = "ABC";
+            String expected_description = "description3";
+            int expected_cheque_number = 0;
+            Double expected_reconciled_amount = 0;
+            var bank_record = new BankRecord();
             var cells = _spreadsheet.ReadSpecifiedRow("Bank", 6);
 
             // Act 
-            bankRecord.ReadFromSpreadsheetRow(cells);
+            bank_record.ReadFromSpreadsheetRow(cells);
 
             // Assert
-            Assert.AreEqual(expectedDate, bankRecord.Date);
-            Assert.AreEqual(expectedUnreconciledAmount, bankRecord.UnreconciledAmount);
-            Assert.AreEqual(expectedType, bankRecord.Type);
-            Assert.AreEqual(expectedDescription, bankRecord.Description);
-            Assert.AreEqual(expectedChequeNumber, bankRecord.ChequeNumber);
-            Assert.AreEqual(expectedReconciledAmount, bankRecord.ReconciledAmount);
+            Assert.AreEqual(expected_date, bank_record.Date);
+            Assert.AreEqual(expected_unreconciled_amount, bank_record.UnreconciledAmount);
+            Assert.AreEqual(expected_type, bank_record.Type);
+            Assert.AreEqual(expected_description, bank_record.Description);
+            Assert.AreEqual(expected_cheque_number, bank_record.ChequeNumber);
+            Assert.AreEqual(expected_reconciled_amount, bank_record.ReconciledAmount);
         }
 
         [Test]
@@ -244,15 +244,15 @@ namespace ExcelIntegrationTests.Records
         public void WillPopulateSourceLineWhenReadingFromBankRecordCells()
         {
             // Arrange
-            String expectedSourceLine = String.Format("02/07/2018^£5.20^^ABC^description4^42345^\"£7,567.89\"^^^");
-            var bankRecord = new BankRecord();
+            String expected_source_line = String.Format("02/07/2018^£5.20^^ABC^description4^42345^\"£7,567.89\"^^^");
+            var bank_record = new BankRecord();
             var cells = _spreadsheet.ReadLastRow("Bank");
 
             // Act 
-            bankRecord.ReadFromSpreadsheetRow(cells);
+            bank_record.ReadFromSpreadsheetRow(cells);
 
             // Assert
-            Assert.AreEqual(expectedSourceLine, bankRecord.SourceLine);
+            Assert.AreEqual(expected_source_line, bank_record.SourceLine);
         }
     }
 }

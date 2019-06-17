@@ -63,18 +63,18 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             Type = values[TypeIndex];
             Description = values[DescriptionIndex];
 
-            var simpleAmount = string.IsNullOrEmpty(values[AmountIndex])
+            var simple_amount = string.IsNullOrEmpty(values[AmountIndex])
                 ? String.Empty
                 : values[AmountIndex].TrimAmount();
-            Amount = Convert.ToDouble(simpleAmount != "" && simpleAmount.IsNumeric()
-                ? simpleAmount 
+            Amount = Convert.ToDouble(simple_amount != "" && simple_amount.IsNumeric()
+                ? simple_amount 
                 : "0");
 
-            var simpleBalance = string.IsNullOrEmpty(values[BalanceIndex])
+            var simple_balance = string.IsNullOrEmpty(values[BalanceIndex])
                 ? String.Empty
                 : values[BalanceIndex].TrimAmount();
-            Balance = Convert.ToDouble(simpleBalance != "" && simpleBalance.IsNumeric()
-                ? simpleBalance
+            Balance = Convert.ToDouble(simple_balance != "" && simple_balance.IsNumeric()
+                ? simple_balance
                 : "0");
         }
 

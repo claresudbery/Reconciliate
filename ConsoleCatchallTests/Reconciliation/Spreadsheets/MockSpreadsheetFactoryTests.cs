@@ -12,22 +12,22 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         public void WillNotAttemptToDisposeNullSpreadsheet()
         {
             // Arrange
-            ISpreadsheetRepo nullSpreadsheet = null; 
-            var mockSpreadsheetFactory = new MockSpreadsheetRepoFactory(nullSpreadsheet);
+            ISpreadsheetRepo null_spreadsheet = null; 
+            var mock_spreadsheet_factory = new MockSpreadsheetRepoFactory(null_spreadsheet);
 
             // Act
-            bool exceptionThrown = false;
+            bool exception_thrown = false;
             try
             {
-                mockSpreadsheetFactory.DisposeOfSpreadsheetRepo();
+                mock_spreadsheet_factory.DisposeOfSpreadsheetRepo();
             }
             catch (Exception)
             {
-                exceptionThrown = true;
+                exception_thrown = true;
             }
 
             // Assert
-            Assert.IsFalse(exceptionThrown, "Exception should not be thrown");
+            Assert.IsFalse(exception_thrown, "Exception should not be thrown");
         }
     }
 }

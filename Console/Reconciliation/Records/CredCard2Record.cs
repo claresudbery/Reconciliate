@@ -52,9 +52,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
 
             // values[1] is a reference field that we don't care about.
 
-            string simpleAmount = values[AmountIndex].TrimStart(new char[]{'"', ' '}).TrimEnd('"');
-            Amount = Convert.ToDouble(simpleAmount != "" && simpleAmount.IsNumeric()
-                ? simpleAmount
+            string simple_amount = values[AmountIndex].TrimStart(new char[]{'"', ' '}).TrimEnd('"');
+            Amount = Convert.ToDouble(simple_amount != "" && simple_amount.IsNumeric()
+                ? simple_amount
                 : "0");
 
             Description = values[DescriptionIndex];

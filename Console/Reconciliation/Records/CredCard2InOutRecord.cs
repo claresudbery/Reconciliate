@@ -51,20 +51,20 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 ? Convert.ToDateTime(values[DateIndex], StringHelper.Culture()) 
                 : Convert.ToDateTime("9/9/9999", StringHelper.Culture());
 
-            var simpleUnrecAmount = string.IsNullOrEmpty(values[UnreconciledAmountIndex])
+            var simple_unrec_amount = string.IsNullOrEmpty(values[UnreconciledAmountIndex])
                 ? String.Empty
                 : values[UnreconciledAmountIndex].TrimAmount();
-            UnreconciledAmount = Convert.ToDouble(simpleUnrecAmount != "" && simpleUnrecAmount.IsNumeric()
-                ? simpleUnrecAmount 
+            UnreconciledAmount = Convert.ToDouble(simple_unrec_amount != "" && simple_unrec_amount.IsNumeric()
+                ? simple_unrec_amount 
                 : "0");
 
             Description = values[DescriptionIndex] != String.Empty ? values[DescriptionIndex] : "Source record had no description";
 
-            var simpleRecAmount = string.IsNullOrEmpty(values[ReconciledAmountIndex])
+            var simple_rec_amount = string.IsNullOrEmpty(values[ReconciledAmountIndex])
                 ? String.Empty
                 : values[ReconciledAmountIndex].TrimAmount();
-            ReconciledAmount = Convert.ToDouble(simpleRecAmount != "" && simpleRecAmount.IsNumeric()
-                ? simpleRecAmount 
+            ReconciledAmount = Convert.ToDouble(simple_rec_amount != "" && simple_rec_amount.IsNumeric()
+                ? simple_rec_amount 
                 : "0");
         }
 

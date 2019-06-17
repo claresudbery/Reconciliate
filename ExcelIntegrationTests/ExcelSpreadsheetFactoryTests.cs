@@ -11,22 +11,22 @@ namespace ExcelIntegrationTests
         public void WillNotAttemptToDisposeNullSpreadsheet()
         {
             // Arrange
-            var excelSpreadsheetFactory = new ExcelSpreadsheetRepoFactory("");
+            var excel_spreadsheet_factory = new ExcelSpreadsheetRepoFactory("");
 
             // Act
-            bool exceptionThrown = false;
+            bool exception_thrown = false;
             try
             {
                 // Because we haven't called the Create method, spreadsheet should be null.
-                excelSpreadsheetFactory.DisposeOfSpreadsheetRepo();
+                excel_spreadsheet_factory.DisposeOfSpreadsheetRepo();
             }
             catch (Exception)
             {
-                exceptionThrown = true;
+                exception_thrown = true;
             }
 
             // Assert
-            Assert.IsFalse(exceptionThrown, "Exception should not be thrown");
+            Assert.IsFalse(exception_thrown, "Exception should not be thrown");
         }
     }
 }

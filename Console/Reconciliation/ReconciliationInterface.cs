@@ -55,35 +55,35 @@ namespace ConsoleCatchall.Console.Reconciliation
         public void DoSemiAutomaticMatching()
         {
             _doingSemiAutomaticMatching = true;
-            bool unmatchedRecordFound = Reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            bool unmatched_record_found = Reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
 
-            while (unmatchedRecordFound)
+            while (unmatched_record_found)
             {
                 ShowCurrentRecordAndSemiAutoMatches();
                 GetAndRecordChoiceOfMatching();
-                unmatchedRecordFound = Reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+                unmatched_record_found = Reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
             }
         }
 
         private void DoManualMatching()
         {
             _doingSemiAutomaticMatching = false;
-            bool unmatchedRecordFound = Reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            bool unmatched_record_found = Reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
 
-            while (unmatchedRecordFound)
+            while (unmatched_record_found)
             {
                 ShowCurrentRecordAndManualMatches();
                 GetAndRecordChoiceOfMatching();
-                unmatchedRecordFound = Reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+                unmatched_record_found = Reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
             }
         }
 
         private void RecursivelyShowAutoMatchesAndGetChoices()
         {
-            List<ConsoleLine> autoMatches = Reconciliator.GetAutoMatchesForConsole();
-            if (autoMatches.Count > 0)
+            List<ConsoleLine> auto_matches = Reconciliator.GetAutoMatchesForConsole();
+            if (auto_matches.Count > 0)
             {
-                ShowAutoMatches(autoMatches);
+                ShowAutoMatches(auto_matches);
                 ActOnChoicesForAutoMatching();
             }
             else
@@ -107,23 +107,23 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         public void ShowCurrentRecordAndSemiAutoMatches()
         {
-            var potentialMatches = Reconciliator.CurrentPotentialMatches();
+            var potential_matches = Reconciliator.CurrentPotentialMatches();
             _inputOutput.OutputLine("");
             _inputOutput.OutputLine("*****************************************************************************");
             _inputOutput.OutputLine("*****************************************************************************");
             _inputOutput.OutputLine($"Source record for {ThirdPartyDescriptor}, with best match immediately afterwards:");
             _inputOutput.Output("   ");
             _inputOutput.OutputLine(Reconciliator.CurrentSourceRecordAsConsoleLine());
-            foreach (var consoleLine in potentialMatches[0].ConsoleLines)
+            foreach (var console_line in potential_matches[0].ConsoleLines)
             {
-                _inputOutput.OutputLine(consoleLine.GetConsoleSnippets(potentialMatches[0]));
+                _inputOutput.OutputLine(console_line.GetConsoleSnippets(potential_matches[0]));
             }
 
             _inputOutput.OutputLine("..............");
             _inputOutput.OutputLine($"Other matches found from {OwnedFileDescriptor}:");
             _inputOutput.OutputLine("***********");
             _inputOutput.OutputLine("Enter the number next to the option you want.");
-            _inputOutput.OutputAllLinesExceptTheFirst(potentialMatches);
+            _inputOutput.OutputAllLinesExceptTheFirst(potential_matches);
             _inputOutput.OutputLine("***********");
         }
 
@@ -153,10 +153,10 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void RecursivelyShowFinalMatchesAndGetChoices()
         {
-            List<ConsoleLine> finalMatches = Reconciliator.GetFinalMatchesForConsole();
-            if (finalMatches.Count > 0)
+            List<ConsoleLine> final_matches = Reconciliator.GetFinalMatchesForConsole();
+            if (final_matches.Count > 0)
             {
-                ShowFinalMatches(finalMatches);
+                ShowFinalMatches(final_matches);
                 ActOnChoicesForFinalMatching();
             }
             else
@@ -212,24 +212,24 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void ShowWarnings()
         {
-            var numMatchedThirdPartyRecords = Reconciliator.NumMatchedThirdPartyRecords();
-            var numMatchedOwnedRecords = Reconciliator.NumMatchedOwnedRecords();
-            var numThirdPartyRecords = Reconciliator.NumThirdPartyRecords();
-            var numOwnedRecords = Reconciliator.NumOwnedRecords();
+            var num_matched_third_party_records = Reconciliator.NumMatchedThirdPartyRecords();
+            var num_matched_owned_records = Reconciliator.NumMatchedOwnedRecords();
+            var num_third_party_records = Reconciliator.NumThirdPartyRecords();
+            var num_owned_records = Reconciliator.NumOwnedRecords();
 
-            if (numMatchedThirdPartyRecords != numMatchedOwnedRecords)
+            if (num_matched_third_party_records != num_matched_owned_records)
             {
                 _inputOutput.OutputLine(ReconConsts.BadTallyMatchedItems);
                 _inputOutput.GetInput(ReconConsts.EnterAnyKeyToContinue);
             }
 
-            if (numMatchedThirdPartyRecords > numOwnedRecords)
+            if (num_matched_third_party_records > num_owned_records)
             {
                 _inputOutput.OutputLine(ReconConsts.BadTallyNumMatchedThirdParty);
                 _inputOutput.GetInput(ReconConsts.EnterAnyKeyToContinue);
             }
 
-            if (numMatchedOwnedRecords > numThirdPartyRecords)
+            if (num_matched_owned_records > num_third_party_records)
             {
                 _inputOutput.OutputLine(ReconConsts.BadTallyNumMatchedOwned);
                 _inputOutput.GetInput(ReconConsts.EnterAnyKeyToContinue);

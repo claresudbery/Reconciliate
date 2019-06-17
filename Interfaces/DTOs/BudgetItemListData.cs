@@ -48,12 +48,12 @@ namespace Interfaces.DTOs
         {
             unchecked
             {
-                var hashCode = (SheetName != null ? SheetName.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (StartDivider != null ? StartDivider.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (EndDivider != null ? EndDivider.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ FirstColumnNumber;
-                hashCode = (hashCode * 397) ^ LastColumnNumber;
-                return hashCode;
+                var hash_code = (SheetName != null ? SheetName.GetHashCode() : 0);
+                hash_code = (hash_code * 397) ^ (StartDivider != null ? StartDivider.GetHashCode() : 0);
+                hash_code = (hash_code * 397) ^ (EndDivider != null ? EndDivider.GetHashCode() : 0);
+                hash_code = (hash_code * 397) ^ FirstColumnNumber;
+                hash_code = (hash_code * 397) ^ LastColumnNumber;
+                return hash_code;
             }
         }
     }
