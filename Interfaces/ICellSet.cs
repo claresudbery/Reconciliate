@@ -2,7 +2,7 @@
 {
     public interface ICellSet
     {
-        void PopulateCell(int rowNumber, int columnNumber, object cellContent);
-        object GetCell(int rowNumber, int columnNumber);
+        void Populate_cell(int rowNumber, int columnNumber, object cellContent);
+        object Get_cell(int rowNumber, int columnNumber);
     }
 }

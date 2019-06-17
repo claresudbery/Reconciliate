@@ -6,17 +6,17 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
 {
     internal class CSVFile<TRecordType> : ICSVFile<TRecordType> where TRecordType : ICSVRecord, new()
     {
-        public IFileIO<TRecordType> FileIO { get; set; }
+        public IFileIO<TRecordType> File_io { get; set; }
 
-        public List<string> FileContents { get; set; }
+        public List<string> File_contents { get; set; }
         // _sourceRecords is held separately from Records because sometimes we filter for negative or positive records only,
         // but we still want to keep hold of all the original source records.
-        private List<TRecordType> SourceRecords { get; set; }
+        private List<TRecordType> Source_records { get; set; }
         public List<TRecordType> Records { get; set; }
 
         public CSVFile(IFileIO<TRecordType> fileIO)
         {
-            FileIO = fileIO;
+            File_io = fileIO;
         }
 
         public void Load(
@@ -24,99 +24,99 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             char? overrideSeparator = null,
             bool orderOnLoad = true)
         {
-            FileContents = new List<string>();
+            File_contents = new List<string>();
             Records = new List<TRecordType>();
-            SourceRecords = new List<TRecordType>();
+            Source_records = new List<TRecordType>();
             if (loadFile)
             {
-                SourceRecords = FileIO.Load(FileContents, overrideSeparator);
-                if (SourceRecords != null)
+                Source_records = File_io.Load(File_contents, overrideSeparator);
+                if (Source_records != null)
                 {
                     if (orderOnLoad)
                     {
-                        OrderByDate();
+                        Order_by_date();
                     }
-                    PopulateRecordsFromOriginalFileLoad();
+                    Populate_records_from_original_file_load();
                 }
             }
         }
 
         public void Reload()
         {
-            FileContents.Clear();
+            File_contents.Clear();
             Records.Clear();
-            SourceRecords.Clear();
-            SourceRecords = FileIO.Load(FileContents);
-            PopulateRecordsFromOriginalFileLoad();
+            Source_records.Clear();
+            Source_records = File_io.Load(File_contents);
+            Populate_records_from_original_file_load();
         }
 
-        public void PopulateSourceRecordsFromRecords()
+        public void Populate_source_records_from_records()
         {
-            SourceRecords.Clear();
+            Source_records.Clear();
             foreach (var record in Records)
             {
-                SourceRecords.Add(record);
+                Source_records.Add(record);
             }
         }
 
-        public void PopulateRecordsFromOriginalFileLoad()
+        public void Populate_records_from_original_file_load()
         {
             Records.Clear();
-            foreach (var record in SourceRecords)
+            foreach (var record in Source_records)
             {
                 Records.Add(record);
             }
         }
 
-        public void RemoveRecordPermanently(TRecordType recordToRemove)
+        public void Remove_record_permanently(TRecordType recordToRemove)
         {
-            SourceRecords.Remove(recordToRemove);
+            Source_records.Remove(recordToRemove);
             Records.Remove(recordToRemove);
         }
 
-        public void AddRecordPermanently(TRecordType recordToAdd)
+        public void Add_record_permanently(TRecordType recordToAdd)
         {
-            SourceRecords.Add(recordToAdd);
+            Source_records.Add(recordToAdd);
             Records.Add(recordToAdd);
         }
 
-        private void OrderByDate()
+        private void Order_by_date()
         {
-            SourceRecords = SourceRecords.OrderBy(x => x.Date).ToList();
+            Source_records = Source_records.OrderBy(x => x.Date).ToList();
         }
 
-        public void FilterForPositiveRecordsOnly()
+        public void Filter_for_positive_records_only()
         {
-            PopulateRecordsFromOriginalFileLoad();
-            Records.RemoveAll(x => x.MainAmountIsNegative());
+            Populate_records_from_original_file_load();
+            Records.RemoveAll(x => x.Main_amount_is_negative());
         }
 
-        public void FilterForNegativeRecordsOnly()
+        public void Filter_for_negative_records_only()
         {
-            PopulateRecordsFromOriginalFileLoad();
-            Records.RemoveAll(x => !x.MainAmountIsNegative());
+            Populate_records_from_original_file_load();
+            Records.RemoveAll(x => !x.Main_amount_is_negative());
             foreach (var record in Records)
             {
-                record.MakeMainAmountPositive();
+                record.Make_main_amount_positive();
             }
         }
 
-        public void RemoveRecords(System.Predicate<TRecordType> filterPredicate)
+        public void Remove_records(System.Predicate<TRecordType> filterPredicate)
         {
-            PopulateRecordsFromOriginalFileLoad();
+            Populate_records_from_original_file_load();
             Records.RemoveAll(filterPredicate);
         }
 
-        public void SwapSignsOfAllAmounts()
+        public void Swap_signs_of_all_amounts()
         {
-            PopulateRecordsFromOriginalFileLoad();
+            Populate_records_from_original_file_load();
             foreach (var record in Records)
             {
-                record.SwapSignOfMainAmount();
+                record.Swap_sign_of_main_amount();
             }
         }
 
-        public void CopyRecordsToCsvFile(ICSVFile<TRecordType> targetFile)
+        public void Copy_records_to_csv_file(ICSVFile<TRecordType> targetFile)
         {
             foreach (var record in Records)
             {
@@ -124,7 +124,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             }
         }
 
-        public void ResetAllMatches()
+        public void Reset_all_matches()
         {
             foreach (var record in Records)
             {
@@ -132,83 +132,83 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             }
         }
 
-        public int NumMatchedRecords()
+        public int Num_matched_records()
         {
             return Records.Count(x => x.Matched);
         }
 
-        public int NumUnmatchedRecords()
+        public int Num_unmatched_records()
         {
             return Records.Count(x => !x.Matched);
         }
 
-        public List<string> UnmatchedRecordsAsCsv()
+        public List<string> Unmatched_records_as_csv()
         {
             return Records
                 .Where(x => !x.Matched)
                 .OrderBy(x => x.Date)
-                .Select(record => record.ToCsv())
+                .Select(record => record.To_csv())
                 .ToList();
         }
 
-        public List<string> MatchedRecordsAsCsv()
+        public List<string> Matched_records_as_csv()
         {
             return Records
                 .Where(x => x.Matched)
                 .OrderBy(x => x.Date)
-                .Select(record => record.ToCsv())
+                .Select(record => record.To_csv())
                 .ToList();
         }
 
-        public List<string> AllRecordsAsCsv()
+        public List<string> All_records_as_csv()
         {
             return Records
                 .OrderByDescending(x => x.Matched)
                 .ThenBy(x => x.Date)
-                .Select(record => record.ToCsv())
+                .Select(record => record.To_csv())
                 .ToList();
         }
 
-        public List<string> AllRecordsAsSourceLines()
+        public List<string> All_records_as_source_lines()
         {
             return Records
                 .OrderBy(x => x.Date)
-                .Select(record => record.SourceLine)
+                .Select(record => record.Source_line)
                 .ToList();
         }
 
-        public void WriteToCsvFile(string fileSuffix)
+        public void Write_to_csv_file(string fileSuffix)
         {
-            FileIO.WriteToCsvFile(fileSuffix, AllRecordsAsCsv());
+            File_io.Write_to_csv_file(fileSuffix, All_records_as_csv());
         }
 
-        public void WriteToFileAsSourceLines(string newFileName)
+        public void Write_to_file_as_source_lines(string newFileName)
         {
-            FileIO.WriteToFileAsSourceLines(newFileName, AllRecordsAsSourceLines());
+            File_io.Write_to_file_as_source_lines(newFileName, All_records_as_source_lines());
         }
 
-        public void WriteBackToMainSpreadsheet(string worksheetName)
+        public void Write_back_to_main_spreadsheet(string worksheetName)
         {
-            FileIO.WriteBackToMainSpreadsheet(this, worksheetName);
+            File_io.Write_back_to_main_spreadsheet(this, worksheetName);
         }
 
-        public void ConvertSourceLineSeparators(char originalSeparator, char newSeparator)
-        {
-            foreach (var record in Records)
-            {
-                record.ConvertSourceLineSeparators(originalSeparator, newSeparator);
-            }
-        }
-
-        public void UpdateSourceLinesForOutput(char outputSeparator)
+        public void Convert_source_line_separators(char originalSeparator, char newSeparator)
         {
             foreach (var record in Records)
             {
-                record.UpdateSourceLineForOutput(outputSeparator);
+                record.Convert_source_line_separators(originalSeparator, newSeparator);
             }
         }
 
-        public List<TRecordType> RecordsOrderedForSpreadsheet()
+        public void Update_source_lines_for_output(char outputSeparator)
+        {
+            foreach (var record in Records)
+            {
+                record.Update_source_line_for_output(outputSeparator);
+            }
+        }
+
+        public List<TRecordType> Records_ordered_for_spreadsheet()
         {
             var divider = new TRecordType {Divider = true};
             var matched_records = Records.Where(x => x.Matched);

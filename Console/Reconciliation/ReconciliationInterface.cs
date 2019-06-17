@@ -13,8 +13,8 @@ namespace ConsoleCatchall.Console.Reconciliation
         private readonly IInputOutput _inputOutput;
 
         public IReconciliator Reconciliator { get; private set; }
-        public string ThirdPartyDescriptor { get; private set; }
-        public string OwnedFileDescriptor { get; private set; }
+        public string Third_party_descriptor { get; private set; }
+        public string Owned_file_descriptor { get; private set; }
 
         private bool _doingSemiAutomaticMatching = false;
 
@@ -26,282 +26,282 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             _inputOutput = inputOutput;
             Reconciliator = reconciliator;
-            ThirdPartyDescriptor = thirdPartyDescriptor;
-            OwnedFileDescriptor = ownedFileDescriptor;
+            Third_party_descriptor = thirdPartyDescriptor;
+            Owned_file_descriptor = ownedFileDescriptor;
         }
 
-        public void DoTheMatching()
+        public void Do_the_matching()
         {
-            DoAutomaticMatching();
+            Do_automatic_matching();
             
-            DoSemiAutomaticMatching();
-            ShowFinalResultsOfMatching();
-            ProceedAfterShowingMatchingResults();
+            Do_semi_automatic_matching();
+            Show_final_results_of_matching();
+            Proceed_after_showing_matching_results();
         }
 
-        public void DoMatchingForNonMatchingRecords()
+        public void Do_matching_for_non_matching_records()
         {
-            DoManualMatching();
-            ShowFinalResultsOfMatching();
-            ProceedAfterShowingMatchingResults();
+            Do_manual_matching();
+            Show_final_results_of_matching();
+            Proceed_after_showing_matching_results();
         }
 
-        private void DoAutomaticMatching()
+        private void Do_automatic_matching()
         {
-            Reconciliator.DoAutoMatching();
-            RecursivelyShowAutoMatchesAndGetChoices();
+            Reconciliator.Do_auto_matching();
+            Recursively_show_auto_matches_and_get_choices();
         }
 
-        public void DoSemiAutomaticMatching()
+        public void Do_semi_automatic_matching()
         {
             _doingSemiAutomaticMatching = true;
-            bool unmatched_record_found = Reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            bool unmatched_record_found = Reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             while (unmatched_record_found)
             {
-                ShowCurrentRecordAndSemiAutoMatches();
-                GetAndRecordChoiceOfMatching();
-                unmatched_record_found = Reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+                Show_current_record_and_semi_auto_matches();
+                Get_and_record_choice_of_matching();
+                unmatched_record_found = Reconciliator.Find_reconciliation_matches_for_next_third_party_record();
             }
         }
 
-        private void DoManualMatching()
+        private void Do_manual_matching()
         {
             _doingSemiAutomaticMatching = false;
-            bool unmatched_record_found = Reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            bool unmatched_record_found = Reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             while (unmatched_record_found)
             {
-                ShowCurrentRecordAndManualMatches();
-                GetAndRecordChoiceOfMatching();
-                unmatched_record_found = Reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+                Show_current_record_and_manual_matches();
+                Get_and_record_choice_of_matching();
+                unmatched_record_found = Reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
             }
         }
 
-        private void RecursivelyShowAutoMatchesAndGetChoices()
+        private void Recursively_show_auto_matches_and_get_choices()
         {
-            List<ConsoleLine> auto_matches = Reconciliator.GetAutoMatchesForConsole();
+            List<ConsoleLine> auto_matches = Reconciliator.Get_auto_matches_for_console();
             if (auto_matches.Count > 0)
             {
-                ShowAutoMatches(auto_matches);
-                ActOnChoicesForAutoMatching();
+                Show_auto_matches(auto_matches);
+                Act_on_choices_for_auto_matching();
             }
             else
             {
-                _inputOutput.OutputLine("Couldn't find any automatic matches for you, sorry.");
-                _inputOutput.OutputLine("");
+                _inputOutput.Output_line("Couldn't find any automatic matches for you, sorry.");
+                _inputOutput.Output_line("");
             }
         }
 
-        private void ShowAutoMatches(List<ConsoleLine> autoMatches)
+        private void Show_auto_matches(List<ConsoleLine> autoMatches)
         {
-            _inputOutput.OutputLine("");
-            _inputOutput.OutputLine($"Here are the automatic matches based on amount, text and date within {PotentialMatch.PartialDateMatchThreshold} days:");
-            _inputOutput.OutputLine("");
-            _inputOutput.OutputAllLines(autoMatches);
-            _inputOutput.OutputLine("");
-            _inputOutput.OutputLine("You can reverse one match by entering the index of the match...");
-            _inputOutput.OutputLine("...or you can reverse multiple matches, by entering a comma-separated list of indices.");
-            _inputOutput.OutputLine("Like this: '0,3,23,5,24'");
+            _inputOutput.Output_line("");
+            _inputOutput.Output_line($"Here are the automatic matches based on amount, text and date within {PotentialMatch.PartialDateMatchThreshold} days:");
+            _inputOutput.Output_line("");
+            _inputOutput.Output_all_lines(autoMatches);
+            _inputOutput.Output_line("");
+            _inputOutput.Output_line("You can reverse one match by entering the index of the match...");
+            _inputOutput.Output_line("...or you can reverse multiple matches, by entering a comma-separated list of indices.");
+            _inputOutput.Output_line("Like this: '0,3,23,5,24'");
         }
 
-        public void ShowCurrentRecordAndSemiAutoMatches()
+        public void Show_current_record_and_semi_auto_matches()
         {
-            var potential_matches = Reconciliator.CurrentPotentialMatches();
-            _inputOutput.OutputLine("");
-            _inputOutput.OutputLine("*****************************************************************************");
-            _inputOutput.OutputLine("*****************************************************************************");
-            _inputOutput.OutputLine($"Source record for {ThirdPartyDescriptor}, with best match immediately afterwards:");
+            var potential_matches = Reconciliator.Current_potential_matches();
+            _inputOutput.Output_line("");
+            _inputOutput.Output_line("*****************************************************************************");
+            _inputOutput.Output_line("*****************************************************************************");
+            _inputOutput.Output_line($"Source record for {Third_party_descriptor}, with best match immediately afterwards:");
             _inputOutput.Output("   ");
-            _inputOutput.OutputLine(Reconciliator.CurrentSourceRecordAsConsoleLine());
-            foreach (var console_line in potential_matches[0].ConsoleLines)
+            _inputOutput.Output_line(Reconciliator.Current_source_record_as_console_line());
+            foreach (var console_line in potential_matches[0].Console_lines)
             {
-                _inputOutput.OutputLine(console_line.GetConsoleSnippets(potential_matches[0]));
+                _inputOutput.Output_line(console_line.Get_console_snippets(potential_matches[0]));
             }
 
-            _inputOutput.OutputLine("..............");
-            _inputOutput.OutputLine($"Other matches found from {OwnedFileDescriptor}:");
-            _inputOutput.OutputLine("***********");
-            _inputOutput.OutputLine("Enter the number next to the option you want.");
-            _inputOutput.OutputAllLinesExceptTheFirst(potential_matches);
-            _inputOutput.OutputLine("***********");
+            _inputOutput.Output_line("..............");
+            _inputOutput.Output_line($"Other matches found from {Owned_file_descriptor}:");
+            _inputOutput.Output_line("***********");
+            _inputOutput.Output_line("Enter the number next to the option you want.");
+            _inputOutput.Output_all_lines_except_the_first(potential_matches);
+            _inputOutput.Output_line("***********");
         }
 
-        public void ShowCurrentRecordAndManualMatches()
+        public void Show_current_record_and_manual_matches()
         {
-            _inputOutput.OutputLine("");
-            _inputOutput.OutputLine($"Source record for {ThirdPartyDescriptor}:");
-            _inputOutput.OutputLine(Reconciliator.CurrentSourceRecordAsString());
+            _inputOutput.Output_line("");
+            _inputOutput.Output_line($"Source record for {Third_party_descriptor}:");
+            _inputOutput.Output_line(Reconciliator.Current_source_record_as_string());
 
-            _inputOutput.OutputLine("..............");
-            _inputOutput.OutputLine($"Matches found from {OwnedFileDescriptor}:");
-            _inputOutput.OutputLine("***********");
-            _inputOutput.OutputAllLines(Reconciliator.CurrentPotentialMatches());
-            _inputOutput.OutputLine("***********");
+            _inputOutput.Output_line("..............");
+            _inputOutput.Output_line($"Matches found from {Owned_file_descriptor}:");
+            _inputOutput.Output_line("***********");
+            _inputOutput.Output_all_lines(Reconciliator.Current_potential_matches());
+            _inputOutput.Output_line("***********");
         }
 
-        private void ShowFinalResultsOfMatching()
+        private void Show_final_results_of_matching()
         {
-            _inputOutput.OutputLine("");
-            _inputOutput.OutputLine($"We started with {Reconciliator.NumThirdPartyRecords()} records from {ThirdPartyDescriptor}");
-            _inputOutput.OutputLine($"We started with {Reconciliator.NumOwnedRecords()} records from {OwnedFileDescriptor}");
-            _inputOutput.OutputLine($"Number of matched records from {ThirdPartyDescriptor}: {Reconciliator.NumMatchedThirdPartyRecords()}");
-            _inputOutput.OutputLine($"Number of matched records from {OwnedFileDescriptor}: {Reconciliator.NumMatchedOwnedRecords()}");
+            _inputOutput.Output_line("");
+            _inputOutput.Output_line($"We started with {Reconciliator.Num_third_party_records()} records from {Third_party_descriptor}");
+            _inputOutput.Output_line($"We started with {Reconciliator.Num_owned_records()} records from {Owned_file_descriptor}");
+            _inputOutput.Output_line($"Number of matched records from {Third_party_descriptor}: {Reconciliator.Num_matched_third_party_records()}");
+            _inputOutput.Output_line($"Number of matched records from {Owned_file_descriptor}: {Reconciliator.Num_matched_owned_records()}");
 
-            RecursivelyShowFinalMatchesAndGetChoices();
+            Recursively_show_final_matches_and_get_choices();
         }
 
-        private void RecursivelyShowFinalMatchesAndGetChoices()
+        private void Recursively_show_final_matches_and_get_choices()
         {
-            List<ConsoleLine> final_matches = Reconciliator.GetFinalMatchesForConsole();
+            List<ConsoleLine> final_matches = Reconciliator.Get_final_matches_for_console();
             if (final_matches.Count > 0)
             {
-                ShowFinalMatches(final_matches);
-                ActOnChoicesForFinalMatching();
+                Show_final_matches(final_matches);
+                Act_on_choices_for_final_matching();
             }
             else
             {
-                _inputOutput.OutputLine("Couldn't find any final matches for you, sorry.");
-                _inputOutput.OutputLine("");
+                _inputOutput.Output_line("Couldn't find any final matches for you, sorry.");
+                _inputOutput.Output_line("");
             }
         }
 
-        private void ShowFinalMatches(List<ConsoleLine> finalMatches)
+        private void Show_final_matches(List<ConsoleLine> finalMatches)
         {
-            _inputOutput.OutputLine("");
-            _inputOutput.OutputLine($"There are {Reconciliator.NumUnmatchedThirdPartyRecords()} unmatched records from {ThirdPartyDescriptor}:");
-            _inputOutput.OutputStringList(Reconciliator.UnmatchedThirdPartyRecords());
+            _inputOutput.Output_line("");
+            _inputOutput.Output_line($"There are {Reconciliator.Num_unmatched_third_party_records()} unmatched records from {Third_party_descriptor}:");
+            _inputOutput.Output_string_list(Reconciliator.Unmatched_third_party_records());
 
-            _inputOutput.OutputLine("");
-            _inputOutput.OutputLine($"There are {Reconciliator.NumUnmatchedOwnedRecords()} unmatched records from {OwnedFileDescriptor}:");
-            _inputOutput.OutputStringList(Reconciliator.UnmatchedOwnedRecords());
+            _inputOutput.Output_line("");
+            _inputOutput.Output_line($"There are {Reconciliator.Num_unmatched_owned_records()} unmatched records from {Owned_file_descriptor}:");
+            _inputOutput.Output_string_list(Reconciliator.Unmatched_owned_records());
             
-            _inputOutput.OutputLine("");
-            _inputOutput.OutputLine($"{Reconciliator.NumMatchedThirdPartyRecords()} records have been matched:");
-            _inputOutput.OutputAllLines(finalMatches);
-            _inputOutput.OutputLine("");
+            _inputOutput.Output_line("");
+            _inputOutput.Output_line($"{Reconciliator.Num_matched_third_party_records()} records have been matched:");
+            _inputOutput.Output_all_lines(finalMatches);
+            _inputOutput.Output_line("");
             
-            _inputOutput.OutputLine("You can reverse one match by entering the index of the match...");
-            _inputOutput.OutputLine("...or you can reverse multiple matches, by entering a comma-separated list of indices.");
-            _inputOutput.OutputLine("Like this: '0,3,23,5,24'");
-            _inputOutput.OutputLine("");
+            _inputOutput.Output_line("You can reverse one match by entering the index of the match...");
+            _inputOutput.Output_line("...or you can reverse multiple matches, by entering a comma-separated list of indices.");
+            _inputOutput.Output_line("Like this: '0,3,23,5,24'");
+            _inputOutput.Output_line("");
         }
 
-        private void ProceedAfterShowingMatchingResults()
+        private void Proceed_after_showing_matching_results()
         {
-            _inputOutput.OutputOptions(new List<string>
+            _inputOutput.Output_options(new List<string>
             {
                 "1. Go again! (this means you can match any item, regardless of amount)",
                 "2. Write csv and finish.",
             });
 
-            string input = _inputOutput.GetGenericInput(ReconConsts.GoAgainFinish);
+            string input = _inputOutput.Get_generic_input(ReconConsts.GoAgainFinish);
 
             switch (input)
             {
-                case "1": GoAgain(); break;
+                case "1": Go_again(); break;
                 case "2": Finish(); break;
             }
         }
 
-        private void GoAgain()
+        private void Go_again()
         {
             Reconciliator.Rewind();
-            DoMatchingForNonMatchingRecords();
+            Do_matching_for_non_matching_records();
         }
 
-        private void ShowWarnings()
+        private void Show_warnings()
         {
-            var num_matched_third_party_records = Reconciliator.NumMatchedThirdPartyRecords();
-            var num_matched_owned_records = Reconciliator.NumMatchedOwnedRecords();
-            var num_third_party_records = Reconciliator.NumThirdPartyRecords();
-            var num_owned_records = Reconciliator.NumOwnedRecords();
+            var num_matched_third_party_records = Reconciliator.Num_matched_third_party_records();
+            var num_matched_owned_records = Reconciliator.Num_matched_owned_records();
+            var num_third_party_records = Reconciliator.Num_third_party_records();
+            var num_owned_records = Reconciliator.Num_owned_records();
 
             if (num_matched_third_party_records != num_matched_owned_records)
             {
-                _inputOutput.OutputLine(ReconConsts.BadTallyMatchedItems);
-                _inputOutput.GetInput(ReconConsts.EnterAnyKeyToContinue);
+                _inputOutput.Output_line(ReconConsts.BadTallyMatchedItems);
+                _inputOutput.Get_input(ReconConsts.EnterAnyKeyToContinue);
             }
 
             if (num_matched_third_party_records > num_owned_records)
             {
-                _inputOutput.OutputLine(ReconConsts.BadTallyNumMatchedThirdParty);
-                _inputOutput.GetInput(ReconConsts.EnterAnyKeyToContinue);
+                _inputOutput.Output_line(ReconConsts.BadTallyNumMatchedThirdParty);
+                _inputOutput.Get_input(ReconConsts.EnterAnyKeyToContinue);
             }
 
             if (num_matched_owned_records > num_third_party_records)
             {
-                _inputOutput.OutputLine(ReconConsts.BadTallyNumMatchedOwned);
-                _inputOutput.GetInput(ReconConsts.EnterAnyKeyToContinue);
+                _inputOutput.Output_line(ReconConsts.BadTallyNumMatchedOwned);
+                _inputOutput.Get_input(ReconConsts.EnterAnyKeyToContinue);
             }
         }
 
         public void Finish()
         {
-            ShowWarnings();
-            _inputOutput.OutputLine(ReconConsts.WritingNewData);
+            Show_warnings();
+            _inputOutput.Output_line(ReconConsts.WritingNewData);
             Reconciliator.Finish("recon");
-            _inputOutput.OutputLine(ReconConsts.Finished);
-            _inputOutput.OutputLine("");
+            _inputOutput.Output_line(ReconConsts.Finished);
+            _inputOutput.Output_line("");
         }
 
-        private void ActOnChoicesForAutoMatching()
+        private void Act_on_choices_for_auto_matching()
         {
-            var input = _inputOutput.GetInput(ReconConsts.ChooseWhatToDoWithMatches, ReconConsts.AutoMatches);
+            var input = _inputOutput.Get_input(ReconConsts.ChooseWhatToDoWithMatches, ReconConsts.AutoMatches);
 
             if (!string.IsNullOrEmpty(input) && char.IsDigit(input[0]))
             {
                 try
                 {
-                    RemoveAutoMatches(input);
+                    Remove_auto_matches(input);
                 }
                 catch (ArgumentOutOfRangeException exception)
                 {
-                    _inputOutput.OutputLine(exception.Message);
-                    ActOnChoicesForAutoMatching();
+                    _inputOutput.Output_line(exception.Message);
+                    Act_on_choices_for_auto_matching();
                 }
             }
         }
 
-        private void RemoveAutoMatches(string input)
+        private void Remove_auto_matches(string input)
         {
             if (input.Contains(","))
             {
-                Reconciliator.RemoveMultipleAutoMatches(
+                Reconciliator.Remove_multiple_auto_matches(
                     input.Split(',')
                         .Select(x => Convert.ToInt32(x))
                         .ToList());
             }
             else
             {
-                Reconciliator.RemoveAutoMatch(Convert.ToInt32(input));
+                Reconciliator.Remove_auto_match(Convert.ToInt32(input));
             }
-            RecursivelyShowAutoMatchesAndGetChoices();
+            Recursively_show_auto_matches_and_get_choices();
         }
 
-        private void ActOnChoicesForFinalMatching()
+        private void Act_on_choices_for_final_matching()
         {
-            var input = _inputOutput.GetInput(ReconConsts.ChooseWhatToDoWithMatches, ReconConsts.FinalMatches);
+            var input = _inputOutput.Get_input(ReconConsts.ChooseWhatToDoWithMatches, ReconConsts.FinalMatches);
 
             if (!string.IsNullOrEmpty(input) && char.IsDigit(input[0]))
             {
                 try
                 {
-                    RemoveFinalMatches(input);
+                    Remove_final_matches(input);
                 }
                 catch (ArgumentOutOfRangeException exception)
                 {
-                    _inputOutput.OutputLine(exception.Message);
-                    ActOnChoicesForFinalMatching();
+                    _inputOutput.Output_line(exception.Message);
+                    Act_on_choices_for_final_matching();
                 }
             }
         }
 
-        private void RemoveFinalMatches(string input)
+        private void Remove_final_matches(string input)
         {
             if (input.Contains(","))
             {
-                Reconciliator.RemoveMultipleFinalMatches(
+                Reconciliator.Remove_multiple_final_matches(
                     input
                         .Split(',')
                         .Select(x => Convert.ToInt32(x))
@@ -309,14 +309,14 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
             else
             {
-                Reconciliator.RemoveFinalMatch(Convert.ToInt32(input));
+                Reconciliator.Remove_final_match(Convert.ToInt32(input));
             }
-            RecursivelyShowFinalMatchesAndGetChoices();
+            Recursively_show_final_matches_and_get_choices();
         }
 
-        private void GetAndRecordChoiceOfMatching()
+        private void Get_and_record_choice_of_matching()
         {
-            string input = _inputOutput.GetInput(ReconConsts.EnterNumberOfMatch, Reconciliator.CurrentSourceDescription());
+            string input = _inputOutput.Get_input(ReconConsts.EnterNumberOfMatch, Reconciliator.Current_source_description());
 
             if (!string.IsNullOrEmpty(input))
             {
@@ -324,71 +324,71 @@ namespace ConsoleCatchall.Console.Reconciliation
                 {
                     if (Char.IsDigit(input[0]))
                     {
-                        MarkTheMatch(input);
+                        Mark_the_match(input);
                     }
                     else if (input.ToUpper() == "D")
                     {
-                        ProcessDeletion();
+                        Process_deletion();
                     }
                 }
                 catch (Exception exception)
                 {
-                    _inputOutput.OutputLine(exception.Message);
-                    GetAndRecordChoiceOfMatching();
+                    _inputOutput.Output_line(exception.Message);
+                    Get_and_record_choice_of_matching();
                 }
             }
         }
 
-        private void MarkTheMatch(string input)
+        private void Mark_the_match(string input)
         {
-            Reconciliator.MatchCurrentRecord(Convert.ToInt16(input));
+            Reconciliator.Match_current_record(Convert.ToInt16(input));
         }
 
-        private void ProcessDeletion()
+        private void Process_deletion()
         {
-            string input = _inputOutput.GetInput(ReconConsts.WhetherToDeleteThirdParty, Reconciliator.CurrentSourceDescription());
+            string input = _inputOutput.Get_input(ReconConsts.WhetherToDeleteThirdParty, Reconciliator.Current_source_description());
 
             try
             {
                 if (!string.IsNullOrEmpty(input) && input.ToUpper() == "Y")
                 {
-                    Reconciliator.DeleteCurrentThirdPartyRecord();
+                    Reconciliator.Delete_current_third_party_record();
                 }
                 else
                 {
-                    DeleteRecordFromListOfMatches();
+                    Delete_record_from_list_of_matches();
                 }
             }
             catch (Exception e)
             {
-                _inputOutput.OutputLine(e.Message);
-                GetAndRecordChoiceOfMatching();
+                _inputOutput.Output_line(e.Message);
+                Get_and_record_choice_of_matching();
             }
         }
 
-        private void DeleteRecordFromListOfMatches()
+        private void Delete_record_from_list_of_matches()
         {
-            string input = _inputOutput.GetInput(ReconConsts.EnterDeletionIndex, Reconciliator.CurrentSourceDescription());
+            string input = _inputOutput.Get_input(ReconConsts.EnterDeletionIndex, Reconciliator.Current_source_description());
             if (!string.IsNullOrEmpty(input) && Char.IsDigit(input[0]))
             {
-                Reconciliator.DeleteSpecificOwnedRecordFromListOfMatches(Convert.ToInt16(input));
+                Reconciliator.Delete_specific_owned_record_from_list_of_matches(Convert.ToInt16(input));
 
-                if (Reconciliator.NumPotentialMatches() == 0)
+                if (Reconciliator.Num_potential_matches() == 0)
                 {
-                    _inputOutput.OutputLine(ReconConsts.NoMatchesLeft);
+                    _inputOutput.Output_line(ReconConsts.NoMatchesLeft);
                 }
                 else
                 {
                     // Update the display.
                     if (_doingSemiAutomaticMatching)
                     {
-                        ShowCurrentRecordAndSemiAutoMatches();
+                        Show_current_record_and_semi_auto_matches();
                     }
                     else
                     {
-                        ShowCurrentRecordAndManualMatches();
+                        Show_current_record_and_manual_matches();
                     }
-                    GetAndRecordChoiceOfMatching();
+                    Get_and_record_choice_of_matching();
                 }
             }
         }

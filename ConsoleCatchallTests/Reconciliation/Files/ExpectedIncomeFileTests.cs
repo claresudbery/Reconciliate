@@ -12,7 +12,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
     public class ExpectedIncomeFileTests
     {
         [Test]
-        public void WillFilterForEmployerExpenseRecordsWhenLoading()
+        public void Will_filter_for_employer_expense_records_when_loading()
         {
             // Arrange
             var mock_expected_income_file = new Mock<ICSVFile<ExpectedIncomeRecord>>();
@@ -22,11 +22,11 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             expected_income_file.Load();
 
             // Assert
-            mock_expected_income_file.Verify(x => x.RemoveRecords(It.IsAny<System.Predicate<ExpectedIncomeRecord>>()));
+            mock_expected_income_file.Verify(x => x.Remove_records(It.IsAny<System.Predicate<ExpectedIncomeRecord>>()));
         }
 
         [Test]
-        public void CanFilterForEmployerExpenseRecordsOnly()
+        public void Can_filter_for_employer_expense_records_only()
         {
             // Arrange
             var mock_expected_income_file_io = new Mock<IFileIO<ExpectedIncomeRecord>>();
@@ -50,7 +50,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             var expected_income_file = new ExpectedIncomeFile(expected_income_csv_file);
 
             // Act
-            expected_income_file.FilterForEmployerExpensesOnly();
+            expected_income_file.Filter_for_employer_expenses_only();
 
             // Assert
             Assert.AreEqual(1, expected_income_csv_file.Records.Count);
@@ -58,7 +58,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void WillCopyAllRecordsToPendingFile()
+        public void Will_copy_all_records_to_pending_file()
         {
             // Arrange
             var mock_expected_income_file = new Mock<ICSVFile<ExpectedIncomeRecord>>();
@@ -82,7 +82,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             Assert.AreEqual(0, pending_file.Records.Count);
 
             // Act
-            expected_income_file.CopyToPendingFile(pending_file);
+            expected_income_file.Copy_to_pending_file(pending_file);
 
             // Assert
             Assert.AreEqual(2, pending_file.Records.Count);

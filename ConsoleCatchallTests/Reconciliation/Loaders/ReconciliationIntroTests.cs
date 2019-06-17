@@ -18,37 +18,37 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     {
         private Mock<IInputOutput> _mockInputOutput;
 
-        private void SetUpForLoaderBespokeStuff(Mock<IInputOutput> mockInputOutput, Mock<ISpreadsheet> mockSpreadsheet)
+        private void Set_up_for_loader_bespoke_stuff(Mock<IInputOutput> mockInputOutput, Mock<ISpreadsheet> mockSpreadsheet)
         {
             DateTime last_direct_debit_date = new DateTime(2018, 12, 17);
             var next_direct_debit_date01 = last_direct_debit_date.AddMonths(1);
             var bank_record = new BankRecord { Date = last_direct_debit_date };
 
-            mockInputOutput.Setup(x => x.GetInput(string.Format(
+            mockInputOutput.Setup(x => x.Get_input(string.Format(
                 ReconConsts.AskForCredCardDirectDebit,
-                ReconConsts.CredCard2Name,
+                ReconConsts.Cred_card2_name,
                 next_direct_debit_date01.ToShortDateString()), "")).Returns("0");
-            mockSpreadsheet.Setup(x => x.GetMostRecentRowContainingText<BankRecord>(
-                    MainSheetNames.BankOut, ReconConsts.CredCard2DdDescription, new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
+            mockSpreadsheet.Setup(x => x.Get_most_recent_row_containing_text<BankRecord>(
+                    MainSheetNames.Bank_out, ReconConsts.Cred_card2_dd_description, new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
                 .Returns(bank_record);
 
-            mockInputOutput.Setup(x => x.GetInput(string.Format(
+            mockInputOutput.Setup(x => x.Get_input(string.Format(
                 ReconConsts.AskForCredCardDirectDebit, 
-                ReconConsts.CredCard1Name,
+                ReconConsts.Cred_card1_name,
                 next_direct_debit_date01.ToShortDateString()), "")).Returns("0");
-            mockSpreadsheet.Setup(x => x.GetMostRecentRowContainingText<BankRecord>(
-                    MainSheetNames.BankOut, ReconConsts.CredCard1DdDescription, new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
+            mockSpreadsheet.Setup(x => x.Get_most_recent_row_containing_text<BankRecord>(
+                    MainSheetNames.Bank_out, ReconConsts.Cred_card1_dd_description, new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
                 .Returns(bank_record);
         }
 
         [OneTimeSetUp]
-        public void OneTimeSetUp()
+        public void One_time_set_up()
         {
-            TestHelper.SetCorrectDateFormatting();
+            TestHelper.Set_correct_date_formatting();
         }
 
         [SetUp]
-        public void SetUp()
+        public void Set_up()
         {
             _mockInputOutput = new Mock<IInputOutput>();
         }
@@ -69,16 +69,16 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             DateTime unplanned_month = new DateTime(2018, nextUnplannedMonth, 1);
             _getInputMessages.Clear();
             var mock_spreadsheet = new Mock<ISpreadsheet>();
-            mock_spreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(unplanned_month);
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(unplanned_month);
             string confirmation_text = string.Format(ReconConsts.ConfirmMonthInterval, firstMonth, secondMonth, monthSpan);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
+            _mockInputOutput.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns($"{userInput}")
                 .Returns("Y");
             // Use self-shunt to avoid infinite recursion:
             var reconciliate = new ReconciliationIntro(this);
 
             // Act
-            reconciliate.RecursivelyAskForBudgetingMonths(mock_spreadsheet.Object);
+            reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
             Assert.AreEqual(confirmation_text, _getInputMessages.Last());
@@ -91,17 +91,17 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             DateTime next_unplanned_month = new DateTime(2018, 11, 1);
             int month_input = 2;
             var mock_spreadsheet = new Mock<ISpreadsheet>();
-            mock_spreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(next_unplanned_month);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
+            _mockInputOutput.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns($"{month_input}")
                 .Returns("Y");
             var reconciliate = new ReconciliationIntro(_mockInputOutput.Object);
 
             // Act
-            var result = reconciliate.RecursivelyAskForBudgetingMonths(mock_spreadsheet.Object);
+            var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
-            Assert.AreEqual(month_input, result.LastMonthForBudgetPlanning);
+            Assert.AreEqual(month_input, result.Last_month_for_budget_planning);
         }
 
         [Test]
@@ -112,8 +112,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             int month_input = 2;
             DateTime next_unplanned_month = new DateTime(2018, 11, 1);
             var mock_spreadsheet = new Mock<ISpreadsheet>();
-            mock_spreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(next_unplanned_month);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
+            _mockInputOutput.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns($"{month_input}")
                 .Returns("N")
                 .Returns($"{month_input + 1}")
@@ -122,7 +122,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var reconciliate = new ReconciliationIntro(this);
 
             // Act
-            reconciliate.RecursivelyAskForBudgetingMonths(mock_spreadsheet.Object);
+            reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
             string next_unplanned_month_as_string = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(next_unplanned_month.Month);
@@ -146,18 +146,18 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             // Arrange
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             DateTime next_unplanned_month = new DateTime(2018, 11, 1);
-            mock_spreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(next_unplanned_month);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
+            _mockInputOutput.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(userInput)
                 .Returns("Y")
                 .Returns("Y");
             var reconciliate = new ReconciliationIntro(_mockInputOutput.Object);
 
             // Act
-            var result = reconciliate.RecursivelyAskForBudgetingMonths(mock_spreadsheet.Object);
+            var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
-            Assert.IsTrue(result.LastMonthForBudgetPlanning >= 0 && result.LastMonthForBudgetPlanning <= 12);
+            Assert.IsTrue(result.Last_month_for_budget_planning >= 0 && result.Last_month_for_budget_planning <= 12);
         }
 
         [TestCase("13")]
@@ -173,8 +173,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             _getInputMessages.Clear();
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             DateTime next_unplanned_month = new DateTime(2018, 10, 1);
-            mock_spreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(next_unplanned_month);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
+            _mockInputOutput.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns($"{userInput}")
                 .Returns("Y")
                 .Returns("Y");
@@ -182,7 +182,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var reconciliate = new ReconciliationIntro(this);
             
             // Act
-            reconciliate.RecursivelyAskForBudgetingMonths(mock_spreadsheet.Object);
+            reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
             Assert.AreEqual(1, _getInputMessages.Count(x => x == ReconConsts.ConfirmBadMonth));
@@ -194,19 +194,19 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             // Arrange
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             DateTime next_unplanned_month = new DateTime(2018, 10, 1);
-            mock_spreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(next_unplanned_month);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
+            _mockInputOutput.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns($"{0}")
                 .Returns("Y")
                 .Returns("Y");
             var reconciliate = new ReconciliationIntro(_mockInputOutput.Object);
 
             // Act
-            var result = reconciliate.RecursivelyAskForBudgetingMonths(mock_spreadsheet.Object);
+            var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
-            _mockInputOutput.Verify(x => x.OutputLine(ReconConsts.ConfirmNoMonthlyBudgeting));
-            Assert.AreEqual(0, result.LastMonthForBudgetPlanning);
+            _mockInputOutput.Verify(x => x.Output_line(ReconConsts.ConfirmNoMonthlyBudgeting));
+            Assert.AreEqual(0, result.Last_month_for_budget_planning);
         }
 
         [Test]
@@ -215,8 +215,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             // Arrange
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             DateTime next_unplanned_month = new DateTime(2018, 10, 1);
-            mock_spreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(next_unplanned_month);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
+            _mockInputOutput.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns("0")
                 .Returns("Y")
                 .Returns("Y");
@@ -226,7 +226,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             // Act
             try
             {
-                reconciliate.RecursivelyAskForBudgetingMonths(mock_spreadsheet.Object);
+                reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
             }
             catch (Exception)
             {
@@ -244,8 +244,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             _getInputMessages.Clear();
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             DateTime next_unplanned_month = new DateTime(2018, 10, 1);
-            mock_spreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(next_unplanned_month);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
+            _mockInputOutput.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns($"{0}")
                 .Returns("N")
                 .Returns($"{11}")
@@ -254,7 +254,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var reconciliate = new ReconciliationIntro(this);
 
             // Act
-            reconciliate.RecursivelyAskForBudgetingMonths(mock_spreadsheet.Object);
+            reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
             string next_unplanned_month_as_string = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(next_unplanned_month.Month);
@@ -269,8 +269,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             _getInputMessages.Clear();
             int user_input_for_next_unplanned_month = 3;
             var mock_spreadsheet = new Mock<ISpreadsheet>();
-            mock_spreadsheet.Setup(x => x.GetNextUnplannedMonth()).Throws(new Exception());
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Throws(new Exception());
+            _mockInputOutput.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns($"{user_input_for_next_unplanned_month}")
                 .Returns($"{user_input_for_next_unplanned_month}")
                 .Returns("Y");
@@ -278,11 +278,11 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var reconciliate = new ReconciliationIntro(this);
 
             // Act
-            var result = reconciliate.RecursivelyAskForBudgetingMonths(mock_spreadsheet.Object);
+            var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
             Assert.IsTrue(_getInputMessages.Contains(ReconConsts.CantFindMortgageRow));
-            Assert.AreEqual(user_input_for_next_unplanned_month, result.NextUnplannedMonth);
+            Assert.AreEqual(user_input_for_next_unplanned_month, result.Next_unplanned_month);
         }
         
         [TestCase("13")]
@@ -298,8 +298,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var default_month = DateTime.Today.Month;
             _getInputMessages.Clear();
             var mock_spreadsheet = new Mock<ISpreadsheet>();
-            mock_spreadsheet.Setup(x => x.GetNextUnplannedMonth()).Throws(new Exception());
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Throws(new Exception());
+            _mockInputOutput.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(badInput)
                 .Returns("1")
                 .Returns("Y");
@@ -307,11 +307,11 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var reconciliate = new ReconciliationIntro(this);
 
             // Act
-            var result = reconciliate.RecursivelyAskForBudgetingMonths(mock_spreadsheet.Object);
+            var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
             Assert.IsTrue(_outputSingleLineRecordedMessages.Contains(ReconConsts.DefaultUnplannedMonth));
-            Assert.AreEqual(default_month, result.NextUnplannedMonth);
+            Assert.AreEqual(default_month, result.Next_unplanned_month);
         }
     }
 }

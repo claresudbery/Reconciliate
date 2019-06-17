@@ -10,7 +10,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         private Mock<IInputOutput> _mockInputOutput;
 
         [SetUp]
-        public void SetUp()
+        public void Set_up()
         {
             _mockInputOutput = new Mock<IInputOutput>();
         }

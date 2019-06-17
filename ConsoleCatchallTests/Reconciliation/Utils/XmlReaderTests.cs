@@ -13,78 +13,78 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         public MyXmlReaderTests()
         {
             string current_path = TestContext.CurrentContext.TestDirectory;
-            _sampleXmlConfigFilePath = Path.Combine(TestHelper.FullyQualifiedSpreadsheetFilePath(current_path), FilePathConsts.SampleConfigFileName);
+            _sampleXmlConfigFilePath = Path.Combine(TestHelper.Fully_qualified_spreadsheet_file_path(current_path), FilePathConsts.SampleConfigFileName);
         }
 
         [Test]
         public void Can_Read_Path_From_Config()
         {
             var xml_reader = new MyXmlReader();
-            Assert.AreEqual("This value should always be this string.", xml_reader.ReadXml(nameof(ReconConsts.TestValueDoNotChange), _sampleXmlConfigFilePath));
+            Assert.AreEqual("This value should always be this string.", xml_reader.Read_xml(nameof(ReconConsts.Test_value_do_not_change), _sampleXmlConfigFilePath));
         }
 
-        [TestCase(nameof(ReconConsts.MainSpreadsheetPath), @"C:/Development/Reconciliate/reconciliation-samples/For-debugging")]
-        [TestCase(nameof(ReconConsts.DefaultFilePath), @"C:/Development/Reconciliate/reconciliation-samples/For-debugging")]
-        [TestCase(nameof(ReconConsts.MainSpreadsheetFileName), @"Your-Spreadsheet.xlsx")]
-        [TestCase(nameof(ReconConsts.TestBackupFilePath), @"C:/Temp/ManualTesting/TestSpreadsheetBackups")]
-        [TestCase(nameof(ReconConsts.SourceDebugSpreadsheetPath), @"C:/Development/Reconciliate/reconciliation-samples/For-debugging")]
-        [TestCase(nameof(ReconConsts.BackupSubFolder), "SpreadsheetBackups")]
-        [TestCase(nameof(ReconConsts.DebugSpreadsheetFileName), @"debug-backup-spreadsheet.xlsx")]
-        [TestCase(nameof(ReconConsts.PocketMoneySpreadsheetPath), @"C:/Development/Reconciliate/reconciliation-samples/For-debugging/Pocket-Money-Spreadsheet.xlsx")]
-        [TestCase(nameof(ReconConsts.FiveFileOptions), "1.EnterFile, 2.CredCard1InOut, 3.CredCard2InOut, 4.BankIn, 5.BankOut")]
-        [TestCase(nameof(ReconConsts.FourAccountingTypes), "1.CredCard1, 2.CredCard2, 3.ActualBankIn, 4.ActualBankOut")]
-        [TestCase(nameof(ReconConsts.FourFileNameOptions), "1.EnterFileName, 2.CredCard1File, 3.CredCard2File, 4.ActualBankFile")]
-        [TestCase(nameof(ReconConsts.FiveFileDetails), "1.OwnFileDetails, 2.CredCard1, 3.CredCard2, 4.ActualBankIn, 5.ActualBankOut")]
-        [TestCase(nameof(ReconConsts.File_Option_02), "2. CredCard1 InOut default ({0}.csv) (3rd party format will be CredCard1)")]
-        [TestCase(nameof(ReconConsts.File_Option_03), "3. CredCard2 InOut default ({0}.csv) (3rd party format will be CredCard2)")]
-        [TestCase(nameof(ReconConsts.File_Option_04), "4. Bank In default ({0}.csv) (3rd party format will be ActualBank)")]
-        [TestCase(nameof(ReconConsts.File_Option_05), "5. Bank Out default ({0}.csv) (3rd party format will be ActualBank)")]
-        [TestCase(nameof(ReconConsts.Accounting_Type_01), "1. CredCard1 and CredCard1 InOut")]
-        [TestCase(nameof(ReconConsts.Accounting_Type_02), "2. CredCard2 and CredCard2 InOut")]
-        [TestCase(nameof(ReconConsts.Accounting_Type_03), "3. ActualBank and Bank In")]
-        [TestCase(nameof(ReconConsts.Accounting_Type_04), "4. ActualBank and Bank Out")]
-        [TestCase(nameof(ReconConsts.File_Name_Option_02), "2. Use the default for CredCard1 ({0}.csv)")]
-        [TestCase(nameof(ReconConsts.File_Name_Option_03), "3. Use the default for CredCard2 ({0}.csv)")]
-        [TestCase(nameof(ReconConsts.File_Name_Option_04), "4. Use the default for ActualBank ({0}.csv)")]
-        [TestCase(nameof(ReconConsts.File_Details_02), "2. Use defaults for CredCard1 and CredCard1 InOut")]
-        [TestCase(nameof(ReconConsts.File_Details_03), "3. Use defaults for CredCard2 and CredCard2 InOut")]
-        [TestCase(nameof(ReconConsts.File_Details_04), "4. Use defaults for ActualBank and Bank In")]
-        [TestCase(nameof(ReconConsts.File_Details_05), "5. Use defaults for ActualBank and Bank Out")]
-        [TestCase(nameof(ReconConsts.DefaultBankFileName), "ActualBank")]
-        [TestCase(nameof(ReconConsts.DefaultCredCard1FileName), "CredCard1")]
-        [TestCase(nameof(ReconConsts.DefaultCredCard2FileName), "CredCard2")]
-        [TestCase(nameof(ReconConsts.DefaultCredCard1InOutFileName), "CredCard1InOut")]
-        [TestCase(nameof(ReconConsts.DefaultCredCard2InOutFileName), "CredCard2InOut")]
-        [TestCase(nameof(ReconConsts.DefaultCredCard2InOutPendingFileName), "CredCard2InOutPending")]
-        [TestCase(nameof(ReconConsts.DefaultCredCard1InOutPendingFileName), "CredCard1InOutPending")]
-        [TestCase(nameof(ReconConsts.BankDescriptor), "ActualBank")]
-        [TestCase(nameof(ReconConsts.CredCard1Descriptor), "CredCard1")]
-        [TestCase(nameof(ReconConsts.CredCard1InOutDescriptor), "CredCard1 InOut")]
-        [TestCase(nameof(ReconConsts.CredCard2Descriptor), "CredCard2")]
-        [TestCase(nameof(ReconConsts.CredCard2InOutDescriptor), "CredCard2 InOut")]
-        [TestCase(nameof(ReconConsts.EmployerExpenseDescription), "ACME LTD")]
-        [TestCase(nameof(ReconConsts.CredCard1Name), "CredCard1")]
-        [TestCase(nameof(ReconConsts.CredCard2Name), "CredCard2")]
-        [TestCase(nameof(ReconConsts.CredCard1DdDescription), "CREDIT CARD 1")]
-        [TestCase(nameof(ReconConsts.CredCard2DdDescription), "CREDIT CARD 2")]
-        [TestCase(nameof(ReconConsts.CredCard1RegularPymtDescription), "CRED CARD 1 PAYMENT DESCRIPTION ON STATEMENTS")]
-        [TestCase(nameof(ReconConsts.CredCard2RegularPymtDescription), "CRED CARD 2 PAYMENT DESCRIPTION ON STATEMENTS")]
-        [TestCase(nameof(ReconConsts.Instructions_Line_01), "  (See ReconciliationProcess.txt for full process, and Trello for current bugs)")]
-        [TestCase(nameof(ReconConsts.Instructions_Line_02), "  Go to your third party website and download a statement as a csv file.")]
-        [TestCase(nameof(ReconConsts.Instructions_Line_03), "  Name it ActualBank.csv, CredCard1.csv or CredCard2.csv.")]
-        [TestCase(nameof(ReconConsts.Instructions_Line_04), "  Create csvs of pending transactions, named Pending.txt and CredCard1InOutPending.csv.")]
-        [TestCase(nameof(ReconConsts.Instructions_Line_05), "  !! For Bank In and Bank Out, check Type columns before starting !!")]
-        [TestCase(nameof(ReconConsts.Instructions_Line_06), "  Check VERY carefully - it's really easy to miss an example of this.")]
-        [TestCase(nameof(ReconConsts.Instructions_Line_07), "  This is because if the description is in the Type column, you'll get errors.")]
-        [TestCase(nameof(ReconConsts.Instructions_Line_08), "  But you won't see those errors until you're halfway through processing")]
-        [TestCase(nameof(ReconConsts.Instructions_Line_09), "  the file, and then you'll lose all your work.")]
-        [TestCase(nameof(ReconConsts.Instructions_Line_10), "  Run the 'load pending csvs' step before starting reconciliation.")]
-        [TestCase(nameof(ReconConsts.Instructions_Line_11), "  Follow the on-screen instructions.")]
-        [TestCase(nameof(ReconConsts.BankOutHeader), "Bank Out")]
-        [TestCase(nameof(ReconConsts.BankInHeader), "Bank In")]
-        [TestCase(nameof(ReconConsts.CredCard2Header), "CredCard2")]
-        [TestCase(nameof(ReconConsts.LoadPendingCsvs), "1. Load pending csvs for CredCard2, Bank In and Bank Out (from phone).")]
-        [TestCase(nameof(ReconConsts.LoadingExpenses), "Loading ACME expenses from Expected In...")]
+        [TestCase(nameof(ReconConsts.Main_spreadsheet_path), @"C:/Development/Reconciliate/reconciliation-samples/For-debugging")]
+        [TestCase(nameof(ReconConsts.Default_file_path), @"C:/Development/Reconciliate/reconciliation-samples/For-debugging")]
+        [TestCase(nameof(ReconConsts.Main_spreadsheet_file_name), @"Your-Spreadsheet.xlsx")]
+        [TestCase(nameof(ReconConsts.Test_backup_file_path), @"C:/Temp/ManualTesting/TestSpreadsheetBackups")]
+        [TestCase(nameof(ReconConsts.Source_debug_spreadsheet_path), @"C:/Development/Reconciliate/reconciliation-samples/For-debugging")]
+        [TestCase(nameof(ReconConsts.Backup_sub_folder), "SpreadsheetBackups")]
+        [TestCase(nameof(ReconConsts.Debug_spreadsheet_file_name), @"debug-backup-spreadsheet.xlsx")]
+        [TestCase(nameof(ReconConsts.Pocket_money_spreadsheet_path), @"C:/Development/Reconciliate/reconciliation-samples/For-debugging/Pocket-Money-Spreadsheet.xlsx")]
+        [TestCase(nameof(ReconConsts.Five_file_options), "1.EnterFile, 2.CredCard1InOut, 3.CredCard2InOut, 4.BankIn, 5.BankOut")]
+        [TestCase(nameof(ReconConsts.Four_accounting_types), "1.CredCard1, 2.CredCard2, 3.ActualBankIn, 4.ActualBankOut")]
+        [TestCase(nameof(ReconConsts.Four_file_name_options), "1.EnterFileName, 2.CredCard1File, 3.CredCard2File, 4.ActualBankFile")]
+        [TestCase(nameof(ReconConsts.Five_file_details), "1.OwnFileDetails, 2.CredCard1, 3.CredCard2, 4.ActualBankIn, 5.ActualBankOut")]
+        [TestCase(nameof(ReconConsts.File_option_02), "2. CredCard1 InOut default ({0}.csv) (3rd party format will be CredCard1)")]
+        [TestCase(nameof(ReconConsts.File_option_03), "3. CredCard2 InOut default ({0}.csv) (3rd party format will be CredCard2)")]
+        [TestCase(nameof(ReconConsts.File_option_04), "4. Bank In default ({0}.csv) (3rd party format will be ActualBank)")]
+        [TestCase(nameof(ReconConsts.File_option_05), "5. Bank Out default ({0}.csv) (3rd party format will be ActualBank)")]
+        [TestCase(nameof(ReconConsts.Accounting_type_01), "1. CredCard1 and CredCard1 InOut")]
+        [TestCase(nameof(ReconConsts.Accounting_type_02), "2. CredCard2 and CredCard2 InOut")]
+        [TestCase(nameof(ReconConsts.Accounting_type_03), "3. ActualBank and Bank In")]
+        [TestCase(nameof(ReconConsts.Accounting_type_04), "4. ActualBank and Bank Out")]
+        [TestCase(nameof(ReconConsts.File_name_option_02), "2. Use the default for CredCard1 ({0}.csv)")]
+        [TestCase(nameof(ReconConsts.File_name_option_03), "3. Use the default for CredCard2 ({0}.csv)")]
+        [TestCase(nameof(ReconConsts.File_name_option_04), "4. Use the default for ActualBank ({0}.csv)")]
+        [TestCase(nameof(ReconConsts.File_details_02), "2. Use defaults for CredCard1 and CredCard1 InOut")]
+        [TestCase(nameof(ReconConsts.File_details_03), "3. Use defaults for CredCard2 and CredCard2 InOut")]
+        [TestCase(nameof(ReconConsts.File_details_04), "4. Use defaults for ActualBank and Bank In")]
+        [TestCase(nameof(ReconConsts.File_details_05), "5. Use defaults for ActualBank and Bank Out")]
+        [TestCase(nameof(ReconConsts.Default_bank_file_name), "ActualBank")]
+        [TestCase(nameof(ReconConsts.Default_cred_card1_file_name), "CredCard1")]
+        [TestCase(nameof(ReconConsts.Default_cred_card2_file_name), "CredCard2")]
+        [TestCase(nameof(ReconConsts.Default_cred_card1_in_out_file_name), "CredCard1InOut")]
+        [TestCase(nameof(ReconConsts.Default_cred_card2_in_out_file_name), "CredCard2InOut")]
+        [TestCase(nameof(ReconConsts.Default_cred_card2_in_out_pending_file_name), "CredCard2InOutPending")]
+        [TestCase(nameof(ReconConsts.Default_cred_card1_in_out_pending_file_name), "CredCard1InOutPending")]
+        [TestCase(nameof(ReconConsts.Bank_descriptor), "ActualBank")]
+        [TestCase(nameof(ReconConsts.Cred_card1_descriptor), "CredCard1")]
+        [TestCase(nameof(ReconConsts.Cred_card1_in_out_descriptor), "CredCard1 InOut")]
+        [TestCase(nameof(ReconConsts.Cred_card2_descriptor), "CredCard2")]
+        [TestCase(nameof(ReconConsts.Cred_card2_in_out_descriptor), "CredCard2 InOut")]
+        [TestCase(nameof(ReconConsts.Employer_expense_description), "ACME LTD")]
+        [TestCase(nameof(ReconConsts.Cred_card1_name), "CredCard1")]
+        [TestCase(nameof(ReconConsts.Cred_card2_name), "CredCard2")]
+        [TestCase(nameof(ReconConsts.Cred_card1_dd_description), "CREDIT CARD 1")]
+        [TestCase(nameof(ReconConsts.Cred_card2_dd_description), "CREDIT CARD 2")]
+        [TestCase(nameof(ReconConsts.Cred_card1_regular_pymt_description), "CRED CARD 1 PAYMENT DESCRIPTION ON STATEMENTS")]
+        [TestCase(nameof(ReconConsts.Cred_card2_regular_pymt_description), "CRED CARD 2 PAYMENT DESCRIPTION ON STATEMENTS")]
+        [TestCase(nameof(ReconConsts.Instructions_line_01), "  (See ReconciliationProcess.txt for full process, and Trello for current bugs)")]
+        [TestCase(nameof(ReconConsts.Instructions_line_02), "  Go to your third party website and download a statement as a csv file.")]
+        [TestCase(nameof(ReconConsts.Instructions_line_03), "  Name it ActualBank.csv, CredCard1.csv or CredCard2.csv.")]
+        [TestCase(nameof(ReconConsts.Instructions_line_04), "  Create csvs of pending transactions, named Pending.txt and CredCard1InOutPending.csv.")]
+        [TestCase(nameof(ReconConsts.Instructions_line_05), "  !! For Bank In and Bank Out, check Type columns before starting !!")]
+        [TestCase(nameof(ReconConsts.Instructions_line_06), "  Check VERY carefully - it's really easy to miss an example of this.")]
+        [TestCase(nameof(ReconConsts.Instructions_line_07), "  This is because if the description is in the Type column, you'll get errors.")]
+        [TestCase(nameof(ReconConsts.Instructions_line_08), "  But you won't see those errors until you're halfway through processing")]
+        [TestCase(nameof(ReconConsts.Instructions_line_09), "  the file, and then you'll lose all your work.")]
+        [TestCase(nameof(ReconConsts.Instructions_line_10), "  Run the 'load pending csvs' step before starting reconciliation.")]
+        [TestCase(nameof(ReconConsts.Instructions_line_11), "  Follow the on-screen instructions.")]
+        [TestCase(nameof(ReconConsts.Bank_out_header), "Bank Out")]
+        [TestCase(nameof(ReconConsts.Bank_in_header), "Bank In")]
+        [TestCase(nameof(ReconConsts.Cred_card2_header), "CredCard2")]
+        [TestCase(nameof(ReconConsts.Load_pending_csvs), "1. Load pending csvs for CredCard2, Bank In and Bank Out (from phone).")]
+        [TestCase(nameof(ReconConsts.Loading_expenses), "Loading ACME expenses from Expected In...")]
         [TestCase(nameof(Codes.Code001), "Code001")]
         [TestCase(nameof(Codes.Code002), "Code002")]
         [TestCase(nameof(Codes.Code003), "Code003")]
@@ -164,14 +164,14 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         [TestCase(nameof(Codes.Code077), "Code077")]
         [TestCase(nameof(Codes.Code078), "Code078")]
         [TestCase(nameof(Codes.Code079), "Code079")]
-        [TestCase(nameof(Codes.BankBal), "ActualBank Balance")]
-        [TestCase(nameof(Codes.CredCard1Bal), "CredCard1 Balance")]
-        [TestCase(nameof(Codes.CredCard2Bal), "CredCard2 Balance")]
+        [TestCase(nameof(Codes.Bank_bal), "ActualBank Balance")]
+        [TestCase(nameof(Codes.Cred_card1_bal), "CredCard1 Balance")]
+        [TestCase(nameof(Codes.Cred_card2_bal), "CredCard2 Balance")]
         [TestCase(nameof(Codes.Expenses), "Acme Expenses")]
         public void Test_Config_Values_All_Present(string elementName, string elementValue)
         {
             var xml_reader = new MyXmlReader();
-            Assert.AreEqual(elementValue, xml_reader.ReadXml(elementName, _sampleXmlConfigFilePath));
+            Assert.AreEqual(elementValue, xml_reader.Read_xml(elementName, _sampleXmlConfigFilePath));
         }
 
         [Test]
@@ -179,34 +179,34 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         {
             var xml_reader = new MyXmlReader();
 
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BudgetOut)}", _sampleXmlConfigFilePath), "Budget Out", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BudgetIn)}", _sampleXmlConfigFilePath), "Budget In", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.ExpectedOut)}", _sampleXmlConfigFilePath), "Expected Out", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.ExpectedIn)}", _sampleXmlConfigFilePath), "Expected In", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Totals)}", _sampleXmlConfigFilePath), "Totals", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Savings)}", _sampleXmlConfigFilePath), "Savings", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BankOut)}", _sampleXmlConfigFilePath), "Bank Out", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.BankIn)}", _sampleXmlConfigFilePath), "Bank In", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.CredCard1)}", _sampleXmlConfigFilePath), "CredCard1", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.CredCard2)}", _sampleXmlConfigFilePath), "CredCard2", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.CredCard3)}", _sampleXmlConfigFilePath), "CredCard3", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Budget_out)}", _sampleXmlConfigFilePath), "Budget Out", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Budget_in)}", _sampleXmlConfigFilePath), "Budget In", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Expected_out)}", _sampleXmlConfigFilePath), "Expected Out", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Expected_in)}", _sampleXmlConfigFilePath), "Expected In", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Totals)}", _sampleXmlConfigFilePath), "Totals", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Savings)}", _sampleXmlConfigFilePath), "Savings", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Bank_out)}", _sampleXmlConfigFilePath), "Bank Out", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Bank_in)}", _sampleXmlConfigFilePath), "Bank In", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Cred_card1)}", _sampleXmlConfigFilePath), "CredCard1", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Cred_card2)}", _sampleXmlConfigFilePath), "CredCard2", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(MainSheetNames)}.{nameof(MainSheetNames.Cred_card3)}", _sampleXmlConfigFilePath), "CredCard3", _sampleXmlConfigFilePath);
 
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.DividerText)}", _sampleXmlConfigFilePath), "divider", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.Expenses)}", _sampleXmlConfigFilePath), "Expenses", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.ExpensesTotal)}", _sampleXmlConfigFilePath), "Expenses Total", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.SODDs)}", _sampleXmlConfigFilePath), "SODDs", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.CredCard1)}", _sampleXmlConfigFilePath), "CredCard1 cred card", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.CredCard2)}", _sampleXmlConfigFilePath), "CredCard2 cred card", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.SODDTotal)}", _sampleXmlConfigFilePath), "SODDTotal", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.AnnualSODDs)}", _sampleXmlConfigFilePath), "AnnualSODDs", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.AnnualTotal)}", _sampleXmlConfigFilePath), "AnnualTotal", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.Date)}", _sampleXmlConfigFilePath), "Date", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.Total)}", _sampleXmlConfigFilePath), "Total", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Divider_text)}", _sampleXmlConfigFilePath), "divider", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Expenses)}", _sampleXmlConfigFilePath), "Expenses", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Expenses_total)}", _sampleXmlConfigFilePath), "Expenses Total", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.SOD_ds)}", _sampleXmlConfigFilePath), "SODDs", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Cred_card1)}", _sampleXmlConfigFilePath), "CredCard1 cred card", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Cred_card2)}", _sampleXmlConfigFilePath), "CredCard2 cred card", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.SODD_total)}", _sampleXmlConfigFilePath), "SODDTotal", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Annual_sod_ds)}", _sampleXmlConfigFilePath), "AnnualSODDs", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Annual_total)}", _sampleXmlConfigFilePath), "AnnualTotal", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Date)}", _sampleXmlConfigFilePath), "Date", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Total)}", _sampleXmlConfigFilePath), "Total", _sampleXmlConfigFilePath);
 
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(PocketMoneySheetNames)}.{nameof(PocketMoneySheetNames.SecondChild)}", _sampleXmlConfigFilePath), "SecondChild", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(PocketMoneySheetNames)}.{nameof(PocketMoneySheetNames.Second_child)}", _sampleXmlConfigFilePath), "SecondChild", _sampleXmlConfigFilePath);
 
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(PlanningSheetNames)}.{nameof(PlanningSheetNames.Expenses)}", _sampleXmlConfigFilePath), "Expenses", _sampleXmlConfigFilePath);
-            Assert.AreEqual(xml_reader.ReadXml($"{nameof(PlanningSheetNames)}.{nameof(PlanningSheetNames.Deposits)}", _sampleXmlConfigFilePath), "Deposits", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(PlanningSheetNames)}.{nameof(PlanningSheetNames.Expenses)}", _sampleXmlConfigFilePath), "Expenses", _sampleXmlConfigFilePath);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(PlanningSheetNames)}.{nameof(PlanningSheetNames.Deposits)}", _sampleXmlConfigFilePath), "Deposits", _sampleXmlConfigFilePath);
         }
     }
 }

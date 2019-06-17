@@ -8,7 +8,7 @@ namespace ExcelIntegrationTests
     public class ExcelSpreadsheetFactoryTests
     {
         [Test]
-        public void WillNotAttemptToDisposeNullSpreadsheet()
+        public void Will_not_attempt_to_dispose_null_spreadsheet()
         {
             // Arrange
             var excel_spreadsheet_factory = new ExcelSpreadsheetRepoFactory("");
@@ -18,7 +18,7 @@ namespace ExcelIntegrationTests
             try
             {
                 // Because we haven't called the Create method, spreadsheet should be null.
-                excel_spreadsheet_factory.DisposeOfSpreadsheetRepo();
+                excel_spreadsheet_factory.Dispose_of_spreadsheet_repo();
             }
             catch (Exception)
             {

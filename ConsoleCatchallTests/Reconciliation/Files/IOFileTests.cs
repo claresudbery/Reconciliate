@@ -23,11 +23,11 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             mock_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ActualBankRecord> { new ActualBankRecord() });
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             mock_spreadsheet
-                .Setup(x => x.DeleteUnreconciledRows(worksheet_name))
+                .Setup(x => x.Delete_unreconciled_rows(worksheet_name))
                 .Verifiable();
 
             // Act
-            file_io.WriteBackToSpreadsheet(mock_spreadsheet.Object, actual_bank_file, worksheet_name);
+            file_io.Write_back_to_spreadsheet(mock_spreadsheet.Object, actual_bank_file, worksheet_name);
 
             // Assert
             mock_spreadsheet.Verify();

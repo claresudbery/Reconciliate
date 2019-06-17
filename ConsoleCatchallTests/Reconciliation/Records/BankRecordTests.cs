@@ -11,7 +11,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
     public class BankRecordTests
     {
         [Test]
-        public void CanReadDateFromCSV()
+        public void Can_read_date_from_csv()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -27,7 +27,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanReadUnreconciledAmountFromCSV()
+        public void Can_read_unreconciled_amount_from_csv()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -39,11 +39,11 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expected_amount, bank_record.UnreconciledAmount);
+            Assert.AreEqual(expected_amount, bank_record.Unreconciled_amount);
         }
 
         [Test]
-        public void CanReadAmountSurroundedByQuotesFromCSV()
+        public void Can_read_amount_surrounded_by_quotes_from_csv()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -55,11 +55,11 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expected_amount, bank_record.UnreconciledAmount);
+            Assert.AreEqual(expected_amount, bank_record.Unreconciled_amount);
         }
 
         [Test]
-        public void CanReadAmountContainingCommaFromCSV()
+        public void Can_read_amount_containing_comma_from_csv()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -69,11 +69,11 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(4567.89, bank_record.UnreconciledAmount);
+            Assert.AreEqual(4567.89, bank_record.Unreconciled_amount);
         }
 
         [Test]
-        public void CanReadTypeFromCSV()
+        public void Can_read_type_from_csv()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -88,7 +88,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanReadDescriptionFromCSV()
+        public void Can_read_description_from_csv()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -103,7 +103,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanReadChequeNumberFromCSV()
+        public void Can_read_cheque_number_from_csv()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -114,11 +114,11 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expected_cheque_number, bank_record.ChequeNumber);
+            Assert.AreEqual(expected_cheque_number, bank_record.Cheque_number);
         }
 
         [Test]
-        public void CanReadReconciledAmountFromCSV()
+        public void Can_read_reconciled_amount_from_csv()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -130,11 +130,11 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expected_amount, bank_record.ReconciledAmount);
+            Assert.AreEqual(expected_amount, bank_record.Reconciled_amount);
         }
 
         [Test]
-        public void CanCopeWithEmptyReconciledAmount()
+        public void Can_cope_with_empty_reconciled_amount()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -144,11 +144,11 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, bank_record.ReconciledAmount);
+            Assert.AreEqual(0, bank_record.Reconciled_amount);
         }
 
         [Test]
-        public void CanCopeWithEmptyChequeNumber()
+        public void Can_cope_with_empty_cheque_number()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -158,11 +158,11 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, bank_record.ChequeNumber);
+            Assert.AreEqual(0, bank_record.Cheque_number);
         }
 
         [Test]
-        public void ThrowsExceptionForBadDate()
+        public void Throws_exception_for_bad_date()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -189,7 +189,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void ThrowsExceptionForBadUnreconciledAmount()
+        public void Throws_exception_for_bad_unreconciled_amount()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -216,7 +216,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanCopeWithBadChequeNumber()
+        public void Can_cope_with_bad_cheque_number()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -227,11 +227,11 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, bank_record.ChequeNumber);
+            Assert.AreEqual(0, bank_record.Cheque_number);
         }
 
         [Test]
-        public void CanCopeWithBadReconciledAmount()
+        public void Can_cope_with_bad_reconciled_amount()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -242,11 +242,11 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, bank_record.ReconciledAmount);
+            Assert.AreEqual(0, bank_record.Reconciled_amount);
         }
 
         [Test]
-        public void CanMakeMainAmountPositive()
+        public void Can_make_main_amount_positive()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -256,14 +256,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Act 
-            bank_record.MakeMainAmountPositive();
+            bank_record.Make_main_amount_positive();
 
             // Assert
-            Assert.AreEqual(negative_amount * -1, bank_record.UnreconciledAmount);
+            Assert.AreEqual(negative_amount * -1, bank_record.Unreconciled_amount);
         }
 
         [Test]
-        public void IfMainAmountAlreadyPositiveThenMakingItPositiveHasNoEffect()
+        public void If_main_amount_already_positive_then_making_it_positive_has_no_effect()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -273,14 +273,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Act 
-            bank_record.MakeMainAmountPositive();
+            bank_record.Make_main_amount_positive();
 
             // Assert
-            Assert.AreEqual(positive_amount, bank_record.UnreconciledAmount);
+            Assert.AreEqual(positive_amount, bank_record.Unreconciled_amount);
         }
 
         [Test]
-        public void CsvIsConstructedCorrectlyWithoutMatchedRecord()
+        public void Csv_is_constructed_correctly_without_matched_record()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -289,14 +289,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Matched = true;
 
             // Act 
-            string constructed_csv_line = bank_record.ToCsv();
+            string constructed_csv_line = bank_record.To_csv();
 
             // Assert
             Assert.AreEqual("01/04/2017,£13.95,x,POS,\"Purchase\",1234,£14.22,,,", constructed_csv_line);
         }
 
         [Test]
-        public void CsvIsConstructedCorrectlyWithMatchedRecord()
+        public void Csv_is_constructed_correctly_with_matched_record()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -309,7 +309,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Match = matched_record;
 
             // Act 
-            string constructed_csv_line = bank_record.ToCsv();
+            string constructed_csv_line = bank_record.To_csv();
 
             // Assert
             Assert.AreEqual("01/04/2017,£13.95,x,POS,\"Purchase\",1234,£14.22,,,,,06/03/2017,£127.69,BAC,\"'Some ; description\"", constructed_csv_line);
@@ -318,7 +318,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         // Note that these tests are arguably redundant, as the input uses ^ as a separator, instead of comma.
         // But still it's nice to know we can cope with commas.
         [Test]
-        public void CanCopeWithInputContainingCommasSurroundedBySpaces()
+        public void Can_cope_with_input_containing_commas_surrounded_by_spaces()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -334,13 +334,13 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expected_amount, bank_record.ReconciledAmount);
+            Assert.AreEqual(expected_amount, bank_record.Reconciled_amount);
         }
 
         // Note that these tests are arguably redundant, as the input uses ^ as a separator, instead of comma.
         // But still it's nice to know we can cope with commas.
         [Test]
-        public void CanCopeWithInputContainingCommasFollowedBySpaces()
+        public void Can_cope_with_input_containing_commas_followed_by_spaces()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -355,13 +355,13 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expected_amount, bank_record.ReconciledAmount);
+            Assert.AreEqual(expected_amount, bank_record.Reconciled_amount);
         }
 
         // Note that these tests are arguably redundant, as the input uses ^ as a separator, instead of comma.
         // But still it's nice to know we can cope with commas.
         [Test]
-        public void CanCopeWithInputContainingCommasPrecededBySpaces()
+        public void Can_cope_with_input_containing_commas_preceded_by_spaces()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -376,11 +376,11 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expected_amount, bank_record.ReconciledAmount);
+            Assert.AreEqual(expected_amount, bank_record.Reconciled_amount);
         }
 
         [Test]
-        public void AmountsContainingCommasShouldBeEncasedInQuotes()
+        public void Amounts_containing_commas_should_be_encased_in_quotes()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -389,7 +389,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Act 
-            string constructed_csv_line = bank_record.ToCsv();
+            string constructed_csv_line = bank_record.To_csv();
 
             // Assert
             string expected_csv_line = String.Format("01/04/2017,\"{0}\",,POS,\"Purchase\",1234,,,,", amount_containing_comma);
@@ -398,7 +398,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
 
         // This doesn't apply to ActualBank and CredCard1 because their input does not have £ signs or commas
         [Test]
-        public void ShouldBeAbleToReadUnreconciledAmountsContainingCommas()
+        public void Should_be_able_to_read_unreconciled_amounts_containing_commas()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -409,12 +409,12 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(1234.55, bank_record.UnreconciledAmount);
+            Assert.AreEqual(1234.55, bank_record.Unreconciled_amount);
         }
 
         // This doesn't apply to ActualBank and CredCard1 because their input does not have £ signs or commas
         [Test]
-        public void ShouldBeAbleToReadReconciledAmountsContainingCommas()
+        public void Should_be_able_to_read_reconciled_amounts_containing_commas()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -427,12 +427,12 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(1234.55, bank_record.ReconciledAmount);
+            Assert.AreEqual(1234.55, bank_record.Reconciled_amount);
         }
 
         // This doesn't apply to ActualBank and CredCard1 because their input does not have £ signs or commas
         [Test]
-        public void ShouldBeAbleToReadAmountsPrecededByPoundSigns()
+        public void Should_be_able_to_read_amounts_preceded_by_pound_signs()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -445,11 +445,11 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(1234.55, bank_record.ReconciledAmount);
+            Assert.AreEqual(1234.55, bank_record.Reconciled_amount);
         }
 
         [Test]
-        public void AmountsShouldBeWrittenUsingPoundSigns()
+        public void Amounts_should_be_written_using_pound_signs()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -458,7 +458,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Act 
-            string constructed_csv_line = bank_record.ToCsv();
+            string constructed_csv_line = bank_record.To_csv();
 
             // Assert
             string expected_csv_line = String.Format("01/04/2017,{0},,POS,\"Purchase\",1234,,,,", amount_with_pound_sign);
@@ -467,7 +467,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
 
         // This doesn't apply to ActualBank and CredCard1 because their input does not have £ signs or commas
         [Test]
-        public void ShouldBeAbleToReadNegativeAmounts()
+        public void Should_be_able_to_read_negative_amounts()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -480,11 +480,11 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(-123.55, bank_record.ReconciledAmount);
+            Assert.AreEqual(-123.55, bank_record.Reconciled_amount);
         }
 
         [Test]
-        public void ShouldBeAbleToCopeWithTooFewInputFields()
+        public void Should_be_able_to_cope_with_too_few_input_fields()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -494,11 +494,11 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, bank_record.ReconciledAmount);
+            Assert.AreEqual(0, bank_record.Reconciled_amount);
         }
 
         [Test]
-        public void WillThrowExceptionIfDateIsUnpopulated()
+        public void Will_throw_exception_if_date_is_unpopulated()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -520,7 +520,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void WillThrowExceptionIfUnreconciledAmountIsUnpopulated()
+        public void Will_throw_exception_if_unreconciled_amount_is_unpopulated()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -542,7 +542,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void WillThrowExceptionIfTypeIsUnpopulated()
+        public void Will_throw_exception_if_type_is_unpopulated()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -564,7 +564,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void WillAssumeMissingTypeFieldIfDescriptionIsUnpopulated()
+        public void Will_assume_missing_type_field_if_description_is_unpopulated()
         {
             // Arrange
             var bank_record = new BankRecord();
@@ -580,35 +580,35 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void WhenCopyingRecordWillCopyAllImportantData()
+        public void When_copying_record_will_copy_all_important_data()
         {
             // Arrange
             var bank_record = new BankRecord
             {
                 Date = DateTime.Today,
-                UnreconciledAmount = 12.34,
+                Unreconciled_amount = 12.34,
                 Description = "Description",
-                ReconciledAmount = 56.78,
+                Reconciled_amount = 56.78,
                 Type = "Type",
-                ChequeNumber = 10
+                Cheque_number = 10
             };
-            bank_record.UpdateSourceLineForOutput(',');
+            bank_record.Update_source_line_for_output(',');
 
             // Act 
             var copied_record = (BankRecord)bank_record.Copy();
 
             // Assert
             Assert.AreEqual(bank_record.Date, copied_record.Date);
-            Assert.AreEqual(bank_record.UnreconciledAmount, copied_record.UnreconciledAmount);
+            Assert.AreEqual(bank_record.Unreconciled_amount, copied_record.Unreconciled_amount);
             Assert.AreEqual(bank_record.Description, copied_record.Description);
-            Assert.AreEqual(bank_record.ReconciledAmount, copied_record.ReconciledAmount);
+            Assert.AreEqual(bank_record.Reconciled_amount, copied_record.Reconciled_amount);
             Assert.AreEqual(bank_record.Type, copied_record.Type);
-            Assert.AreEqual(bank_record.ChequeNumber, copied_record.ChequeNumber);
-            Assert.AreEqual(bank_record.SourceLine, copied_record.SourceLine);
+            Assert.AreEqual(bank_record.Cheque_number, copied_record.Cheque_number);
+            Assert.AreEqual(bank_record.Source_line, copied_record.Source_line);
         }
 
         [Test]
-        public void WhenCopyingRecordWillCreateNewObject()
+        public void When_copying_record_will_create_new_object()
         {
             // Arrange
             var original_date = DateTime.Today;
@@ -620,33 +620,33 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             var bank_record = new BankRecord
             {
                 Date = original_date,
-                UnreconciledAmount = original_unreconciled_amount,
+                Unreconciled_amount = original_unreconciled_amount,
                 Description = original_description,
-                ReconciledAmount = original_reconciled_amount,
+                Reconciled_amount = original_reconciled_amount,
                 Type = original_type,
-                ChequeNumber = original_cheque_number
+                Cheque_number = original_cheque_number
             };
-            bank_record.UpdateSourceLineForOutput(',');
-            var original_source_line = bank_record.SourceLine;
+            bank_record.Update_source_line_for_output(',');
+            var original_source_line = bank_record.Source_line;
 
             // Act 
             var copied_record = (BankRecord)bank_record.Copy();
             copied_record.Date = copied_record.Date.AddDays(1);
-            copied_record.UnreconciledAmount = copied_record.UnreconciledAmount + 1;
+            copied_record.Unreconciled_amount = copied_record.Unreconciled_amount + 1;
             copied_record.Description = copied_record.Description + "something else";
-            copied_record.ReconciledAmount = copied_record.ReconciledAmount + 1;
+            copied_record.Reconciled_amount = copied_record.Reconciled_amount + 1;
             copied_record.Type = copied_record.Type + "something else";
-            copied_record.ChequeNumber = copied_record.ChequeNumber + 1;
-            copied_record.UpdateSourceLineForOutput(',');
+            copied_record.Cheque_number = copied_record.Cheque_number + 1;
+            copied_record.Update_source_line_for_output(',');
 
             // Assert
             Assert.AreEqual(original_date, bank_record.Date);
-            Assert.AreEqual(original_unreconciled_amount, bank_record.UnreconciledAmount);
+            Assert.AreEqual(original_unreconciled_amount, bank_record.Unreconciled_amount);
             Assert.AreEqual(original_description, bank_record.Description);
-            Assert.AreEqual(original_reconciled_amount, bank_record.ReconciledAmount);
-            Assert.AreEqual(original_source_line, bank_record.SourceLine);
+            Assert.AreEqual(original_reconciled_amount, bank_record.Reconciled_amount);
+            Assert.AreEqual(original_source_line, bank_record.Source_line);
             Assert.AreEqual(original_type, bank_record.Type);
-            Assert.AreEqual(original_cheque_number, bank_record.ChequeNumber);
+            Assert.AreEqual(original_cheque_number, bank_record.Cheque_number);
         }
 
         [Test]
@@ -668,13 +668,13 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             var mock_cells = new Mock<ICellSet>();
 
             // Act 
-            bank_record.PopulateSpreadsheetRow(mock_cells.Object, row);
+            bank_record.Populate_spreadsheet_row(mock_cells.Object, row);
 
             // Assert
-            mock_cells.Verify(x => x.PopulateCell(row, ActualBankRecord.DateSpreadsheetIndex + 1, bank_record.Match.Date), "Date");
-            mock_cells.Verify(x => x.PopulateCell(row, ActualBankRecord.AmountSpreadsheetIndex + 1, bank_record.Match.MainAmount()), "Amount");
-            mock_cells.Verify(x => x.PopulateCell(row, ActualBankRecord.TypeSpreadsheetIndex + 1, ((ActualBankRecord)bank_record.Match).Type), "Type");
-            mock_cells.Verify(x => x.PopulateCell(row, ActualBankRecord.DescriptionSpreadsheetIndex + 1, bank_record.Match.Description), "Desc");
+            mock_cells.Verify(x => x.Populate_cell(row, ActualBankRecord.DateSpreadsheetIndex + 1, bank_record.Match.Date), "Date");
+            mock_cells.Verify(x => x.Populate_cell(row, ActualBankRecord.AmountSpreadsheetIndex + 1, bank_record.Match.Main_amount()), "Amount");
+            mock_cells.Verify(x => x.Populate_cell(row, ActualBankRecord.TypeSpreadsheetIndex + 1, ((ActualBankRecord)bank_record.Match).Type), "Type");
+            mock_cells.Verify(x => x.Populate_cell(row, ActualBankRecord.DescriptionSpreadsheetIndex + 1, bank_record.Match.Description), "Desc");
         }
     }
 }

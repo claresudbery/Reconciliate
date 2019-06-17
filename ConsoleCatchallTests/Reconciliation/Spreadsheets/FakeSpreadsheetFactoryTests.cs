@@ -8,7 +8,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
     public class FakeSpreadsheetFactoryTests
     {
         [Test]
-        public void WillNotAttemptToDisposeNullSpreadsheet()
+        public void Will_not_attempt_to_dispose_null_spreadsheet()
         {
             // Arrange
             var fake_spreadsheet_factory = new FakeSpreadsheetRepoFactory();
@@ -18,7 +18,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             try
             {
                 // Because we haven't called the Create method, spreadsheet should be null.
-                fake_spreadsheet_factory.DisposeOfSpreadsheetRepo();
+                fake_spreadsheet_factory.Dispose_of_spreadsheet_repo();
             }
             catch (Exception)
             {

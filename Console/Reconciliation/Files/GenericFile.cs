@@ -18,9 +18,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             File.Load(loadFile, overrideSeparator, orderOnLoad);
         }
 
-        public void RefreshFileContents()
+        public void Refresh_file_contents()
         {
-            File.PopulateRecordsFromOriginalFileLoad();
+            File.Populate_records_from_original_file_load();
         }
     }
 }

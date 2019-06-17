@@ -11,12 +11,12 @@ namespace ConsoleCatchallTests.Reconciliation.TestUtils
             _mockSpreadsheet = mockSpreadsheet;
         }
 
-        public ISpreadsheetRepo CreateSpreadsheetRepo()
+        public ISpreadsheetRepo Create_spreadsheet_repo()
         {
             return _mockSpreadsheet;
         }
 
-        public void DisposeOfSpreadsheetRepo()
+        public void Dispose_of_spreadsheet_repo()
         {
             // Probably not necessary for mock spreadsheets, but putting it in just in case!
             if (_mockSpreadsheet != null)

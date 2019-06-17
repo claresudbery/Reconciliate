@@ -7,10 +7,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetDat
     {
         public Dictionary<string, Dictionary<string, int>> Data { get; } = new Dictionary<string, Dictionary<string, int>>
         {
-            { MainSheetNames.BankOut,
+            { MainSheetNames.Bank_out,
                 new Dictionary<string, int> {
-                    {ReconConsts.CredCard1DdDescription, 6},
-                    {ReconConsts.CredCard2DdDescription, 7}
+                    {ReconConsts.Cred_card1_dd_description, 6},
+                    {ReconConsts.Cred_card2_dd_description, 7}
                 }}
         };
     }

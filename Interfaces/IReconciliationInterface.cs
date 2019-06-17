@@ -4,6 +4,6 @@ namespace Interfaces
         where TThirdPartyType : ICSVRecord, new()
         where TOwnedType : ICSVRecord, new()
     {
-        void DoSemiAutomaticMatching();
+        void Do_semi_automatic_matching();
     }
 }

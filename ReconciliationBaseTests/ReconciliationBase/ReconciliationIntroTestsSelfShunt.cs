@@ -16,47 +16,47 @@ namespace ReconciliationBaseTests.ReconciliationBase
         readonly List<ConsoleLine> _outputSingleLineRecordedConsoleLines = new List<ConsoleLine>();
         private List<string> _getInputMessages = new List<string>();
 
-        public void OutputAllLines(List<IPotentialMatch> options)
+        public void Output_all_lines(List<IPotentialMatch> options)
         {
-            _mockInputOutput.Object.OutputAllLines(options);
-            _outputAllLinesRecordedDescriptions.Add(options.Select(x => x.ConsoleLines[0].DescriptionString).ToList());
+            _mockInputOutput.Object.Output_all_lines(options);
+            _outputAllLinesRecordedDescriptions.Add(options.Select(x => x.Console_lines[0].Description_string).ToList());
         }
 
-        public void OutputAllLines(List<ConsoleLine> consoleLines)
+        public void Output_all_lines(List<ConsoleLine> consoleLines)
         {
-            _mockInputOutput.Object.OutputAllLines(consoleLines);
+            _mockInputOutput.Object.Output_all_lines(consoleLines);
             _outputAllLinesRecordedConsoleLines.AddRange(consoleLines);
         }
 
-        public void OutputOptions(List<string> options)
+        public void Output_options(List<string> options)
         {
-            _mockInputOutput.Object.OutputOptions(options);
+            _mockInputOutput.Object.Output_options(options);
         }
 
-        public void OutputAllLinesExceptTheFirst(List<IPotentialMatch> options)
+        public void Output_all_lines_except_the_first(List<IPotentialMatch> options)
         {
-            _mockInputOutput.Object.OutputAllLinesExceptTheFirst(options);
+            _mockInputOutput.Object.Output_all_lines_except_the_first(options);
         }
 
-        public void OutputLine(List<ConsoleSnippet> consoleSnippets)
+        public void Output_line(List<ConsoleSnippet> consoleSnippets)
         {
-            _mockInputOutput.Object.OutputLine(consoleSnippets);
+            _mockInputOutput.Object.Output_line(consoleSnippets);
         }
 
-        public void OutputLine(ConsoleLine line)
+        public void Output_line(ConsoleLine line)
         {
-            _mockInputOutput.Object.OutputLine(line);
+            _mockInputOutput.Object.Output_line(line);
             _outputSingleLineRecordedConsoleLines.Add(line);
         }
 
-        public void OutputLineWithIndex(ConsoleLine line)
+        public void Output_line_with_index(ConsoleLine line)
         {
-            _mockInputOutput.Object.OutputLineWithIndex(line);
+            _mockInputOutput.Object.Output_line_with_index(line);
         }
 
-        public void OutputLine(string line)
+        public void Output_line(string line)
         {
-            _mockInputOutput.Object.OutputLine(line);
+            _mockInputOutput.Object.Output_line(line);
             _outputSingleLineRecordedMessages.Add(line);
         }
 
@@ -66,25 +66,25 @@ namespace ReconciliationBaseTests.ReconciliationBase
             _outputSingleLineRecordedMessages.Add(text);
         }
 
-        public void OutputStringList(List<string> stringList)
+        public void Output_string_list(List<string> stringList)
         {
-            _mockInputOutput.Object.OutputStringList(stringList);
+            _mockInputOutput.Object.Output_string_list(stringList);
         }
 
-        public string GetInput(string explanatoryMessage, string debugDescription = "")
+        public string Get_input(string explanatoryMessage, string debugDescription = "")
         {
             _getInputMessages.Add(explanatoryMessage);
-            return _mockInputOutput.Object.GetInput(explanatoryMessage, debugDescription);
+            return _mockInputOutput.Object.Get_input(explanatoryMessage, debugDescription);
         }
 
-        public string GetGenericInput(string debugDescription)
+        public string Get_generic_input(string debugDescription)
         {
-            return _mockInputOutput.Object.GetGenericInput(debugDescription);
+            return _mockInputOutput.Object.Get_generic_input(debugDescription);
         }
 
-        public void ShowError(Exception exception)
+        public void Show_error(Exception exception)
         {
-            _mockInputOutput.Object.ShowError(exception);
+            _mockInputOutput.Object.Show_error(exception);
         }
     }
 }

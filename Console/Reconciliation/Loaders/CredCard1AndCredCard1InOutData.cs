@@ -8,29 +8,29 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         public static DataLoadingInformation LoadingInfo =
             new DataLoadingInformation
             {
-                FilePaths = new FilePaths
+                File_paths = new FilePaths
                 {
-                    MainPath = ReconConsts.DefaultFilePath,
-                    ThirdPartyFileName = ReconConsts.DefaultCredCard1FileName,
-                    OwnedFileName = ReconConsts.DefaultCredCard1InOutFileName
+                    Main_path = ReconConsts.Default_file_path,
+                    Third_party_file_name = ReconConsts.Default_cred_card1_file_name,
+                    Owned_file_name = ReconConsts.Default_cred_card1_in_out_file_name
                 },
-                DefaultSeparator = ',',
-                LoadingSeparator = '^',
-                PendingFileName = ReconConsts.DefaultCredCard1InOutPendingFileName,
-                SheetName = MainSheetNames.CredCard1,
-                ThirdPartyDescriptor = ReconConsts.CredCard1Descriptor,
-                OwnedFileDescriptor = ReconConsts.CredCard1InOutDescriptor,
-                MonthlyBudgetData = new BudgetItemListData
+                Default_separator = ',',
+                Loading_separator = '^',
+                Pending_file_name = ReconConsts.Default_cred_card1_in_out_pending_file_name,
+                Sheet_name = MainSheetNames.Cred_card1,
+                Third_party_descriptor = ReconConsts.Cred_card1_descriptor,
+                Owned_file_descriptor = ReconConsts.Cred_card1_in_out_descriptor,
+                Monthly_budget_data = new BudgetItemListData
                 {
-                    SheetName = MainSheetNames.BudgetOut,
-                    StartDivider = Dividers.CredCard1,
-                    EndDivider = Dividers.CredCard2,
-                    FirstColumnNumber = 2,
-                    LastColumnNumber = 5
+                    Sheet_name = MainSheetNames.Budget_out,
+                    Start_divider = Dividers.Cred_card1,
+                    End_divider = Dividers.Cred_card2,
+                    First_column_number = 2,
+                    Last_column_number = 5
                 },
-                AnnualBudgetData = null,
+                Annual_budget_data = null,
                 // CredCard1Record.Load is already multiplying all mounts by -1, so no need to SwapSignsOfAllAmounts here.
-                ThirdPartyFileLoadAction = ThirdPartyFileLoadAction.NoAction
+                Third_party_file_load_action = ThirdPartyFileLoadAction.NoAction
             };
     }
 }

@@ -25,11 +25,11 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_cell_row = new Mock<ICellRow>();
             var description = "Hello";
             var code = Codes.Expenses;
-            mock_cell_row.Setup(x => x.ReadCell(ExpectedIncomeRecord.DescriptionIndex)).Returns(description);
-            mock_cell_row.Setup(x => x.ReadCell(ExpectedIncomeRecord.CodeIndex)).Returns(code);
-            mock_spreadsheet_repo.Setup(x => x.FindRowNumberOfLastRowContainingCell(MainSheetNames.ExpectedIn, Dividers.DividerText, 2)).Returns(divider_row_number);
-            mock_spreadsheet_repo.Setup(x => x.LastRowNumber(MainSheetNames.ExpectedIn)).Returns(last_row_number);
-            mock_spreadsheet_repo.Setup(x => x.ReadSpecifiedRow(MainSheetNames.ExpectedIn, last_row_number)).Returns(mock_cell_row.Object);
+            mock_cell_row.Setup(x => x.Read_cell(ExpectedIncomeRecord.DescriptionIndex)).Returns(description);
+            mock_cell_row.Setup(x => x.Read_cell(ExpectedIncomeRecord.CodeIndex)).Returns(code);
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(MainSheetNames.Expected_in, Dividers.Divider_text, 2)).Returns(divider_row_number);
+            mock_spreadsheet_repo.Setup(x => x.Last_row_number(MainSheetNames.Expected_in)).Returns(last_row_number);
+            mock_spreadsheet_repo.Setup(x => x.Read_specified_row(MainSheetNames.Expected_in, last_row_number)).Returns(mock_cell_row.Object);
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
             var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
             var pending_records = new List<BankRecord>();
@@ -47,7 +47,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 loading_info);
 
             // Assert
-            mock_input_output.Verify(x => x.OutputLine(ReconConsts.LoadingExpenses));
+            mock_input_output.Verify(x => x.Output_line(ReconConsts.Loading_expenses));
             Assert.AreEqual(1, pending_records.Count);
             Assert.AreEqual(description, pending_records[0].Description);
         }

@@ -19,14 +19,14 @@ namespace ConsoleCatchallTests.Reconciliation.Files
 
         public CSVFileTests()
         {
-            PopulateCsvFilePath();
-            TestHelper.SetCorrectDateFormatting();
+            Populate_csv_file_path();
+            TestHelper.Set_correct_date_formatting();
         }
 
-        private void PopulateCsvFilePath()
+        private void Populate_csv_file_path()
         {
             string current_path = TestContext.CurrentContext.TestDirectory;
-            _csvFilePath = TestHelper.FullyQualifiedCSVFilePath(current_path);
+            _csvFilePath = TestHelper.Fully_qualified_csv_file_path(current_path);
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanLoadCSVFile()
+        public void Can_load_csv_file()
         {
             // Act & Arrange
             var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankOut-formatted-date-only");
@@ -50,11 +50,11 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Load();
 
             // Assert
-            Assert.AreEqual("01/03/2017^£5.00^^TILL^DescriptionBank013^^^^^", csv_file.FileContents[0]);
+            Assert.AreEqual("01/03/2017^£5.00^^TILL^DescriptionBank013^^^^^", csv_file.File_contents[0]);
         }
 
         [Test]
-        public void WillOrderRecordsByDateOnLoadingByDefault()
+        public void Will_order_records_by_date_on_loading_by_default()
         {
             // Act & Arrange
             var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
@@ -92,7 +92,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanLoadBankOutRecords()
+        public void Can_load_bank_out_records()
         {
             // Act & Arrange
             var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankOut-formatted-date-only");
@@ -106,7 +106,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanLoadBankInRecords()
+        public void Can_load_bank_in_records()
         {
             // Act & Arrange
             const bool doNotOrderByDate = false;
@@ -124,7 +124,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanLoadCredCard1Records()
+        public void Can_load_cred_card1_records()
         {
             // Act & Arrange
             var file_io = new FileIO<CredCard1Record>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "CredCard1-Statement");
@@ -138,7 +138,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanLoadCredCard1InOutRecords()
+        public void Can_load_cred_card1_in_out_records()
         {
             // Act & Arrange
             var file_io = new FileIO<CredCard1InOutRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "CredCard1InOut-formatted-date-only");
@@ -152,7 +152,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanLoadActualBankRecords()
+        public void Can_load_actual_bank_records()
         {
             // Act & Arrange
             const bool doNotOrderByDate = false;
@@ -170,7 +170,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanFilterForPositiveRecordsOnly()
+        public void Can_filter_for_positive_records_only()
         {
             // Arrange
             const bool doNotOrderByDate = false;
@@ -182,7 +182,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
                 doNotOrderByDate);
 
             // Act
-            csv_file.FilterForPositiveRecordsOnly();
+            csv_file.Filter_for_positive_records_only();
 
             // Assert
             Assert.AreEqual("'ZZZSpecialDescription001", csv_file.Records[0].Description);
@@ -191,7 +191,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanFilterForNegativeRecordsOnly()
+        public void Can_filter_for_negative_records_only()
         {
             // Arrange
             var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "ActualBank-sample");
@@ -199,7 +199,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Load();
 
             // Act
-            csv_file.FilterForNegativeRecordsOnly();
+            csv_file.Filter_for_negative_records_only();
 
             // Assert
             Assert.AreEqual("'DIVIDE YOUR GREEN", csv_file.Records[0].Description);
@@ -225,7 +225,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Load();
 
             // Act
-            csv_file.RemoveRecords(x => x.Matched);
+            csv_file.Remove_records(x => x.Matched);
 
             // Assert
             Assert.AreEqual(2, csv_file.Records.Count);
@@ -236,7 +236,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void WhenFilteringForNegativeRecordsAllAreConvertedToPositive()
+        public void When_filtering_for_negative_records_all_are_converted_to_positive()
         {
             // Arrange
             var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "ActualBank-sample");
@@ -244,23 +244,23 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Load();
 
             // Act
-            csv_file.FilterForNegativeRecordsOnly();
+            csv_file.Filter_for_negative_records_only();
 
             // Assert
             Assert.AreEqual(115.30, csv_file.Records[50].Amount);
         }
 
         [Test]
-        public void CanOutputUnmatchedRecordsAsCsvInDateOrder()
+        public void Can_output_unmatched_records_as_csv_in_date_order()
         {
             // Arrange
             var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
             var csv_file = new CSVFile<BankRecord>(file_io);
             csv_file.Load();
-            csv_file.ResetAllMatches();
+            csv_file.Reset_all_matches();
 
             // Act
-            List<string> csv_lines = csv_file.UnmatchedRecordsAsCsv();
+            List<string> csv_lines = csv_file.Unmatched_records_as_csv();
 
             // Assert
             Assert.AreEqual("01/02/2017,£350.00,,ABC,\"ZZZThing3\",,,,,", csv_lines[0]);
@@ -271,7 +271,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanOutputMatchedRecordsAsCsvInDateOrder()
+        public void Can_output_matched_records_as_csv_in_date_order()
         {
             // Arrange
             var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
@@ -283,7 +283,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             }
 
             // Act
-            List<string> csv_lines = csv_file.MatchedRecordsAsCsv();
+            List<string> csv_lines = csv_file.Matched_records_as_csv();
 
             // Assert
             Assert.AreEqual("01/02/2017,£350.00,x,ABC,\"ZZZThing3\",,,,,", csv_lines[0]);
@@ -294,7 +294,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanOutputAllRecordsAsCsvOrderedByMatchedAndThenByDate()
+        public void Can_output_all_records_as_csv_ordered_by_matched_and_then_by_date()
         {
             // Arrange
             const bool doNotOrderByDate = false;
@@ -309,7 +309,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Records[3].Matched = true;
 
             // Act
-            List<string> csv_lines = csv_file.AllRecordsAsCsv();
+            List<string> csv_lines = csv_file.All_records_as_csv();
 
             // Assert
             Assert.AreEqual("01/03/2017,£350.00,x,ABC,\"ZZZThing2\",,,,,", csv_lines[0]);
@@ -320,7 +320,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void WillOrderRecordsForSpreadsheetByMatchedAndThenByDateWithDividerBetween()
+        public void Will_order_records_for_spreadsheet_by_matched_and_then_by_date_with_divider_between()
         {
             // Arrange
             const bool doNotOrderByDate = false;
@@ -335,7 +335,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Records[3].Matched = true;
 
             // Act
-            var records = csv_file.RecordsOrderedForSpreadsheet();
+            var records = csv_file.Records_ordered_for_spreadsheet();
 
             // Assert
             Assert.AreEqual("ZZZThing2", records[0].Description);
@@ -347,7 +347,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void WhenOrderingRecordsForSpreadsheetWillInsertDividerBetweenMatchedAndNonMatched()
+        public void When_ordering_records_for_spreadsheet_will_insert_divider_between_matched_and_non_matched()
         {
             // Arrange
             var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
@@ -357,7 +357,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Records[3].Matched = true;
 
             // Act
-            var records = csv_file.RecordsOrderedForSpreadsheet();
+            var records = csv_file.Records_ordered_for_spreadsheet();
 
             // Assert
             Assert.AreEqual(6, records.Count);
@@ -371,7 +371,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void WhenOrderingRecordsForSpreadsheetIfNoMatchedThenNoDivider()
+        public void When_ordering_records_for_spreadsheet_if_no_matched_then_no_divider()
         {
             // Arrange
             var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
@@ -379,7 +379,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Load();
 
             // Act
-            var records = csv_file.RecordsOrderedForSpreadsheet();
+            var records = csv_file.Records_ordered_for_spreadsheet();
 
             // Assert
             Assert.AreEqual(5, records.Count);
@@ -391,7 +391,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void WhenOrderingRecordsForSpreadsheetIfNoUnmatchedThenDividerIsAtEnd()
+        public void When_ordering_records_for_spreadsheet_if_no_unmatched_then_divider_is_at_end()
         {
             // Arrange
             var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
@@ -404,7 +404,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Records[4].Matched = true;
 
             // Act
-            var records = csv_file.RecordsOrderedForSpreadsheet();
+            var records = csv_file.Records_ordered_for_spreadsheet();
 
             // Assert
             Assert.AreEqual(6, records.Count);
@@ -416,7 +416,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanOutputAllRecordsAsSourceLineOrderedByDate()
+        public void Can_output_all_records_as_source_line_ordered_by_date()
         {
             // Arrange
             var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
@@ -424,7 +424,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Load();
 
             // Act
-            List<string> csv_lines = csv_file.AllRecordsAsSourceLines();
+            List<string> csv_lines = csv_file.All_records_as_source_lines();
 
             // Assert
             Assert.AreEqual("01/02/2017^£350.00^^ABC^ZZZThing3^^^^^", csv_lines[0]);
@@ -435,7 +435,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanConvertCommasToLittleHatsForBankIn()
+        public void Can_convert_commas_to_little_hats_for_bank_in()
         {
             // Arrange
             var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-with-commas");
@@ -443,17 +443,17 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Load(true, ',');
 
             // Act
-            csv_file.ConvertSourceLineSeparators(',', '^');
+            csv_file.Convert_source_line_separators(',', '^');
 
             // Assert
-            List<string> csv_lines = csv_file.AllRecordsAsSourceLines();
+            List<string> csv_lines = csv_file.All_records_as_source_lines();
             Assert.AreEqual("24/03/2017^£200.12^^PCL^ZZZSpecialDescription001^^^^^", csv_lines[0]);
             Assert.AreEqual("01/04/2017^£261.40^^PCL^ZZZSpecialDescription005^^^^^", csv_lines[1]);
             Assert.AreEqual("03/10/2018^£350.00^^ABC^ZZZThing1^^^^^", csv_lines[2]);
         }
 
         [Test]
-        public void CanConvertCommasToLittleHatsForCredCard2InOut()
+        public void Can_convert_commas_to_little_hats_for_cred_card2_in_out()
         {
             // Arrange
             var file_io = new FileIO<CredCard2InOutRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "CredCard2InOut-with-commas");
@@ -461,10 +461,10 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Load(true, ',');
 
             // Act
-            csv_file.ConvertSourceLineSeparators(',', '^');
+            csv_file.Convert_source_line_separators(',', '^');
 
             // Assert
-            List<string> csv_lines = csv_file.AllRecordsAsSourceLines();
+            List<string> csv_lines = csv_file.All_records_as_source_lines();
             Assert.AreEqual("09/04/2017^£8.33^^ZZZSpecialDescription021^", csv_lines[0]);
             Assert.AreEqual("01/05/2017^£3.16^^ZZZSpecialDescription022^", csv_lines[1]);
             Assert.AreEqual("06/05/2017^£11.94^^ZZZSpecialDescription023^", csv_lines[2]);
@@ -473,7 +473,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanConvertCommasToLittleHatsForCredCard1InOut()
+        public void Can_convert_commas_to_little_hats_for_cred_card1_in_out()
         {
             // Arrange
             var file_io = new FileIO<CredCard1InOutRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "CredCard1InOut-with-commas");
@@ -481,10 +481,10 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Load(true, ',');
 
             // Act
-            csv_file.ConvertSourceLineSeparators(',', '^');
+            csv_file.Convert_source_line_separators(',', '^');
 
             // Assert
-            List<string> csv_lines = csv_file.AllRecordsAsSourceLines();
+            List<string> csv_lines = csv_file.All_records_as_source_lines();
             Assert.AreEqual("19/12/2016^£7.99^^ZZZSpecialDescription017^", csv_lines[0]);
             Assert.AreEqual("02/01/2017^£6.29^^ZZZSpecialDescription018^", csv_lines[1]);
             Assert.AreEqual("15/02/2017^£1.99^^ZZZSpecialDescription019^", csv_lines[2]);
@@ -492,7 +492,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanWriteNewContentsToCsv()
+        public void Can_write_new_contents_to_csv()
         {
             // Arrange
             var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
@@ -506,7 +506,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Records.Add(new_bank_record);
 
             // Act
-            csv_file.WriteToCsvFile("testing");
+            csv_file.Write_to_csv_file("testing");
 
             // Assert
             var file_io_test_file = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only-testing");
@@ -514,7 +514,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             new_csv_file.Load(
                 true,
                 ',');
-            List<string> csv_lines = new_csv_file.AllRecordsAsCsv();
+            List<string> csv_lines = new_csv_file.All_records_as_csv();
 
             Assert.AreEqual("01/02/2017,£350.00,,ABC,\"ZZZThing3\",,,,,", csv_lines[0]);
             Assert.AreEqual("01/03/2017,£350.00,,ABC,\"ZZZThing2\",,,,,", csv_lines[1]);
@@ -525,7 +525,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanWriteNewContentsAsSourceLines()
+        public void Can_write_new_contents_as_source_lines()
         {
             // Arrange
             var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
@@ -539,7 +539,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Records.Add(new_bank_record);
 
             // Act
-            csv_file.WriteToFileAsSourceLines("BankIn-formatted-date-only-testing");
+            csv_file.Write_to_file_as_source_lines("BankIn-formatted-date-only-testing");
 
             // Assert
             List<string> new_file_lines = new List<string>();
@@ -564,7 +564,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         // Note that this only applies to CredCard1InOutRecord, BankRecord, CredCard2InOutRecord - because commas are stripped from input in third party records.
         // But not from owned records, because we use ^ as a separator instead of comma.
         [Test]
-        public void CanWriteDescriptionsContainingCommas()
+        public void Can_write_descriptions_containing_commas()
         {
             // Arrange
             var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
@@ -578,7 +578,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Records.Add(new_bank_record);
 
             // Act
-            csv_file.WriteToCsvFile("testing");
+            csv_file.Write_to_csv_file("testing");
 
             // Assert
             var file_io_test_file = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only-testing");
@@ -587,11 +587,11 @@ namespace ConsoleCatchallTests.Reconciliation.Files
                 true,
                 ',');
 
-            Assert.AreEqual("01/05/2017,£12.34,,POS,\"something, something, something else\",,,,,", new_csv_file.Records[5].SourceLine);
+            Assert.AreEqual("01/05/2017,£12.34,,POS,\"something, something, something else\",,,,,", new_csv_file.Records[5].Source_line);
         }
 
         [Test]
-        public void CanWriteAmountsContainingCommas()
+        public void Can_write_amounts_containing_commas()
         {
             // Arrange
             var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
@@ -603,7 +603,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Records.Add(new_bank_record);
 
             // Act
-            csv_file.WriteToCsvFile("testing");
+            csv_file.Write_to_csv_file("testing");
 
             // Assert
             var file_io_test_file = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only-testing");
@@ -612,7 +612,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
                 true,
                 ',');
 
-            Assert.AreEqual(1234.55, new_csv_file.Records[5].UnreconciledAmount);
+            Assert.AreEqual(1234.55, new_csv_file.Records[5].Unreconciled_amount);
             Assert.AreEqual("\"Purchase\"", new_csv_file.Records[5].Description);
         }
 
@@ -636,7 +636,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             Assert.AreEqual(0, target_file.Records.Count);
 
             // Act
-            source_file.CopyRecordsToCsvFile(target_file);
+            source_file.Copy_records_to_csv_file(target_file);
 
             // Assert
             Assert.AreEqual(source_file.Records.Count, target_file.Records.Count);
@@ -661,8 +661,8 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             Assert.AreEqual(2, file.Records.Count);
 
             // Act
-            file.AddRecordPermanently(new ExpectedIncomeRecord {Description = new_description});
-            file.PopulateRecordsFromOriginalFileLoad();
+            file.Add_record_permanently(new ExpectedIncomeRecord {Description = new_description});
+            file.Populate_records_from_original_file_load();
 
             // Assert
             Assert.AreEqual(3, file.Records.Count);
@@ -686,8 +686,8 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             Assert.AreEqual(2, file.Records.Count);
 
             // Act
-            file.RemoveRecordPermanently(source_records[0]);
-            file.PopulateRecordsFromOriginalFileLoad();
+            file.Remove_record_permanently(source_records[0]);
+            file.Populate_records_from_original_file_load();
 
             // Assert
             Assert.AreEqual(1, file.Records.Count);

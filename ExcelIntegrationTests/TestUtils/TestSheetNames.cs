@@ -6,13 +6,13 @@ namespace ExcelIntegrationTests.TestUtils
     {
         static readonly MyXmlReader XmlReader = new MyXmlReader();
 
-        public static string Bank => XmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Bank)}");
-        public static string CredCard1 => XmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.CredCard1)}");
-        public static string CredCard => XmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.CredCard)}");
-        public static string ExpectedOut => XmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.ExpectedOut)}");
-        public static string BudgetOut => XmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.BudgetOut)}");
-        public static string TestRecord => XmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.TestRecord)}");
-        public static string BadDivider => XmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.BadDivider)}");
-        public static string ActualBank => XmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.ActualBank)}");
+        public static string Bank => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Bank)}");
+        public static string Cred_card1 => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Cred_card1)}");
+        public static string Cred_card => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Cred_card)}");
+        public static string Expected_out => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Expected_out)}");
+        public static string Budget_out => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Budget_out)}");
+        public static string Test_record => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Test_record)}");
+        public static string Bad_divider => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Bad_divider)}");
+        public static string Actual_bank => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Actual_bank)}");
     }
 }

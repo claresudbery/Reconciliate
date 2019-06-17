@@ -4,6 +4,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 {
     internal interface ISpreadsheetRepoFactoryFactory
     {
-        ISpreadsheetRepoFactory GetFactory(string spreadsheetFileNameAndPath);
+        ISpreadsheetRepoFactory Get_factory(string spreadsheetFileNameAndPath);
     }
 }

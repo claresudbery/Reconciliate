@@ -12,7 +12,7 @@ namespace ExcelLibrary
             _excelCells = excelCells;
         }
 
-        public object ReadCell(int columnNumber)
+        public object Read_cell(int columnNumber)
         {
             return _excelCells[columnNumber];
         }

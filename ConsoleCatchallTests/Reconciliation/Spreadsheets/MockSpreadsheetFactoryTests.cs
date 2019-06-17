@@ -9,7 +9,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
     public class MockSpreadsheetFactoryTests
     {
         [Test]
-        public void WillNotAttemptToDisposeNullSpreadsheet()
+        public void Will_not_attempt_to_dispose_null_spreadsheet()
         {
             // Arrange
             ISpreadsheetRepo null_spreadsheet = null; 
@@ -19,7 +19,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             bool exception_thrown = false;
             try
             {
-                mock_spreadsheet_factory.DisposeOfSpreadsheetRepo();
+                mock_spreadsheet_factory.Dispose_of_spreadsheet_repo();
             }
             catch (Exception)
             {

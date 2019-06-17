@@ -4,7 +4,7 @@
     {
         static readonly MyXmlReader XmlReader = new MyXmlReader();
 
-        public static string Expenses => XmlReader.ReadXml($"{nameof(PlanningSheetNames)}.{nameof(PlanningSheetNames.Expenses)}");
-        public static string Deposits => XmlReader.ReadXml($"{nameof(PlanningSheetNames)}.{nameof(PlanningSheetNames.Deposits)}");
+        public static string Expenses => XmlReader.Read_xml($"{nameof(PlanningSheetNames)}.{nameof(PlanningSheetNames.Expenses)}");
+        public static string Deposits => XmlReader.Read_xml($"{nameof(PlanningSheetNames)}.{nameof(PlanningSheetNames.Deposits)}");
     }
 }

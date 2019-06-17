@@ -9,24 +9,24 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
     internal class FileIO<TRecordType> : IFileIO<TRecordType> where TRecordType : ICSVRecord, new()
     {
         private readonly ISpreadsheetRepoFactory _spreadsheetFactory;
-        public string FilePath { get; set; }
-        public string FileName { get; set; }
+        public string File_path { get; set; }
+        public string File_name { get; set; }
 
         public FileIO(ISpreadsheetRepoFactory spreadsheetFactory, string filePath = "", string fileName = "")
         {
             _spreadsheetFactory = spreadsheetFactory;
-            SetFilePaths(filePath, fileName);
+            Set_file_paths(filePath, fileName);
         }
 
-        public void SetFilePaths(string filePath, string fileName)
+        public void Set_file_paths(string filePath, string fileName)
         {
-            FilePath = filePath;
-            FileName = fileName;
+            File_path = filePath;
+            File_name = fileName;
         }
 
-        public void WriteToCsvFile(string fileSuffix, List<string> csvLines)
+        public void Write_to_csv_file(string fileSuffix, List<string> csvLines)
         {
-            using (StreamWriter output_file = new StreamWriter(FilePath + "/" + FileName + "-" + fileSuffix + ".csv"))
+            using (StreamWriter output_file = new StreamWriter(File_path + "/" + File_name + "-" + fileSuffix + ".csv"))
             {
                 foreach (string line in csvLines)
                 {
@@ -35,9 +35,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             }
         }
 
-        public void WriteToFileAsSourceLines(string newFileName, List<string> sourceLines)
+        public void Write_to_file_as_source_lines(string newFileName, List<string> sourceLines)
         {
-            using (StreamWriter output_file = new StreamWriter(FilePath + "/" + newFileName + ".csv"))
+            using (StreamWriter output_file = new StreamWriter(File_path + "/" + newFileName + ".csv"))
             {
                 foreach (string line in sourceLines)
                 {
@@ -46,21 +46,21 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             }
         }
 
-        public void AppendToFileAsSourceLine(string sourceLine)
+        public void Append_to_file_as_source_line(string sourceLine)
         {
-            using (StreamWriter output_file = new StreamWriter(FilePath + "/" + FileName + ".csv", true))
+            using (StreamWriter output_file = new StreamWriter(File_path + "/" + File_name + ".csv", true))
             {
                 output_file.WriteLine(sourceLine);
             }
         }
 
-        public void WriteBackToMainSpreadsheet(ICSVFile<TRecordType> csvFile, string worksheetName)
+        public void Write_back_to_main_spreadsheet(ICSVFile<TRecordType> csvFile, string worksheetName)
         {
-            ISpreadsheetRepo spreadsheet_repo = _spreadsheetFactory.CreateSpreadsheetRepo();
+            ISpreadsheetRepo spreadsheet_repo = _spreadsheetFactory.Create_spreadsheet_repo();
             var spreadsheet = new Spreadsheet(spreadsheet_repo);
             try
             {
-                WriteBackToSpreadsheet(spreadsheet, csvFile, worksheetName);
+                Write_back_to_spreadsheet(spreadsheet, csvFile, worksheetName);
                 spreadsheet_repo.Dispose();
             }
             catch (Exception)
@@ -70,22 +70,22 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             }
         }
 
-        public void WriteBackToSpreadsheet(ISpreadsheet spreadsheet, ICSVFile<TRecordType> csvFile, string worksheetName)
+        public void Write_back_to_spreadsheet(ISpreadsheet spreadsheet, ICSVFile<TRecordType> csvFile, string worksheetName)
         {
-            spreadsheet.DeleteUnreconciledRows(worksheetName);
-            spreadsheet.AppendCsvFile(worksheetName, csvFile);
+            spreadsheet.Delete_unreconciled_rows(worksheetName);
+            spreadsheet.Append_csv_file(worksheetName, csvFile);
         }
 
         public List<TRecordType> Load(List<string> fileContents, char? overrideSeparator = null)
         {
             var records = new List<TRecordType>();
-            using (var file_stream = File.OpenRead(FilePath + "/" + FileName + ".csv"))
+            using (var file_stream = File.OpenRead(File_path + "/" + File_name + ".csv"))
             using (var reader = new StreamReader(file_stream))
             {
                 while (!reader.EndOfStream)
                 {
                     var new_line = reader.ReadLine();
-                    while (LineIsHeader(new_line))
+                    while (Line_is_header(new_line))
                     {
                         new_line = reader.ReadLine();
                     }
@@ -100,7 +100,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
                         catch (Exception exception)
                         {
                             throw new FormatException(
-                                message: "Input not in correct format: " + new_record.SourceLine + ": " + exception.Message,
+                                message: "Input not in correct format: " + new_record.Source_line + ": " + exception.Message,
                                 innerException: exception.InnerException);
                         }
 
@@ -113,7 +113,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             return records;
         }
 
-        private bool LineIsHeader(string line)
+        private bool Line_is_header(string line)
         {
             return line != null
                    && (line == "" || !Char.IsDigit(line[0]));

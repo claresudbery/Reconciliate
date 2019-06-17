@@ -7,13 +7,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetDat
     {
         public Dictionary<string, int> Data { get; } = new Dictionary<string, int>
         {
-            {MainSheetNames.BankIn     , 6},
-            {MainSheetNames.BankOut    , 9},
-            {MainSheetNames.CredCard1  , 6},
-            {MainSheetNames.CredCard2  , 6},
-            {MainSheetNames.ExpectedIn , 8},
-            {MainSheetNames.ExpectedOut, 20},
-            {MainSheetNames.CredCard3  , 5},
+            {MainSheetNames.Bank_in     , 6},
+            {MainSheetNames.Bank_out    , 9},
+            {MainSheetNames.Cred_card1  , 6},
+            {MainSheetNames.Cred_card2  , 6},
+            {MainSheetNames.Expected_in , 8},
+            {MainSheetNames.Expected_out, 20},
+            {MainSheetNames.Cred_card3  , 5},
             {MainSheetNames.Savings    , 4}
         };
     }

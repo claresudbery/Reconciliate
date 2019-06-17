@@ -4,16 +4,16 @@
     {
         static readonly MyXmlReader XmlReader = new MyXmlReader();
 
-        public static string DividerText => XmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.DividerText)}");
-        public static string Expenses => XmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.Expenses)}");
-        public static string ExpensesTotal => XmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.ExpensesTotal)}");
-        public static string SODDs => XmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.SODDs)}");
-        public static string CredCard1 => XmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.CredCard1)}");
-        public static string CredCard2 => XmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.CredCard2)}");
-        public static string SODDTotal => XmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.SODDTotal)}");
-        public static string AnnualSODDs => XmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.AnnualSODDs)}");
-        public static string AnnualTotal => XmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.AnnualTotal)}");
-        public static string Date => XmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.Date)}");
-        public static string Total => XmlReader.ReadXml($"{nameof(Dividers)}.{nameof(Dividers.Total)}");
+        public static string Divider_text => XmlReader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Divider_text)}");
+        public static string Expenses => XmlReader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Expenses)}");
+        public static string Expenses_total => XmlReader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Expenses_total)}");
+        public static string SOD_ds => XmlReader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.SOD_ds)}");
+        public static string Cred_card1 => XmlReader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Cred_card1)}");
+        public static string Cred_card2 => XmlReader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Cred_card2)}");
+        public static string SODD_total => XmlReader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.SODD_total)}");
+        public static string Annual_sod_ds => XmlReader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Annual_sod_ds)}");
+        public static string Annual_total => XmlReader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Annual_total)}");
+        public static string Date => XmlReader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Date)}");
+        public static string Total => XmlReader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Total)}");
     }
 }

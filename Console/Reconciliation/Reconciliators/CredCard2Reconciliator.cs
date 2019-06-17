@@ -10,179 +10,179 @@ namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
     internal class CredCard2Reconciliator : IReconciliator
     {
         private readonly Reconciliator<CredCard2Record, CredCard2InOutRecord> _reconciliator;
-        public ICSVFile<CredCard2Record> ThirdPartyFile { get; set; }
-        public ICSVFile<CredCard2InOutRecord> OwnedFile { get; set; }
+        public ICSVFile<CredCard2Record> Third_party_file { get; set; }
+        public ICSVFile<CredCard2InOutRecord> Owned_file { get; set; }
 
         public CredCard2Reconciliator(
             IFileIO<CredCard2Record> credCard2FileIO,
             IFileIO<CredCard2InOutRecord> credCard2InOutFileIO)
         {
-            ThirdPartyFile = new CSVFile<CredCard2Record>(credCard2FileIO);
-            ThirdPartyFile.Load();
+            Third_party_file = new CSVFile<CredCard2Record>(credCard2FileIO);
+            Third_party_file.Load();
 
-            OwnedFile = new CSVFile<CredCard2InOutRecord>(credCard2InOutFileIO);
-            OwnedFile.Load();
+            Owned_file = new CSVFile<CredCard2InOutRecord>(credCard2InOutFileIO);
+            Owned_file.Load();
 
             _reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(
-                ThirdPartyFile, 
-                OwnedFile,
-                CredCard2AndCredCard2InOutData.LoadingInfo.ThirdPartyFileLoadAction,
-                CredCard2AndCredCard2InOutData.LoadingInfo.SheetName);
+                Third_party_file, 
+                Owned_file,
+                CredCard2AndCredCard2InOutData.LoadingInfo.Third_party_file_load_action,
+                CredCard2AndCredCard2InOutData.LoadingInfo.Sheet_name);
         }
 
-        public void FilterForNegativeRecordsOnly()
+        public void Filter_for_negative_records_only()
         {
-            ThirdPartyFile.FilterForNegativeRecordsOnly();
+            Third_party_file.Filter_for_negative_records_only();
         }
 
-        public void FilterForPositiveRecordsOnly()
+        public void Filter_for_positive_records_only()
         {
-            ThirdPartyFile.FilterForPositiveRecordsOnly();
+            Third_party_file.Filter_for_positive_records_only();
         }
 
-        public void SwapSignsOfAllAmounts()
+        public void Swap_signs_of_all_amounts()
         {
-            ThirdPartyFile.SwapSignsOfAllAmounts();
+            Third_party_file.Swap_signs_of_all_amounts();
         }
 
-        public bool FindReconciliationMatchesForNextThirdPartyRecord()
+        public bool Find_reconciliation_matches_for_next_third_party_record()
         {
-            return _reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            return _reconciliator.Find_reconciliation_matches_for_next_third_party_record();
         }
 
-        public bool MoveToNextUnmatchedThirdPartyRecord()
+        public bool Move_to_next_unmatched_third_party_record()
         {
-            return _reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            return _reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
         }
 
-        public bool NotAtEnd()
+        public bool Not_at_end()
         {
-            return _reconciliator.NotAtEnd();
+            return _reconciliator.Not_at_end();
         }
 
-        public string CurrentSourceRecordAsString()
+        public string Current_source_record_as_string()
         {
-            return _reconciliator.CurrentSourceRecordAsString();
+            return _reconciliator.Current_source_record_as_string();
         }
 
-        public ConsoleLine CurrentSourceRecordAsConsoleLine()
+        public ConsoleLine Current_source_record_as_console_line()
         {
-            return _reconciliator.CurrentSourceRecordAsConsoleLine();
+            return _reconciliator.Current_source_record_as_console_line();
         }
 
-        public string CurrentSourceDescription()
+        public string Current_source_description()
         {
-            return _reconciliator.CurrentSourceDescription();
+            return _reconciliator.Current_source_description();
         }
 
-        public void DeleteCurrentThirdPartyRecord()
+        public void Delete_current_third_party_record()
         {
-            _reconciliator.DeleteCurrentThirdPartyRecord();
+            _reconciliator.Delete_current_third_party_record();
         }
 
-        public void DeleteSpecificThirdPartyRecord(int specifiedIndex)
+        public void Delete_specific_third_party_record(int specifiedIndex)
         {
-            _reconciliator.DeleteSpecificThirdPartyRecord(specifiedIndex);
+            _reconciliator.Delete_specific_third_party_record(specifiedIndex);
         }
 
-        public void DeleteSpecificOwnedRecordFromListOfMatches(int specifiedIndex)
+        public void Delete_specific_owned_record_from_list_of_matches(int specifiedIndex)
         {
-            _reconciliator.DeleteSpecificOwnedRecordFromListOfMatches(specifiedIndex);
+            _reconciliator.Delete_specific_owned_record_from_list_of_matches(specifiedIndex);
         }
 
-        public int NumPotentialMatches()
+        public int Num_potential_matches()
         {
-            return _reconciliator.NumPotentialMatches();
+            return _reconciliator.Num_potential_matches();
         }
 
-        public List<IPotentialMatch> CurrentPotentialMatches()
+        public List<IPotentialMatch> Current_potential_matches()
         {
-            return _reconciliator.CurrentPotentialMatches();
+            return _reconciliator.Current_potential_matches();
         }
 
-        public void MarkLatestMatchIndex(int matchIndex)
+        public void Mark_latest_match_index(int matchIndex)
         {
-            _reconciliator.MarkLatestMatchIndex(matchIndex);
+            _reconciliator.Mark_latest_match_index(matchIndex);
         }
 
-        public void MatchNonMatchingRecord(int matchIndex)
+        public void Match_non_matching_record(int matchIndex)
         {
-            _reconciliator.MatchNonMatchingRecord(matchIndex);
+            _reconciliator.Match_non_matching_record(matchIndex);
         }
 
-        public List<ConsoleLine> GetFinalMatchesForConsole()
+        public List<ConsoleLine> Get_final_matches_for_console()
         {
-            return _reconciliator.GetFinalMatchesForConsole();
+            return _reconciliator.Get_final_matches_for_console();
         }
 
-        public void DoAutoMatching()
+        public void Do_auto_matching()
         {
-            _reconciliator.ReturnAutoMatches();
+            _reconciliator.Return_auto_matches();
         }
 
-        public List<ConsoleLine> GetAutoMatchesForConsole()
+        public List<ConsoleLine> Get_auto_matches_for_console()
         {
-            return _reconciliator.GetAutoMatchesForConsole();
+            return _reconciliator.Get_auto_matches_for_console();
         }
 
-        public void RemoveAutoMatch(int matchIndex)
+        public void Remove_auto_match(int matchIndex)
         {
-            _reconciliator.RemoveAutoMatch(matchIndex);
+            _reconciliator.Remove_auto_match(matchIndex);
         }
 
-        public void RemoveMultipleAutoMatches(List<int> matchIndices)
+        public void Remove_multiple_auto_matches(List<int> matchIndices)
         {
-            _reconciliator.RemoveMultipleAutoMatches(matchIndices);
+            _reconciliator.Remove_multiple_auto_matches(matchIndices);
         }
 
-        public void RemoveFinalMatch(int matchIndex)
+        public void Remove_final_match(int matchIndex)
         {
-            _reconciliator.RemoveFinalMatch(matchIndex);
+            _reconciliator.Remove_final_match(matchIndex);
         }
 
-        public void RemoveMultipleFinalMatches(List<int> matchIndices)
+        public void Remove_multiple_final_matches(List<int> matchIndices)
         {
-            _reconciliator.RemoveMultipleFinalMatches(matchIndices);
+            _reconciliator.Remove_multiple_final_matches(matchIndices);
         }
 
-        public int NumThirdPartyRecords()
+        public int Num_third_party_records()
         {
-            return ThirdPartyFile.Records.Count;
+            return Third_party_file.Records.Count;
         }
 
-        public int NumOwnedRecords()
+        public int Num_owned_records()
         {
-            return OwnedFile.Records.Count;
+            return Owned_file.Records.Count;
         }
 
-        public int NumMatchedThirdPartyRecords()
+        public int Num_matched_third_party_records()
         {
-            return ThirdPartyFile.NumMatchedRecords();
+            return Third_party_file.Num_matched_records();
         }
 
-        public int NumMatchedOwnedRecords()
+        public int Num_matched_owned_records()
         {
-            return OwnedFile.NumMatchedRecords();
+            return Owned_file.Num_matched_records();
         }
 
-        public int NumUnmatchedThirdPartyRecords()
+        public int Num_unmatched_third_party_records()
         {
-            return ThirdPartyFile.NumUnmatchedRecords();
+            return Third_party_file.Num_unmatched_records();
         }
 
-        public int NumUnmatchedOwnedRecords()
+        public int Num_unmatched_owned_records()
         {
-            return OwnedFile.NumUnmatchedRecords();
+            return Owned_file.Num_unmatched_records();
         }
 
-        public List<string> UnmatchedThirdPartyRecords()
+        public List<string> Unmatched_third_party_records()
         {
-            return ThirdPartyFile.UnmatchedRecordsAsCsv();
+            return Third_party_file.Unmatched_records_as_csv();
         }
 
-        public List<string> UnmatchedOwnedRecords()
+        public List<string> Unmatched_owned_records()
         {
-            return OwnedFile.UnmatchedRecordsAsCsv();
+            return Owned_file.Unmatched_records_as_csv();
         }
 
         public void Rewind()
@@ -195,19 +195,19 @@ namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
             _reconciliator.Finish(fileSuffix);
         }
 
-        public void MatchCurrentRecord(int matchIndex)
+        public void Match_current_record(int matchIndex)
         {
-            _reconciliator.MatchCurrentRecord(matchIndex);
+            _reconciliator.Match_current_record(matchIndex);
         }
 
-        public bool MoveToNextUnmatchedThirdPartyRecordForManualMatching()
+        public bool Move_to_next_unmatched_third_party_record_for_manual_matching()
         {
-            return _reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            return _reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
         }
 
-        public void RefreshFiles()
+        public void Refresh_files()
         {
-            _reconciliator.RefreshFiles();
+            _reconciliator.Refresh_files();
         }
     }
 }

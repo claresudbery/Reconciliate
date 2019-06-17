@@ -12,13 +12,13 @@ namespace ExcelLibrary
             _spreadsheetFileNameAndPath = spreadsheetFileNameAndPath;
         }
 
-        public ISpreadsheetRepo CreateSpreadsheetRepo()
+        public ISpreadsheetRepo Create_spreadsheet_repo()
         {
             _excelSpreadsheet = new ExcelSpreadsheetRepo(_spreadsheetFileNameAndPath);
             return _excelSpreadsheet;
         }
 
-        public void DisposeOfSpreadsheetRepo()
+        public void Dispose_of_spreadsheet_repo()
         {
             if (_excelSpreadsheet != null)
             {

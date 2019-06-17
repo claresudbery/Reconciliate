@@ -10,7 +10,7 @@ namespace ExcelIntegrationTests.Records
     {
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillReadFromActualBankRecordCells()
+        public void Will_read_from_actual_bank_record_cells()
         {
             // Arrange
             DateTime expected_date = new DateTime(year: 2018, month: 5, day: 30);
@@ -19,10 +19,10 @@ namespace ExcelIntegrationTests.Records
             Double expected_amount = 4567.89;
             Double expected_balance = 7898.88;
             var actual_bank_record = new ActualBankRecord();
-            var cells = _spreadsheet.ReadLastRow("ActualBank");
+            var cells = _spreadsheet.Read_last_row("ActualBank");
 
             // Act 
-            actual_bank_record.ReadFromSpreadsheetRow(cells);
+            actual_bank_record.Read_from_spreadsheet_row(cells);
 
             // Assert
             Assert.AreEqual(expected_date, actual_bank_record.Date);

@@ -10,7 +10,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
     {
         public static string BankInPendingFileName = ReconConsts.DefaultBankInPendingFileName;
         public static string BankOutPendingFileName = ReconConsts.DefaultBankOutPendingFileName;
-        public static string CredCard2InOutPendingFileName = ReconConsts.DefaultCredCard2InOutPendingFileName;
+        public static string CredCard2InOutPendingFileName = ReconConsts.Default_cred_card2_in_out_pending_file_name;
         public const string PendingSourceFileName = "Pending.txt";
 
         private readonly string _bankOutPendingFilePath;
@@ -30,7 +30,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _pendingSourceFilePath = _filePath + "/" + PendingSourceFileName;
         }
 
-        private IEnumerable<string> ReadLines(string filePath)
+        private IEnumerable<string> Read_lines(string filePath)
         {
             var lines = new List<string>();
             using (var file_stream = File.OpenRead(filePath))
@@ -44,46 +44,46 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return lines;
         }
 
-        public void CreateAndPopulateAllCsvs()
+        public void Create_and_populate_all_csvs()
         {
-            CreateFiles();
+            Create_files();
 
-            var all_lines = ReadLines(_pendingSourceFilePath);
+            var all_lines = Read_lines(_pendingSourceFilePath);
 
-            PopulateBankOutCsv(all_lines);
-            PopulateBankInCsv(all_lines);
-            PopulateCredCard2Csv(all_lines);
+            Populate_bank_out_csv(all_lines);
+            Populate_bank_in_csv(all_lines);
+            Populate_cred_card2_csv(all_lines);
         }
 
-        private void PopulateBankOutCsv(IEnumerable<string> allLines)
+        private void Populate_bank_out_csv(IEnumerable<string> allLines)
         {
-            PopulateCsvFile(allLines, ReconConsts.BankOutHeader, _bankOutPendingFilePath);
+            Populate_csv_file(allLines, ReconConsts.Bank_out_header, _bankOutPendingFilePath);
         }
 
-        private void PopulateBankInCsv(IEnumerable<string> allLines)
+        private void Populate_bank_in_csv(IEnumerable<string> allLines)
         {
-            PopulateCsvFile(allLines, ReconConsts.BankInHeader, _bankInPendingFilePath);
+            Populate_csv_file(allLines, ReconConsts.Bank_in_header, _bankInPendingFilePath);
         }
 
-        private void PopulateCredCard2Csv(IEnumerable<string> allLines)
+        private void Populate_cred_card2_csv(IEnumerable<string> allLines)
         {
-            PopulateCsvFile(allLines, ReconConsts.CredCard2Header, _credCard2InOutPendingFilePath);
+            Populate_csv_file(allLines, ReconConsts.Cred_card2_header, _credCard2InOutPendingFilePath);
         }
 
-        private void PopulateCsvFile(IEnumerable<string> allLines, string headerString, string filePath)
+        private void Populate_csv_file(IEnumerable<string> allLines, string headerString, string filePath)
         {
-            IEnumerable<string> relevant_lines = FindSubsetOfLines(allLines, headerString).ToList();
+            IEnumerable<string> relevant_lines = Find_subset_of_lines(allLines, headerString).ToList();
             File.WriteAllLines(filePath, relevant_lines);
         }
 
-        private void CreateFiles()
+        private void Create_files()
         {
             File.Create(_bankOutPendingFilePath).Dispose();
             File.Create(_bankInPendingFilePath).Dispose();
             File.Create(_credCard2InOutPendingFilePath).Dispose();
         }
 
-        private IEnumerable<string> FindSubsetOfLines(IEnumerable<string> allLines, string subsectionHeader)
+        private IEnumerable<string> Find_subset_of_lines(IEnumerable<string> allLines, string subsectionHeader)
         {
             var lines = allLines.ToList();
             var subset_of_lines = new List<string>();

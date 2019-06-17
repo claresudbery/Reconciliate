@@ -21,36 +21,36 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             bool orderOnLoad = true)
         {
             File.Load(loadFile, overrideSeparator, orderOnLoad);
-            RefreshFileContents();
+            Refresh_file_contents();
         }
 
-        public void RefreshFileContents()
+        public void Refresh_file_contents()
         {
-            FilterForEmployerExpensesOnly();
+            Filter_for_employer_expenses_only();
         }
 
-        public void FilterForEmployerExpensesOnly()
+        public void Filter_for_employer_expenses_only()
         {
-            File.RemoveRecords(x => x.Code != Codes.Expenses);
+            File.Remove_records(x => x.Code != Codes.Expenses);
         }
 
-        public void CopyToPendingFile(ICSVFile<BankRecord> pendingFile)
+        public void Copy_to_pending_file(ICSVFile<BankRecord> pendingFile)
         {
-            List<BankRecord> records_as_bank_records = File.Records.Select(x => x.ConvertToBankRecord()).ToList();
+            List<BankRecord> records_as_bank_records = File.Records.Select(x => x.Convert_to_bank_record()).ToList();
             foreach (var bank_record in records_as_bank_records)
             {
                 pendingFile.Records.Add(bank_record);
             }
         }
 
-        public void UpdateExpectedIncomeRecordWhenMatched(ICSVRecord sourceRecord, ICSVRecord match)
+        public void Update_expected_income_record_when_matched(ICSVRecord sourceRecord, ICSVRecord match)
         {
             if (File.Records != null)
             {
                 var matching_records = File.Records.Where(
-                    x => x.Description.RemovePunctuation() == match.Description.RemovePunctuation()
+                    x => x.Description.Remove_punctuation() == match.Description.Remove_punctuation()
                          && x.Date == match.Date
-                         && x.MainAmount() == match.MainAmount());
+                         && x.Main_amount() == match.Main_amount());
 
                 if (matching_records.Count() == 1)
                 {
@@ -58,8 +58,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
 
                     matching_record.Match = sourceRecord;
                     matching_record.Matched = true;
-                    matching_record.DatePaid = sourceRecord.Date;
-                    matching_record.TotalPaid = sourceRecord.MainAmount();
+                    matching_record.Date_paid = sourceRecord.Date;
+                    matching_record.Total_paid = sourceRecord.Main_amount();
                 }
             }
         }

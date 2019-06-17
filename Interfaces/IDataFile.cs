@@ -8,6 +8,6 @@ namespace Interfaces
             char? overrideSeparator = null,
             bool orderOnLoad = true);
 
-        void RefreshFileContents();
+        void Refresh_file_contents();
     }
 }

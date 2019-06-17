@@ -4,31 +4,31 @@ namespace Interfaces.DTOs
 {
     public class BudgetingMonths
     {
-        public int NextUnplannedMonth { get; set; }
-        public int LastMonthForBudgetPlanning { get; set; }
-        public int StartYear { get; set; }
+        public int Next_unplanned_month { get; set; }
+        public int Last_month_for_budget_planning { get; set; }
+        public int Start_year { get; set; }
 
-        public int NumBudgetingMonths()
+        public int Num_budgeting_months()
         {
-            return LastMonthForBudgetPlanning >= NextUnplannedMonth
-                ? (LastMonthForBudgetPlanning - NextUnplannedMonth) + 1
-                : (LastMonthForBudgetPlanning + 13) - NextUnplannedMonth;
+            return Last_month_for_budget_planning >= Next_unplanned_month
+                ? (Last_month_for_budget_planning - Next_unplanned_month) + 1
+                : (Last_month_for_budget_planning + 13) - Next_unplanned_month;
         }
 
-        public DateTime BudgetingStartDate()
+        public DateTime Budgeting_start_date()
         {
-            return new DateTime(StartYear, NextUnplannedMonth, 1);
+            return new DateTime(Start_year, Next_unplanned_month, 1);
         }
 
-        public DateTime BudgetingEndDate()
+        public DateTime Budgeting_end_date()
         {
-            return BudgetingStartDate().AddMonths(NumBudgetingMonths() - 1);
+            return Budgeting_start_date().AddMonths(Num_budgeting_months() - 1);
         }
 
-        public int GetMonthsToPlanAfterSpecifiedDate(DateTime previousDate)
+        public int Get_months_to_plan_after_specified_date(DateTime previousDate)
         {
             int result = 0;
-            var budgeting_end_date = BudgetingEndDate();
+            var budgeting_end_date = Budgeting_end_date();
 
             while (previousDate < budgeting_end_date)
             {

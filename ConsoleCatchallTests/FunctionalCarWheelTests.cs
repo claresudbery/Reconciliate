@@ -24,7 +24,7 @@ namespace ConsoleCatchallTests
             const int numWheels = 0;
 
             // Act
-            int num_cars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = Find_number_of_cars(numVehicles, numWheels);
 
             // Assert
             Assert.AreEqual(0, num_cars);
@@ -38,7 +38,7 @@ namespace ConsoleCatchallTests
             const int numWheels = 4;
 
             // Act
-            int num_cars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = Find_number_of_cars(numVehicles, numWheels);
 
             // Assert
             Assert.AreEqual(1, num_cars);
@@ -52,7 +52,7 @@ namespace ConsoleCatchallTests
         public void WithManyVehicles_AndWheelsIsVehiclesTimes4_TheyAreAllCars(int numVehicles, int numWheels)
         {
             // Act
-            int num_cars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = Find_number_of_cars(numVehicles, numWheels);
 
             // Assert
             Assert.AreEqual(numVehicles, num_cars);
@@ -66,7 +66,7 @@ namespace ConsoleCatchallTests
             const int numWheels = 2;
 
             // Act
-            int num_cars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = Find_number_of_cars(numVehicles, numWheels);
 
             // Assert
             Assert.AreEqual(0, num_cars);
@@ -80,7 +80,7 @@ namespace ConsoleCatchallTests
             const int numWheels = 4;
 
             // Act
-            int num_cars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = Find_number_of_cars(numVehicles, numWheels);
 
             // Assert
             Assert.AreEqual(0, num_cars);
@@ -94,7 +94,7 @@ namespace ConsoleCatchallTests
             const int numWheels = 6;
 
             // Act
-            int num_cars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = Find_number_of_cars(numVehicles, numWheels);
 
             // Assert
             Assert.AreEqual(1, num_cars);
@@ -108,7 +108,7 @@ namespace ConsoleCatchallTests
             const int numWheels = 12;
 
             // Act
-            int num_cars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = Find_number_of_cars(numVehicles, numWheels);
 
             // Assert
             Assert.AreEqual(2, num_cars);
@@ -122,7 +122,7 @@ namespace ConsoleCatchallTests
             const int numWheels = 10;
 
             // Act
-            int num_cars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = Find_number_of_cars(numVehicles, numWheels);
 
             // Assert
             Assert.AreEqual(2, num_cars);
@@ -136,13 +136,13 @@ namespace ConsoleCatchallTests
             const int numWheels = 8;
 
             // Act
-            int num_cars = FindNumberOfCars(numVehicles, numWheels);
+            int num_cars = Find_number_of_cars(numVehicles, numWheels);
 
             // Assert
             Assert.AreEqual(1, num_cars);
         }
 
-        private int FindNumberOfCars(int numVehicles, int numWheels)
+        private int Find_number_of_cars(int numVehicles, int numWheels)
         {
             int num_wheels_if_all_vehicles_are_motorbikes = numVehicles*2;
             int num_leftover_wheels = numWheels - num_wheels_if_all_vehicles_are_motorbikes;

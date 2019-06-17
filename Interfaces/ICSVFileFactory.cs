@@ -2,7 +2,7 @@
 {
     public interface ICSVFileFactory<TRecordType> where TRecordType : ICSVRecord, new()
     {
-        ICSVFile<TRecordType> CreateCSVFile(
+        ICSVFile<TRecordType> Create_csv_file(
             bool loadFile = true,
             char? overrideSeparator = null,
             bool orderOnLoad = true);

@@ -2,7 +2,7 @@
 {
     public interface ISpreadsheetRepoFactory
     {
-        ISpreadsheetRepo CreateSpreadsheetRepo();
-        void DisposeOfSpreadsheetRepo();
+        ISpreadsheetRepo Create_spreadsheet_repo();
+        void Dispose_of_spreadsheet_repo();
     }
 }

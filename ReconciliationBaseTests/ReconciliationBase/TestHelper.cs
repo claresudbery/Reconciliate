@@ -5,7 +5,7 @@
         public static string CSVFileLocation = "reconciliation-samples";
         public static string SpreadsheetFileLocation = "spreadsheet-samples";
 
-        public static string RelativeProjectRoot(string currentPath)
+        public static string Relative_project_root(string currentPath)
         {
             // This is a massive hack, but after a ton of googling and heartache this was the only way I could find!
             string relative_project_root = "/../../../";
@@ -18,24 +18,24 @@
             return relative_project_root;
         }
 
-        public static string FullyQualifiedFolderPath(string currentPath, string folderName)
+        public static string Fully_qualified_folder_path(string currentPath, string folderName)
         {
             return currentPath
-                   + RelativeProjectRoot(currentPath)
+                   + Relative_project_root(currentPath)
                    + folderName;
         }
 
-        public static string FullyQualifiedCSVFilePath(string currentPath)
+        public static string Fully_qualified_csv_file_path(string currentPath)
         {
-            return FullyQualifiedFolderPath(currentPath, CSVFileLocation);
+            return Fully_qualified_folder_path(currentPath, CSVFileLocation);
         }
 
-        public static string FullyQualifiedSpreadsheetFilePath(string currentPath)
+        public static string Fully_qualified_spreadsheet_file_path(string currentPath)
         {
-            return FullyQualifiedFolderPath(currentPath, SpreadsheetFileLocation);
+            return Fully_qualified_folder_path(currentPath, SpreadsheetFileLocation);
         }
 
-        public static void SetCorrectDateFormatting()
+        public static void Set_correct_date_formatting()
         {
             System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-GB");
             System.Threading.Thread.CurrentThread.CurrentCulture = culture;

@@ -13,7 +13,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
     public class CredCard1RecordTests
     {
         [Test]
-        public void CanReadDateFromCSV()
+        public void Can_read_date_from_csv()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -29,7 +29,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanReadReferenceFromCSV()
+        public void Can_read_reference_from_csv()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -44,7 +44,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanReadDescriptionFromCSV()
+        public void Can_read_description_from_csv()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -59,7 +59,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanReadAmountFromCSVWithoutPoundSign()
+        public void Can_read_amount_from_csv_without_pound_sign()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -91,7 +91,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanReadAmountFromCSVWithPoundSign()
+        public void Can_read_amount_from_csv_with_pound_sign()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -107,7 +107,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanCopeWithEmptyDate()
+        public void Can_cope_with_empty_date()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -122,7 +122,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanCopeWithEmptyReference()
+        public void Can_cope_with_empty_reference()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -136,7 +136,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanCopeWithEmptyDescription()
+        public void Can_cope_with_empty_description()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -150,7 +150,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanCopeWithEmptyAmount()
+        public void Can_cope_with_empty_amount()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -164,7 +164,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanCopeWithBadDate()
+        public void Can_cope_with_bad_date()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -180,7 +180,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanCopeWithBadAmount()
+        public void Can_cope_with_bad_amount()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -195,7 +195,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void ShouldBeAbleToCopeWithEmptyInput()
+        public void Should_be_able_to_cope_with_empty_input()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -209,7 +209,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanMakeMainAmountPositive()
+        public void Can_make_main_amount_positive()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -219,14 +219,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             cred_card1_record.Load(csv_line);
 
             // Act 
-            cred_card1_record.MakeMainAmountPositive();
+            cred_card1_record.Make_main_amount_positive();
 
             // Assert
             Assert.AreEqual(negative_amount * -1, cred_card1_record.Amount);
         }
 
         [Test]
-        public void IfMainAmountAlreadyPositiveThenMakingItPositiveHasNoEffect()
+        public void If_main_amount_already_positive_then_making_it_positive_has_no_effect()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -236,14 +236,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             cred_card1_record.Load(csv_line);
 
             // Act 
-            cred_card1_record.MakeMainAmountPositive();
+            cred_card1_record.Make_main_amount_positive();
 
             // Assert
             Assert.AreEqual(positive_amount, cred_card1_record.Amount);
         }
 
         [Test]
-        public void CsvIsConstructedCorrectly()
+        public void Csv_is_constructed_correctly()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -252,14 +252,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             cred_card1_record.Matched = false;
 
             // Act 
-            string constructed_csv_line = cred_card1_record.ToCsv();
+            string constructed_csv_line = cred_card1_record.To_csv();
 
             // Assert
             Assert.AreEqual("17/02/2017,£12.33,\"ANY STORE\"", constructed_csv_line);
         }
 
         [Test]
-        public void CanCopeWithInputContainingCommasSurroundedBySpaces()
+        public void Can_cope_with_input_containing_commas_surrounded_by_spaces()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -276,7 +276,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanCopeWithInputContainingCommasFollowedBySpaces()
+        public void Can_cope_with_input_containing_commas_followed_by_spaces()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -293,7 +293,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void CanCopeWithInputContainingCommasPrecededBySpaces()
+        public void Can_cope_with_input_containing_commas_preceded_by_spaces()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -311,7 +311,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
 
         // This doesn't apply to CredCard1InOutRecord and BankRecord because the input uses ^ as a separator, instead of comma.
         [Test]
-        public void CommasInInputAreReplacedBySemiColons()
+        public void Commas_in_input_are_replaced_by_semi_colons()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -327,7 +327,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
 
         // This doesn't apply to CredCard1InOutRecord and BankRecord and CredCard2Record because the input is never encased in quotes.
         [Test]
-        public void IfInputIsEncasedInQuotesThenOutputOnlyHasOneEncasingSetOfQuotes()
+        public void If_input_is_encased_in_quotes_then_output_only_has_one_encasing_set_of_quotes()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -337,7 +337,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             cred_card1_record.Matched = false;
 
             // Act 
-            string constructed_csv_line = cred_card1_record.ToCsv();
+            string constructed_csv_line = cred_card1_record.To_csv();
 
             // Assert
             var expected_csv_line = String.Format("17/02/2017,-£12.33,{0}", description_encased_in_one_set_of_quotes);
@@ -345,7 +345,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void AmountsContainingCommasShouldBeEncasedInQuotes()
+        public void Amounts_containing_commas_should_be_encased_in_quotes()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -356,7 +356,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             cred_card1_record.Load(csv_line);
 
             // Act 
-            string constructed_csv_line = cred_card1_record.ToCsv();
+            string constructed_csv_line = cred_card1_record.To_csv();
 
             // Assert
             string expected_csv_line = String.Format("17/02/2017,\"{0}\",\"ANY STORE\"", amount_containing_comma);
@@ -364,7 +364,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void AmountsShouldBeWrittenUsingPoundSigns()
+        public void Amounts_should_be_written_using_pound_signs()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
@@ -375,7 +375,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             cred_card1_record.Load(csv_line);
 
             // Act 
-            string constructed_csv_line = cred_card1_record.ToCsv();
+            string constructed_csv_line = cred_card1_record.To_csv();
 
             // Assert
             string expected_csv_line = String.Format("17/02/2017,{0},\"ANY STORE\"", amount_with_pound_sign);
@@ -383,7 +383,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         }
 
         [Test]
-        public void WhenCopyingRecordWillCopyAllImportantData()
+        public void When_copying_record_will_copy_all_important_data()
         {
             // Arrange
             var cred_card1_record = new CredCard1Record
@@ -393,7 +393,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
                 Description = "Description",
                 Reference = "33334444"
             };
-            cred_card1_record.UpdateSourceLineForOutput(',');
+            cred_card1_record.Update_source_line_for_output(',');
 
             // Act 
             var copied_record = (CredCard1Record)cred_card1_record.Copy();
@@ -403,11 +403,11 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             Assert.AreEqual(cred_card1_record.Amount, copied_record.Amount);
             Assert.AreEqual(cred_card1_record.Description, copied_record.Description);
             Assert.AreEqual(cred_card1_record.Reference, copied_record.Reference);
-            Assert.AreEqual(cred_card1_record.SourceLine, copied_record.SourceLine);
+            Assert.AreEqual(cred_card1_record.Source_line, copied_record.Source_line);
         }
 
         [Test]
-        public void WhenCopyingRecordWillCreateNewObject()
+        public void When_copying_record_will_create_new_object()
         {
             // Arrange
             var original_date = DateTime.Today;
@@ -421,8 +421,8 @@ namespace ConsoleCatchallTests.Reconciliation.Records
                 Description = original_description,
                 Reference = original_reference
             };
-            cred_card1_record.UpdateSourceLineForOutput(',');
-            var original_source_line = cred_card1_record.SourceLine;
+            cred_card1_record.Update_source_line_for_output(',');
+            var original_source_line = cred_card1_record.Source_line;
 
             // Act 
             var copied_record = (CredCard1Record)cred_card1_record.Copy();
@@ -430,14 +430,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             copied_record.Amount = copied_record.Amount + 1;
             copied_record.Description = copied_record.Description + "something else";
             copied_record.Reference = copied_record.Reference + 1;
-            copied_record.UpdateSourceLineForOutput(',');
+            copied_record.Update_source_line_for_output(',');
 
             // Assert
             Assert.AreEqual(original_date, cred_card1_record.Date);
             Assert.AreEqual(original_amount, cred_card1_record.Amount);
             Assert.AreEqual(original_description, cred_card1_record.Description);
             Assert.AreEqual(original_reference, cred_card1_record.Reference);
-            Assert.AreEqual(original_source_line, cred_card1_record.SourceLine);
+            Assert.AreEqual(original_source_line, cred_card1_record.Source_line);
         }
 
         [Test]
@@ -455,12 +455,12 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             var mock_cells = new Mock<ICellSet>();
 
             // Act 
-            cred_card1_record.PopulateSpreadsheetRow(mock_cells.Object, row);
+            cred_card1_record.Populate_spreadsheet_row(mock_cells.Object, row);
 
             // Assert
-            mock_cells.Verify(x => x.PopulateCell(row, CredCard1Record.DateSpreadsheetIndex + 1, cred_card1_record.Date), "Date");
-            mock_cells.Verify(x => x.PopulateCell(row, CredCard1Record.AmountSpreadsheetIndex + 1, cred_card1_record.MainAmount()), "Amount");
-            mock_cells.Verify(x => x.PopulateCell(row, CredCard1Record.DescriptionSpreadsheetIndex + 1, cred_card1_record.Description), "Desc");
+            mock_cells.Verify(x => x.Populate_cell(row, CredCard1Record.DateSpreadsheetIndex + 1, cred_card1_record.Date), "Date");
+            mock_cells.Verify(x => x.Populate_cell(row, CredCard1Record.AmountSpreadsheetIndex + 1, cred_card1_record.Main_amount()), "Amount");
+            mock_cells.Verify(x => x.Populate_cell(row, CredCard1Record.DescriptionSpreadsheetIndex + 1, cred_card1_record.Description), "Desc");
         }
 
         [Test]
@@ -475,7 +475,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             Double expected_amount = 37958.90;
             var excel_date = expected_date.ToOADate();
             var excel_date2 = expected_date.AddDays(1).ToOADate();
-            var fake_cell_row = new FakeCellRow().WithFakeData(new List<object>
+            var fake_cell_row = new FakeCellRow().With_fake_data(new List<object>
             {
                 excel_date,
                 excel_date2,
@@ -484,13 +484,13 @@ namespace ConsoleCatchallTests.Reconciliation.Records
                 expected_amount
             });
             var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
-            mock_spreadsheet_repo.Setup(x => x.ReadLastRow(sheet_name)).Returns(fake_cell_row);
+            mock_spreadsheet_repo.Setup(x => x.Read_last_row(sheet_name)).Returns(fake_cell_row);
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
             var cred_card1_record = new CredCard1Record();
-            var cells = spreadsheet.ReadLastRow(sheet_name);
+            var cells = spreadsheet.Read_last_row(sheet_name);
 
             // Act 
-            cred_card1_record.ReadFromSpreadsheetRow(cells);
+            cred_card1_record.Read_from_spreadsheet_row(cells);
 
             // Assert
             Assert.AreEqual(expected_date, cred_card1_record.Date);

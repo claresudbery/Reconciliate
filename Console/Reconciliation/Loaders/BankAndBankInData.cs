@@ -8,28 +8,28 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         public static DataLoadingInformation LoadingInfo =
             new DataLoadingInformation
             {
-                FilePaths = new FilePaths
+                File_paths = new FilePaths
                 {
-                    MainPath = ReconConsts.DefaultFilePath,
-                    ThirdPartyFileName = ReconConsts.DefaultBankFileName,
-                    OwnedFileName = ReconConsts.DefaultBankInFileName
+                    Main_path = ReconConsts.Default_file_path,
+                    Third_party_file_name = ReconConsts.Default_bank_file_name,
+                    Owned_file_name = ReconConsts.DefaultBankInFileName
                 },
-                DefaultSeparator = ',',
-                LoadingSeparator = '^',
-                PendingFileName = ReconConsts.DefaultBankInPendingFileName,
-                SheetName = MainSheetNames.BankIn,
-                ThirdPartyDescriptor = ReconConsts.BankDescriptor,
-                OwnedFileDescriptor = ReconConsts.BankInDescriptor,
-                MonthlyBudgetData = new BudgetItemListData
+                Default_separator = ',',
+                Loading_separator = '^',
+                Pending_file_name = ReconConsts.DefaultBankInPendingFileName,
+                Sheet_name = MainSheetNames.Bank_in,
+                Third_party_descriptor = ReconConsts.Bank_descriptor,
+                Owned_file_descriptor = ReconConsts.BankInDescriptor,
+                Monthly_budget_data = new BudgetItemListData
                 {
-                    SheetName = MainSheetNames.BudgetIn,
-                    StartDivider = Dividers.Date,
-                    EndDivider = Dividers.Total,
-                    FirstColumnNumber = 2,
-                    LastColumnNumber = 6
+                    Sheet_name = MainSheetNames.Budget_in,
+                    Start_divider = Dividers.Date,
+                    End_divider = Dividers.Total,
+                    First_column_number = 2,
+                    Last_column_number = 6
                 },
-                AnnualBudgetData = null,
-                ThirdPartyFileLoadAction = ThirdPartyFileLoadAction.FilterForPositiveRecordsOnly
+                Annual_budget_data = null,
+                Third_party_file_load_action = ThirdPartyFileLoadAction.FilterForPositiveRecordsOnly
             };
     }
 }

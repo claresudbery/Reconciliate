@@ -12,12 +12,12 @@ namespace ExcelLibrary
             _excelCells = excelCells;
         }
 
-        public void PopulateCell(int rowNumber, int columnNumber, object cellContent)
+        public void Populate_cell(int rowNumber, int columnNumber, object cellContent)
         {
             _excelCells[rowNumber, columnNumber] = cellContent;
         }
 
-        public object GetCell(int rowNumber, int columnNumber)
+        public object Get_cell(int rowNumber, int columnNumber)
         {
             return _excelCells[rowNumber, columnNumber];
         }

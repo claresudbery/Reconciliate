@@ -1,71 +1,71 @@
 <?xml version="1.0"?>  
 <config>
 	<!--**************-->
-	<!--ReconConsts-->
-	<!--**************-->
-	<TestValueDoNotChange>This value should always be this string.</TestValueDoNotChange>
-	<MainSpreadsheetPath>C:/Development/Reconciliate/reconciliation-samples/For-debugging</MainSpreadsheetPath>
-	<DefaultFilePath>C:/Development/Reconciliate/reconciliation-samples/For-debugging</DefaultFilePath>
-	<MainSpreadsheetFileName>Your-Spreadsheet.xlsx</MainSpreadsheetFileName>
-	<TestBackupFilePath>C:/Temp/ManualTesting/TestSpreadsheetBackups</TestBackupFilePath>
-	<SourceDebugSpreadsheetPath>C:/Development/Reconciliate/reconciliation-samples/For-debugging</SourceDebugSpreadsheetPath>
-	<BackupSubFolder>SpreadsheetBackups</BackupSubFolder>
-	<DebugSpreadsheetFileName>debug-backup-spreadsheet.xlsx</DebugSpreadsheetFileName>
-	<PocketMoneySpreadsheetPath>C:/Development/Reconciliate/reconciliation-samples/For-debugging/Pocket-Money-Spreadsheet.xlsx</PocketMoneySpreadsheetPath>
-    <FiveFileOptions>1.EnterFile, 2.CredCard1InOut, 3.CredCard2InOut, 4.BankIn, 5.BankOut</FiveFileOptions>
-    <FourAccountingTypes>1.CredCard1, 2.CredCard2, 3.ActualBankIn, 4.ActualBankOut</FourAccountingTypes>
-    <FourFileNameOptions>1.EnterFileName, 2.CredCard1File, 3.CredCard2File, 4.ActualBankFile</FourFileNameOptions>
-    <FiveFileDetails>1.OwnFileDetails, 2.CredCard1, 3.CredCard2, 4.ActualBankIn, 5.ActualBankOut</FiveFileDetails>
-    <File_Option_02>2. CredCard1 InOut default ({0}.csv) (3rd party format will be CredCard1)</File_Option_02>
-    <File_Option_03>3. CredCard2 InOut default ({0}.csv) (3rd party format will be CredCard2)</File_Option_03>
-    <File_Option_04>4. Bank In default ({0}.csv) (3rd party format will be ActualBank)</File_Option_04>
-    <File_Option_05>5. Bank Out default ({0}.csv) (3rd party format will be ActualBank)</File_Option_05>
-    <File_Name_Option_02>2. Use the default for CredCard1 ({0}.csv)</File_Name_Option_02>
-    <File_Name_Option_03>3. Use the default for CredCard2 ({0}.csv)</File_Name_Option_03>
-    <File_Name_Option_04>4. Use the default for ActualBank ({0}.csv)</File_Name_Option_04>
-    <File_Details_02>2. Use defaults for CredCard1 and CredCard1 InOut</File_Details_02>
-    <File_Details_03>3. Use defaults for CredCard2 and CredCard2 InOut</File_Details_03>
-    <File_Details_04>4. Use defaults for ActualBank and Bank In</File_Details_04>
-    <File_Details_05>5. Use defaults for ActualBank and Bank Out</File_Details_05>
-    <Accounting_Type_01>1. CredCard1 and CredCard1 InOut</Accounting_Type_01>
-    <Accounting_Type_02>2. CredCard2 and CredCard2 InOut</Accounting_Type_02>
-    <Accounting_Type_03>3. ActualBank and Bank In</Accounting_Type_03>
-    <Accounting_Type_04>4. ActualBank and Bank Out</Accounting_Type_04>
-    <DefaultBankFileName>ActualBank</DefaultBankFileName>
-    <DefaultCredCard1FileName>CredCard1</DefaultCredCard1FileName>
-    <DefaultCredCard2FileName>CredCard2</DefaultCredCard2FileName>
-    <DefaultCredCard1InOutFileName>CredCard1InOut</DefaultCredCard1InOutFileName>
-    <DefaultCredCard2InOutFileName>CredCard2InOut</DefaultCredCard2InOutFileName>
-    <DefaultCredCard2InOutPendingFileName>CredCard2InOutPending</DefaultCredCard2InOutPendingFileName>
-    <DefaultCredCard1InOutPendingFileName>CredCard1InOutPending</DefaultCredCard1InOutPendingFileName>
-    <BankDescriptor>ActualBank</BankDescriptor>
-    <CredCard1Descriptor>CredCard1</CredCard1Descriptor>
-    <CredCard1InOutDescriptor>CredCard1 InOut</CredCard1InOutDescriptor>
-    <CredCard2Descriptor>CredCard2</CredCard2Descriptor>
-    <CredCard2InOutDescriptor>CredCard2 InOut</CredCard2InOutDescriptor>
-    <EmployerExpenseDescription>ACME LTD</EmployerExpenseDescription>
-    <CredCard1Name>CredCard1</CredCard1Name>
-    <CredCard2Name>CredCard2</CredCard2Name>
-    <CredCard1DdDescription>CREDIT CARD 1</CredCard1DdDescription>
-    <CredCard2DdDescription>CREDIT CARD 2</CredCard2DdDescription>
-    <CredCard1RegularPymtDescription>CRED CARD 1 PAYMENT DESCRIPTION ON STATEMENTS</CredCard1RegularPymtDescription>
-    <CredCard2RegularPymtDescription>CRED CARD 2 PAYMENT DESCRIPTION ON STATEMENTS</CredCard2RegularPymtDescription>
-    <Instructions_Line_01>  (See ReconciliationProcess.txt for full process, and Trello for current bugs)</Instructions_Line_01>
-    <Instructions_Line_02>  Go to your third party website and download a statement as a csv file.</Instructions_Line_02>
-    <Instructions_Line_03>  Name it ActualBank.csv, CredCard1.csv or CredCard2.csv.</Instructions_Line_03>
-    <Instructions_Line_04>  Create csvs of pending transactions, named Pending.txt and CredCard1InOutPending.csv.</Instructions_Line_04>
-    <Instructions_Line_05>  !! For Bank In and Bank Out, check Type columns before starting !!</Instructions_Line_05>
-    <Instructions_Line_06>  Check VERY carefully - it's really easy to miss an example of this.</Instructions_Line_06>
-    <Instructions_Line_07>  This is because if the description is in the Type column, you'll get errors.</Instructions_Line_07>
-    <Instructions_Line_08>  But you won't see those errors until you're halfway through processing</Instructions_Line_08>
-    <Instructions_Line_09>  the file, and then you'll lose all your work.</Instructions_Line_09>
-    <Instructions_Line_10>  Run the 'load pending csvs' step before starting reconciliation.</Instructions_Line_10>
-    <Instructions_Line_11>  Follow the on-screen instructions.</Instructions_Line_11>             
-    <BankOutHeader>Bank Out</BankOutHeader>
-    <BankInHeader>Bank In</BankInHeader >
-    <CredCard2Header>CredCard2</CredCard2Header>
-    <LoadPendingCsvs>1. Load pending csvs for CredCard2, Bank In and Bank Out (from phone).</LoadPendingCsvs>
-	<LoadingExpenses>Loading ACME expenses from Expected In...</LoadingExpenses>
+	<!--ReconConsts-->                       
+	<!--**************-->               
+	<Test_value_do_not_change>This value should always be this string.</Test_value_do_not_change>                   
+	<Main_spreadsheet_path>C:/Development/Reconciliate/reconciliation-samples/For-debugging</Main_spreadsheet_path>                      
+	<Default_file_path>C:/Development/Reconciliate/reconciliation-samples/For-debugging	</Default_file_path>                          
+	<Main_spreadsheet_file_name>Your-Spreadsheet.xlsx</Main_spreadsheet_file_name>                 
+	<Test_backup_file_path>C:/Temp/ManualTesting/TestSpreadsheetBackups</Test_backup_file_path>                      
+	<Source_debug_spreadsheet_path>C:/Development/Reconciliate/reconciliation-samples/For-debugging</Source_debug_spreadsheet_path>              
+	<Backup_sub_folder>SpreadsheetBackups</Backup_sub_folder>                          
+	<Debug_spreadsheet_file_name>debug-backup-spreadsheet.xlsx</Debug_spreadsheet_file_name>                
+	<Pocket_money_spreadsheet_path>C:/Development/Reconciliate/reconciliation-samples/For-debugging/Pocket-Money-Spreadsheet.xlsx</Pocket_money_spreadsheet_path>              
+    <Five_file_options>1.EnterFile, 2.CredCard1InOut, 3.CredCard2InOut, 4.BankIn, 5.BankOut</Five_file_options>                          
+    <Four_accounting_types>1.CredCard1, 2.CredCard2, 3.ActualBankIn, 4.ActualBankOut</Four_accounting_types>                      
+    <Four_file_name_options>1.EnterFileName, 2.CredCard1File, 3.CredCard2File, 4.ActualBankFile</Four_file_name_options>                     
+    <Five_file_details>1.OwnFileDetails, 2.CredCard1, 3.CredCard2, 4.ActualBankIn, 5.ActualBankOut</Five_file_details>                          
+    <File_option_02>2. CredCard1 InOut default ({0}.csv) (3rd party format will be CredCard1)</File_option_02>                             
+    <File_option_03>3. CredCard2 InOut default ({0}.csv) (3rd party format will be CredCard2)</File_option_03>                             
+    <File_option_04>4. Bank In default ({0}.csv) (3rd party format will be ActualBank)</File_option_04>                             
+    <File_option_05>5. Bank Out default ({0}.csv) (3rd party format will be ActualBank)</File_option_05>                             
+    <Accounting_type_01>2. Use the default for CredCard1 ({0}.csv)</Accounting_type_01>                         
+    <Accounting_type_02>3. Use the default for CredCard2 ({0}.csv)</Accounting_type_02>                         
+    <Accounting_type_03>4. Use the default for ActualBank ({0}.csv)</Accounting_type_03>                         
+    <Accounting_type_04>2. Use defaults for CredCard1 and CredCard1 InOut</Accounting_type_04>                         
+    <File_name_option_02>3. Use defaults for CredCard2 and CredCard2 InOut</File_name_option_02>                        
+    <File_name_option_03>4. Use defaults for ActualBank and Bank In</File_name_option_03>                        
+    <File_name_option_04>5. Use defaults for ActualBank and Bank Out</File_name_option_04>                        
+    <File_details_02>1. CredCard1 and CredCard1 InOut</File_details_02>                            
+    <File_details_03>2. CredCard2 and CredCard2 InOut</File_details_03>                            
+    <File_details_04>3. ActualBank and Bank In</File_details_04>                            
+    <File_details_05>4. ActualBank and Bank Out</File_details_05>                            
+    <Default_bank_file_name>ActualBank</Default_bank_file_name>                     
+    <Default_cred_card1_file_name>CredCard1</Default_cred_card1_file_name>               
+    <Default_cred_card2_file_name>CredCard2</Default_cred_card2_file_name>               
+    <Default_cred_card1_in_out_file_name>CredCard1InOut</Default_cred_card1_in_out_file_name>        
+    <Default_cred_card2_in_out_file_name>CredCard2InOut</Default_cred_card2_in_out_file_name>        
+    <Default_cred_card2_in_out_pending_file_name>CredCard2InOutPending</Default_cred_card2_in_out_pending_file_name>
+    <Default_cred_card1_in_out_pending_file_name>CredCard1InOutPending</Default_cred_card1_in_out_pending_file_name>
+    <Bank_descriptor>ActualBank</Bank_descriptor>                            
+    <Cred_card1_descriptor>CredCard1</Cred_card1_descriptor>                      
+    <Cred_card1_in_out_descriptor>CredCard1 InOut</Cred_card1_in_out_descriptor>               
+    <Cred_card2_descriptor>CredCard2</Cred_card2_descriptor>                      
+    <Cred_card2_in_out_descriptor>CredCard2 InOut</Cred_card2_in_out_descriptor>               
+    <Employer_expense_description>ACME LTD</Employer_expense_description>               
+    <Cred_card1_name>CredCard1</Cred_card1_name>                            
+    <Cred_card2_name>CredCard2</Cred_card2_name>                            
+    <Cred_card1_dd_description>CREDIT CARD 1</Cred_card1_dd_description>                  
+    <Cred_card2_dd_description>CREDIT CARD 2</Cred_card2_dd_description>                  
+    <Cred_card1_regular_pymt_description>CRED CARD 1 PAYMENT DESCRIPTION ON STATEMENTS</Cred_card1_regular_pymt_description>        
+    <Cred_card2_regular_pymt_description>CRED CARD 2 PAYMENT DESCRIPTION ON STATEMENTS</Cred_card2_regular_pymt_description>        
+    <Instructions_line_01> (See ReconciliationProcess.txt for full process, and Trello for current bugs)</Instructions_line_01>                       
+    <Instructions_line_02> Go to your third party website and download a statement as a csv file.</Instructions_line_02>                       
+    <Instructions_line_03> Name it ActualBank.csv, CredCard1.csv or CredCard2.csv.</Instructions_line_03>                       
+    <Instructions_line_04> Create csvs of pending transactions, named Pending.txt and CredCard1InOutPending.csv.</Instructions_line_04>                       
+    <Instructions_line_05> !! For Bank In and Bank Out, check Type columns before starting !!</Instructions_line_05>                       
+    <Instructions_line_06> Check VERY carefully - it's really easy to miss an example of this.</Instructions_line_06>                       
+    <Instructions_line_07> This is because if the description is in the Type column, you'll get errors.</Instructions_line_07>                       
+    <Instructions_line_08> But you won't see those errors until you're halfway through processing</Instructions_line_08>                       
+    <Instructions_line_09> the file, and then you'll lose all your work.</Instructions_line_09>                       
+    <Instructions_line_10> Run the 'load pending csvs' step before starting reconciliation.</Instructions_line_10>                       
+    <Instructions_line_11> Follow the on-screen instructions.</Instructions_line_11>                       
+    <Bank_out_header>Bank Out</Bank_out_header>                            
+    <Bank_in_header>Bank In</Bank_in_header>                             
+    <Cred_card2_header>CredCard2</Cred_card2_header>                          
+    <Load_pending_csvs>1. Load pending csvs for CredCard2, Bank In and Bank Out (from phone).</Load_pending_csvs>                          
+	<Loading_expenses>Loading ACME expenses from Expected In...</Loading_expenses>                           
 	<!--**************-->
 	<!--Codes-->
 	<!--**************-->

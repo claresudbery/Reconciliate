@@ -4,6 +4,6 @@
     {
         static readonly MyXmlReader XmlReader = new MyXmlReader();
 
-        public static string SecondChild => XmlReader.ReadXml($"{nameof(PocketMoneySheetNames)}.{nameof(PocketMoneySheetNames.SecondChild)}");
+        public static string Second_child => XmlReader.Read_xml($"{nameof(PocketMoneySheetNames)}.{nameof(PocketMoneySheetNames.Second_child)}");
     }
 }

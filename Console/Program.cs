@@ -10,7 +10,7 @@ namespace ConsoleCatchall.Console
         private static InputOutput _inputOutput = new InputOutput();
         static void Main(string[] args)
         {
-            SetCorrectDateFormatting();
+            Set_correct_date_formatting();
 
             // If running in .Net Core mode, you'll use args to pass in the path to your main config.
             // (particularly important on a Mac, where C:/Config will not work)
@@ -26,7 +26,7 @@ namespace ConsoleCatchall.Console
                     "1. Reconciliate!",
                     "2. Exit",
                 };
-                _inputOutput.OutputOptions(options);
+                _inputOutput.Output_options(options);
                 string input = System.Console.ReadLine();
 
                 while (input != "2" && input.ToUpper() != "EXIT")
@@ -36,24 +36,24 @@ namespace ConsoleCatchall.Console
                         case "1": new ReconciliationIntro(_inputOutput).Start(); break;
                     }
 
-                    _inputOutput.OutputLine("");
-                    _inputOutput.OutputOptions(options);
+                    _inputOutput.Output_line("");
+                    _inputOutput.Output_options(options);
                     input = System.Console.ReadLine();
                 }
 
-                _inputOutput.OutputLine("Goodbye!");
+                _inputOutput.Output_line("Goodbye!");
 
                 Thread.Sleep(System.TimeSpan.FromSeconds(5));
             }
             catch (Exception exception)
             {
-                _inputOutput.OutputLine(exception.Message);
-                _inputOutput.OutputLine("I'm just going to leave this screen up for a few seconds so you can read this message [drums fingers].");
+                _inputOutput.Output_line(exception.Message);
+                _inputOutput.Output_line("I'm just going to leave this screen up for a few seconds so you can read this message [drums fingers].");
                 Thread.Sleep(System.TimeSpan.FromSeconds(10));
             }
         }
 
-        public static void SetCorrectDateFormatting()
+        public static void Set_correct_date_formatting()
         {
             System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-GB");
             System.Threading.Thread.CurrentThread.CurrentCulture = culture;

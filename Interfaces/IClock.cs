@@ -4,6 +4,6 @@ namespace Interfaces
 {
     public interface IClock
     {
-        DateTime NowDateTime();
+        DateTime Now_date_time();
     }
 }
