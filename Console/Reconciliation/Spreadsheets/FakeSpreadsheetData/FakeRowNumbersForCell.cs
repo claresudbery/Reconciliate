@@ -35,12 +35,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetDat
                 }},
             { MainSheetNames.Budget_out,
                 new Dictionary<string, int> {
-                    {Dividers.SOD_ds, 8},
+                    {Dividers.SODDS, 8},
                     {Codes.Code042, 12},
                     {Dividers.Cred_card1, 13},
                     {Dividers.Cred_card2, 17},
                     {Dividers.SODD_total, 21},
-                    {Dividers.Annual_sod_ds, 23},
+                    {Dividers.Annual_SODDS, 23},
                     {Dividers.Annual_total, 27}
                 }}
         };

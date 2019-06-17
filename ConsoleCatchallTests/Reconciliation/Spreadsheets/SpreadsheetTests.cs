@@ -238,7 +238,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var budget_item_list_data = new BudgetItemListData
             {
                 Sheet_name = MainSheetNames.Budget_out,
-                Start_divider = Dividers.SOD_ds,
+                Start_divider = Dividers.SODDS,
                 End_divider = Dividers.Cred_card1,
                 First_column_number = 2,
                 Last_column_number = 6
@@ -378,7 +378,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var budget_item_list_data = new BudgetItemListData
             {
                 Sheet_name = MainSheetNames.Budget_out,
-                Start_divider = Dividers.Annual_sod_ds,
+                Start_divider = Dividers.Annual_SODDS,
                 End_divider = Dividers.Annual_total,
                 First_column_number = 2,
                 Last_column_number = 6
@@ -663,7 +663,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var first_monthly_row = 3;
             var last_monthly_row = first_monthly_row + 2;
             var monthly_bank_records = new List<BankRecord>();
-            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, Dividers.SOD_ds, 2)).Returns(first_monthly_row);
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, Dividers.SODDS, 2)).Returns(first_monthly_row);
             mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, Dividers.Cred_card1, 2)).Returns(last_monthly_row);
             mock_spreadsheet_repo.Setup(x => x.Get_rows_as_records<BankRecord>(sheet_name, first_monthly_row + 1, last_monthly_row - 1, 2, 6)).Returns(monthly_bank_records);
             // Annual setup:
@@ -678,7 +678,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
                 new BankRecord { Date = new DateTime(2018, lastMonth, 1), Description = desc2 },
                 new BankRecord { Date = new DateTime(2018, lastMonth + 2, 1), Description = desc3 }
             };
-            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, Dividers.Annual_sod_ds, 2)).Returns(first_annual_row);
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, Dividers.Annual_SODDS, 2)).Returns(first_annual_row);
             mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, Dividers.Annual_total, 2)).Returns(last_annual_row);
             mock_spreadsheet_repo.Setup(x => x.Get_rows_as_records<BankRecord>(sheet_name, first_annual_row + 1, last_annual_row - 1, 2, 6)).Returns(annual_bank_records);
             // Everything else:
@@ -695,7 +695,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var monthly_budget_item_list_data = new BudgetItemListData
             {
                 Sheet_name = MainSheetNames.Budget_out,
-                Start_divider = Dividers.SOD_ds,
+                Start_divider = Dividers.SODDS,
                 End_divider = Dividers.Cred_card1,
                 First_column_number = 2,
                 Last_column_number = 6
@@ -703,7 +703,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var annual_budget_item_list_data = new BudgetItemListData
             {
                 Sheet_name = MainSheetNames.Budget_out,
-                Start_divider = Dividers.Annual_sod_ds,
+                Start_divider = Dividers.Annual_SODDS,
                 End_divider = Dividers.Annual_total,
                 First_column_number = 2,
                 Last_column_number = 6
@@ -738,7 +738,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var first_annual_row = 10;
             var last_annual_row = first_annual_row + 2;
             var annual_bank_records = new List<BankRecord>();
-            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, Dividers.Annual_sod_ds, 2)).Returns(first_annual_row);
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, Dividers.Annual_SODDS, 2)).Returns(first_annual_row);
             mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, Dividers.Annual_total, 2)).Returns(last_annual_row);
             mock_spreadsheet_repo.Setup(x => x.Get_rows_as_records<BankRecord>(sheet_name, first_annual_row + 1, last_annual_row - 1, 2, 6)).Returns(annual_bank_records);
             // Everything else:
@@ -747,7 +747,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
                 lastMonth,
                 sheet_name,
                 mock_spreadsheet_repo,
-                Dividers.SOD_ds,
+                Dividers.SODDS,
                 Dividers.Cred_card1,
                 6);
             var pending_file_records = new List<BankRecord>();
@@ -757,7 +757,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var monthly_budget_item_list_data = new BudgetItemListData
             {
                 Sheet_name = MainSheetNames.Budget_out,
-                Start_divider = Dividers.SOD_ds,
+                Start_divider = Dividers.SODDS,
                 End_divider = Dividers.Cred_card1,
                 First_column_number = 2,
                 Last_column_number = 6
@@ -765,7 +765,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var annual_budget_item_list_data = new BudgetItemListData
             {
                 Sheet_name = MainSheetNames.Budget_out,
-                Start_divider = Dividers.Annual_sod_ds,
+                Start_divider = Dividers.Annual_SODDS,
                 End_divider = Dividers.Annual_total,
                 First_column_number = 2,
                 Last_column_number = 6
@@ -937,7 +937,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
                 last_month,
                 sheet_name,
                 mock_spreadsheet_repo,
-                Dividers.SOD_ds,
+                Dividers.SODDS,
                 Dividers.Cred_card1,
                 6);
             // Annual setup:
@@ -947,7 +947,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
                 new BankRecord {Date = new DateTime(budget_data_setup.BudgetingMonths.Start_year, first_month, 28)},
                 new BankRecord {Date = new DateTime(budget_data_setup.BudgetingMonths.Start_year, last_month, 2)}
             };
-            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, Dividers.Annual_sod_ds, 2)).Returns(first_annual_row);
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, Dividers.Annual_SODDS, 2)).Returns(first_annual_row);
             mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, Dividers.Annual_total, 2)).Returns(last_annual_row);
             mock_spreadsheet_repo.Setup(x => x.Get_rows_as_records<BankRecord>(sheet_name, first_annual_row + 1, last_annual_row - 1, 2, 6)).Returns(annual_bank_records);
             // Everything else:
@@ -964,7 +964,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var monthly_budget_item_list_data = new BudgetItemListData
             {
                 Sheet_name = MainSheetNames.Budget_out,
-                Start_divider = Dividers.SOD_ds,
+                Start_divider = Dividers.SODDS,
                 End_divider = Dividers.Cred_card1,
                 First_column_number = 2,
                 Last_column_number = 6
@@ -972,7 +972,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var annual_budget_item_list_data = new BudgetItemListData
             {
                 Sheet_name = MainSheetNames.Budget_out,
-                Start_divider = Dividers.Annual_sod_ds,
+                Start_divider = Dividers.Annual_SODDS,
                 End_divider = Dividers.Annual_total,
                 First_column_number = 2,
                 Last_column_number = 6

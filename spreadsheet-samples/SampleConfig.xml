@@ -5,13 +5,13 @@
 	<!--**************-->               
 	<Test_value_do_not_change>This value should always be this string.</Test_value_do_not_change>                   
 	<Main_spreadsheet_path>C:/Development/Reconciliate/reconciliation-samples/For-debugging</Main_spreadsheet_path>                      
-	<Default_file_path>C:/Development/Reconciliate/reconciliation-samples/For-debugging	</Default_file_path>                          
+	<Default_file_path>C:/Development/Reconciliate/reconciliation-samples/For-debugging</Default_file_path>                          
 	<Main_spreadsheet_file_name>Your-Spreadsheet.xlsx</Main_spreadsheet_file_name>                 
 	<Test_backup_file_path>C:/Temp/ManualTesting/TestSpreadsheetBackups</Test_backup_file_path>                      
 	<Source_debug_spreadsheet_path>C:/Development/Reconciliate/reconciliation-samples/For-debugging</Source_debug_spreadsheet_path>              
 	<Backup_sub_folder>SpreadsheetBackups</Backup_sub_folder>                          
 	<Debug_spreadsheet_file_name>debug-backup-spreadsheet.xlsx</Debug_spreadsheet_file_name>                
-	<Pocket_money_spreadsheet_path>C:/Development/Reconciliate/reconciliation-samples/For-debugging/Pocket-Money-Spreadsheet.xlsx</Pocket_money_spreadsheet_path>              
+	<Pocket_money_spreadsheet_path>C:/Development/Reconciliate/reconciliation-samples/For-debugging/Pocket-Money-Spreadsheet.xlsx</Pocket_money_spreadsheet_path>            
     <Five_file_options>1.EnterFile, 2.CredCard1InOut, 3.CredCard2InOut, 4.BankIn, 5.BankOut</Five_file_options>                          
     <Four_accounting_types>1.CredCard1, 2.CredCard2, 3.ActualBankIn, 4.ActualBankOut</Four_accounting_types>                      
     <Four_file_name_options>1.EnterFileName, 2.CredCard1File, 3.CredCard2File, 4.ActualBankFile</Four_file_name_options>                     
@@ -20,17 +20,17 @@
     <File_option_03>3. CredCard2 InOut default ({0}.csv) (3rd party format will be CredCard2)</File_option_03>                             
     <File_option_04>4. Bank In default ({0}.csv) (3rd party format will be ActualBank)</File_option_04>                             
     <File_option_05>5. Bank Out default ({0}.csv) (3rd party format will be ActualBank)</File_option_05>                             
-    <Accounting_type_01>2. Use the default for CredCard1 ({0}.csv)</Accounting_type_01>                         
-    <Accounting_type_02>3. Use the default for CredCard2 ({0}.csv)</Accounting_type_02>                         
-    <Accounting_type_03>4. Use the default for ActualBank ({0}.csv)</Accounting_type_03>                         
-    <Accounting_type_04>2. Use defaults for CredCard1 and CredCard1 InOut</Accounting_type_04>                         
-    <File_name_option_02>3. Use defaults for CredCard2 and CredCard2 InOut</File_name_option_02>                        
-    <File_name_option_03>4. Use defaults for ActualBank and Bank In</File_name_option_03>                        
-    <File_name_option_04>5. Use defaults for ActualBank and Bank Out</File_name_option_04>                        
-    <File_details_02>1. CredCard1 and CredCard1 InOut</File_details_02>                            
-    <File_details_03>2. CredCard2 and CredCard2 InOut</File_details_03>                            
-    <File_details_04>3. ActualBank and Bank In</File_details_04>                            
-    <File_details_05>4. ActualBank and Bank Out</File_details_05>                            
+    <File_name_option_02>2. Use the default for CredCard1 ({0}.csv)</File_name_option_02>                       
+    <File_name_option_03>3. Use the default for CredCard2 ({0}.csv)</File_name_option_03>                       
+    <File_name_option_04>4. Use the default for ActualBank ({0}.csv)</File_name_option_04>                       
+    <File_details_02>2. Use defaults for CredCard1 and CredCard1 InOut</File_details_02>                           
+    <File_details_03>3. Use defaults for CredCard2 and CredCard2 InOut</File_details_03>                           
+    <File_details_04>4. Use defaults for ActualBank and Bank In</File_details_04>                           
+    <File_details_05>5. Use defaults for ActualBank and Bank Out</File_details_05>                           
+    <Accounting_type_01>1. CredCard1 and CredCard1 InOut</Accounting_type_01>                        
+    <Accounting_type_02>2. CredCard2 and CredCard2 InOut</Accounting_type_02>                        
+    <Accounting_type_03>3. ActualBank and Bank In</Accounting_type_03>                        
+    <Accounting_type_04>4. ActualBank and Bank Out</Accounting_type_04>                        
     <Default_bank_file_name>ActualBank</Default_bank_file_name>                     
     <Default_cred_card1_file_name>CredCard1</Default_cred_card1_file_name>               
     <Default_cred_card2_file_name>CredCard2</Default_cred_card2_file_name>               
@@ -50,17 +50,17 @@
     <Cred_card2_dd_description>CREDIT CARD 2</Cred_card2_dd_description>                  
     <Cred_card1_regular_pymt_description>CRED CARD 1 PAYMENT DESCRIPTION ON STATEMENTS</Cred_card1_regular_pymt_description>        
     <Cred_card2_regular_pymt_description>CRED CARD 2 PAYMENT DESCRIPTION ON STATEMENTS</Cred_card2_regular_pymt_description>        
-    <Instructions_line_01> (See ReconciliationProcess.txt for full process, and Trello for current bugs)</Instructions_line_01>                       
-    <Instructions_line_02> Go to your third party website and download a statement as a csv file.</Instructions_line_02>                       
-    <Instructions_line_03> Name it ActualBank.csv, CredCard1.csv or CredCard2.csv.</Instructions_line_03>                       
-    <Instructions_line_04> Create csvs of pending transactions, named Pending.txt and CredCard1InOutPending.csv.</Instructions_line_04>                       
-    <Instructions_line_05> !! For Bank In and Bank Out, check Type columns before starting !!</Instructions_line_05>                       
-    <Instructions_line_06> Check VERY carefully - it's really easy to miss an example of this.</Instructions_line_06>                       
-    <Instructions_line_07> This is because if the description is in the Type column, you'll get errors.</Instructions_line_07>                       
-    <Instructions_line_08> But you won't see those errors until you're halfway through processing</Instructions_line_08>                       
-    <Instructions_line_09> the file, and then you'll lose all your work.</Instructions_line_09>                       
-    <Instructions_line_10> Run the 'load pending csvs' step before starting reconciliation.</Instructions_line_10>                       
-    <Instructions_line_11> Follow the on-screen instructions.</Instructions_line_11>                       
+    <Instructions_line_01>  (See ReconciliationProcess.txt for full process, and Trello for current bugs)</Instructions_line_01>                       
+    <Instructions_line_02>  Go to your third party website and download a statement as a csv file.</Instructions_line_02>                       
+    <Instructions_line_03>  Name it ActualBank.csv, CredCard1.csv or CredCard2.csv.</Instructions_line_03>                       
+    <Instructions_line_04>  Create csvs of pending transactions, named Pending.txt and CredCard1InOutPending.csv.</Instructions_line_04>                       
+    <Instructions_line_05>  !! For Bank In and Bank Out, check Type columns before starting !!</Instructions_line_05>                       
+    <Instructions_line_06>  Check VERY carefully - it's really easy to miss an example of this.</Instructions_line_06>                       
+    <Instructions_line_07>  This is because if the description is in the Type column, you'll get errors.</Instructions_line_07>                       
+    <Instructions_line_08>  But you won't see those errors until you're halfway through processing</Instructions_line_08>                       
+    <Instructions_line_09>  the file, and then you'll lose all your work.</Instructions_line_09>                       
+    <Instructions_line_10>  Run the 'load pending csvs' step before starting reconciliation.</Instructions_line_10>                       
+    <Instructions_line_11>  Follow the on-screen instructions.</Instructions_line_11>                       
     <Bank_out_header>Bank Out</Bank_out_header>                            
     <Bank_in_header>Bank In</Bank_in_header>                             
     <Cred_card2_header>CredCard2</Cred_card2_header>                          
@@ -69,9 +69,9 @@
 	<!--**************-->
 	<!--Codes-->
 	<!--**************-->
-    <BankBal>ActualBank Balance</BankBal>
-    <CredCard1Bal>CredCard1 Balance</CredCard1Bal>
-    <CredCard2Bal>CredCard2 Balance</CredCard2Bal>
+    <Bank_bal>ActualBank Balance</Bank_bal>
+    <Cred_card1_bal>CredCard1 Balance</Cred_card1_bal>
+    <Cred_card2_bal>CredCard2 Balance</Cred_card2_bal>
     <Expenses>Acme Expenses</Expenses>
     <Code001>Code001</Code001>
     <Code002>Code002</Code002>
@@ -155,32 +155,32 @@
 	<!--**************-->
 	<!--TestSheetNames-->
 	<!--**************-->
-    <TestSheetNames.CredCard1>CredCard1</TestSheetNames.CredCard1>
-    <TestSheetNames.TestRecord>TestRecord</TestSheetNames.TestRecord>
-    <TestSheetNames.CredCard>CredCard</TestSheetNames.CredCard>
+    <TestSheetNames.Cred_card1>CredCard1</TestSheetNames.Cred_card1>
+    <TestSheetNames.Test_record>TestRecord</TestSheetNames.Test_record>
+    <TestSheetNames.Cred_card>CredCard</TestSheetNames.Cred_card>
     <TestSheetNames.Bank>Bank</TestSheetNames.Bank>
-    <TestSheetNames.ActualBank>ActualBank</TestSheetNames.ActualBank>
-    <TestSheetNames.BadDivider>BadDivider</TestSheetNames.BadDivider>
-    <TestSheetNames.BudgetOut>Budget Out</TestSheetNames.BudgetOut>
-    <TestSheetNames.ExpectedOut>Expected Out</TestSheetNames.ExpectedOut>
+    <TestSheetNames.Actual_bank>ActualBank</TestSheetNames.Actual_bank>
+    <TestSheetNames.Bad_divider>BadDivider</TestSheetNames.Bad_divider>
+    <TestSheetNames.Budget_out>Budget Out</TestSheetNames.Budget_out>
+    <TestSheetNames.Expected_out>Expected Out</TestSheetNames.Expected_out>
 	<!--**************-->
 	<!--MainSheetNames-->
 	<!--**************-->
-    <MainSheetNames.BudgetOut>Budget Out</MainSheetNames.BudgetOut>
-    <MainSheetNames.BudgetIn>Budget In</MainSheetNames.BudgetIn>
-    <MainSheetNames.ExpectedOut>Expected Out</MainSheetNames.ExpectedOut>
-    <MainSheetNames.ExpectedIn>Expected In</MainSheetNames.ExpectedIn>
+    <MainSheetNames.Budget_out>Budget Out</MainSheetNames.Budget_out>
+    <MainSheetNames.Budget_in>Budget In</MainSheetNames.Budget_in>
+    <MainSheetNames.Expected_out>Expected Out</MainSheetNames.Expected_out>
+    <MainSheetNames.Expected_in>Expected In</MainSheetNames.Expected_in>
     <MainSheetNames.Totals>Totals</MainSheetNames.Totals>
     <MainSheetNames.Savings>Savings</MainSheetNames.Savings>
-    <MainSheetNames.BankOut>Bank Out</MainSheetNames.BankOut>
-    <MainSheetNames.BankIn>Bank In</MainSheetNames.BankIn>
-    <MainSheetNames.CredCard1>CredCard1</MainSheetNames.CredCard1>
-    <MainSheetNames.CredCard2>CredCard2</MainSheetNames.CredCard2>
-    <MainSheetNames.CredCard3>CredCard3</MainSheetNames.CredCard3>
+    <MainSheetNames.Bank_out>Bank Out</MainSheetNames.Bank_out>
+    <MainSheetNames.Bank_in>Bank In</MainSheetNames.Bank_in>
+    <MainSheetNames.Cred_card1>CredCard1</MainSheetNames.Cred_card1>
+    <MainSheetNames.Cred_card2>CredCard2</MainSheetNames.Cred_card2>
+    <MainSheetNames.Cred_card3>CredCard3</MainSheetNames.Cred_card3>
 	<!--**************-->
 	<!--PocketMoneySheetNames-->
 	<!--**************-->
-    <PocketMoneySheetNames.SecondChild>SecondChild</PocketMoneySheetNames.SecondChild>
+    <PocketMoneySheetNames.Second_child>SecondChild</PocketMoneySheetNames.Second_child>
 	<!--**************-->
 	<!--PlanningSheetNames-->
 	<!--**************-->
@@ -189,15 +189,15 @@
 	<!--**************-->
 	<!--Dividers-->
 	<!--**************-->
-	<Dividers.DividerText>divider</Dividers.DividerText>
+	<Dividers.Divider_text>divider</Dividers.Divider_text>
 	<Dividers.Expenses>Expenses</Dividers.Expenses>
-	<Dividers.ExpensesTotal>Expenses Total</Dividers.ExpensesTotal>
-	<Dividers.SODDs>SODDs</Dividers.SODDs>
-	<Dividers.CredCard1>CredCard1 cred card</Dividers.CredCard1>
-	<Dividers.CredCard2>CredCard2 cred card</Dividers.CredCard2>
-	<Dividers.SODDTotal>SODDTotal</Dividers.SODDTotal>
-	<Dividers.AnnualSODDs>AnnualSODDs</Dividers.AnnualSODDs>
-	<Dividers.AnnualTotal>AnnualTotal</Dividers.AnnualTotal>
+	<Dividers.Expenses_total>Expenses Total</Dividers.Expenses_total>
+	<Dividers.SODDS>SODDs</Dividers.SODDS>
+	<Dividers.Cred_card1>CredCard1 cred card</Dividers.Cred_card1>
+	<Dividers.Cred_card2>CredCard2 cred card</Dividers.Cred_card2>
+	<Dividers.SODD_total>SODDTotal</Dividers.SODD_total>
+	<Dividers.Annual_SODDS>AnnualSODDs</Dividers.Annual_SODDS>
+	<Dividers.Annual_total>AnnualTotal</Dividers.Annual_total>
 	<Dividers.Date>Date</Dividers.Date>
 	<Dividers.Total>Total</Dividers.Total>
 </config>

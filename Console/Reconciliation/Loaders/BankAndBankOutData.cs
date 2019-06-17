@@ -23,7 +23,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 Monthly_budget_data = new BudgetItemListData
                 {
                     Sheet_name = MainSheetNames.Budget_out,
-                    Start_divider = Dividers.SOD_ds,
+                    Start_divider = Dividers.SODDS,
                     End_divider = Dividers.Cred_card1,
                     First_column_number = 2,
                     Last_column_number = 6
@@ -31,7 +31,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 Annual_budget_data = new BudgetItemListData
                 {
                     Sheet_name = MainSheetNames.Budget_out,
-                    Start_divider = Dividers.Annual_sod_ds,
+                    Start_divider = Dividers.Annual_SODDS,
                     End_divider = Dividers.Annual_total,
                     First_column_number = 2,
                     Last_column_number = 6
