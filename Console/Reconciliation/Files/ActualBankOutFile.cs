@@ -7,22 +7,22 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
     {
         public ICSVFile<ActualBankRecord> File { get; set; }
 
-        public ActualBankOutFile(ICSVFile<ActualBankRecord> csvFile)
+        public ActualBankOutFile(ICSVFile<ActualBankRecord> csv_file)
         {
-            File = csvFile;
+            File = csv_file;
         }
 
-        public void Load(bool loadFile = true,
-            char? overrideSeparator = null,
-            bool orderOnLoad = true)
+        public void Load(bool load_file = true,
+            char? override_separator = null,
+            bool order_on_load = true)
         {
-            File.Load(loadFile, overrideSeparator, orderOnLoad);
-            RefreshFileContents();
+            File.Load(load_file, override_separator, order_on_load);
+            Refresh_file_contents();
         }
 
-        public void RefreshFileContents()
+        public void Refresh_file_contents()
         {
-            File.FilterForNegativeRecordsOnly();
+            File.Filter_for_negative_records_only();
         }
     }
 }

@@ -2,84 +2,84 @@
 {
     public static class ReconConsts
     {
-        static readonly MyXmlReader _xmlReader = new MyXmlReader();
+        static readonly MyXmlReader XmlReader = new MyXmlReader();
 
-        public static string TestValueDoNotChange => _xmlReader.ReadXml(nameof(TestValueDoNotChange));
+        public static string Test_value_do_not_change => XmlReader.Read_xml(nameof(Test_value_do_not_change));
 
-        public static string MainSpreadsheetPath => _xmlReader.ReadXml(nameof(MainSpreadsheetPath));
-        public static string DefaultFilePath => _xmlReader.ReadXml(nameof(DefaultFilePath));
-        public static string MainSpreadsheetFileName => _xmlReader.ReadXml(nameof(MainSpreadsheetFileName));
-        public static string TestBackupFilePath => _xmlReader.ReadXml(nameof(TestBackupFilePath));
-        public static string SourceDebugSpreadsheetPath => _xmlReader.ReadXml(nameof(SourceDebugSpreadsheetPath));
-        public static string BackupSubFolder => _xmlReader.ReadXml(nameof(BackupSubFolder));
-        public static string DebugSpreadsheetFileName => _xmlReader.ReadXml(nameof(DebugSpreadsheetFileName));
-        public static string PocketMoneySpreadsheetPath => _xmlReader.ReadXml(nameof(PocketMoneySpreadsheetPath));
+        public static string Main_spreadsheet_path => XmlReader.Read_xml(nameof(Main_spreadsheet_path));
+        public static string Default_file_path => XmlReader.Read_xml(nameof(Default_file_path));
+        public static string Main_spreadsheet_file_name => XmlReader.Read_xml(nameof(Main_spreadsheet_file_name));
+        public static string Test_backup_file_path => XmlReader.Read_xml(nameof(Test_backup_file_path));
+        public static string Source_debug_spreadsheet_path => XmlReader.Read_xml(nameof(Source_debug_spreadsheet_path));
+        public static string Backup_sub_folder => XmlReader.Read_xml(nameof(Backup_sub_folder));
+        public static string Debug_spreadsheet_file_name => XmlReader.Read_xml(nameof(Debug_spreadsheet_file_name));
+        public static string Pocket_money_spreadsheet_path => XmlReader.Read_xml(nameof(Pocket_money_spreadsheet_path));
 
-        public static string FiveFileOptions => _xmlReader.ReadXml(nameof(FiveFileOptions));
-        public static string FourAccountingTypes => _xmlReader.ReadXml(nameof(FourAccountingTypes));
-        public static string FourFileNameOptions => _xmlReader.ReadXml(nameof(FourFileNameOptions));
-        public static string FiveFileDetails => _xmlReader.ReadXml(nameof(FiveFileDetails));
+        public static string Five_file_options => XmlReader.Read_xml(nameof(Five_file_options));
+        public static string Four_accounting_types => XmlReader.Read_xml(nameof(Four_accounting_types));
+        public static string Four_file_name_options => XmlReader.Read_xml(nameof(Four_file_name_options));
+        public static string Five_file_details => XmlReader.Read_xml(nameof(Five_file_details));
 
-        public static string File_Option_02 => _xmlReader.ReadXml(nameof(File_Option_02));
-        public static string File_Option_03 => _xmlReader.ReadXml(nameof(File_Option_03));
-        public static string File_Option_04 => _xmlReader.ReadXml(nameof(File_Option_04));
-        public static string File_Option_05 => _xmlReader.ReadXml(nameof(File_Option_05));
+        public static string File_option_02 => XmlReader.Read_xml(nameof(File_option_02));
+        public static string File_option_03 => XmlReader.Read_xml(nameof(File_option_03));
+        public static string File_option_04 => XmlReader.Read_xml(nameof(File_option_04));
+        public static string File_option_05 => XmlReader.Read_xml(nameof(File_option_05));
 
-        public static string Accounting_Type_01 => _xmlReader.ReadXml(nameof(Accounting_Type_01));
-        public static string Accounting_Type_02 => _xmlReader.ReadXml(nameof(Accounting_Type_02));
-        public static string Accounting_Type_03 => _xmlReader.ReadXml(nameof(Accounting_Type_03));
-        public static string Accounting_Type_04 => _xmlReader.ReadXml(nameof(Accounting_Type_04));
+        public static string Accounting_type_01 => XmlReader.Read_xml(nameof(Accounting_type_01));
+        public static string Accounting_type_02 => XmlReader.Read_xml(nameof(Accounting_type_02));
+        public static string Accounting_type_03 => XmlReader.Read_xml(nameof(Accounting_type_03));
+        public static string Accounting_type_04 => XmlReader.Read_xml(nameof(Accounting_type_04));
 
-        public static string File_Name_Option_02 => _xmlReader.ReadXml(nameof(File_Name_Option_02));
-        public static string File_Name_Option_03 => _xmlReader.ReadXml(nameof(File_Name_Option_03));
-        public static string File_Name_Option_04 => _xmlReader.ReadXml(nameof(File_Name_Option_04));
+        public static string File_name_option_02 => XmlReader.Read_xml(nameof(File_name_option_02));
+        public static string File_name_option_03 => XmlReader.Read_xml(nameof(File_name_option_03));
+        public static string File_name_option_04 => XmlReader.Read_xml(nameof(File_name_option_04));
 
-        public static string File_Details_02 => _xmlReader.ReadXml(nameof(File_Details_02));
-        public static string File_Details_03 => _xmlReader.ReadXml(nameof(File_Details_03));
-        public static string File_Details_04 => _xmlReader.ReadXml(nameof(File_Details_04));
-        public static string File_Details_05 => _xmlReader.ReadXml(nameof(File_Details_05));
+        public static string File_details_02 => XmlReader.Read_xml(nameof(File_details_02));
+        public static string File_details_03 => XmlReader.Read_xml(nameof(File_details_03));
+        public static string File_details_04 => XmlReader.Read_xml(nameof(File_details_04));
+        public static string File_details_05 => XmlReader.Read_xml(nameof(File_details_05));
 
-        public static string DefaultBankFileName => _xmlReader.ReadXml(nameof(DefaultBankFileName));
-        public static string DefaultCredCard1FileName => _xmlReader.ReadXml(nameof(DefaultCredCard1FileName));
-        public static string DefaultCredCard2FileName => _xmlReader.ReadXml(nameof(DefaultCredCard2FileName));
-        public static string DefaultCredCard1InOutFileName => _xmlReader.ReadXml(nameof(DefaultCredCard1InOutFileName));
-        public static string DefaultCredCard2InOutFileName => _xmlReader.ReadXml(nameof(DefaultCredCard2InOutFileName));
+        public static string Default_bank_file_name => XmlReader.Read_xml(nameof(Default_bank_file_name));
+        public static string Default_cred_card1_file_name => XmlReader.Read_xml(nameof(Default_cred_card1_file_name));
+        public static string Default_cred_card2_file_name => XmlReader.Read_xml(nameof(Default_cred_card2_file_name));
+        public static string Default_cred_card1_in_out_file_name => XmlReader.Read_xml(nameof(Default_cred_card1_in_out_file_name));
+        public static string Default_cred_card2_in_out_file_name => XmlReader.Read_xml(nameof(Default_cred_card2_in_out_file_name));
 
-        public static string DefaultCredCard2InOutPendingFileName => _xmlReader.ReadXml(nameof(DefaultCredCard2InOutPendingFileName));
-        public static string DefaultCredCard1InOutPendingFileName => _xmlReader.ReadXml(nameof(DefaultCredCard1InOutPendingFileName));
+        public static string Default_cred_card2_in_out_pending_file_name => XmlReader.Read_xml(nameof(Default_cred_card2_in_out_pending_file_name));
+        public static string Default_cred_card1_in_out_pending_file_name => XmlReader.Read_xml(nameof(Default_cred_card1_in_out_pending_file_name));
 
-        public static string BankDescriptor => _xmlReader.ReadXml(nameof(BankDescriptor));
-        public static string CredCard1Descriptor => _xmlReader.ReadXml(nameof(CredCard1Descriptor));
-        public static string CredCard1InOutDescriptor => _xmlReader.ReadXml(nameof(CredCard1InOutDescriptor));
-        public static string CredCard2Descriptor => _xmlReader.ReadXml(nameof(CredCard2Descriptor));
-        public static string CredCard2InOutDescriptor => _xmlReader.ReadXml(nameof(CredCard2InOutDescriptor));
-        public static string EmployerExpenseDescription => _xmlReader.ReadXml(nameof(EmployerExpenseDescription));
+        public static string Bank_descriptor => XmlReader.Read_xml(nameof(Bank_descriptor));
+        public static string Cred_card1_descriptor => XmlReader.Read_xml(nameof(Cred_card1_descriptor));
+        public static string Cred_card1_in_out_descriptor => XmlReader.Read_xml(nameof(Cred_card1_in_out_descriptor));
+        public static string Cred_card2_descriptor => XmlReader.Read_xml(nameof(Cred_card2_descriptor));
+        public static string Cred_card2_in_out_descriptor => XmlReader.Read_xml(nameof(Cred_card2_in_out_descriptor));
+        public static string Employer_expense_description => XmlReader.Read_xml(nameof(Employer_expense_description));
 
-        public static string CredCard1Name => _xmlReader.ReadXml(nameof(CredCard1Name));
-        public static string CredCard2Name => _xmlReader.ReadXml(nameof(CredCard2Name));
-        public static string CredCard1DdDescription => _xmlReader.ReadXml(nameof(CredCard1DdDescription));
-        public static string CredCard2DdDescription => _xmlReader.ReadXml(nameof(CredCard2DdDescription));
-        public static string CredCard1RegularPymtDescription => _xmlReader.ReadXml(nameof(CredCard1RegularPymtDescription));
-        public static string CredCard2RegularPymtDescription => _xmlReader.ReadXml(nameof(CredCard2RegularPymtDescription));
+        public static string Cred_card1_name => XmlReader.Read_xml(nameof(Cred_card1_name));
+        public static string Cred_card2_name => XmlReader.Read_xml(nameof(Cred_card2_name));
+        public static string Cred_card1_dd_description => XmlReader.Read_xml(nameof(Cred_card1_dd_description));
+        public static string Cred_card2_dd_description => XmlReader.Read_xml(nameof(Cred_card2_dd_description));
+        public static string Cred_card1_regular_pymt_description => XmlReader.Read_xml(nameof(Cred_card1_regular_pymt_description));
+        public static string Cred_card2_regular_pymt_description => XmlReader.Read_xml(nameof(Cred_card2_regular_pymt_description));
 
-        public static string Instructions_Line_01 => _xmlReader.ReadXml(nameof(Instructions_Line_01));
-        public static string Instructions_Line_02 => _xmlReader.ReadXml(nameof(Instructions_Line_02));
-        public static string Instructions_Line_03 => _xmlReader.ReadXml(nameof(Instructions_Line_03));
-        public static string Instructions_Line_04 => _xmlReader.ReadXml(nameof(Instructions_Line_04));
-        public static string Instructions_Line_05 => _xmlReader.ReadXml(nameof(Instructions_Line_05));
-        public static string Instructions_Line_06 => _xmlReader.ReadXml(nameof(Instructions_Line_06));
-        public static string Instructions_Line_07 => _xmlReader.ReadXml(nameof(Instructions_Line_07));
-        public static string Instructions_Line_08 => _xmlReader.ReadXml(nameof(Instructions_Line_08));
-        public static string Instructions_Line_09 => _xmlReader.ReadXml(nameof(Instructions_Line_09));
-        public static string Instructions_Line_10 => _xmlReader.ReadXml(nameof(Instructions_Line_10));
-        public static string Instructions_Line_11 => _xmlReader.ReadXml(nameof(Instructions_Line_11));
+        public static string Instructions_line_01 => XmlReader.Read_xml(nameof(Instructions_line_01));
+        public static string Instructions_line_02 => XmlReader.Read_xml(nameof(Instructions_line_02));
+        public static string Instructions_line_03 => XmlReader.Read_xml(nameof(Instructions_line_03));
+        public static string Instructions_line_04 => XmlReader.Read_xml(nameof(Instructions_line_04));
+        public static string Instructions_line_05 => XmlReader.Read_xml(nameof(Instructions_line_05));
+        public static string Instructions_line_06 => XmlReader.Read_xml(nameof(Instructions_line_06));
+        public static string Instructions_line_07 => XmlReader.Read_xml(nameof(Instructions_line_07));
+        public static string Instructions_line_08 => XmlReader.Read_xml(nameof(Instructions_line_08));
+        public static string Instructions_line_09 => XmlReader.Read_xml(nameof(Instructions_line_09));
+        public static string Instructions_line_10 => XmlReader.Read_xml(nameof(Instructions_line_10));
+        public static string Instructions_line_11 => XmlReader.Read_xml(nameof(Instructions_line_11));
 
-        public static string BankOutHeader => _xmlReader.ReadXml(nameof(BankOutHeader));
-        public static string BankInHeader => _xmlReader.ReadXml(nameof(BankInHeader));
-        public static string CredCard2Header => _xmlReader.ReadXml(nameof(CredCard2Header));
+        public static string Bank_out_header => XmlReader.Read_xml(nameof(Bank_out_header));
+        public static string Bank_in_header => XmlReader.Read_xml(nameof(Bank_in_header));
+        public static string Cred_card2_header => XmlReader.Read_xml(nameof(Cred_card2_header));
 
-        public static string LoadPendingCsvs => _xmlReader.ReadXml(nameof(LoadPendingCsvs));
-        public static string LoadingExpenses => _xmlReader.ReadXml(nameof(LoadingExpenses));
+        public static string Load_pending_csvs => XmlReader.Read_xml(nameof(Load_pending_csvs));
+        public static string Loading_expenses => XmlReader.Read_xml(nameof(Loading_expenses));
 
         public const string MissingCodeInWorksheet =
             "There is no \"{0}\" row in this worksheet ({1}), so we can't find the data we are looking for.";

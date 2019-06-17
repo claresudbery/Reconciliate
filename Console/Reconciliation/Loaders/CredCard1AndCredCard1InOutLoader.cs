@@ -10,95 +10,95 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
     internal class CredCard1AndCredCard1InOutLoader : ILoader<CredCard1Record, CredCard1InOutRecord>
     {
-        public DataLoadingInformation<CredCard1Record, CredCard1InOutRecord> LoadingInfo()
+        public DataLoadingInformation<CredCard1Record, CredCard1InOutRecord> Loading_info()
         {
             return new DataLoadingInformation<CredCard1Record, CredCard1InOutRecord>
             {
-                FilePaths = new FilePaths
+                File_paths = new FilePaths
                 {
-                    MainPath = ReconConsts.DefaultFilePath,
-                    ThirdPartyFileName = ReconConsts.DefaultCredCard1FileName,
-                    OwnedFileName = ReconConsts.DefaultCredCard1InOutFileName
+                    Main_path = ReconConsts.Default_file_path,
+                    Third_party_file_name = ReconConsts.Default_cred_card1_file_name,
+                    Owned_file_name = ReconConsts.Default_cred_card1_in_out_file_name
                 },
-                DefaultSeparator = ',',
-                LoadingSeparator = '^',
-                PendingFileName = ReconConsts.DefaultCredCard1InOutPendingFileName,
-                SheetName = MainSheetNames.CredCard1,
-                ThirdPartyDescriptor = ReconConsts.CredCard1Descriptor,
-                OwnedFileDescriptor = ReconConsts.CredCard1InOutDescriptor,
+                Default_separator = ',',
+                Loading_separator = '^',
+                Pending_file_name = ReconConsts.Default_cred_card1_in_out_pending_file_name,
+                Sheet_name = MainSheetNames.Cred_card1,
+                Third_party_descriptor = ReconConsts.Cred_card1_descriptor,
+                Owned_file_descriptor = ReconConsts.Cred_card1_in_out_descriptor,
                 Loader = this,
-                MonthlyBudgetData = new BudgetItemListData
+                Monthly_budget_data = new BudgetItemListData
                 {
-                    SheetName = MainSheetNames.BudgetOut,
-                    StartDivider = Dividers.CredCard1,
-                    EndDivider = Dividers.CredCard2,
-                    FirstColumnNumber = 2,
-                    LastColumnNumber = 5
+                    Sheet_name = MainSheetNames.Budget_out,
+                    Start_divider = Dividers.Cred_card1,
+                    End_divider = Dividers.Cred_card2,
+                    First_column_number = 2,
+                    Last_column_number = 5
                 },
-                AnnualBudgetData = null
+                Annual_budget_data = null
             };
         }
 
-        public IDataFile<CredCard1Record> CreateNewThirdPartyFile(IFileIO<CredCard1Record> thirdPartyFileIO)
+        public IDataFile<CredCard1Record> Create_new_third_party_file(IFileIO<CredCard1Record> third_party_file_io)
         {
-            var csvFile = new CSVFile<CredCard1Record>(thirdPartyFileIO);
-            return new CredCard1File(csvFile);
+            var csv_file = new CSVFile<CredCard1Record>(third_party_file_io);
+            return new CredCard1File(csv_file);
         }
 
-        public IDataFile<CredCard1InOutRecord> CreateNewOwnedFile(IFileIO<CredCard1InOutRecord> ownedFileIO)
+        public IDataFile<CredCard1InOutRecord> Create_new_owned_file(IFileIO<CredCard1InOutRecord> owned_file_io)
         {
-            var csvFile = new CSVFile<CredCard1InOutRecord>(ownedFileIO);
-            return new GenericFile<CredCard1InOutRecord>(csvFile);
+            var csv_file = new CSVFile<CredCard1InOutRecord>(owned_file_io);
+            return new GenericFile<CredCard1InOutRecord>(csv_file);
         }
 
-        public void MergeBespokeDataWithPendingFile(
-            IInputOutput inputOutput,
+        public void Merge_bespoke_data_with_pending_file(
+            IInputOutput input_output,
             ISpreadsheet spreadsheet,
-            ICSVFile<CredCard1InOutRecord> pendingFile,
-            BudgetingMonths budgetingMonths,
-            DataLoadingInformation<CredCard1Record, CredCard1InOutRecord> dataLoadingInfo)
+            ICSVFile<CredCard1InOutRecord> pending_file,
+            BudgetingMonths budgeting_months,
+            DataLoadingInformation<CredCard1Record, CredCard1InOutRecord> data_loading_info)
         {
-            var mostRecentCredCardDirectDebit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
-                MainSheetNames.BankOut, 
-                ReconConsts.CredCard1DdDescription,
+            var most_recent_cred_card_direct_debit = spreadsheet.Get_most_recent_row_containing_text<BankRecord>(
+                MainSheetNames.Bank_out, 
+                ReconConsts.Cred_card1_dd_description,
                 new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn });
 
-            var statementDate = new DateTime();
-            var nextDate = mostRecentCredCardDirectDebit.Date.AddMonths(1);
-            var input = inputOutput.GetInput(string.Format(
+            var statement_date = new DateTime();
+            var next_date = most_recent_cred_card_direct_debit.Date.AddMonths(1);
+            var input = input_output.Get_input(string.Format(
                 ReconConsts.AskForCredCardDirectDebit, 
-                ReconConsts.CredCard1Name,
-                nextDate.ToShortDateString()));
-            double newBalance = 0;
+                ReconConsts.Cred_card1_name,
+                next_date.ToShortDateString()));
+            double new_balance = 0;
             while (input != "0")
             {
-                if (double.TryParse(input, out newBalance))
+                if (double.TryParse(input, out new_balance))
                 {
-                    pendingFile.Records.Add(new CredCard1InOutRecord
+                    pending_file.Records.Add(new CredCard1InOutRecord
                     {
-                        Date = nextDate,
-                        Description = ReconConsts.CredCard1RegularPymtDescription,
-                        UnreconciledAmount = newBalance
+                        Date = next_date,
+                        Description = ReconConsts.Cred_card1_regular_pymt_description,
+                        Unreconciled_amount = new_balance
                     });
                 }
-                statementDate = nextDate.AddMonths(-1);
-                nextDate = nextDate.Date.AddMonths(1);
-                input = inputOutput.GetInput(string.Format(
+                statement_date = next_date.AddMonths(-1);
+                next_date = next_date.Date.AddMonths(1);
+                input = input_output.Get_input(string.Format(
                     ReconConsts.AskForCredCardDirectDebit,
-                    ReconConsts.CredCard1Name,
-                    nextDate.ToShortDateString()));
+                    ReconConsts.Cred_card1_name,
+                    next_date.ToShortDateString()));
             }
 
-            spreadsheet.UpdateBalanceOnTotalsSheet(
-                Codes.CredCard1Bal,
-                newBalance * -1,
+            spreadsheet.Update_balance_on_totals_sheet(
+                Codes.Cred_card1_bal,
+                new_balance * -1,
                 string.Format(
                     ReconConsts.CredCardBalanceDescription,
-                    ReconConsts.CredCard1Name,
-                    $"{statementDate.ToString("MMM")} {statementDate.Year}"),
-                balanceColumn: 5,
-                textColumn: 6,
-                codeColumn: 4);
+                    ReconConsts.Cred_card1_name,
+                    $"{statement_date.ToString("MMM")} {statement_date.Year}"),
+                balance_column: 5,
+                text_column: 6,
+                code_column: 4);
         }
     }
 }

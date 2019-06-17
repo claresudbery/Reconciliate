@@ -6,42 +6,42 @@ namespace Interfaces
 {
     public interface ISpreadsheet
     {
-        ICellRow ReadLastRow(String sheetName);
-        int FindRowNumberOfLastDividerRow(string sheetName);
-        String ReadLastRowAsCsv(String sheetName, ICSVRecord csvRecord);
-        String ReadSpecifiedRowAsCsv(String sheetName, int rowNumber, ICSVRecord csvRecord);
-        void AddUnreconciledRowsToCsvFile<TRecordType>(string sheetName, ICSVFile<TRecordType> csvFile) where TRecordType : ICSVRecord, new();
-        void AppendCsvFile<TRecordType>(string sheetName, ICSVFile<TRecordType> csvFile) where TRecordType : ICSVRecord, new();
-        ICSVFile<TRecordType> ReadUnreconciledRowsAsCsvFile<TRecordType>(
-            ICSVFileFactory<TRecordType> csvFileFactory,
-            String sheetName) where TRecordType : ICSVRecord, new();
-        void DeleteUnreconciledRows(string sheetName);
-        double GetSecondChildPocketMoneyAmount(string shortDateTime);
-        TRecordType GetMostRecentRowContainingText<TRecordType>(
-            string sheetName,
-            string textToSearchFor,
-            List<int> expectedColumnNumbers)
+        ICellRow Read_last_row(String sheet_name);
+        int Find_row_number_of_last_divider_row(string sheet_name);
+        String Read_last_row_as_csv(String sheet_name, ICSVRecord csv_record);
+        String Read_specified_row_as_csv(String sheet_name, int row_number, ICSVRecord csv_record);
+        void Add_unreconciled_rows_to_csv_file<TRecordType>(string sheet_name, ICSVFile<TRecordType> csv_file) where TRecordType : ICSVRecord, new();
+        void Append_csv_file<TRecordType>(string sheet_name, ICSVFile<TRecordType> csv_file) where TRecordType : ICSVRecord, new();
+        ICSVFile<TRecordType> Read_unreconciled_rows_as_csv_file<TRecordType>(
+            ICSVFileFactory<TRecordType> csv_file_factory,
+            String sheet_name) where TRecordType : ICSVRecord, new();
+        void Delete_unreconciled_rows(string sheet_name);
+        double Get_second_child_pocket_money_amount(string short_date_time);
+        TRecordType Get_most_recent_row_containing_text<TRecordType>(
+            string sheet_name,
+            string text_to_search_for,
+            List<int> expected_column_numbers)
             where TRecordType : ICSVRecord, new();
-        double GetPlanningExpensesAlreadyDone();
-        double GetPlanningMoneyPaidByGuests();
-        void InsertNewRowOnExpectedOut(double newAmount, string newNotes);
-        void AddNewTransactionToSavings(DateTime newDate, double newAmount);
-        void UpdateBalanceOnTotalsSheet(
-            string balanceCode,
-            double newBalance,
-            string newText,
-            int balanceColumn,
-            int textColumn,
-            int codeColumn);
-        DateTime GetNextUnplannedMonth();
+        double Get_planning_expenses_already_done();
+        double Get_planning_money_paid_by_guests();
+        void Insert_new_row_on_expected_out(double new_amount, string new_notes);
+        void Add_new_transaction_to_savings(DateTime new_date, double new_amount);
+        void Update_balance_on_totals_sheet(
+            string balance_code,
+            double new_balance,
+            string new_text,
+            int balance_column,
+            int text_column,
+            int code_column);
+        DateTime Get_next_unplanned_month();
 
-        void AddBudgetedMonthlyDataToPendingFile<TRecordType>(
-            BudgetingMonths budgetingMonths,
-            ICSVFile<TRecordType> pendingFile,
-            BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new();
-        void AddBudgetedAnnualDataToPendingFile<TRecordType>(
-            BudgetingMonths budgetingMonths,
-            ICSVFile<TRecordType> pendingFile,
-            BudgetItemListData budgetItemListData) where TRecordType : ICSVRecord, new();
+        void Add_budgeted_monthly_data_to_pending_file<TRecordType>(
+            BudgetingMonths budgeting_months,
+            ICSVFile<TRecordType> pending_file,
+            BudgetItemListData budget_item_list_data) where TRecordType : ICSVRecord, new();
+        void Add_budgeted_annual_data_to_pending_file<TRecordType>(
+            BudgetingMonths budgeting_months,
+            ICSVFile<TRecordType> pending_file,
+            BudgetItemListData budget_item_list_data) where TRecordType : ICSVRecord, new();
     }
 }

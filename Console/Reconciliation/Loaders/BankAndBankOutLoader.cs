@@ -9,111 +9,111 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
     internal class BankAndBankOutLoader : ILoader<ActualBankRecord, BankRecord>
     {
-        public DataLoadingInformation<ActualBankRecord, BankRecord> LoadingInfo()
+        public DataLoadingInformation<ActualBankRecord, BankRecord> Loading_info()
         {
             return new DataLoadingInformation<ActualBankRecord, BankRecord>
             {
-                FilePaths = new FilePaths
+                File_paths = new FilePaths
                 {
-                    MainPath = ReconConsts.DefaultFilePath,
-                    ThirdPartyFileName = ReconConsts.DefaultBankFileName,
-                    OwnedFileName = ReconConsts.DefaultBankOutFileName
+                    Main_path = ReconConsts.Default_file_path,
+                    Third_party_file_name = ReconConsts.Default_bank_file_name,
+                    Owned_file_name = ReconConsts.DefaultBankOutFileName
                 },
-                DefaultSeparator = ',',
-                LoadingSeparator = '^',
-                PendingFileName = ReconConsts.DefaultBankOutPendingFileName,
-                SheetName = MainSheetNames.BankOut,
-                ThirdPartyDescriptor = ReconConsts.BankDescriptor,
-                OwnedFileDescriptor = ReconConsts.BankOutDescriptor,
+                Default_separator = ',',
+                Loading_separator = '^',
+                Pending_file_name = ReconConsts.DefaultBankOutPendingFileName,
+                Sheet_name = MainSheetNames.Bank_out,
+                Third_party_descriptor = ReconConsts.Bank_descriptor,
+                Owned_file_descriptor = ReconConsts.BankOutDescriptor,
                 Loader = this,
-                MonthlyBudgetData = new BudgetItemListData
+                Monthly_budget_data = new BudgetItemListData
                 {
-                    SheetName = MainSheetNames.BudgetOut,
-                    StartDivider = Dividers.SODDs,
-                    EndDivider = Dividers.CredCard1,
-                    FirstColumnNumber = 2,
-                    LastColumnNumber = 6
+                    Sheet_name = MainSheetNames.Budget_out,
+                    Start_divider = Dividers.Sod_ds,
+                    End_divider = Dividers.Cred_card1,
+                    First_column_number = 2,
+                    Last_column_number = 6
                 },
-                AnnualBudgetData = new BudgetItemListData
+                Annual_budget_data = new BudgetItemListData
                 {
-                    SheetName = MainSheetNames.BudgetOut,
-                    StartDivider = Dividers.AnnualSODDs,
-                    EndDivider = Dividers.AnnualTotal,
-                    FirstColumnNumber = 2,
-                    LastColumnNumber = 6
+                    Sheet_name = MainSheetNames.Budget_out,
+                    Start_divider = Dividers.Annual_sod_ds,
+                    End_divider = Dividers.Annual_total,
+                    First_column_number = 2,
+                    Last_column_number = 6
                 }
             };
         }
 
-        public IDataFile<ActualBankRecord> CreateNewThirdPartyFile(IFileIO<ActualBankRecord> thirdPartyFileIO)
+        public IDataFile<ActualBankRecord> Create_new_third_party_file(IFileIO<ActualBankRecord> third_party_file_io)
         {
-            var csvFile = new CSVFile<ActualBankRecord>(thirdPartyFileIO);
-            return new ActualBankOutFile(csvFile);
+            var csv_file = new CSVFile<ActualBankRecord>(third_party_file_io);
+            return new ActualBankOutFile(csv_file);
         }
 
-        public IDataFile<BankRecord> CreateNewOwnedFile(IFileIO<BankRecord> ownedFileIO)
+        public IDataFile<BankRecord> Create_new_owned_file(IFileIO<BankRecord> owned_file_io)
         {
-            var csvFile = new CSVFile<BankRecord>(ownedFileIO);
-            return new GenericFile<BankRecord>(csvFile);
+            var csv_file = new CSVFile<BankRecord>(owned_file_io);
+            return new GenericFile<BankRecord>(csv_file);
         }
 
-        public void MergeBespokeDataWithPendingFile(
-            IInputOutput inputOutput,
+        public void Merge_bespoke_data_with_pending_file(
+            IInputOutput input_output,
             ISpreadsheet spreadsheet,
-            ICSVFile<BankRecord> pendingFile,
-            BudgetingMonths budgetingMonths,
-            DataLoadingInformation<ActualBankRecord, BankRecord> dataLoadingInfo)
+            ICSVFile<BankRecord> pending_file,
+            BudgetingMonths budgeting_months,
+            DataLoadingInformation<ActualBankRecord, BankRecord> data_loading_info)
         {
-            AddMostRecentCreditCardDirectDebits(
-                inputOutput,
+            Add_most_recent_credit_card_direct_debits(
+                input_output,
                 spreadsheet,
-                pendingFile,
-                ReconConsts.CredCard1Name,
-                ReconConsts.CredCard1DdDescription);
+                pending_file,
+                ReconConsts.Cred_card1_name,
+                ReconConsts.Cred_card1_dd_description);
 
-            AddMostRecentCreditCardDirectDebits(
-                inputOutput,
+            Add_most_recent_credit_card_direct_debits(
+                input_output,
                 spreadsheet,
-                pendingFile,
-                ReconConsts.CredCard2Name,
-                ReconConsts.CredCard2DdDescription);
+                pending_file,
+                ReconConsts.Cred_card2_name,
+                ReconConsts.Cred_card2_dd_description);
         }
 
-        private void AddMostRecentCreditCardDirectDebits(
-            IInputOutput inputOutput,
+        private void Add_most_recent_credit_card_direct_debits(
+            IInputOutput input_output,
             ISpreadsheet spreadsheet,
-            ICSVFile<BankRecord> pendingFile,
-            string credCardName,
-            string directDebitDescription)
+            ICSVFile<BankRecord> pending_file,
+            string cred_card_name,
+            string direct_debit_description)
         {
-            var mostRecentCredCardDirectDebit = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
-                MainSheetNames.BankOut, 
-                directDebitDescription,
+            var most_recent_cred_card_direct_debit = spreadsheet.Get_most_recent_row_containing_text<BankRecord>(
+                MainSheetNames.Bank_out, 
+                direct_debit_description,
                 new List<int> {ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn});
 
-            var nextDate = mostRecentCredCardDirectDebit.Date.AddMonths(1);
-            var input = inputOutput.GetInput(string.Format(
+            var next_date = most_recent_cred_card_direct_debit.Date.AddMonths(1);
+            var input = input_output.Get_input(string.Format(
                 ReconConsts.AskForCredCardDirectDebit, 
-                credCardName,
-                nextDate.ToShortDateString()));
+                cred_card_name,
+                next_date.ToShortDateString()));
             while (input != "0")
             {
                 double amount;
                 if (double.TryParse(input, out amount))
                 {
-                    pendingFile.Records.Add(new BankRecord
+                    pending_file.Records.Add(new BankRecord
                     {
-                        Date = nextDate,
-                        Description = directDebitDescription,
+                        Date = next_date,
+                        Description = direct_debit_description,
                         Type = "POS",
-                        UnreconciledAmount = amount
+                        Unreconciled_amount = amount
                     });
                 }
-                nextDate = nextDate.Date.AddMonths(1);
-                input = inputOutput.GetInput(string.Format(
+                next_date = next_date.Date.AddMonths(1);
+                input = input_output.Get_input(string.Format(
                     ReconConsts.AskForCredCardDirectDebit, 
-                    credCardName,
-                    nextDate.ToShortDateString()));
+                    cred_card_name,
+                    next_date.ToShortDateString()));
             }
         }
     }

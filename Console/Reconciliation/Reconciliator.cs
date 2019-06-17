@@ -23,282 +23,282 @@ namespace ConsoleCatchall.Console.Reconciliation
         public const string CannotDeleteMatchedOwnedRecord = "You can't delete an owned record that has already been matched with a third party record.";
         public const string BadMatchNumber = "Bad match number.";
 
-        public ICSVFile<TThirdPartyType> ThirdPartyFile
+        public ICSVFile<TThirdPartyType> Third_party_file
         {
-            get => _thirdPartyFile.File;
-            set => _thirdPartyFile.File = value;
+            get => Third_party_data_file.File;
+            set => Third_party_data_file.File = value;
         }
-        public ICSVFile<TOwnedType> OwnedFile
+        public ICSVFile<TOwnedType> Owned_file
         {
-            get => _ownedFile.File;
-            set => _ownedFile.File = value;
+            get => Owned_data_file.File;
+            set => Owned_data_file.File = value;
         }
-        public IDataFile<TThirdPartyType> _thirdPartyFile { get; set; }
-        public IDataFile<TOwnedType> _ownedFile { get; set; }
-        private readonly string _worksheetName;
-        private RecordForMatching<TThirdPartyType> _latestRecordForMatching = null;
-        private List<AutoMatchedRecord<TThirdPartyType>> _autoMatches = null;
-        private int _currentIndex = -1;
-        private readonly List<string> _reservedWords = new List<string>{"AND","THE","OR","WITH"};
+        public IDataFile<TThirdPartyType> Third_party_data_file { get; set; }
+        public IDataFile<TOwnedType> Owned_data_file { get; set; }
+        private readonly string _worksheet_name;
+        private RecordForMatching<TThirdPartyType> _latest_record_for_matching = null;
+        private List<AutoMatchedRecord<TThirdPartyType>> _auto_matches = null;
+        private int _current_index = -1;
+        private readonly List<string> _reserved_words = new List<string>{"AND","THE","OR","WITH"};
 
-        private MatchFindingDelegate<TThirdPartyType, TOwnedType> _matchFindingDelegate;
-        private RecordMatchingDelegate<TThirdPartyType, TOwnedType> _recordMatchingDelegate;
+        private MatchFindingDelegate<TThirdPartyType, TOwnedType> _match_finding_delegate;
+        private RecordMatchingDelegate<TThirdPartyType, TOwnedType> _record_matching_delegate;
 
         public Reconciliator(
-            ICSVFile<TThirdPartyType> thirdPartyFile,
-            ICSVFile<TOwnedType> ownedFile,
-            string worksheetName = "")
+            ICSVFile<TThirdPartyType> third_party_file,
+            ICSVFile<TOwnedType> owned_file,
+            string worksheet_name = "")
         {
-            _thirdPartyFile = new GenericFile<TThirdPartyType>(thirdPartyFile);
-            _ownedFile = new GenericFile<TOwnedType>(ownedFile);
+            Third_party_data_file = new GenericFile<TThirdPartyType>(third_party_file);
+            Owned_data_file = new GenericFile<TOwnedType>(owned_file);
 
-            _worksheetName = worksheetName;
+            _worksheet_name = worksheet_name;
 
             Reset();
         }
 
         public Reconciliator(
-            DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo,
-            IDataFile<TThirdPartyType> thirdPartyFile,
-            IDataFile<TOwnedType> ownedFile)
+            DataLoadingInformation<TThirdPartyType, TOwnedType> data_loading_info,
+            IDataFile<TThirdPartyType> third_party_file,
+            IDataFile<TOwnedType> owned_file)
         {
-            _thirdPartyFile = thirdPartyFile;
-            _ownedFile = ownedFile;
-            _thirdPartyFile.Load();
-            _ownedFile.Load();
+            Third_party_data_file = third_party_file;
+            Owned_data_file = owned_file;
+            Third_party_data_file.Load();
+            Owned_data_file.Load();
 
-            _worksheetName = dataLoadingInfo.SheetName;
+            _worksheet_name = data_loading_info.Sheet_name;
 
             Reset();
         }
 
         public Reconciliator(
-            string worksheetName,
-            IFileIO<TThirdPartyType> thirdPartyFileIO,
-            IFileIO<TOwnedType> ownedFileIO)
+            string worksheet_name,
+            IFileIO<TThirdPartyType> third_party_file_io,
+            IFileIO<TOwnedType> owned_file_io)
         {
-            var thirdPartyCSVFile = new CSVFile<TThirdPartyType>(thirdPartyFileIO);
-            var ownedCSVFile = new CSVFile<TOwnedType>(ownedFileIO);
-            _thirdPartyFile = new GenericFile<TThirdPartyType>(thirdPartyCSVFile);
-            _ownedFile = new GenericFile<TOwnedType>(ownedCSVFile);
-            ThirdPartyFile.Load();
-            OwnedFile.Load();
+            var third_party_csv_file = new CSVFile<TThirdPartyType>(third_party_file_io);
+            var owned_csv_file = new CSVFile<TOwnedType>(owned_file_io);
+            Third_party_data_file = new GenericFile<TThirdPartyType>(third_party_csv_file);
+            Owned_data_file = new GenericFile<TOwnedType>(owned_csv_file);
+            Third_party_file.Load();
+            Owned_file.Load();
 
-            _worksheetName = worksheetName;
+            _worksheet_name = worksheet_name;
 
             Reset();
         }
         
-        public void SetMatchFinder(MatchFindingDelegate<TThirdPartyType, TOwnedType> matchFindingDelegate)
+        public void Set_match_finder(MatchFindingDelegate<TThirdPartyType, TOwnedType> match_finding_delegate)
         {
-            _matchFindingDelegate = matchFindingDelegate;
+            _match_finding_delegate = match_finding_delegate;
         }
 
-        public void ResetMatchFinder()
+        public void Reset_match_finder()
         {
-            _matchFindingDelegate = FindLatestOrderedMatches;
+            _match_finding_delegate = Find_latest_ordered_matches;
         }
 
-        public void SetRecordMatcher(RecordMatchingDelegate<TThirdPartyType, TOwnedType> recordMatcher)
+        public void Set_record_matcher(RecordMatchingDelegate<TThirdPartyType, TOwnedType> record_matcher)
         {
-            _recordMatchingDelegate = recordMatcher;
+            _record_matching_delegate = record_matcher;
         }
 
-        public void ResetRecordMatcher()
+        public void Reset_record_matcher()
         {
-            _recordMatchingDelegate = MatchSpecifiedRecords;
+            _record_matching_delegate = Match_specified_records;
         }
 
-        public bool FindReconciliationMatchesForNextThirdPartyRecord()
+        public bool Find_reconciliation_matches_for_next_third_party_record()
         {
-            bool foundUnmatchedThirdPartyRecord = false;
+            bool found_unmatched_third_party_record = false;
 
-            while (NotAtEnd() && !foundUnmatchedThirdPartyRecord)
+            while (Not_at_end() && !found_unmatched_third_party_record)
             {
-                _currentIndex++;
-                TThirdPartyType sourceRecord = ThirdPartyFile.Records[_currentIndex];
-                var matches = _matchFindingDelegate(sourceRecord, OwnedFile).ToList();
+                _current_index++;
+                TThirdPartyType source_record = Third_party_file.Records[_current_index];
+                var matches = _match_finding_delegate(source_record, Owned_file).ToList();
 
-                if (!sourceRecord.Matched && matches.Count > 0)
+                if (!source_record.Matched && matches.Count > 0)
                 {
-                    _latestRecordForMatching = new RecordForMatching<TThirdPartyType>(
-                        sourceRecord,
+                    _latest_record_for_matching = new RecordForMatching<TThirdPartyType>(
+                        source_record,
                         matches);
 
-                    foundUnmatchedThirdPartyRecord = true;
+                    found_unmatched_third_party_record = true;
                 }
             }
 
-            return foundUnmatchedThirdPartyRecord;
+            return found_unmatched_third_party_record;
         }
 
-        public bool MoveToNextUnmatchedThirdPartyRecordForManualMatching()
+        public bool Move_to_next_unmatched_third_party_record_for_manual_matching()
         {
-            bool foundUnmatchedThirdPartyRecord = false;
+            bool found_unmatched_third_party_record = false;
 
-            while (NotAtEnd() && !foundUnmatchedThirdPartyRecord)
+            while (Not_at_end() && !found_unmatched_third_party_record)
             {
-                _currentIndex++;
-                TThirdPartyType sourceRecord = ThirdPartyFile.Records[_currentIndex];
-                var unmatchedOwnedRecords = CurrentUnmatchedOwnedRecords(sourceRecord).ToList();
+                _current_index++;
+                TThirdPartyType source_record = Third_party_file.Records[_current_index];
+                var unmatched_owned_records = Current_unmatched_owned_records(source_record).ToList();
 
-                if (!sourceRecord.Matched && unmatchedOwnedRecords.Count > 0)
+                if (!source_record.Matched && unmatched_owned_records.Count > 0)
                 {
-                    _latestRecordForMatching = new RecordForMatching<TThirdPartyType>(
-                        sourceRecord,
-                        unmatchedOwnedRecords);
+                    _latest_record_for_matching = new RecordForMatching<TThirdPartyType>(
+                        source_record,
+                        unmatched_owned_records);
 
-                    foundUnmatchedThirdPartyRecord = true;
+                    found_unmatched_third_party_record = true;
                 }
             }
 
-            return foundUnmatchedThirdPartyRecord;
+            return found_unmatched_third_party_record;
         }
 
-        private double GetDateRanking(TOwnedType candidateRecord, TThirdPartyType masterRecord)
+        private double Get_date_ranking(TOwnedType candidate_record, TThirdPartyType master_record)
         {
-            return candidateRecord.Date.ProximityScore(masterRecord.Date);
+            return candidate_record.Date.Proximity_score(master_record.Date);
         }
 
-        private double GetAmountRanking(TOwnedType candidateRecord, TThirdPartyType masterRecord)
+        private double Get_amount_ranking(TOwnedType candidate_record, TThirdPartyType master_record)
         {
-            return candidateRecord.MainAmount().ProximityScore(masterRecord.MainAmount());
+            return candidate_record.Main_amount().Proximity_score(master_record.Main_amount());
         }
 
-        private IEnumerable<IPotentialMatch> FindLatestOrderedMatches(
-            TThirdPartyType sourceRecord,
-            ICSVFile<TOwnedType> ownedFile)
+        private IEnumerable<IPotentialMatch> Find_latest_ordered_matches(
+            TThirdPartyType source_record,
+            ICSVFile<TOwnedType> owned_file)
         {
-            return ConvertUnmatchedOwnedRecordsToPotentialMatches(sourceRecord, ownedFile)
-                .Where(b => b.FullTextMatch 
-                    || b.PartialTextMatch 
+            return Convert_unmatched_owned_records_to_potential_matches(source_record, owned_file)
+                .Where(b => b.Full_text_match 
+                    || b.Partial_text_match 
                     || b.Rankings.Amount <= PotentialMatch.PartialAmountMatchThreshold)
-                .OrderByDescending(c => c.AmountMatch)
-                .ThenByDescending(c => c.FullTextMatch)
-                .ThenByDescending(c => c.PartialTextMatch)
+                .OrderByDescending(c => c.Amount_match)
+                .ThenByDescending(c => c.Full_text_match)
+                .ThenByDescending(c => c.Partial_text_match)
                 .ThenBy(c => c.Rankings.Date)
                 .ThenBy(c => c.Rankings.Amount);
         }
 
-        private IEnumerable<IPotentialMatch> ConvertUnmatchedOwnedRecordsToPotentialMatches(
-            TThirdPartyType sourceRecord,
-            ICSVFile<TOwnedType> ownedFile)
+        private IEnumerable<IPotentialMatch> Convert_unmatched_owned_records_to_potential_matches(
+            TThirdPartyType source_record,
+            ICSVFile<TOwnedType> owned_file)
         {
-            return ownedFile
+            return owned_file
                 .Records
                 .Where(x => x.Matched == false)
-                .Select(ownedRecord => new PotentialMatch
+                .Select(owned_record => new PotentialMatch
                 {
-                    ActualRecords = new List<ICSVRecord>{ownedRecord},
-                    AmountMatch = ownedRecord.MainAmount() == sourceRecord.MainAmount(),
-                    FullTextMatch = CheckForFullTextMatch(sourceRecord.Description, ownedRecord.Description),
-                    PartialTextMatch = CheckForPartialTextMatch(sourceRecord.Description, ownedRecord.Description),
+                    Actual_records = new List<ICSVRecord>{owned_record},
+                    Amount_match = owned_record.Main_amount() == source_record.Main_amount(),
+                    Full_text_match = Check_for_full_text_match(source_record.Description, owned_record.Description),
+                    Partial_text_match = Check_for_partial_text_match(source_record.Description, owned_record.Description),
                     Rankings = new Rankings
                     {
-                        Amount = GetAmountRanking(ownedRecord, sourceRecord),
-                        Date = GetDateRanking(ownedRecord, sourceRecord)
+                        Amount = Get_amount_ranking(owned_record, source_record),
+                        Date = Get_date_ranking(owned_record, source_record)
                     },
-                    ConsoleLines = new List<ConsoleLine> { ownedRecord.ToConsole() }
+                    Console_lines = new List<ConsoleLine> { owned_record.To_console() }
                 });
         }
 
-        private bool CheckForFullTextMatch(string sourceDescription, string targetDescription)
+        private bool Check_for_full_text_match(string source_description, string target_description)
         {
-            var sourceDescriptionTransformed = sourceDescription.RemovePunctuation().ToUpper();
-            var targetDescriptionTransformed = targetDescription.RemovePunctuation().ToUpper();
-            return (targetDescriptionTransformed == sourceDescriptionTransformed)
-                || targetDescriptionTransformed.Contains(sourceDescriptionTransformed);
+            var source_description_transformed = source_description.Remove_punctuation().ToUpper();
+            var target_description_transformed = target_description.Remove_punctuation().ToUpper();
+            return (target_description_transformed == source_description_transformed)
+                || target_description_transformed.Contains(source_description_transformed);
         }
 
-        public bool CheckForPartialTextMatch(string sourceDescription, string targetDescription)
+        public bool Check_for_partial_text_match(string source_description, string target_description)
         {
-            bool foundPartialMatch = false;
-            var sourceWords = sourceDescription
-                .ReplacePunctuationWithSpaces()
+            bool found_partial_match = false;
+            var source_words = source_description
+                .Replace_punctuation_with_spaces()
                 .ToUpper()
                 .Split(' ')
                 .Where(x => !string.IsNullOrEmpty(x))
                 .ToList();
-            var targetWords = targetDescription
-                .ReplacePunctuationWithSpaces()
+            var target_words = target_description
+                .Replace_punctuation_with_spaces()
                 .ToUpper()
                 .Split(' ')
                 .Where(x => !string.IsNullOrEmpty(x))
                 .ToList();
-            int sourceCount = 0;
-            while (!foundPartialMatch && sourceCount < sourceWords.Count)
+            int source_count = 0;
+            while (!found_partial_match && source_count < source_words.Count)
             {
-                var sourceWord = sourceWords[sourceCount];
-                if (sourceWord.Length > 1)
+                var source_word = source_words[source_count];
+                if (source_word.Length > 1)
                 {
-                    int targetCount = 0;
-                    while (!foundPartialMatch && targetCount < targetWords.Count)
+                    int target_count = 0;
+                    while (!found_partial_match && target_count < target_words.Count)
                     {
-                        var targetWord = targetWords[targetCount];
-                        if ((targetWord == sourceWord || targetWord.StartsWith(sourceWord)) && !_reservedWords.Contains(targetWord))
+                        var target_word = target_words[target_count];
+                        if ((target_word == source_word || target_word.StartsWith(source_word)) && !_reserved_words.Contains(target_word))
                         {
-                            foundPartialMatch = true;
+                            found_partial_match = true;
                         }
-                        targetCount++;
+                        target_count++;
                     }
                 }
-                sourceCount++;
+                source_count++;
             }
-            return foundPartialMatch;
+            return found_partial_match;
         }
 
-        private IEnumerable<IPotentialMatch> CurrentUnmatchedOwnedRecords(TThirdPartyType sourceRecord)
+        private IEnumerable<IPotentialMatch> Current_unmatched_owned_records(TThirdPartyType source_record)
         {
-            var unmatchedOwnedRecords = OwnedFile
+            var unmatched_owned_records = Owned_file
                 .Records
                 .Where(x => x.Matched == false)
-                .Select( ownedRecord => new PotentialMatch
+                .Select( owned_record => new PotentialMatch
                 {
-                    ActualRecords = new List<ICSVRecord> { ownedRecord },
-                    AmountMatch = ownedRecord.MainAmount() == sourceRecord.MainAmount(),
-                    FullTextMatch = CheckForFullTextMatch(sourceRecord.Description, ownedRecord.Description),
-                    PartialTextMatch = CheckForPartialTextMatch(sourceRecord.Description, ownedRecord.Description),
-                    Rankings = GetRankings(ownedRecord, sourceRecord),
-                    ConsoleLines = new List<ConsoleLine> { ownedRecord.ToConsole() }
+                    Actual_records = new List<ICSVRecord> { owned_record },
+                    Amount_match = owned_record.Main_amount() == source_record.Main_amount(),
+                    Full_text_match = Check_for_full_text_match(source_record.Description, owned_record.Description),
+                    Partial_text_match = Check_for_partial_text_match(source_record.Description, owned_record.Description),
+                    Rankings = Get_rankings(owned_record, source_record),
+                    Console_lines = new List<ConsoleLine> { owned_record.To_console() }
                 })
                 .OrderBy(c => c.Rankings.Combined);
 
-            return unmatchedOwnedRecords;
+            return unmatched_owned_records;
         }
 
-        private Rankings GetRankings(TOwnedType candidateRecord, TThirdPartyType masterRecord)
+        private Rankings Get_rankings(TOwnedType candidate_record, TThirdPartyType master_record)
         {
-            var amountRanking = GetAmountRanking(candidateRecord, masterRecord);
-            var dateRanking = GetDateRanking(candidateRecord, masterRecord);
+            var amount_ranking = Get_amount_ranking(candidate_record, master_record);
+            var date_ranking = Get_date_ranking(candidate_record, master_record);
             return new Rankings
             {
-                Amount = amountRanking,
-                Date = dateRanking,
-                Combined = Math.Min(amountRanking, dateRanking)
+                Amount = amount_ranking,
+                Date = date_ranking,
+                Combined = Math.Min(amount_ranking, date_ranking)
             };
         }
 
-        public void MatchCurrentRecord(int matchIndex)
+        public void Match_current_record(int match_index)
         {
-            _recordMatchingDelegate(_latestRecordForMatching, matchIndex, OwnedFile);
+            _record_matching_delegate(_latest_record_for_matching, match_index, Owned_file);
         }
 
-        private void MatchSpecifiedRecords(
-            RecordForMatching<TThirdPartyType> recordForMatching, 
-            int matchIndex,
-            ICSVFile<TOwnedType> ownedFile)
+        private void Match_specified_records(
+            RecordForMatching<TThirdPartyType> record_for_matching, 
+            int match_index,
+            ICSVFile<TOwnedType> owned_file)
         { 
             try
             {
-                MatchRecords(recordForMatching.SourceRecord,
-                    recordForMatching.Matches[matchIndex].ActualRecords.ElementAt(0));
+                Match_records(record_for_matching.SourceRecord,
+                    record_for_matching.Matches[match_index].Actual_records.ElementAt(0));
 
-                if (recordForMatching.SourceRecord.MainAmount() !=
-                    recordForMatching.SourceRecord.Match.MainAmount())
+                if (record_for_matching.SourceRecord.Main_amount() !=
+                    record_for_matching.SourceRecord.Match.Main_amount())
                 {
-                    ChangeAmountAndDescriptionToMatchThirdPartyRecord(
-                        recordForMatching.SourceRecord,
-                        recordForMatching.Matches[matchIndex].ActualRecords.ElementAt(0));
+                    Change_amount_and_description_to_match_third_party_record(
+                        record_for_matching.SourceRecord,
+                        record_for_matching.Matches[match_index].Actual_records.ElementAt(0));
                 }
             }
             catch (ArgumentOutOfRangeException exception)
@@ -307,7 +307,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        private void MatchRecords(TThirdPartyType source, ICSVRecord match)
+        private void Match_records(TThirdPartyType source, ICSVRecord match)
         {
             source.Matched = true;
             source.Match = match;
@@ -316,7 +316,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             match.Match = source;
         }
 
-        private void UnmatchRecords(TThirdPartyType source, ICSVRecord match)
+        private void Unmatch_records(TThirdPartyType source, ICSVRecord match)
         {
             source.Matched = false;
             source.Match = null;
@@ -325,145 +325,145 @@ namespace ConsoleCatchall.Console.Reconciliation
             match.Match = null;
         }
 
-        private void ChangeAmountAndDescriptionToMatchThirdPartyRecord(TThirdPartyType sourceRecord, ICSVRecord matchedRecord)
+        private void Change_amount_and_description_to_match_third_party_record(TThirdPartyType source_record, ICSVRecord matched_record)
         {
-            matchedRecord.Description = matchedRecord.Description 
+            matched_record.Description = matched_record.Description 
                                         + ReconConsts.OriginalAmountWas
-                                        + string.Format(StringHelper.Culture(), "{0:C}", matchedRecord.MainAmount());
+                                        + string.Format(StringHelper.Culture(), "{0:C}", matched_record.Main_amount());
 
-            matchedRecord.ChangeMainAmount(sourceRecord.MainAmount());
+            matched_record.Change_main_amount(source_record.Main_amount());
         }
 
         public void Reset()
         {
-            _currentIndex = -1;
-            ThirdPartyFile.ResetAllMatches();
-            OwnedFile.ResetAllMatches();
-            ResetMatchFinder();
-            ResetRecordMatcher();
+            _current_index = -1;
+            Third_party_file.Reset_all_matches();
+            Owned_file.Reset_all_matches();
+            Reset_match_finder();
+            Reset_record_matcher();
         }
 
-        public void RefreshFiles()
+        public void Refresh_files()
         {
-            _thirdPartyFile.RefreshFileContents();
-            _ownedFile.RefreshFileContents();
+            Third_party_data_file.Refresh_file_contents();
+            Owned_data_file.Refresh_file_contents();
         }
 
         public void Rewind()
         {
-            _currentIndex = -1;
+            _current_index = -1;
         }
 
-        public void Finish(string fileSuffix)
+        public void Finish(string file_suffix)
         {
-            AddUnmatchedSourceItemsToOwnedFile();
-            ReconcileAllMatchedItems();
+            Add_unmatched_source_items_to_owned_file();
+            Reconcile_all_matched_items();
             
-            OwnedFile.WriteToCsvFile(fileSuffix);
-            if ("" != _worksheetName)
+            Owned_file.Write_to_csv_file(file_suffix);
+            if ("" != _worksheet_name)
             {
-                OwnedFile.WriteBackToMainSpreadsheet(_worksheetName);
+                Owned_file.Write_back_to_main_spreadsheet(_worksheet_name);
             }
         }
 
-        private void ReconcileAllMatchedItems()
+        private void Reconcile_all_matched_items()
         {
-            foreach (var matchedOwnedRecord in OwnedFile.Records.Where(x => x.Matched))
+            foreach (var matched_owned_record in Owned_file.Records.Where(x => x.Matched))
             {
-                matchedOwnedRecord.Reconcile();
+                matched_owned_record.Reconcile();
             }
         }
 
-        private void AddUnmatchedSourceItemsToOwnedFile()
+        private void Add_unmatched_source_items_to_owned_file()
         {
-            foreach (var unmatchedSource in ThirdPartyFile.Records.Where(x => !x.Matched))
+            foreach (var unmatched_source in Third_party_file.Records.Where(x => !x.Matched))
             {
-                var newOwnedRecord = new TOwnedType();
-                newOwnedRecord.CreateFromMatch(
-                    unmatchedSource.Date,
-                    unmatchedSource.MainAmount(),
-                    unmatchedSource.TransactionType(),
-                    "!! Unmatched from 3rd party: " + unmatchedSource.Description,
-                    unmatchedSource.ExtraInfo(),
-                    unmatchedSource);
-                OwnedFile.Records.Add(newOwnedRecord);
+                var new_owned_record = new TOwnedType();
+                new_owned_record.Create_from_match(
+                    unmatched_source.Date,
+                    unmatched_source.Main_amount(),
+                    unmatched_source.Transaction_type(),
+                    "!! Unmatched from 3rd party: " + unmatched_source.Description,
+                    unmatched_source.Extra_info(),
+                    unmatched_source);
+                Owned_file.Records.Add(new_owned_record);
             }
         }
 
-        public bool NotAtEnd()
+        public bool Not_at_end()
         {
-            return _currentIndex < (ThirdPartyFile.Records.Count - 1);
+            return _current_index < (Third_party_file.Records.Count - 1);
         }
 
-        public List<IPotentialMatch> CurrentPotentialMatches()
+        public List<IPotentialMatch> Current_potential_matches()
         {
             // !! Don't re-order items here !! If you do, they will be displayed in a different order than they are stored.
             // This will mean that if a user selects Item with index 4, it might actually be stored with index 9, 
             // and the wrong record will be matched.
             // Instead, if you want to change the ordering, look at CurrentUnmatchedOwnedRecords() and FindLatestOrderedMatches()
-            return _latestRecordForMatching != null 
-                ? Indexed(_latestRecordForMatching.Matches)
+            return _latest_record_for_matching != null 
+                ? Indexed(_latest_record_for_matching.Matches)
                 : null;
         }
 
-        public static List<IPotentialMatch> Indexed(List<IPotentialMatch> sourceList)
+        public static List<IPotentialMatch> Indexed(List<IPotentialMatch> source_list)
         {
             int index = 0;
-            foreach (var item in sourceList)
+            foreach (var item in source_list)
             {
-                foreach (var consoleLine in item.ConsoleLines)
+                foreach (var console_line in item.Console_lines)
                 {
-                    consoleLine.Index = index;
+                    console_line.Index = index;
                 }
                 index++;
             }
 
-            return sourceList;
+            return source_list;
         }
 
-        public string CurrentSourceRecordAsString()
+        public string Current_source_record_as_string()
         {
-            return _latestRecordForMatching != null
-                ? _latestRecordForMatching.SourceRecord.ToCsv()
+            return _latest_record_for_matching != null
+                ? _latest_record_for_matching.SourceRecord.To_csv()
                 : "No record currently stored";
         }
 
-        public ConsoleLine CurrentSourceRecordAsConsoleLine()
+        public ConsoleLine Current_source_record_as_console_line()
         {
-            return _latestRecordForMatching != null
-                ? _latestRecordForMatching.SourceRecord.ToConsole()
+            return _latest_record_for_matching != null
+                ? _latest_record_for_matching.SourceRecord.To_console()
                 : new ConsoleLine();
         }
 
-        public string CurrentSourceDescription()
+        public string Current_source_description()
         {
-            return _latestRecordForMatching != null
-                ? _latestRecordForMatching.SourceRecord.Description
+            return _latest_record_for_matching != null
+                ? _latest_record_for_matching.SourceRecord.Description
                 : "No current record";
         }
 
-        public RecordForMatching<TThirdPartyType> CurrentRecordForMatching()
+        public RecordForMatching<TThirdPartyType> Current_record_for_matching()
         {
-            return _latestRecordForMatching;
+            return _latest_record_for_matching;
         }
 
-        public List<TOwnedType> OwnedFileRecords()
+        public List<TOwnedType> Owned_file_records()
         {
-            return OwnedFile.Records;
+            return Owned_file.Records;
         }
 
-        public void DeleteCurrentThirdPartyRecord()
+        public void Delete_current_third_party_record()
         {
             try
             {
-                if (ThirdPartyFile.Records[_currentIndex].Matched)
+                if (Third_party_file.Records[_current_index].Matched)
                 {
-                    ThirdPartyFile.Records[_currentIndex].Match.Matched = false;
-                    ThirdPartyFile.Records[_currentIndex].Match.Match = null;
+                    Third_party_file.Records[_current_index].Match.Matched = false;
+                    Third_party_file.Records[_current_index].Match.Match = null;
                 }
-                ThirdPartyFile.Records.RemoveAt(_currentIndex);
-                _currentIndex--;
-                _latestRecordForMatching = null;
+                Third_party_file.Records.RemoveAt(_current_index);
+                _current_index--;
+                _latest_record_for_matching = null;
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -471,20 +471,20 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public void DeleteSpecificThirdPartyRecord(int specifiedIndex)
+        public void Delete_specific_third_party_record(int specified_index)
         {
             try
             {
-                if (ThirdPartyFile.Records[specifiedIndex].Matched)
+                if (Third_party_file.Records[specified_index].Matched)
                 {
-                    ThirdPartyFile.Records[specifiedIndex].Match.Matched = false;
-                    ThirdPartyFile.Records[specifiedIndex].Match.Match = null;
+                    Third_party_file.Records[specified_index].Match.Matched = false;
+                    Third_party_file.Records[specified_index].Match.Match = null;
                 }
-                ThirdPartyFile.Records.RemoveAt(specifiedIndex);
-                if (specifiedIndex == _currentIndex)
+                Third_party_file.Records.RemoveAt(specified_index);
+                if (specified_index == _current_index)
                 {
-                    _currentIndex--;
-                    _latestRecordForMatching = null;
+                    _current_index--;
+                    _latest_record_for_matching = null;
                 }
             }
             catch (ArgumentOutOfRangeException)
@@ -493,9 +493,9 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public void DeleteSpecificOwnedRecordFromListOfMatches(int specifiedIndex)
+        public void Delete_specific_owned_record_from_list_of_matches(int specified_index)
         {
-            if (_latestRecordForMatching == null)
+            if (_latest_record_for_matching == null)
             {
                 throw new Exception(CannotDeleteMatchedRecordNoMatching);
             }
@@ -503,18 +503,18 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 try
                 {
-                    foreach (var actualRecord in _latestRecordForMatching.Matches[specifiedIndex].ActualRecords)
+                    foreach (var actual_record in _latest_record_for_matching.Matches[specified_index].Actual_records)
                     {
-                        if (actualRecord.Matched)
+                        if (actual_record.Matched)
                         {
                             throw new Exception(CannotDeleteMatchedOwnedRecord);
                         }
                         else
                         {
-                            OwnedFile.Records.Remove((TOwnedType)(actualRecord));
+                            Owned_file.Records.Remove((TOwnedType)(actual_record));
                         }
                     }
-                    _latestRecordForMatching.Matches.RemoveAt(specifiedIndex);
+                    _latest_record_for_matching.Matches.RemoveAt(specified_index);
                 }
                 catch (ArgumentOutOfRangeException exception)
                 {
@@ -523,98 +523,98 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public int NumPotentialMatches()
+        public int Num_potential_matches()
         {
-            return _latestRecordForMatching != null ? 
-                _latestRecordForMatching.Matches.Count
+            return _latest_record_for_matching != null ? 
+                _latest_record_for_matching.Matches.Count
                 : 0;
         }
 
-        public List<AutoMatchedRecord<TThirdPartyType>> DoAutoMatching()
+        public List<AutoMatchedRecord<TThirdPartyType>> Do_auto_matching()
         {
-            _autoMatches = new List<AutoMatchedRecord<TThirdPartyType>>();
+            _auto_matches = new List<AutoMatchedRecord<TThirdPartyType>>();
             var index = 0;
 
-            foreach (var thirdPartyRecord in ThirdPartyFile.Records)
+            foreach (var third_party_record in Third_party_file.Records)
             {
-                var singleMatch = FindSingleMatchByAmountAndTextAndNearDate(thirdPartyRecord);
-                if (null != singleMatch)
+                var single_match = Find_single_match_by_amount_and_text_and_near_date(third_party_record);
+                if (null != single_match)
                 {
-                    var newRecordForMatching = new AutoMatchedRecord<TThirdPartyType>(
-                        thirdPartyRecord,
-                        FindSingleMatchByAmountAndTextAndNearDate(thirdPartyRecord),
+                    var new_record_for_matching = new AutoMatchedRecord<TThirdPartyType>(
+                        third_party_record,
+                        Find_single_match_by_amount_and_text_and_near_date(third_party_record),
                         index);
 
-                    MatchRecords(thirdPartyRecord, singleMatch.ActualRecords.ElementAt(0));
+                    Match_records(third_party_record, single_match.Actual_records.ElementAt(0));
 
-                    _autoMatches.Add(newRecordForMatching);
+                    _auto_matches.Add(new_record_for_matching);
                     index++;
                 }
             }
 
-            return _autoMatches;
+            return _auto_matches;
         }
 
-        private IPotentialMatch FindSingleMatchByAmountAndTextAndNearDate(TThirdPartyType sourceRecord)
+        private IPotentialMatch Find_single_match_by_amount_and_text_and_near_date(TThirdPartyType source_record)
         {
-            var allMatches = ConvertUnmatchedOwnedRecordsToPotentialMatches(sourceRecord, OwnedFile)
+            var all_matches = Convert_unmatched_owned_records_to_potential_matches(source_record, Owned_file)
                 .Where(b => 
-                    (b.FullTextMatch || b.PartialTextMatch)
+                    (b.Full_text_match || b.Partial_text_match)
                     && b.Rankings.Amount == 0 
                     && b.Rankings.Date <= PotentialMatch.PartialDateMatchThreshold);
 
-            return SingleMatchOnly(allMatches);
+            return Single_match_only(all_matches);
         }
 
-        private IPotentialMatch SingleMatchOnly(IEnumerable<IPotentialMatch> allMatches)
+        private IPotentialMatch Single_match_only(IEnumerable<IPotentialMatch> all_matches)
         {
-            return allMatches.Count() == 1
-                ? allMatches.ToList()[0]
+            return all_matches.Count() == 1
+                ? all_matches.ToList()[0]
                 : null;
         }
 
-        public List<AutoMatchedRecord<TThirdPartyType>> GetAutoMatches()
+        public List<AutoMatchedRecord<TThirdPartyType>> Get_auto_matches()
         {
-            return _autoMatches;
+            return _auto_matches;
         }
 
-        public List<ConsoleLine> GetAutoMatchesForConsole()
+        public List<ConsoleLine> Get_auto_matches_for_console()
         {
-            List<ConsoleLine> consoleLines = new List<ConsoleLine>();
+            List<ConsoleLine> console_lines = new List<ConsoleLine>();
 
-            var autoMatchesWithMatchedItemsOnly = _autoMatches.Where(x => x.Match != null);
-            foreach (var autoMatch in autoMatchesWithMatchedItemsOnly)
+            var auto_matches_with_matched_items_only = _auto_matches.Where(x => x.Match != null);
+            foreach (var auto_match in auto_matches_with_matched_items_only)
             {
-                consoleLines.Add(new ConsoleLine().AsSeparator(autoMatch.Index));
-                consoleLines.Add(autoMatch.SourceRecord.ToConsole(autoMatch.Index));
-                consoleLines.Add(autoMatch.Match.ActualRecords.ElementAt(0).ToConsole(autoMatch.Index));
+                console_lines.Add(new ConsoleLine().As_separator(auto_match.Index));
+                console_lines.Add(auto_match.SourceRecord.To_console(auto_match.Index));
+                console_lines.Add(auto_match.Match.Actual_records.ElementAt(0).To_console(auto_match.Index));
             }
 
-            return consoleLines;
+            return console_lines;
         }
 
-        public List<ConsoleLine> GetFinalMatchesForConsole()
+        public List<ConsoleLine> Get_final_matches_for_console()
         {
-            List<ConsoleLine> consoleLines = new List<ConsoleLine>();
+            List<ConsoleLine> console_lines = new List<ConsoleLine>();
 
-            var matchedRecords = ThirdPartyFile.Records.Where(x => x.Matched);
-            foreach (var record in matchedRecords)
+            var matched_records = Third_party_file.Records.Where(x => x.Matched);
+            foreach (var record in matched_records)
             {
-                var index = ThirdPartyFile.Records.IndexOf(record);
-                consoleLines.Add(new ConsoleLine().AsSeparator(index));
-                consoleLines.Add(record.ToConsole(index));
-                consoleLines.Add(record.Match.ToConsole(index));
+                var index = Third_party_file.Records.IndexOf(record);
+                console_lines.Add(new ConsoleLine().As_separator(index));
+                console_lines.Add(record.To_console(index));
+                console_lines.Add(record.Match.To_console(index));
             }
 
-            return consoleLines;
+            return console_lines;
         }
 
-        public void RemoveAutoMatch(int matchIndex)
+        public void Remove_auto_match(int match_index)
         {
             try
             {
-                UnmatchRecords(_autoMatches[matchIndex].SourceRecord, _autoMatches[matchIndex].Match.ActualRecords.ElementAt(0));
-                _autoMatches[matchIndex].Match = null;
+                Unmatch_records(_auto_matches[match_index].SourceRecord, _auto_matches[match_index].Match.Actual_records.ElementAt(0));
+                _auto_matches[match_index].Match = null;
             }
             catch (ArgumentOutOfRangeException exception)
             {
@@ -622,12 +622,12 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public void RemoveFinalMatch(int thirdPartyIndex)
+        public void Remove_final_match(int third_party_index)
         {
             try
             {
-                UnmatchRecords(ThirdPartyFile.Records[thirdPartyIndex], ThirdPartyFile.Records[thirdPartyIndex].Match);
-                ThirdPartyFile.Records[thirdPartyIndex].Match = null;
+                Unmatch_records(Third_party_file.Records[third_party_index], Third_party_file.Records[third_party_index].Match);
+                Third_party_file.Records[third_party_index].Match = null;
             }
             catch (ArgumentOutOfRangeException exception)
             {
@@ -635,75 +635,75 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public void RemoveMultipleAutoMatches(List<int> matchIndices)
+        public void Remove_multiple_auto_matches(List<int> match_indices)
         {
-            foreach (var matchIndex in matchIndices)
+            foreach (var match_index in match_indices)
             {
-                RemoveAutoMatch(matchIndex);
+                Remove_auto_match(match_index);
             }
         }
 
-        public void RemoveMultipleFinalMatches(List<int> thirdPartyIndices)
+        public void Remove_multiple_final_matches(List<int> third_party_indices)
         {
-            foreach (var thirdPartyIndex in thirdPartyIndices)
+            foreach (var third_party_index in third_party_indices)
             {
-                RemoveFinalMatch(thirdPartyIndex);
+                Remove_final_match(third_party_index);
             }
         }
 
-        public void FilterOwnedFile(System.Predicate<TOwnedType> filterPredicate)
+        public void Filter_owned_file(System.Predicate<TOwnedType> filter_predicate)
         {
-            OwnedFile.RemoveRecords(filterPredicate);
+            Owned_file.Remove_records(filter_predicate);
         }
 
-        public void FilterThirdPartyFile(System.Predicate<TThirdPartyType> filterPredicate)
+        public void Filter_third_party_file(System.Predicate<TThirdPartyType> filter_predicate)
         {
-            ThirdPartyFile.RemoveRecords(filterPredicate);
+            Third_party_file.Remove_records(filter_predicate);
         }
 
-        public List<TThirdPartyType> ThirdPartyRecords()
+        public List<TThirdPartyType> Third_party_records()
         {
-            return ThirdPartyFile.Records;
+            return Third_party_file.Records;
         }
 
-        public int NumThirdPartyRecords()
+        public int Num_third_party_records()
         {
-            return ThirdPartyFile.Records.Count;
+            return Third_party_file.Records.Count;
         }
 
-        public int NumOwnedRecords()
+        public int Num_owned_records()
         {
-            return OwnedFile.Records.Count;
+            return Owned_file.Records.Count;
         }
 
-        public int NumMatchedThirdPartyRecords()
+        public int Num_matched_third_party_records()
         {
-            return ThirdPartyFile.NumMatchedRecords();
+            return Third_party_file.Num_matched_records();
         }
 
-        public int NumMatchedOwnedRecords()
+        public int Num_matched_owned_records()
         {
-            return OwnedFile.NumMatchedRecords();
+            return Owned_file.Num_matched_records();
         }
 
-        public int NumUnmatchedThirdPartyRecords()
+        public int Num_unmatched_third_party_records()
         {
-            return ThirdPartyFile.NumUnmatchedRecords();
+            return Third_party_file.Num_unmatched_records();
         }
 
-        public int NumUnmatchedOwnedRecords()
+        public int Num_unmatched_owned_records()
         {
-            return OwnedFile.NumUnmatchedRecords();
+            return Owned_file.Num_unmatched_records();
         }
 
-        public List<string> UnmatchedThirdPartyRecords()
+        public List<string> Unmatched_third_party_records()
         {
-            return ThirdPartyFile.UnmatchedRecordsAsCsv();
+            return Third_party_file.Unmatched_records_as_csv();
         }
 
-        public List<string> UnmatchedOwnedRecords()
+        public List<string> Unmatched_owned_records()
         {
-            return OwnedFile.UnmatchedRecordsAsCsv();
+            return Owned_file.Unmatched_records_as_csv();
         }
     }
 }

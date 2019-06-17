@@ -6,25 +6,25 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
     internal class FakeCellRow : ICellRow
     {
         public int Count {
-            get { return _fakeCells.Count; }
+            get { return _fake_cells.Count; }
             set { }
         }
 
-        private List<object> _fakeCells = new List<object>();
+        private List<object> _fake_cells = new List<object>();
 
-        public FakeCellRow WithFakeData(List<object> fakeData)
+        public FakeCellRow With_fake_data(List<object> fake_data)
         {
-            _fakeCells = fakeData;
+            _fake_cells = fake_data;
             return this;
         }
 
-        public void PopulateCell(int rowNumber, int columnNumber, object cellContent)
+        public void Populate_cell(int row_number, int column_number, object cell_content)
         {
         }
 
-        public object ReadCell(int columnNumber)
+        public object Read_cell(int column_number)
         {
-            return _fakeCells[columnNumber];
+            return _fake_cells[column_number];
         }
     }
 }

@@ -6,18 +6,18 @@ namespace Interfaces.Constants
 {
     public class MyXmlReader
     {
-        public string XmlFilePath => ReadXml(
+        public string Xml_file_path => ReadXml(
             FilePathConsts.ConfigPathProperty, 
             Path.Combine(FilePathConsts.ConfigFilePath, FilePathConsts.ConfigFileName));
 
-        readonly XElement _loadedConfig;
+        readonly XElement _loaded_config;
 
         public MyXmlReader()
         {
             _loadedConfig = LoadXml(XmlFilePath);
         }
 
-        private XElement LoadXml(string xmlFilePath)
+        private XElement Load_xml(string xml_file_path)
         {
             try 
             {
@@ -30,12 +30,12 @@ namespace Interfaces.Constants
             return null;
         }
 
-        public string ReadXml(string xmlProperty)
+        public string Read_xml(string xml_property)
         {
             return _loadedConfig.Descendants(xmlProperty).First().Value;
         }
 
-        public string ReadXml(string xmlProperty, string xmlFilePath)
+        public string Read_xml(string xml_property, string xml_file_path)
         {
             var temp_config = LoadXml(xmlFilePath);
             return temp_config.Descendants(xmlProperty).First().Value;

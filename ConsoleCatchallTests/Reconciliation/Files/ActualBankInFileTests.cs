@@ -10,17 +10,17 @@ namespace ConsoleCatchallTests.Reconciliation.Files
     public class ActualBankInFileTests
     {
         [Test]
-        public void WillFilterForPositiveRecordsWhenLoading()
+        public void Will_filter_for_positive_records_when_loading()
         {
             // Arrange
-            var mockActualBankFile = new Mock<ICSVFile<ActualBankRecord>>();
-            var actualBankInFile = new ActualBankInFile(mockActualBankFile.Object);
+            var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
+            var actual_bank_in_file = new ActualBankInFile(mock_actual_bank_file.Object);
 
             // Act
-            actualBankInFile.Load();
+            actual_bank_in_file.Load();
 
             // Assert
-            mockActualBankFile.Verify(x => x.FilterForPositiveRecordsOnly());
+            mock_actual_bank_file.Verify(x => x.Filter_for_positive_records_only());
         }
     }
 }

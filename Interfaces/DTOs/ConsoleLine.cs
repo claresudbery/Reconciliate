@@ -6,53 +6,53 @@ namespace Interfaces.DTOs
     public class ConsoleLine
     {
         public int Index { get; set; }
-        public string DateString { get; set; }
-        public string AmountString { get; set; }
-        public string DescriptionString { get; set; }
+        public string Date_string { get; set; }
+        public string Amount_string { get; set; }
+        public string Description_string { get; set; }
 
-        private List<ConsoleSnippet> _consoleSnippets;
+        private List<ConsoleSnippet> _console_snippets;
 
-        public string AsTextLine()
+        public string As_text_line()
         {
-            return $"{Index}. {DateString},{AmountString},{DescriptionString}";
+            return $"{Index}. {Date_string},{Amount_string},{Description_string}";
         }
 
-        public ConsoleLine AsSeparator(int index)
+        public ConsoleLine As_separator(int index)
         {
             Index = index;
-            AmountString = "------";
-            DateString = "----------";
-            DescriptionString = "------------------------------------------------";
+            Amount_string = "------";
+            Date_string = "----------";
+            Description_string = "------------------------------------------------";
             return this;
         }
 
-        public List<ConsoleSnippet> GetConsoleSnippets(IPotentialMatch potentialMatch)
+        public List<ConsoleSnippet> Get_console_snippets(IPotentialMatch potential_match)
         {
-            if (_consoleSnippets == null)
+            if (_console_snippets == null)
             {
-                _consoleSnippets = new List<ConsoleSnippet>();
+                _console_snippets = new List<ConsoleSnippet>();
             }
             else
             {
-                _consoleSnippets.Clear();
+                _console_snippets.Clear();
             }
-            _consoleSnippets.Add(IndexAsConsoleSnippet());
-            _consoleSnippets.Add(DateAsConsoleSnippet(potentialMatch));
-            _consoleSnippets.Add(AmountAsConsoleSnippet(potentialMatch));
-            _consoleSnippets.Add(DescriptionAsConsoleSnippet(potentialMatch));
-            return _consoleSnippets;
+            _console_snippets.Add(Index_as_console_snippet());
+            _console_snippets.Add(Date_as_console_snippet(potential_match));
+            _console_snippets.Add(Amount_as_console_snippet(potential_match));
+            _console_snippets.Add(Description_as_console_snippet(potential_match));
+            return _console_snippets;
         }
 
-        private static ConsoleColour GetColour(bool fullMatch, bool partialMatch)
+        private static ConsoleColour Get_colour(bool full_match, bool partial_match)
         {
             var colour = ConsoleColour.White;
 
-            if (fullMatch)
+            if (full_match)
             {
                 colour = ConsoleColour.Green;
             }
             else
-            if (partialMatch)
+            if (partial_match)
             {
                 colour = ConsoleColour.DarkYellow;
             }
@@ -60,43 +60,43 @@ namespace Interfaces.DTOs
             return colour;
         }
 
-        private ConsoleSnippet IndexAsConsoleSnippet()
+        private ConsoleSnippet Index_as_console_snippet()
         {
             return new ConsoleSnippet
             {
                 Text = $"{Index}. ",
-                TextColour = ConsoleColour.White
+                Text_colour = ConsoleColour.White
             };
         }
 
-        private ConsoleSnippet DateAsConsoleSnippet(IPotentialMatch potentialMatch)
+        private ConsoleSnippet Date_as_console_snippet(IPotentialMatch potential_match)
         {
             return new ConsoleSnippet
             {
-                Text = DateString + ",",
-                TextColour = GetColour(
-                    potentialMatch.Rankings != null && potentialMatch.Rankings.Date == 0,
-                    potentialMatch.Rankings != null && potentialMatch.Rankings.Date <= ReconConsts.PartialDateMatchThreshold)
+                Text = Date_string + ",",
+                Text_colour = Get_colour(
+                    potential_match.Rankings != null && potential_match.Rankings.Date == 0,
+                    potential_match.Rankings != null && potential_match.Rankings.Date <= ReconConsts.PartialDateMatchThreshold)
             };
         }
 
-        private ConsoleSnippet AmountAsConsoleSnippet(IPotentialMatch potentialMatch)
+        private ConsoleSnippet Amount_as_console_snippet(IPotentialMatch potential_match)
         {
             return new ConsoleSnippet
             {
-                Text = AmountString + ",",
-                TextColour = GetColour(
-                    potentialMatch.Rankings != null && potentialMatch.Rankings.Amount == 0,
-                    potentialMatch.Rankings != null && potentialMatch.Rankings.Amount <= ReconConsts.PartialAmountMatchThreshold)
+                Text = Amount_string + ",",
+                Text_colour = Get_colour(
+                    potential_match.Rankings != null && potential_match.Rankings.Amount == 0,
+                    potential_match.Rankings != null && potential_match.Rankings.Amount <= ReconConsts.PartialAmountMatchThreshold)
             };
         }
 
-        private ConsoleSnippet DescriptionAsConsoleSnippet(IPotentialMatch potentialMatch)
+        private ConsoleSnippet Description_as_console_snippet(IPotentialMatch potential_match)
         {
             return new ConsoleSnippet
             {
-                Text = DescriptionString,
-                TextColour = GetColour(potentialMatch.FullTextMatch, potentialMatch.PartialTextMatch)
+                Text = Description_string,
+                Text_colour = Get_colour(potential_match.Full_text_match, potential_match.Partial_text_match)
             };
         }
     }

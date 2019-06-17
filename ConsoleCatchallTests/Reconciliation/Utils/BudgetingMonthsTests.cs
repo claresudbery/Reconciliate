@@ -12,94 +12,94 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         [TestCase(12, 3, 4)]
         [TestCase(10, 1, 4)]
         [TestCase(6, 5, 12)]
-        public void WillCalculateNumBudgetingMonthsBasedOnStoredData(
-            int nextUnplannedMonth, 
-            int lastMonthForBudgetPlanning, 
-            int expectedResult)
+        public void Will_calculate_num_budgeting_months_based_on_stored_data(
+            int next_unplanned_month, 
+            int last_month_for_budget_planning, 
+            int expected_result)
         {
             // Arrange 
-            var budgetingMonths = new BudgetingMonths
+            var budgeting_months = new BudgetingMonths
             {
-                NextUnplannedMonth = nextUnplannedMonth,
-                LastMonthForBudgetPlanning = lastMonthForBudgetPlanning
+                Next_unplanned_month = next_unplanned_month,
+                Last_month_for_budget_planning = last_month_for_budget_planning
             };
 
             // Act
-            var result = budgetingMonths.NumBudgetingMonths();
+            var result = budgeting_months.Num_budgeting_months();
 
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            Assert.AreEqual(expected_result, result);
         }
 
         [Test]
-        public void WillCalculateBudgetingStartDateUsingNextUnplannedMonthAndStartYear()
+        public void Will_calculate_budgeting_start_date_using_next_unplanned_month_and_start_year()
         {
             // Arrange 
-            var budgetingMonths = new BudgetingMonths
+            var budgeting_months = new BudgetingMonths
             {
-                NextUnplannedMonth = 2,
-                StartYear = 2019
+                Next_unplanned_month = 2,
+                Start_year = 2019
             };
 
             // Act
-            var result = budgetingMonths.BudgetingStartDate();
+            var result = budgeting_months.Budgeting_start_date();
 
             // Assert
-            Assert.AreEqual(result.Month, budgetingMonths.NextUnplannedMonth);
-            Assert.AreEqual(result.Year, budgetingMonths.StartYear);
+            Assert.AreEqual(result.Month, budgeting_months.Next_unplanned_month);
+            Assert.AreEqual(result.Year, budgeting_months.Start_year);
         }
 
         [TestCase(12, 2, 2018, 2, 2019)]
         [TestCase(1, 4, 2019, 4, 2019)]
-        public void WillCalculateBudgetingEndDateUsingBudgetingStartDateAndNumBudgetingMonths(
-            int nextUnplannedMonth,
-            int lastMonthForBudgetPlanning,
-            int startYear,
-            int expectedMonth,
-            int expectedYear)
+        public void Will_calculate_budgeting_end_date_using_budgeting_start_date_and_num_budgeting_months(
+            int next_unplanned_month,
+            int last_month_for_budget_planning,
+            int start_year,
+            int expected_month,
+            int expected_year)
         {
             // Arrange 
-            var budgetingMonths = new BudgetingMonths
+            var budgeting_months = new BudgetingMonths
             {
-                NextUnplannedMonth = nextUnplannedMonth,
-                LastMonthForBudgetPlanning = lastMonthForBudgetPlanning,
-                StartYear = startYear
+                Next_unplanned_month = next_unplanned_month,
+                Last_month_for_budget_planning = last_month_for_budget_planning,
+                Start_year = start_year
             };
             
             // Act
-            var result = budgetingMonths.BudgetingEndDate();
+            var result = budgeting_months.Budgeting_end_date();
 
             // Assert
-            Assert.AreEqual(result.Month, expectedMonth);
-            Assert.AreEqual(result.Year, expectedYear);
+            Assert.AreEqual(result.Month, expected_month);
+            Assert.AreEqual(result.Year, expected_year);
         }
 
         [TestCase(12, 2, 2018, 12, 2018, 2)]
         [TestCase(12, 2, 2018, 1, 2019, 1)]
         [TestCase(12, 2, 2018, 11, 2018, 3)]
         [TestCase(12, 2, 2018, 10, 2018, 4)]
-        public void WillCalculateMonthsToPlanAfterSpecifiedDateUsingNumBudgetingMonthsAndSpecifiedDate(
-            int nextUnplannedMonth,
-            int lastMonthForBudgetPlanning,
-            int startYear,
-            int specifiedMonth,
-            int specifiedYear,
-            int expectedResult)
+        public void Will_calculate_months_to_plan_after_specified_date_using_num_budgeting_months_and_specified_date(
+            int next_unplanned_month,
+            int last_month_for_budget_planning,
+            int start_year,
+            int specified_month,
+            int specified_year,
+            int expected_result)
         {
             // Arrange 
-            var budgetingMonths = new BudgetingMonths
+            var budgeting_months = new BudgetingMonths
             {
-                NextUnplannedMonth = nextUnplannedMonth,
-                LastMonthForBudgetPlanning = lastMonthForBudgetPlanning,
-                StartYear = startYear
+                Next_unplanned_month = next_unplanned_month,
+                Last_month_for_budget_planning = last_month_for_budget_planning,
+                Start_year = start_year
             };
-            var specifiedDate = new DateTime(specifiedYear, specifiedMonth, 1);
+            var specified_date = new DateTime(specified_year, specified_month, 1);
 
             // Act
-            var result = budgetingMonths.GetMonthsToPlanAfterSpecifiedDate(specifiedDate);
+            var result = budgeting_months.Get_months_to_plan_after_specified_date(specified_date);
 
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            Assert.AreEqual(expected_result, result);
         }
     }
 }

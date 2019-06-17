@@ -10,79 +10,79 @@ namespace ReconciliationBaseTests.ReconciliationBase
     [TestFixture]
     internal partial class ReconciliationInterfaceTests : IInputOutput
     {
-        readonly List<List<string>> _outputAllLinesRecordedDescriptions = new List<List<string>>();
-        readonly List<string> _outputSingleLineRecordedMessages = new List<string>();
-        readonly List<ConsoleLine> _outputAllLinesRecordedConsoleLines = new List<ConsoleLine>();
-        readonly List<ConsoleLine> _outputSingleLineRecordedConsoleLines = new List<ConsoleLine>();
+        readonly List<List<string>> _output_all_lines_recorded_descriptions = new List<List<string>>();
+        readonly List<string> _output_single_line_recorded_messages = new List<string>();
+        readonly List<ConsoleLine> _output_all_lines_recorded_console_lines = new List<ConsoleLine>();
+        readonly List<ConsoleLine> _output_single_line_recorded_console_lines = new List<ConsoleLine>();
 
-        public void OutputAllLines(List<IPotentialMatch> options)
+        public void Output_all_lines(List<IPotentialMatch> options)
         {
-            _mockInputOutput.Object.OutputAllLines(options);
-            _outputAllLinesRecordedDescriptions.Add(options.Select(x => x.ConsoleLines[0].DescriptionString).ToList());
+            _mock_input_output.Object.Output_all_lines(options);
+            _output_all_lines_recorded_descriptions.Add(options.Select(x => x.Console_lines[0].Description_string).ToList());
         }
 
-        public void OutputAllLines(List<ConsoleLine> consoleLines)
+        public void Output_all_lines(List<ConsoleLine> console_lines)
         {
-            _mockInputOutput.Object.OutputAllLines(consoleLines);
-            _outputAllLinesRecordedConsoleLines.AddRange(consoleLines);
+            _mock_input_output.Object.Output_all_lines(console_lines);
+            _output_all_lines_recorded_console_lines.AddRange(console_lines);
         }
 
-        public void OutputOptions(List<string> options)
+        public void Output_options(List<string> options)
         {
-            _mockInputOutput.Object.OutputOptions(options);
+            _mock_input_output.Object.Output_options(options);
         }
 
-        public void OutputAllLinesExceptTheFirst(List<IPotentialMatch> options)
+        public void Output_all_lines_except_the_first(List<IPotentialMatch> options)
         {
-            _mockInputOutput.Object.OutputAllLinesExceptTheFirst(options);
+            _mock_input_output.Object.Output_all_lines_except_the_first(options);
         }
 
-        public void OutputLine(List<ConsoleSnippet> consoleSnippets)
+        public void Output_line(List<ConsoleSnippet> console_snippets)
         {
-            _mockInputOutput.Object.OutputLine(consoleSnippets);
+            _mock_input_output.Object.Output_line(console_snippets);
         }
 
-        public void OutputLine(ConsoleLine line)
+        public void Output_line(ConsoleLine line)
         {
-            _mockInputOutput.Object.OutputLine(line);
-            _outputSingleLineRecordedConsoleLines.Add(line);
+            _mock_input_output.Object.Output_line(line);
+            _output_single_line_recorded_console_lines.Add(line);
         }
 
-        public void OutputLineWithIndex(ConsoleLine line)
+        public void Output_line_with_index(ConsoleLine line)
         {
-            _mockInputOutput.Object.OutputLineWithIndex(line);
+            _mock_input_output.Object.Output_line_with_index(line);
         }
 
-        public void OutputLine(string line)
+        public void Output_line(string line)
         {
-            _mockInputOutput.Object.OutputLine(line);
-            _outputSingleLineRecordedMessages.Add(line);
+            _mock_input_output.Object.Output_line(line);
+            _output_single_line_recorded_messages.Add(line);
         }
 
         public void Output(string text)
         {
-            _mockInputOutput.Object.Output(text);
-            _outputSingleLineRecordedMessages.Add(text);
+            _mock_input_output.Object.Output(text);
+            _output_single_line_recorded_messages.Add(text);
         }
 
-        public void OutputStringList(List<string> stringList)
+        public void Output_string_list(List<string> string_list)
         {
-            _mockInputOutput.Object.OutputStringList(stringList);
+            _mock_input_output.Object.Output_string_list(string_list);
         }
 
-        public string GetInput(string explanatoryMessage, string debugDescription = "")
+        public string Get_input(string explanatory_message, string debug_description = "")
         {
-            return _mockInputOutput.Object.GetInput(explanatoryMessage, debugDescription);
+            return _mock_input_output.Object.Get_input(explanatory_message, debug_description);
         }
 
-        public string GetGenericInput(string debugDescription)
+        public string Get_generic_input(string debug_description)
         {
-            return _mockInputOutput.Object.GetGenericInput(debugDescription);
+            return _mock_input_output.Object.Get_generic_input(debug_description);
         }
 
-        public void ShowError(Exception exception)
+        public void Show_error(Exception exception)
         {
-            _mockInputOutput.Object.ShowError(exception);
+            _mock_input_output.Object.Show_error(exception);
         }
     }
 }

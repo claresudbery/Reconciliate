@@ -15,22 +15,22 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         public void M_WillOnlyDeleteUnreconciledRowsAtTheLastMinute()
         {
             // Arrange
-            var worksheetName = "worksheet";
-            var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory());
-            var mockFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockFileIO.Object);
-            actualBankFile.Load();
-            mockFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ActualBankRecord> { new ActualBankRecord() });
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            mockSpreadsheet
-                .Setup(x => x.DeleteUnreconciledRows(worksheetName))
+            var worksheet_name = "worksheet";
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory());
+            var mock_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_file_io.Object);
+            actual_bank_file.Load();
+            mock_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ActualBankRecord> { new ActualBankRecord() });
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_spreadsheet
+                .Setup(x => x.Delete_unreconciled_rows(worksheet_name))
                 .Verifiable();
 
             // Act
-            fileIO.WriteBackToSpreadsheet(mockSpreadsheet.Object, actualBankFile, worksheetName);
+            file_io.Write_back_to_spreadsheet(mock_spreadsheet.Object, actual_bank_file, worksheet_name);
 
             // Assert
-            mockSpreadsheet.Verify();
+            mock_spreadsheet.Verify();
         }
     }
 }

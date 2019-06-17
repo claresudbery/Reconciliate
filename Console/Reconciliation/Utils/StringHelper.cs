@@ -11,7 +11,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             return new System.Globalization.CultureInfo("en-GB");
         }
 
-        public static string[] MakeSureThereAreAtLeastEnoughStringValues(int minValuesRequired, string[] sourceArray)
+        public static string[] Make_sure_there_are_at_least_enough_string_values(int min_values_required, string[] source_array)
         {
             var list = new List<string>(sourceArray);
 

@@ -16,7 +16,7 @@ namespace ConsoleCatchallTests
             };
 
         [Test]
-        public void CanUseLinqToFindAllLettersWhichAreRepeatedAcrossSeveralNames()
+        public void Can_use_linq_to_find_all_letters_which_are_repeated_across_several_names()
         {
             // !! This was originally created for the following repo:
             // https://github.com/claresudbery/linq-exercises
@@ -34,7 +34,7 @@ namespace ConsoleCatchallTests
                         PreviousElements = new List<List<char>> {names[0]},
                         CharactersInCommon = new List<char>()
                     },
-                    (resultSoFar, nextElement) =>
+                    (result_so_far, next_element) =>
                         new Thing1()
                         {
                             PreviousElements = resultSoFar.PreviousElements.Union(new List<List<char>> {nextElement}).ToList(),
@@ -42,7 +42,7 @@ namespace ConsoleCatchallTests
                                 .Aggregate(
                                     nextElement.Intersect(resultSoFar.PreviousElements[0])
                                         .ToList(),
-                                    (backResultSoFar, nextBackElement) => 
+                                    (back_result_so_far, next_back_element) => 
                                     backResultSoFar.Union(
                                         nextElement
                                         .Intersect(nextBackElement))
@@ -57,18 +57,18 @@ namespace ConsoleCatchallTests
 
     public class Thing2
     {
-        public List<char> CurrentElement { get; set; }
-        public List<char> BackCharactersInCommon { get; set; }
+        public List<char> Current_element { get; set; }
+        public List<char> Back_characters_in_common { get; set; }
     }
 
     public class Thing1
     {
-        public List<List<char>> PreviousElements { get; set; }
-        public List<char> CharactersInCommon { get; set; }
+        public List<List<char>> Previous_elements { get; set; }
+        public List<char> Characters_in_common { get; set; }
     }
 
     public class Person
     {
-        public string FirstName { get; set; }
+        public string First_name { get; set; }
     }
 }

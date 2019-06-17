@@ -15,204 +15,204 @@ namespace ConsoleCatchallTests.Reconciliation.Files
     [TestFixture]
     public class CSVFileTests
     {
-        private string _csvFilePath;
+        private string _csv_file_path;
 
         public CSVFileTests()
         {
-            PopulateCsvFilePath();
-            TestHelper.SetCorrectDateFormatting();
+            Populate_csv_file_path();
+            TestHelper.Set_correct_date_formatting();
         }
 
-        private void PopulateCsvFilePath()
+        private void Populate_csv_file_path()
         {
-            string currentPath = TestContext.CurrentContext.TestDirectory;
-            _csvFilePath = TestHelper.FullyQualifiedCSVFilePath(currentPath);
+            string current_path = TestContext.CurrentContext.TestDirectory;
+            _csv_file_path = TestHelper.Fully_qualified_csv_file_path(current_path);
         }
 
         [Test]
         public void M_CanCreateEmptyCSVFile()
         {
             // Act
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory());
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load(false);
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory());
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load(false);
 
             // Assert
-            Assert.AreEqual(0, csvFile.Records.Count);
+            Assert.AreEqual(0, csv_file.Records.Count);
         }
 
         [Test]
-        public void CanLoadCSVFile()
+        public void Can_load_csv_file()
         {
             // Act & Arrange
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankOut-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load();
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankOut-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load();
 
             // Assert
-            Assert.AreEqual("01/03/2017^£5.00^^TILL^DescriptionBank013^^^^^", csvFile.FileContents[0]);
+            Assert.AreEqual("01/03/2017^£5.00^^TILL^DescriptionBank013^^^^^", csv_file.File_contents[0]);
         }
 
         [Test]
-        public void WillOrderRecordsByDateOnLoadingByDefault()
+        public void Will_order_records_by_date_on_loading_by_default()
         {
             // Act & Arrange
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load();
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load();
 
             // Assert
-            Assert.AreEqual("01/02/2017", csvFile.Records[0].Date.ToShortDateString());
-            Assert.AreEqual("01/03/2017", csvFile.Records[1].Date.ToShortDateString());
-            Assert.AreEqual("24/03/2017", csvFile.Records[2].Date.ToShortDateString());
-            Assert.AreEqual("01/04/2017", csvFile.Records[3].Date.ToShortDateString());
-            Assert.AreEqual("03/04/2017", csvFile.Records[4].Date.ToShortDateString());
+            Assert.AreEqual("01/02/2017", csv_file.Records[0].Date.ToShortDateString());
+            Assert.AreEqual("01/03/2017", csv_file.Records[1].Date.ToShortDateString());
+            Assert.AreEqual("24/03/2017", csv_file.Records[2].Date.ToShortDateString());
+            Assert.AreEqual("01/04/2017", csv_file.Records[3].Date.ToShortDateString());
+            Assert.AreEqual("03/04/2017", csv_file.Records[4].Date.ToShortDateString());
         }
 
         [Test]
         public void WillNotOrderRecordsByDateOnLoading_WhenSpecified()
         {
             // Arrange
-            bool orderByDate = false;
+            bool order_by_date = false;
 
             // Act
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load(
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load(
                 true,
                 null,
-                orderByDate);
+                order_by_date);
 
             // Assert
-            Assert.AreEqual("24/03/2017", csvFile.Records[0].Date.ToShortDateString());
-            Assert.AreEqual("03/04/2017", csvFile.Records[1].Date.ToShortDateString());
-            Assert.AreEqual("01/04/2017", csvFile.Records[2].Date.ToShortDateString());
-            Assert.AreEqual("01/03/2017", csvFile.Records[3].Date.ToShortDateString());
-            Assert.AreEqual("01/02/2017", csvFile.Records[4].Date.ToShortDateString());
+            Assert.AreEqual("24/03/2017", csv_file.Records[0].Date.ToShortDateString());
+            Assert.AreEqual("03/04/2017", csv_file.Records[1].Date.ToShortDateString());
+            Assert.AreEqual("01/04/2017", csv_file.Records[2].Date.ToShortDateString());
+            Assert.AreEqual("01/03/2017", csv_file.Records[3].Date.ToShortDateString());
+            Assert.AreEqual("01/02/2017", csv_file.Records[4].Date.ToShortDateString());
         }
 
         [Test]
-        public void CanLoadBankOutRecords()
+        public void Can_load_bank_out_records()
         {
             // Act & Arrange
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankOut-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load();
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankOut-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load();
 
             // Assert
-            Assert.AreEqual("TILL", csvFile.Records[0].Type);
-            Assert.AreEqual(47, csvFile.Records.Count);
-            Assert.AreEqual("ZZZEsterene plinkle (Inestimable plarts)", csvFile.Records[46].Description);
+            Assert.AreEqual("TILL", csv_file.Records[0].Type);
+            Assert.AreEqual(47, csv_file.Records.Count);
+            Assert.AreEqual("ZZZEsterene plinkle (Inestimable plarts)", csv_file.Records[46].Description);
         }
 
         [Test]
-        public void CanLoadBankInRecords()
+        public void Can_load_bank_in_records()
         {
             // Act & Arrange
             const bool doNotOrderByDate = false;
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load(
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load(
                 true,
                 null,
                 doNotOrderByDate);
 
             // Assert
-            Assert.AreEqual("PCL", csvFile.Records[0].Type);
-            Assert.AreEqual(5, csvFile.Records.Count);
-            Assert.AreEqual("ZZZThing3", csvFile.Records[4].Description);
+            Assert.AreEqual("PCL", csv_file.Records[0].Type);
+            Assert.AreEqual(5, csv_file.Records.Count);
+            Assert.AreEqual("ZZZThing3", csv_file.Records[4].Description);
         }
 
         [Test]
-        public void CanLoadCredCard1Records()
+        public void Can_load_cred_card1_records()
         {
             // Act & Arrange
-            var fileIO = new FileIO<CredCard1Record>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "CredCard1-Statement");
-            var csvFile = new CSVFile<CredCard1Record>(fileIO);
-            csvFile.Load();
+            var file_io = new FileIO<CredCard1Record>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "CredCard1-Statement");
+            var csv_file = new CSVFile<CredCard1Record>(file_io);
+            csv_file.Load();
 
             // Assert
-            Assert.AreEqual("22223333", csvFile.Records[0].Reference);
-            Assert.AreEqual(50, csvFile.Records.Count);
-            Assert.AreEqual("Description-CredCard1-001", csvFile.Records[49].Description);
+            Assert.AreEqual("22223333", csv_file.Records[0].Reference);
+            Assert.AreEqual(50, csv_file.Records.Count);
+            Assert.AreEqual("Description-CredCard1-001", csv_file.Records[49].Description);
         }
 
         [Test]
-        public void CanLoadCredCard1InOutRecords()
+        public void Can_load_cred_card1_in_out_records()
         {
             // Act & Arrange
-            var fileIO = new FileIO<CredCard1InOutRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "CredCard1InOut-formatted-date-only");
-            var csvFile = new CSVFile<CredCard1InOutRecord>(fileIO);
-            csvFile.Load();
+            var file_io = new FileIO<CredCard1InOutRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "CredCard1InOut-formatted-date-only");
+            var csv_file = new CSVFile<CredCard1InOutRecord>(file_io);
+            csv_file.Load();
 
             // Assert
-            Assert.AreEqual("ZZZSpecialDescription017", csvFile.Records[0].Description);
-            Assert.AreEqual(32, csvFile.Records.Count);
-            Assert.AreEqual("Description-CredCard1-form-007", csvFile.Records[31].Description);
+            Assert.AreEqual("ZZZSpecialDescription017", csv_file.Records[0].Description);
+            Assert.AreEqual(32, csv_file.Records.Count);
+            Assert.AreEqual("Description-CredCard1-form-007", csv_file.Records[31].Description);
         }
 
         [Test]
-        public void CanLoadActualBankRecords()
+        public void Can_load_actual_bank_records()
         {
             // Act & Arrange
             const bool doNotOrderByDate = false;
-            var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "ActualBank-sample");
-            var csvFile = new CSVFile<ActualBankRecord>(fileIO);
-            csvFile.Load(
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "ActualBank-sample");
+            var csv_file = new CSVFile<ActualBankRecord>(file_io);
+            csv_file.Load(
                 true,
                 null,
                 doNotOrderByDate);
 
             // Assert
-            Assert.AreEqual("'ZZZSpecialDescription001", csvFile.Records[0].Description);
-            Assert.AreEqual(67, csvFile.Records.Count);
-            Assert.AreEqual(4554.18, csvFile.Records[66].Balance);
+            Assert.AreEqual("'ZZZSpecialDescription001", csv_file.Records[0].Description);
+            Assert.AreEqual(67, csv_file.Records.Count);
+            Assert.AreEqual(4554.18, csv_file.Records[66].Balance);
         }
 
         [Test]
-        public void CanFilterForPositiveRecordsOnly()
+        public void Can_filter_for_positive_records_only()
         {
             // Arrange
             const bool doNotOrderByDate = false;
-            var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "ActualBank-sample");
-            var csvFile = new CSVFile<ActualBankRecord>(fileIO);
-            csvFile.Load(
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "ActualBank-sample");
+            var csv_file = new CSVFile<ActualBankRecord>(file_io);
+            csv_file.Load(
                 true,
                 null,
                 doNotOrderByDate);
 
             // Act
-            csvFile.FilterForPositiveRecordsOnly();
+            csv_file.Filter_for_positive_records_only();
 
             // Assert
-            Assert.AreEqual("'ZZZSpecialDescription001", csvFile.Records[0].Description);
-            Assert.AreEqual(16, csvFile.Records.Count);
-            Assert.AreEqual(4669.48, csvFile.Records[15].Balance);
+            Assert.AreEqual("'ZZZSpecialDescription001", csv_file.Records[0].Description);
+            Assert.AreEqual(16, csv_file.Records.Count);
+            Assert.AreEqual(4669.48, csv_file.Records[15].Balance);
         }
 
         [Test]
-        public void CanFilterForNegativeRecordsOnly()
+        public void Can_filter_for_negative_records_only()
         {
             // Arrange
-            var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "ActualBank-sample");
-            var csvFile = new CSVFile<ActualBankRecord>(fileIO);
-            csvFile.Load();
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "ActualBank-sample");
+            var csv_file = new CSVFile<ActualBankRecord>(file_io);
+            csv_file.Load();
 
             // Act
-            csvFile.FilterForNegativeRecordsOnly();
+            csv_file.Filter_for_negative_records_only();
 
             // Assert
-            Assert.AreEqual("'DIVIDE YOUR GREEN", csvFile.Records[0].Description);
-            Assert.AreEqual(51, csvFile.Records.Count);
-            Assert.AreEqual(4554.18, csvFile.Records[50].Balance);
+            Assert.AreEqual("'DIVIDE YOUR GREEN", csv_file.Records[0].Description);
+            Assert.AreEqual(51, csv_file.Records.Count);
+            Assert.AreEqual(4554.18, csv_file.Records[50].Balance);
         }
 
         [Test]
         public void M_CanRemoveRecordsUsingSpecifiedFilter()
         {
             // Arrange
-            var mockFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(
+            var mock_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(
                 new List<ActualBankRecord>
                 {
                     new ActualBankRecord {Matched = true, Description = "Matched"},
@@ -221,121 +221,121 @@ namespace ConsoleCatchallTests.Reconciliation.Files
                     new ActualBankRecord {Matched = false, Description = "Not Matched"}
                 }
             );
-            var csvFile = new CSVFile<ActualBankRecord>(mockFileIO.Object);
-            csvFile.Load();
+            var csv_file = new CSVFile<ActualBankRecord>(mock_file_io.Object);
+            csv_file.Load();
 
             // Act
-            csvFile.RemoveRecords(x => x.Matched);
+            csv_file.Remove_records(x => x.Matched);
 
             // Assert
-            Assert.AreEqual(2, csvFile.Records.Count);
-            Assert.IsFalse(csvFile.Records.Any(x => x.Matched), "None with matched flag");
-            Assert.IsTrue(csvFile.Records.All(x => !x.Matched), "All with matched flag = false");
-            Assert.IsFalse(csvFile.Records.Any(x => x.Description == "Matched"), "None with matched description");
-            Assert.IsTrue(csvFile.Records.All(x => x.Description == "Not Matched"), "All with 'Not Matched' description");
+            Assert.AreEqual(2, csv_file.Records.Count);
+            Assert.IsFalse(csv_file.Records.Any(x => x.Matched), "None with matched flag");
+            Assert.IsTrue(csv_file.Records.All(x => !x.Matched), "All with matched flag = false");
+            Assert.IsFalse(csv_file.Records.Any(x => x.Description == "Matched"), "None with matched description");
+            Assert.IsTrue(csv_file.Records.All(x => x.Description == "Not Matched"), "All with 'Not Matched' description");
         }
 
         [Test]
-        public void WhenFilteringForNegativeRecordsAllAreConvertedToPositive()
+        public void When_filtering_for_negative_records_all_are_converted_to_positive()
         {
             // Arrange
-            var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "ActualBank-sample");
-            var csvFile = new CSVFile<ActualBankRecord>(fileIO);
-            csvFile.Load();
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "ActualBank-sample");
+            var csv_file = new CSVFile<ActualBankRecord>(file_io);
+            csv_file.Load();
 
             // Act
-            csvFile.FilterForNegativeRecordsOnly();
+            csv_file.Filter_for_negative_records_only();
 
             // Assert
-            Assert.AreEqual(115.30, csvFile.Records[50].Amount);
+            Assert.AreEqual(115.30, csv_file.Records[50].Amount);
         }
 
         [Test]
-        public void CanOutputUnmatchedRecordsAsCsvInDateOrder()
+        public void Can_output_unmatched_records_as_csv_in_date_order()
         {
             // Arrange
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load();
-            csvFile.ResetAllMatches();
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load();
+            csv_file.Reset_all_matches();
 
             // Act
-            List<string> csvLines = csvFile.UnmatchedRecordsAsCsv();
+            List<string> csv_lines = csv_file.Unmatched_records_as_csv();
 
             // Assert
-            Assert.AreEqual("01/02/2017,£350.00,,ABC,\"ZZZThing3\",,,,,", csvLines[0]);
-            Assert.AreEqual("01/03/2017,£350.00,,ABC,\"ZZZThing2\",,,,,", csvLines[1]);
-            Assert.AreEqual("24/03/2017,£200.12,,PCL,\"ZZZSpecialDescription001\",,,,,", csvLines[2]);
-            Assert.AreEqual("01/04/2017,£261.40,,PCL,\"ZZZSpecialDescription005\",,,,,", csvLines[3]);
-            Assert.AreEqual("03/04/2017,£350.00,,ABC,\"ZZZThing1\",,,,,", csvLines[4]);
+            Assert.AreEqual("01/02/2017,£350.00,,ABC,\"ZZZThing3\",,,,,", csv_lines[0]);
+            Assert.AreEqual("01/03/2017,£350.00,,ABC,\"ZZZThing2\",,,,,", csv_lines[1]);
+            Assert.AreEqual("24/03/2017,£200.12,,PCL,\"ZZZSpecialDescription001\",,,,,", csv_lines[2]);
+            Assert.AreEqual("01/04/2017,£261.40,,PCL,\"ZZZSpecialDescription005\",,,,,", csv_lines[3]);
+            Assert.AreEqual("03/04/2017,£350.00,,ABC,\"ZZZThing1\",,,,,", csv_lines[4]);
         }
 
         [Test]
-        public void CanOutputMatchedRecordsAsCsvInDateOrder()
+        public void Can_output_matched_records_as_csv_in_date_order()
         {
             // Arrange
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load();
-            foreach (var record in csvFile.Records)
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load();
+            foreach (var record in csv_file.Records)
             {
                 record.Matched = true;
             }
 
             // Act
-            List<string> csvLines = csvFile.MatchedRecordsAsCsv();
+            List<string> csv_lines = csv_file.Matched_records_as_csv();
 
             // Assert
-            Assert.AreEqual("01/02/2017,£350.00,x,ABC,\"ZZZThing3\",,,,,", csvLines[0]);
-            Assert.AreEqual("01/03/2017,£350.00,x,ABC,\"ZZZThing2\",,,,,", csvLines[1]);
-            Assert.AreEqual("24/03/2017,£200.12,x,PCL,\"ZZZSpecialDescription001\",,,,,", csvLines[2]);
-            Assert.AreEqual("01/04/2017,£261.40,x,PCL,\"ZZZSpecialDescription005\",,,,,", csvLines[3]);
-            Assert.AreEqual("03/04/2017,£350.00,x,ABC,\"ZZZThing1\",,,,,", csvLines[4]);
+            Assert.AreEqual("01/02/2017,£350.00,x,ABC,\"ZZZThing3\",,,,,", csv_lines[0]);
+            Assert.AreEqual("01/03/2017,£350.00,x,ABC,\"ZZZThing2\",,,,,", csv_lines[1]);
+            Assert.AreEqual("24/03/2017,£200.12,x,PCL,\"ZZZSpecialDescription001\",,,,,", csv_lines[2]);
+            Assert.AreEqual("01/04/2017,£261.40,x,PCL,\"ZZZSpecialDescription005\",,,,,", csv_lines[3]);
+            Assert.AreEqual("03/04/2017,£350.00,x,ABC,\"ZZZThing1\",,,,,", csv_lines[4]);
         }
 
         [Test]
-        public void CanOutputAllRecordsAsCsvOrderedByMatchedAndThenByDate()
+        public void Can_output_all_records_as_csv_ordered_by_matched_and_then_by_date()
         {
             // Arrange
             const bool doNotOrderByDate = false;
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load(
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load(
                 true,
                 null,
                 doNotOrderByDate);
-            csvFile.Records[0].Matched = true;
-            csvFile.Records[1].Matched = true;
-            csvFile.Records[3].Matched = true;
+            csv_file.Records[0].Matched = true;
+            csv_file.Records[1].Matched = true;
+            csv_file.Records[3].Matched = true;
 
             // Act
-            List<string> csvLines = csvFile.AllRecordsAsCsv();
+            List<string> csv_lines = csv_file.All_records_as_csv();
 
             // Assert
-            Assert.AreEqual("01/03/2017,£350.00,x,ABC,\"ZZZThing2\",,,,,", csvLines[0]);
-            Assert.AreEqual("24/03/2017,£200.12,x,PCL,\"ZZZSpecialDescription001\",,,,,", csvLines[1]);
-            Assert.AreEqual("03/04/2017,£350.00,x,ABC,\"ZZZThing1\",,,,,", csvLines[2]);
-            Assert.AreEqual("01/02/2017,£350.00,,ABC,\"ZZZThing3\",,,,,", csvLines[3]);
-            Assert.AreEqual("01/04/2017,£261.40,,PCL,\"ZZZSpecialDescription005\",,,,,", csvLines[4]);
+            Assert.AreEqual("01/03/2017,£350.00,x,ABC,\"ZZZThing2\",,,,,", csv_lines[0]);
+            Assert.AreEqual("24/03/2017,£200.12,x,PCL,\"ZZZSpecialDescription001\",,,,,", csv_lines[1]);
+            Assert.AreEqual("03/04/2017,£350.00,x,ABC,\"ZZZThing1\",,,,,", csv_lines[2]);
+            Assert.AreEqual("01/02/2017,£350.00,,ABC,\"ZZZThing3\",,,,,", csv_lines[3]);
+            Assert.AreEqual("01/04/2017,£261.40,,PCL,\"ZZZSpecialDescription005\",,,,,", csv_lines[4]);
         }
 
         [Test]
-        public void WillOrderRecordsForSpreadsheetByMatchedAndThenByDateWithDividerBetween()
+        public void Will_order_records_for_spreadsheet_by_matched_and_then_by_date_with_divider_between()
         {
             // Arrange
             const bool doNotOrderByDate = false;
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load(
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load(
                 true,
                 null,
                 doNotOrderByDate);
-            csvFile.Records[0].Matched = true;
-            csvFile.Records[1].Matched = true;
-            csvFile.Records[3].Matched = true;
+            csv_file.Records[0].Matched = true;
+            csv_file.Records[1].Matched = true;
+            csv_file.Records[3].Matched = true;
 
             // Act
-            var records = csvFile.RecordsOrderedForSpreadsheet();
+            var records = csv_file.Records_ordered_for_spreadsheet();
 
             // Assert
             Assert.AreEqual("ZZZThing2", records[0].Description);
@@ -347,17 +347,17 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void WhenOrderingRecordsForSpreadsheetWillInsertDividerBetweenMatchedAndNonMatched()
+        public void When_ordering_records_for_spreadsheet_will_insert_divider_between_matched_and_non_matched()
         {
             // Arrange
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load();
-            csvFile.Records[0].Matched = true;
-            csvFile.Records[3].Matched = true;
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load();
+            csv_file.Records[0].Matched = true;
+            csv_file.Records[3].Matched = true;
 
             // Act
-            var records = csvFile.RecordsOrderedForSpreadsheet();
+            var records = csv_file.Records_ordered_for_spreadsheet();
 
             // Assert
             Assert.AreEqual(6, records.Count);
@@ -371,15 +371,15 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void WhenOrderingRecordsForSpreadsheetIfNoMatchedThenNoDivider()
+        public void When_ordering_records_for_spreadsheet_if_no_matched_then_no_divider()
         {
             // Arrange
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load();
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load();
 
             // Act
-            var records = csvFile.RecordsOrderedForSpreadsheet();
+            var records = csv_file.Records_ordered_for_spreadsheet();
 
             // Assert
             Assert.AreEqual(5, records.Count);
@@ -391,20 +391,20 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void WhenOrderingRecordsForSpreadsheetIfNoUnmatchedThenDividerIsAtEnd()
+        public void When_ordering_records_for_spreadsheet_if_no_unmatched_then_divider_is_at_end()
         {
             // Arrange
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load();
-            csvFile.Records[0].Matched = true;
-            csvFile.Records[1].Matched = true;
-            csvFile.Records[2].Matched = true;
-            csvFile.Records[3].Matched = true;
-            csvFile.Records[4].Matched = true;
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load();
+            csv_file.Records[0].Matched = true;
+            csv_file.Records[1].Matched = true;
+            csv_file.Records[2].Matched = true;
+            csv_file.Records[3].Matched = true;
+            csv_file.Records[4].Matched = true;
 
             // Act
-            var records = csvFile.RecordsOrderedForSpreadsheet();
+            var records = csv_file.Records_ordered_for_spreadsheet();
 
             // Assert
             Assert.AreEqual(6, records.Count);
@@ -416,282 +416,282 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void CanOutputAllRecordsAsSourceLineOrderedByDate()
+        public void Can_output_all_records_as_source_line_ordered_by_date()
         {
             // Arrange
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load();
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load();
 
             // Act
-            List<string> csvLines = csvFile.AllRecordsAsSourceLines();
+            List<string> csv_lines = csv_file.All_records_as_source_lines();
 
             // Assert
-            Assert.AreEqual("01/02/2017^£350.00^^ABC^ZZZThing3^^^^^", csvLines[0]);
-            Assert.AreEqual("01/03/2017^£350.00^^ABC^ZZZThing2^^^^^", csvLines[1]);
-            Assert.AreEqual("24/03/2017^£200.12^^PCL^ZZZSpecialDescription001^^^^^", csvLines[2]);
-            Assert.AreEqual("01/04/2017^£261.40^^PCL^ZZZSpecialDescription005^^^^^", csvLines[3]);
-            Assert.AreEqual("03/04/2017^£350.00^^ABC^ZZZThing1^^^^^", csvLines[4]);
+            Assert.AreEqual("01/02/2017^£350.00^^ABC^ZZZThing3^^^^^", csv_lines[0]);
+            Assert.AreEqual("01/03/2017^£350.00^^ABC^ZZZThing2^^^^^", csv_lines[1]);
+            Assert.AreEqual("24/03/2017^£200.12^^PCL^ZZZSpecialDescription001^^^^^", csv_lines[2]);
+            Assert.AreEqual("01/04/2017^£261.40^^PCL^ZZZSpecialDescription005^^^^^", csv_lines[3]);
+            Assert.AreEqual("03/04/2017^£350.00^^ABC^ZZZThing1^^^^^", csv_lines[4]);
         }
 
         [Test]
-        public void CanConvertCommasToLittleHatsForBankIn()
+        public void Can_convert_commas_to_little_hats_for_bank_in()
         {
             // Arrange
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-with-commas");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load(true, ',');
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-with-commas");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load(true, ',');
 
             // Act
-            csvFile.ConvertSourceLineSeparators(',', '^');
+            csv_file.Convert_source_line_separators(',', '^');
 
             // Assert
-            List<string> csvLines = csvFile.AllRecordsAsSourceLines();
-            Assert.AreEqual("24/03/2017^£200.12^^PCL^ZZZSpecialDescription001^^^^^", csvLines[0]);
-            Assert.AreEqual("01/04/2017^£261.40^^PCL^ZZZSpecialDescription005^^^^^", csvLines[1]);
-            Assert.AreEqual("03/10/2018^£350.00^^ABC^ZZZThing1^^^^^", csvLines[2]);
+            List<string> csv_lines = csv_file.All_records_as_source_lines();
+            Assert.AreEqual("24/03/2017^£200.12^^PCL^ZZZSpecialDescription001^^^^^", csv_lines[0]);
+            Assert.AreEqual("01/04/2017^£261.40^^PCL^ZZZSpecialDescription005^^^^^", csv_lines[1]);
+            Assert.AreEqual("03/10/2018^£350.00^^ABC^ZZZThing1^^^^^", csv_lines[2]);
         }
 
         [Test]
-        public void CanConvertCommasToLittleHatsForCredCard2InOut()
+        public void Can_convert_commas_to_little_hats_for_cred_card2_in_out()
         {
             // Arrange
-            var fileIO = new FileIO<CredCard2InOutRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "CredCard2InOut-with-commas");
-            var csvFile = new CSVFile<CredCard2InOutRecord>(fileIO);
-            csvFile.Load(true, ',');
+            var file_io = new FileIO<CredCard2InOutRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "CredCard2InOut-with-commas");
+            var csv_file = new CSVFile<CredCard2InOutRecord>(file_io);
+            csv_file.Load(true, ',');
 
             // Act
-            csvFile.ConvertSourceLineSeparators(',', '^');
+            csv_file.Convert_source_line_separators(',', '^');
 
             // Assert
-            List<string> csvLines = csvFile.AllRecordsAsSourceLines();
-            Assert.AreEqual("09/04/2017^£8.33^^ZZZSpecialDescription021^", csvLines[0]);
-            Assert.AreEqual("01/05/2017^£3.16^^ZZZSpecialDescription022^", csvLines[1]);
-            Assert.AreEqual("06/05/2017^£11.94^^ZZZSpecialDescription023^", csvLines[2]);
-            Assert.AreEqual("20/05/2017^£158.32^^ZZZSpecialDescription024^", csvLines[3]);
-            Assert.AreEqual("21/10/2018^£16.05^^ZZZSpecialDescription025^", csvLines[4]);
+            List<string> csv_lines = csv_file.All_records_as_source_lines();
+            Assert.AreEqual("09/04/2017^£8.33^^ZZZSpecialDescription021^", csv_lines[0]);
+            Assert.AreEqual("01/05/2017^£3.16^^ZZZSpecialDescription022^", csv_lines[1]);
+            Assert.AreEqual("06/05/2017^£11.94^^ZZZSpecialDescription023^", csv_lines[2]);
+            Assert.AreEqual("20/05/2017^£158.32^^ZZZSpecialDescription024^", csv_lines[3]);
+            Assert.AreEqual("21/10/2018^£16.05^^ZZZSpecialDescription025^", csv_lines[4]);
         }
 
         [Test]
-        public void CanConvertCommasToLittleHatsForCredCard1InOut()
+        public void Can_convert_commas_to_little_hats_for_cred_card1_in_out()
         {
             // Arrange
-            var fileIO = new FileIO<CredCard1InOutRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "CredCard1InOut-with-commas");
-            var csvFile = new CSVFile<CredCard1InOutRecord>(fileIO);
-            csvFile.Load(true, ',');
+            var file_io = new FileIO<CredCard1InOutRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "CredCard1InOut-with-commas");
+            var csv_file = new CSVFile<CredCard1InOutRecord>(file_io);
+            csv_file.Load(true, ',');
 
             // Act
-            csvFile.ConvertSourceLineSeparators(',', '^');
+            csv_file.Convert_source_line_separators(',', '^');
 
             // Assert
-            List<string> csvLines = csvFile.AllRecordsAsSourceLines();
-            Assert.AreEqual("19/12/2016^£7.99^^ZZZSpecialDescription017^", csvLines[0]);
-            Assert.AreEqual("02/01/2017^£6.29^^ZZZSpecialDescription018^", csvLines[1]);
-            Assert.AreEqual("15/02/2017^£1.99^^ZZZSpecialDescription019^", csvLines[2]);
-            Assert.AreEqual("17/10/2018^£1.94^^ZZZSpecialDescription020^", csvLines[3]);
+            List<string> csv_lines = csv_file.All_records_as_source_lines();
+            Assert.AreEqual("19/12/2016^£7.99^^ZZZSpecialDescription017^", csv_lines[0]);
+            Assert.AreEqual("02/01/2017^£6.29^^ZZZSpecialDescription018^", csv_lines[1]);
+            Assert.AreEqual("15/02/2017^£1.99^^ZZZSpecialDescription019^", csv_lines[2]);
+            Assert.AreEqual("17/10/2018^£1.94^^ZZZSpecialDescription020^", csv_lines[3]);
         }
 
         [Test]
-        public void CanWriteNewContentsToCsv()
+        public void Can_write_new_contents_to_csv()
         {
             // Arrange
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load();
-            var newBankRecord = new BankRecord();
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load();
+            var new_bank_record = new BankRecord();
             // Date, unreconciled amount, type and description are mandatory.
             // string csvLine = String.Format("DATE^UNRECONCILED_AMT^^TYPE^DESCRIPTION^^^^^");
-            var todaysDate = DateTime.Today.ToString("dd/MM/yyyy");
-            newBankRecord.Load(String.Format("{0}^£12.34^^POS^Purchase^^^^^", todaysDate));
-            csvFile.Records.Add(newBankRecord);
+            var todays_date = DateTime.Today.ToString("dd/MM/yyyy");
+            new_bank_record.Load(String.Format("{0}^£12.34^^POS^Purchase^^^^^", todays_date));
+            csv_file.Records.Add(new_bank_record);
 
             // Act
-            csvFile.WriteToCsvFile("testing");
+            csv_file.Write_to_csv_file("testing");
 
             // Assert
-            var fileIOTestFile = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only-testing");
-            var newCsvFile = new CSVFile<BankRecord>(fileIOTestFile);
-            newCsvFile.Load(
+            var file_io_test_file = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only-testing");
+            var new_csv_file = new CSVFile<BankRecord>(file_io_test_file);
+            new_csv_file.Load(
                 true,
                 ',');
-            List<string> csvLines = newCsvFile.AllRecordsAsCsv();
+            List<string> csv_lines = new_csv_file.All_records_as_csv();
 
-            Assert.AreEqual("01/02/2017,£350.00,,ABC,\"ZZZThing3\",,,,,", csvLines[0]);
-            Assert.AreEqual("01/03/2017,£350.00,,ABC,\"ZZZThing2\",,,,,", csvLines[1]);
-            Assert.AreEqual("24/03/2017,£200.12,,PCL,\"ZZZSpecialDescription001\",,,,,", csvLines[2]);
-            Assert.AreEqual("01/04/2017,£261.40,,PCL,\"ZZZSpecialDescription005\",,,,,", csvLines[3]);
-            Assert.AreEqual("03/04/2017,£350.00,,ABC,\"ZZZThing1\",,,,,", csvLines[4]);
-            Assert.AreEqual(String.Format("{0},£12.34,,POS,\"Purchase\",,,,,",todaysDate), csvLines[5]);
+            Assert.AreEqual("01/02/2017,£350.00,,ABC,\"ZZZThing3\",,,,,", csv_lines[0]);
+            Assert.AreEqual("01/03/2017,£350.00,,ABC,\"ZZZThing2\",,,,,", csv_lines[1]);
+            Assert.AreEqual("24/03/2017,£200.12,,PCL,\"ZZZSpecialDescription001\",,,,,", csv_lines[2]);
+            Assert.AreEqual("01/04/2017,£261.40,,PCL,\"ZZZSpecialDescription005\",,,,,", csv_lines[3]);
+            Assert.AreEqual("03/04/2017,£350.00,,ABC,\"ZZZThing1\",,,,,", csv_lines[4]);
+            Assert.AreEqual(String.Format("{0},£12.34,,POS,\"Purchase\",,,,,",todays_date), csv_lines[5]);
         }
 
         [Test]
-        public void CanWriteNewContentsAsSourceLines()
+        public void Can_write_new_contents_as_source_lines()
         {
             // Arrange
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load();
-            var newBankRecord = new BankRecord();
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load();
+            var new_bank_record = new BankRecord();
             // Date, unreconciled amount, type and description are mandatory.
             // string csvLine = String.Format("DATE^UNRECONCILED_AMT^^TYPE^DESCRIPTION^^^^^");
-            var todaysDate = DateTime.Today.ToString("dd/MM/yyyy");
-            newBankRecord.Load(String.Format("{0}^£12.34^^POS^Purchase^^^^^", todaysDate));
-            csvFile.Records.Add(newBankRecord);
+            var todays_date = DateTime.Today.ToString("dd/MM/yyyy");
+            new_bank_record.Load(String.Format("{0}^£12.34^^POS^Purchase^^^^^", todays_date));
+            csv_file.Records.Add(new_bank_record);
 
             // Act
-            csvFile.WriteToFileAsSourceLines("BankIn-formatted-date-only-testing");
+            csv_file.Write_to_file_as_source_lines("BankIn-formatted-date-only-testing");
 
             // Assert
-            List<string> newFileLines = new List<string>();
-            using (var fileStream = File.OpenRead(_csvFilePath + "/" + "BankIn-formatted-date-only-testing" + ".csv"))
-            using (var reader = new StreamReader(fileStream))
+            List<string> new_file_lines = new List<string>();
+            using (var file_stream = File.OpenRead(_csv_file_path + "/" + "BankIn-formatted-date-only-testing" + ".csv"))
+            using (var reader = new StreamReader(file_stream))
             {
                 while (!reader.EndOfStream)
                 {
-                    var newLine = reader.ReadLine();
-                    newFileLines.Add(newLine);
+                    var new_line = reader.ReadLine();
+                    new_file_lines.Add(new_line);
                 }
             }
 
-            Assert.AreEqual("01/02/2017^£350.00^^ABC^ZZZThing3^^^^^", newFileLines[0]);
-            Assert.AreEqual("01/03/2017^£350.00^^ABC^ZZZThing2^^^^^", newFileLines[1]);
-            Assert.AreEqual("24/03/2017^£200.12^^PCL^ZZZSpecialDescription001^^^^^", newFileLines[2]);
-            Assert.AreEqual("01/04/2017^£261.40^^PCL^ZZZSpecialDescription005^^^^^", newFileLines[3]);
-            Assert.AreEqual("03/04/2017^£350.00^^ABC^ZZZThing1^^^^^", newFileLines[4]);
-            Assert.AreEqual(String.Format("{0}^£12.34^^POS^Purchase^^^^^", todaysDate), newFileLines[5]);
+            Assert.AreEqual("01/02/2017^£350.00^^ABC^ZZZThing3^^^^^", new_file_lines[0]);
+            Assert.AreEqual("01/03/2017^£350.00^^ABC^ZZZThing2^^^^^", new_file_lines[1]);
+            Assert.AreEqual("24/03/2017^£200.12^^PCL^ZZZSpecialDescription001^^^^^", new_file_lines[2]);
+            Assert.AreEqual("01/04/2017^£261.40^^PCL^ZZZSpecialDescription005^^^^^", new_file_lines[3]);
+            Assert.AreEqual("03/04/2017^£350.00^^ABC^ZZZThing1^^^^^", new_file_lines[4]);
+            Assert.AreEqual(String.Format("{0}^£12.34^^POS^Purchase^^^^^", todays_date), new_file_lines[5]);
         }
 
         // Note that this only applies to CredCard1InOutRecord, BankRecord, CredCard2InOutRecord - because commas are stripped from input in third party records.
         // But not from owned records, because we use ^ as a separator instead of comma.
         [Test]
-        public void CanWriteDescriptionsContainingCommas()
+        public void Can_write_descriptions_containing_commas()
         {
             // Arrange
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load();
-            var newBankRecord = new BankRecord();
-            var descriptionContainingComma = "something, something, something else";
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load();
+            var new_bank_record = new BankRecord();
+            var description_containing_comma = "something, something, something else";
             // Date, unreconciled amount, type and description are mandatory.
             // string csvLine = String.Format("DATE^UNRECONCILED_AMT^^TYPE^DESCRIPTION^^^^^");
-            newBankRecord.Load(string.Format("01/05/2017^12.34^^POS^{0}^^^^^", descriptionContainingComma));
-            csvFile.Records.Add(newBankRecord);
+            new_bank_record.Load(string.Format("01/05/2017^12.34^^POS^{0}^^^^^", description_containing_comma));
+            csv_file.Records.Add(new_bank_record);
 
             // Act
-            csvFile.WriteToCsvFile("testing");
+            csv_file.Write_to_csv_file("testing");
 
             // Assert
-            var fileIOTestFile = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only-testing");
-            var newCsvFile = new CSVFile<BankRecord>(fileIOTestFile);
-            newCsvFile.Load(
+            var file_io_test_file = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only-testing");
+            var new_csv_file = new CSVFile<BankRecord>(file_io_test_file);
+            new_csv_file.Load(
                 true,
                 ',');
 
-            Assert.AreEqual("01/05/2017,£12.34,,POS,\"something, something, something else\",,,,,", newCsvFile.Records[5].SourceLine);
+            Assert.AreEqual("01/05/2017,£12.34,,POS,\"something, something, something else\",,,,,", new_csv_file.Records[5].Source_line);
         }
 
         [Test]
-        public void CanWriteAmountsContainingCommas()
+        public void Can_write_amounts_containing_commas()
         {
             // Arrange
-            var fileIO = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load();
-            var newBankRecord = new BankRecord();
-            var amountContainingComma = "£1,234.55";
-            newBankRecord.Load(string.Format("01/05/2017^{0}^^POS^Purchase^^^^^", amountContainingComma));
-            csvFile.Records.Add(newBankRecord);
+            var file_io = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load();
+            var new_bank_record = new BankRecord();
+            var amount_containing_comma = "£1,234.55";
+            new_bank_record.Load(string.Format("01/05/2017^{0}^^POS^Purchase^^^^^", amount_containing_comma));
+            csv_file.Records.Add(new_bank_record);
 
             // Act
-            csvFile.WriteToCsvFile("testing");
+            csv_file.Write_to_csv_file("testing");
 
             // Assert
-            var fileIOTestFile = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csvFilePath, "BankIn-formatted-date-only-testing");
-            var newCsvFile = new CSVFile<BankRecord>(fileIOTestFile);
-            newCsvFile.Load(
+            var file_io_test_file = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _csv_file_path, "BankIn-formatted-date-only-testing");
+            var new_csv_file = new CSVFile<BankRecord>(file_io_test_file);
+            new_csv_file.Load(
                 true,
                 ',');
 
-            Assert.AreEqual(1234.55, newCsvFile.Records[5].UnreconciledAmount);
-            Assert.AreEqual("\"Purchase\"", newCsvFile.Records[5].Description);
+            Assert.AreEqual(1234.55, new_csv_file.Records[5].Unreconciled_amount);
+            Assert.AreEqual("\"Purchase\"", new_csv_file.Records[5].Description);
         }
 
         [Test]
         public void M_WillCopyRecordsToAnotherFile()
         {
             // Arrange
-            var mockSourceFileIO = new Mock<IFileIO<ExpectedIncomeRecord>>();
-            var sourceRecords = new List<ExpectedIncomeRecord>
+            var mock_source_file_io = new Mock<IFileIO<ExpectedIncomeRecord>>();
+            var source_records = new List<ExpectedIncomeRecord>
             {
                 new ExpectedIncomeRecord {Description = "First record"},
                 new ExpectedIncomeRecord {Description = "Second record"}
             };
-            mockSourceFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(sourceRecords);
-            var sourceFile = new CSVFile<ExpectedIncomeRecord>(mockSourceFileIO.Object);
-            sourceFile.Load();
-            var mockTargetFileIO = new Mock<IFileIO<ExpectedIncomeRecord>>();
-            mockTargetFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ExpectedIncomeRecord>());
-            var targetFile = new CSVFile<ExpectedIncomeRecord>(mockTargetFileIO.Object);
-            targetFile.Load();
-            Assert.AreEqual(0, targetFile.Records.Count);
+            mock_source_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(source_records);
+            var source_file = new CSVFile<ExpectedIncomeRecord>(mock_source_file_io.Object);
+            source_file.Load();
+            var mock_target_file_io = new Mock<IFileIO<ExpectedIncomeRecord>>();
+            mock_target_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ExpectedIncomeRecord>());
+            var target_file = new CSVFile<ExpectedIncomeRecord>(mock_target_file_io.Object);
+            target_file.Load();
+            Assert.AreEqual(0, target_file.Records.Count);
 
             // Act
-            sourceFile.CopyRecordsToCsvFile(targetFile);
+            source_file.Copy_records_to_csv_file(target_file);
 
             // Assert
-            Assert.AreEqual(sourceFile.Records.Count, targetFile.Records.Count);
-            Assert.AreEqual(sourceFile.Records[0].Description, targetFile.Records[0].Description);
-            Assert.AreEqual(sourceFile.Records[1].Description, targetFile.Records[1].Description);
+            Assert.AreEqual(source_file.Records.Count, target_file.Records.Count);
+            Assert.AreEqual(source_file.Records[0].Description, target_file.Records[0].Description);
+            Assert.AreEqual(source_file.Records[1].Description, target_file.Records[1].Description);
         }
 
         [Test]
         public void M_WhenRemovingRecordPermanentlyItDoesNotComeBackAfterRefreshingFileContents()
         {
             // Arrange
-            var mockFileIO = new Mock<IFileIO<ExpectedIncomeRecord>>();
-            var newDescription = "Third record";
-            var sourceRecords = new List<ExpectedIncomeRecord>
+            var mock_file_io = new Mock<IFileIO<ExpectedIncomeRecord>>();
+            var new_description = "Third record";
+            var source_records = new List<ExpectedIncomeRecord>
             {
                 new ExpectedIncomeRecord {Description = "First record"},
                 new ExpectedIncomeRecord {Description = "Second record"}
             };
-            mockFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(sourceRecords);
-            var file = new CSVFile<ExpectedIncomeRecord>(mockFileIO.Object);
+            mock_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(source_records);
+            var file = new CSVFile<ExpectedIncomeRecord>(mock_file_io.Object);
             file.Load();
             Assert.AreEqual(2, file.Records.Count);
 
             // Act
-            file.AddRecordPermanently(new ExpectedIncomeRecord {Description = newDescription});
-            file.PopulateRecordsFromOriginalFileLoad();
+            file.Add_record_permanently(new ExpectedIncomeRecord {Description = new_description});
+            file.Populate_records_from_original_file_load();
 
             // Assert
             Assert.AreEqual(3, file.Records.Count);
-            Assert.AreEqual(newDescription, file.Records[2].Description);
+            Assert.AreEqual(new_description, file.Records[2].Description);
         }
 
         [Test]
         public void M_WhenAddingRecordPermanentlyItIsStillThereAfterRefreshingFileContents()
         {
             // Arrange
-            var mockFileIO = new Mock<IFileIO<ExpectedIncomeRecord>>();
-            var lostDescription = "First record";
-            var sourceRecords = new List<ExpectedIncomeRecord>
+            var mock_file_io = new Mock<IFileIO<ExpectedIncomeRecord>>();
+            var lost_description = "First record";
+            var source_records = new List<ExpectedIncomeRecord>
             {
-                new ExpectedIncomeRecord {Description = lostDescription},
+                new ExpectedIncomeRecord {Description = lost_description},
                 new ExpectedIncomeRecord {Description = "Second record"}
             };
-            mockFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(sourceRecords);
-            var file = new CSVFile<ExpectedIncomeRecord>(mockFileIO.Object);
+            mock_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(source_records);
+            var file = new CSVFile<ExpectedIncomeRecord>(mock_file_io.Object);
             file.Load();
             Assert.AreEqual(2, file.Records.Count);
 
             // Act
-            file.RemoveRecordPermanently(sourceRecords[0]);
-            file.PopulateRecordsFromOriginalFileLoad();
+            file.Remove_record_permanently(source_records[0]);
+            file.Populate_records_from_original_file_load();
 
             // Assert
             Assert.AreEqual(1, file.Records.Count);
-            Assert.IsFalse(file.Records.Any(x => x.Description == lostDescription));
+            Assert.IsFalse(file.Records.Any(x => x.Description == lost_description));
         }
     }
 }

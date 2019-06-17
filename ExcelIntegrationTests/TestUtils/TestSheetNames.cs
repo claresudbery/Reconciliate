@@ -4,15 +4,15 @@ namespace ExcelIntegrationTests.TestUtils
 {
     public static class TestSheetNames
     {
-        static readonly MyXmlReader _xmlReader = new MyXmlReader();
+        static readonly MyXmlReader XmlReader = new MyXmlReader();
 
-        public static string Bank => _xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Bank)}");
-        public static string CredCard1 => _xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.CredCard1)}");
-        public static string CredCard => _xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.CredCard)}");
-        public static string ExpectedOut => _xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.ExpectedOut)}");
-        public static string BudgetOut => _xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.BudgetOut)}");
-        public static string TestRecord => _xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.TestRecord)}");
-        public static string BadDivider => _xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.BadDivider)}");
-        public static string ActualBank => _xmlReader.ReadXml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.ActualBank)}");
+        public static string Bank => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Bank)}");
+        public static string Cred_card1 => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Cred_card1)}");
+        public static string Cred_card => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Cred_card)}");
+        public static string Expected_out => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Expected_out)}");
+        public static string Budget_out => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Budget_out)}");
+        public static string Test_record => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Test_record)}");
+        public static string Bad_divider => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Bad_divider)}");
+        public static string Actual_bank => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Actual_bank)}");
     }
 }

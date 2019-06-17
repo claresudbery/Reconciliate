@@ -12,21 +12,21 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public ICSVRecord Match { get; set; }
         public bool Matched { get; set; }
         public bool Divider { get; set; }
-        public string SourceLine { get; private set; }
+        public string Source_line { get; private set; }
         public static string EmptyType = "Empty Type";
 
         // Source data - loaded on startup (if any new essential fields are added, update EssentialFields value below):
         public DateTime Date { get; set; }
-        public double UnreconciledAmount { get; set; }
+        public double Unreconciled_amount { get; set; }
         public string Type { get; set; }
         public string Description { get; set; }
-        public double ReconciledAmount { get; set; }
-        public int ChequeNumber { get; set; }
+        public double Reconciled_amount { get; set; }
+        public int Cheque_number { get; set; }
 
         public const string EssentialFields = "date, unreconciled amount, type or description";
 
         private char _separator = '^';
-        private int _expectedNumberOfFieldsPerRow = 10;
+        private int _expected_number_of_fields_per_row = 10;
 
         public const int DateIndex = 0;
         public const int UnreconciledAmountIndex = 1;
@@ -38,54 +38,54 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public const int ReconciledAmountIndex = 6;
         public const int MatchOffset = 11;
 
-        public void CreateFromMatch(DateTime date, double amount, string type, string description, int extraInfo, ICSVRecord matchedRecord)
+        public void Create_from_match(DateTime date, double amount, string type, string description, int extra_info, ICSVRecord matched_record)
         {
-            Match = matchedRecord;
+            Match = matched_record;
             Matched = true;
 
             Date = date;
-            UnreconciledAmount = amount;
+            Unreconciled_amount = amount;
             Type = type;
             Description = description;
-            ChequeNumber = extraInfo;
+            Cheque_number = extra_info;
         }
 
-        public void Load(string csvLine, char? overrideSeparator = null)
+        public void Load(string csv_line, char? override_separator = null)
         {
-            char separator = overrideSeparator ?? _separator;
-            SourceLine = csvLine;
-            string[] values = SplitValuesBasedOnSeparatorAndHandleCommasInAmounts(csvLine, separator);
-            values = StringHelper.MakeSureThereAreAtLeastEnoughStringValues(_expectedNumberOfFieldsPerRow, values);
+            char separator = override_separator ?? _separator;
+            Source_line = csv_line;
+            string[] values = Split_values_based_on_separator_and_handle_commas_in_amounts(csv_line, separator);
+            values = StringHelper.Make_sure_there_are_at_least_enough_string_values(_expected_number_of_fields_per_row, values);
 
-            Date = values[DateIndex] != "" && values[DateIndex].IsNumeric()
+            Date = values[DateIndex] != "" && values[DateIndex].Is_numeric()
                 ? Convert.ToDateTime(values[DateIndex], StringHelper.Culture())
                 : Convert.ToDateTime("9/9/9999", StringHelper.Culture());
 
-            var simpleUnrecAmount = string.IsNullOrEmpty(values[UnreconciledAmountIndex])
+            var simple_unrec_amount = string.IsNullOrEmpty(values[UnreconciledAmountIndex])
                 ? string.Empty
-                : values[UnreconciledAmountIndex].TrimAmount();
-            UnreconciledAmount = Convert.ToDouble(simpleUnrecAmount != "" && simpleUnrecAmount.IsNumeric()
-                ? simpleUnrecAmount 
+                : values[UnreconciledAmountIndex].Trim_amount();
+            Unreconciled_amount = Convert.ToDouble(simple_unrec_amount != "" && simple_unrec_amount.Is_numeric()
+                ? simple_unrec_amount 
                 : "0");
 
             Type = values[TypeIndex];
             Description = values[DescriptionIndex];
 
-            ChequeNumber = Convert.ToInt32(values[ChequeNumberIndex] != "" && values[ChequeNumberIndex].IsNumeric()
+            Cheque_number = Convert.ToInt32(values[ChequeNumberIndex] != "" && values[ChequeNumberIndex].Is_numeric()
                 ? values[ChequeNumberIndex] 
                 : "0");
 
-            var simpleRecAmount = string.IsNullOrEmpty(values[ReconciledAmountIndex])
+            var simple_rec_amount = string.IsNullOrEmpty(values[ReconciledAmountIndex])
                 ? String.Empty
-                : values[ReconciledAmountIndex].TrimAmount();
-            ReconciledAmount = Convert.ToDouble(simpleRecAmount != "" && simpleRecAmount.IsNumeric()
-                ? simpleRecAmount 
+                : values[ReconciledAmountIndex].Trim_amount();
+            Reconciled_amount = Convert.ToDouble(simple_rec_amount != "" && simple_rec_amount.Is_numeric()
+                ? simple_rec_amount 
                 : "0");
 
-            CheckForEmptyFields();
+            Check_for_empty_fields();
         }
 
-        private void CheckForEmptyFields()
+        private void Check_for_empty_fields()
         {
             if (string.IsNullOrEmpty(Description))
             {
@@ -96,44 +96,44 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 }
             }
 
-            if (WeHaveAnEmptyEssentialField())
+            if (We_have_an_empty_essential_field())
             {
                 throw new Exception(String.Format("One of your essential owned (non-third-party) bank record fields is empty ({0}).", EssentialFields));
             }
         }
 
-        private bool WeHaveAnEmptyEssentialField()
+        private bool We_have_an_empty_essential_field()
         {
             return Date == Convert.ToDateTime("9/9/9999", StringHelper.Culture())
-                   || UnreconciledAmount == 0
+                   || Unreconciled_amount == 0
                    || string.IsNullOrEmpty(Type)
                    || string.IsNullOrEmpty(Description);
         }
 
-        private string[] SplitValuesBasedOnSeparatorAndHandleCommasInAmounts(string csvLine, char separator)
+        private string[] Split_values_based_on_separator_and_handle_commas_in_amounts(string csv_line, char separator)
         {
-            var values = csvLine.Split(separator);
+            var values = csv_line.Split(separator);
 
-            if (values.Length > _expectedNumberOfFieldsPerRow)
+            if (values.Length > _expected_number_of_fields_per_row)
             {
                 // This happens when the amount contains a comma.
                 if (!string.IsNullOrEmpty(values[UnreconciledAmountIndex]))
                 {
-                    values = RectifyCommaProblem(values, UnreconciledAmountIndex);
+                    values = Rectify_comma_problem(values, UnreconciledAmountIndex);
                 }
                 else if (!string.IsNullOrEmpty(values[ReconciledAmountIndex]))
                 {
-                    values = RectifyCommaProblem(values, ReconciledAmountIndex);
+                    values = Rectify_comma_problem(values, ReconciledAmountIndex);
                 }
             }
 
             return values;
         }
 
-        private string[] RectifyCommaProblem(string[] values, int targetIndex)
+        private string[] Rectify_comma_problem(string[] values, int target_index)
         {
-            values[targetIndex] = values[targetIndex] + values[targetIndex + 1];
-            for (int index = targetIndex + 1; index < values.Length - 1; index++)
+            values[target_index] = values[target_index] + values[target_index + 1];
+            for (int index = target_index + 1; index < values.Length - 1; index++)
             {
                 values[index] = values[index + 1];
             }
@@ -142,138 +142,138 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             return values;
         }
 
-        public string ToCsv(bool formatCurrency = true)
+        public string To_csv(bool format_currency = true)
         {
-            return ToString(',', true, formatCurrency);
+            return To_string(',', true, format_currency);
         }
 
-        public void PopulateSpreadsheetRow(ICellSet cellSet, int rowNumber)
+        public void Populate_spreadsheet_row(ICellSet cell_set, int row_number)
         {
             if (Divider)
             {
-                cellSet.PopulateCell(rowNumber, DividerIndex + 1, ReconConsts.DividerText);
+                cell_set.Populate_cell(row_number, DividerIndex + 1, ReconConsts.DividerText);
             }
             else
             {
-                cellSet.PopulateCell(rowNumber, DateIndex + 1, Date);
-                PopulateCellWithAmount(cellSet, rowNumber, UnreconciledAmountIndex, UnreconciledAmount);
-                cellSet.PopulateCell(rowNumber, MatchedIndex + 1, Matched ? "x" : String.Empty);
-                cellSet.PopulateCell(rowNumber, TypeIndex + 1, Type);
-                cellSet.PopulateCell(rowNumber, DescriptionIndex + 1, Description);
-                PopulateCellWithAmount(cellSet, rowNumber, ChequeNumberIndex, ChequeNumber);
-                PopulateCellWithAmount(cellSet, rowNumber, ReconciledAmountIndex, ReconciledAmount);
+                cell_set.Populate_cell(row_number, DateIndex + 1, Date);
+                Populate_cell_with_amount(cell_set, row_number, UnreconciledAmountIndex, Unreconciled_amount);
+                cell_set.Populate_cell(row_number, MatchedIndex + 1, Matched ? "x" : String.Empty);
+                cell_set.Populate_cell(row_number, TypeIndex + 1, Type);
+                cell_set.Populate_cell(row_number, DescriptionIndex + 1, Description);
+                Populate_cell_with_amount(cell_set, row_number, ChequeNumberIndex, Cheque_number);
+                Populate_cell_with_amount(cell_set, row_number, ReconciledAmountIndex, Reconciled_amount);
                 if (Match != null)
                 {
-                    Match.PopulateSpreadsheetRow(cellSet, rowNumber);
+                    Match.Populate_spreadsheet_row(cell_set, row_number);
                 }
             }
         }
 
-        private void PopulateCellWithAmount(ICellSet cellSet, int rowNumber, int amountIndex, double amount)
+        private void Populate_cell_with_amount(ICellSet cell_set, int row_number, int amount_index, double amount)
         {
             if (amount != 0)
             {
-                cellSet.PopulateCell(rowNumber, amountIndex + 1, amount);
+                cell_set.Populate_cell(row_number, amount_index + 1, amount);
             }
             else
             {
-                cellSet.PopulateCell(rowNumber, amountIndex + 1, String.Empty);
+                cell_set.Populate_cell(row_number, amount_index + 1, String.Empty);
             }
         }
 
-        public void ReadFromSpreadsheetRow(ICellRow cellSet)
+        public void Read_from_spreadsheet_row(ICellRow cell_set)
         {
-            Date = DateTime.FromOADate((double)cellSet.ReadCell(DateIndex));
-            UnreconciledAmount = cellSet.ReadCell(UnreconciledAmountIndex) != null
-                ? (Double)cellSet.ReadCell(UnreconciledAmountIndex)
+            Date = DateTime.FromOADate((double)cell_set.Read_cell(DateIndex));
+            Unreconciled_amount = cell_set.Read_cell(UnreconciledAmountIndex) != null
+                ? (Double)cell_set.Read_cell(UnreconciledAmountIndex)
                 : 0;
-            Type = (String)cellSet.ReadCell(TypeIndex);
-            Description = (String)cellSet.ReadCell(DescriptionIndex);
-            ChequeNumber = cellSet.Count > ChequeNumberIndex && cellSet.ReadCell(ChequeNumberIndex) != null 
-                ? Convert.ToInt32((Double)cellSet.ReadCell(ChequeNumberIndex)) 
+            Type = (String)cell_set.Read_cell(TypeIndex);
+            Description = (String)cell_set.Read_cell(DescriptionIndex);
+            Cheque_number = cell_set.Count > ChequeNumberIndex && cell_set.Read_cell(ChequeNumberIndex) != null 
+                ? Convert.ToInt32((Double)cell_set.Read_cell(ChequeNumberIndex)) 
                 : 0;
-            ReconciledAmount = cellSet.Count > ReconciledAmountIndex && cellSet.ReadCell(ReconciledAmountIndex) != null 
-                ? (Double)cellSet.ReadCell(ReconciledAmountIndex)
+            Reconciled_amount = cell_set.Count > ReconciledAmountIndex && cell_set.Read_cell(ReconciledAmountIndex) != null 
+                ? (Double)cell_set.Read_cell(ReconciledAmountIndex)
                 : 0;
 
-            SourceLine = ToString(_separator, false);
+            Source_line = To_string(_separator, false);
         }
 
-        private String ToString(char separator, bool encaseDescriptionInQuotes = true, bool formatCurrency = true)
+        private String To_string(char separator, bool encase_description_in_quotes = true, bool format_currency = true)
         {
             return Date.ToString(@"dd\/MM\/yyyy") + separator
-                + (UnreconciledAmount == 0 ? "" : UnreconciledAmount.ToCsvString(formatCurrency)) + separator
+                + (Unreconciled_amount == 0 ? "" : Unreconciled_amount.To_csv_string(format_currency)) + separator
                 + (Matched ? "x" : "") + separator
                 + Type + separator
-                + (encaseDescriptionInQuotes ? Description.EncaseInEscapedQuotesIfNotAlreadyEncased() : Description) + separator
-                + (ChequeNumber == 0 ? "" : ChequeNumber.ToString()) + separator
-                + (ReconciledAmount == 0 ? "" : ReconciledAmount.ToCsvString(formatCurrency)) + separator + separator + separator
-                + (Match != null ? separator.ToString() + separator.ToString() + Match.ToCsv(formatCurrency) : "");
+                + (encase_description_in_quotes ? Description.Encase_in_escaped_quotes_if_not_already_encased() : Description) + separator
+                + (Cheque_number == 0 ? "" : Cheque_number.ToString()) + separator
+                + (Reconciled_amount == 0 ? "" : Reconciled_amount.To_csv_string(format_currency)) + separator + separator + separator
+                + (Match != null ? separator.ToString() + separator.ToString() + Match.To_csv(format_currency) : "");
         }
 
-        public ConsoleLine ToConsole(int index = -1)
+        public ConsoleLine To_console(int index = -1)
         {
             return new ConsoleLine
             {
                 Index = index,
-                DateString = Date.ToString(@"dd\/MM\/yyyy"),
-                AmountString = UnreconciledAmount.ToCsvString(true),
-                DescriptionString = Description
+                Date_string = Date.ToString(@"dd\/MM\/yyyy"),
+                Amount_string = Unreconciled_amount.To_csv_string(true),
+                Description_string = Description
             };
         }
 
-        public bool MainAmountIsNegative()
+        public bool Main_amount_is_negative()
         {
-            return UnreconciledAmount != 0 && UnreconciledAmount < 0;
+            return Unreconciled_amount != 0 && Unreconciled_amount < 0;
         }
 
-        public void MakeMainAmountPositive()
+        public void Make_main_amount_positive()
         {
-            if (UnreconciledAmount < 0)
+            if (Unreconciled_amount < 0)
             {
-                UnreconciledAmount = UnreconciledAmount * -1;
+                Unreconciled_amount = Unreconciled_amount * -1;
             }
         }
 
-        public void SwapSignOfMainAmount()
+        public void Swap_sign_of_main_amount()
         {
-            UnreconciledAmount = UnreconciledAmount * -1;
+            Unreconciled_amount = Unreconciled_amount * -1;
         }
 
-        public double MainAmount()
+        public double Main_amount()
         {
-            return UnreconciledAmount;
+            return Unreconciled_amount;
         }
 
-        public void ChangeMainAmount(double newValue)
+        public void Change_main_amount(double new_value)
         {
-            UnreconciledAmount = newValue;
+            Unreconciled_amount = new_value;
         }
 
-        public string TransactionType()
+        public string Transaction_type()
         {
             return Type;
         }
 
-        public int ExtraInfo()
+        public int Extra_info()
         {
-            return ChequeNumber;
+            return Cheque_number;
         }
 
         public void Reconcile()
         {
-            ReconciledAmount = UnreconciledAmount;
-            UnreconciledAmount = 0;
+            Reconciled_amount = Unreconciled_amount;
+            Unreconciled_amount = 0;
         }
 
-        public void ConvertSourceLineSeparators(char originalSeparator, char newSeparator)
+        public void Convert_source_line_separators(char original_separator, char new_separator)
         {
-            SourceLine = SourceLine.ConvertSeparators(originalSeparator, newSeparator);
+            Source_line = Source_line.Convert_separators(original_separator, new_separator);
         }
 
-        public ICSVRecord WithDate(DateTime newDate)
+        public ICSVRecord With_date(DateTime new_date)
         {
-            Date = newDate;
+            Date = new_date;
             return this;
         }
 
@@ -282,18 +282,18 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             return new BankRecord
             {
                 Date = Date,
-                UnreconciledAmount = UnreconciledAmount,
+                Unreconciled_amount = Unreconciled_amount,
                 Type = Type,
                 Description = Description,
-                ReconciledAmount = ReconciledAmount,
-                ChequeNumber = ChequeNumber,
-                SourceLine = SourceLine
+                Reconciled_amount = Reconciled_amount,
+                Cheque_number = Cheque_number,
+                Source_line = Source_line
             };
         }
 
-        public void UpdateSourceLineForOutput(char outputSeparator)
+        public void Update_source_line_for_output(char output_separator)
         {
-            SourceLine = ToString(outputSeparator);
+            Source_line = To_string(output_separator);
         }
     }
 }

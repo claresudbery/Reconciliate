@@ -18,78 +18,78 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     [TestFixture]
     public partial class FileLoaderTests : IInputOutput
     {
-        private Mock<IInputOutput> _mockInputOutput;
+        private Mock<IInputOutput> _mock_input_output;
 
-        private void SetUpForLoaderBespokeStuff(Mock<IInputOutput> mockInputOutput, Mock<ISpreadsheet> mockSpreadsheet)
+        private void Set_up_for_loader_bespoke_stuff(Mock<IInputOutput> mock_input_output, Mock<ISpreadsheet> mock_spreadsheet)
         {
-            DateTime lastDirectDebitDate = new DateTime(2018, 12, 17);
-            var nextDirectDebitDate01 = lastDirectDebitDate.AddMonths(1);
-            var bankRecord = new BankRecord { Date = lastDirectDebitDate };
+            DateTime last_direct_debit_date = new DateTime(2018, 12, 17);
+            var next_direct_debit_date01 = last_direct_debit_date.AddMonths(1);
+            var bank_record = new BankRecord { Date = last_direct_debit_date };
 
-            mockInputOutput.Setup(x => x.GetInput(string.Format(
+            mock_input_output.Setup(x => x.Get_input(string.Format(
                 ReconConsts.AskForCredCardDirectDebit,
-                ReconConsts.CredCard2Name,
-                nextDirectDebitDate01.ToShortDateString()), "")).Returns("0");
-            mockSpreadsheet.Setup(x => x.GetMostRecentRowContainingText<BankRecord>(
-                    MainSheetNames.BankOut, ReconConsts.CredCard2DdDescription, new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
-                .Returns(bankRecord);
+                ReconConsts.Cred_card2_name,
+                next_direct_debit_date01.ToShortDateString()), "")).Returns("0");
+            mock_spreadsheet.Setup(x => x.Get_most_recent_row_containing_text<BankRecord>(
+                    MainSheetNames.Bank_out, ReconConsts.Cred_card2_dd_description, new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
+                .Returns(bank_record);
 
-            mockInputOutput.Setup(x => x.GetInput(string.Format(
+            mock_input_output.Setup(x => x.Get_input(string.Format(
                 ReconConsts.AskForCredCardDirectDebit, 
-                ReconConsts.CredCard1Name,
-                nextDirectDebitDate01.ToShortDateString()), "")).Returns("0");
-            mockSpreadsheet.Setup(x => x.GetMostRecentRowContainingText<BankRecord>(
-                    MainSheetNames.BankOut, ReconConsts.CredCard1DdDescription, new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
-                .Returns(bankRecord);
+                ReconConsts.Cred_card1_name,
+                next_direct_debit_date01.ToShortDateString()), "")).Returns("0");
+            mock_spreadsheet.Setup(x => x.Get_most_recent_row_containing_text<BankRecord>(
+                    MainSheetNames.Bank_out, ReconConsts.Cred_card1_dd_description, new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
+                .Returns(bank_record);
         }
 
         [OneTimeSetUp]
-        public void OneTimeSetUp()
+        public void One_time_set_up()
         {
-            TestHelper.SetCorrectDateFormatting();
+            TestHelper.Set_correct_date_formatting();
         }
 
         [SetUp]
-        public void SetUp()
+        public void Set_up()
         {
-            _mockInputOutput = new Mock<IInputOutput>();
+            _mock_input_output = new Mock<IInputOutput>();
         }
 
         [Test]
         public void M_WillNotDeleteUnreconciledRowsWhenMergingPendingWithUnreconciled()
         {
             // Arrange
-            var mockInputOutput = new Mock<IInputOutput>();
-            var reconciliate = new FileLoader(mockInputOutput.Object);
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
-            var mockPendingFile = new Mock<ICSVFile<BankRecord>>();
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankOutFileIO = new Mock<IFileIO<BankRecord>>();
-            var budgetingMonths = new BudgetingMonths();
-            mockPendingFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), It.IsAny<char>()))
+            var mock_input_output = new Mock<IInputOutput>();
+            var reconciliate = new FileLoader(mock_input_output.Object);
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_out_file_io = new Mock<IFileIO<BankRecord>>();
+            var budgeting_months = new BudgetingMonths();
+            mock_pending_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), It.IsAny<char>()))
                 .Returns(new List<BankRecord>());
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord>());
-            mockBankOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord>());
-            var loadingInfo = new DummyLoader().LoadingInfo();
-            var mockMatcher = new Mock<IMatcher>();
+            var loading_info = new DummyLoader().Loading_info();
+            var mock_matcher = new Mock<IMatcher>();
 
             // Act
-            var reconciliationInterface = reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
-                mockSpreadsheet.Object,
-                mockPendingFileIO.Object,
-                mockPendingFile.Object,
-                mockActualBankFileIO.Object,
-                mockBankOutFileIO.Object,
-                budgetingMonths,
-                loadingInfo,
-                mockMatcher.Object);
+            var reconciliation_interface = reconciliate.Load_files_and_merge_data<ActualBankRecord, BankRecord>(
+                mock_spreadsheet.Object,
+                mock_pending_file_io.Object,
+                mock_pending_file.Object,
+                mock_actual_bank_file_io.Object,
+                mock_bank_out_file_io.Object,
+                budgeting_months,
+                loading_info,
+                mock_matcher.Object);
 
             // Assert
-            mockSpreadsheet
-                .Verify(x => x.DeleteUnreconciledRows(It.IsAny<string>()),
+            mock_spreadsheet
+                .Verify(x => x.Delete_unreconciled_rows(It.IsAny<string>()),
                     Times.Never);
         }
 
@@ -103,71 +103,71 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         [TestCase(9, 9, "Sep", "Sep", 1)]
         [TestCase(10, 9, "Oct", "Sep", 12)]
         public void RecursivelyAskForBudgetingMonths_WillCheckResultsWithUserAndAskForConfirmation(
-            int nextUnplannedMonth, int userInput, string firstMonth, string secondMonth, int monthSpan)
+            int next_unplanned_month, int user_input, string first_month, string second_month, int month_span)
         {
             // Arrange
-            DateTime unplannedMonth = new DateTime(2018, nextUnplannedMonth, 1);
-            _getInputMessages.Clear();
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            mockSpreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(unplannedMonth);
-            string confirmationText = string.Format(ReconConsts.ConfirmMonthInterval, firstMonth, secondMonth, monthSpan);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns($"{userInput}")
+            DateTime unplanned_month = new DateTime(2018, next_unplanned_month, 1);
+            _get_input_messages.Clear();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(unplanned_month);
+            string confirmation_text = string.Format(ReconConsts.ConfirmMonthInterval, first_month, second_month, month_span);
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns($"{user_input}")
                 .Returns("Y");
             // Use self-shunt to avoid infinite recursion:
             var reconciliate = new FileLoader(this);
 
             // Act
-            reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
+            reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
-            Assert.AreEqual(confirmationText, _getInputMessages.Last());
+            Assert.AreEqual(confirmation_text, _get_input_messages.Last());
         }
 
         [Test]
         public void WhenBudgetingIsConfirmed_WillReturnRelevantValue()
         {
             // Arrange
-            DateTime nextUnplannedMonth = new DateTime(2018, 11, 1);
-            int monthInput = 2;
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            mockSpreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(nextUnplannedMonth);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns($"{monthInput}")
+            DateTime next_unplanned_month = new DateTime(2018, 11, 1);
+            int month_input = 2;
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns($"{month_input}")
                 .Returns("Y");
-            var reconciliate = new FileLoader(_mockInputOutput.Object);
+            var reconciliate = new FileLoader(_mock_input_output.Object);
 
             // Act
-            var result = reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
+            var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
-            Assert.AreEqual(monthInput, result.LastMonthForBudgetPlanning);
+            Assert.AreEqual(month_input, result.Last_month_for_budget_planning);
         }
 
         [Test]
         public void IfBudgetingIsNotConfirmed_WillAskForReEntry()
         {
             // Arrange
-            _getInputMessages.Clear();
-            int monthInput = 2;
-            DateTime nextUnplannedMonth = new DateTime(2018, 11, 1);
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            mockSpreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(nextUnplannedMonth);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns($"{monthInput}")
+            _get_input_messages.Clear();
+            int month_input = 2;
+            DateTime next_unplanned_month = new DateTime(2018, 11, 1);
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns($"{month_input}")
                 .Returns("N")
-                .Returns($"{monthInput + 1}")
+                .Returns($"{month_input + 1}")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:
             var reconciliate = new FileLoader(this);
 
             // Act
-            reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
+            reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
-            string nextUnplannedMonthAsString = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(nextUnplannedMonth.Month);
-            string monthInputRequest = string.Format(ReconConsts.EnterMonths, nextUnplannedMonthAsString);
-            Assert.AreEqual(2, _getInputMessages.Count(x => x == monthInputRequest));
+            string next_unplanned_month_as_string = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(next_unplanned_month.Month);
+            string month_input_request = string.Format(ReconConsts.EnterMonths, next_unplanned_month_as_string);
+            Assert.AreEqual(2, _get_input_messages.Count(x => x == month_input_request));
         }
 
         [TestCase("13")]
@@ -181,23 +181,23 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         [TestCase("1")]
         [TestCase("")]
         [TestCase("12")]
-        public void RecursivelyAskForBudgetingMonths_WillOnlyReturnANumberBetweenZeroAndTwelve(string userInput)
+        public void RecursivelyAskForBudgetingMonths_WillOnlyReturnANumberBetweenZeroAndTwelve(string user_input)
         {
             // Arrange
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            DateTime nextUnplannedMonth = new DateTime(2018, 11, 1);
-            mockSpreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(nextUnplannedMonth);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(userInput)
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            DateTime next_unplanned_month = new DateTime(2018, 11, 1);
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(user_input)
                 .Returns("Y")
                 .Returns("Y");
-            var reconciliate = new FileLoader(_mockInputOutput.Object);
+            var reconciliate = new FileLoader(_mock_input_output.Object);
 
             // Act
-            var result = reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
+            var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
-            Assert.IsTrue(result.LastMonthForBudgetPlanning >= 0 && result.LastMonthForBudgetPlanning <= 12);
+            Assert.IsTrue(result.Last_month_for_budget_planning >= 0 && result.Last_month_for_budget_planning <= 12);
         }
 
         [TestCase("13")]
@@ -207,85 +207,85 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         [TestCase("df")]
         [TestCase("-")]
         [TestCase("")]
-        public void RecursivelyAskForBudgetingMonths_WillAskForConfirmation_IfUserGivesBadOrZeroInput(string userInput)
+        public void RecursivelyAskForBudgetingMonths_WillAskForConfirmation_IfUserGivesBadOrZeroInput(string user_input)
         {
             // Arrange
-            _getInputMessages.Clear();
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            DateTime nextUnplannedMonth = new DateTime(2018, 10, 1);
-            mockSpreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(nextUnplannedMonth);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns($"{userInput}")
+            _get_input_messages.Clear();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            DateTime next_unplanned_month = new DateTime(2018, 10, 1);
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns($"{user_input}")
                 .Returns("Y")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:
             var reconciliate = new FileLoader(this);
             
             // Act
-            reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
+            reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
-            Assert.AreEqual(1, _getInputMessages.Count(x => x == ReconConsts.ConfirmBadMonth));
+            Assert.AreEqual(1, _get_input_messages.Count(x => x == ReconConsts.ConfirmBadMonth));
         }
 
         [Test]
         public void IfNoBudgetingIsConfirmed_WillOutputAcknowledgement_AndReturnZero()
         {
             // Arrange
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            DateTime nextUnplannedMonth = new DateTime(2018, 10, 1);
-            mockSpreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(nextUnplannedMonth);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            DateTime next_unplanned_month = new DateTime(2018, 10, 1);
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns($"{0}")
                 .Returns("Y")
                 .Returns("Y");
-            var reconciliate = new FileLoader(_mockInputOutput.Object);
+            var reconciliate = new FileLoader(_mock_input_output.Object);
 
             // Act
-            var result = reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
+            var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
-            _mockInputOutput.Verify(x => x.OutputLine(ReconConsts.ConfirmNoMonthlyBudgeting));
-            Assert.AreEqual(0, result.LastMonthForBudgetPlanning);
+            _mock_input_output.Verify(x => x.Output_line(ReconConsts.ConfirmNoMonthlyBudgeting));
+            Assert.AreEqual(0, result.Last_month_for_budget_planning);
         }
 
         [Test]
         public void IfNoBudgetingIsConfirmed_WillNotTryToCalculateMonthSpan()
         {
             // Arrange
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            DateTime nextUnplannedMonth = new DateTime(2018, 10, 1);
-            mockSpreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(nextUnplannedMonth);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            DateTime next_unplanned_month = new DateTime(2018, 10, 1);
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns("0")
                 .Returns("Y")
                 .Returns("Y");
-            var reconciliate = new FileLoader(_mockInputOutput.Object);
-            bool exceptionThrown = false;
+            var reconciliate = new FileLoader(_mock_input_output.Object);
+            bool exception_thrown = false;
 
             // Act
             try
             {
-                reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
+                reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
             }
             catch (Exception)
             {
-                exceptionThrown = true;
+                exception_thrown = true;
             }
 
             // Assert
-            Assert.IsFalse(exceptionThrown);
+            Assert.IsFalse(exception_thrown);
         }
 
         [Test]
         public void IfNoBudgetingWasNotIntended_WillAskUserForInputAgain()
         {
             // Arrange
-            _getInputMessages.Clear();
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            DateTime nextUnplannedMonth = new DateTime(2018, 10, 1);
-            mockSpreadsheet.Setup(x => x.GetNextUnplannedMonth()).Returns(nextUnplannedMonth);
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
+            _get_input_messages.Clear();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            DateTime next_unplanned_month = new DateTime(2018, 10, 1);
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Returns(next_unplanned_month);
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns($"{0}")
                 .Returns("N")
                 .Returns($"{11}")
@@ -294,35 +294,35 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var reconciliate = new FileLoader(this);
 
             // Act
-            reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
+            reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
-            string nextUnplannedMonthAsString = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(nextUnplannedMonth.Month);
-            string monthInputRequest = string.Format(ReconConsts.EnterMonths, nextUnplannedMonthAsString);
-            Assert.AreEqual(2, _getInputMessages.Count(x => x == monthInputRequest));
+            string next_unplanned_month_as_string = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(next_unplanned_month.Month);
+            string month_input_request = string.Format(ReconConsts.EnterMonths, next_unplanned_month_as_string);
+            Assert.AreEqual(2, _get_input_messages.Count(x => x == month_input_request));
         }
 
         [Test]
         public void IfCantFindNextUnplannedMonth_WillAskUserToEnterIt()
         {
             // Arrange
-            _getInputMessages.Clear();
-            int userInputForNextUnplannedMonth = 3;
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            mockSpreadsheet.Setup(x => x.GetNextUnplannedMonth()).Throws(new Exception());
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns($"{userInputForNextUnplannedMonth}")
-                .Returns($"{userInputForNextUnplannedMonth}")
+            _get_input_messages.Clear();
+            int user_input_for_next_unplanned_month = 3;
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Throws(new Exception());
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns($"{user_input_for_next_unplanned_month}")
+                .Returns($"{user_input_for_next_unplanned_month}")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:
             var reconciliate = new FileLoader(this);
 
             // Act
-            var result = reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
+            var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
-            Assert.IsTrue(_getInputMessages.Contains(ReconConsts.CantFindMortgageRow));
-            Assert.AreEqual(userInputForNextUnplannedMonth, result.NextUnplannedMonth);
+            Assert.IsTrue(_get_input_messages.Contains(ReconConsts.CantFindMortgageRow));
+            Assert.AreEqual(user_input_for_next_unplanned_month, result.Next_unplanned_month);
         }
         
         [TestCase("13")]
@@ -332,207 +332,207 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         [TestCase("df")]
         [TestCase("-")]
         [TestCase("")]
-        public void IfCantFindNextUnplannedMonth_AndUserEntersBadInput_WillDefaultToThisMonth(string badInput)
+        public void IfCantFindNextUnplannedMonth_AndUserEntersBadInput_WillDefaultToThisMonth(string bad_input)
         {
             // Arrange
-            var defaultMonth = DateTime.Today.Month;
-            _getInputMessages.Clear();
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            mockSpreadsheet.Setup(x => x.GetNextUnplannedMonth()).Throws(new Exception());
-            _mockInputOutput.SetupSequence(x => x.GetInput(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(badInput)
+            var default_month = DateTime.Today.Month;
+            _get_input_messages.Clear();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Throws(new Exception());
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(bad_input)
                 .Returns("1")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:
             var reconciliate = new FileLoader(this);
 
             // Act
-            var result = reconciliate.RecursivelyAskForBudgetingMonths(mockSpreadsheet.Object);
+            var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
-            Assert.IsTrue(_outputSingleLineRecordedMessages.Contains(ReconConsts.DefaultUnplannedMonth));
-            Assert.AreEqual(defaultMonth, result.NextUnplannedMonth);
+            Assert.IsTrue(_output_single_line_recorded_messages.Contains(ReconConsts.DefaultUnplannedMonth));
+            Assert.AreEqual(default_month, result.Next_unplanned_month);
         }
 
         [Test]
         public void LoadFilesAndMergeData_WillUseAllTheCorrectDataToLoadSpreadsheetAndPendingAndBudgetedDataForBankIn()
         {
             // Arrange
-            var mockInputOutput = new Mock<IInputOutput>();
-            var reconciliate = new FileLoader(mockInputOutput.Object);
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
-            var mockPendingFile = new Mock<ICSVFile<BankRecord>>();
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankOutFileIO = new Mock<IFileIO<BankRecord>>();
-            var budgetingMonths = new BudgetingMonths();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_input_output = new Mock<IInputOutput>();
+            var reconciliate = new FileLoader(mock_input_output.Object);
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_out_file_io = new Mock<IFileIO<BankRecord>>();
+            var budgeting_months = new BudgetingMonths();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord>());
-            mockBankOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord>());
-            var loadingInfo = new BankAndBankOutLoader().LoadingInfo();
-            var mockMatcher = new Mock<IMatcher>();
-            SetUpForLoaderBespokeStuff(mockInputOutput, mockSpreadsheet);
+            var loading_info = new BankAndBankOutLoader().Loading_info();
+            var mock_matcher = new Mock<IMatcher>();
+            Set_up_for_loader_bespoke_stuff(mock_input_output, mock_spreadsheet);
 
             // Act
-            var reconciliationInterface = reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
-                mockSpreadsheet.Object,
-                mockPendingFileIO.Object,
-                mockPendingFile.Object,
-                mockActualBankFileIO.Object,
-                mockBankOutFileIO.Object,
-                budgetingMonths,
-                loadingInfo,
-                mockMatcher.Object);
+            var reconciliation_interface = reconciliate.Load_files_and_merge_data<ActualBankRecord, BankRecord>(
+                mock_spreadsheet.Object,
+                mock_pending_file_io.Object,
+                mock_pending_file.Object,
+                mock_actual_bank_file_io.Object,
+                mock_bank_out_file_io.Object,
+                budgeting_months,
+                loading_info,
+                mock_matcher.Object);
 
             // Assert
-            mockPendingFileIO.Verify(x => x.SetFilePaths(loadingInfo.FilePaths.MainPath, loadingInfo.PendingFileName));
-            mockActualBankFileIO.Verify(x => x.SetFilePaths(loadingInfo.FilePaths.MainPath, loadingInfo.FilePaths.ThirdPartyFileName));
-            mockBankOutFileIO.Verify(x => x.SetFilePaths(loadingInfo.FilePaths.MainPath, loadingInfo.FilePaths.OwnedFileName));
-            mockPendingFile.Verify(x => x.Load(true, loadingInfo.DefaultSeparator, true));
-            mockPendingFile.Verify(x => x.ConvertSourceLineSeparators(loadingInfo.DefaultSeparator, loadingInfo.LoadingSeparator));
-            mockSpreadsheet.Verify(x => x.AddBudgetedMonthlyDataToPendingFile(
-                budgetingMonths,
+            mock_pending_file_io.Verify(x => x.Set_file_paths(loading_info.File_paths.Main_path, loading_info.Pending_file_name));
+            mock_actual_bank_file_io.Verify(x => x.Set_file_paths(loading_info.File_paths.Main_path, loading_info.File_paths.Third_party_file_name));
+            mock_bank_out_file_io.Verify(x => x.Set_file_paths(loading_info.File_paths.Main_path, loading_info.File_paths.Owned_file_name));
+            mock_pending_file.Verify(x => x.Load(true, loading_info.Default_separator, true));
+            mock_pending_file.Verify(x => x.Convert_source_line_separators(loading_info.Default_separator, loading_info.Loading_separator));
+            mock_spreadsheet.Verify(x => x.Add_budgeted_monthly_data_to_pending_file(
+                budgeting_months,
                 It.IsAny<ICSVFile<BankRecord>>(),
-                It.Is<BudgetItemListData>(y => y == loadingInfo.MonthlyBudgetData)));
-            mockSpreadsheet.Verify(x => x.AddBudgetedAnnualDataToPendingFile(
-                budgetingMonths,
+                It.Is<BudgetItemListData>(y => y == loading_info.Monthly_budget_data)));
+            mock_spreadsheet.Verify(x => x.Add_budgeted_annual_data_to_pending_file(
+                budgeting_months,
                 It.IsAny<ICSVFile<BankRecord>>(),
-                It.Is<BudgetItemListData>(y => y == loadingInfo.AnnualBudgetData)));
-            mockPendingFile.Verify(x => x.UpdateSourceLinesForOutput(loadingInfo.LoadingSeparator));
-            mockSpreadsheet.Verify(x => x.AddUnreconciledRowsToCsvFile(loadingInfo.SheetName, It.IsAny<ICSVFile<BankRecord>>()));
-            mockPendingFile.Verify(x => x.WriteToFileAsSourceLines(loadingInfo.FilePaths.OwnedFileName));
-            mockInputOutput.Verify(x => x.OutputLine("Loading data from pending file (which you should have already split out, if necessary)..."));
-            mockInputOutput.Verify(x => x.OutputLine("Merging budget data with pending data..."));
-            mockInputOutput.Verify(x => x.OutputLine("Merging unreconciled rows from spreadsheet with pending and budget data..."));
-            mockInputOutput.Verify(x => x.OutputLine("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file..."));
-            mockInputOutput.Verify(x => x.OutputLine("Loading data back in from 'owned' and 'third party' files..."));
-            mockInputOutput.Verify(x => x.OutputLine("Creating reconciliation interface..."));
-            Assert.AreEqual(loadingInfo.ThirdPartyDescriptor, reconciliationInterface.ThirdPartyDescriptor, "Third Party Descriptor");
-            Assert.AreEqual(loadingInfo.OwnedFileDescriptor, reconciliationInterface.OwnedFileDescriptor, "Owned File Descriptor");
-            Assert.AreEqual(mockMatcher.Object, reconciliationInterface.Matcher, "Matcher");
+                It.Is<BudgetItemListData>(y => y == loading_info.Annual_budget_data)));
+            mock_pending_file.Verify(x => x.Update_source_lines_for_output(loading_info.Loading_separator));
+            mock_spreadsheet.Verify(x => x.Add_unreconciled_rows_to_csv_file(loading_info.Sheet_name, It.IsAny<ICSVFile<BankRecord>>()));
+            mock_pending_file.Verify(x => x.Write_to_file_as_source_lines(loading_info.File_paths.Owned_file_name));
+            mock_input_output.Verify(x => x.Output_line("Loading data from pending file (which you should have already split out, if necessary)..."));
+            mock_input_output.Verify(x => x.Output_line("Merging budget data with pending data..."));
+            mock_input_output.Verify(x => x.Output_line("Merging unreconciled rows from spreadsheet with pending and budget data..."));
+            mock_input_output.Verify(x => x.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file..."));
+            mock_input_output.Verify(x => x.Output_line("Loading data back in from 'owned' and 'third party' files..."));
+            mock_input_output.Verify(x => x.Output_line("Creating reconciliation interface..."));
+            Assert.AreEqual(loading_info.Third_party_descriptor, reconciliation_interface.Third_party_descriptor, "Third Party Descriptor");
+            Assert.AreEqual(loading_info.Owned_file_descriptor, reconciliation_interface.Owned_file_descriptor, "Owned File Descriptor");
+            Assert.AreEqual(mock_matcher.Object, reconciliation_interface.Matcher, "Matcher");
         }
 
         [Test]
         public void M_WillCallMergeBespokeDataWithPendingFile_ForPassedInLoader()
         {
             // Arrange
-            var mockInputOutput = new Mock<IInputOutput>();
-            var reconciliate = new FileLoader(mockInputOutput.Object);
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
-            var mockPendingFile = new Mock<ICSVFile<BankRecord>>();
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankOutFileIO = new Mock<IFileIO<BankRecord>>();
-            var budgetingMonths = new BudgetingMonths();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_input_output = new Mock<IInputOutput>();
+            var reconciliate = new FileLoader(mock_input_output.Object);
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_out_file_io = new Mock<IFileIO<BankRecord>>();
+            var budgeting_months = new BudgetingMonths();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord>());
-            mockBankOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord>());
-            var mockLoader = new Mock<ILoader<ActualBankRecord, BankRecord>>();
-            mockLoader.Setup(x => x.CreateNewThirdPartyFile(It.IsAny<IFileIO<ActualBankRecord>>())).Returns(new ActualBankInFile(new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object)));
-            mockLoader.Setup(x => x.CreateNewOwnedFile(It.IsAny<IFileIO<BankRecord>>())).Returns(new GenericFile<BankRecord>(new CSVFile<BankRecord>(mockBankOutFileIO.Object)));
-            var loadingInfo = new DataLoadingInformation<ActualBankRecord, BankRecord>
+            var mock_loader = new Mock<ILoader<ActualBankRecord, BankRecord>>();
+            mock_loader.Setup(x => x.Create_new_third_party_file(It.IsAny<IFileIO<ActualBankRecord>>())).Returns(new ActualBankInFile(new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object)));
+            mock_loader.Setup(x => x.Create_new_owned_file(It.IsAny<IFileIO<BankRecord>>())).Returns(new GenericFile<BankRecord>(new CSVFile<BankRecord>(mock_bank_out_file_io.Object)));
+            var loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord>
             {
-                Loader = mockLoader.Object,
-                FilePaths = new FilePaths()
+                Loader = mock_loader.Object,
+                File_paths = new FilePaths()
             };
-            var mockMatcher = new Mock<IMatcher>();
+            var mock_matcher = new Mock<IMatcher>();
 
             // Act
-            var reconciliationInterface = reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
-                mockSpreadsheet.Object,
-                mockPendingFileIO.Object,
-                mockPendingFile.Object,
-                mockActualBankFileIO.Object,
-                mockBankOutFileIO.Object,
-                budgetingMonths,
-                loadingInfo,
-                mockMatcher.Object);
+            var reconciliation_interface = reconciliate.Load_files_and_merge_data<ActualBankRecord, BankRecord>(
+                mock_spreadsheet.Object,
+                mock_pending_file_io.Object,
+                mock_pending_file.Object,
+                mock_actual_bank_file_io.Object,
+                mock_bank_out_file_io.Object,
+                budgeting_months,
+                loading_info,
+                mock_matcher.Object);
 
             // Assert
-            mockLoader.Verify(x => x.MergeBespokeDataWithPendingFile(
-                mockInputOutput.Object,
-                mockSpreadsheet.Object,
-                mockPendingFile.Object,
-                budgetingMonths,
-                loadingInfo), Times.Exactly(1));
+            mock_loader.Verify(x => x.Merge_bespoke_data_with_pending_file(
+                mock_input_output.Object,
+                mock_spreadsheet.Object,
+                mock_pending_file.Object,
+                budgeting_months,
+                loading_info), Times.Exactly(1));
         }
 
         [Test]
         public void LoadFilesAndMergeData_WillNotLoadData_WhenTesting()
         {
             // Arrange
-            var mockInputOutput = new Mock<IInputOutput>();
-            var reconciliate = new FileLoader(mockInputOutput.Object);
-            var mockSpreadsheet = new Mock<ISpreadsheet>();
-            var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
-            var mockPendingFile = new Mock<ICSVFile<BankRecord>>();
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankOutFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_input_output = new Mock<IInputOutput>();
+            var reconciliate = new FileLoader(mock_input_output.Object);
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_out_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord>());
-            mockBankOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord>());
-            var budgetingMonths = new BudgetingMonths();
-            var loadingInfo = new DummyLoader().LoadingInfo();
-            loadingInfo.FilePaths.MainPath = "This is not a path";
-            bool exceptionThrown = false;
-            var mockMatcher = new Mock<IMatcher>();
+            var budgeting_months = new BudgetingMonths();
+            var loading_info = new DummyLoader().Loading_info();
+            loading_info.File_paths.Main_path = "This is not a path";
+            bool exception_thrown = false;
+            var mock_matcher = new Mock<IMatcher>();
 
             // Act
             try
             {
-                var reconciliationInterface = reconciliate.LoadFilesAndMergeData<ActualBankRecord, BankRecord>(
-                    mockSpreadsheet.Object,
-                    mockPendingFileIO.Object,
-                    mockPendingFile.Object,
-                    mockActualBankFileIO.Object,
-                    mockBankOutFileIO.Object,
-                    budgetingMonths,
-                    loadingInfo,
-                    mockMatcher.Object);
+                var reconciliation_interface = reconciliate.Load_files_and_merge_data<ActualBankRecord, BankRecord>(
+                    mock_spreadsheet.Object,
+                    mock_pending_file_io.Object,
+                    mock_pending_file.Object,
+                    mock_actual_bank_file_io.Object,
+                    mock_bank_out_file_io.Object,
+                    budgeting_months,
+                    loading_info,
+                    mock_matcher.Object);
             }
             catch (DirectoryNotFoundException)
             {
-                exceptionThrown = true;
+                exception_thrown = true;
 
                 // Clean up
-                loadingInfo.FilePaths.MainPath = ReconConsts.DefaultFilePath;
+                loading_info.File_paths.Main_path = ReconConsts.Default_file_path;
             }
 
             // Assert
-            Assert.IsFalse(exceptionThrown);
+            Assert.IsFalse(exception_thrown);
         }
 
         [Test]
         public void WhenLoadingPendingData_WillConvertSourceLineSeparatorsAfterLoading()
         {
             // Arrange
-            var mockInputOutput = new Mock<IInputOutput>();
-            var reconciliate = new FileLoader(mockInputOutput.Object);
-            var mockPendingFileIO = new Mock<IFileIO<BankRecord>>();
-            var pendingFile = new CSVFile<BankRecord>(mockPendingFileIO.Object);
-            mockPendingFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_input_output = new Mock<IInputOutput>();
+            var reconciliate = new FileLoader(mock_input_output.Object);
+            var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
+            var pending_file = new CSVFile<BankRecord>(mock_pending_file_io.Object);
+            mock_pending_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord>{new BankRecord()});
-            var loadingInfo = new BankAndBankOutLoader().LoadingInfo();
-            bool exceptionThrown = false;
+            var loading_info = new BankAndBankOutLoader().Loading_info();
+            bool exception_thrown = false;
 
             // Act
             try
             {
-                reconciliate.LoadPendingData<ActualBankRecord, BankRecord>(
-                    mockPendingFileIO.Object,
-                    pendingFile,
-                    loadingInfo);
+                reconciliate.Load_pending_data<ActualBankRecord, BankRecord>(
+                    mock_pending_file_io.Object,
+                    pending_file,
+                    loading_info);
             }
             catch (NullReferenceException)
             {
-                exceptionThrown = true;
+                exception_thrown = true;
             }
 
             // Assert
-            Assert.IsFalse(exceptionThrown);
+            Assert.IsFalse(exception_thrown);
         }
     }
 }

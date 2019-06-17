@@ -26,79 +26,79 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
 
         public SpreadSheetTests()
         {
-            TestHelper.SetCorrectDateFormatting();
+            TestHelper.Set_correct_date_formatting();
         }
 
-        private BudgetDataSetup<TRecordType> WhenAddingBudgetedDataToSpreadsheet<TRecordType>(
-            int firstMonth,
-            int lastMonth,
-            Mock<ISpreadsheetRepo> mockSpreadsheetRepo,
-            BudgetItemListData budgetItemListData,
-            int defaultDay = 5) where TRecordType : ICSVRecord, new()
+        private BudgetDataSetup<TRecordType> When_adding_budgeted_data_to_spreadsheet<TRecordType>(
+            int first_month,
+            int last_month,
+            Mock<ISpreadsheetRepo> mock_spreadsheet_repo,
+            BudgetItemListData budget_item_list_data,
+            int default_day = 5) where TRecordType : ICSVRecord, new()
         {
             // Arrange
-            var budgetingMonths = new BudgetingMonths
+            var budgeting_months = new BudgetingMonths
             {
-                NextUnplannedMonth = firstMonth,
-                LastMonthForBudgetPlanning = lastMonth,
-                StartYear = 2018
+                Next_unplanned_month = first_month,
+                Last_month_for_budget_planning = last_month,
+                Start_year = 2018
             };
-            var firstMonthlyRow = 3;
-            var lastMonthlyRow = firstMonthlyRow + 2;
+            var first_monthly_row = 3;
+            var last_monthly_row = first_monthly_row + 2;
             string desc1 = "first monthly record";
             string desc2 = "second monthly record";
-            var monthlyRecords = new List<TRecordType>
+            var monthly_records = new List<TRecordType>
             {
-                new TRecordType {Date = new DateTime(budgetingMonths.StartYear, firstMonth, defaultDay), Description = desc1},
-                new TRecordType {Date = new DateTime(budgetingMonths.StartYear, firstMonth, 20), Description = desc2}
+                new TRecordType {Date = new DateTime(budgeting_months.Start_year, first_month, default_day), Description = desc1},
+                new TRecordType {Date = new DateTime(budgeting_months.Start_year, first_month, 20), Description = desc2}
             };
-            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.StartDivider, 2)).Returns(firstMonthlyRow);
-            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(budgetItemListData.SheetName, budgetItemListData.EndDivider, 2)).Returns(lastMonthlyRow);
-            mockSpreadsheetRepo.Setup(x => x.GetRowsAsRecords<TRecordType>(
-                budgetItemListData.SheetName, 
-                firstMonthlyRow + 1, 
-                lastMonthlyRow - 1,
-                budgetItemListData.FirstColumnNumber,
-                budgetItemListData.LastColumnNumber)).Returns(monthlyRecords);
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.Start_divider, 2)).Returns(first_monthly_row);
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.End_divider, 2)).Returns(last_monthly_row);
+            mock_spreadsheet_repo.Setup(x => x.Get_rows_as_records<TRecordType>(
+                budget_item_list_data.Sheet_name, 
+                first_monthly_row + 1, 
+                last_monthly_row - 1,
+                budget_item_list_data.First_column_number,
+                budget_item_list_data.Last_column_number)).Returns(monthly_records);
 
             return new BudgetDataSetup<TRecordType>
             {
                 Desc1 = desc1,
                 Desc2 = desc2,
-                BudgetingMonths = budgetingMonths,
-                MonthlyRecords = monthlyRecords
+                BudgetingMonths = budgeting_months,
+                MonthlyRecords = monthly_records
             };
         }
 
         private void Assert_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged<TRecordType>(
-            int firstMonth,
-            int lastMonth,
-            int monthlyRecordCount,
-            List<TRecordType> pendingFileRecords,
-            BudgetingMonths budgetingMonths,
+            int first_month,
+            int last_month,
+            int monthly_record_count,
+            List<TRecordType> pending_file_records,
+            BudgetingMonths budgeting_months,
             string desc1,
             string desc2) where TRecordType : ICSVRecord, new()
         {
             // Arrange
-            var numRepetitions = lastMonth >= firstMonth
-                ? (lastMonth - firstMonth) + 1
-                : ((lastMonth + 12) - firstMonth) + 1;
-            var totalRecords = numRepetitions * monthlyRecordCount;
+            var num_repetitions = last_month >= first_month
+                ? (last_month - first_month) + 1
+                : ((last_month + 12) - first_month) + 1;
+            var total_records = num_repetitions * monthly_record_count;
 
             // Assert
-            Assert.AreEqual(totalRecords, pendingFileRecords.Count, "total num records");
-            Assert.AreEqual(numRepetitions, pendingFileRecords.Count(x => x.Description == desc1), "num repetitions of desc1");
-            Assert.AreEqual(numRepetitions, pendingFileRecords.Count(x => x.Description == desc2), "num repetitions of desc2");
-            var desc1Records = pendingFileRecords.Where(x => x.Description == desc1)
+            Assert.AreEqual(total_records, pending_file_records.Count, "total num records");
+            Assert.AreEqual(num_repetitions, pending_file_records.Count(x => x.Description == desc1), "num repetitions of desc1");
+            Assert.AreEqual(num_repetitions, pending_file_records.Count(x => x.Description == desc2), "num repetitions of desc2");
+            var desc1_records = pending_file_records.Where(x => x.Description == desc1)
                 .OrderBy(x => x.Date).ToList();
             int index = 0;
-            int finalMonth = lastMonth >= firstMonth ? lastMonth : lastMonth + 12;
-            for (int month = firstMonth; month <= finalMonth; month++)
+            int final_month = last_month >= first_month ? last_month : last_month + 12;
+            for (int month = first_month; month <= final_month; month++)
             {
-                var expectedMonth = month <= 12 ? month : month - 12;
-                var expectedYear = month <= 12 ? budgetingMonths.StartYear : budgetingMonths.StartYear + 1;
-                Assert.AreEqual(expectedMonth, desc1Records[index].Date.Month, "correct month");
-                Assert.AreEqual(expectedYear, desc1Records[index].Date.Year, "correct year");
+                var expected_month = month <= 12 ? month : month - 12;
+                var expected_year = month <= 12 ? budgeting_months.Start_year : budgeting_months.Start_year + 1;
+                Assert.AreEqual(expected_month, desc1_records[index].Date.Month, "correct month");
+                Assert.AreEqual(expected_year, desc1_records[index].Date.Year, "correct year");
                 index++;
             }
         }
@@ -107,182 +107,182 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         public void M_CanReadLastRowOfSpecifiedWorksheetAsObjectList()
         {
             // Arrange
-            var sheetName = "MockSheet";
-            var fakeCellRow = new FakeCellRow().WithFakeData(new List<object>
+            var sheet_name = "MockSheet";
+            var fake_cell_row = new FakeCellRow().With_fake_data(new List<object>
             {
                 "22/03/2018",
                 "22.34",
                 "last row",
                 "7788"
             });
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            mockSpreadsheetRepo.Setup(x => x.ReadLastRow(sheetName))
-                .Returns(fakeCellRow);
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            mock_spreadsheet_repo.Setup(x => x.Read_last_row(sheet_name))
+                .Returns(fake_cell_row);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            ICellRow actualRow = spreadsheet.ReadLastRow(sheetName);
+            ICellRow actual_row = spreadsheet.Read_last_row(sheet_name);
 
             // Assert
-            Assert.AreEqual(fakeCellRow.ReadCell(0), actualRow.ReadCell(0));
-            Assert.AreEqual(fakeCellRow.ReadCell(1), actualRow.ReadCell(1));
-            Assert.AreEqual(fakeCellRow.ReadCell(2), actualRow.ReadCell(2));
-            Assert.AreEqual(fakeCellRow.ReadCell(3), actualRow.ReadCell(3));
+            Assert.AreEqual(fake_cell_row.Read_cell(0), actual_row.Read_cell(0));
+            Assert.AreEqual(fake_cell_row.Read_cell(1), actual_row.Read_cell(1));
+            Assert.AreEqual(fake_cell_row.Read_cell(2), actual_row.Read_cell(2));
+            Assert.AreEqual(fake_cell_row.Read_cell(3), actual_row.Read_cell(3));
         }
 
         [Test]
         public void M_CanReadLastRowOfSpecifiedWorksheetAsCsv()
         {
             // Arrange
-            var sheetName = "MockSheet";
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            String expectedCsv = "22/03/2018,£22.34,\"last row\",7788";
-            mockSpreadsheetRepo.Setup(x => x.ReadLastRowAsCsv(sheetName, It.IsAny<ICSVRecord>()))
-                .Returns(expectedCsv);
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            var sheet_name = "MockSheet";
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            String expected_csv = "22/03/2018,£22.34,\"last row\",7788";
+            mock_spreadsheet_repo.Setup(x => x.Read_last_row_as_csv(sheet_name, It.IsAny<ICSVRecord>()))
+                .Returns(expected_csv);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            var result = spreadsheet.ReadLastRowAsCsv(sheetName, new BankRecord());
+            var result = spreadsheet.Read_last_row_as_csv(sheet_name, new BankRecord());
 
             // Assert
-            Assert.AreEqual(expectedCsv, result);
+            Assert.AreEqual(expected_csv, result);
         }
 
         [Test]
         public void M_WillAppendAllRowsInCsvFileToSpecifiedWorksheet()
         {
             // Arrange
-            var sheetName = "MockSheet";
-            var mockFileIO = new Mock<IFileIO<BankRecord>>();
-            mockFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var sheet_name = "MockSheet";
+            var mock_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord>());
-            var csvFile = new CSVFile<BankRecord>(mockFileIO.Object);
-            csvFile.Load();
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            mockSpreadsheetRepo.Setup(x => x.AppendCsvFile<BankRecord>(sheetName, csvFile))
+            var csv_file = new CSVFile<BankRecord>(mock_file_io.Object);
+            csv_file.Load();
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            mock_spreadsheet_repo.Setup(x => x.Append_csv_file<BankRecord>(sheet_name, csv_file))
                 .Verifiable();
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            spreadsheet.AppendCsvFile<BankRecord>(sheetName, csvFile);
+            spreadsheet.Append_csv_file<BankRecord>(sheet_name, csv_file);
 
             // Clean up
-            mockSpreadsheetRepo.Verify(x => x.AppendCsvFile<BankRecord>(sheetName, csvFile), Times.Once); 
+            mock_spreadsheet_repo.Verify(x => x.Append_csv_file<BankRecord>(sheet_name, csv_file), Times.Once); 
         }
 
         [Test]
         public void M_WillFindRowNumberOfLastDividerRow()
         {
             // Arrange
-            var sheetName = "MockSheet";
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            int expectedRowNumber = 9;
-            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(
-                    sheetName,
-                    Dividers.DividerText,
+            var sheet_name = "MockSheet";
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            int expected_row_number = 9;
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
+                    sheet_name,
+                    Dividers.Divider_text,
                     2))
-                .Returns(expectedRowNumber);
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+                .Returns(expected_row_number);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            var result = spreadsheet.FindRowNumberOfLastDividerRow(sheetName);
+            var result = spreadsheet.Find_row_number_of_last_divider_row(sheet_name);
 
             // Assert
-            Assert.AreEqual(expectedRowNumber, result);
+            Assert.AreEqual(expected_row_number, result);
         }
 
         [Test]
         public void M_CanAddUnreconciledRowsToCredCard1InOutCsvFileAndPutInDateOrder()
         {
             // Arrange
-            var sheetName = "MockSheet";
+            var sheet_name = "MockSheet";
             double date = 43345;
             var amount = 22.34;
             var text1 = "first row";
             var text2 = "second row";
             var text3 = "third row";
-            var fakeCellRow1 = new FakeCellRow().WithFakeData(new List<object> { date, amount, null, text2 });
-            var fakeCellRow3 = new FakeCellRow().WithFakeData(new List<object> { date + 1, amount, null, text3 });
-            var fakeCellRow2 = new FakeCellRow().WithFakeData(new List<object> { date - 1, amount, null, text1 });
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(sheetName, Dividers.DividerText, 2))
+            var fake_cell_row1 = new FakeCellRow().With_fake_data(new List<object> { date, amount, null, text2 });
+            var fake_cell_row3 = new FakeCellRow().With_fake_data(new List<object> { date + 1, amount, null, text3 });
+            var fake_cell_row2 = new FakeCellRow().With_fake_data(new List<object> { date - 1, amount, null, text1 });
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(sheet_name, Dividers.Divider_text, 2))
                 .Returns(1);
-            mockSpreadsheetRepo.Setup(x => x.LastRowNumber(sheetName)).Returns(4);
-            mockSpreadsheetRepo.Setup(x => x.ReadSpecifiedRow(sheetName, 2)).Returns(fakeCellRow1);
-            mockSpreadsheetRepo.Setup(x => x.ReadSpecifiedRow(sheetName, 3)).Returns(fakeCellRow2);
-            mockSpreadsheetRepo.Setup(x => x.ReadSpecifiedRow(sheetName, 4)).Returns(fakeCellRow3);
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            mock_spreadsheet_repo.Setup(x => x.Last_row_number(sheet_name)).Returns(4);
+            mock_spreadsheet_repo.Setup(x => x.Read_specified_row(sheet_name, 2)).Returns(fake_cell_row1);
+            mock_spreadsheet_repo.Setup(x => x.Read_specified_row(sheet_name, 3)).Returns(fake_cell_row2);
+            mock_spreadsheet_repo.Setup(x => x.Read_specified_row(sheet_name, 4)).Returns(fake_cell_row3);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
-            var expectedNumRecords = 3;
+            var expected_num_records = 3;
 
-            var csvFile = new CSVFileFactory<CredCard1InOutRecord>().CreateCSVFile(false);
+            var csv_file = new CSVFileFactory<CredCard1InOutRecord>().Create_csv_file(false);
 
             // Act
-            spreadsheet.AddUnreconciledRowsToCsvFile<CredCard1InOutRecord>(sheetName, csvFile);
+            spreadsheet.Add_unreconciled_rows_to_csv_file<CredCard1InOutRecord>(sheet_name, csv_file);
 
             // Assert
-            Assert.AreEqual(expectedNumRecords, csvFile.Records.Count);
-            Assert.IsTrue(csvFile.Records[0].SourceLine.Contains(text1), $"line 0 should contain correct text");
-            Assert.IsTrue(csvFile.Records[1].SourceLine.Contains(text2), $"line 1 should contain correct text");
-            Assert.IsTrue(csvFile.Records[2].SourceLine.Contains(text3), $"line 1 should contain correct text");
+            Assert.AreEqual(expected_num_records, csv_file.Records.Count);
+            Assert.IsTrue(csv_file.Records[0].Source_line.Contains(text1), $"line 0 should contain correct text");
+            Assert.IsTrue(csv_file.Records[1].Source_line.Contains(text2), $"line 1 should contain correct text");
+            Assert.IsTrue(csv_file.Records[2].Source_line.Contains(text3), $"line 1 should contain correct text");
         }
 
         [Test]
         public void M_CanReadAllBudgetItems()
         {
             // Arrange
-            var budgetItemListData = new BudgetItemListData
+            var budget_item_list_data = new BudgetItemListData
             {
-                SheetName = MainSheetNames.BudgetOut,
-                StartDivider = Dividers.CredCard1,
-                EndDivider = Dividers.CredCard2,
-                FirstColumnNumber = 2,
-                LastColumnNumber = 5
+                Sheet_name = MainSheetNames.Budget_out,
+                Start_divider = Dividers.Cred_card1,
+                End_divider = Dividers.Cred_card2,
+                First_column_number = 2,
+                Last_column_number = 5
             };
             const int expectedFirstRowNumber = 6;
             const int expectedLastRowNumber = 20;
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(
-                    budgetItemListData.SheetName, budgetItemListData.StartDivider, 2))
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
+                    budget_item_list_data.Sheet_name, budget_item_list_data.Start_divider, 2))
                 .Returns(expectedFirstRowNumber - 1);
-            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(
-                    budgetItemListData.SheetName, budgetItemListData.EndDivider, 2))
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
+                    budget_item_list_data.Sheet_name, budget_item_list_data.End_divider, 2))
                 .Returns(expectedLastRowNumber + 1);
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            spreadsheet.GetAllBudgetItems<CredCard1InOutRecord>(budgetItemListData);
+            spreadsheet.Get_all_budget_items<CredCard1InOutRecord>(budget_item_list_data);
 
             // Assert
-            mockSpreadsheetRepo.Verify(x => x.GetRowsAsRecords<CredCard1InOutRecord>(
-                budgetItemListData.SheetName,
+            mock_spreadsheet_repo.Verify(x => x.Get_rows_as_records<CredCard1InOutRecord>(
+                budget_item_list_data.Sheet_name,
                 expectedFirstRowNumber,
                 expectedLastRowNumber,
-                budgetItemListData.FirstColumnNumber,
-                budgetItemListData.LastColumnNumber));
+                budget_item_list_data.First_column_number,
+                budget_item_list_data.Last_column_number));
         }
 
         [Test]
         public void M_CanReadBalanceFromPocketMoneySpreadsheetBasedOnDate()
         {
             // Arrange
-            var expectedDateTime = new DateTime(2018, 11, 25).ToShortDateString();
-            var expectedSheetName = PocketMoneySheetNames.SecondChild;
+            var expected_date_time = new DateTime(2018, 11, 25).ToShortDateString();
+            var expected_sheet_name = PocketMoneySheetNames.Second_child;
             const int expectedDateColumn = 1;
             const int expectedAmountColumn = 4;
             const int expectedRowNumber = 10;
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(
-                    expectedSheetName, expectedDateTime, expectedDateColumn))
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
+                    expected_sheet_name, expected_date_time, expectedDateColumn))
                 .Returns(expectedRowNumber);
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
             
             // Act
-            spreadsheet.GetSecondChildPocketMoneyAmount(expectedDateTime);
+            spreadsheet.Get_second_child_pocket_money_amount(expected_date_time);
 
             // Assert
-            mockSpreadsheetRepo.Verify(x => x.GetAmount(
-                expectedSheetName,
+            mock_spreadsheet_repo.Verify(x => x.Get_amount(
+                expected_sheet_name,
                 expectedRowNumber,
                 expectedAmountColumn));
         }
@@ -291,44 +291,44 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         public void M_CanInsertNewRowOnExpectedOut()
         {
             // Arrange
-            var expectedSheetName = MainSheetNames.ExpectedOut;
+            var expected_sheet_name = MainSheetNames.Expected_out;
             const int expectedRowNumber = 21;
-            double newAmount = 79;
-            string newNotes = "Acme Blasters membership";
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfFirstRowContainingCell(
-                    expectedSheetName,
+            double new_amount = 79;
+            string new_notes = "Acme Blasters membership";
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_first_row_containing_cell(
+                    expected_sheet_name,
                     ReconConsts.ExpectedOutInsertionPoint,
                     4))
                 .Returns(expectedRowNumber);
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            spreadsheet.InsertNewRowOnExpectedOut(newAmount, newNotes);
+            spreadsheet.Insert_new_row_on_expected_out(new_amount, new_notes);
 
             // Assert
-            mockSpreadsheetRepo.Verify(x => x.InsertNewRow(
-                expectedSheetName,
+            mock_spreadsheet_repo.Verify(x => x.Insert_new_row(
+                expected_sheet_name,
                 expectedRowNumber,
-                It.Is<Dictionary<int, object>>(y => y.Values.Contains(newAmount) && y.Values.Contains(newNotes))));
+                It.Is<Dictionary<int, object>>(y => y.Values.Contains(new_amount) && y.Values.Contains(new_notes))));
         }
 
         [Test]
         public void M_CanRead_ExpensesAlreadyDone_FromPlanningSpreadsheet()
         {
             // Arrange
-            var expectedSheetName = PlanningSheetNames.Expenses;
+            var expected_sheet_name = PlanningSheetNames.Expenses;
             const int expectedRowNumber = 2;
             const int expectedColumnNumber = 4;
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            spreadsheet.GetPlanningExpensesAlreadyDone();
+            spreadsheet.Get_planning_expenses_already_done();
 
             // Assert
-            mockSpreadsheetRepo.Verify(x => x.GetAmount(
-                expectedSheetName,
+            mock_spreadsheet_repo.Verify(x => x.Get_amount(
+                expected_sheet_name,
                 expectedRowNumber,
                 expectedColumnNumber));
         }
@@ -337,18 +337,18 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         public void M_CanRead_MoneyPaidByGuests_FromPlanningSpreadsheet()
         {
             // Arrange
-            var expectedSheetName = PlanningSheetNames.Deposits;
+            var expected_sheet_name = PlanningSheetNames.Deposits;
             const int expectedRowNumber = 2;
             const int expectedColumnNumber = 4;
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            spreadsheet.GetPlanningMoneyPaidByGuests();
+            spreadsheet.Get_planning_money_paid_by_guests();
 
             // Assert
-            mockSpreadsheetRepo.Verify(x => x.GetAmount(
-                expectedSheetName,
+            mock_spreadsheet_repo.Verify(x => x.Get_amount(
+                expected_sheet_name,
                 expectedRowNumber,
                 expectedColumnNumber));
         }
@@ -357,116 +357,116 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         public void M_CanAddNewTransactionToEndOfCredCard3Sheet()
         {
             // Arrange
-            var expectedSheetName = MainSheetNames.CredCard3;
-            DateTime newDate = new DateTime(2018, 11, 25);
-            double newAmount = 32.45;
-            string newDescription = "minimum monthly payment";
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            var expected_sheet_name = MainSheetNames.Cred_card3;
+            DateTime new_date = new DateTime(2018, 11, 25);
+            double new_amount = 32.45;
+            string new_description = "minimum monthly payment";
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            spreadsheet.AddNewTransactionToCredCard3(newDate, newAmount, newDescription);
+            spreadsheet.Add_new_transaction_to_cred_card3(new_date, new_amount, new_description);
 
             // Assert
-            mockSpreadsheetRepo.Verify(x => x.AppendNewRow(
-                expectedSheetName,
+            mock_spreadsheet_repo.Verify(x => x.Append_new_row(
+                expected_sheet_name,
                 It.Is<Dictionary<int, object>>(
-                    y => y.Values.Contains(newAmount) 
-                    && y.Values.Contains(newDate.ToOADate())
-                    && y.Values.Contains(newDescription))));
+                    y => y.Values.Contains(new_amount) 
+                    && y.Values.Contains(new_date.ToOADate())
+                    && y.Values.Contains(new_description))));
         }
 
         [Test]
         public void M_CanAddNewTransactionToEndOfSavginsSheet()
         {
             // Arrange
-            var expectedSheetName = MainSheetNames.Savings;
-            DateTime newDate = new DateTime(2018, 11, 25);
-            double newAmount = 32.45;
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            int expectedRowNumber = 49;
-            int firstColumn = 1;
-            mockSpreadsheetRepo.Setup(x => x.FindFirstEmptyRowInColumn(
-                    expectedSheetName,
-                    firstColumn))
-                .Returns(expectedRowNumber);
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            var expected_sheet_name = MainSheetNames.Savings;
+            DateTime new_date = new DateTime(2018, 11, 25);
+            double new_amount = 32.45;
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            int expected_row_number = 49;
+            int first_column = 1;
+            mock_spreadsheet_repo.Setup(x => x.Find_first_empty_row_in_column(
+                    expected_sheet_name,
+                    first_column))
+                .Returns(expected_row_number);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            spreadsheet.AddNewTransactionToSavings(newDate, newAmount);
+            spreadsheet.Add_new_transaction_to_savings(new_date, new_amount);
 
             // Assert
-            mockSpreadsheetRepo.Verify(x => x.UpdateDate(
-                expectedSheetName,
-                expectedRowNumber,
-                firstColumn,
-                newDate));
-            mockSpreadsheetRepo.Verify(x => x.UpdateAmount(
-                expectedSheetName,
-                expectedRowNumber,
-                firstColumn + 1,
-                newAmount));
+            mock_spreadsheet_repo.Verify(x => x.Update_date(
+                expected_sheet_name,
+                expected_row_number,
+                first_column,
+                new_date));
+            mock_spreadsheet_repo.Verify(x => x.Update_amount(
+                expected_sheet_name,
+                expected_row_number,
+                first_column + 1,
+                new_amount));
         }
 
         [Test]
         public void M_GetNextUnplannedMonth_WillUseMortgageTransactionsToDetermineNextUnplannedMonth()
         {
             // Arrange
-            int codeColumn = 1;
-            int expectedBudgetOutRowNumber = 10;
-            int expectedBankOutRowNumber = 11;
-            DateTime expectedLastPlannedDate = DateTime.Today;
-            string mortgageDescription = "PASTA PLASTER";
-            var mockCellRow = new Mock<ICellRow>();
-            mockCellRow.Setup(x => x.ReadCell(BankRecord.UnreconciledAmountIndex)).Returns((double)0);
-            mockCellRow.Setup(x => x.ReadCell(BankRecord.TypeIndex)).Returns("");
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(
-                    MainSheetNames.BudgetOut,
+            int code_column = 1;
+            int expected_budget_out_row_number = 10;
+            int expected_bank_out_row_number = 11;
+            DateTime expected_last_planned_date = DateTime.Today;
+            string mortgage_description = "PASTA PLASTER";
+            var mock_cell_row = new Mock<ICellRow>();
+            mock_cell_row.Setup(x => x.Read_cell(BankRecord.UnreconciledAmountIndex)).Returns((double)0);
+            mock_cell_row.Setup(x => x.Read_cell(BankRecord.TypeIndex)).Returns("");
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
+                    MainSheetNames.Budget_out,
                     Codes.Code042,
-                    codeColumn))
-                .Returns(expectedBudgetOutRowNumber);
-            mockSpreadsheetRepo.Setup(x => x.ReadSpecifiedRow(
-                    MainSheetNames.BudgetOut,
-                    expectedBudgetOutRowNumber, 2, 6))
-                .Returns(mockCellRow.Object);
-            mockCellRow.Setup(x => x.ReadCell(BankRecord.DescriptionIndex)).Returns(mortgageDescription);
-            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(
-                    MainSheetNames.BankOut,
-                    mortgageDescription,
+                    code_column))
+                .Returns(expected_budget_out_row_number);
+            mock_spreadsheet_repo.Setup(x => x.Read_specified_row(
+                    MainSheetNames.Budget_out,
+                    expected_budget_out_row_number, 2, 6))
+                .Returns(mock_cell_row.Object);
+            mock_cell_row.Setup(x => x.Read_cell(BankRecord.DescriptionIndex)).Returns(mortgage_description);
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
+                    MainSheetNames.Bank_out,
+                    mortgage_description,
                     BankRecord.DescriptionIndex + 1))
-                .Returns(expectedBankOutRowNumber);
-            mockSpreadsheetRepo.Setup(x => x.ReadSpecifiedRow(
-                    MainSheetNames.BankOut,
-                    expectedBankOutRowNumber))
-                .Returns(mockCellRow.Object);
-            mockCellRow.Setup(x => x.ReadCell(BankRecord.DateIndex)).Returns(expectedLastPlannedDate.ToOADate());
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+                .Returns(expected_bank_out_row_number);
+            mock_spreadsheet_repo.Setup(x => x.Read_specified_row(
+                    MainSheetNames.Bank_out,
+                    expected_bank_out_row_number))
+                .Returns(mock_cell_row.Object);
+            mock_cell_row.Setup(x => x.Read_cell(BankRecord.DateIndex)).Returns(expected_last_planned_date.ToOADate());
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            var result = spreadsheet.GetNextUnplannedMonth();
+            var result = spreadsheet.Get_next_unplanned_month();
 
             // Assert
-            Assert.AreEqual(expectedLastPlannedDate.AddMonths(1).Month, result.Month);
+            Assert.AreEqual(expected_last_planned_date.AddMonths(1).Month, result.Month);
         }
 
         [Test]
         public void M_GetNextUnplannedMonth_WillThrowExceptionIfMortgageRowCannotBeFound()
         {
             // Arrange
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
                     It.IsAny<string>(),
                     It.IsAny<string>(),
                     It.IsAny<int>()))
                 .Throws(new Exception());
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
             bool exception = false;
 
             // Act
             try
             {
-                spreadsheet.GetNextUnplannedMonth();
+                spreadsheet.Get_next_unplanned_month();
             }
             catch (Exception)
             {
@@ -480,56 +480,56 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         [TestCase(1, 2)]
         [TestCase(12, 1)]
         public void M_WhenAddingBudgetedBankOutDataToSpreadsheet_WillAddAnnualBankOutTransactionsToPendingFile_IfMonthMatchesBudgetingMonths(
-            int firstMonth, int lastMonth)
+            int first_month, int last_month)
         {
             // Arrange
-            var annualBudgetItemListData = new BudgetItemListData
+            var annual_budget_item_list_data = new BudgetItemListData
             {
-                SheetName = MainSheetNames.BudgetOut,
-                StartDivider = Dividers.AnnualSODDs,
-                EndDivider = Dividers.AnnualTotal,
-                FirstColumnNumber = 2,
-                LastColumnNumber = 6
+                Sheet_name = MainSheetNames.Budget_out,
+                Start_divider = Dividers.Annual_sod_ds,
+                End_divider = Dividers.Annual_total,
+                First_column_number = 2,
+                Last_column_number = 6
             };
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            var firstAnnualRow = 10;
-            var lastAnnualRow = firstAnnualRow + 2;
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var first_annual_row = 10;
+            var last_annual_row = first_annual_row + 2;
             string desc1 = "annual record with matching month";
             string desc2 = "other annual record with matching month";
             string desc3 = "annual record with non-matching month";
-            var annualBankRecords = new List<BankRecord>
+            var annual_bank_records = new List<BankRecord>
             {
-                new BankRecord { Date = new DateTime(2018, firstMonth, 1), Description = desc1 },
-                new BankRecord { Date = new DateTime(2018, lastMonth, 1), Description = desc2 },
-                new BankRecord { Date = new DateTime(2018, lastMonth + 2, 1), Description = desc3 }
+                new BankRecord { Date = new DateTime(2018, first_month, 1), Description = desc1 },
+                new BankRecord { Date = new DateTime(2018, last_month, 1), Description = desc2 },
+                new BankRecord { Date = new DateTime(2018, last_month + 2, 1), Description = desc3 }
             };
-            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(annualBudgetItemListData.SheetName, annualBudgetItemListData.StartDivider, 2)).Returns(firstAnnualRow);
-            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowContainingCell(annualBudgetItemListData.SheetName, annualBudgetItemListData.EndDivider, 2)).Returns(lastAnnualRow);
-            mockSpreadsheetRepo.Setup(x => x.GetRowsAsRecords<BankRecord>(annualBudgetItemListData.SheetName, firstAnnualRow + 1, lastAnnualRow - 1, annualBudgetItemListData.FirstColumnNumber, annualBudgetItemListData.LastColumnNumber)).Returns(annualBankRecords);
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(annual_budget_item_list_data.Sheet_name, annual_budget_item_list_data.Start_divider, 2)).Returns(first_annual_row);
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(annual_budget_item_list_data.Sheet_name, annual_budget_item_list_data.End_divider, 2)).Returns(last_annual_row);
+            mock_spreadsheet_repo.Setup(x => x.Get_rows_as_records<BankRecord>(annual_budget_item_list_data.Sheet_name, first_annual_row + 1, last_annual_row - 1, annual_budget_item_list_data.First_column_number, annual_budget_item_list_data.Last_column_number)).Returns(annual_bank_records);
             // Everything else:
-            var budgetingMonths = new BudgetingMonths
+            var budgeting_months = new BudgetingMonths
             {
-                NextUnplannedMonth = firstMonth,
-                LastMonthForBudgetPlanning = lastMonth,
-                StartYear = 2018
+                Next_unplanned_month = first_month,
+                Last_month_for_budget_planning = last_month,
+                Start_year = 2018
             };
-            var pendingFileRecords = new List<BankRecord>();
-            var mockPendingFile = new Mock<ICSVFile<BankRecord>>();
-            mockPendingFile.Setup(x => x.Records).Returns(pendingFileRecords);
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            var pending_file_records = new List<BankRecord>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            mock_pending_file.Setup(x => x.Records).Returns(pending_file_records);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            spreadsheet.AddBudgetedAnnualDataToPendingFile(budgetingMonths, mockPendingFile.Object, annualBudgetItemListData);
+            spreadsheet.Add_budgeted_annual_data_to_pending_file(budgeting_months, mock_pending_file.Object, annual_budget_item_list_data);
 
             // Assert
-            Assert.AreEqual(2, pendingFileRecords.Count, "total num records");
-            Assert.AreEqual(1, pendingFileRecords.Count(x => x.Description == desc1), "num repetitions of matching record");
-            Assert.AreEqual(1, pendingFileRecords.Count(x => x.Description == desc2), "num repetitions of other matching record");
-            Assert.AreEqual(0, pendingFileRecords.Count(x => x.Description == desc3), "num repetitions of non-matching record");
-            var expectedRecord2Year = lastMonth >= firstMonth
-                ? budgetingMonths.StartYear
-                : budgetingMonths.StartYear + 1;
-            Assert.AreEqual(expectedRecord2Year, pendingFileRecords[1].Date.Year);
+            Assert.AreEqual(2, pending_file_records.Count, "total num records");
+            Assert.AreEqual(1, pending_file_records.Count(x => x.Description == desc1), "num repetitions of matching record");
+            Assert.AreEqual(1, pending_file_records.Count(x => x.Description == desc2), "num repetitions of other matching record");
+            Assert.AreEqual(0, pending_file_records.Count(x => x.Description == desc3), "num repetitions of non-matching record");
+            var expected_record2_year = last_month >= first_month
+                ? budgeting_months.Start_year
+                : budgeting_months.Start_year + 1;
+            Assert.AreEqual(expected_record2_year, pending_file_records[1].Date.Year);
         }
 
         [TestCase(1, 2)]
@@ -538,85 +538,85 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         [TestCase(12, 4)]
         [TestCase(10, 1)]
         public void M_WhenAddingMonthlyBudgetedDataToSpreadsheet_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged(
-            int firstMonth, int lastMonth)
+            int first_month, int last_month)
         {
             // Arrange
-            var budgetItemListData = new BudgetItemListData
+            var budget_item_list_data = new BudgetItemListData
             {
-                SheetName = MainSheetNames.BudgetIn,
-                StartDivider = Dividers.Date,
-                EndDivider = Dividers.Total,
-                FirstColumnNumber = 2,
-                LastColumnNumber = 6
+                Sheet_name = MainSheetNames.Budget_in,
+                Start_divider = Dividers.Date,
+                End_divider = Dividers.Total,
+                First_column_number = 2,
+                Last_column_number = 6
             };
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            var budgetDataSetup = WhenAddingBudgetedDataToSpreadsheet<BankRecord>(
-                firstMonth,
-                lastMonth,
-                mockSpreadsheetRepo,
-                budgetItemListData);
-            var pendingFileRecords = new List<BankRecord>();
-            var mockPendingFile = new Mock<ICSVFile<BankRecord>>();
-            mockPendingFile.Setup(x => x.Records).Returns(pendingFileRecords);
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var budget_data_setup = When_adding_budgeted_data_to_spreadsheet<BankRecord>(
+                first_month,
+                last_month,
+                mock_spreadsheet_repo,
+                budget_item_list_data);
+            var pending_file_records = new List<BankRecord>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            mock_pending_file.Setup(x => x.Records).Returns(pending_file_records);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            spreadsheet.AddBudgetedMonthlyDataToPendingFile(budgetDataSetup.BudgetingMonths, mockPendingFile.Object, budgetItemListData);
+            spreadsheet.Add_budgeted_monthly_data_to_pending_file(budget_data_setup.BudgetingMonths, mock_pending_file.Object, budget_item_list_data);
 
             // Assert
             Assert_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged<BankRecord>(
-                firstMonth,
-                lastMonth,
-                budgetDataSetup.MonthlyRecords.Count,
-                pendingFileRecords,
-                budgetDataSetup.BudgetingMonths,
-                budgetDataSetup.Desc1,
-                budgetDataSetup.Desc2);
+                first_month,
+                last_month,
+                budget_data_setup.MonthlyRecords.Count,
+                pending_file_records,
+                budget_data_setup.BudgetingMonths,
+                budget_data_setup.Desc1,
+                budget_data_setup.Desc2);
         }
 
         [Test]
         public void M_WhenAddingMonthlyBudgetedDataToSpreadsheet_WillOrderResultsByDate()
         {
             // Arrange
-            var budgetItemListData = new BudgetItemListData
+            var budget_item_list_data = new BudgetItemListData
             {
-                SheetName = MainSheetNames.BudgetIn,
-                StartDivider = Dividers.Date,
-                EndDivider = Dividers.Total,
-                FirstColumnNumber = 2,
-                LastColumnNumber = 6
+                Sheet_name = MainSheetNames.Budget_in,
+                Start_divider = Dividers.Date,
+                End_divider = Dividers.Total,
+                First_column_number = 2,
+                Last_column_number = 6
             };
-            var firstMonth = 12;
-            var lastMonth = 3;
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            var budgetDataSetup = WhenAddingBudgetedDataToSpreadsheet<BankRecord>(
-                firstMonth,
-                lastMonth,
-                mockSpreadsheetRepo,
-                budgetItemListData);
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var first_month = 12;
+            var last_month = 3;
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var budget_data_setup = When_adding_budgeted_data_to_spreadsheet<BankRecord>(
+                first_month,
+                last_month,
+                mock_spreadsheet_repo,
+                budget_item_list_data);
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = new DateTime(budgetDataSetup.BudgetingMonths.StartYear, firstMonth, 10)},
-                    new BankRecord {Date = new DateTime(budgetDataSetup.BudgetingMonths.StartYear, firstMonth, 4)},
-                    new BankRecord {Date = new DateTime(budgetDataSetup.BudgetingMonths.StartYear, firstMonth, 25)}
+                    new BankRecord {Date = new DateTime(budget_data_setup.BudgetingMonths.Start_year, first_month, 10)},
+                    new BankRecord {Date = new DateTime(budget_data_setup.BudgetingMonths.Start_year, first_month, 4)},
+                    new BankRecord {Date = new DateTime(budget_data_setup.BudgetingMonths.Start_year, first_month, 25)}
                 });
-            var pendingFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            pendingFile.Load();
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            var pending_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            pending_file.Load();
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            spreadsheet.AddBudgetedMonthlyDataToPendingFile(budgetDataSetup.BudgetingMonths, pendingFile, budgetItemListData);
+            spreadsheet.Add_budgeted_monthly_data_to_pending_file(budget_data_setup.BudgetingMonths, pending_file, budget_item_list_data);
 
             // Assert
-            BankRecord previousRecord = null;
-            foreach (BankRecord record in pendingFile.Records)
+            BankRecord previous_record = null;
+            foreach (BankRecord record in pending_file.Records)
             {
-                if (null != previousRecord)
+                if (null != previous_record)
                 {
-                    Assert.IsTrue(record.Date.ToOADate() > previousRecord.Date.ToOADate());
+                    Assert.IsTrue(record.Date.ToOADate() > previous_record.Date.ToOADate());
                 }
-                previousRecord = record;
+                previous_record = record;
             }
         }
 
@@ -624,45 +624,45 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         public void M_WhenAddingAnnualBudgetedDataToSpreadsheet_WillOrderResultsByDate()
         {
             // Arrange
-            var budgetItemListData = new BudgetItemListData
+            var budget_item_list_data = new BudgetItemListData
             {
-                SheetName = MainSheetNames.BudgetOut,
-                StartDivider = Dividers.CredCard1,
-                EndDivider = Dividers.CredCard2,
-                FirstColumnNumber = 2,
-                LastColumnNumber = 5
+                Sheet_name = MainSheetNames.Budget_out,
+                Start_divider = Dividers.Cred_card1,
+                End_divider = Dividers.Cred_card2,
+                First_column_number = 2,
+                Last_column_number = 5
             };
-            var firstMonth = 12;
-            var lastMonth = 3;
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            var budgetDataSetup = WhenAddingBudgetedDataToSpreadsheet<CredCard1InOutRecord>(
-                firstMonth,
-                lastMonth,
-                mockSpreadsheetRepo,
-                budgetItemListData);
-            var mockCredCard1InOutFileIO = new Mock<IFileIO<CredCard1InOutRecord>>();
-            mockCredCard1InOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var first_month = 12;
+            var last_month = 3;
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var budget_data_setup = When_adding_budgeted_data_to_spreadsheet<CredCard1InOutRecord>(
+                first_month,
+                last_month,
+                mock_spreadsheet_repo,
+                budget_item_list_data);
+            var mock_cred_card1_in_out_file_io = new Mock<IFileIO<CredCard1InOutRecord>>();
+            mock_cred_card1_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<CredCard1InOutRecord> {
-                    new CredCard1InOutRecord {Date = new DateTime(budgetDataSetup.BudgetingMonths.StartYear, firstMonth, 10)},
-                    new CredCard1InOutRecord {Date = new DateTime(budgetDataSetup.BudgetingMonths.StartYear, firstMonth, 4)},
-                    new CredCard1InOutRecord {Date = new DateTime(budgetDataSetup.BudgetingMonths.StartYear, firstMonth, 25)}
+                    new CredCard1InOutRecord {Date = new DateTime(budget_data_setup.BudgetingMonths.Start_year, first_month, 10)},
+                    new CredCard1InOutRecord {Date = new DateTime(budget_data_setup.BudgetingMonths.Start_year, first_month, 4)},
+                    new CredCard1InOutRecord {Date = new DateTime(budget_data_setup.BudgetingMonths.Start_year, first_month, 25)}
                 });
-            var pendingFile = new CSVFile<CredCard1InOutRecord>(mockCredCard1InOutFileIO.Object);
-            pendingFile.Load();
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            var pending_file = new CSVFile<CredCard1InOutRecord>(mock_cred_card1_in_out_file_io.Object);
+            pending_file.Load();
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            spreadsheet.AddBudgetedAnnualDataToPendingFile(budgetDataSetup.BudgetingMonths, pendingFile, budgetItemListData);
+            spreadsheet.Add_budgeted_annual_data_to_pending_file(budget_data_setup.BudgetingMonths, pending_file, budget_item_list_data);
 
             // Assert
-            CredCard1InOutRecord previousRecord = null;
-            foreach (CredCard1InOutRecord record in pendingFile.Records)
+            CredCard1InOutRecord previous_record = null;
+            foreach (CredCard1InOutRecord record in pending_file.Records)
             {
-                if (null != previousRecord)
+                if (null != previous_record)
                 {
-                    Assert.IsTrue(record.Date.ToOADate() > previousRecord.Date.ToOADate());
+                    Assert.IsTrue(record.Date.ToOADate() > previous_record.Date.ToOADate());
                 }
-                previousRecord = record;
+                previous_record = record;
             }
         }
 
@@ -670,112 +670,112 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         public void M_WhenAddingMonthlyBudgetedDataToSpreadsheet_WillAdjustDayIfDaysInMonthIsTooLow()
         {
             // Arrange
-            var budgetItemListData = new BudgetItemListData
+            var budget_item_list_data = new BudgetItemListData
             {
-                SheetName = MainSheetNames.BudgetIn,
-                StartDivider = Dividers.Date,
-                EndDivider = Dividers.Total,
-                FirstColumnNumber = 2,
-                LastColumnNumber = 6
+                Sheet_name = MainSheetNames.Budget_in,
+                Start_divider = Dividers.Date,
+                End_divider = Dividers.Total,
+                First_column_number = 2,
+                Last_column_number = 6
             };
-            var firstMonth = 12;
-            var lastMonth = 2;
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            var budgetDataSetup = WhenAddingBudgetedDataToSpreadsheet<BankRecord>(
-                firstMonth,
-                lastMonth,
-                mockSpreadsheetRepo,
-                budgetItemListData,
-                defaultDay: 31);
-            var pendingFileRecords = new List<BankRecord>();
-            var mockPendingFile = new Mock<ICSVFile<BankRecord>>();
-            mockPendingFile.Setup(x => x.Records).Returns(pendingFileRecords);
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
-            bool exceptionThrown = false;
+            var first_month = 12;
+            var last_month = 2;
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var budget_data_setup = When_adding_budgeted_data_to_spreadsheet<BankRecord>(
+                first_month,
+                last_month,
+                mock_spreadsheet_repo,
+                budget_item_list_data,
+                default_day: 31);
+            var pending_file_records = new List<BankRecord>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            mock_pending_file.Setup(x => x.Records).Returns(pending_file_records);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            bool exception_thrown = false;
 
             // Act
             try
             {
-                spreadsheet.AddBudgetedMonthlyDataToPendingFile(budgetDataSetup.BudgetingMonths, mockPendingFile.Object, budgetItemListData);
+                spreadsheet.Add_budgeted_monthly_data_to_pending_file(budget_data_setup.BudgetingMonths, mock_pending_file.Object, budget_item_list_data);
             }
             catch (Exception)
             {
-                exceptionThrown = true;
+                exception_thrown = true;
             }
 
             // Assert
-            Assert.IsFalse(exceptionThrown);
+            Assert.IsFalse(exception_thrown);
         }
 
         [Test]
         public void M_WhenAddingAnnualBudgetedDataToSpreadsheet_WillAdjustDayIfDaysInMonthIsTooLow()
         {
             // Arrange
-            var budgetItemListData = new BudgetItemListData
+            var budget_item_list_data = new BudgetItemListData
             {
-                SheetName = MainSheetNames.BudgetIn,
-                StartDivider = Dividers.Date,
-                EndDivider = Dividers.Total,
-                FirstColumnNumber = 2,
-                LastColumnNumber = 6
+                Sheet_name = MainSheetNames.Budget_in,
+                Start_divider = Dividers.Date,
+                End_divider = Dividers.Total,
+                First_column_number = 2,
+                Last_column_number = 6
             };
-            var firstMonth = 12;
-            var lastMonth = 2;
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            var budgetDataSetup = WhenAddingBudgetedDataToSpreadsheet<BankRecord>(
-                firstMonth,
-                lastMonth,
-                mockSpreadsheetRepo,
-                budgetItemListData,
-                defaultDay: 31);
-            var pendingFileRecords = new List<BankRecord>();
-            var mockPendingFile = new Mock<ICSVFile<BankRecord>>();
-            mockPendingFile.Setup(x => x.Records).Returns(pendingFileRecords);
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
-            bool exceptionThrown = false;
+            var first_month = 12;
+            var last_month = 2;
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var budget_data_setup = When_adding_budgeted_data_to_spreadsheet<BankRecord>(
+                first_month,
+                last_month,
+                mock_spreadsheet_repo,
+                budget_item_list_data,
+                default_day: 31);
+            var pending_file_records = new List<BankRecord>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            mock_pending_file.Setup(x => x.Records).Returns(pending_file_records);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            bool exception_thrown = false;
 
             // Act
             try
             {
-                spreadsheet.AddBudgetedAnnualDataToPendingFile(budgetDataSetup.BudgetingMonths, mockPendingFile.Object, budgetItemListData);
+                spreadsheet.Add_budgeted_annual_data_to_pending_file(budget_data_setup.BudgetingMonths, mock_pending_file.Object, budget_item_list_data);
             }
             catch (Exception)
             {
-                exceptionThrown = true;
+                exception_thrown = true;
             }
 
             // Assert
-            Assert.IsFalse(exceptionThrown);
+            Assert.IsFalse(exception_thrown);
         }
 
         [Test]
         public void M_WillReturnMostRecentRowContainingSpecifiedText()
         {
             // Arrange
-            var spreadsheetName = MainSheetNames.BankOut;
-            var textToSearchFor = ReconConsts.CredCard2DdDescription;
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            var credCard1DdRowNumber = 10;
-            var mockCellRow = new Mock<ICellRow>();
+            var spreadsheet_name = MainSheetNames.Bank_out;
+            var text_to_search_for = ReconConsts.Cred_card2_dd_description;
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var cred_card1_dd_row_number = 10;
+            var mock_cell_row = new Mock<ICellRow>();
             var description = "found row";
-            mockCellRow.Setup(x => x.ReadCell(BankRecord.DescriptionIndex)).Returns(description);
-            mockCellRow.Setup(x => x.ReadCell(BankRecord.UnreconciledAmountIndex)).Returns((double)0);
-            mockCellRow.Setup(x => x.ReadCell(BankRecord.TypeIndex)).Returns(string.Empty);
-            mockCellRow.Setup(x => x.ReadCell(BankRecord.DateIndex)).Returns(DateTime.Today.ToOADate());
-            mockSpreadsheetRepo.Setup(x => x.FindRowNumberOfLastRowWithCellContainingText(
-                    spreadsheetName, textToSearchFor, new List<int> {ReconConsts.DescriptionColumn}))
-                .Returns(credCard1DdRowNumber);
-            mockSpreadsheetRepo.Setup(x => x.ReadSpecifiedRow(spreadsheetName, credCard1DdRowNumber)).Returns(mockCellRow.Object);
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
+            mock_cell_row.Setup(x => x.Read_cell(BankRecord.DescriptionIndex)).Returns(description);
+            mock_cell_row.Setup(x => x.Read_cell(BankRecord.UnreconciledAmountIndex)).Returns((double)0);
+            mock_cell_row.Setup(x => x.Read_cell(BankRecord.TypeIndex)).Returns(string.Empty);
+            mock_cell_row.Setup(x => x.Read_cell(BankRecord.DateIndex)).Returns(DateTime.Today.ToOADate());
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_with_cell_containing_text(
+                    spreadsheet_name, text_to_search_for, new List<int> {ReconConsts.DescriptionColumn}))
+                .Returns(cred_card1_dd_row_number);
+            mock_spreadsheet_repo.Setup(x => x.Read_specified_row(spreadsheet_name, cred_card1_dd_row_number)).Returns(mock_cell_row.Object);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            BankRecord bankRow = spreadsheet.GetMostRecentRowContainingText<BankRecord>(
-                spreadsheetName, 
-                textToSearchFor,
+            BankRecord bank_row = spreadsheet.Get_most_recent_row_containing_text<BankRecord>(
+                spreadsheet_name, 
+                text_to_search_for,
                 new List<int> {ReconConsts.DescriptionColumn});
 
             // Assert
-            Assert.AreEqual(description, bankRow.Description);
+            Assert.AreEqual(description, bank_row.Description);
         }
     }
 }

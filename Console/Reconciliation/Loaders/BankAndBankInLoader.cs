@@ -8,83 +8,83 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
     internal class BankAndBankInLoader : IBankAndBankInLoader, ILoader<ActualBankRecord, BankRecord>
     {
-        private ExpectedIncomeFile _expectedIncomeFile;
-        private CSVFile<ExpectedIncomeRecord> _expectedIncomeCSVFile;
+        private ExpectedIncomeFile _expected_income_file;
+        private CSVFile<ExpectedIncomeRecord> _expected_income_csv_file;
 
-        public BankAndBankInLoader(ISpreadsheetRepoFactory spreadsheetRepoFactory)
+        public BankAndBankInLoader(ISpreadsheetRepoFactory spreadsheet_repo_factory)
         {
-            var expectedIncomeFileIO = new FileIO<ExpectedIncomeRecord>(spreadsheetRepoFactory);
-            _expectedIncomeCSVFile = new CSVFile<ExpectedIncomeRecord>(expectedIncomeFileIO);
-            _expectedIncomeFile = new ExpectedIncomeFile(_expectedIncomeCSVFile);
+            var expected_income_file_io = new FileIO<ExpectedIncomeRecord>(spreadsheet_repo_factory);
+            _expected_income_csv_file = new CSVFile<ExpectedIncomeRecord>(expected_income_file_io);
+            _expected_income_file = new ExpectedIncomeFile(_expected_income_csv_file);
         }
 
-        public DataLoadingInformation<ActualBankRecord, BankRecord> LoadingInfo()
+        public DataLoadingInformation<ActualBankRecord, BankRecord> Loading_info()
         { 
             return new DataLoadingInformation<ActualBankRecord, BankRecord>
             {
-                FilePaths = new FilePaths
+                File_paths = new FilePaths
                 {
-                    MainPath = ReconConsts.DefaultFilePath,
-                    ThirdPartyFileName = ReconConsts.DefaultBankFileName,
-                    OwnedFileName = ReconConsts.DefaultBankInFileName
+                    Main_path = ReconConsts.Default_file_path,
+                    Third_party_file_name = ReconConsts.Default_bank_file_name,
+                    Owned_file_name = ReconConsts.DefaultBankInFileName
                 },
-                DefaultSeparator = ',',
-                LoadingSeparator = '^',
-                PendingFileName = ReconConsts.DefaultBankInPendingFileName,
-                SheetName = MainSheetNames.BankIn,
-                ThirdPartyDescriptor = ReconConsts.BankDescriptor,
-                OwnedFileDescriptor = ReconConsts.BankInDescriptor,
+                Default_separator = ',',
+                Loading_separator = '^',
+                Pending_file_name = ReconConsts.DefaultBankInPendingFileName,
+                Sheet_name = MainSheetNames.Bank_in,
+                Third_party_descriptor = ReconConsts.Bank_descriptor,
+                Owned_file_descriptor = ReconConsts.BankInDescriptor,
                 Loader = this,
-                MonthlyBudgetData = new BudgetItemListData
+                Monthly_budget_data = new BudgetItemListData
                 {
-                    SheetName = MainSheetNames.BudgetIn,
-                    StartDivider = Dividers.Date,
-                    EndDivider = Dividers.Total,
-                    FirstColumnNumber = 2,
-                    LastColumnNumber = 6
+                    Sheet_name = MainSheetNames.Budget_in,
+                    Start_divider = Dividers.Date,
+                    End_divider = Dividers.Total,
+                    First_column_number = 2,
+                    Last_column_number = 6
                 },
-                AnnualBudgetData = null
+                Annual_budget_data = null
             };
         }
 
-        public IDataFile<ActualBankRecord> CreateNewThirdPartyFile(IFileIO<ActualBankRecord> thirdPartyFileIO)
+        public IDataFile<ActualBankRecord> Create_new_third_party_file(IFileIO<ActualBankRecord> third_party_file_io)
         {
-            var csvFile = new CSVFile<ActualBankRecord>(thirdPartyFileIO);
-            return new ActualBankInFile(csvFile);
+            var csv_file = new CSVFile<ActualBankRecord>(third_party_file_io);
+            return new ActualBankInFile(csv_file);
         }
 
-        public IDataFile<BankRecord> CreateNewOwnedFile(IFileIO<BankRecord> ownedFileIO)
+        public IDataFile<BankRecord> Create_new_owned_file(IFileIO<BankRecord> owned_file_io)
         {
-            var csvFile = new CSVFile<BankRecord>(ownedFileIO);
-            return new GenericFile<BankRecord>(csvFile);
+            var csv_file = new CSVFile<BankRecord>(owned_file_io);
+            return new GenericFile<BankRecord>(csv_file);
         }
 
-        public void MergeBespokeDataWithPendingFile(
-            IInputOutput inputOutput,
+        public void Merge_bespoke_data_with_pending_file(
+            IInputOutput input_output,
             ISpreadsheet spreadsheet,
-            ICSVFile<BankRecord> pendingFile,
-            BudgetingMonths budgetingMonths,
-            DataLoadingInformation<ActualBankRecord, BankRecord> dataLoadingInfo)
+            ICSVFile<BankRecord> pending_file,
+            BudgetingMonths budgeting_months,
+            DataLoadingInformation<ActualBankRecord, BankRecord> data_loading_info)
         {
-            inputOutput.OutputLine(ReconConsts.LoadingExpenses);
-            _expectedIncomeCSVFile.Load(false);
+            input_output.Output_line(ReconConsts.Loading_expenses);
+            _expected_income_csv_file.Load(false);
 
-            spreadsheet.AddUnreconciledRowsToCsvFile<ExpectedIncomeRecord>(MainSheetNames.ExpectedIn, _expectedIncomeFile.File);
-            _expectedIncomeCSVFile.PopulateSourceRecordsFromRecords();
-            _expectedIncomeFile.FilterForEmployerExpensesOnly();
+            spreadsheet.Add_unreconciled_rows_to_csv_file<ExpectedIncomeRecord>(MainSheetNames.Expected_in, _expected_income_file.File);
+            _expected_income_csv_file.Populate_source_records_from_records();
+            _expected_income_file.Filter_for_employer_expenses_only();
 
-            _expectedIncomeFile.CopyToPendingFile(pendingFile);
-            _expectedIncomeCSVFile.PopulateRecordsFromOriginalFileLoad();
+            _expected_income_file.Copy_to_pending_file(pending_file);
+            _expected_income_csv_file.Populate_records_from_original_file_load();
         }
 
-        public void UpdateExpectedIncomeRecordWhenMatched(ICSVRecord sourceRecord, ICSVRecord matchedRecord)
+        public void Update_expected_income_record_when_matched(ICSVRecord source_record, ICSVRecord matched_record)
         {
-            _expectedIncomeFile.UpdateExpectedIncomeRecordWhenMatched(sourceRecord, matchedRecord);
+            _expected_income_file.Update_expected_income_record_when_matched(source_record, matched_record);
         }
 
         public void Finish()
         {
-            _expectedIncomeFile.Finish();
+            _expected_income_file.Finish();
         }
     }
 }

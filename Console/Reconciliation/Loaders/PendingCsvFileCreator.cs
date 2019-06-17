@@ -10,31 +10,31 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
     {
         public static string BankInPendingFileName = ReconConsts.DefaultBankInPendingFileName;
         public static string BankOutPendingFileName = ReconConsts.DefaultBankOutPendingFileName;
-        public static string CredCard2InOutPendingFileName = ReconConsts.DefaultCredCard2InOutPendingFileName;
+        public static string CredCard2InOutPendingFileName = ReconConsts.Default_cred_card2_in_out_pending_file_name;
         public const string PendingSourceFileName = "Pending.txt";
 
-        private readonly string _bankOutPendingFilePath;
-        private readonly string _bankInPendingFilePath;
-        private readonly string _credCard2InOutPendingFilePath;
-        private readonly string _pendingSourceFilePath;
+        private readonly string _bank_out_pending_file_path;
+        private readonly string _bank_in_pending_file_path;
+        private readonly string _cred_card2_in_out_pending_file_path;
+        private readonly string _pending_source_file_path;
 
-        private readonly String _filePath;
+        private readonly String _file_path;
 
-        public PendingCsvFileCreator(String filePath)
+        public PendingCsvFileCreator(String file_path)
         {
-            _filePath = filePath;
+            _file_path = file_path;
 
-            _bankOutPendingFilePath = _filePath + "/" + BankOutPendingFileName + ".csv";
-            _bankInPendingFilePath = _filePath + "/" + BankInPendingFileName + ".csv";
-            _credCard2InOutPendingFilePath = _filePath + "/" + CredCard2InOutPendingFileName + ".csv";
-            _pendingSourceFilePath = _filePath + "/" + PendingSourceFileName;
+            _bank_out_pending_file_path = _file_path + "/" + BankOutPendingFileName + ".csv";
+            _bank_in_pending_file_path = _file_path + "/" + BankInPendingFileName + ".csv";
+            _cred_card2_in_out_pending_file_path = _file_path + "/" + CredCard2InOutPendingFileName + ".csv";
+            _pending_source_file_path = _file_path + "/" + PendingSourceFileName;
         }
 
-        private IEnumerable<string> ReadLines(string filePath)
+        private IEnumerable<string> Read_lines(string file_path)
         {
             var lines = new List<string>();
-            using (var fileStream = File.OpenRead(filePath))
-            using (var reader = new StreamReader(fileStream))
+            using (var file_stream = File.OpenRead(file_path))
+            using (var reader = new StreamReader(file_stream))
             {
                 while (!reader.EndOfStream)
                 {
@@ -44,78 +44,78 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return lines;
         }
 
-        public void CreateAndPopulateAllCsvs()
+        public void Create_and_populate_all_csvs()
         {
-            CreateFiles();
+            Create_files();
 
-            var allLines = ReadLines(_pendingSourceFilePath);
+            var all_lines = Read_lines(_pending_source_file_path);
 
-            PopulateBankOutCsv(allLines);
-            PopulateBankInCsv(allLines);
-            PopulateCredCard2Csv(allLines);
+            Populate_bank_out_csv(all_lines);
+            Populate_bank_in_csv(all_lines);
+            Populate_cred_card2_csv(all_lines);
         }
 
-        private void PopulateBankOutCsv(IEnumerable<string> allLines)
+        private void Populate_bank_out_csv(IEnumerable<string> all_lines)
         {
-            PopulateCsvFile(allLines, ReconConsts.BankOutHeader, _bankOutPendingFilePath);
+            Populate_csv_file(all_lines, ReconConsts.Bank_out_header, _bank_out_pending_file_path);
         }
 
-        private void PopulateBankInCsv(IEnumerable<string> allLines)
+        private void Populate_bank_in_csv(IEnumerable<string> all_lines)
         {
-            PopulateCsvFile(allLines, ReconConsts.BankInHeader, _bankInPendingFilePath);
+            Populate_csv_file(all_lines, ReconConsts.Bank_in_header, _bank_in_pending_file_path);
         }
 
-        private void PopulateCredCard2Csv(IEnumerable<string> allLines)
+        private void Populate_cred_card2_csv(IEnumerable<string> all_lines)
         {
-            PopulateCsvFile(allLines, ReconConsts.CredCard2Header, _credCard2InOutPendingFilePath);
+            Populate_csv_file(all_lines, ReconConsts.Cred_card2_header, _cred_card2_in_out_pending_file_path);
         }
 
-        private void PopulateCsvFile(IEnumerable<string> allLines, string headerString, string filePath)
+        private void Populate_csv_file(IEnumerable<string> all_lines, string header_string, string file_path)
         {
-            IEnumerable<string> relevantLines = FindSubsetOfLines(allLines, headerString).ToList();
-            File.WriteAllLines(filePath, relevantLines);
+            IEnumerable<string> relevant_lines = Find_subset_of_lines(all_lines, header_string).ToList();
+            File.WriteAllLines(file_path, relevant_lines);
         }
 
-        private void CreateFiles()
+        private void Create_files()
         {
-            File.Create(_bankOutPendingFilePath).Dispose();
-            File.Create(_bankInPendingFilePath).Dispose();
-            File.Create(_credCard2InOutPendingFilePath).Dispose();
+            File.Create(_bank_out_pending_file_path).Dispose();
+            File.Create(_bank_in_pending_file_path).Dispose();
+            File.Create(_cred_card2_in_out_pending_file_path).Dispose();
         }
 
-        private IEnumerable<string> FindSubsetOfLines(IEnumerable<string> allLines, string subsectionHeader)
+        private IEnumerable<string> Find_subset_of_lines(IEnumerable<string> all_lines, string subsection_header)
         {
-            var lines = allLines.ToList();
-            var subsetOfLines = new List<string>();
-            int lineIndex = 0;
-            bool headerFound = false;
-            while (headerFound == false && lineIndex < lines.Count)
+            var lines = all_lines.ToList();
+            var subset_of_lines = new List<string>();
+            int line_index = 0;
+            bool header_found = false;
+            while (header_found == false && line_index < lines.Count)
             {
-                if (lines[lineIndex].ToUpper().StartsWith(subsectionHeader.ToUpper()))
+                if (lines[line_index].ToUpper().StartsWith(subsection_header.ToUpper()))
                 {
-                    headerFound = true;
+                    header_found = true;
                 }
-                lineIndex++;
+                line_index++;
             }
 
-            if (headerFound)
+            if (header_found)
             {
-                bool subsetStillHasLines = true;
-                while (subsetStillHasLines && lineIndex < lines.Count)
+                bool subset_still_has_lines = true;
+                while (subset_still_has_lines && line_index < lines.Count)
                 {
-                    if (lines[lineIndex] == String.Empty)
+                    if (lines[line_index] == String.Empty)
                     {
-                        subsetStillHasLines = false;
+                        subset_still_has_lines = false;
                     }
                     else
                     {
-                        subsetOfLines.Add(lines[lineIndex]);
+                        subset_of_lines.Add(lines[line_index]);
                     }
-                    lineIndex++;
+                    line_index++;
                 }
             }
 
-            return subsetOfLines;
+            return subset_of_lines;
         }
     }
 }

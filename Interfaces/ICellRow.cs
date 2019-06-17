@@ -2,7 +2,7 @@
 {
     public interface ICellRow
     {
-        object ReadCell(int columnNumber);
+        object Read_cell(int column_number);
         int Count { get; set; }
     }
 }

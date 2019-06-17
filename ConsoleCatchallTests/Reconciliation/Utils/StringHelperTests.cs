@@ -8,14 +8,14 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
     public class StringHelperTests
     {
         [Test]
-        public void WillPadOutWithExtraStringFieldsIfThereArentEnough()
+        public void Will_pad_out_with_extra_string_fields_if_there_arent_enough()
         {
             // Arrange
             string[] values = { "One", "Two", "Three" };
-            int minValuesRequired = 5;
+            int min_values_required = 5;
 
             // Act
-            string[] newValues = StringHelper.MakeSureThereAreAtLeastEnoughStringValues(minValuesRequired, values);
+            string[] new_values = StringHelper.MakeSureThereAreAtLeastEnoughStringValues(minValuesRequired, values);
 
             // Assert
             Assert.AreEqual(minValuesRequired, newValues.Length);
@@ -27,14 +27,14 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         }
 
         [Test]
-        public void WillNotPadOutWithExtraStringFieldsIfThereAreAlreadyEnough()
+        public void Will_not_pad_out_with_extra_string_fields_if_there_are_already_enough()
         {
             // Arrange
             string[] values = { "One", "Two", "Three" };
-            int minValuesRequired = 2;
+            int min_values_required = 2;
 
             // Act
-            string[] newValues = StringHelper.MakeSureThereAreAtLeastEnoughStringValues(minValuesRequired, values);
+            string[] new_values = StringHelper.MakeSureThereAreAtLeastEnoughStringValues(minValuesRequired, values);
 
             // Assert
             Assert.AreEqual(3, newValues.Length);

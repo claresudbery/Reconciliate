@@ -17,164 +17,164 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
-        public void M_CanDeleteCurrentThirdPartyRecord(int indexOfDeletedRecord)
+        public void M_CanDeleteCurrentThirdPartyRecord(int index_of_deleted_record)
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record02"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record03"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record02"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record03"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            Assert.IsTrue(indexOfDeletedRecord < actualBankFile.Records.Count);
-            var descriptionOfDeletedRecord = actualBankFile.Records[indexOfDeletedRecord].Description;
-            for (int recordCount = 0; recordCount <= indexOfDeletedRecord; recordCount++)
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            Assert.IsTrue(index_of_deleted_record < actual_bank_file.Records.Count);
+            var description_of_deleted_record = actual_bank_file.Records[index_of_deleted_record].Description;
+            for (int record_count = 0; record_count <= index_of_deleted_record; record_count++)
             {
-                reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+                reconciliator.Find_reconciliation_matches_for_next_third_party_record();
             }
-            var previousNumThirdPartyRecords = actualBankFile.Records.Count;
-            var previousNumOwnedRecords = bankFile.Records.Count;
+            var previous_num_third_party_records = actual_bank_file.Records.Count;
+            var previous_num_owned_records = bank_file.Records.Count;
 
             // Act
-            reconciliator.DeleteCurrentThirdPartyRecord();
+            reconciliator.Delete_current_third_party_record();
 
             // Assert
-            Assert.AreEqual(previousNumThirdPartyRecords - 1, actualBankFile.Records.Count);
-            Assert.AreEqual(previousNumOwnedRecords, bankFile.Records.Count);
-            Assert.AreEqual(0, actualBankFile.Records.Count(x => x.Description == descriptionOfDeletedRecord));
+            Assert.AreEqual(previous_num_third_party_records - 1, actual_bank_file.Records.Count);
+            Assert.AreEqual(previous_num_owned_records, bank_file.Records.Count);
+            Assert.AreEqual(0, actual_bank_file.Records.Count(x => x.Description == description_of_deleted_record));
         }
 
         [Test]
         public void M_GivenNoMatchingHasBeenDoneYet_DeletingCurrentThirdPartyRecord_ResultsInAnError()
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record02"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record03"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record02"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record03"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
 
             // Act
-            var exceptionThrown = false;
-            var exceptionMessage = String.Empty;
+            var exception_thrown = false;
+            var exception_message = String.Empty;
             try
             {
-                reconciliator.DeleteCurrentThirdPartyRecord();
+                reconciliator.Delete_current_third_party_record();
             }
             catch (Exception e)
             {
-                exceptionThrown = true;
-                exceptionMessage = e.Message;
+                exception_thrown = true;
+                exception_message = e.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.AreEqual(Reconciliator<ActualBankRecord, BankRecord>.CannotDeleteCurrentRecordNoMatching, exceptionMessage);
+            Assert.IsTrue(exception_thrown);
+            Assert.AreEqual(Reconciliator<ActualBankRecord, BankRecord>.CannotDeleteCurrentRecordNoMatching, exception_message);
         }
 
         [Test]
         public void M_WhenCurrentThirdPartyRecordIsDeleted_CurrentRecordForMatchingIsCleared()
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Act
-            reconciliator.DeleteCurrentThirdPartyRecord();
+            reconciliator.Delete_current_third_party_record();
 
             // Assert
-            Assert.AreEqual(null, reconciliator.CurrentRecordForMatching());
+            Assert.AreEqual(null, reconciliator.Current_record_for_matching());
         }
 
         [Test]
         [TestCase(0)]
         [TestCase(1)]
         public void M_WhenCurrentThirdPartyRecordIsDeleted_CurrentIndexIsRewoundSoThatNextRecordForSemiAutoMatchingWillBeNextRecord
-            (int deletedRecordIndex)
+            (int deleted_record_index)
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"},
-                    new ActualBankRecord {Amount = amountForMatching + 2, Description = "Record03"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"},
+                    new ActualBankRecord {Amount = amount_for_matching + 2, Description = "Record03"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 2, Description = "Match03"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 2, Description = "Match03"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            for (int recordCount = 0; recordCount <= deletedRecordIndex; recordCount++)
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            for (int record_count = 0; record_count <= deleted_record_index; record_count++)
             {
-                reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+                reconciliator.Find_reconciliation_matches_for_next_third_party_record();
             }
-            Assert.AreEqual(actualBankFile.Records[deletedRecordIndex].Description, 
-                reconciliator.CurrentRecordForMatching().SourceRecord.Description,
+            Assert.AreEqual(actual_bank_file.Records[deleted_record_index].Description, 
+                reconciliator.Current_record_for_matching().SourceRecord.Description,
                 "CurrentRecordForMatching - Description before record deleted");
 
             // Act
-            reconciliator.DeleteCurrentThirdPartyRecord();
+            reconciliator.Delete_current_third_party_record();
 
             // Assert
-            var recordsStillAvailableForMatching = reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            var currentRecordForMatching = reconciliator.CurrentRecordForMatching();
-            Assert.AreEqual(true, recordsStillAvailableForMatching, "recordsStillAvailableForMatching");
+            var records_still_available_for_matching = reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            var current_record_for_matching = reconciliator.Current_record_for_matching();
+            Assert.AreEqual(true, records_still_available_for_matching, "recordsStillAvailableForMatching");
             // Note that because a record has been deleted, Records[deletedRecordIndex] is now the record AFTER the deleted record.
-            Assert.AreEqual(actualBankFile.Records[deletedRecordIndex].Description, 
-                currentRecordForMatching.SourceRecord.Description,
+            Assert.AreEqual(actual_bank_file.Records[deleted_record_index].Description, 
+                current_record_for_matching.SourceRecord.Description,
                 "CurrentRecordForMatching - Description after record deleted");
-            Assert.AreEqual(bankFile.Records[deletedRecordIndex + 1].Description, 
-                currentRecordForMatching.Matches[0].ActualRecords[0].Description,
+            Assert.AreEqual(bank_file.Records[deleted_record_index + 1].Description, 
+                current_record_for_matching.Matches[0].Actual_records[0].Description,
                 "First match after record deleted");
         }
 
@@ -182,51 +182,51 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [TestCase(0)]
         [TestCase(1)]
         public void M_WhenCurrentThirdPartyRecordIsDeleted_CurrentIndexIsRewoundSoThatNextRecordForManualMatchingWillBeNextRecord
-            (int deletedRecordIndex)
+            (int deleted_record_index)
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"},
-                    new ActualBankRecord {Amount = amountForMatching + 2, Description = "Record03"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"},
+                    new ActualBankRecord {Amount = amount_for_matching + 2, Description = "Record03"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching - 1, Description = "Matchxx"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 2, Description = "Match03"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching - 1, Description = "Matchxx"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 2, Description = "Match03"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            for (int recordCount = 0; recordCount <= deletedRecordIndex; recordCount++)
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            for (int record_count = 0; record_count <= deleted_record_index; record_count++)
             {
-                reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+                reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
             }
-            Assert.AreEqual(actualBankFile.Records[deletedRecordIndex].Description,
-                reconciliator.CurrentRecordForMatching().SourceRecord.Description,
+            Assert.AreEqual(actual_bank_file.Records[deleted_record_index].Description,
+                reconciliator.Current_record_for_matching().SourceRecord.Description,
                 "CurrentRecordForMatching - Description before record deleted");
 
             // Act
-            reconciliator.DeleteCurrentThirdPartyRecord();
+            reconciliator.Delete_current_third_party_record();
 
             // Assert
-            var recordsStillAvailableForMatching = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            var currentRecordForMatching = reconciliator.CurrentRecordForMatching();
-            Assert.AreEqual(true, recordsStillAvailableForMatching, "recordsStillAvailableForMatching");
+            var records_still_available_for_matching = reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            var current_record_for_matching = reconciliator.Current_record_for_matching();
+            Assert.AreEqual(true, records_still_available_for_matching, "recordsStillAvailableForMatching");
             // Note that because a record has been deleted, Records[deletedRecordIndex] is now the record AFTER the deleted record.
-            Assert.AreEqual(actualBankFile.Records[deletedRecordIndex].Description,
-                currentRecordForMatching.SourceRecord.Description,
+            Assert.AreEqual(actual_bank_file.Records[deleted_record_index].Description,
+                current_record_for_matching.SourceRecord.Description,
                 "CurrentRecordForMatching - Description after record deleted");
-            Assert.AreEqual(bankFile.Records[0].Description,
-                currentRecordForMatching.Matches[0].ActualRecords[0].Description,
+            Assert.AreEqual(bank_file.Records[0].Description,
+                current_record_for_matching.Matches[0].Actual_records[0].Description,
                 "First match after record deleted");
         }
 
@@ -234,316 +234,316 @@ namespace ReconciliationBaseTests.ReconciliationBase
         public void M_WhenCurrentThirdPartyRecordIsDeleted_AndItIsLastRecord_CurrentIndexIsRewoundAndThereAreNoMoreRecordsForSemiAutoMatching()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"},
-                    new ActualBankRecord {Amount = amountForMatching + 2, Description = "Record03"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"},
+                    new ActualBankRecord {Amount = amount_for_matching + 2, Description = "Record03"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching - 1, Description = "Matchxx"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 2, Description = "Match03"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching - 1, Description = "Matchxx"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 2, Description = "Match03"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            Assert.AreEqual("Record03", reconciliator.CurrentRecordForMatching().SourceRecord.Description);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            Assert.AreEqual("Record03", reconciliator.Current_record_for_matching().SourceRecord.Description);
 
             // Act
-            reconciliator.DeleteCurrentThirdPartyRecord();
+            reconciliator.Delete_current_third_party_record();
 
             // Assert
-            var recordsStillAvailableForMatching = reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            Assert.AreEqual(false, recordsStillAvailableForMatching);
-            Assert.AreEqual(null, reconciliator.CurrentRecordForMatching());
+            var records_still_available_for_matching = reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            Assert.AreEqual(false, records_still_available_for_matching);
+            Assert.AreEqual(null, reconciliator.Current_record_for_matching());
         }
 
         [Test]
         public void M_WhenCurrentThirdPartyRecordIsDeleted_AndItIsLastRecord_CurrentIndexIsRewoundAndThereAreNoMoreRecordsForManualMatching()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"},
-                    new ActualBankRecord {Amount = amountForMatching + 2, Description = "Record03"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"},
+                    new ActualBankRecord {Amount = amount_for_matching + 2, Description = "Record03"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching - 1, Description = "Matchxx"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 2, Description = "Match03"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching - 1, Description = "Matchxx"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 2, Description = "Match03"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            Assert.AreEqual("Record03", reconciliator.CurrentRecordForMatching().SourceRecord.Description);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            Assert.AreEqual("Record03", reconciliator.Current_record_for_matching().SourceRecord.Description);
 
             // Act
-            reconciliator.DeleteCurrentThirdPartyRecord();
+            reconciliator.Delete_current_third_party_record();
 
             // Assert
-            var recordsStillAvailableForMatching = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            Assert.AreEqual(false, recordsStillAvailableForMatching);
-            Assert.AreEqual(null, reconciliator.CurrentRecordForMatching());
+            var records_still_available_for_matching = reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            Assert.AreEqual(false, records_still_available_for_matching);
+            Assert.AreEqual(null, reconciliator.Current_record_for_matching());
         }
 
         [Test]
         public void M_WhenCurrentRecordThatHasBeenMatchedIsDeleted_ThenMatchedRecordGetsUnmatched()
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record02"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record02"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.MatchCurrentRecord(0);
-            Assert.IsTrue(bankFile.Records[0].Matched);
-            Assert.IsNotNull(bankFile.Records[0].Match);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Match_current_record(0);
+            Assert.IsTrue(bank_file.Records[0].Matched);
+            Assert.IsNotNull(bank_file.Records[0].Match);
 
             // Act
-            reconciliator.DeleteCurrentThirdPartyRecord();
+            reconciliator.Delete_current_third_party_record();
 
             // Assert
-            Assert.IsFalse(bankFile.Records[0].Matched);
-            Assert.IsNull(bankFile.Records[0].Match);
+            Assert.IsFalse(bank_file.Records[0].Matched);
+            Assert.IsNull(bank_file.Records[0].Match);
         }
 
         [Test]
         public void M_WhenTheOnlyRecordIsDeleted_ThenYouCanStillAskForSemiAutoMatches()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Act
-            reconciliator.DeleteCurrentThirdPartyRecord();
+            reconciliator.Delete_current_third_party_record();
 
             // Assert
-            Assert.IsFalse(reconciliator.FindReconciliationMatchesForNextThirdPartyRecord());
+            Assert.IsFalse(reconciliator.Find_reconciliation_matches_for_next_third_party_record());
         }
 
         [Test]
         public void M_WhenTheOnlyRecordIsDeleted_ThenYouCanStillAskForManualMatches()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Act
-            reconciliator.DeleteCurrentThirdPartyRecord();
+            reconciliator.Delete_current_third_party_record();
 
             // Assert
-            Assert.IsFalse(reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching());
+            Assert.IsFalse(reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching());
         }
 
         [Test]
         public void M_CanDeleteSpecificThirdPartyRecord()
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record02"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record03"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record02"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record03"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            int indexOfDeletedRecord = 1;
-            var descriptionOfDeletedRecord = actualBankFile.Records[indexOfDeletedRecord].Description;
-            var previousNumThirdPartyRecords = actualBankFile.Records.Count;
-            var previousNumOwnedRecords = bankFile.Records.Count;
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            int index_of_deleted_record = 1;
+            var description_of_deleted_record = actual_bank_file.Records[index_of_deleted_record].Description;
+            var previous_num_third_party_records = actual_bank_file.Records.Count;
+            var previous_num_owned_records = bank_file.Records.Count;
 
             // Act
-            reconciliator.DeleteSpecificThirdPartyRecord(indexOfDeletedRecord);
+            reconciliator.Delete_specific_third_party_record(index_of_deleted_record);
 
             // Assert
-            Assert.AreEqual(previousNumThirdPartyRecords - 1, actualBankFile.Records.Count);
-            Assert.AreEqual(previousNumOwnedRecords, bankFile.Records.Count);
-            Assert.AreEqual(0, actualBankFile.Records.Count(x => x.Description == descriptionOfDeletedRecord));
+            Assert.AreEqual(previous_num_third_party_records - 1, actual_bank_file.Records.Count);
+            Assert.AreEqual(previous_num_owned_records, bank_file.Records.Count);
+            Assert.AreEqual(0, actual_bank_file.Records.Count(x => x.Description == description_of_deleted_record));
         }
 
         [Test]
         public void M_WhenCurrentThirdPartyRecordIsDeletedViaSpecificDelete_CurrentRecordForMatchingIsCleared()
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Act
-            reconciliator.DeleteSpecificThirdPartyRecord(0);
+            reconciliator.Delete_specific_third_party_record(0);
 
             // Assert
-            Assert.AreEqual(null, reconciliator.CurrentRecordForMatching());
+            Assert.AreEqual(null, reconciliator.Current_record_for_matching());
         }
 
         [Test]
         public void WhenNonCurrentThirdPartyRecordIsDeletedViaSpecificDelete_CurrentRecordForMatchingIsNotCleared()
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Act
-            reconciliator.DeleteSpecificThirdPartyRecord(1);
+            reconciliator.Delete_specific_third_party_record(1);
 
             // Assert
-            Assert.IsNotNull(reconciliator.CurrentRecordForMatching());
+            Assert.IsNotNull(reconciliator.Current_record_for_matching());
         }
 
         [Test]
         [TestCase(0)]
         [TestCase(1)]
         public void M_WhenCurrentThirdPartyRecordIsDeletedViaSpecificDelete_CurrentIndexIsRewoundSoThatNextRecordForSemiAutoMatchingWillBeNextRecord
-            (int deletedRecordIndex)
+            (int deleted_record_index)
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"},
-                    new ActualBankRecord {Amount = amountForMatching + 2, Description = "Record03"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"},
+                    new ActualBankRecord {Amount = amount_for_matching + 2, Description = "Record03"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 2, Description = "Match03"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 2, Description = "Match03"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            for (int recordCount = 0; recordCount <= deletedRecordIndex; recordCount++)
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            for (int record_count = 0; record_count <= deleted_record_index; record_count++)
             {
-                reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+                reconciliator.Find_reconciliation_matches_for_next_third_party_record();
             }
-            Assert.AreEqual(actualBankFile.Records[deletedRecordIndex].Description,
-                reconciliator.CurrentRecordForMatching().SourceRecord.Description,
+            Assert.AreEqual(actual_bank_file.Records[deleted_record_index].Description,
+                reconciliator.Current_record_for_matching().SourceRecord.Description,
                 "CurrentRecordForMatching - Description before record deleted");
 
             // Act
-            reconciliator.DeleteSpecificThirdPartyRecord(deletedRecordIndex);
+            reconciliator.Delete_specific_third_party_record(deleted_record_index);
 
             // Assert
-            var recordsStillAvailableForMatching = reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            var currentRecordForMatching = reconciliator.CurrentRecordForMatching();
-            Assert.AreEqual(true, recordsStillAvailableForMatching, "recordsStillAvailableForMatching");
+            var records_still_available_for_matching = reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            var current_record_for_matching = reconciliator.Current_record_for_matching();
+            Assert.AreEqual(true, records_still_available_for_matching, "recordsStillAvailableForMatching");
             // Note that because a record has been deleted, Records[deletedRecordIndex] is now the record AFTER the deleted record.
-            Assert.AreEqual(actualBankFile.Records[deletedRecordIndex].Description,
-                currentRecordForMatching.SourceRecord.Description,
+            Assert.AreEqual(actual_bank_file.Records[deleted_record_index].Description,
+                current_record_for_matching.SourceRecord.Description,
                 "CurrentRecordForMatching - Description after record deleted");
-            Assert.AreEqual(bankFile.Records[deletedRecordIndex + 1].Description,
-                currentRecordForMatching.Matches[0].ActualRecords[0].Description,
+            Assert.AreEqual(bank_file.Records[deleted_record_index + 1].Description,
+                current_record_for_matching.Matches[0].Actual_records[0].Description,
                 "First match after record deleted");
         }
 
@@ -551,890 +551,890 @@ namespace ReconciliationBaseTests.ReconciliationBase
         public void M_WhenNonCurrentThirdPartyRecordIsDeletedViaSpecificDelete_CurrentIndexIsNotRewound_ForSemiAutoMatching()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 2, Description = "Match03"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 2, Description = "Match03"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Act
-            reconciliator.DeleteSpecificThirdPartyRecord(1);
+            reconciliator.Delete_specific_third_party_record(1);
 
             // Assert
-            Assert.IsFalse(reconciliator.FindReconciliationMatchesForNextThirdPartyRecord());
+            Assert.IsFalse(reconciliator.Find_reconciliation_matches_for_next_third_party_record());
         }
 
         [Test]
         public void M_WhenNonCurrentThirdPartyRecordIsDeletedViaSpecificDelete_CurrentIndexIsNotRewound_ForManualMatching()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 2, Description = "Match03"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 2, Description = "Match03"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Act
-            reconciliator.DeleteSpecificThirdPartyRecord(1);
+            reconciliator.Delete_specific_third_party_record(1);
 
             // Assert
-            Assert.IsFalse(reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching());
+            Assert.IsFalse(reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching());
         }
 
         [Test]
         public void M_WhenCurrentThirdPartyRecordIsDeletedViaSpecificDelete_AndItIsLastRecord_CurrentIndexIsRewoundAndThereAreNoMoreRecordsForSemiAutoMatching()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"},
-                    new ActualBankRecord {Amount = amountForMatching + 2, Description = "Record03"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"},
+                    new ActualBankRecord {Amount = amount_for_matching + 2, Description = "Record03"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching - 1, Description = "Matchxx"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 2, Description = "Match03"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching - 1, Description = "Matchxx"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 2, Description = "Match03"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            Assert.AreEqual("Record03", reconciliator.CurrentRecordForMatching().SourceRecord.Description);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            Assert.AreEqual("Record03", reconciliator.Current_record_for_matching().SourceRecord.Description);
 
             // Act
-            reconciliator.DeleteSpecificThirdPartyRecord(2);
+            reconciliator.Delete_specific_third_party_record(2);
 
             // Assert
-            Assert.AreEqual(false, reconciliator.FindReconciliationMatchesForNextThirdPartyRecord());
-            Assert.AreEqual(null, reconciliator.CurrentRecordForMatching());
+            Assert.AreEqual(false, reconciliator.Find_reconciliation_matches_for_next_third_party_record());
+            Assert.AreEqual(null, reconciliator.Current_record_for_matching());
         }
 
         [Test]
         public void M_WhenNonCurrentThirdPartyRecordIsDeletedViaSpecificDelete_AndItIsLastRecord_CurrentIndexIsNotRewoundForSemiAutoMatching()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"},
-                    new ActualBankRecord {Amount = amountForMatching + 2, Description = "Record03"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"},
+                    new ActualBankRecord {Amount = amount_for_matching + 2, Description = "Record03"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching - 1, Description = "Matchxx"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 2, Description = "Match03"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching - 1, Description = "Matchxx"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 2, Description = "Match03"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Act
-            reconciliator.DeleteSpecificThirdPartyRecord(2);
+            reconciliator.Delete_specific_third_party_record(2);
 
             // Assert
-            Assert.AreEqual(true, reconciliator.FindReconciliationMatchesForNextThirdPartyRecord());
-            Assert.IsNotNull(reconciliator.CurrentRecordForMatching());
+            Assert.AreEqual(true, reconciliator.Find_reconciliation_matches_for_next_third_party_record());
+            Assert.IsNotNull(reconciliator.Current_record_for_matching());
         }
 
         [Test]
         public void M_WhenSpecificThirdPartyRecordIsDeleted_AndItIsLastRecord_AndCurrentRecordIsJustBefore_NoMoreSemiAutoMatchesAreFound()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"},
-                    new ActualBankRecord {Amount = amountForMatching + 2, Description = "Record03"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"},
+                    new ActualBankRecord {Amount = amount_for_matching + 2, Description = "Record03"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching - 1, Description = "Matchxx"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 2, Description = "Match03"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching - 1, Description = "Matchxx"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 2, Description = "Match03"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Act
-            reconciliator.DeleteSpecificThirdPartyRecord(2);
+            reconciliator.Delete_specific_third_party_record(2);
 
             // Assert
-            Assert.AreEqual(false, reconciliator.FindReconciliationMatchesForNextThirdPartyRecord());
+            Assert.AreEqual(false, reconciliator.Find_reconciliation_matches_for_next_third_party_record());
         }
 
         [Test]
         public void M_WhenCurrentThirdPartyRecordIsDeletedViaSpecificDelete_AndItIsLastRecord_CurrentIndexIsRewoundAndThereAreNoMoreRecordsForManualMatching()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"},
-                    new ActualBankRecord {Amount = amountForMatching + 2, Description = "Record03"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"},
+                    new ActualBankRecord {Amount = amount_for_matching + 2, Description = "Record03"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching - 1, Description = "Matchxx"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 2, Description = "Match03"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching - 1, Description = "Matchxx"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 2, Description = "Match03"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            Assert.AreEqual("Record03", reconciliator.CurrentRecordForMatching().SourceRecord.Description);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            Assert.AreEqual("Record03", reconciliator.Current_record_for_matching().SourceRecord.Description);
 
             // Act
-            reconciliator.DeleteSpecificThirdPartyRecord(2);
+            reconciliator.Delete_specific_third_party_record(2);
 
             // Assert
-            Assert.AreEqual(false, reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching());
-            Assert.AreEqual(null, reconciliator.CurrentRecordForMatching());
+            Assert.AreEqual(false, reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching());
+            Assert.AreEqual(null, reconciliator.Current_record_for_matching());
         }
 
         [Test]
         public void M_WhenNonCurrentThirdPartyRecordIsDeletedViaSpecificDelete_AndItIsLastRecord_CurrentIndexIsNotRewoundForManualMatching()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"},
-                    new ActualBankRecord {Amount = amountForMatching + 2, Description = "Record03"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"},
+                    new ActualBankRecord {Amount = amount_for_matching + 2, Description = "Record03"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching - 1, Description = "Matchxx"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 2, Description = "Match03"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching - 1, Description = "Matchxx"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 2, Description = "Match03"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Act
-            reconciliator.DeleteSpecificThirdPartyRecord(2);
+            reconciliator.Delete_specific_third_party_record(2);
 
             // Assert
-            Assert.AreEqual(true, reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching());
-            Assert.IsNotNull(reconciliator.CurrentRecordForMatching());
+            Assert.AreEqual(true, reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching());
+            Assert.IsNotNull(reconciliator.Current_record_for_matching());
         }
 
         [Test]
         public void M_WhenSpecificThirdPartyRecordIsDeleted_AndItIsLastRecord_AndCurrentRecordIsJustBefore_NoMoreManualMatchesAreFound()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching + 1, Description = "Record02"},
-                    new ActualBankRecord {Amount = amountForMatching + 2, Description = "Record03"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching + 1, Description = "Record02"},
+                    new ActualBankRecord {Amount = amount_for_matching + 2, Description = "Record03"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching - 1, Description = "Matchxx"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 2, Description = "Match03"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching - 1, Description = "Matchxx"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 2, Description = "Match03"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Act
-            reconciliator.DeleteSpecificThirdPartyRecord(2);
+            reconciliator.Delete_specific_third_party_record(2);
 
             // Assert
-            Assert.AreEqual(false, reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching());
+            Assert.AreEqual(false, reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching());
         }
 
         [Test]
         public void M_WhenRecordThatHasBeenMatchedIsDeletedViaSpecificDelete_ThenMatchedRecordGetsUnmatched()
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record02"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record02"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.MatchCurrentRecord(0);
-            Assert.IsTrue(bankFile.Records[0].Matched);
-            Assert.IsNotNull(bankFile.Records[0].Match);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Match_current_record(0);
+            Assert.IsTrue(bank_file.Records[0].Matched);
+            Assert.IsNotNull(bank_file.Records[0].Match);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Act
-            reconciliator.DeleteSpecificThirdPartyRecord(0);
+            reconciliator.Delete_specific_third_party_record(0);
 
             // Assert
-            Assert.IsFalse(bankFile.Records[0].Matched);
-            Assert.IsNull(bankFile.Records[0].Match);
+            Assert.IsFalse(bank_file.Records[0].Matched);
+            Assert.IsNull(bank_file.Records[0].Match);
         }
 
         [Test]
         public void M_WhenTheOnlyRecordIsDeletedViaSpecificDelete_ThenYouCanStillAskForSemiAutoMatches()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Act
-            reconciliator.DeleteSpecificThirdPartyRecord(0);
+            reconciliator.Delete_specific_third_party_record(0);
 
             // Assert
-            Assert.IsFalse(reconciliator.FindReconciliationMatchesForNextThirdPartyRecord());
+            Assert.IsFalse(reconciliator.Find_reconciliation_matches_for_next_third_party_record());
         }
 
         [Test]
         public void M_WhenTheOnlyRecordIsDeletedViaSpecificDelete_ThenYouCanStillAskForManualMatches()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Act
-            reconciliator.DeleteSpecificThirdPartyRecord(0);
+            reconciliator.Delete_specific_third_party_record(0);
 
             // Assert
-            Assert.IsFalse(reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching());
+            Assert.IsFalse(reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching());
         }
 
         [Test]
         public void M_WhenSpecificDeleteIsUsedOnNonExistentRecordThenErrorIsThrown()
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
 
             // Act
-            var exceptionThrown = false;
-            var exceptionMessage = String.Empty;
+            var exception_thrown = false;
+            var exception_message = String.Empty;
             try
             {
-                reconciliator.DeleteSpecificThirdPartyRecord(1);
+                reconciliator.Delete_specific_third_party_record(1);
             }
             catch (Exception e)
             {
-                exceptionThrown = true;
-                exceptionMessage = e.Message;
+                exception_thrown = true;
+                exception_message = e.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.AreEqual(Reconciliator<ActualBankRecord, BankRecord>.CannotDeleteThirdPartyRecordDoesNotExist, exceptionMessage);
+            Assert.IsTrue(exception_thrown);
+            Assert.AreEqual(Reconciliator<ActualBankRecord, BankRecord>.CannotDeleteThirdPartyRecordDoesNotExist, exception_message);
         }
 
         [Test]
         public void M_CanDeleteMultipleOwnedRecordsAfterSemiAutoMatching()
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"}
                 });
-            var bankRecords = new List<BankRecord>
+            var bank_records = new List<BankRecord>
             {
                 new BankRecord {Description = "Match01"},
                 new BankRecord {Description = "Match02"},
                 new BankRecord {Description = "Match03"},
                 new BankRecord {Description = "Match04"}
             };
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(bankRecords);
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.SetMatchFinder((record, file) => new List<PotentialMatch>{new PotentialMatch
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+                .Returns(bank_records);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Set_match_finder((record, file) => new List<PotentialMatch>{new PotentialMatch
             {
-                ActualRecords = new List<ICSVRecord> { bankRecords[0], bankRecords[2] }
+                Actual_records = new List<ICSVRecord> { bank_records[0], bank_records[2] }
             }});
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            var previousNumThirdPartyRecords = actualBankFile.Records.Count;
-            var previousNumOwnedRecords = bankFile.Records.Count;
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            var previous_num_third_party_records = actual_bank_file.Records.Count;
+            var previous_num_owned_records = bank_file.Records.Count;
 
             // Act
-            reconciliator.DeleteSpecificOwnedRecordFromListOfMatches(0);
+            reconciliator.Delete_specific_owned_record_from_list_of_matches(0);
 
             // Assert
-            Assert.AreEqual(previousNumThirdPartyRecords, actualBankFile.Records.Count);
-            Assert.AreEqual(previousNumOwnedRecords - 2, bankFile.Records.Count);
-            Assert.AreEqual(0, bankFile.Records.Count(x => x.Description == bankRecords[0].Description));
-            Assert.AreEqual(0, bankFile.Records.Count(x => x.Description == bankRecords[2].Description));
+            Assert.AreEqual(previous_num_third_party_records, actual_bank_file.Records.Count);
+            Assert.AreEqual(previous_num_owned_records - 2, bank_file.Records.Count);
+            Assert.AreEqual(0, bank_file.Records.Count(x => x.Description == bank_records[0].Description));
+            Assert.AreEqual(0, bank_file.Records.Count(x => x.Description == bank_records[2].Description));
         }
 
         [Test]
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
-        public void M_CanDeleteSpecifiedOwnedRecordAfterSemiAutoMatching(int indexOfDeletedRecord)
+        public void M_CanDeleteSpecifiedOwnedRecordAfterSemiAutoMatching(int index_of_deleted_record)
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match03"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match04"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match03"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match04"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            Assert.IsTrue(indexOfDeletedRecord < bankFile.Records.Count);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            var descriptionOfDeletedRecord = reconciliator.CurrentRecordForMatching().Matches[indexOfDeletedRecord].ActualRecords[0].Description;
-            var previousNumThirdPartyRecords = actualBankFile.Records.Count;
-            var previousNumOwnedRecords = bankFile.Records.Count;
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            Assert.IsTrue(index_of_deleted_record < bank_file.Records.Count);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            var description_of_deleted_record = reconciliator.Current_record_for_matching().Matches[index_of_deleted_record].Actual_records[0].Description;
+            var previous_num_third_party_records = actual_bank_file.Records.Count;
+            var previous_num_owned_records = bank_file.Records.Count;
 
             // Act
-            reconciliator.DeleteSpecificOwnedRecordFromListOfMatches(indexOfDeletedRecord);
+            reconciliator.Delete_specific_owned_record_from_list_of_matches(index_of_deleted_record);
 
             // Assert
-            Assert.AreEqual(previousNumThirdPartyRecords, actualBankFile.Records.Count);
-            Assert.AreEqual(previousNumOwnedRecords - 1, bankFile.Records.Count);
-            Assert.AreEqual(0, bankFile.Records.Count(x => x.Description == descriptionOfDeletedRecord));
+            Assert.AreEqual(previous_num_third_party_records, actual_bank_file.Records.Count);
+            Assert.AreEqual(previous_num_owned_records - 1, bank_file.Records.Count);
+            Assert.AreEqual(0, bank_file.Records.Count(x => x.Description == description_of_deleted_record));
         }
 
         [Test]
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
-        public void M_CanDeleteSpecifiedOwnedRecordAfterManualMatching(int indexOfDeletedRecord)
+        public void M_CanDeleteSpecifiedOwnedRecordAfterManualMatching(int index_of_deleted_record)
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match03"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match04"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match03"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match04"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            Assert.IsTrue(indexOfDeletedRecord < bankFile.Records.Count);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            var descriptionOfDeletedRecord = reconciliator.CurrentRecordForMatching().Matches[indexOfDeletedRecord].ActualRecords[0].Description;
-            var previousNumThirdPartyRecords = actualBankFile.Records.Count;
-            var previousNumOwnedRecords = bankFile.Records.Count;
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            Assert.IsTrue(index_of_deleted_record < bank_file.Records.Count);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            var description_of_deleted_record = reconciliator.Current_record_for_matching().Matches[index_of_deleted_record].Actual_records[0].Description;
+            var previous_num_third_party_records = actual_bank_file.Records.Count;
+            var previous_num_owned_records = bank_file.Records.Count;
 
             // Act
-            reconciliator.DeleteSpecificOwnedRecordFromListOfMatches(indexOfDeletedRecord);
+            reconciliator.Delete_specific_owned_record_from_list_of_matches(index_of_deleted_record);
 
             // Assert
-            Assert.AreEqual(previousNumThirdPartyRecords, actualBankFile.Records.Count);
-            Assert.AreEqual(previousNumOwnedRecords - 1, bankFile.Records.Count);
-            Assert.AreEqual(0, bankFile.Records.Count(x => x.Description == descriptionOfDeletedRecord));
+            Assert.AreEqual(previous_num_third_party_records, actual_bank_file.Records.Count);
+            Assert.AreEqual(previous_num_owned_records - 1, bank_file.Records.Count);
+            Assert.AreEqual(0, bank_file.Records.Count(x => x.Description == description_of_deleted_record));
         }
 
         [Test]
         [TestCase(true)]
         [TestCase(false)]
-        public void M_WhenSpecifiedOwnedRecordIsDeleted_MatchesAreRenumbered(bool manualMatching)
+        public void M_WhenSpecifiedOwnedRecordIsDeleted_MatchesAreRenumbered(bool manual_matching)
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match03"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match03"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            if (manualMatching)
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            if (manual_matching)
             {
-                reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+                reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
             }
             else
             {
-                reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+                reconciliator.Find_reconciliation_matches_for_next_third_party_record();
             }
-            var indexOfDeletedRecord = 1;
+            var index_of_deleted_record = 1;
 
             // Act
-            var originalMatches = reconciliator.CurrentPotentialMatches();
-            var originalIndexOfLastRecord = originalMatches[originalMatches.Count - 1].ConsoleLines[0].Index;
-            reconciliator.DeleteSpecificOwnedRecordFromListOfMatches(indexOfDeletedRecord);
-            var newlyIndexedRecords = reconciliator.CurrentPotentialMatches();
-            var newIndexOfLastRecord = originalMatches[newlyIndexedRecords.Count - 1].ConsoleLines[0].Index;
+            var original_matches = reconciliator.Current_potential_matches();
+            var original_index_of_last_record = original_matches[original_matches.Count - 1].Console_lines[0].Index;
+            reconciliator.Delete_specific_owned_record_from_list_of_matches(index_of_deleted_record);
+            var newly_indexed_records = reconciliator.Current_potential_matches();
+            var new_index_of_last_record = original_matches[newly_indexed_records.Count - 1].Console_lines[0].Index;
 
             // Assert
-            Assert.AreEqual(originalIndexOfLastRecord - 1, newIndexOfLastRecord);
+            Assert.AreEqual(original_index_of_last_record - 1, new_index_of_last_record);
         }
 
         [Test]
         public void M_DeletingOwnedRecordHasNoEffectOnOtherOwnedRecordsForSemiAutoMatching()
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record02"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record02"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match03"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match04"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match03"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match04"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            var indexOfDeletedRecord = 1;
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            var index_of_deleted_record = 1;
 
             // Act
-            reconciliator.DeleteSpecificOwnedRecordFromListOfMatches(indexOfDeletedRecord);
+            reconciliator.Delete_specific_owned_record_from_list_of_matches(index_of_deleted_record);
 
             // Assert
-            Assert.AreEqual(1, reconciliator.CurrentRecordForMatching().Matches.Count(x => x.ActualRecords[0].Description == "Match02"));
-            Assert.AreEqual(1, reconciliator.CurrentRecordForMatching().Matches.Count(x => x.ActualRecords[0].Description == "Match04"));
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            Assert.AreEqual(1, reconciliator.CurrentRecordForMatching().Matches.Count(x => x.ActualRecords[0].Description == "Match02"));
-            Assert.AreEqual(1, reconciliator.CurrentRecordForMatching().Matches.Count(x => x.ActualRecords[0].Description == "Match04"));
+            Assert.AreEqual(1, reconciliator.Current_record_for_matching().Matches.Count(x => x.Actual_records[0].Description == "Match02"));
+            Assert.AreEqual(1, reconciliator.Current_record_for_matching().Matches.Count(x => x.Actual_records[0].Description == "Match04"));
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            Assert.AreEqual(1, reconciliator.Current_record_for_matching().Matches.Count(x => x.Actual_records[0].Description == "Match02"));
+            Assert.AreEqual(1, reconciliator.Current_record_for_matching().Matches.Count(x => x.Actual_records[0].Description == "Match04"));
         }
 
         [Test]
         public void M_DeletingOwnedRecordHasNoEffectOnOtherOwnedRecordsForManualMatching()
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record02"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record02"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match03"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match04"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match03"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match04"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            var indexOfDeletedRecord = 2;
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            var index_of_deleted_record = 2;
 
             // Act
-            reconciliator.DeleteSpecificOwnedRecordFromListOfMatches(indexOfDeletedRecord);
+            reconciliator.Delete_specific_owned_record_from_list_of_matches(index_of_deleted_record);
 
             // Assert
-            Assert.AreEqual(1, reconciliator.CurrentRecordForMatching().Matches.Count(x => x.ActualRecords[0].Description == "Match01"));
-            Assert.AreEqual(1, reconciliator.CurrentRecordForMatching().Matches.Count(x => x.ActualRecords[0].Description == "Match02"));
-            Assert.AreEqual(1, reconciliator.CurrentRecordForMatching().Matches.Count(x => x.ActualRecords[0].Description == "Match04"));
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            Assert.AreEqual(1, reconciliator.CurrentRecordForMatching().Matches.Count(x => x.ActualRecords[0].Description == "Match01"));
-            Assert.AreEqual(1, reconciliator.CurrentRecordForMatching().Matches.Count(x => x.ActualRecords[0].Description == "Match02"));
-            Assert.AreEqual(1, reconciliator.CurrentRecordForMatching().Matches.Count(x => x.ActualRecords[0].Description == "Match04"));
+            Assert.AreEqual(1, reconciliator.Current_record_for_matching().Matches.Count(x => x.Actual_records[0].Description == "Match01"));
+            Assert.AreEqual(1, reconciliator.Current_record_for_matching().Matches.Count(x => x.Actual_records[0].Description == "Match02"));
+            Assert.AreEqual(1, reconciliator.Current_record_for_matching().Matches.Count(x => x.Actual_records[0].Description == "Match04"));
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            Assert.AreEqual(1, reconciliator.Current_record_for_matching().Matches.Count(x => x.Actual_records[0].Description == "Match01"));
+            Assert.AreEqual(1, reconciliator.Current_record_for_matching().Matches.Count(x => x.Actual_records[0].Description == "Match02"));
+            Assert.AreEqual(1, reconciliator.Current_record_for_matching().Matches.Count(x => x.Actual_records[0].Description == "Match04"));
         }
 
         [Test]
         public void M_AfterOwnedRecordIsDeletedFromSemiAutoMatchList_ItIsNoLongerInThatList()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record02"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record02"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match03"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match04"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match03"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match04"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            var indexOfDeletedRecord = 2;
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            var index_of_deleted_record = 2;
 
             // Act
-            reconciliator.DeleteSpecificOwnedRecordFromListOfMatches(indexOfDeletedRecord);
+            reconciliator.Delete_specific_owned_record_from_list_of_matches(index_of_deleted_record);
 
             // Assert
-            Assert.AreEqual(0, reconciliator.CurrentRecordForMatching().Matches.Count(x => x.ActualRecords[0].Description == "Match04"));
+            Assert.AreEqual(0, reconciliator.Current_record_for_matching().Matches.Count(x => x.Actual_records[0].Description == "Match04"));
         }
 
         [Test]
         public void M_AfterOwnedRecordIsDeletedFromManualMatchList_ItIsNoLongerInThatList()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record02"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record02"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match03"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match04"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match03"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match04"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            var indexOfDeletedRecord = 1;
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            var index_of_deleted_record = 1;
 
             // Act
-            reconciliator.DeleteSpecificOwnedRecordFromListOfMatches(indexOfDeletedRecord);
+            reconciliator.Delete_specific_owned_record_from_list_of_matches(index_of_deleted_record);
 
             // Assert
-            Assert.AreEqual(0, reconciliator.CurrentRecordForMatching().Matches.Count(x => x.ActualRecords[0].Description == "Match02"));
+            Assert.AreEqual(0, reconciliator.Current_record_for_matching().Matches.Count(x => x.Actual_records[0].Description == "Match02"));
         }
 
         [Test]
         public void M_AfterOwnedRecordIsDeletedFromSemiAutoMatchList_ItIsNoLongerAvailableForMatching()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record02"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record02"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match03"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match04"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match03"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match04"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            var indexOfDeletedRecord = 2;
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            var index_of_deleted_record = 2;
 
             // Act
-            reconciliator.DeleteSpecificOwnedRecordFromListOfMatches(indexOfDeletedRecord);
+            reconciliator.Delete_specific_owned_record_from_list_of_matches(index_of_deleted_record);
 
             // Assert
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            Assert.AreEqual(0, reconciliator.CurrentRecordForMatching().Matches.Count(x => x.ActualRecords[0].Description == "Match04"));
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            Assert.AreEqual(0, reconciliator.Current_record_for_matching().Matches.Count(x => x.Actual_records[0].Description == "Match04"));
         }
 
         [Test]
         public void M_AfterOwnedRecordIsDeletedFromManualMatchList_ItIsNoLongerAvailableForMatching()
         {//xxxxxx
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record02"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record02"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match03"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match04"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match03"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match04"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            var indexOfDeletedRecord = 1;
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            var index_of_deleted_record = 1;
 
             // Act
-            reconciliator.DeleteSpecificOwnedRecordFromListOfMatches(indexOfDeletedRecord);
+            reconciliator.Delete_specific_owned_record_from_list_of_matches(index_of_deleted_record);
 
             // Assert
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            Assert.AreEqual(0, reconciliator.CurrentRecordForMatching().Matches.Count(x => x.ActualRecords[0].Description == "Match02"));
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            Assert.AreEqual(0, reconciliator.Current_record_for_matching().Matches.Count(x => x.Actual_records[0].Description == "Match02"));
         }
 
         [Test]
         public void M_WhenYouTryToDeleteAMatchedOwnedRecord_YouGetAnError()
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record02"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record02"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match03"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match04"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match03"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match04"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            var indexOfDeletedRecord = 1;
-            reconciliator.MatchCurrentRecord(indexOfDeletedRecord);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            var index_of_deleted_record = 1;
+            reconciliator.Match_current_record(index_of_deleted_record);
 
             // Act
-            var exceptionThrown = false;
-            var exceptionMessage = String.Empty;
+            var exception_thrown = false;
+            var exception_message = String.Empty;
             try
             {
-                reconciliator.DeleteSpecificOwnedRecordFromListOfMatches(indexOfDeletedRecord);
+                reconciliator.Delete_specific_owned_record_from_list_of_matches(index_of_deleted_record);
             }
             catch (Exception e)
             {
-                exceptionThrown = true;
-                exceptionMessage = e.Message;
+                exception_thrown = true;
+                exception_message = e.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.AreEqual(Reconciliator<ActualBankRecord, BankRecord>.CannotDeleteMatchedOwnedRecord, exceptionMessage);
+            Assert.IsTrue(exception_thrown);
+            Assert.AreEqual(Reconciliator<ActualBankRecord, BankRecord>.CannotDeleteMatchedOwnedRecord, exception_message);
         }
 
         [Test]
         public void M_WhenYouTryToDeleteAMatchedOwnedRecord_WithANonExistentIndex_YouGetAnError()
         {
             // Arrange
-            var amountForMatching = 23.45;
-            Mock<IFileIO<ActualBankRecord>> mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            Mock<IFileIO<BankRecord>> mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 23.45;
+            Mock<IFileIO<ActualBankRecord>> mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            Mock<IFileIO<BankRecord>> mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Record02"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Record02"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match03"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match04"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match03"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match04"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            var indexOfDeletedRecord = 10;
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            var index_of_deleted_record = 10;
 
             // Act
-            var exceptionThrown = false;
-            var exceptionMessage = String.Empty;
+            var exception_thrown = false;
+            var exception_message = String.Empty;
             try
             {
-                reconciliator.DeleteSpecificOwnedRecordFromListOfMatches(indexOfDeletedRecord);
+                reconciliator.Delete_specific_owned_record_from_list_of_matches(index_of_deleted_record);
             }
             catch (Exception e)
             {
-                exceptionThrown = true;
-                exceptionMessage = e.Message;
+                exception_thrown = true;
+                exception_message = e.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.AreEqual(Reconciliator<ActualBankRecord, BankRecord>.CannotDeleteOwnedRecordDoesNotExist, exceptionMessage);
+            Assert.IsTrue(exception_thrown);
+            Assert.AreEqual(Reconciliator<ActualBankRecord, BankRecord>.CannotDeleteOwnedRecordDoesNotExist, exception_message);
         }
     }
 }

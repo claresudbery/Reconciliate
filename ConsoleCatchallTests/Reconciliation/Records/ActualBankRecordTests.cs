@@ -11,467 +11,467 @@ namespace ConsoleCatchallTests.Reconciliation.Records
     public class ActualBankRecordTests
     {
         [Test]
-        public void CanReadDateFromCSV()
+        public void Can_read_date_from_csv()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            string expectedDateAsString = "06/03/2017";
-            string csvLine = string.Format("{0},BAC,\"'99999999-BFGH\",261.40,4273.63,\"'Envelope\",\"'228822-99933422\",", expectedDateAsString);
-            var expectedDate = Convert.ToDateTime(expectedDateAsString, StringHelper.Culture());
+            var actual_bank_record = new ActualBankRecord();
+            string expected_date_as_string = "06/03/2017";
+            string csv_line = string.Format("{0},BAC,\"'99999999-BFGH\",261.40,4273.63,\"'Envelope\",\"'228822-99933422\",", expected_date_as_string);
+            var expected_date = Convert.ToDateTime(expected_date_as_string, StringHelper.Culture());
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedDate, actualBankRecord.Date);
+            Assert.AreEqual(expected_date, actual_bank_record.Date);
         }
 
         [Test]
-        public void CanReadTypeFromCSV()
+        public void Can_read_type_from_csv()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            var expectedType = "BAC";
-            string csvLine = String.Format("06/03/2017,{0},\"'99999999-BFGH\",261.40,4273.63,\"'Envelope\",\"'228822-99933422\",", expectedType);
+            var actual_bank_record = new ActualBankRecord();
+            var expected_type = "BAC";
+            string csv_line = String.Format("06/03/2017,{0},\"'99999999-BFGH\",261.40,4273.63,\"'Envelope\",\"'228822-99933422\",", expected_type);
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedType, actualBankRecord.Type);
+            Assert.AreEqual(expected_type, actual_bank_record.Type);
         }
 
         [Test]
-        public void CanReadDescriptionFromCSV()
+        public void Can_read_description_from_csv()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            var expectedDescription = "\"'99999999-BFGH\"";
-            string csvLine = String.Format("06/03/2017,BAC,{0},261.40,4273.63,\"'Envelope\",\"'228822-99933422\",", expectedDescription);
+            var actual_bank_record = new ActualBankRecord();
+            var expected_description = "\"'99999999-BFGH\"";
+            string csv_line = String.Format("06/03/2017,BAC,{0},261.40,4273.63,\"'Envelope\",\"'228822-99933422\",", expected_description);
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedDescription, actualBankRecord.Description);
+            Assert.AreEqual(expected_description, actual_bank_record.Description);
         }
 
         [Test]
-        public void CanReadAmountFromCSVWithoutPoundSign()
+        public void Can_read_amount_from_csv_without_pound_sign()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            var expectedAmount = 261.40;
-            string csvLine = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",{0},4273.63,\"'Envelope\",\"'228822-99933422\",", expectedAmount);
+            var actual_bank_record = new ActualBankRecord();
+            var expected_amount = 261.40;
+            string csv_line = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",{0},4273.63,\"'Envelope\",\"'228822-99933422\",", expected_amount);
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, actualBankRecord.Amount);
+            Assert.AreEqual(expected_amount, actual_bank_record.Amount);
         }
 
         [Test]
-        public void CanReadAmountFromCSVWithPoundSign()
+        public void Can_read_amount_from_csv_with_pound_sign()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            var expectedAmount = 261.40;
-            var inputAmount = "£" + expectedAmount;
-            string csvLine = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",{0},4273.63,\"'Envelope\",\"'228822-99933422\",", inputAmount);
+            var actual_bank_record = new ActualBankRecord();
+            var expected_amount = 261.40;
+            var input_amount = "£" + expected_amount;
+            string csv_line = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",{0},4273.63,\"'Envelope\",\"'228822-99933422\",", input_amount);
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, actualBankRecord.Amount);
+            Assert.AreEqual(expected_amount, actual_bank_record.Amount);
         }
 
         [Test]
-        public void CanReadBalanceFromCSVWithoutPoundSign()
+        public void Can_read_balance_from_csv_without_pound_sign()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            var expectedAmount = 4273.63;
-            string csvLine = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",261.40,{0},\"'Envelope\",\"'228822-99933422\",", expectedAmount);
+            var actual_bank_record = new ActualBankRecord();
+            var expected_amount = 4273.63;
+            string csv_line = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",261.40,{0},\"'Envelope\",\"'228822-99933422\",", expected_amount);
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, actualBankRecord.Balance);
+            Assert.AreEqual(expected_amount, actual_bank_record.Balance);
         }
 
         [Test]
-        public void CanReadBalanceFromCSVWithPoundSign()
+        public void Can_read_balance_from_csv_with_pound_sign()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            var expectedAmount = 427.63;
-            var inputAmount = "£" + expectedAmount;
-            string csvLine = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",261.40,{0},\"'Envelope\",\"'228822-99933422\",", inputAmount);
+            var actual_bank_record = new ActualBankRecord();
+            var expected_amount = 427.63;
+            var input_amount = "£" + expected_amount;
+            string csv_line = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",261.40,{0},\"'Envelope\",\"'228822-99933422\",", input_amount);
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, actualBankRecord.Balance);
+            Assert.AreEqual(expected_amount, actual_bank_record.Balance);
         }
 
         [Test]
-        public void CanCopeWithEmptyDate()
+        public void Can_cope_with_empty_date()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            var expectedDate = new DateTime(9999, 9, 9);
-            string csvLine = String.Format(",BAC,\"'99999999-BFGH\",261.40,4273.63,\"'Envelope\",\"'228822-99933422\",");
+            var actual_bank_record = new ActualBankRecord();
+            var expected_date = new DateTime(9999, 9, 9);
+            string csv_line = String.Format(",BAC,\"'99999999-BFGH\",261.40,4273.63,\"'Envelope\",\"'228822-99933422\",");
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedDate, actualBankRecord.Date);
+            Assert.AreEqual(expected_date, actual_bank_record.Date);
         }
 
         [Test]
-        public void CanCopeWithEmptyType()
+        public void Can_cope_with_empty_type()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            string csvLine = String.Format("06/03/2017,,\"'99999999-BFGH\",261.40,4273.63,\"'Envelope\",\"'228822-99933422\",");
+            var actual_bank_record = new ActualBankRecord();
+            string csv_line = String.Format("06/03/2017,,\"'99999999-BFGH\",261.40,4273.63,\"'Envelope\",\"'228822-99933422\",");
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual("", actualBankRecord.Type);
+            Assert.AreEqual("", actual_bank_record.Type);
         }
 
         [Test]
-        public void CanCopeWithEmptyDescription()
+        public void Can_cope_with_empty_description()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            string csvLine = String.Format("06/03/2017,BAC,,261.40,4273.63,\"'Envelope\",\"'228822-99933422\",");
+            var actual_bank_record = new ActualBankRecord();
+            string csv_line = String.Format("06/03/2017,BAC,,261.40,4273.63,\"'Envelope\",\"'228822-99933422\",");
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual("", actualBankRecord.Description);
+            Assert.AreEqual("", actual_bank_record.Description);
         }
 
         [Test]
-        public void CanCopeWithEmptyAmount()
+        public void Can_cope_with_empty_amount()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            string csvLine = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",,4273.63,\"'Envelope\",\"'228822-99933422\",");
+            var actual_bank_record = new ActualBankRecord();
+            string csv_line = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",,4273.63,\"'Envelope\",\"'228822-99933422\",");
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, actualBankRecord.Amount);
+            Assert.AreEqual(0, actual_bank_record.Amount);
         }
 
         [Test]
-        public void CanCopeWithEmptyBalance()
+        public void Can_cope_with_empty_balance()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            string csvLine = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",261.40,,\"'Envelope\",\"'228822-99933422\",");
+            var actual_bank_record = new ActualBankRecord();
+            string csv_line = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",261.40,,\"'Envelope\",\"'228822-99933422\",");
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, actualBankRecord.Balance);
+            Assert.AreEqual(0, actual_bank_record.Balance);
         }
 
         [Test]
-        public void CanCopeWithBadDate()
+        public void Can_cope_with_bad_date()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            var expectedDate = new DateTime(9999, 9, 9);
-            var badDate = "not a date";
-            string csvLine = String.Format("{0},BAC,\"'99999999-BFGH\",261.40,4273.63,\"'Envelope\",\"'228822-99933422\",", badDate);
+            var actual_bank_record = new ActualBankRecord();
+            var expected_date = new DateTime(9999, 9, 9);
+            var bad_date = "not a date";
+            string csv_line = String.Format("{0},BAC,\"'99999999-BFGH\",261.40,4273.63,\"'Envelope\",\"'228822-99933422\",", bad_date);
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedDate, actualBankRecord.Date);
+            Assert.AreEqual(expected_date, actual_bank_record.Date);
         }
 
         [Test]
-        public void CanCopeWithBadAmount()
+        public void Can_cope_with_bad_amount()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            var badAmount = "not an amount";
-            string csvLine = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",{0},4273.63,\"'Envelope\",\"'228822-99933422\",", badAmount);
+            var actual_bank_record = new ActualBankRecord();
+            var bad_amount = "not an amount";
+            string csv_line = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",{0},4273.63,\"'Envelope\",\"'228822-99933422\",", bad_amount);
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, actualBankRecord.Amount);
+            Assert.AreEqual(0, actual_bank_record.Amount);
         }
 
         [Test]
-        public void CanCopeWithBadBalance()
+        public void Can_cope_with_bad_balance()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            var badAmount = "not an amount";
-            string csvLine = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",261.40,{0},\"'Envelope\",\"'228822-99933422\",", badAmount);
+            var actual_bank_record = new ActualBankRecord();
+            var bad_amount = "not an amount";
+            string csv_line = String.Format("06/03/2017,BAC,\"'99999999-BFGH\",261.40,{0},\"'Envelope\",\"'228822-99933422\",", bad_amount);
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, actualBankRecord.Balance);
+            Assert.AreEqual(0, actual_bank_record.Balance);
         }
 
         [Test]
-        public void CanCopeWithInputContainingCommasSurroundedBySpaces()
+        public void Can_cope_with_input_containing_commas_surrounded_by_spaces()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            double expectedBalance = 12.35;
-            string textContainingCommas = "\"'0363 23MAR17 C ,TFL.GOV.UK/CP , TFL TRAVEL CH GB\"";
-            string csvLine = String.Format("06/03/2017,BAC,{0},261.40,{1},\"'Envelope\",\"'228822-99933422\",", textContainingCommas, expectedBalance);
+            var actual_bank_record = new ActualBankRecord();
+            double expected_balance = 12.35;
+            string text_containing_commas = "\"'0363 23MAR17 C ,TFL.GOV.UK/CP , TFL TRAVEL CH GB\"";
+            string csv_line = String.Format("06/03/2017,BAC,{0},261.40,{1},\"'Envelope\",\"'228822-99933422\",", text_containing_commas, expected_balance);
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedBalance, actualBankRecord.Balance);
+            Assert.AreEqual(expected_balance, actual_bank_record.Balance);
         }
 
         [Test]
-        public void CanCopeWithInputContainingCommasFollowedBySpaces()
+        public void Can_cope_with_input_containing_commas_followed_by_spaces()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            double expectedBalance = 12.35;
-            string textContainingCommas = "\"'0363 23MAR17 C, TFL.GOV.UK/CP, TFL TRAVEL CH GB\"";
-            string csvLine = String.Format("06/03/2017,BAC,{0},261.40,{1},\"'Envelope\",\"'228822-99933422\",", textContainingCommas, expectedBalance);
+            var actual_bank_record = new ActualBankRecord();
+            double expected_balance = 12.35;
+            string text_containing_commas = "\"'0363 23MAR17 C, TFL.GOV.UK/CP, TFL TRAVEL CH GB\"";
+            string csv_line = String.Format("06/03/2017,BAC,{0},261.40,{1},\"'Envelope\",\"'228822-99933422\",", text_containing_commas, expected_balance);
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedBalance, actualBankRecord.Balance);
+            Assert.AreEqual(expected_balance, actual_bank_record.Balance);
         }
 
         [Test]
-        public void ShouldBeAbleToCopeWithEmptyInput()
+        public void Should_be_able_to_cope_with_empty_input()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            string csvLine = String.Empty;
+            var actual_bank_record = new ActualBankRecord();
+            string csv_line = String.Empty;
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, actualBankRecord.Amount);
+            Assert.AreEqual(0, actual_bank_record.Amount);
         }
 
         [Test]
-        public void CanCopeWithInputContainingCommasPrecededBySpaces()
+        public void Can_cope_with_input_containing_commas_preceded_by_spaces()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            double expectedBalance = 12.35;
-            string textContainingCommas = "\"'0363 23MAR17 C ,TFL.GOV.UK/CP ,TFL TRAVEL CH GB\"";
-            string csvLine = String.Format("06/03/2017,BAC,{0},261.40,{1},\"'Envelope\",\"'228822-99933422\",", textContainingCommas, expectedBalance);
+            var actual_bank_record = new ActualBankRecord();
+            double expected_balance = 12.35;
+            string text_containing_commas = "\"'0363 23MAR17 C ,TFL.GOV.UK/CP ,TFL TRAVEL CH GB\"";
+            string csv_line = String.Format("06/03/2017,BAC,{0},261.40,{1},\"'Envelope\",\"'228822-99933422\",", text_containing_commas, expected_balance);
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedBalance, actualBankRecord.Balance);
+            Assert.AreEqual(expected_balance, actual_bank_record.Balance);
         }
 
         // This doesn't apply to CredCard1InOutRecord and BankRecord because the input uses ^ as a separator, instead of comma.
         [Test]
-        public void CommasInInputAreReplacedBySemiColons()
+        public void Commas_in_input_are_replaced_by_semi_colons()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            string textContainingCommas = "\"something, something, something else\"";
-            string csvLine = String.Format("06/03/2017,BAC,{0},261.40,12.35,\"'Envelope\",\"'228822-99933422\",", textContainingCommas);
+            var actual_bank_record = new ActualBankRecord();
+            string text_containing_commas = "\"something, something, something else\"";
+            string csv_line = String.Format("06/03/2017,BAC,{0},261.40,12.35,\"'Envelope\",\"'228822-99933422\",", text_containing_commas);
 
             // Act 
-            actualBankRecord.Load(csvLine);
+            actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual("\"something; something; something else\"", actualBankRecord.Description);
+            Assert.AreEqual("\"something; something; something else\"", actual_bank_record.Description);
         }
 
         [Test]
-        public void CanMakeMainAmountPositive()
+        public void Can_make_main_amount_positive()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            var negativeAmount = -23.23;
-            string csvLine = String.Format("06/03/2017,BAC,\"'0363 23MAR17 C , TFL.GOV.UK/CP , TFL TRAVEL CH GB\",{0},261.40,\"'Envelope\",\"'228822-99933422\",", negativeAmount);
-            actualBankRecord.Load(csvLine);
+            var actual_bank_record = new ActualBankRecord();
+            var negative_amount = -23.23;
+            string csv_line = String.Format("06/03/2017,BAC,\"'0363 23MAR17 C , TFL.GOV.UK/CP , TFL TRAVEL CH GB\",{0},261.40,\"'Envelope\",\"'228822-99933422\",", negative_amount);
+            actual_bank_record.Load(csv_line);
 
             // Act 
-            actualBankRecord.MakeMainAmountPositive();
+            actual_bank_record.Make_main_amount_positive();
 
             // Assert
-            Assert.AreEqual(negativeAmount * -1, actualBankRecord.Amount);
+            Assert.AreEqual(negative_amount * -1, actual_bank_record.Amount);
         }
 
         [Test]
-        public void IfMainAmountAlreadyPositiveThenMakingItPositiveHasNoEffect()
+        public void If_main_amount_already_positive_then_making_it_positive_has_no_effect()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            var positiveAmount = 23.23;
-            string csvLine = String.Format("06/03/2017,BAC,\"'0363 23MAR17 C , TFL.GOV.UK/CP , TFL TRAVEL CH GB\",{0},261.40,\"'Envelope\",\"'228822-99933422\",", positiveAmount);
-            actualBankRecord.Load(csvLine);
+            var actual_bank_record = new ActualBankRecord();
+            var positive_amount = 23.23;
+            string csv_line = String.Format("06/03/2017,BAC,\"'0363 23MAR17 C , TFL.GOV.UK/CP , TFL TRAVEL CH GB\",{0},261.40,\"'Envelope\",\"'228822-99933422\",", positive_amount);
+            actual_bank_record.Load(csv_line);
 
             // Act 
-            actualBankRecord.MakeMainAmountPositive();
+            actual_bank_record.Make_main_amount_positive();
 
             // Assert
-            Assert.AreEqual(positiveAmount, actualBankRecord.Amount);
+            Assert.AreEqual(positive_amount, actual_bank_record.Amount);
         }
 
         [Test]
-        public void CsvIsConstructedCorrectly()
+        public void Csv_is_constructed_correctly()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            string csvLine = String.Format("06/03/2017,BAC,\"'Some , description\",127.69,261.40,\"'Envelope\",\"'228822-99933422\",");
-            actualBankRecord.Load(csvLine);
-            actualBankRecord.Matched = false;
+            var actual_bank_record = new ActualBankRecord();
+            string csv_line = String.Format("06/03/2017,BAC,\"'Some , description\",127.69,261.40,\"'Envelope\",\"'228822-99933422\",");
+            actual_bank_record.Load(csv_line);
+            actual_bank_record.Matched = false;
 
             // Act 
-            string constructedCsvLine = actualBankRecord.ToCsv();
+            string constructed_csv_line = actual_bank_record.To_csv();
 
             // Assert
-            Assert.AreEqual("06/03/2017,£127.69,BAC,\"'Some ; description\"", constructedCsvLine);
+            Assert.AreEqual("06/03/2017,£127.69,BAC,\"'Some ; description\"", constructed_csv_line);
         }
 
         // This doesn't apply to CredCard1InOutRecord and BankRecord and CredCard2Record because the input is never encased in quotes.
         [Test]
-        public void IfInputIsEncasedInQuotesThenOutputOnlyHasOneEncasingSetOfQuotes()
+        public void If_input_is_encased_in_quotes_then_output_only_has_one_encasing_set_of_quotes()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
-            var descriptionEncasedInOneSetOfQuotes = "\"'Some description\"";
-            string csvLine = String.Format("06/03/2017,BAC,{0},127.69,261.40,\"'Envelope\",\"'228822-99933422\",", descriptionEncasedInOneSetOfQuotes);
-            actualBankRecord.Load(csvLine);
-            actualBankRecord.Matched = false;
+            var actual_bank_record = new ActualBankRecord();
+            var description_encased_in_one_set_of_quotes = "\"'Some description\"";
+            string csv_line = String.Format("06/03/2017,BAC,{0},127.69,261.40,\"'Envelope\",\"'228822-99933422\",", description_encased_in_one_set_of_quotes);
+            actual_bank_record.Load(csv_line);
+            actual_bank_record.Matched = false;
 
             // Act 
-            string constructedCsvLine = actualBankRecord.ToCsv();
+            string constructed_csv_line = actual_bank_record.To_csv();
 
             // Assert
-            var expectedCsvLine = String.Format("06/03/2017,£127.69,BAC,{0}", descriptionEncasedInOneSetOfQuotes);
-            Assert.AreEqual(expectedCsvLine, constructedCsvLine);
+            var expected_csv_line = String.Format("06/03/2017,£127.69,BAC,{0}", description_encased_in_one_set_of_quotes);
+            Assert.AreEqual(expected_csv_line, constructed_csv_line);
         }
 
         [Test]
-        public void AmountsContainingCommasShouldBeEncasedInQuotes()
+        public void Amounts_containing_commas_should_be_encased_in_quotes()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
+            var actual_bank_record = new ActualBankRecord();
             var amount = 1234.55;
-            var amountContainingComma = "£1,234.55";
-            string csvLine = String.Format("06/03/2017,BAC,\"description\",{0},261.40,\"'Envelope\",\"'228822-99933422\",", amount);
-            actualBankRecord.Load(csvLine);
+            var amount_containing_comma = "£1,234.55";
+            string csv_line = String.Format("06/03/2017,BAC,\"description\",{0},261.40,\"'Envelope\",\"'228822-99933422\",", amount);
+            actual_bank_record.Load(csv_line);
 
             // Act 
-            string constructedCsvLine = actualBankRecord.ToCsv();
+            string constructed_csv_line = actual_bank_record.To_csv();
 
             // Assert
-            string expectedCsvLine = String.Format("06/03/2017,\"{0}\",BAC,\"description\"", amountContainingComma);
-            Assert.AreEqual(expectedCsvLine, constructedCsvLine);
+            string expected_csv_line = String.Format("06/03/2017,\"{0}\",BAC,\"description\"", amount_containing_comma);
+            Assert.AreEqual(expected_csv_line, constructed_csv_line);
         }
 
         [Test]
-        public void AmountsShouldBeWrittenUsingPoundSigns()
+        public void Amounts_should_be_written_using_pound_signs()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord();
+            var actual_bank_record = new ActualBankRecord();
             var amount = "123.55";
-            var amountWithPoundSign = "£" + amount;
-            string csvLine = String.Format("06/03/2017,BAC,\"description\",{0},261.40,\"'Envelope\",\"'228822-99933422\",", amount);
-            actualBankRecord.Load(csvLine);
+            var amount_with_pound_sign = "£" + amount;
+            string csv_line = String.Format("06/03/2017,BAC,\"description\",{0},261.40,\"'Envelope\",\"'228822-99933422\",", amount);
+            actual_bank_record.Load(csv_line);
 
             // Act 
-            string constructedCsvLine = actualBankRecord.ToCsv();
+            string constructed_csv_line = actual_bank_record.To_csv();
 
             // Assert
-            string expectedCsvLine = String.Format("06/03/2017,{0},BAC,\"description\"", amountWithPoundSign);
-            Assert.AreEqual(expectedCsvLine, constructedCsvLine);
+            string expected_csv_line = String.Format("06/03/2017,{0},BAC,\"description\"", amount_with_pound_sign);
+            Assert.AreEqual(expected_csv_line, constructed_csv_line);
         }
 
         [Test]
-        public void WhenCopyingCredCard2RecordWillCopyAllImportantData()
+        public void When_copying_cred_card2_record_will_copy_all_important_data()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord
+            var actual_bank_record = new ActualBankRecord
             {
                 Date = DateTime.Today,
                 Amount = 12.34,
                 Description = "Description",
                 Type = "Type"
             };
-            actualBankRecord.UpdateSourceLineForOutput(',');
+            actual_bank_record.Update_source_line_for_output(',');
 
             // Act 
-            var copiedRecord = (ActualBankRecord)actualBankRecord.Copy();
+            var copied_record = (ActualBankRecord)actual_bank_record.Copy();
 
             // Assert
-            Assert.AreEqual(actualBankRecord.Date, copiedRecord.Date);
-            Assert.AreEqual(actualBankRecord.Amount, copiedRecord.Amount);
-            Assert.AreEqual(actualBankRecord.Description, copiedRecord.Description);
-            Assert.AreEqual(actualBankRecord.Type, copiedRecord.Type);
-            Assert.AreEqual(actualBankRecord.SourceLine, copiedRecord.SourceLine);
+            Assert.AreEqual(actual_bank_record.Date, copied_record.Date);
+            Assert.AreEqual(actual_bank_record.Amount, copied_record.Amount);
+            Assert.AreEqual(actual_bank_record.Description, copied_record.Description);
+            Assert.AreEqual(actual_bank_record.Type, copied_record.Type);
+            Assert.AreEqual(actual_bank_record.Source_line, copied_record.Source_line);
         }
 
         [Test]
-        public void WhenCopyingCredCard2RecordWillCreateNewObject()
+        public void When_copying_cred_card2_record_will_create_new_object()
         {
             // Arrange
-            var originalDate = DateTime.Today;
-            var originalAmount = 12.34;
-            var originalDescription = "Description";
-            var originalType = "Type";
-            var actualBankRecord = new ActualBankRecord
+            var original_date = DateTime.Today;
+            var original_amount = 12.34;
+            var original_description = "Description";
+            var original_type = "Type";
+            var actual_bank_record = new ActualBankRecord
             {
-                Date = originalDate,
-                Amount = originalAmount,
-                Description = originalDescription,
-                Type = originalType
+                Date = original_date,
+                Amount = original_amount,
+                Description = original_description,
+                Type = original_type
             };
-            actualBankRecord.UpdateSourceLineForOutput(',');
-            var originalSourceLine = actualBankRecord.SourceLine;
+            actual_bank_record.Update_source_line_for_output(',');
+            var original_source_line = actual_bank_record.Source_line;
 
             // Act 
-            var copiedRecord = (ActualBankRecord)actualBankRecord.Copy();
-            copiedRecord.Date = copiedRecord.Date.AddDays(1);
-            copiedRecord.Amount = copiedRecord.Amount + 1;
-            copiedRecord.Description = copiedRecord.Description + "something else";
-            copiedRecord.Type = copiedRecord.Type + "something else";
-            copiedRecord.UpdateSourceLineForOutput(',');
+            var copied_record = (ActualBankRecord)actual_bank_record.Copy();
+            copied_record.Date = copied_record.Date.AddDays(1);
+            copied_record.Amount = copied_record.Amount + 1;
+            copied_record.Description = copied_record.Description + "something else";
+            copied_record.Type = copied_record.Type + "something else";
+            copied_record.Update_source_line_for_output(',');
 
             // Assert
-            Assert.AreEqual(originalDate, actualBankRecord.Date);
-            Assert.AreEqual(originalAmount, actualBankRecord.Amount);
-            Assert.AreEqual(originalDescription, actualBankRecord.Description);
-            Assert.AreEqual(originalType, actualBankRecord.Type);
-            Assert.AreEqual(originalSourceLine, actualBankRecord.SourceLine);
+            Assert.AreEqual(original_date, actual_bank_record.Date);
+            Assert.AreEqual(original_amount, actual_bank_record.Amount);
+            Assert.AreEqual(original_description, actual_bank_record.Description);
+            Assert.AreEqual(original_type, actual_bank_record.Type);
+            Assert.AreEqual(original_source_line, actual_bank_record.Source_line);
         }
 
         [Test]
@@ -479,7 +479,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void M_WillPopulateActualBankRecordCells()
         {
             // Arrange
-            var actualBankRecord = new ActualBankRecord
+            var actual_bank_record = new ActualBankRecord
             {
                 Date = new DateTime(year: 2017, month: 4, day: 19),
                 Type = "Chq",
@@ -487,16 +487,16 @@ namespace ConsoleCatchallTests.Reconciliation.Records
                 Amount = 1234.56
             };
             var row = 10;
-            var mockCells = new Mock<ICellSet>();
+            var mock_cells = new Mock<ICellSet>();
 
             // Act 
-            actualBankRecord.PopulateSpreadsheetRow(mockCells.Object, row);
+            actual_bank_record.Populate_spreadsheet_row(mock_cells.Object, row);
 
             // Assert
-            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.DateSpreadsheetIndex + 1, actualBankRecord.Date), "Date");
-            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.AmountSpreadsheetIndex + 1, actualBankRecord.MainAmount()), "Amount");
-            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.TypeSpreadsheetIndex + 1, actualBankRecord.Type), "Type");
-            mockCells.Verify(x => x.PopulateCell(row, ActualBankRecord.DescriptionSpreadsheetIndex + 1, actualBankRecord.Description), "Desc");
+            mock_cells.Verify(x => x.Populate_cell(row, ActualBankRecord.DateSpreadsheetIndex + 1, actual_bank_record.Date), "Date");
+            mock_cells.Verify(x => x.Populate_cell(row, ActualBankRecord.AmountSpreadsheetIndex + 1, actual_bank_record.Main_amount()), "Amount");
+            mock_cells.Verify(x => x.Populate_cell(row, ActualBankRecord.TypeSpreadsheetIndex + 1, actual_bank_record.Type), "Type");
+            mock_cells.Verify(x => x.Populate_cell(row, ActualBankRecord.DescriptionSpreadsheetIndex + 1, actual_bank_record.Description), "Desc");
         }
     }
 }

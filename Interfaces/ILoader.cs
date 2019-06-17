@@ -6,15 +6,15 @@ namespace Interfaces
         where TThirdPartyType : ICSVRecord, new()
         where TOwnedType : ICSVRecord, new()
     {
-        IDataFile<TThirdPartyType> CreateNewThirdPartyFile(IFileIO<TThirdPartyType> thirdPartyFileIO);
+        IDataFile<TThirdPartyType> Create_new_third_party_file(IFileIO<TThirdPartyType> third_party_file_io);
 
-        IDataFile<TOwnedType> CreateNewOwnedFile(IFileIO<TOwnedType> ownedFileIO);
+        IDataFile<TOwnedType> Create_new_owned_file(IFileIO<TOwnedType> owned_file_io);
 
-        void MergeBespokeDataWithPendingFile(
-            IInputOutput inputOutput,
+        void Merge_bespoke_data_with_pending_file(
+            IInputOutput input_output,
             ISpreadsheet spreadsheet,
-            ICSVFile<TOwnedType> pendingFile,
-            BudgetingMonths budgetingMonths,
-            DataLoadingInformation<TThirdPartyType, TOwnedType> dataLoadingInfo);
+            ICSVFile<TOwnedType> pending_file,
+            BudgetingMonths budgeting_months,
+            DataLoadingInformation<TThirdPartyType, TOwnedType> data_loading_info);
     }
 }

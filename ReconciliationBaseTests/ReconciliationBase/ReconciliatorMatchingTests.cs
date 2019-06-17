@@ -33,104 +33,104 @@ namespace ReconciliationBaseTests.ReconciliationBase
         private static string _absoluteCSVFilePath;
 
         [OneTimeSetUp]
-        public static void OneTimeSetUp()
+        public static void One_time_set_up()
         {
-            TestHelper.SetCorrectDateFormatting();
+            TestHelper.Set_correct_date_formatting();
 
-            var currentPath = TestContext.CurrentContext.TestDirectory;
-            _absoluteCSVFilePath = TestHelper.FullyQualifiedCSVFilePath(currentPath);
+            var current_path = TestContext.CurrentContext.TestDirectory;
+            _absoluteCSVFilePath = TestHelper.Fully_qualified_csv_file_path(current_path);
 
-            var fileIOActualBank = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-sample");
-            _actualBankFile = new CSVFile<ActualBankRecord>(fileIOActualBank);
+            var file_io_actual_bank = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-sample");
+            _actualBankFile = new CSVFile<ActualBankRecord>(file_io_actual_bank);
             _actualBankFile.Load();
 
-            var fileIOBankIn = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "BankIn-formatted-date-only");
-            _bankInFile = new CSVFile<BankRecord>(fileIOBankIn);
+            var file_io_bank_in = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "BankIn-formatted-date-only");
+            _bankInFile = new CSVFile<BankRecord>(file_io_bank_in);
             _bankInFile.Load();
 
-            var fileIOBankOut = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "BankOut-formatted-date-only");
-            _bankOutFile = new CSVFile<BankRecord>(fileIOBankOut);
+            var file_io_bank_out = new FileIO<BankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "BankOut-formatted-date-only");
+            _bankOutFile = new CSVFile<BankRecord>(file_io_bank_out);
             _bankOutFile.Load();
 
 
-            var fileIOCredCard1 = new FileIO<CredCard1Record>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "CredCard1-Statement");
-            _credCard1File = new CSVFile<CredCard1Record>(fileIOCredCard1);
+            var file_io_cred_card1 = new FileIO<CredCard1Record>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "CredCard1-Statement");
+            _credCard1File = new CSVFile<CredCard1Record>(file_io_cred_card1);
             _credCard1File.Load();
 
-            var fileIOCredCard1InOut = new FileIO<CredCard1InOutRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "CredCard1InOut-formatted-date-only");
-            _credCard1InOutFile = new CSVFile<CredCard1InOutRecord>(fileIOCredCard1InOut);
+            var file_io_cred_card1_in_out = new FileIO<CredCard1InOutRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "CredCard1InOut-formatted-date-only");
+            _credCard1InOutFile = new CSVFile<CredCard1InOutRecord>(file_io_cred_card1_in_out);
             _credCard1InOutFile.Load();
 
 
-            var fileIOCredCard2 = new FileIO<CredCard2Record>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "CredCard2");
-            _credCard2File = new CSVFile<CredCard2Record>(fileIOCredCard2);
+            var file_io_cred_card2 = new FileIO<CredCard2Record>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "CredCard2");
+            _credCard2File = new CSVFile<CredCard2Record>(file_io_cred_card2);
             _credCard2File.Load();
 
-            var fileIOCredCard2InOut = new FileIO<CredCard2InOutRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "CredCard2InOut");
-            _credCard2InOutFile = new CSVFile<CredCard2InOutRecord>(fileIOCredCard2InOut);
+            var file_io_cred_card2_in_out = new FileIO<CredCard2InOutRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "CredCard2InOut");
+            _credCard2InOutFile = new CSVFile<CredCard2InOutRecord>(file_io_cred_card2_in_out);
             _credCard2InOutFile.Load();
         }
 
-        private CSVFile<TRecordType> CreateCsvFile<TRecordType>(
-            string fileName,
-            string[] textLines) where TRecordType : ICSVRecord, new()
+        private CSVFile<TRecordType> Create_csv_file<TRecordType>(
+            string file_name,
+            string[] text_lines) where TRecordType : ICSVRecord, new()
         {
-            var fullFilePath = _absoluteCSVFilePath + "/" + fileName + ".csv";
-            File.WriteAllLines(fullFilePath, textLines);
-            var fileIO = new FileIO<TRecordType>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, fileName);
-            var csvFile = new CSVFile<TRecordType>(fileIO);
-            csvFile.Load();
-            return csvFile;
+            var full_file_path = _absoluteCSVFilePath + "/" + file_name + ".csv";
+            File.WriteAllLines(full_file_path, text_lines);
+            var file_io = new FileIO<TRecordType>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, file_name);
+            var csv_file = new CSVFile<TRecordType>(file_io);
+            csv_file.Load();
+            return csv_file;
         }
 
-        private void AssertMatchIsNoLongerMatched(IPotentialMatch originalMatch)
+        private void Assert_match_is_no_longer_matched(IPotentialMatch original_match)
         {
-            foreach (var actualRecord in originalMatch.ActualRecords)
+            foreach (var actual_record in original_match.Actual_records)
             {
-                Assert.IsFalse(actualRecord.Matched);
-                Assert.IsNull(actualRecord.Match);
+                Assert.IsFalse(actual_record.Matched);
+                Assert.IsNull(actual_record.Match);
             }
         }
 
-        private void AssertMatchIsMatched(IPotentialMatch originalMatch)
+        private void Assert_match_is_matched(IPotentialMatch original_match)
         {
-            foreach (var actualRecord in originalMatch.ActualRecords)
+            foreach (var actual_record in original_match.Actual_records)
             {
-                Assert.IsTrue(actualRecord.Matched);
+                Assert.IsTrue(actual_record.Matched);
             }
         }
 
-        private void AssertSourceRecordIsNotMatched(AutoMatchedRecord<ActualBankRecord> autoMatchedItem)
+        private void Assert_source_record_is_not_matched(AutoMatchedRecord<ActualBankRecord> auto_matched_item)
         {
-            Assert.IsFalse(autoMatchedItem.SourceRecord.Matched);
-            Assert.IsNull(autoMatchedItem.Match);
-            Assert.IsNull(autoMatchedItem.SourceRecord.Match);
+            Assert.IsFalse(auto_matched_item.SourceRecord.Matched);
+            Assert.IsNull(auto_matched_item.Match);
+            Assert.IsNull(auto_matched_item.SourceRecord.Match);
         }
 
-        private void AssertRecordIsNoLongerMatched(ICSVRecord originalMatch)
+        private void Assert_record_is_no_longer_matched(ICSVRecord original_match)
         {
-            Assert.IsFalse(originalMatch.Matched);
-            Assert.IsNull(originalMatch.Match);
+            Assert.IsFalse(original_match.Matched);
+            Assert.IsNull(original_match.Match);
         }
 
         [Test]
         public void Constructor_WillLoadOwnedAndThirdPartyFiles()
         {
             // Arrange
-            var mockActualBankFile = new Mock<IDataFile<ActualBankRecord>>();
-            var mockBankFile = new Mock<IDataFile<BankRecord>>();
-            mockActualBankFile.Setup(x => x.File).Returns(new Mock<ICSVFile<ActualBankRecord>>().Object);
-            mockBankFile.Setup(x => x.File).Returns(new Mock<ICSVFile<BankRecord>>().Object);
+            var mock_actual_bank_file = new Mock<IDataFile<ActualBankRecord>>();
+            var mock_bank_file = new Mock<IDataFile<BankRecord>>();
+            mock_actual_bank_file.Setup(x => x.File).Returns(new Mock<ICSVFile<ActualBankRecord>>().Object);
+            mock_bank_file.Setup(x => x.File).Returns(new Mock<ICSVFile<BankRecord>>().Object);
 
             // Act
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(
-                new BankAndBankInLoader(new FakeSpreadsheetRepoFactory()).LoadingInfo(),
-                mockActualBankFile.Object,
-                mockBankFile.Object);
+                new BankAndBankInLoader(new FakeSpreadsheetRepoFactory()).Loading_info(),
+                mock_actual_bank_file.Object,
+                mock_bank_file.Object);
 
             // Assert
-            mockActualBankFile.Verify(x => x.Load(true, null, true));
-            mockBankFile.Verify(x => x.Load(true, null, true));
+            mock_actual_bank_file.Verify(x => x.Load(true, null, true));
+            mock_bank_file.Verify(x => x.Load(true, null, true));
         }
 
         [Test]
@@ -138,15 +138,15 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             _bankInFile.Reload();
-            _actualBankFile.FilterForPositiveRecordsOnly();
+            _actualBankFile.Filter_for_positive_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
-            Assert.AreEqual(1, matchedRecord.Matches.Count);
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
+            Assert.AreEqual(1, matched_record.Matches.Count);
         }
 
         [Test]
@@ -155,15 +155,15 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankOutFile.Reload();
             _actualBankFile.Reload();
-            _actualBankFile.FilterForNegativeRecordsOnly();
+            _actualBankFile.Filter_for_negative_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankOutFile);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
-            Assert.AreEqual(1, matchedRecord.Matches.Count);
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
+            Assert.AreEqual(1, matched_record.Matches.Count);
         }
 
         [Test]
@@ -172,16 +172,16 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _credCard1InOutFile.Reload();
             _credCard1File.Reload();
-            _credCard1File.FilterForNegativeRecordsOnly();
+            _credCard1File.Filter_for_negative_records_only();
             var reconciliator = new Reconciliator<CredCard1Record, CredCard1InOutRecord>(_credCard1File, _credCard1InOutFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            RecordForMatching<CredCard1Record> matchedRecord = reconciliator.CurrentRecordForMatching();
-            Assert.AreEqual(5, matchedRecord.Matches.Count);
+            RecordForMatching<CredCard1Record> matched_record = reconciliator.Current_record_for_matching();
+            Assert.AreEqual(5, matched_record.Matches.Count);
         }
 
         [Test]
@@ -193,11 +193,11 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(_credCard2File, _credCard2InOutFile);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            RecordForMatching<CredCard2Record> matchedRecord = reconciliator.CurrentRecordForMatching();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            RecordForMatching<CredCard2Record> matched_record = reconciliator.Current_record_for_matching();
 
             // Assert
-            Assert.AreEqual(9, matchedRecord.Matches.Count);
+            Assert.AreEqual(9, matched_record.Matches.Count);
         }
 
         [Test]
@@ -205,18 +205,18 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             _bankInFile.Reload();
-            _actualBankFile.FilterForPositiveRecordsOnly();
+            _actualBankFile.Filter_for_positive_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
 
             // Act
-            reconciliator.MatchCurrentRecord(0);
+            reconciliator.Match_current_record(0);
 
             // Assert
-            AssertMatchIsMatched(matchedRecord.Matches[0]);
+            Assert_match_is_matched(matched_record.Matches[0]);
             Assert.AreEqual(true, _bankInFile.Records[0].Matched);
-            Assert.AreEqual(true, matchedRecord.SourceRecord.Matched);
+            Assert.AreEqual(true, matched_record.SourceRecord.Matched);
             Assert.AreEqual(true, _actualBankFile.Records[0].Matched);
         }
 
@@ -225,31 +225,31 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             var amount1 = 22.23;
-            var matchingText = "DIVIDE YOUR GREEN";
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var matching_text = "DIVIDE YOUR GREEN";
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amount1, Description = matchingText}
+                    new ActualBankRecord {Amount = amount1, Description = matching_text}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amount1 + 1, Description = matchingText}
+                    new BankRecord {Unreconciled_amount = amount1 + 1, Description = matching_text}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
 
             // Act
-            reconciliator.MatchCurrentRecord(0);
+            reconciliator.Match_current_record(0);
 
             // Assert
-            Assert.IsTrue(matchedRecord.SourceRecord.Match.Description.Contains(ReconConsts.OriginalAmountWas));
-            Assert.AreEqual(matchedRecord.SourceRecord.MainAmount(), matchedRecord.SourceRecord.Match.MainAmount());
+            Assert.IsTrue(matched_record.SourceRecord.Match.Description.Contains(ReconConsts.OriginalAmountWas));
+            Assert.AreEqual(matched_record.SourceRecord.Main_amount(), matched_record.SourceRecord.Match.Main_amount());
         }
 
         [Test]
@@ -257,20 +257,20 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             _bankInFile.Reload();
-            _actualBankFile.FilterForPositiveRecordsOnly();
+            _actualBankFile.Filter_for_positive_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
 
             // Act
-            reconciliator.MatchCurrentRecord(0);
+            reconciliator.Match_current_record(0);
 
             // Assert
-            foreach (var actualRecord in matchedRecord.Matches[0].ActualRecords)
+            foreach (var actual_record in matched_record.Matches[0].Actual_records)
             {
-                Assert.AreEqual(_actualBankFile.Records[0], actualRecord.Match);
+                Assert.AreEqual(_actualBankFile.Records[0], actual_record.Match);
             }
-            Assert.AreEqual(_bankInFile.Records[0], matchedRecord.SourceRecord.Match);
+            Assert.AreEqual(_bankInFile.Records[0], matched_record.SourceRecord.Match);
         }
 
         [Test]
@@ -278,17 +278,17 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             _bankInFile.Reload();
-            _actualBankFile.FilterForPositiveRecordsOnly();
+            _actualBankFile.Filter_for_positive_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
 
             // Assert
-            Assert.AreEqual(3, matchedRecord.Matches.Count);
+            Assert.AreEqual(3, matched_record.Matches.Count);
         }
 
         [Test]
@@ -296,21 +296,21 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             _bankInFile.Reload();
-            _actualBankFile.FilterForPositiveRecordsOnly();
+            _actualBankFile.Filter_for_positive_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
 
             // Act
-            reconciliator.MatchCurrentRecord(1);
+            reconciliator.Match_current_record(1);
 
             // Assert
             // (Remember the matches will have been ordered in order of which ones are closest in date to the original)
-            AssertMatchIsMatched(matchedRecord.Matches[1]);
+            Assert_match_is_matched(matched_record.Matches[1]);
             Assert.AreEqual(true, _bankInFile.Records[1].Matched);
-            Assert.AreEqual(true, matchedRecord.SourceRecord.Matched);
+            Assert.AreEqual(true, matched_record.SourceRecord.Matched);
             Assert.AreEqual(true, _actualBankFile.Records[2].Matched);
             Assert.AreEqual(false, _bankInFile.Records[0].Matched);
             Assert.AreEqual(false, _bankInFile.Records[2].Matched);
@@ -324,26 +324,26 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankInFile.Reload();
             _actualBankFile.Reload();
-            _actualBankFile.FilterForPositiveRecordsOnly();
+            _actualBankFile.Filter_for_positive_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
 
             // Act
-            reconciliator.MatchCurrentRecord(2);
+            reconciliator.Match_current_record(2);
 
             // Assert
             // (Remember the matches will have been ordered in order of which ones are closest in date to the original)
-            foreach (var actualRecord in matchedRecord.Matches[2].ActualRecords)
+            foreach (var actual_record in matched_record.Matches[2].Actual_records)
             {
-                Assert.AreEqual(matchedRecord.SourceRecord, actualRecord.Match);
-                Assert.AreEqual(_actualBankFile.Records[2], actualRecord.Match);
-                Assert.AreEqual("'ZZZThing", actualRecord.Match.Description);
+                Assert.AreEqual(matched_record.SourceRecord, actual_record.Match);
+                Assert.AreEqual(_actualBankFile.Records[2], actual_record.Match);
+                Assert.AreEqual("'ZZZThing", actual_record.Match.Description);
             }
-            Assert.AreEqual("ZZZThing3", matchedRecord.Matches[2].ActualRecords[0].Description);
-            Assert.AreEqual(_bankInFile.Records[4], matchedRecord.SourceRecord.Match);
+            Assert.AreEqual("ZZZThing3", matched_record.Matches[2].Actual_records[0].Description);
+            Assert.AreEqual(_bankInFile.Records[4], matched_record.SourceRecord.Match);
         }
 
         [Test]
@@ -351,21 +351,21 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             _bankInFile.Reload();
-            _actualBankFile.FilterForPositiveRecordsOnly();
+            _actualBankFile.Filter_for_positive_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
 
             // Act
-            reconciliator.MatchCurrentRecord(2);
+            reconciliator.Match_current_record(2);
 
             // Assert
-            Assert.AreEqual(1, _actualBankFile.NumMatchedRecords());
-            Assert.AreEqual(1, _bankInFile.NumMatchedRecords());
-            Assert.AreEqual(_actualBankFile.Records.Count - 1, _actualBankFile.NumUnmatchedRecords());
-            Assert.AreEqual(_bankInFile.Records.Count - 1, _bankInFile.NumUnmatchedRecords());
+            Assert.AreEqual(1, _actualBankFile.Num_matched_records());
+            Assert.AreEqual(1, _bankInFile.Num_matched_records());
+            Assert.AreEqual(_actualBankFile.Records.Count - 1, _actualBankFile.Num_unmatched_records());
+            Assert.AreEqual(_bankInFile.Records.Count - 1, _bankInFile.Num_unmatched_records());
         }
 
         [Test]
@@ -375,39 +375,39 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var amount1 = 22.23;
             var text1 = "'DIVIDE YOUR GREEN";
             var date1 = new DateTime(2018, 10, 31);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            bool exceptionThrown = false;
-            string errorMessage = "";
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            bool exception_thrown = false;
+            string error_message = "";
 
             // Act
             try
             {
-                reconciliator.MatchCurrentRecord(10);
+                reconciliator.Match_current_record(10);
             }
             catch (Exception exception)
             {
-                exceptionThrown = true;
-                errorMessage = exception.Message;
+                exception_thrown = true;
+                error_message = exception.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.AreEqual(Reconciliator<ActualBankRecord, BankRecord>.BadMatchNumber, errorMessage);
+            Assert.IsTrue(exception_thrown);
+            Assert.AreEqual(Reconciliator<ActualBankRecord, BankRecord>.BadMatchNumber, error_message);
         }
 
         [Test]
@@ -416,33 +416,33 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankOutFile.Reload();
             _actualBankFile.Reload();
-            _actualBankFile.FilterForNegativeRecordsOnly();
+            _actualBankFile.Filter_for_negative_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankOutFile);
             
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.MatchCurrentRecord(0);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Match_current_record(0);
             
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.MatchCurrentRecord(0);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Match_current_record(0);
 
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.MatchCurrentRecord(0);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Match_current_record(0);
 
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
             
             // Assert
-            Assert.AreEqual(3, _actualBankFile.NumMatchedRecords());
-            Assert.AreEqual(3, _bankOutFile.NumMatchedRecords());
-            Assert.AreEqual(_actualBankFile.Records.Count - 3, _actualBankFile.NumUnmatchedRecords());
-            Assert.AreEqual(_bankOutFile.Records.Count - 3, _bankOutFile.NumUnmatchedRecords());
+            Assert.AreEqual(3, _actualBankFile.Num_matched_records());
+            Assert.AreEqual(3, _bankOutFile.Num_matched_records());
+            Assert.AreEqual(_actualBankFile.Records.Count - 3, _actualBankFile.Num_unmatched_records());
+            Assert.AreEqual(_bankOutFile.Records.Count - 3, _bankOutFile.Num_unmatched_records());
         }
 
         [Test]
@@ -450,66 +450,66 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             _bankInFile.Reload();
-            _actualBankFile.FilterForPositiveRecordsOnly();
+            _actualBankFile.Filter_for_positive_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            var matchedRecord = reconciliator.CurrentRecordForMatching();
-            Assert.AreEqual("'ZZZSpecialDescription001", matchedRecord.SourceRecord.Description);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            var matched_record = reconciliator.Current_record_for_matching();
+            Assert.AreEqual("'ZZZSpecialDescription001", matched_record.SourceRecord.Description);
 
             // Act
-            reconciliator.MatchCurrentRecord(0);
+            reconciliator.Match_current_record(0);
             reconciliator.Rewind();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            matchedRecord = reconciliator.CurrentRecordForMatching();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            matched_record = reconciliator.Current_record_for_matching();
 
             // Assert
             // Because the ZZZSpecialDescription001 record was matched on the previous pass, it will now be skipped over in favour of the next record.
-            Assert.AreNotEqual("'ZZZSpecialDescription001", matchedRecord.SourceRecord.Description);
+            Assert.AreNotEqual("'ZZZSpecialDescription001", matched_record.SourceRecord.Description);
         }
 
         [Test]
         public void M_WhenOwnedRecordHasAlreadyBeenMatchedThenItIsNoLongerACandidateForMatching()
         {
             // Arrange
-            var amountForMatching = 22.23;
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 22.23;
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Source01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Source01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Source01"},
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Source01"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Source01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Source01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Source01"},
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Source01"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01a"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01b"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01c"},
-                    new BankRecord {UnreconciledAmount = amountForMatching + 100, Description = "Match02"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01a"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01b"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01c"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching + 100, Description = "Match02"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
 
             // Act & Assert
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            Assert.AreEqual(3, reconciliator.CurrentRecordForMatching().Matches.Count);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            Assert.AreEqual(3, reconciliator.Current_record_for_matching().Matches.Count);
 
-            reconciliator.MatchCurrentRecord(0);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            Assert.AreEqual(2, reconciliator.CurrentRecordForMatching().Matches.Count);
+            reconciliator.Match_current_record(0);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            Assert.AreEqual(2, reconciliator.Current_record_for_matching().Matches.Count);
 
-            reconciliator.MatchCurrentRecord(0);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            Assert.AreEqual(1, reconciliator.CurrentRecordForMatching().Matches.Count);
+            reconciliator.Match_current_record(0);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            Assert.AreEqual(1, reconciliator.Current_record_for_matching().Matches.Count);
 
-            reconciliator.MatchCurrentRecord(0);
-            bool matchesFound = reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Match_current_record(0);
+            bool matches_found = reconciliator.Find_reconciliation_matches_for_next_third_party_record();
             // There are no matches left that match the text and amount
-            Assert.IsFalse(matchesFound);
+            Assert.IsFalse(matches_found);
         }
 
         [Test]
@@ -518,53 +518,53 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankInFile.Reload();
             _actualBankFile.Reload();
-            _actualBankFile.FilterForPositiveRecordsOnly();
+            _actualBankFile.Filter_for_positive_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
 
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.MatchCurrentRecord(0);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Match_current_record(0);
 
             // Act
             reconciliator.Rewind();
-            bool foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            bool found_one = reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Assert
-            Assert.AreEqual(true, foundOne);
-            Assert.AreEqual(false, reconciliator.CurrentRecordForMatching().SourceRecord.Matched);
+            Assert.AreEqual(true, found_one);
+            Assert.AreEqual(false, reconciliator.Current_record_for_matching().SourceRecord.Matched);
         }
 
         [Test]
         public void M_WhenReconciliatingLeftoverRecords_MatchesShouldHaveConsoleLinesAttached()
         {
             // Arrange
-            var amountForMatching = 22.23;
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var amount_for_matching = 22.23;
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Amount = amountForMatching, Description = "Source"}
+                    new ActualBankRecord {Amount = amount_for_matching, Description = "Source"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match01"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match02"},
-                    new BankRecord {UnreconciledAmount = amountForMatching, Description = "Match03"}
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match01"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match02"},
+                    new BankRecord {Unreconciled_amount = amount_for_matching, Description = "Match03"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
 
             // Act
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Assert
-            var matchedRecords = reconciliator.CurrentRecordForMatching().Matches;
-            Assert.AreEqual(3, matchedRecords.Count);
-            foreach (var match in matchedRecords)
+            var matched_records = reconciliator.Current_record_for_matching().Matches;
+            Assert.AreEqual(3, matched_records.Count);
+            foreach (var match in matched_records)
             {
-                Assert.IsTrue(match.ConsoleLines[0] != null);
+                Assert.IsTrue(match.Console_lines[0] != null);
             }
         }
 
@@ -573,22 +573,22 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             _bankInFile.Reload();
-            var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
-            var actualBankFile = new CSVFile<ActualBankRecord>(fileIO);
-            actualBankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile);
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
+            var actual_bank_file = new CSVFile<ActualBankRecord>(file_io);
+            actual_bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, _bankInFile);
 
-            for (int count = 1; count <= actualBankFile.Records.Count; count++)
+            for (int count = 1; count <= actual_bank_file.Records.Count; count++)
             {
-                reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-                reconciliator.MatchCurrentRecord(0);
+                reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+                reconciliator.Match_current_record(0);
             }
 
             // Act
-            bool foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            bool found_one = reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Assert
-            Assert.AreEqual(false, foundOne);
+            Assert.AreEqual(false, found_one);
         }
 
         [Test]
@@ -596,59 +596,59 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             _bankInFile.Reload();
-            var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
-            var actualBankFile = new CSVFile<ActualBankRecord>(fileIO);
-            actualBankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile);
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
+            var actual_bank_file = new CSVFile<ActualBankRecord>(file_io);
+            actual_bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, _bankInFile);
 
-            for (int count = 1; count <= actualBankFile.Records.Count - 1; count++)
+            for (int count = 1; count <= actual_bank_file.Records.Count - 1; count++)
             {
-                reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-                reconciliator.MatchCurrentRecord(0);
+                reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+                reconciliator.Match_current_record(0);
             }
 
             // Act
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            reconciliator.MatchCurrentRecord(0);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            reconciliator.Match_current_record(0);
             reconciliator.Rewind();
-            bool foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            bool found_one = reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Assert
-            Assert.AreEqual(false, foundOne);
+            Assert.AreEqual(false, found_one);
         }
 
         [Test]
         public void M_WhenReconciliatingLeftoverRecordsForTheSecondTimeAnyOwnedRecordsMatchedOnThePreviousPassAreNoLongerReturned()
         {
             // Arrange
-            var amountForMatching = 122.34;
-            var actualBankLines = new List<ActualBankRecord> {
-                new ActualBankRecord {Amount = amountForMatching, Description = "'DIVIDE YOUR GREEN"},
-                new ActualBankRecord {Amount = amountForMatching, Description = "'DIVIDE YOUR GREEN"}};
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankLines);
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankLines = new List<BankRecord> {
-                new BankRecord { UnreconciledAmount = amountForMatching + 1, Description = "Match01"},
-                new BankRecord { UnreconciledAmount = amountForMatching + 2, Description = "Match02"}};
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.MatchCurrentRecord(0);
+            var amount_for_matching = 122.34;
+            var actual_bank_lines = new List<ActualBankRecord> {
+                new ActualBankRecord {Amount = amount_for_matching, Description = "'DIVIDE YOUR GREEN"},
+                new ActualBankRecord {Amount = amount_for_matching, Description = "'DIVIDE YOUR GREEN"}};
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_lines);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_lines = new List<BankRecord> {
+                new BankRecord { Unreconciled_amount = amount_for_matching + 1, Description = "Match01"},
+                new BankRecord { Unreconciled_amount = amount_for_matching + 2, Description = "Match02"}};
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_lines);
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Match_current_record(0);
             // Replicate what happens when you've finished semi-automated matching and you go back to the beginning for manual matching.
             reconciliator.Rewind();
 
             // Act
-            var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var found_one = reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Assert
-            Assert.IsTrue(foundOne);
-            Assert.AreEqual(false, reconciliator.CurrentRecordForMatching().Matches.Any(x => x.ActualRecords[0].Description == "Match01"));
-            Assert.AreEqual(1, reconciliator.CurrentRecordForMatching().Matches.Count);
+            Assert.IsTrue(found_one);
+            Assert.AreEqual(false, reconciliator.Current_record_for_matching().Matches.Any(x => x.Actual_records[0].Description == "Match01"));
+            Assert.AreEqual(1, reconciliator.Current_record_for_matching().Matches.Count);
         }
 
         [Test]
@@ -657,229 +657,229 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankInFile.Reload();
             _actualBankFile.Reload();
-            _actualBankFile.FilterForPositiveRecordsOnly();
+            _actualBankFile.Filter_for_positive_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
 
             // Act
-            var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var found_one = reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Assert
-            Assert.AreEqual(true, foundOne);
-            Assert.AreEqual(5, reconciliator.CurrentRecordForMatching().Matches.Count);
+            Assert.AreEqual(true, found_one);
+            Assert.AreEqual(5, reconciliator.Current_record_for_matching().Matches.Count);
         }
 
         [Test]
         public void M_UnmatchedOwnedRecordsWillBeOrderedByDatesClosestToOriginal()
         {
             // Arrange
-            var amountForMatching = 122.34;
-            var actualBankLines = new List<ActualBankRecord> {
-                new ActualBankRecord {Date = new DateTime(2017,2,6), Amount = amountForMatching, Description = "'DIVIDE YOUR GREEN"}};
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankLines);
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankLines = new List<BankRecord> {
-                new BankRecord {Date = new DateTime(2017,1,6), UnreconciledAmount = amountForMatching + 100, Description = "4TH NEAREST BY DATE"},
-                new BankRecord {Date = new DateTime(2017,2,5), UnreconciledAmount = amountForMatching + 100, Description = "2ND NEAREST BY DATE"},
-                new BankRecord {Date = new DateTime(2017,2,6), UnreconciledAmount = amountForMatching + 100, Description = "1ST NEAREST BY DATE"},
-                new BankRecord {Date = new DateTime(2017,2,8), UnreconciledAmount = amountForMatching + 100, Description = "3RD NEAREST BY DATE"},
-                new BankRecord {Date = new DateTime(2017,4,6), UnreconciledAmount = amountForMatching + 100, Description = "5TH NEAREST BY DATE"}};
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var amount_for_matching = 122.34;
+            var actual_bank_lines = new List<ActualBankRecord> {
+                new ActualBankRecord {Date = new DateTime(2017,2,6), Amount = amount_for_matching, Description = "'DIVIDE YOUR GREEN"}};
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_lines);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_lines = new List<BankRecord> {
+                new BankRecord {Date = new DateTime(2017,1,6), Unreconciled_amount = amount_for_matching + 100, Description = "4TH NEAREST BY DATE"},
+                new BankRecord {Date = new DateTime(2017,2,5), Unreconciled_amount = amount_for_matching + 100, Description = "2ND NEAREST BY DATE"},
+                new BankRecord {Date = new DateTime(2017,2,6), Unreconciled_amount = amount_for_matching + 100, Description = "1ST NEAREST BY DATE"},
+                new BankRecord {Date = new DateTime(2017,2,8), Unreconciled_amount = amount_for_matching + 100, Description = "3RD NEAREST BY DATE"},
+                new BankRecord {Date = new DateTime(2017,4,6), Unreconciled_amount = amount_for_matching + 100, Description = "5TH NEAREST BY DATE"}};
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_lines);
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
 
             // Act
-            var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var found_one = reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Assert
-            Assert.AreEqual(true, foundOne);
-            Assert.AreEqual(5, reconciliator.CurrentRecordForMatching().Matches.Count);
-            Assert.AreEqual("1ST NEAREST BY DATE", reconciliator.CurrentRecordForMatching().Matches[0].ActualRecords[0].Description);
-            Assert.AreEqual("2ND NEAREST BY DATE", reconciliator.CurrentRecordForMatching().Matches[1].ActualRecords[0].Description);
-            Assert.AreEqual("3RD NEAREST BY DATE", reconciliator.CurrentRecordForMatching().Matches[2].ActualRecords[0].Description);
-            Assert.AreEqual("4TH NEAREST BY DATE", reconciliator.CurrentRecordForMatching().Matches[3].ActualRecords[0].Description);
-            Assert.AreEqual("5TH NEAREST BY DATE", reconciliator.CurrentRecordForMatching().Matches[4].ActualRecords[0].Description);
+            Assert.AreEqual(true, found_one);
+            Assert.AreEqual(5, reconciliator.Current_record_for_matching().Matches.Count);
+            Assert.AreEqual("1ST NEAREST BY DATE", reconciliator.Current_record_for_matching().Matches[0].Actual_records[0].Description);
+            Assert.AreEqual("2ND NEAREST BY DATE", reconciliator.Current_record_for_matching().Matches[1].Actual_records[0].Description);
+            Assert.AreEqual("3RD NEAREST BY DATE", reconciliator.Current_record_for_matching().Matches[2].Actual_records[0].Description);
+            Assert.AreEqual("4TH NEAREST BY DATE", reconciliator.Current_record_for_matching().Matches[3].Actual_records[0].Description);
+            Assert.AreEqual("5TH NEAREST BY DATE", reconciliator.Current_record_for_matching().Matches[4].Actual_records[0].Description);
         }
 
         [Test]
         public void M_UnmatchedOwnedRecordsWillBeOrderedByAmountsClosestToOriginal()
         {
             // Arrange
-            var amountForMatching = 22.34;
-            var actualBankLines = new List<ActualBankRecord> {
-                new ActualBankRecord {Date = new DateTime(2017,2,6), Amount = amountForMatching, Description = "'DIVIDE YOUR GREEN"}};
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankLines);
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankLines = new List<BankRecord> {
-                new BankRecord {UnreconciledAmount = amountForMatching - 40, Description = "5TH NEAREST AMOUNT"},
-                new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "2ND NEAREST AMOUNT"},
-                new BankRecord {UnreconciledAmount = amountForMatching, Description = "1ST NEAREST AMOUNT"},
-                new BankRecord {UnreconciledAmount = amountForMatching - 2, Description = "3RD NEAREST AMOUNT"},
-                new BankRecord {UnreconciledAmount = amountForMatching + 30, Description = "4TH NEAREST AMOUNT"}};
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var amount_for_matching = 22.34;
+            var actual_bank_lines = new List<ActualBankRecord> {
+                new ActualBankRecord {Date = new DateTime(2017,2,6), Amount = amount_for_matching, Description = "'DIVIDE YOUR GREEN"}};
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_lines);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_lines = new List<BankRecord> {
+                new BankRecord {Unreconciled_amount = amount_for_matching - 40, Description = "5TH NEAREST AMOUNT"},
+                new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "2ND NEAREST AMOUNT"},
+                new BankRecord {Unreconciled_amount = amount_for_matching, Description = "1ST NEAREST AMOUNT"},
+                new BankRecord {Unreconciled_amount = amount_for_matching - 2, Description = "3RD NEAREST AMOUNT"},
+                new BankRecord {Unreconciled_amount = amount_for_matching + 30, Description = "4TH NEAREST AMOUNT"}};
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_lines);
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
 
             // Act
-            var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var found_one = reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Assert
-            Assert.AreEqual(true, foundOne);
-            Assert.AreEqual(5, reconciliator.CurrentRecordForMatching().Matches.Count);
-            Assert.AreEqual("1ST NEAREST AMOUNT", reconciliator.CurrentRecordForMatching().Matches[0].ActualRecords[0].Description);
-            Assert.AreEqual("2ND NEAREST AMOUNT", reconciliator.CurrentRecordForMatching().Matches[1].ActualRecords[0].Description);
-            Assert.AreEqual("3RD NEAREST AMOUNT", reconciliator.CurrentRecordForMatching().Matches[2].ActualRecords[0].Description);
-            Assert.AreEqual("4TH NEAREST AMOUNT", reconciliator.CurrentRecordForMatching().Matches[3].ActualRecords[0].Description);
-            Assert.AreEqual("5TH NEAREST AMOUNT", reconciliator.CurrentRecordForMatching().Matches[4].ActualRecords[0].Description);
+            Assert.AreEqual(true, found_one);
+            Assert.AreEqual(5, reconciliator.Current_record_for_matching().Matches.Count);
+            Assert.AreEqual("1ST NEAREST AMOUNT", reconciliator.Current_record_for_matching().Matches[0].Actual_records[0].Description);
+            Assert.AreEqual("2ND NEAREST AMOUNT", reconciliator.Current_record_for_matching().Matches[1].Actual_records[0].Description);
+            Assert.AreEqual("3RD NEAREST AMOUNT", reconciliator.Current_record_for_matching().Matches[2].Actual_records[0].Description);
+            Assert.AreEqual("4TH NEAREST AMOUNT", reconciliator.Current_record_for_matching().Matches[3].Actual_records[0].Description);
+            Assert.AreEqual("5TH NEAREST AMOUNT", reconciliator.Current_record_for_matching().Matches[4].Actual_records[0].Description);
         }
 
         [Test]
         public void M_UnmatchedOwnedRecordsWillBeOrdered_ByDateAndAmount_DependingWhichOnesAreClosest()
         {
             // Arrange
-            var amountForMatching = 22.34;
-            var actualBankLines = new List<ActualBankRecord> {
-                new ActualBankRecord {Date = new DateTime(2017,12,20), Amount = amountForMatching, Description = "'DIVIDE YOUR GREEN"}};
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankLines);
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankLines = new List<BankRecord> {
-                new BankRecord {Date = new DateTime(2017,11,20), UnreconciledAmount = amountForMatching + 5, Description =  "3RD AMOUNT, 5TH MATCH (5)" },
-                new BankRecord {Date = new DateTime(2017,12,13), UnreconciledAmount = amountForMatching + 50, Description = "3RD DATE, 6TH MATCH (7)"   },
-                new BankRecord {Date = new DateTime(2018,2,20), UnreconciledAmount = amountForMatching + 40, Description = "4TH AMOUNT, 8TH MATCH (40)"},
-                new BankRecord {Date = new DateTime(2017,12,20), UnreconciledAmount = amountForMatching + 60, Description = "1ST DATE, 1ST MATCH (0)"   },
-                new BankRecord {Date = new DateTime(2017,11,20), UnreconciledAmount = amountForMatching - 3, Description =  "2ND AMOUNT, 3RD MATCH (3)" },
-                new BankRecord {Date = new DateTime(2017,12,24), UnreconciledAmount = amountForMatching + 60, Description =      "2ND DATE, 4TH MATCH (4)"   },
-                new BankRecord {Date = new DateTime(2018,1,20), UnreconciledAmount = amountForMatching + 50, Description =  "4TH DATE, 7TH MATCH (31)"  },
-                new BankRecord {Date = new DateTime(2017,2,20), UnreconciledAmount = amountForMatching + 1, Description =    "1ST AMOUNT, 2ND MATCH (1)" }};
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var amount_for_matching = 22.34;
+            var actual_bank_lines = new List<ActualBankRecord> {
+                new ActualBankRecord {Date = new DateTime(2017,12,20), Amount = amount_for_matching, Description = "'DIVIDE YOUR GREEN"}};
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_lines);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_lines = new List<BankRecord> {
+                new BankRecord {Date = new DateTime(2017,11,20), Unreconciled_amount = amount_for_matching + 5, Description =  "3RD AMOUNT, 5TH MATCH (5)" },
+                new BankRecord {Date = new DateTime(2017,12,13), Unreconciled_amount = amount_for_matching + 50, Description = "3RD DATE, 6TH MATCH (7)"   },
+                new BankRecord {Date = new DateTime(2018,2,20), Unreconciled_amount = amount_for_matching + 40, Description = "4TH AMOUNT, 8TH MATCH (40)"},
+                new BankRecord {Date = new DateTime(2017,12,20), Unreconciled_amount = amount_for_matching + 60, Description = "1ST DATE, 1ST MATCH (0)"   },
+                new BankRecord {Date = new DateTime(2017,11,20), Unreconciled_amount = amount_for_matching - 3, Description =  "2ND AMOUNT, 3RD MATCH (3)" },
+                new BankRecord {Date = new DateTime(2017,12,24), Unreconciled_amount = amount_for_matching + 60, Description =      "2ND DATE, 4TH MATCH (4)"   },
+                new BankRecord {Date = new DateTime(2018,1,20), Unreconciled_amount = amount_for_matching + 50, Description =  "4TH DATE, 7TH MATCH (31)"  },
+                new BankRecord {Date = new DateTime(2017,2,20), Unreconciled_amount = amount_for_matching + 1, Description =    "1ST AMOUNT, 2ND MATCH (1)" }};
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_lines);
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
 
             // Act
-            var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var found_one = reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Assert
-            Assert.AreEqual(true, foundOne);
-            Assert.AreEqual(8, reconciliator.CurrentRecordForMatching().Matches.Count);
-            Assert.AreEqual("1ST DATE, 1ST MATCH (0)", reconciliator.CurrentRecordForMatching().Matches[0].ActualRecords[0].Description);
-            Assert.AreEqual("1ST AMOUNT, 2ND MATCH (1)", reconciliator.CurrentRecordForMatching().Matches[1].ActualRecords[0].Description);
-            Assert.AreEqual("2ND AMOUNT, 3RD MATCH (3)", reconciliator.CurrentRecordForMatching().Matches[2].ActualRecords[0].Description);
-            Assert.AreEqual("2ND DATE, 4TH MATCH (4)", reconciliator.CurrentRecordForMatching().Matches[3].ActualRecords[0].Description);
-            Assert.AreEqual("3RD AMOUNT, 5TH MATCH (5)" , reconciliator.CurrentRecordForMatching().Matches[4].ActualRecords[0].Description);
-            Assert.AreEqual("3RD DATE, 6TH MATCH (7)"   , reconciliator.CurrentRecordForMatching().Matches[5].ActualRecords[0].Description);
-            Assert.AreEqual("4TH DATE, 7TH MATCH (31)"  , reconciliator.CurrentRecordForMatching().Matches[6].ActualRecords[0].Description);
-            Assert.AreEqual("4TH AMOUNT, 8TH MATCH (40)", reconciliator.CurrentRecordForMatching().Matches[7].ActualRecords[0].Description);
-            Assert.AreEqual(0, reconciliator.CurrentRecordForMatching().Matches[0].Rankings.Combined);
-            Assert.AreEqual(1, reconciliator.CurrentRecordForMatching().Matches[1].Rankings.Combined);
-            Assert.AreEqual(3, reconciliator.CurrentRecordForMatching().Matches[2].Rankings.Combined);
-            Assert.AreEqual(4, reconciliator.CurrentRecordForMatching().Matches[3].Rankings.Combined);
-            Assert.AreEqual(5, reconciliator.CurrentRecordForMatching().Matches[4].Rankings.Combined);
-            Assert.AreEqual(7, reconciliator.CurrentRecordForMatching().Matches[5].Rankings.Combined);
-            Assert.AreEqual(31, reconciliator.CurrentRecordForMatching().Matches[6].Rankings.Combined);
-            Assert.AreEqual(40, reconciliator.CurrentRecordForMatching().Matches[7].Rankings.Combined);
+            Assert.AreEqual(true, found_one);
+            Assert.AreEqual(8, reconciliator.Current_record_for_matching().Matches.Count);
+            Assert.AreEqual("1ST DATE, 1ST MATCH (0)", reconciliator.Current_record_for_matching().Matches[0].Actual_records[0].Description);
+            Assert.AreEqual("1ST AMOUNT, 2ND MATCH (1)", reconciliator.Current_record_for_matching().Matches[1].Actual_records[0].Description);
+            Assert.AreEqual("2ND AMOUNT, 3RD MATCH (3)", reconciliator.Current_record_for_matching().Matches[2].Actual_records[0].Description);
+            Assert.AreEqual("2ND DATE, 4TH MATCH (4)", reconciliator.Current_record_for_matching().Matches[3].Actual_records[0].Description);
+            Assert.AreEqual("3RD AMOUNT, 5TH MATCH (5)" , reconciliator.Current_record_for_matching().Matches[4].Actual_records[0].Description);
+            Assert.AreEqual("3RD DATE, 6TH MATCH (7)"   , reconciliator.Current_record_for_matching().Matches[5].Actual_records[0].Description);
+            Assert.AreEqual("4TH DATE, 7TH MATCH (31)"  , reconciliator.Current_record_for_matching().Matches[6].Actual_records[0].Description);
+            Assert.AreEqual("4TH AMOUNT, 8TH MATCH (40)", reconciliator.Current_record_for_matching().Matches[7].Actual_records[0].Description);
+            Assert.AreEqual(0, reconciliator.Current_record_for_matching().Matches[0].Rankings.Combined);
+            Assert.AreEqual(1, reconciliator.Current_record_for_matching().Matches[1].Rankings.Combined);
+            Assert.AreEqual(3, reconciliator.Current_record_for_matching().Matches[2].Rankings.Combined);
+            Assert.AreEqual(4, reconciliator.Current_record_for_matching().Matches[3].Rankings.Combined);
+            Assert.AreEqual(5, reconciliator.Current_record_for_matching().Matches[4].Rankings.Combined);
+            Assert.AreEqual(7, reconciliator.Current_record_for_matching().Matches[5].Rankings.Combined);
+            Assert.AreEqual(31, reconciliator.Current_record_for_matching().Matches[6].Rankings.Combined);
+            Assert.AreEqual(40, reconciliator.Current_record_for_matching().Matches[7].Rankings.Combined);
         }
 
         [Test]
         public void M_UnmatchedOwnedRecordsWillHaveAmountMatchValuesPopulated()
         {
             // Arrange
-            var amountForMatching = 22.34;
-            var actualBankLines = new List<ActualBankRecord> {
-                new ActualBankRecord {Date = new DateTime(2017,2,6), Amount = amountForMatching, Description = "NEAREST AMOUNT"}};
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankLines);
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankLines = new List<BankRecord> {
-                new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "UNMATCHED AMOUNT"},
-                new BankRecord {UnreconciledAmount = amountForMatching, Description = "MATCHED AMOUNT"}};
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var amount_for_matching = 22.34;
+            var actual_bank_lines = new List<ActualBankRecord> {
+                new ActualBankRecord {Date = new DateTime(2017,2,6), Amount = amount_for_matching, Description = "NEAREST AMOUNT"}};
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_lines);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_lines = new List<BankRecord> {
+                new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "UNMATCHED AMOUNT"},
+                new BankRecord {Unreconciled_amount = amount_for_matching, Description = "MATCHED AMOUNT"}};
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_lines);
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
 
             // Act
-            var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var found_one = reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Assert
-            var matches = reconciliator.CurrentRecordForMatching().Matches;
-            Assert.AreEqual(true, foundOne);
-            Assert.AreEqual(true, matches.First(x => x.ActualRecords[0].Description == "MATCHED AMOUNT").AmountMatch);
-            Assert.AreEqual(false, matches.First(x => x.ActualRecords[0].Description == "UNMATCHED AMOUNT").AmountMatch);
+            var matches = reconciliator.Current_record_for_matching().Matches;
+            Assert.AreEqual(true, found_one);
+            Assert.AreEqual(true, matches.First(x => x.Actual_records[0].Description == "MATCHED AMOUNT").Amount_match);
+            Assert.AreEqual(false, matches.First(x => x.Actual_records[0].Description == "UNMATCHED AMOUNT").Amount_match);
         }
 
         [Test]
         public void M_UnmatchedOwnedRecordsWillHaveFullTextMatchValuesPopulated()
         {
             // Arrange
-            var amountForMatching = 22.34;
-            var textToMatch = "'DIVIDE YOUR GREEN";
-            var actualBankLines = new List<ActualBankRecord> {
-                new ActualBankRecord {Date = new DateTime(2017,2,6), Amount = amountForMatching, Description = textToMatch}};
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankLines);
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankLines = new List<BankRecord> {
-                new BankRecord {UnreconciledAmount = amountForMatching, Description = "SOME OTHER TEXT"},
-                new BankRecord {UnreconciledAmount = amountForMatching, Description = textToMatch}};
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var amount_for_matching = 22.34;
+            var text_to_match = "'DIVIDE YOUR GREEN";
+            var actual_bank_lines = new List<ActualBankRecord> {
+                new ActualBankRecord {Date = new DateTime(2017,2,6), Amount = amount_for_matching, Description = text_to_match}};
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_lines);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_lines = new List<BankRecord> {
+                new BankRecord {Unreconciled_amount = amount_for_matching, Description = "SOME OTHER TEXT"},
+                new BankRecord {Unreconciled_amount = amount_for_matching, Description = text_to_match}};
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_lines);
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
 
             // Act
-            var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var found_one = reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Assert
-            var matches = reconciliator.CurrentRecordForMatching().Matches;
-            Assert.AreEqual(true, foundOne);
-            Assert.AreEqual(true, matches.First(x => x.ActualRecords[0].Description == textToMatch).FullTextMatch);
-            Assert.AreEqual(false, matches.First(x => x.ActualRecords[0].Description == "SOME OTHER TEXT").FullTextMatch);
+            var matches = reconciliator.Current_record_for_matching().Matches;
+            Assert.AreEqual(true, found_one);
+            Assert.AreEqual(true, matches.First(x => x.Actual_records[0].Description == text_to_match).Full_text_match);
+            Assert.AreEqual(false, matches.First(x => x.Actual_records[0].Description == "SOME OTHER TEXT").Full_text_match);
         }
 
         [Test]
         public void M_UnmatchedOwnedRecordsWillHavePartialTextMatchValuesPopulated()
         {
             // Arrange
-            var amountForMatching = 22.34;
-            var textToMatch = "'DIVIDE YOUR GREEN";
-            var actualBankLines = new List<ActualBankRecord> {
-                new ActualBankRecord {Date = new DateTime(2017,2,6), Amount = amountForMatching, Description = textToMatch + "EXTRA"}};
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankLines);
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankLines = new List<BankRecord> {
-                new BankRecord {UnreconciledAmount = amountForMatching, Description = "SOME OTHER TEXT"},
-                new BankRecord {UnreconciledAmount = amountForMatching, Description = textToMatch + "SOME OTHER TEXT"}};
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var amount_for_matching = 22.34;
+            var text_to_match = "'DIVIDE YOUR GREEN";
+            var actual_bank_lines = new List<ActualBankRecord> {
+                new ActualBankRecord {Date = new DateTime(2017,2,6), Amount = amount_for_matching, Description = text_to_match + "EXTRA"}};
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_lines);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_lines = new List<BankRecord> {
+                new BankRecord {Unreconciled_amount = amount_for_matching, Description = "SOME OTHER TEXT"},
+                new BankRecord {Unreconciled_amount = amount_for_matching, Description = text_to_match + "SOME OTHER TEXT"}};
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_lines);
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
 
             // Act
-            var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var found_one = reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Assert
-            var matches = reconciliator.CurrentRecordForMatching().Matches;
-            Assert.AreEqual(true, foundOne);
-            Assert.AreEqual(true, matches.First(x => x.ActualRecords[0].Description == textToMatch + "SOME OTHER TEXT").PartialTextMatch);
-            Assert.AreEqual(false, matches.First(x => x.ActualRecords[0].Description == "SOME OTHER TEXT").PartialTextMatch);
+            var matches = reconciliator.Current_record_for_matching().Matches;
+            Assert.AreEqual(true, found_one);
+            Assert.AreEqual(true, matches.First(x => x.Actual_records[0].Description == text_to_match + "SOME OTHER TEXT").Partial_text_match);
+            Assert.AreEqual(false, matches.First(x => x.Actual_records[0].Description == "SOME OTHER TEXT").Partial_text_match);
         }
 
         [Test]
@@ -888,145 +888,145 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankInFile.Reload();
             _actualBankFile.Reload();
-            _actualBankFile.FilterForPositiveRecordsOnly();
+            _actualBankFile.Filter_for_positive_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
 
             // Act
-            var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var found_one = reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Assert
-            Assert.AreEqual(true, foundOne);
-            var currentMatches = reconciliator.CurrentPotentialMatches();
-            Assert.AreEqual(true, currentMatches[0].ConsoleLines[0].Index == 0);
-            Assert.AreEqual(true, currentMatches[1].ConsoleLines[0].Index == 1);
-            Assert.AreEqual(true, currentMatches[2].ConsoleLines[0].Index == 2);
-            Assert.AreEqual(true, currentMatches[3].ConsoleLines[0].Index == 3);
-            Assert.AreEqual(true, currentMatches[4].ConsoleLines[0].Index == 4);
+            Assert.AreEqual(true, found_one);
+            var current_matches = reconciliator.Current_potential_matches();
+            Assert.AreEqual(true, current_matches[0].Console_lines[0].Index == 0);
+            Assert.AreEqual(true, current_matches[1].Console_lines[0].Index == 1);
+            Assert.AreEqual(true, current_matches[2].Console_lines[0].Index == 2);
+            Assert.AreEqual(true, current_matches[3].Console_lines[0].Index == 3);
+            Assert.AreEqual(true, current_matches[4].Console_lines[0].Index == 4);
         }
 
         [Test]
         public void M_WhenUnmatchedOwnedRecordIsIdentifiedAsMatchedTheCorrectRecordGetsMarkedAsMatched()
         {
             // Arrange
-            var amountForMatching = 22.34;
-            var actualBankLines = new List<ActualBankRecord> {
-                new ActualBankRecord {Amount = amountForMatching, Description = "WHATEVER"}};
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankLines);
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankLines = new List<BankRecord> {
-                new BankRecord {UnreconciledAmount = amountForMatching, Description = "THE FIRST MATCH"},
-                new BankRecord {UnreconciledAmount = amountForMatching + 100, Description = "NOT MATCHED"},
-                new BankRecord {UnreconciledAmount = amountForMatching + 100, Description = "NOT MATCHED"}};
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var amount_for_matching = 22.34;
+            var actual_bank_lines = new List<ActualBankRecord> {
+                new ActualBankRecord {Amount = amount_for_matching, Description = "WHATEVER"}};
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_lines);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_lines = new List<BankRecord> {
+                new BankRecord {Unreconciled_amount = amount_for_matching, Description = "THE FIRST MATCH"},
+                new BankRecord {Unreconciled_amount = amount_for_matching + 100, Description = "NOT MATCHED"},
+                new BankRecord {Unreconciled_amount = amount_for_matching + 100, Description = "NOT MATCHED"}};
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_lines);
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Act
-            reconciliator.MatchCurrentRecord(0);
+            reconciliator.Match_current_record(0);
 
             // Assert
             // Note that we can't use amounts to identify records, because amounts get changed by the matching process.
-            Assert.AreEqual(true, bankFile.Records.First(x => x.Description.Contains("THE FIRST MATCH")).Matched);
-            Assert.AreEqual(false, bankFile.Records.Any(x => x.Description.Contains("NOT MATCHED") && x.Matched));
+            Assert.AreEqual(true, bank_file.Records.First(x => x.Description.Contains("THE FIRST MATCH")).Matched);
+            Assert.AreEqual(false, bank_file.Records.Any(x => x.Description.Contains("NOT MATCHED") && x.Matched));
         }
 
         [Test]
         public void M_WhenUnmatchedOwnedRecordIsMarkedAsMatchedItGetsItsAmountChanged()
         {
             // Arrange
-            var amountForMatching = 22.34;
-            var actualBankLines = new List<ActualBankRecord> {
-                new ActualBankRecord {Amount = amountForMatching, Description = "WHATEVER"}};
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankLines);
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankLines = new List<BankRecord> {
-                new BankRecord {UnreconciledAmount = amountForMatching + 100, Description = "THE FIRST MATCH"},
-                new BankRecord {UnreconciledAmount = amountForMatching + 100, Description = "NOT MATCHED"},
-                new BankRecord {UnreconciledAmount = amountForMatching + 100, Description = "NOT MATCHED"}};
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var amount_for_matching = 22.34;
+            var actual_bank_lines = new List<ActualBankRecord> {
+                new ActualBankRecord {Amount = amount_for_matching, Description = "WHATEVER"}};
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_lines);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_lines = new List<BankRecord> {
+                new BankRecord {Unreconciled_amount = amount_for_matching + 100, Description = "THE FIRST MATCH"},
+                new BankRecord {Unreconciled_amount = amount_for_matching + 100, Description = "NOT MATCHED"},
+                new BankRecord {Unreconciled_amount = amount_for_matching + 100, Description = "NOT MATCHED"}};
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_lines);
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Act
-            reconciliator.MatchCurrentRecord(0);
+            reconciliator.Match_current_record(0);
 
             // Assert
-            Assert.AreEqual(true, bankFile.Records.First(x => x.Description.StartsWith("THE FIRST MATCH")).Matched);
-            Assert.AreEqual(amountForMatching, bankFile.Records.First(x => x.Description.StartsWith("THE FIRST MATCH")).MainAmount());
+            Assert.AreEqual(true, bank_file.Records.First(x => x.Description.StartsWith("THE FIRST MATCH")).Matched);
+            Assert.AreEqual(amount_for_matching, bank_file.Records.First(x => x.Description.StartsWith("THE FIRST MATCH")).Main_amount());
         }
 
         [Test]
         public void M_WhenUnmatchedOwnedRecordIsMarkedAsMatchedItGetsACommentAddedToItsDescription()
         {
             // Arrange
-            var matchDescription = "THE FIRST MATCH";
-            var amountForMatching = 22.34;
-            var actualBankLines = new List<ActualBankRecord> {
-                new ActualBankRecord {Amount = amountForMatching, Description = "WHATEVER"}};
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankLines);
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankLines = new List<BankRecord> {
-                new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = matchDescription},
-                new BankRecord {UnreconciledAmount = amountForMatching + 100, Description = "NOT MATCHED"},
-                new BankRecord {UnreconciledAmount = amountForMatching + 100, Description = "NOT MATCHED"}};
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var match_description = "THE FIRST MATCH";
+            var amount_for_matching = 22.34;
+            var actual_bank_lines = new List<ActualBankRecord> {
+                new ActualBankRecord {Amount = amount_for_matching, Description = "WHATEVER"}};
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_lines);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_lines = new List<BankRecord> {
+                new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = match_description},
+                new BankRecord {Unreconciled_amount = amount_for_matching + 100, Description = "NOT MATCHED"},
+                new BankRecord {Unreconciled_amount = amount_for_matching + 100, Description = "NOT MATCHED"}};
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_lines);
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Act
-            reconciliator.MatchCurrentRecord(0);
+            reconciliator.Match_current_record(0);
 
             // Assert
-            Assert.AreEqual(true, bankFile.Records.First(x => x.Description.StartsWith(matchDescription)).Matched);
-            Assert.AreEqual($"{matchDescription}{ReconConsts.OriginalAmountWas}£{amountForMatching + 1}", 
-                bankFile.Records.First(x => x.Description.StartsWith(matchDescription)).Description);
+            Assert.AreEqual(true, bank_file.Records.First(x => x.Description.StartsWith(match_description)).Matched);
+            Assert.AreEqual($"{match_description}{ReconConsts.OriginalAmountWas}£{amount_for_matching + 1}", 
+                bank_file.Records.First(x => x.Description.StartsWith(match_description)).Description);
         }
 
         [Test]
         public void M_WhenUnmatchedOwnedRecordIsMarkedAsMatchedItIsNoLongerReturnedInListOfUnmatchedOwnedRecords()
         {
             // Arrange
-            var amountForMatching = 22.34;
-            var actualBankLines = new List<ActualBankRecord> {
-                new ActualBankRecord {Amount = amountForMatching, Description = "WHATEVER"},
-                new ActualBankRecord {Amount = amountForMatching, Description = "WHATEVER"}};
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankLines);
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankLines = new List<BankRecord> {
-                new BankRecord {UnreconciledAmount = amountForMatching + 100, Description = "THE FIRST MATCH"},
-                new BankRecord {UnreconciledAmount = amountForMatching + 100, Description = "NOT MATCHED"},
-                new BankRecord {UnreconciledAmount = amountForMatching + 100, Description = "NOT MATCHED"}};
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
-            reconciliator.MatchCurrentRecord(0);
+            var amount_for_matching = 22.34;
+            var actual_bank_lines = new List<ActualBankRecord> {
+                new ActualBankRecord {Amount = amount_for_matching, Description = "WHATEVER"},
+                new ActualBankRecord {Amount = amount_for_matching, Description = "WHATEVER"}};
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_lines);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_lines = new List<BankRecord> {
+                new BankRecord {Unreconciled_amount = amount_for_matching + 100, Description = "THE FIRST MATCH"},
+                new BankRecord {Unreconciled_amount = amount_for_matching + 100, Description = "NOT MATCHED"},
+                new BankRecord {Unreconciled_amount = amount_for_matching + 100, Description = "NOT MATCHED"}};
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_lines);
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
+            reconciliator.Match_current_record(0);
 
             // Act
-            var foundOne = reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            var found_one = reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
             // Assert
-            Assert.AreEqual(true, foundOne);
-            Assert.AreEqual(false, reconciliator.CurrentRecordForMatching().Matches.Any(x => x.ActualRecords[0].Description.StartsWith("THE FIRST MATCH")));
+            Assert.AreEqual(true, found_one);
+            Assert.AreEqual(false, reconciliator.Current_record_for_matching().Matches.Any(x => x.Actual_records[0].Description.StartsWith("THE FIRST MATCH")));
         }
 
         // !! Don't re-order items in CurrentPotentialMatches!! If you do, they will be displayed in a different order than they are stored.
@@ -1039,24 +1039,24 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankInFile.Reload();
             _actualBankFile.Reload();
-            _actualBankFile.FilterForPositiveRecordsOnly();
+            _actualBankFile.Filter_for_positive_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
 
             // Act
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
-            var sourceMatches = reconciliator
-                .CurrentRecordForMatching()
+            var source_matches = reconciliator
+                .Current_record_for_matching()
                 .Matches
                 .ToList();
-            var currentMatches = reconciliator.CurrentPotentialMatches();
+            var current_matches = reconciliator.Current_potential_matches();
 
             // Assert
-            Assert.IsTrue(currentMatches.Count > 1);
-            foreach (var match in sourceMatches)
+            Assert.IsTrue(current_matches.Count > 1);
+            foreach (var match in source_matches)
             {
-                var index = sourceMatches.IndexOf(match);
-                Assert.AreEqual(currentMatches[index].ActualRecords[0].Description, match.ActualRecords[0].Description);
+                var index = source_matches.IndexOf(match);
+                Assert.AreEqual(current_matches[index].Actual_records[0].Description, match.Actual_records[0].Description);
             }
         }
 
@@ -1066,111 +1066,111 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankInFile.Reload();
             _actualBankFile.Reload();
-            _actualBankFile.FilterForPositiveRecordsOnly();
+            _actualBankFile.Filter_for_positive_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
 
             // Act
-            reconciliator.MoveToNextUnmatchedThirdPartyRecordForManualMatching();
+            reconciliator.Move_to_next_unmatched_third_party_record_for_manual_matching();
 
-            var matchesStoredInternally = reconciliator.CurrentRecordForMatching().Matches;
-            var currentMatches = reconciliator.CurrentPotentialMatches();
+            var matches_stored_internally = reconciliator.Current_record_for_matching().Matches;
+            var current_matches = reconciliator.Current_potential_matches();
 
             // Assert
-            Assert.AreEqual(matchesStoredInternally.Count, currentMatches.Count);
-            foreach (var internalMatch in matchesStoredInternally)
+            Assert.AreEqual(matches_stored_internally.Count, current_matches.Count);
+            foreach (var internal_match in matches_stored_internally)
             {
-                Assert.IsTrue(currentMatches.Exists(match => match.ActualRecords[0].Description == internalMatch.ActualRecords[0].Description));
+                Assert.IsTrue(current_matches.Exists(match => match.Actual_records[0].Description == internal_match.Actual_records[0].Description));
             }
         }
 
         [Test]
-        public void CurrentPotentialMatchesShouldBeOrderedByDatesClosestToOriginal()
+        public void Current_potential_matches_should_be_ordered_by_dates_closest_to_original()
         {
             // Arrange
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
                 "06/1/2017^£24.99^^TILL^4TH NEAREST BY DATE^^^^^",
                 "05/2/2017^£24.99^^TILL^2ND NEAREST BY DATE^^^^^",
                 "06/2/2017^£24.99^^TILL^1ST NEAREST BY DATE^^^^^",
                 "08/2/2017^£24.99^^TILL^3RD NEAREST BY DATE^^^^^",
                 "06/4/2017^£24.99^^TILL^5TH NEAREST BY DATE^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 "06/2/2017,POS,'DIVIDE YOUR GREEN,24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            var currentPotentialMatches = reconciliator.CurrentPotentialMatches();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            var current_potential_matches = reconciliator.Current_potential_matches();
 
             // Assert
-            Assert.IsTrue(currentPotentialMatches.Count == 5);
-            Assert.AreEqual("1ST NEAREST BY DATE", currentPotentialMatches[0].ActualRecords[0].Description);
-            Assert.AreEqual("2ND NEAREST BY DATE", currentPotentialMatches[1].ActualRecords[0].Description);
-            Assert.AreEqual("3RD NEAREST BY DATE", currentPotentialMatches[2].ActualRecords[0].Description);
-            Assert.AreEqual("4TH NEAREST BY DATE", currentPotentialMatches[3].ActualRecords[0].Description);
-            Assert.AreEqual("5TH NEAREST BY DATE", currentPotentialMatches[4].ActualRecords[0].Description);
+            Assert.IsTrue(current_potential_matches.Count == 5);
+            Assert.AreEqual("1ST NEAREST BY DATE", current_potential_matches[0].Actual_records[0].Description);
+            Assert.AreEqual("2ND NEAREST BY DATE", current_potential_matches[1].Actual_records[0].Description);
+            Assert.AreEqual("3RD NEAREST BY DATE", current_potential_matches[2].Actual_records[0].Description);
+            Assert.AreEqual("4TH NEAREST BY DATE", current_potential_matches[3].Actual_records[0].Description);
+            Assert.AreEqual("5TH NEAREST BY DATE", current_potential_matches[4].Actual_records[0].Description);
         }
 
         [Test]
-        public void MatchesWillBeOrderedByDatesClosestToOriginal()
+        public void Matches_will_be_ordered_by_dates_closest_to_original()
         {
             // Arrange
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
                 "06/1/2017^£24.99^^TILL^4TH NEAREST BY DATE^^^^^",
                 "05/2/2017^£24.99^^TILL^2ND NEAREST BY DATE^^^^^",
                 "06/2/2017^£24.99^^TILL^1ST NEAREST BY DATE^^^^^",
                 "08/2/2017^£24.99^^TILL^3RD NEAREST BY DATE^^^^^",
                 "06/4/2017^£24.99^^TILL^5TH NEAREST BY DATE^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 "06/2/2017,POS,'DIVIDE YOUR GREEN,24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            Assert.AreEqual(5, reconciliator.CurrentRecordForMatching().Matches.Count);
-            Assert.AreEqual("1ST NEAREST BY DATE", reconciliator.CurrentRecordForMatching().Matches[0].ActualRecords[0].Description);
-            Assert.AreEqual("2ND NEAREST BY DATE", reconciliator.CurrentRecordForMatching().Matches[1].ActualRecords[0].Description);
-            Assert.AreEqual("3RD NEAREST BY DATE", reconciliator.CurrentRecordForMatching().Matches[2].ActualRecords[0].Description);
-            Assert.AreEqual("4TH NEAREST BY DATE", reconciliator.CurrentRecordForMatching().Matches[3].ActualRecords[0].Description);
-            Assert.AreEqual("5TH NEAREST BY DATE", reconciliator.CurrentRecordForMatching().Matches[4].ActualRecords[0].Description);
+            Assert.AreEqual(5, reconciliator.Current_record_for_matching().Matches.Count);
+            Assert.AreEqual("1ST NEAREST BY DATE", reconciliator.Current_record_for_matching().Matches[0].Actual_records[0].Description);
+            Assert.AreEqual("2ND NEAREST BY DATE", reconciliator.Current_record_for_matching().Matches[1].Actual_records[0].Description);
+            Assert.AreEqual("3RD NEAREST BY DATE", reconciliator.Current_record_for_matching().Matches[2].Actual_records[0].Description);
+            Assert.AreEqual("4TH NEAREST BY DATE", reconciliator.Current_record_for_matching().Matches[3].Actual_records[0].Description);
+            Assert.AreEqual("5TH NEAREST BY DATE", reconciliator.Current_record_for_matching().Matches[4].Actual_records[0].Description);
         }
 
         [Test]
         public void M_MatchesWillHaveAmountRankingValuesPopulated()
         {
             // Arrange
-            var amountForMatching = 22.34;
-            var actualBankLines = new List<ActualBankRecord> {
-                new ActualBankRecord {Date = new DateTime(2017,2,6), Amount = amountForMatching, Description = "NEAREST AMOUNT"}};
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankLines);
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankLines = new List<BankRecord> {
-                new BankRecord {UnreconciledAmount = amountForMatching - 4, Description = "5TH NEAREST AMOUNT"},
-                new BankRecord {UnreconciledAmount = amountForMatching + 1, Description = "2ND NEAREST AMOUNT"},
-                new BankRecord {UnreconciledAmount = amountForMatching, Description = "1ST NEAREST AMOUNT"},
-                new BankRecord {UnreconciledAmount = amountForMatching - 2, Description = "3RD NEAREST AMOUNT"},
-                new BankRecord {UnreconciledAmount = amountForMatching + 3, Description = "4TH NEAREST AMOUNT"}};
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankLines);
-            var bankFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankFile);
+            var amount_for_matching = 22.34;
+            var actual_bank_lines = new List<ActualBankRecord> {
+                new ActualBankRecord {Date = new DateTime(2017,2,6), Amount = amount_for_matching, Description = "NEAREST AMOUNT"}};
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_lines);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_lines = new List<BankRecord> {
+                new BankRecord {Unreconciled_amount = amount_for_matching - 4, Description = "5TH NEAREST AMOUNT"},
+                new BankRecord {Unreconciled_amount = amount_for_matching + 1, Description = "2ND NEAREST AMOUNT"},
+                new BankRecord {Unreconciled_amount = amount_for_matching, Description = "1ST NEAREST AMOUNT"},
+                new BankRecord {Unreconciled_amount = amount_for_matching - 2, Description = "3RD NEAREST AMOUNT"},
+                new BankRecord {Unreconciled_amount = amount_for_matching + 3, Description = "4TH NEAREST AMOUNT"}};
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_lines);
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_file);
 
             // Act
-            var foundOne = reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            var found_one = reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matches = reconciliator.CurrentRecordForMatching().Matches;
-            Assert.AreEqual(true, foundOne);
+            var matches = reconciliator.Current_record_for_matching().Matches;
+            Assert.AreEqual(true, found_one);
             Assert.AreEqual(5, matches.Count);
-            Assert.AreEqual(0, matches.First(x => x.ActualRecords[0].Description == "1ST NEAREST AMOUNT").Rankings.Amount);
-            Assert.AreEqual(1, matches.First(x => x.ActualRecords[0].Description == "2ND NEAREST AMOUNT").Rankings.Amount);
-            Assert.AreEqual(2, matches.First(x => x.ActualRecords[0].Description == "3RD NEAREST AMOUNT").Rankings.Amount);
-            Assert.AreEqual(3, matches.First(x => x.ActualRecords[0].Description == "4TH NEAREST AMOUNT").Rankings.Amount);
-            Assert.AreEqual(4, matches.First(x => x.ActualRecords[0].Description == "5TH NEAREST AMOUNT").Rankings.Amount);
+            Assert.AreEqual(0, matches.First(x => x.Actual_records[0].Description == "1ST NEAREST AMOUNT").Rankings.Amount);
+            Assert.AreEqual(1, matches.First(x => x.Actual_records[0].Description == "2ND NEAREST AMOUNT").Rankings.Amount);
+            Assert.AreEqual(2, matches.First(x => x.Actual_records[0].Description == "3RD NEAREST AMOUNT").Rankings.Amount);
+            Assert.AreEqual(3, matches.First(x => x.Actual_records[0].Description == "4TH NEAREST AMOUNT").Rankings.Amount);
+            Assert.AreEqual(4, matches.First(x => x.Actual_records[0].Description == "5TH NEAREST AMOUNT").Rankings.Amount);
         }
 
         [Test]
@@ -1178,20 +1178,20 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             _bankInFile.Reload();
-            var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
-            var actualBankFile = new CSVFile<ActualBankRecord>(fileIO);
-            actualBankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            var originalNumOwnedRecords = reconciliator.OwnedFileRecords().Count;
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
+            var actual_bank_file = new CSVFile<ActualBankRecord>(file_io);
+            actual_bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, _bankInFile);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            var original_num_owned_records = reconciliator.Owned_file_records().Count;
 
             // Act
             reconciliator.Finish("testing");
 
             // Assert
-            Assert.AreEqual(originalNumOwnedRecords + 3, reconciliator.OwnedFileRecords().Count);
+            Assert.AreEqual(original_num_owned_records + 3, reconciliator.Owned_file_records().Count);
         }
 
         [Test]
@@ -1199,22 +1199,22 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             _bankInFile.Reload();
-            var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
-            var actualBankFile = new CSVFile<ActualBankRecord>(fileIO);
-            actualBankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            var originalNumOwnedRecords = reconciliator.OwnedFileRecords().Count;
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
+            var actual_bank_file = new CSVFile<ActualBankRecord>(file_io);
+            actual_bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, _bankInFile);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            var original_num_owned_records = reconciliator.Owned_file_records().Count;
 
             // Act
             reconciliator.Finish("testing");
 
             // Assert
-            Assert.IsTrue(reconciliator.OwnedFileRecords()[originalNumOwnedRecords].Description.StartsWith("!! Unmatched from 3rd party: "));
-            Assert.IsTrue(reconciliator.OwnedFileRecords()[originalNumOwnedRecords + 1].Description.StartsWith("!! Unmatched from 3rd party: "));
-            Assert.IsTrue(reconciliator.OwnedFileRecords()[originalNumOwnedRecords + 2].Description.StartsWith("!! Unmatched from 3rd party: "));
+            Assert.IsTrue(reconciliator.Owned_file_records()[original_num_owned_records].Description.StartsWith("!! Unmatched from 3rd party: "));
+            Assert.IsTrue(reconciliator.Owned_file_records()[original_num_owned_records + 1].Description.StartsWith("!! Unmatched from 3rd party: "));
+            Assert.IsTrue(reconciliator.Owned_file_records()[original_num_owned_records + 2].Description.StartsWith("!! Unmatched from 3rd party: "));
         }
 
         [Test]
@@ -1222,22 +1222,22 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             _bankInFile.Reload();
-            var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
-            var actualBankFile = new CSVFile<ActualBankRecord>(fileIO);
-            actualBankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile);
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
+            var actual_bank_file = new CSVFile<ActualBankRecord>(file_io);
+            actual_bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, _bankInFile);
 
-            for (int count = 1; count <= actualBankFile.Records.Count; count++)
+            for (int count = 1; count <= actual_bank_file.Records.Count; count++)
             {
-                reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-                reconciliator.MatchCurrentRecord(0);
+                reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+                reconciliator.Match_current_record(0);
             }
 
             // Act
-            bool foundOne = reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            bool found_one = reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            Assert.AreEqual(false, foundOne);
+            Assert.AreEqual(false, found_one);
         }
 
         [Test]
@@ -1245,21 +1245,21 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             _bankInFile.Reload();
-            var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
-            var actualBankFile = new CSVFile<ActualBankRecord>(fileIO);
-            actualBankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile);
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
+            var actual_bank_file = new CSVFile<ActualBankRecord>(file_io);
+            actual_bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, _bankInFile);
 
-            for (int count = 1; count <= actualBankFile.Records.Count; count++)
+            for (int count = 1; count <= actual_bank_file.Records.Count; count++)
             {
-                reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+                reconciliator.Find_reconciliation_matches_for_next_third_party_record();
             }
 
             // Act
-            bool foundOne = reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            bool found_one = reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            Assert.AreEqual(false, foundOne);
+            Assert.AreEqual(false, found_one);
         }
 
         [Test]
@@ -1268,20 +1268,20 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _bankInFile.Reload();
             _actualBankFile.Reload();
-            _actualBankFile.FilterForPositiveRecordsOnly();
+            _actualBankFile.Filter_for_positive_records_only();
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(_actualBankFile, _bankInFile);
 
             for (int count = 1; count <= _bankInFile.Records.Count; count++)
             {
-                reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-                reconciliator.MatchCurrentRecord(0);
+                reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+                reconciliator.Match_current_record(0);
             }
 
             // Act
-            bool foundOne = reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            bool found_one = reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            Assert.AreEqual(false, foundOne);
+            Assert.AreEqual(false, found_one);
         }
 
         [Test]
@@ -1289,22 +1289,22 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             _bankInFile.Reload();
-            var fileIO = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
-            var actualBankFile = new CSVFile<ActualBankRecord>(fileIO);
-            actualBankFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, _bankInFile);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            var file_io = new FileIO<ActualBankRecord>(new FakeSpreadsheetRepoFactory(), _absoluteCSVFilePath, "ActualBank-Small-PositiveOnly");
+            var actual_bank_file = new CSVFile<ActualBankRecord>(file_io);
+            actual_bank_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, _bankInFile);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Act
             reconciliator.Finish("testing");
 
             // Assert
-            foreach (var matchedOwnedRecord in reconciliator.OwnedFileRecords().Where(x => x.Matched))
+            foreach (var matched_owned_record in reconciliator.Owned_file_records().Where(x => x.Matched))
             {
-                Assert.AreEqual(0, matchedOwnedRecord.UnreconciledAmount);
-                Assert.IsTrue(matchedOwnedRecord.ReconciledAmount > 0);
+                Assert.AreEqual(0, matched_owned_record.Unreconciled_amount);
+                Assert.IsTrue(matched_owned_record.Reconciled_amount > 0);
             }
         }
 
@@ -1313,207 +1313,207 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             var description = "DIVIDE YOUR GREEN";
-            var descriptionWithApostrophe = "'" + description;
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
+            var description_with_apostrophe = "'" + description;
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
                 "06/03/2017^£24.99^^TILL^SOME OTHER THING^^^^^",
                 $"02/02/2017^£24.99^^TILL^{description}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/03/2017,POS,{descriptionWithApostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/03/2017,POS,{description_with_apostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
-            Assert.IsTrue(matchedRecord.Matches.Count > 1);
-            Assert.AreEqual(description, matchedRecord.Matches[0].ActualRecords[0].Description);
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
+            Assert.IsTrue(matched_record.Matches.Count > 1);
+            Assert.AreEqual(description, matched_record.Matches[0].Actual_records[0].Description);
         }
 
         [Test]
-        public void TextMatchesWillIgnoreLeadingApostrophes()
+        public void Text_matches_will_ignore_leading_apostrophes()
         {
             // Arrange
-            var descriptionWithoutApostrophe = "DIVIDE YOUR GREEN";
-            var descriptionWithLeadingApostrophe = "'" + descriptionWithoutApostrophe;
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
+            var description_without_apostrophe = "DIVIDE YOUR GREEN";
+            var description_with_leading_apostrophe = "'" + description_without_apostrophe;
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
                     "06/03/2017^£24.99^^TILL^SOME OTHER THING^^^^^",
-                    $"02/02/2017^£24.99^^TILL^{descriptionWithoutApostrophe}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/03/2017,POS,{descriptionWithLeadingApostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+                    $"02/02/2017^£24.99^^TILL^{description_without_apostrophe}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/03/2017,POS,{description_with_leading_apostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
-            Assert.IsTrue(matchedRecord.Matches.Count > 1);
-            Assert.AreEqual(descriptionWithoutApostrophe, matchedRecord.Matches[0].ActualRecords[0].Description);
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
+            Assert.IsTrue(matched_record.Matches.Count > 1);
+            Assert.AreEqual(description_without_apostrophe, matched_record.Matches[0].Actual_records[0].Description);
         }
 
         [Test]
-        public void RecordWillBeMarkedAsFullTextMatchIfRecordContainsOriginalDescription()
+        public void Record_will_be_marked_as_full_text_match_if_record_contains_original_description()
         {
             // Arrange
-            var descriptionWithoutApostrophe = "DIVIDE YOUR GREEN";
-            var descriptionWithLeadingApostrophe = "'" + descriptionWithoutApostrophe;
-            var descriptionContainingSourceDescription = $"SOME OTHER TEXT {descriptionWithoutApostrophe} AROUND CONTAINED DESCRIPTION";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
+            var description_without_apostrophe = "DIVIDE YOUR GREEN";
+            var description_with_leading_apostrophe = "'" + description_without_apostrophe;
+            var description_containing_source_description = $"SOME OTHER TEXT {description_without_apostrophe} AROUND CONTAINED DESCRIPTION";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
                 "06/03/2017^£24.99^^TILL^SOME OTHER THING^^^^^",
-                $"02/02/2017^£24.99^^TILL^{descriptionContainingSourceDescription}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/03/2017,POS,{descriptionWithLeadingApostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+                $"02/02/2017^£24.99^^TILL^{description_containing_source_description}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/03/2017,POS,{description_with_leading_apostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matches = reconciliator.CurrentPotentialMatches();
-            Assert.AreEqual(1, matches.Count(x => x.FullTextMatch));
-            Assert.AreEqual(descriptionContainingSourceDescription, matches[0].ActualRecords[0].Description);
-            Assert.IsTrue(matches[0].FullTextMatch);
+            var matches = reconciliator.Current_potential_matches();
+            Assert.AreEqual(1, matches.Count(x => x.Full_text_match));
+            Assert.AreEqual(description_containing_source_description, matches[0].Actual_records[0].Description);
+            Assert.IsTrue(matches[0].Full_text_match);
         }
 
         [Test]
-        public void RecordWillBeMarkedAsFullTextMatchIfRecordExactlyMatchesOriginalDescription()
+        public void Record_will_be_marked_as_full_text_match_if_record_exactly_matches_original_description()
         {
             // Arrange
             var description = "'DIVIDE YOUR GREEN";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
                 "06/03/2017^£24.99^^TILL^SOME OTHER THING^^^^^",
                 $"02/02/2017^£24.99^^TILL^{description}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
                 $"06/03/2017,POS,{description},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matches = reconciliator.CurrentPotentialMatches();
-            Assert.AreEqual(1, matches.Count(x => x.FullTextMatch));
-            Assert.AreEqual(description, matches[0].ActualRecords[0].Description);
-            Assert.IsTrue(matches[0].FullTextMatch);
+            var matches = reconciliator.Current_potential_matches();
+            Assert.AreEqual(1, matches.Count(x => x.Full_text_match));
+            Assert.AreEqual(description, matches[0].Actual_records[0].Description);
+            Assert.IsTrue(matches[0].Full_text_match);
         }
 
         [Test]
-        public void RecordWillBeMarkedAsFullTextMatchIfDescriptionIsIdenticalAfterAllPunctuationIsRemoved()
+        public void Record_will_be_marked_as_full_text_match_if_description_is_identical_after_all_punctuation_is_removed()
         {
             // Arrange
-            var originalDescription = "'DIVIDE, \"YOUR\": GREEN-GREEN; REALLY.@REALLY";
-            var descriptionWithoutPunctuation = "DIVIDE YOUR GREENGREEN REALLYREALLY";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
+            var original_description = "'DIVIDE, \"YOUR\": GREEN-GREEN; REALLY.@REALLY";
+            var description_without_punctuation = "DIVIDE YOUR GREENGREEN REALLYREALLY";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
                 "06/03/2017^£24.99^^TILL^SOME OTHER THING^^^^^",
-                $"02/02/2017^£24.99^^TILL^{descriptionWithoutPunctuation}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/03/2017,POS,{originalDescription},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+                $"02/02/2017^£24.99^^TILL^{description_without_punctuation}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/03/2017,POS,{original_description},24.99,4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matches = reconciliator.CurrentPotentialMatches();
-            Assert.AreEqual(1, matches.Count(x => x.FullTextMatch));
-            Assert.AreEqual(descriptionWithoutPunctuation, matches[0].ActualRecords[0].Description);
-            Assert.IsTrue(matches[0].FullTextMatch);
+            var matches = reconciliator.Current_potential_matches();
+            Assert.AreEqual(1, matches.Count(x => x.Full_text_match));
+            Assert.AreEqual(description_without_punctuation, matches[0].Actual_records[0].Description);
+            Assert.IsTrue(matches[0].Full_text_match);
         }
 
         [Test]
-        public void RecordWillBeMarkedAsFullTextMatchIfSomePunctuationIsRemoved()
+        public void Record_will_be_marked_as_full_text_match_if_some_punctuation_is_removed()
         {
             // Arrange
-            var originalDescription = "'DIVIDE, \"YOUR\": GREEN-GREEN; REALLY.@REALLY";
-            var descriptionWithLessPunctuation = "DIVIDE YOUR: GREEN-GREEN REALLYREALLY";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
+            var original_description = "'DIVIDE, \"YOUR\": GREEN-GREEN; REALLY.@REALLY";
+            var description_with_less_punctuation = "DIVIDE YOUR: GREEN-GREEN REALLYREALLY";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
                 "06/03/2017^£24.99^^TILL^SOME OTHER THING^^^^^",
-                $"02/02/2017^£24.99^^TILL^{descriptionWithLessPunctuation}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/03/2017,POS,{originalDescription},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+                $"02/02/2017^£24.99^^TILL^{description_with_less_punctuation}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/03/2017,POS,{original_description},24.99,4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matches = reconciliator.CurrentPotentialMatches();
-            Assert.AreEqual(1, matches.Count(x => x.FullTextMatch));
-            Assert.AreEqual(descriptionWithLessPunctuation, matches[0].ActualRecords[0].Description);
-            Assert.IsTrue(matches[0].FullTextMatch);
+            var matches = reconciliator.Current_potential_matches();
+            Assert.AreEqual(1, matches.Count(x => x.Full_text_match));
+            Assert.AreEqual(description_with_less_punctuation, matches[0].Actual_records[0].Description);
+            Assert.IsTrue(matches[0].Full_text_match);
         }
 
         [Test]
-        public void FullTextMatchIsCaseInsensitive()
+        public void Full_text_match_is_case_insensitive()
         {
             // Arrange
-            var originalDescription = "DIVIDE YOUR GreeN";
-            var caseInsensitiveMatch = "Divide YouR green";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
+            var original_description = "DIVIDE YOUR GreeN";
+            var case_insensitive_match = "Divide YouR green";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
                 "06/03/2017^£24.99^^TILL^SOME OTHER THING^^^^^",
-                $"02/02/2017^£24.99^^TILL^{caseInsensitiveMatch}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/03/2017,POS,{originalDescription},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+                $"02/02/2017^£24.99^^TILL^{case_insensitive_match}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/03/2017,POS,{original_description},24.99,4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matches = reconciliator.CurrentPotentialMatches();
-            Assert.AreEqual(1, matches.Count(x => x.FullTextMatch));
-            Assert.AreEqual(caseInsensitiveMatch, matches[0].ActualRecords[0].Description);
-            Assert.IsTrue(matches[0].FullTextMatch);
+            var matches = reconciliator.Current_potential_matches();
+            Assert.AreEqual(1, matches.Count(x => x.Full_text_match));
+            Assert.AreEqual(case_insensitive_match, matches[0].Actual_records[0].Description);
+            Assert.IsTrue(matches[0].Full_text_match);
         }
 
         [Test]
-        public void PartialTextMatchIsIncludedInResultsEvenIfNothingElseMatches()
+        public void Partial_text_match_is_included_in_results_even_if_nothing_else_matches()
         {
             // Arrange
-            var originalDescription = "'DIVIDE YOUR GREEN";
-            var partialMatch = "Divide some other thing";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
-                $"02/02/2017^£24.99^^TILL^{partialMatch}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/03/2017,POS,{originalDescription},100.00,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var original_description = "'DIVIDE YOUR GREEN";
+            var partial_match = "Divide some other thing";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
+                $"02/02/2017^£24.99^^TILL^{partial_match}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/03/2017,POS,{original_description},100.00,4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matches = reconciliator.CurrentPotentialMatches();
+            var matches = reconciliator.Current_potential_matches();
             Assert.AreEqual(1, matches.Count);
-            Assert.AreEqual(partialMatch, matches[0].ActualRecords[0].Description);
-            Assert.IsTrue(matches[0].PartialTextMatch);
-            Assert.IsFalse(matches[0].FullTextMatch);
-            Assert.IsFalse(matches[0].AmountMatch);
+            Assert.AreEqual(partial_match, matches[0].Actual_records[0].Description);
+            Assert.IsTrue(matches[0].Partial_text_match);
+            Assert.IsFalse(matches[0].Full_text_match);
+            Assert.IsFalse(matches[0].Amount_match);
         }
 
         [Test]
-        public void PartialAmountMatchIsIncludedInResultsEvenIfNothingElseMatches()
+        public void Partial_amount_match_is_included_in_results_even_if_nothing_else_matches()
         {
             // Arrange
-            var amountForMatching = 25;
-            var partialAmountMatch = amountForMatching + 2;
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
-                $"02/02/2017^£{partialAmountMatch}^^TILL^OTHER^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/03/2017,POS,THIS,{amountForMatching},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var amount_for_matching = 25;
+            var partial_amount_match = amount_for_matching + 2;
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
+                $"02/02/2017^£{partial_amount_match}^^TILL^OTHER^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/03/2017,POS,THIS,{amount_for_matching},4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matches = reconciliator.CurrentPotentialMatches();
+            var matches = reconciliator.Current_potential_matches();
             Assert.AreEqual(1, matches.Count);
-            Assert.AreEqual(partialAmountMatch, matches[0].ActualRecords[0].MainAmount());
+            Assert.AreEqual(partial_amount_match, matches[0].Actual_records[0].Main_amount());
             Assert.AreEqual(2, matches[0].Rankings.Amount);
-            Assert.IsFalse(matches[0].AmountMatch);
-            Assert.IsFalse(matches[0].FullTextMatch);
-            Assert.IsFalse(matches[0].PartialTextMatch);
+            Assert.IsFalse(matches[0].Amount_match);
+            Assert.IsFalse(matches[0].Full_text_match);
+            Assert.IsFalse(matches[0].Partial_text_match);
         }
 
         [Test]
@@ -1521,23 +1521,23 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             var description = "DIVIDE YOUR GREEN";
-            var descriptionWithApostrophe = "'" + description;
-            var expectedMonth = 3;
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
-                $"02/{expectedMonth - 1}/2017^£24.99^^TILL^{description}^^^^^",
-                $"02/{expectedMonth}/2017^£24.99^^TILL^{description}^^^^^",
-                $"02/{expectedMonth + 1}/2017^£24.99^^TILL^{description}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/{expectedMonth}/2017,POS,{descriptionWithApostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var description_with_apostrophe = "'" + description;
+            var expected_month = 3;
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
+                $"02/{expected_month - 1}/2017^£24.99^^TILL^{description}^^^^^",
+                $"02/{expected_month}/2017^£24.99^^TILL^{description}^^^^^",
+                $"02/{expected_month + 1}/2017^£24.99^^TILL^{description}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/{expected_month}/2017,POS,{description_with_apostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
-            Assert.IsTrue(matchedRecord.Matches.Count > 1);
-            Assert.AreEqual(expectedMonth, matchedRecord.Matches[0].ActualRecords[0].Date.Month, "Month");
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
+            Assert.IsTrue(matched_record.Matches.Count > 1);
+            Assert.AreEqual(expected_month, matched_record.Matches[0].Actual_records[0].Date.Month, "Month");
         }
 
         [Test]
@@ -1545,28 +1545,28 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             var description = "DIVIDE YOUR GREEN";
-            var descriptionWithApostrophe = "'" + description;
-            var expectedMonth = 3;
-            var actualDay = 6;
-            var closestMatchingDay = actualDay + 2;
-            var exactDate = $"{actualDay}/{expectedMonth}/2017";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
-                $"{exactDate}^£24.99^^TILL^SOME OTHER DESCRIPTION^^^^^",
-                $"{closestMatchingDay}/{expectedMonth - 1}/2017^£24.99^^TILL^{description}^^^^^",
-                $"{closestMatchingDay}/{expectedMonth}/2017^£24.99^^TILL^{description}^^^^^",
-                $"{closestMatchingDay}/{expectedMonth + 1}/2017^£24.99^^TILL^{description}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"{exactDate},POS,{descriptionWithApostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var description_with_apostrophe = "'" + description;
+            var expected_month = 3;
+            var actual_day = 6;
+            var closest_matching_day = actual_day + 2;
+            var exact_date = $"{actual_day}/{expected_month}/2017";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
+                $"{exact_date}^£24.99^^TILL^SOME OTHER DESCRIPTION^^^^^",
+                $"{closest_matching_day}/{expected_month - 1}/2017^£24.99^^TILL^{description}^^^^^",
+                $"{closest_matching_day}/{expected_month}/2017^£24.99^^TILL^{description}^^^^^",
+                $"{closest_matching_day}/{expected_month + 1}/2017^£24.99^^TILL^{description}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"{exact_date},POS,{description_with_apostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
-            Assert.IsTrue(matchedRecord.Matches.Count > 1);
-            Assert.AreEqual(closestMatchingDay, matchedRecord.Matches[0].ActualRecords[0].Date.Day, "Day");
-            Assert.AreEqual(expectedMonth, matchedRecord.Matches[0].ActualRecords[0].Date.Month, "Month");
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
+            Assert.IsTrue(matched_record.Matches.Count > 1);
+            Assert.AreEqual(closest_matching_day, matched_record.Matches[0].Actual_records[0].Date.Day, "Day");
+            Assert.AreEqual(expected_month, matched_record.Matches[0].Actual_records[0].Date.Month, "Month");
         }
 
         [Test]
@@ -1574,23 +1574,23 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             var description = "DIVIDE YOUR GREEN";
-            var descriptionWithApostrophe = "'" + description;
-            var expectedMonth = 3;
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
-                $"06/{expectedMonth - 1}/2017^£24.99^^TILL^SOME OTHER DESCRIPTION^^^^^",
-                $"06/{expectedMonth}/2017^£24.99^^TILL^SOME OTHER DESCRIPTION^^^^^",
-                $"06/{expectedMonth + 1}/2017^£24.99^^TILL^SOME OTHER DESCRIPTION^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/{expectedMonth}/2017,POS,{descriptionWithApostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var description_with_apostrophe = "'" + description;
+            var expected_month = 3;
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
+                $"06/{expected_month - 1}/2017^£24.99^^TILL^SOME OTHER DESCRIPTION^^^^^",
+                $"06/{expected_month}/2017^£24.99^^TILL^SOME OTHER DESCRIPTION^^^^^",
+                $"06/{expected_month + 1}/2017^£24.99^^TILL^SOME OTHER DESCRIPTION^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/{expected_month}/2017,POS,{description_with_apostrophe},24.99,4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
-            Assert.IsTrue(matchedRecord.Matches.Count > 1);
-            Assert.AreEqual(expectedMonth, matchedRecord.Matches[0].ActualRecords[0].Date.Month, "Month");
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
+            Assert.IsTrue(matched_record.Matches.Count > 1);
+            Assert.AreEqual(expected_month, matched_record.Matches[0].Actual_records[0].Date.Month, "Month");
         }
 
         [Test]
@@ -1598,92 +1598,92 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             var description = "DIVIDE YOUR GREEN";
-            var descriptionWithApostrophe = "'" + description;
-            var originalAmount = "24.99";
-            var someOtherAmount = "66.66";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
-                $"06/2/2017^{someOtherAmount}^^TILL^SOME OTHER DESCRIPTION^^^^^",
-                $"06/3/2017^{someOtherAmount}^^TILL^{description}^^^^^",
-                $"06/4/2017^{someOtherAmount}^^TILL^{description}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/3/2017,POS,{descriptionWithApostrophe},{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var description_with_apostrophe = "'" + description;
+            var original_amount = "24.99";
+            var some_other_amount = "66.66";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
+                $"06/2/2017^{some_other_amount}^^TILL^SOME OTHER DESCRIPTION^^^^^",
+                $"06/3/2017^{some_other_amount}^^TILL^{description}^^^^^",
+                $"06/4/2017^{some_other_amount}^^TILL^{description}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/3/2017,POS,{description_with_apostrophe},{original_amount},4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
-            Assert.AreEqual(2, matchedRecord.Matches.Count);
-            Assert.AreEqual(description, matchedRecord.Matches[0].ActualRecords[0].Description);
-            Assert.AreEqual(description, matchedRecord.Matches[1].ActualRecords[0].Description);
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
+            Assert.AreEqual(2, matched_record.Matches.Count);
+            Assert.AreEqual(description, matched_record.Matches[0].Actual_records[0].Description);
+            Assert.AreEqual(description, matched_record.Matches[1].Actual_records[0].Description);
         }
 
         [Test] public void OrderSemiAutoMatches_ByExactAmount_ThenByFullText_ThenByPartialText_ThenByNearestDate_ThenByPartialAmount()
         {
             // Arrange
             var description = "DIVIDE YOUR -Green;";
-            var partialDescriptionMatch = $"SOMETHING SOMETHING GREENE";
-            var descriptionWithApostrophe = "'" + description;
-            var originalAmount = 25;
-            var originalAmountString = $"{originalAmount}.00";
-            var partialAmount = originalAmount - 2;
-            var partialAmountString = $"{partialAmount}.00";
-            var someOtherAmount = "66.66";
-            var originalMonth = 3;
-            var originalDate = $"06/0{originalMonth}/2017";
-            var originalDateMinusOne = $"06/0{originalMonth - 1}/2017";
-            var originalDatePlusTwo = $"06/0{originalMonth + 2}/2017";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
-                $"{originalDate}^{originalAmountString}^^TILL^SOME OTHER DESCRIPTION^^^^^",
-                $"{originalDatePlusTwo}^{originalAmountString}^^TILL^{description}^^^^^",
-                $"{originalDate}^{originalAmountString}^^TILL^{description}^^^^^",
-                $"{originalDateMinusOne}^{originalAmountString}^^TILL^{description}^^^^^",
-                $"{originalDateMinusOne}^{originalAmountString}^^TILL^SOME OTHER DESCRIPTION^^^^^",
-                $"{originalDatePlusTwo}^{originalAmountString}^^TILL^{partialDescriptionMatch}^^^^^",
-                $"{originalDate}^{someOtherAmount}^^TILL^{partialDescriptionMatch}^^^^^",
-                $"{originalDatePlusTwo}^{someOtherAmount}^^TILL^SOME OTHER DESCRIPTION^^^^^",
-                $"{originalDate}^{originalAmountString}^^TILL^{partialDescriptionMatch}^^^^^",
-                $"{originalDateMinusOne}^{originalAmountString}^^TILL^{partialDescriptionMatch}^^^^^",
-                $"{originalDate}^{partialAmountString}^^TILL^{partialDescriptionMatch}^^^^^",
-                $"{originalDateMinusOne}^{someOtherAmount}^^TILL^SOME OTHER DESCRIPTION^^^^^",
-                $"{originalDateMinusOne}^{someOtherAmount}^^TILL^{partialDescriptionMatch}^^^^^",
-                $"{originalDatePlusTwo}^{someOtherAmount}^^TILL^{partialDescriptionMatch}^^^^^",
-                $"{originalDatePlusTwo}^{originalAmountString}^^TILL^SOME OTHER DESCRIPTION^^^^^",
-                $"{originalDateMinusOne}^{someOtherAmount}^^TILL^{description}^^^^^",
-                $"{originalDateMinusOne}^{partialAmountString}^^TILL^{partialDescriptionMatch}^^^^^",
-                $"{originalDatePlusTwo}^{partialAmountString}^^TILL^{partialDescriptionMatch}^^^^^",
-                $"{originalDatePlusTwo}^{someOtherAmount}^^TILL^{description}^^^^^",
-                $"{originalDate}^{someOtherAmount}^^TILL^SOME OTHER DESCRIPTION^^^^^",
-                $"{originalDate}^{someOtherAmount}^^TILL^{description}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"{originalDate},POS,{descriptionWithApostrophe},{originalAmountString},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var partial_description_match = $"SOMETHING SOMETHING GREENE";
+            var description_with_apostrophe = "'" + description;
+            var original_amount = 25;
+            var original_amount_string = $"{original_amount}.00";
+            var partial_amount = original_amount - 2;
+            var partial_amount_string = $"{partial_amount}.00";
+            var some_other_amount = "66.66";
+            var original_month = 3;
+            var original_date = $"06/0{original_month}/2017";
+            var original_date_minus_one = $"06/0{original_month - 1}/2017";
+            var original_date_plus_two = $"06/0{original_month + 2}/2017";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
+                $"{original_date}^{original_amount_string}^^TILL^SOME OTHER DESCRIPTION^^^^^",
+                $"{original_date_plus_two}^{original_amount_string}^^TILL^{description}^^^^^",
+                $"{original_date}^{original_amount_string}^^TILL^{description}^^^^^",
+                $"{original_date_minus_one}^{original_amount_string}^^TILL^{description}^^^^^",
+                $"{original_date_minus_one}^{original_amount_string}^^TILL^SOME OTHER DESCRIPTION^^^^^",
+                $"{original_date_plus_two}^{original_amount_string}^^TILL^{partial_description_match}^^^^^",
+                $"{original_date}^{some_other_amount}^^TILL^{partial_description_match}^^^^^",
+                $"{original_date_plus_two}^{some_other_amount}^^TILL^SOME OTHER DESCRIPTION^^^^^",
+                $"{original_date}^{original_amount_string}^^TILL^{partial_description_match}^^^^^",
+                $"{original_date_minus_one}^{original_amount_string}^^TILL^{partial_description_match}^^^^^",
+                $"{original_date}^{partial_amount_string}^^TILL^{partial_description_match}^^^^^",
+                $"{original_date_minus_one}^{some_other_amount}^^TILL^SOME OTHER DESCRIPTION^^^^^",
+                $"{original_date_minus_one}^{some_other_amount}^^TILL^{partial_description_match}^^^^^",
+                $"{original_date_plus_two}^{some_other_amount}^^TILL^{partial_description_match}^^^^^",
+                $"{original_date_plus_two}^{original_amount_string}^^TILL^SOME OTHER DESCRIPTION^^^^^",
+                $"{original_date_minus_one}^{some_other_amount}^^TILL^{description}^^^^^",
+                $"{original_date_minus_one}^{partial_amount_string}^^TILL^{partial_description_match}^^^^^",
+                $"{original_date_plus_two}^{partial_amount_string}^^TILL^{partial_description_match}^^^^^",
+                $"{original_date_plus_two}^{some_other_amount}^^TILL^{description}^^^^^",
+                $"{original_date}^{some_other_amount}^^TILL^SOME OTHER DESCRIPTION^^^^^",
+                $"{original_date}^{some_other_amount}^^TILL^{description}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"{original_date},POS,{description_with_apostrophe},{original_amount_string},4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var currentPotentialMatches = reconciliator.CurrentPotentialMatches();
-            Assert.AreEqual(18, currentPotentialMatches.Count);
-            Assert.AreEqual($"0. {originalDate},£{originalAmountString},{description}", currentPotentialMatches[0].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"1. {originalDateMinusOne},£{originalAmountString},{description}", currentPotentialMatches[1].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"2. {originalDatePlusTwo},£{originalAmountString},{description}", currentPotentialMatches[2].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"3. {originalDate},£{originalAmountString},{partialDescriptionMatch}", currentPotentialMatches[3].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"4. {originalDateMinusOne},£{originalAmountString},{partialDescriptionMatch}", currentPotentialMatches[4].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"5. {originalDatePlusTwo},£{originalAmountString},{partialDescriptionMatch}", currentPotentialMatches[5].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"6. {originalDate},£{originalAmountString},SOME OTHER DESCRIPTION", currentPotentialMatches[6].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"7. {originalDateMinusOne},£{originalAmountString},SOME OTHER DESCRIPTION", currentPotentialMatches[7].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"8. {originalDatePlusTwo},£{originalAmountString},SOME OTHER DESCRIPTION", currentPotentialMatches[8].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"9. {originalDate},£{someOtherAmount},{description}", currentPotentialMatches[9].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"10. {originalDateMinusOne},£{someOtherAmount},{description}", currentPotentialMatches[10].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"11. {originalDatePlusTwo},£{someOtherAmount},{description}", currentPotentialMatches[11].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"12. {originalDate},£{partialAmountString},{partialDescriptionMatch}", currentPotentialMatches[12].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"13. {originalDate},£{someOtherAmount},{partialDescriptionMatch}", currentPotentialMatches[13].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"14. {originalDateMinusOne},£{partialAmountString},{partialDescriptionMatch}", currentPotentialMatches[14].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"15. {originalDateMinusOne},£{someOtherAmount},{partialDescriptionMatch}", currentPotentialMatches[15].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"16. {originalDatePlusTwo},£{partialAmountString},{partialDescriptionMatch}", currentPotentialMatches[16].ConsoleLines[0].AsTextLine());
-            Assert.AreEqual($"17. {originalDatePlusTwo},£{someOtherAmount},{partialDescriptionMatch}", currentPotentialMatches[17].ConsoleLines[0].AsTextLine());
+            var current_potential_matches = reconciliator.Current_potential_matches();
+            Assert.AreEqual(18, current_potential_matches.Count);
+            Assert.AreEqual($"0. {original_date},£{original_amount_string},{description}", current_potential_matches[0].Console_lines[0].As_text_line());
+            Assert.AreEqual($"1. {original_date_minus_one},£{original_amount_string},{description}", current_potential_matches[1].Console_lines[0].As_text_line());
+            Assert.AreEqual($"2. {original_date_plus_two},£{original_amount_string},{description}", current_potential_matches[2].Console_lines[0].As_text_line());
+            Assert.AreEqual($"3. {original_date},£{original_amount_string},{partial_description_match}", current_potential_matches[3].Console_lines[0].As_text_line());
+            Assert.AreEqual($"4. {original_date_minus_one},£{original_amount_string},{partial_description_match}", current_potential_matches[4].Console_lines[0].As_text_line());
+            Assert.AreEqual($"5. {original_date_plus_two},£{original_amount_string},{partial_description_match}", current_potential_matches[5].Console_lines[0].As_text_line());
+            Assert.AreEqual($"6. {original_date},£{original_amount_string},SOME OTHER DESCRIPTION", current_potential_matches[6].Console_lines[0].As_text_line());
+            Assert.AreEqual($"7. {original_date_minus_one},£{original_amount_string},SOME OTHER DESCRIPTION", current_potential_matches[7].Console_lines[0].As_text_line());
+            Assert.AreEqual($"8. {original_date_plus_two},£{original_amount_string},SOME OTHER DESCRIPTION", current_potential_matches[8].Console_lines[0].As_text_line());
+            Assert.AreEqual($"9. {original_date},£{some_other_amount},{description}", current_potential_matches[9].Console_lines[0].As_text_line());
+            Assert.AreEqual($"10. {original_date_minus_one},£{some_other_amount},{description}", current_potential_matches[10].Console_lines[0].As_text_line());
+            Assert.AreEqual($"11. {original_date_plus_two},£{some_other_amount},{description}", current_potential_matches[11].Console_lines[0].As_text_line());
+            Assert.AreEqual($"12. {original_date},£{partial_amount_string},{partial_description_match}", current_potential_matches[12].Console_lines[0].As_text_line());
+            Assert.AreEqual($"13. {original_date},£{some_other_amount},{partial_description_match}", current_potential_matches[13].Console_lines[0].As_text_line());
+            Assert.AreEqual($"14. {original_date_minus_one},£{partial_amount_string},{partial_description_match}", current_potential_matches[14].Console_lines[0].As_text_line());
+            Assert.AreEqual($"15. {original_date_minus_one},£{some_other_amount},{partial_description_match}", current_potential_matches[15].Console_lines[0].As_text_line());
+            Assert.AreEqual($"16. {original_date_plus_two},£{partial_amount_string},{partial_description_match}", current_potential_matches[16].Console_lines[0].As_text_line());
+            Assert.AreEqual($"17. {original_date_plus_two},£{some_other_amount},{partial_description_match}", current_potential_matches[17].Console_lines[0].As_text_line());
         }
 
         [Test]
@@ -1691,53 +1691,53 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             var description = "DIVIDE YOUR GREEN";
-            var descriptionWithApostrophe = "'" + description;
-            var originalAmount = "24.99";
-            var someOtherAmount = "66.66";
-            var originalMonth = 3;
-            var originalDate = $"06/0{originalMonth}/2017";
-            var originalDateMinusOne = $"06/0{originalMonth - 1}/2017";
-            var originalDatePlusTwo = $"06/0{originalMonth + 2}/2017";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
-                $"{originalDatePlusTwo}^{someOtherAmount}^^TILL^SOME OTHER DESCRIPTION^^^^^",
-                $"{originalDateMinusOne}^{someOtherAmount}^^TILL^SOME OTHER DESCRIPTION^^^^^",
-                $"{originalDate}^{someOtherAmount}^^TILL^SOME OTHER DESCRIPTION^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"{originalDate},POS,{descriptionWithApostrophe},{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var description_with_apostrophe = "'" + description;
+            var original_amount = "24.99";
+            var some_other_amount = "66.66";
+            var original_month = 3;
+            var original_date = $"06/0{original_month}/2017";
+            var original_date_minus_one = $"06/0{original_month - 1}/2017";
+            var original_date_plus_two = $"06/0{original_month + 2}/2017";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
+                $"{original_date_plus_two}^{some_other_amount}^^TILL^SOME OTHER DESCRIPTION^^^^^",
+                $"{original_date_minus_one}^{some_other_amount}^^TILL^SOME OTHER DESCRIPTION^^^^^",
+                $"{original_date}^{some_other_amount}^^TILL^SOME OTHER DESCRIPTION^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"{original_date},POS,{description_with_apostrophe},{original_amount},4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
-            Assert.AreEqual(null, matchedRecord);
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
+            Assert.AreEqual(null, matched_record);
         }
 
         [Test]
-        public void WillFindPartialMatchIfCandidateDescriptionContainsOneWordFromOriginal()
+        public void Will_find_partial_match_if_candidate_description_contains_one_word_from_original()
         {
             // Arrange
-            var originalAmount = "24.99";
-            var someOtherAmount = "66.66";
-            var targetWord = "PINTIPOPLICATION";
-            var candidateDescription = $"SOMETHING {targetWord} SOMETHING";
-            var sourceDescription = $"DIVIDE {targetWord} GREEN";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
-                $"02/02/2017^£{someOtherAmount}^^TILL^{candidateDescription}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/03/2017,POS,{sourceDescription},{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var original_amount = "24.99";
+            var some_other_amount = "66.66";
+            var target_word = "PINTIPOPLICATION";
+            var candidate_description = $"SOMETHING {target_word} SOMETHING";
+            var source_description = $"DIVIDE {target_word} GREEN";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
+                $"02/02/2017^£{some_other_amount}^^TILL^{candidate_description}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/03/2017,POS,{source_description},{original_amount},4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matches = reconciliator.CurrentPotentialMatches();
+            var matches = reconciliator.Current_potential_matches();
             Assert.AreEqual(1, matches.Count);
-            Assert.AreEqual(1, matches.Count(x => x.PartialTextMatch));
-            Assert.AreEqual(candidateDescription, matches[0].ActualRecords[0].Description);
-            Assert.IsTrue(matches[0].PartialTextMatch);
+            Assert.AreEqual(1, matches.Count(x => x.Partial_text_match));
+            Assert.AreEqual(candidate_description, matches[0].Actual_records[0].Description);
+            Assert.IsTrue(matches[0].Partial_text_match);
         }
 
         [Test]
@@ -1745,149 +1745,149 @@ namespace ReconciliationBaseTests.ReconciliationBase
         [TestCase("the")]
         [TestCase("or")]
         [TestCase("with")]
-        public void WillNotFindPartialMatchIfCandidateDescriptionContainsReservedWordFromOriginal(string targetWord)
+        public void Will_not_find_partial_match_if_candidate_description_contains_reserved_word_from_original(string target_word)
         {
             // Arrange
-            var originalAmount = "24.99";
-            var someOtherAmount = "66.66";
-            var candidateDescription = $"SOMETHING {targetWord} SOMETHING";
-            var sourceDescription = $"DIVIDE {targetWord} GREEN";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
-                $"02/02/2017^£{someOtherAmount}^^TILL^{candidateDescription}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/03/2017,POS,{sourceDescription},{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var original_amount = "24.99";
+            var some_other_amount = "66.66";
+            var candidate_description = $"SOMETHING {target_word} SOMETHING";
+            var source_description = $"DIVIDE {target_word} GREEN";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
+                $"02/02/2017^£{some_other_amount}^^TILL^{candidate_description}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/03/2017,POS,{source_description},{original_amount},4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matches = reconciliator.CurrentPotentialMatches();
-            Assert.AreEqual(null, matches, $"Should not match on '{targetWord}'");
+            var matches = reconciliator.Current_potential_matches();
+            Assert.AreEqual(null, matches, $"Should not match on '{target_word}'");
         }
 
         [Test]
-        public void WillFindPartialMatchIfCandidateDescriptionContainsWordWhichStartsWithWordFromOriginal()
+        public void Will_find_partial_match_if_candidate_description_contains_word_which_starts_with_word_from_original()
         {
             // Arrange
-            var originalAmount = "24.99";
-            var someOtherAmount = "66.66";
-            var targetWord = "GREEN";
-            var startsWithTargetWord = "GREENE";
-            var candidateDescription = $"SOMETHING SOMETHING {startsWithTargetWord}";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
-                $"02/02/2017^£{someOtherAmount}^^TILL^{candidateDescription}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/03/2017,POS,DIVIDE YOUR {targetWord},{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var original_amount = "24.99";
+            var some_other_amount = "66.66";
+            var target_word = "GREEN";
+            var starts_with_target_word = "GREENE";
+            var candidate_description = $"SOMETHING SOMETHING {starts_with_target_word}";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
+                $"02/02/2017^£{some_other_amount}^^TILL^{candidate_description}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/03/2017,POS,DIVIDE YOUR {target_word},{original_amount},4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matches = reconciliator.CurrentPotentialMatches();
+            var matches = reconciliator.Current_potential_matches();
             Assert.AreEqual(1, matches.Count);
-            Assert.AreEqual(1, matches.Count(x => x.PartialTextMatch));
-            Assert.AreEqual(candidateDescription, matches[0].ActualRecords[0].Description);
-            Assert.IsTrue(matches[0].PartialTextMatch);
+            Assert.AreEqual(1, matches.Count(x => x.Partial_text_match));
+            Assert.AreEqual(candidate_description, matches[0].Actual_records[0].Description);
+            Assert.IsTrue(matches[0].Partial_text_match);
         }
 
         [Test]
-        public void WillFindPartialMatchIfCandidateDescriptionContainsWordWhichWasSurroundedWithPunctuationInOriginal()
+        public void Will_find_partial_match_if_candidate_description_contains_word_which_was_surrounded_with_punctuation_in_original()
         {
             // Arrange
-            var originalAmount = "24.99";
-            var someOtherAmount = "66.66";
-            var targetWord = "GREEN";
-            var candidateDescription = $"SOMETHING SOMETHING {targetWord}";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
-                $"02/02/2017^£{someOtherAmount}^^TILL^{candidateDescription}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/03/2017,POS,DIVIDE YOUR '{targetWord}:,{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var original_amount = "24.99";
+            var some_other_amount = "66.66";
+            var target_word = "GREEN";
+            var candidate_description = $"SOMETHING SOMETHING {target_word}";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
+                $"02/02/2017^£{some_other_amount}^^TILL^{candidate_description}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/03/2017,POS,DIVIDE YOUR '{target_word}:,{original_amount},4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matches = reconciliator.CurrentPotentialMatches();
+            var matches = reconciliator.Current_potential_matches();
             Assert.AreEqual(1, matches.Count);
-            Assert.AreEqual(1, matches.Count(x => x.PartialTextMatch));
-            Assert.AreEqual(candidateDescription, matches[0].ActualRecords[0].Description);
-            Assert.IsTrue(matches[0].PartialTextMatch);
+            Assert.AreEqual(1, matches.Count(x => x.Partial_text_match));
+            Assert.AreEqual(candidate_description, matches[0].Actual_records[0].Description);
+            Assert.IsTrue(matches[0].Partial_text_match);
         }
 
         [Test]
-        public void PartialMatchIsNotCaseSensitive()
+        public void Partial_match_is_not_case_sensitive()
         {
             // Arrange
-            var originalAmount = "24.99";
-            var someOtherAmount = "66.66";
-            var targetWord = "PiNtIPOPliCaTIOn";
-            var targetWordToUpper = targetWord.ToUpper();
-            var candidateDescription = $"SOMETHING SOMETHING {targetWordToUpper}";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
-                $"02/02/2017^£{someOtherAmount}^^TILL^{candidateDescription}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/03/2017,POS,DIVIDE YOUR '{targetWord}:,{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var original_amount = "24.99";
+            var some_other_amount = "66.66";
+            var target_word = "PiNtIPOPliCaTIOn";
+            var target_word_to_upper = target_word.ToUpper();
+            var candidate_description = $"SOMETHING SOMETHING {target_word_to_upper}";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
+                $"02/02/2017^£{some_other_amount}^^TILL^{candidate_description}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/03/2017,POS,DIVIDE YOUR '{target_word}:,{original_amount},4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matches = reconciliator.CurrentPotentialMatches();
+            var matches = reconciliator.Current_potential_matches();
             Assert.AreEqual(1, matches.Count);
-            Assert.AreEqual(1, matches.Count(x => x.PartialTextMatch));
-            Assert.AreEqual(candidateDescription, matches[0].ActualRecords[0].Description);
-            Assert.IsTrue(matches[0].PartialTextMatch);
+            Assert.AreEqual(1, matches.Count(x => x.Partial_text_match));
+            Assert.AreEqual(candidate_description, matches[0].Actual_records[0].Description);
+            Assert.IsTrue(matches[0].Partial_text_match);
         }
 
         [Test]
-        public void PairedLettersAreOnlyMatchedIfTheyArePresentAsSeparateWords()
+        public void Paired_letters_are_only_matched_if_they_are_present_as_separate_words()
         {
             // Arrange
-            var originalAmount = "24.99";
-            var someOtherAmount = "66.66";
-            var targetWord = "UK";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
-                $"02/02/2017^£{someOtherAmount}^^TILL^SOMETHING FC{targetWord}^^^^^",
-                $"02/02/2017^£{someOtherAmount}^^TILL^SOMETHING {targetWord}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/03/2017,POS,DIVIDE YOUR '{targetWord}:,{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var original_amount = "24.99";
+            var some_other_amount = "66.66";
+            var target_word = "UK";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
+                $"02/02/2017^£{some_other_amount}^^TILL^SOMETHING FC{target_word}^^^^^",
+                $"02/02/2017^£{some_other_amount}^^TILL^SOMETHING {target_word}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/03/2017,POS,DIVIDE YOUR '{target_word}:,{original_amount},4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matches = reconciliator.CurrentPotentialMatches();
+            var matches = reconciliator.Current_potential_matches();
             Assert.AreEqual(1, matches.Count);
-            Assert.AreEqual(1, matches.Count(x => x.PartialTextMatch));
-            Assert.AreEqual($"SOMETHING {targetWord}", matches[0].ActualRecords[0].Description);
-            Assert.IsTrue(matches[0].PartialTextMatch);
+            Assert.AreEqual(1, matches.Count(x => x.Partial_text_match));
+            Assert.AreEqual($"SOMETHING {target_word}", matches[0].Actual_records[0].Description);
+            Assert.IsTrue(matches[0].Partial_text_match);
         }
 
         [Test]
-        public void SingleLettersAreNotMatchedAsWords()
+        public void Single_letters_are_not_matched_as_words()
         {
             // Arrange
-            var originalAmount = "24.99";
-            var someOtherAmount = "66.66";
-            var originalDescription = "ZZZOTHERWHERE S S T ZZZOTHERWHERE";
-            var candidateDescription = "SOMETHING S S T SOMETHING";
-            var tempBankInFile = CreateCsvFile<BankRecord>(_tempBankInFileName, new string[] {
-                $"02/02/2017^£{someOtherAmount}^^TILL^{candidateDescription}^^^^^"});
-            var tempActualBankFile = CreateCsvFile<ActualBankRecord>(_tempActualBankFileName, new string[] {
-                $"06/03/2017,POS,{originalDescription},{originalAmount},4724.01,'Envelope,'228822-99933422"});
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(tempActualBankFile, tempBankInFile);
+            var original_amount = "24.99";
+            var some_other_amount = "66.66";
+            var original_description = "ZZZOTHERWHERE S S T ZZZOTHERWHERE";
+            var candidate_description = "SOMETHING S S T SOMETHING";
+            var temp_bank_in_file = Create_csv_file<BankRecord>(_tempBankInFileName, new string[] {
+                $"02/02/2017^£{some_other_amount}^^TILL^{candidate_description}^^^^^"});
+            var temp_actual_bank_file = Create_csv_file<ActualBankRecord>(_tempActualBankFileName, new string[] {
+                $"06/03/2017,POS,{original_description},{original_amount},4724.01,'Envelope,'228822-99933422"});
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(temp_actual_bank_file, temp_bank_in_file);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            RecordForMatching<ActualBankRecord> matchedRecord = reconciliator.CurrentRecordForMatching();
-            Assert.AreEqual(null, matchedRecord);
+            RecordForMatching<ActualBankRecord> matched_record = reconciliator.Current_record_for_matching();
+            Assert.AreEqual(null, matched_record);
         }
 
         [Test]
@@ -1900,38 +1900,38 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var amount2 = amount1 + 10;
             var text2 = "IMPECCABLE TILING";
             var date2 = date1.AddDays(30);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1 + "something"},
                     new ActualBankRecord {Date = date2, Amount = amount2, Description = text2 + "something"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date2.AddDays(2), UnreconciledAmount = amount2, Description = text2 + "extra"},
-                    new BankRecord {Date = date1.AddDays(2), UnreconciledAmount = amount1, Description = text1 + "extra"}
+                    new BankRecord {Date = date2.AddDays(2), Unreconciled_amount = amount2, Description = text2 + "extra"},
+                    new BankRecord {Date = date1.AddDays(2), Unreconciled_amount = amount1, Description = text1 + "extra"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> auto_matched_items = reconciliator.Do_auto_matching();
 
             // Assert
-            foreach (var recordForMatching in autoMatchedItems)
+            foreach (var record_for_matching in auto_matched_items)
             {
-                var sourceDesc = recordForMatching.SourceRecord.Description;
-                var matchDesc = recordForMatching.Match.ActualRecords[0].Description;
-                Assert.IsTrue(reconciliator.CheckForPartialTextMatch(sourceDesc, matchDesc), 
+                var source_desc = record_for_matching.SourceRecord.Description;
+                var match_desc = record_for_matching.Match.Actual_records[0].Description;
+                Assert.IsTrue(reconciliator.Check_for_partial_text_match(source_desc, match_desc), 
                     "source and match should have partially matching descriptions");
-                Assert.AreEqual(recordForMatching.SourceRecord.MainAmount(),
-                    recordForMatching.Match.ActualRecords[0].MainAmount(),
+                Assert.AreEqual(record_for_matching.SourceRecord.Main_amount(),
+                    record_for_matching.Match.Actual_records[0].Main_amount(),
                     "source and match should have matching amounts");
-                Assert.IsTrue(recordForMatching.Match.Rankings.Date <= PotentialMatch.PartialDateMatchThreshold, 
+                Assert.IsTrue(record_for_matching.Match.Rankings.Date <= PotentialMatch.PartialDateMatchThreshold, 
                     "source and match should have near dates");
             }
         }
@@ -1951,14 +1951,14 @@ namespace ReconciliationBaseTests.ReconciliationBase
         public void WhenCheckingForPartialTextMatch_WillFindPartialMatchForWordSurroundedByPunctuation(char punctuation)
         {
             // Arrange
-            var mockActualBankFile = new Mock<ICSVFile<ActualBankRecord>>().Object;
-            var mockBankFile = new Mock<ICSVFile<BankRecord>>().Object;
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(mockActualBankFile, mockBankFile);
+            var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>().Object;
+            var mock_bank_file = new Mock<ICSVFile<BankRecord>>().Object;
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(mock_actual_bank_file, mock_bank_file);
             var source = $"This string contains the{punctuation}word that we want";
             var target = $"Also has missing {punctuation}word{punctuation} required";
 
             // Act
-            var result = reconciliator.CheckForPartialTextMatch(source, target);
+            var result = reconciliator.Check_for_partial_text_match(source, target);
 
             // Assert
             Assert.IsTrue(result, $"'{source}' and '{target}' should be a partial match.");
@@ -1974,34 +1974,34 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var amount2 = amount1 + 10;
             var text2 = "IMPECCABLE TILING";
             var date2 = date1.AddDays(30);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1},
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = "boppl"},
                     new ActualBankRecord {Date = date2, Amount = amount2, Description = text2},
                     new ActualBankRecord {Date = date2, Amount = amount2, Description = "bazzl"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date2, UnreconciledAmount = amount2, Description = text2},
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date2, Unreconciled_amount = amount2, Description = text2},
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> auto_matched_items = reconciliator.Do_auto_matching();
 
             // Assert
-            Assert.AreEqual(2, autoMatchedItems.Count, "should be correct number of auto-matching results");
-            foreach (var recordForMatching in autoMatchedItems)
+            Assert.AreEqual(2, auto_matched_items.Count, "should be correct number of auto-matching results");
+            foreach (var record_for_matching in auto_matched_items)
             {
-                Assert.IsNotNull(recordForMatching.Match, "every record should have a match");
+                Assert.IsNotNull(record_for_matching.Match, "every record should have a match");
             }
         }
 
@@ -2012,28 +2012,28 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var amount1 = 22.23;
             var text1 = "'DIVIDE YOUR GREEN";
             var date1 = new DateTime(2018, 10, 31);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> auto_matched_items = reconciliator.Do_auto_matching();
 
             // Assert
-            Assert.AreEqual(autoMatchedItems[0].Match.ActualRecords[0], autoMatchedItems[0].SourceRecord.Match);
-            Assert.AreEqual(autoMatchedItems[0].SourceRecord, autoMatchedItems[0].Match.ActualRecords[0].Match);
+            Assert.AreEqual(auto_matched_items[0].Match.Actual_records[0], auto_matched_items[0].SourceRecord.Match);
+            Assert.AreEqual(auto_matched_items[0].SourceRecord, auto_matched_items[0].Match.Actual_records[0].Match);
         }
 
         [Test]
@@ -2043,28 +2043,28 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var amount1 = 22.23;
             var text1 = "'DIVIDE YOUR GREEN";
             var date1 = new DateTime(2018, 10, 31);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> auto_matched_items = reconciliator.Do_auto_matching();
 
             // Assert
-            Assert.IsTrue(autoMatchedItems[0].SourceRecord.Matched);
-            AssertMatchIsMatched(autoMatchedItems[0].Match);
+            Assert.IsTrue(auto_matched_items[0].SourceRecord.Matched);
+            Assert_match_is_matched(auto_matched_items[0].Match);
         }
 
         [Test]
@@ -2074,28 +2074,28 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var amount1 = 22.23;
             var text1 = "'DIVIDE YOUR GREEN";
             var date1 = new DateTime(2018, 10, 31);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1},
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> auto_matched_items = reconciliator.Do_auto_matching();
 
             // Assert
-            Assert.AreEqual(1, autoMatchedItems.Count);
+            Assert.AreEqual(1, auto_matched_items.Count);
         }
 
         [Test]
@@ -2108,30 +2108,30 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var amount2 = amount1 + 50;
             var text2 = "IMPECCABLE TILING";
             var date2 = date1.AddDays(30);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1},
                     new ActualBankRecord {Date = date2, Amount = amount2, Description = text2}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date2, UnreconciledAmount = amount2, Description = "bazzl"},
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date2, Unreconciled_amount = amount2, Description = "bazzl"},
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> auto_matched_items = reconciliator.Do_auto_matching();
 
             // Assert
-            Assert.AreEqual(1, autoMatchedItems.Count);
-            Assert.AreEqual(text1, autoMatchedItems[0].SourceRecord.Description);
+            Assert.AreEqual(1, auto_matched_items.Count);
+            Assert.AreEqual(text1, auto_matched_items[0].SourceRecord.Description);
         }
 
         [Test]
@@ -2143,33 +2143,33 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var date1 = new DateTime(2018, 10, 31);
             var date2 = date1.AddDays(30);
             var date3 = date2.AddDays(30);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date2, Amount = amount1, Description = text1},
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1},
                     new ActualBankRecord {Date = date3, Amount = amount1, Description = text1}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1},
-                    new BankRecord {Date = date2, UnreconciledAmount = amount1, Description = text1},
-                    new BankRecord {Date = date3, UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1},
+                    new BankRecord {Date = date2, Unreconciled_amount = amount1, Description = text1},
+                    new BankRecord {Date = date3, Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> auto_matched_items = reconciliator.Do_auto_matching();
 
             // Assert
-            Assert.AreEqual(date1, autoMatchedItems[0].SourceRecord.Date);
-            Assert.AreEqual(date2, autoMatchedItems[1].SourceRecord.Date);
-            Assert.AreEqual(date3, autoMatchedItems[2].SourceRecord.Date);
+            Assert.AreEqual(date1, auto_matched_items[0].SourceRecord.Date);
+            Assert.AreEqual(date2, auto_matched_items[1].SourceRecord.Date);
+            Assert.AreEqual(date3, auto_matched_items[2].SourceRecord.Date);
         }
 
         [Test]
@@ -2179,28 +2179,28 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var amount1 = 22.23;
             var text1 = "'DIVIDE YOUR GREEN";
             var date1 = new DateTime(2018, 10, 31);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1},
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1},
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> auto_matched_items = reconciliator.Do_auto_matching();
 
             // Assert
-            Assert.AreEqual(0, autoMatchedItems.Count);
+            Assert.AreEqual(0, auto_matched_items.Count);
         }
 
         [Test]
@@ -2216,33 +2216,33 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var amount3 = amount2 + 50;
             var text3 = "SOMETHING ELSE";
             var date3 = date2.AddDays(30);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date2, Amount = amount2, Description = text2},
                     new ActualBankRecord {Date = date3, Amount = amount3, Description = text3},
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1},
-                    new BankRecord {Date = date2, UnreconciledAmount = amount2, Description = text2},
-                    new BankRecord {Date = date3, UnreconciledAmount = amount3, Description = text3}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1},
+                    new BankRecord {Date = date2, Unreconciled_amount = amount2, Description = text2},
+                    new BankRecord {Date = date3, Unreconciled_amount = amount3, Description = text3}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
 
             // Act
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            List<AutoMatchedRecord<ActualBankRecord>> auto_matched_items = reconciliator.Do_auto_matching();
 
             // Assert
-            Assert.AreEqual(0, autoMatchedItems[0].Index);
-            Assert.AreEqual(1, autoMatchedItems[1].Index);
-            Assert.AreEqual(2, autoMatchedItems[2].Index);
+            Assert.AreEqual(0, auto_matched_items[0].Index);
+            Assert.AreEqual(1, auto_matched_items[1].Index);
+            Assert.AreEqual(2, auto_matched_items[2].Index);
         }
 
         [Test]
@@ -2252,49 +2252,49 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var amount1 = 22.23;
             var text1 = "'DIVIDE YOUR GREEN";
             var date1 = new DateTime(2018, 10, 31);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
-            List<AutoMatchedRecord<ActualBankRecord>> autoMatchedItems = reconciliator.DoAutoMatching();
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
+            List<AutoMatchedRecord<ActualBankRecord>> auto_matched_items = reconciliator.Do_auto_matching();
 
             // Act
-            var refetchedAutoMatchedItems = reconciliator.GetAutoMatches();
+            var refetched_auto_matched_items = reconciliator.Get_auto_matches();
 
             // Assert
-            Assert.AreEqual(autoMatchedItems, refetchedAutoMatchedItems);
+            Assert.AreEqual(auto_matched_items, refetched_auto_matched_items);
         }
 
         [Test]
         public void M_AutoMatchesAreNotPopulatedUnlessDoAutoMatchingIsCalled()
         {
             // Arrange
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ActualBankRecord>());
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<BankRecord>());
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ActualBankRecord>());
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<BankRecord>());
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
 
             // Act
-            var autoMatchedItems = reconciliator.GetAutoMatches();
+            var auto_matched_items = reconciliator.Get_auto_matches();
 
             // Assert
-            Assert.AreEqual(null, autoMatchedItems);
+            Assert.AreEqual(null, auto_matched_items);
         }
 
         [Test]
@@ -2304,40 +2304,40 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var amount1 = 22.23;
             var text1 = "'DIVIDE YOUR GREEN";
             var text2 = "SOMETHING ELSE";
-            var partialMatch = "PINTIPOPLICATION";
+            var partial_match = "PINTIPOPLICATION";
             var date1 = new DateTime(2018, 10, 31);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1},
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text2},
-                    new ActualBankRecord {Date = date1, Amount = amount1, Description = partialMatch + "SOMETHING ELSE"}
+                    new ActualBankRecord {Date = date1, Amount = amount1, Description = partial_match + "SOMETHING ELSE"}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1},
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text2},
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = partialMatch + "other"}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1},
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text2},
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = partial_match + "other"}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
 
             // Act
-            reconciliator.DoAutoMatching();
+            reconciliator.Do_auto_matching();
 
             // Assert
-            bool foundOne = reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            Assert.IsTrue(foundOne, "can find new semi-auto match");
-            var currentRecordForMatching = reconciliator.CurrentRecordForMatching();
-            Assert.AreEqual(partialMatch + "SOMETHING ELSE", currentRecordForMatching.SourceRecord.Description);
-            var currentPotentialMatches = reconciliator.CurrentPotentialMatches();
-            Assert.AreEqual(partialMatch + "other", currentPotentialMatches[0].ActualRecords[0].Description);
-            foundOne = reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            Assert.IsFalse(foundOne, "only found one new semi-auto match");
+            bool found_one = reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            Assert.IsTrue(found_one, "can find new semi-auto match");
+            var current_record_for_matching = reconciliator.Current_record_for_matching();
+            Assert.AreEqual(partial_match + "SOMETHING ELSE", current_record_for_matching.SourceRecord.Description);
+            var current_potential_matches = reconciliator.Current_potential_matches();
+            Assert.AreEqual(partial_match + "other", current_potential_matches[0].Actual_records[0].Description);
+            found_one = reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            Assert.IsFalse(found_one, "only found one new semi-auto match");
         }
 
         [Test]
@@ -2350,46 +2350,46 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var date1 = new DateTime(2018, 10, 31);
             var date2 = date1.AddDays(30);
             var date3 = date2.AddDays(30);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1},
                     new ActualBankRecord {Date = date2, Amount = amount1, Description = text2},
                     new ActualBankRecord {Date = date3, Amount = amount1, Description = text1}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1},
-                    new BankRecord {Date = date2, UnreconciledAmount = amount1, Description = text2},
-                    new BankRecord {Date = date3, UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1},
+                    new BankRecord {Date = date2, Unreconciled_amount = amount1, Description = text2},
+                    new BankRecord {Date = date3, Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
             const int matchIndex = 1;
             const int numRecordsAtStart = 3;
             // The where clause is redundant, but it's here for parity with the reassignment of autoMatchedItems below.
-            var autoMatchedItems = reconciliator.DoAutoMatching().Where(x => x.SourceRecord.Matched).ToList();
-            Assert.AreEqual(numRecordsAtStart, autoMatchedItems.Count);
-            Assert.AreEqual(matchIndex, autoMatchedItems[1].Index);
-            Assert.AreEqual(text2, autoMatchedItems[1].SourceRecord.Description);
-            var originalMatch = autoMatchedItems[1].Match;
+            var auto_matched_items = reconciliator.Do_auto_matching().Where(x => x.SourceRecord.Matched).ToList();
+            Assert.AreEqual(numRecordsAtStart, auto_matched_items.Count);
+            Assert.AreEqual(matchIndex, auto_matched_items[1].Index);
+            Assert.AreEqual(text2, auto_matched_items[1].SourceRecord.Description);
+            var original_match = auto_matched_items[1].Match;
 
             // Act
-            reconciliator.RemoveAutoMatch(matchIndex);
+            reconciliator.Remove_auto_match(matchIndex);
 
             // Assert
-            autoMatchedItems = reconciliator.GetAutoMatches();
-            var filteredAutoMatchedItems = reconciliator.GetAutoMatches().Where(x => x.SourceRecord.Matched).ToList();
-            Assert.AreEqual(numRecordsAtStart - 1, filteredAutoMatchedItems.Count);
-            Assert.IsFalse(filteredAutoMatchedItems.Any(x => x.SourceRecord.Description == text2));
-            Assert.IsFalse(autoMatchedItems[matchIndex].SourceRecord.Matched);
-            AssertMatchIsNoLongerMatched(originalMatch);
-            Assert.IsNull(autoMatchedItems[matchIndex].Match);
-            Assert.IsNull(autoMatchedItems[matchIndex].SourceRecord.Match);
+            auto_matched_items = reconciliator.Get_auto_matches();
+            var filtered_auto_matched_items = reconciliator.Get_auto_matches().Where(x => x.SourceRecord.Matched).ToList();
+            Assert.AreEqual(numRecordsAtStart - 1, filtered_auto_matched_items.Count);
+            Assert.IsFalse(filtered_auto_matched_items.Any(x => x.SourceRecord.Description == text2));
+            Assert.IsFalse(auto_matched_items[matchIndex].SourceRecord.Matched);
+            Assert_match_is_no_longer_matched(original_match);
+            Assert.IsNull(auto_matched_items[matchIndex].Match);
+            Assert.IsNull(auto_matched_items[matchIndex].SourceRecord.Match);
         }
 
         [Test]
@@ -2402,9 +2402,9 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var text3 = "PINTIPOPLICATION";
             var text4 = "Antidisestablishmentarianism";
             var date1 = new DateTime(2018, 10, 31);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1},
                     new ActualBankRecord {Date = date1.AddDays(10), Amount = amount1, Description = text2},
@@ -2412,44 +2412,44 @@ namespace ReconciliationBaseTests.ReconciliationBase
                     new ActualBankRecord {Date = date1.AddDays(30), Amount = amount1, Description = text4},
                     new ActualBankRecord {Date = date1.AddDays(40), Amount = amount1, Description = text1}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1},
-                    new BankRecord {Date = date1.AddDays(10), UnreconciledAmount = amount1, Description = text2},
-                    new BankRecord {Date = date1.AddDays(20), UnreconciledAmount = amount1, Description = text3},
-                    new BankRecord {Date = date1.AddDays(30), UnreconciledAmount = amount1, Description = text4},
-                    new BankRecord {Date = date1.AddDays(40), UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1},
+                    new BankRecord {Date = date1.AddDays(10), Unreconciled_amount = amount1, Description = text2},
+                    new BankRecord {Date = date1.AddDays(20), Unreconciled_amount = amount1, Description = text3},
+                    new BankRecord {Date = date1.AddDays(30), Unreconciled_amount = amount1, Description = text4},
+                    new BankRecord {Date = date1.AddDays(40), Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
             const int numRecordsAtStart = 5;
             // The where clause is redundant, but it's here for parity with the reassignment of autoMatchedItems below.
-            var autoMatchedItems = reconciliator.DoAutoMatching().Where(x => x.SourceRecord.Matched).ToList();
-            Assert.AreEqual(numRecordsAtStart, autoMatchedItems.Count);
-            List<IPotentialMatch> originalMatches = new List<IPotentialMatch>();
-            List<int> matchIndices = new List<int> { 1, 2, 3 };
-            foreach (var matchIndex in matchIndices)
+            var auto_matched_items = reconciliator.Do_auto_matching().Where(x => x.SourceRecord.Matched).ToList();
+            Assert.AreEqual(numRecordsAtStart, auto_matched_items.Count);
+            List<IPotentialMatch> original_matches = new List<IPotentialMatch>();
+            List<int> match_indices = new List<int> { 1, 2, 3 };
+            foreach (var match_index in match_indices)
             {
-                originalMatches.Add(autoMatchedItems[matchIndex].Match);
+                original_matches.Add(auto_matched_items[match_index].Match);
             }
 
             // Act
-            reconciliator.RemoveMultipleAutoMatches(matchIndices);
+            reconciliator.Remove_multiple_auto_matches(match_indices);
 
             // Assert
-            autoMatchedItems = reconciliator.GetAutoMatches();
-            var filteredAutoMatchedItems = reconciliator.GetAutoMatches().Where(x => x.SourceRecord.Matched).ToList();
-            Assert.AreEqual(numRecordsAtStart - matchIndices.Count, filteredAutoMatchedItems.Count);
-            Assert.IsFalse(filteredAutoMatchedItems.Any(x => x.SourceRecord.Description == text2));
-            Assert.IsFalse(filteredAutoMatchedItems.Any(x => x.SourceRecord.Description == text3));
-            Assert.IsFalse(filteredAutoMatchedItems.Any(x => x.SourceRecord.Description == text4));
-            for (int count = 0; count < matchIndices.Count; count++)
+            auto_matched_items = reconciliator.Get_auto_matches();
+            var filtered_auto_matched_items = reconciliator.Get_auto_matches().Where(x => x.SourceRecord.Matched).ToList();
+            Assert.AreEqual(numRecordsAtStart - match_indices.Count, filtered_auto_matched_items.Count);
+            Assert.IsFalse(filtered_auto_matched_items.Any(x => x.SourceRecord.Description == text2));
+            Assert.IsFalse(filtered_auto_matched_items.Any(x => x.SourceRecord.Description == text3));
+            Assert.IsFalse(filtered_auto_matched_items.Any(x => x.SourceRecord.Description == text4));
+            for (int count = 0; count < match_indices.Count; count++)
             {
-                AssertSourceRecordIsNotMatched(autoMatchedItems[matchIndices[count]]);
-                AssertMatchIsNoLongerMatched(originalMatches[count]);
+                Assert_source_record_is_not_matched(auto_matched_items[match_indices[count]]);
+                Assert_match_is_no_longer_matched(original_matches[count]);
             }
         }
 
@@ -2463,9 +2463,9 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var text3 = "PINTIPOPLICATION";
             var text4 = "Antidisestablishmentarianism";
             var date1 = new DateTime(2018, 10, 31);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1},
                     new ActualBankRecord {Date = date1.AddDays(10), Amount = amount1, Description = text2},
@@ -2473,41 +2473,41 @@ namespace ReconciliationBaseTests.ReconciliationBase
                     new ActualBankRecord {Date = date1.AddDays(30), Amount = amount1, Description = text4},
                     new ActualBankRecord {Date = date1.AddDays(40), Amount = amount1, Description = text1}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1},
-                    new BankRecord {Date = date1.AddDays(10), UnreconciledAmount = amount1, Description = text2},
-                    new BankRecord {Date = date1.AddDays(20), UnreconciledAmount = amount1, Description = text3},
-                    new BankRecord {Date = date1.AddDays(30), UnreconciledAmount = amount1, Description = text4},
-                    new BankRecord {Date = date1.AddDays(40), UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1},
+                    new BankRecord {Date = date1.AddDays(10), Unreconciled_amount = amount1, Description = text2},
+                    new BankRecord {Date = date1.AddDays(20), Unreconciled_amount = amount1, Description = text3},
+                    new BankRecord {Date = date1.AddDays(30), Unreconciled_amount = amount1, Description = text4},
+                    new BankRecord {Date = date1.AddDays(40), Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
-            var autoMatchedItems = reconciliator.DoAutoMatching();
-            List<IPotentialMatch> originalMatches = new List<IPotentialMatch>();
-            List<int> matchIndices = new List<int> { 1, 2, 3 };
-            foreach (var matchIndex in matchIndices)
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
+            var auto_matched_items = reconciliator.Do_auto_matching();
+            List<IPotentialMatch> original_matches = new List<IPotentialMatch>();
+            List<int> match_indices = new List<int> { 1, 2, 3 };
+            foreach (var match_index in match_indices)
             {
-                originalMatches.Add(autoMatchedItems[matchIndex].Match);
+                original_matches.Add(auto_matched_items[match_index].Match);
             }
 
             // Act
-            reconciliator.RemoveMultipleAutoMatches(matchIndices);
+            reconciliator.Remove_multiple_auto_matches(match_indices);
 
             // Assert
-            for (int count = 0; count < matchIndices.Count; count++)
+            for (int count = 0; count < match_indices.Count; count++)
             {
-                bool foundOne = reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-                Assert.IsTrue(foundOne, "can find new semi-auto match");
-                var currentRecordForMatching = reconciliator.CurrentRecordForMatching();
-                Assert.AreEqual(autoMatchedItems[matchIndices[count]].SourceRecord, 
-                    currentRecordForMatching.SourceRecord, 
+                bool found_one = reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+                Assert.IsTrue(found_one, "can find new semi-auto match");
+                var current_record_for_matching = reconciliator.Current_record_for_matching();
+                Assert.AreEqual(auto_matched_items[match_indices[count]].SourceRecord, 
+                    current_record_for_matching.SourceRecord, 
                     "3rd party record is available again");
-                Assert.AreEqual(originalMatches[count].ActualRecords[0].Description, 
-                    currentRecordForMatching.Matches[0].ActualRecords[0].Description, 
+                Assert.AreEqual(original_matches[count].Actual_records[0].Description, 
+                    current_record_for_matching.Matches[0].Actual_records[0].Description, 
                     "Unmatched Owned record is back in the list of matches");
             }
         }
@@ -2522,48 +2522,48 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var date1 = new DateTime(2018, 10, 31);
             var date2 = date1.AddDays(30);
             var date3 = date2.AddDays(30);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1},
                     new ActualBankRecord {Date = date2, Amount = amount1, Description = text2},
                     new ActualBankRecord {Date = date3, Amount = amount1, Description = text1}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1},
-                    new BankRecord {Date = date2, UnreconciledAmount = amount1, Description = text2},
-                    new BankRecord {Date = date3, UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1},
+                    new BankRecord {Date = date2, Unreconciled_amount = amount1, Description = text2},
+                    new BankRecord {Date = date3, Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
             const int matchIndex = 1;
             const int numRecordsAtStart = 3;
             for (int count = 1; count <= numRecordsAtStart; count++)
             {
-                reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-                reconciliator.MatchCurrentRecord(0);
+                reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+                reconciliator.Match_current_record(0);
             }
-            List<ActualBankRecord> matchedItems = reconciliator.ThirdPartyRecords().Where(x => x.Matched).ToList();
-            Assert.AreEqual(numRecordsAtStart, matchedItems.Count);
-            Assert.AreEqual(text2, matchedItems[1].Description);
-            var originalMatch = matchedItems[1].Match;
+            List<ActualBankRecord> matched_items = reconciliator.Third_party_records().Where(x => x.Matched).ToList();
+            Assert.AreEqual(numRecordsAtStart, matched_items.Count);
+            Assert.AreEqual(text2, matched_items[1].Description);
+            var original_match = matched_items[1].Match;
 
             // Act
-            reconciliator.RemoveFinalMatch(matchIndex);
+            reconciliator.Remove_final_match(matchIndex);
 
             // Assert
-            matchedItems = reconciliator.ThirdPartyRecords().Where(x => x.Matched).ToList();
-            Assert.AreEqual(numRecordsAtStart - 1, matchedItems.Count);
-            Assert.IsFalse(matchedItems.Any(x => x.Description == text2));
-            Assert.IsFalse(reconciliator.ThirdPartyRecords()[matchIndex].Matched);
-            Assert.IsFalse(originalMatch.Matched);
-            Assert.IsNull(reconciliator.ThirdPartyRecords()[matchIndex].Match);
-            Assert.IsNull(originalMatch.Match);
+            matched_items = reconciliator.Third_party_records().Where(x => x.Matched).ToList();
+            Assert.AreEqual(numRecordsAtStart - 1, matched_items.Count);
+            Assert.IsFalse(matched_items.Any(x => x.Description == text2));
+            Assert.IsFalse(reconciliator.Third_party_records()[matchIndex].Matched);
+            Assert.IsFalse(original_match.Matched);
+            Assert.IsNull(reconciliator.Third_party_records()[matchIndex].Match);
+            Assert.IsNull(original_match.Match);
         }
 
         [Test]
@@ -2576,9 +2576,9 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var text3 = "PINTIPOPLICATION";
             var text4 = "Antidisestablishmentarianism";
             var date1 = new DateTime(2018, 10, 31);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1},
                     new ActualBankRecord {Date = date1.AddDays(10), Amount = amount1, Description = text2},
@@ -2586,47 +2586,47 @@ namespace ReconciliationBaseTests.ReconciliationBase
                     new ActualBankRecord {Date = date1.AddDays(30), Amount = amount1, Description = text4},
                     new ActualBankRecord {Date = date1.AddDays(40), Amount = amount1, Description = text1}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1},
-                    new BankRecord {Date = date1.AddDays(10), UnreconciledAmount = amount1, Description = text2},
-                    new BankRecord {Date = date1.AddDays(20), UnreconciledAmount = amount1, Description = text3},
-                    new BankRecord {Date = date1.AddDays(30), UnreconciledAmount = amount1, Description = text4},
-                    new BankRecord {Date = date1.AddDays(40), UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1},
+                    new BankRecord {Date = date1.AddDays(10), Unreconciled_amount = amount1, Description = text2},
+                    new BankRecord {Date = date1.AddDays(20), Unreconciled_amount = amount1, Description = text3},
+                    new BankRecord {Date = date1.AddDays(30), Unreconciled_amount = amount1, Description = text4},
+                    new BankRecord {Date = date1.AddDays(40), Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
             const int numRecordsAtStart = 5;
             for (int count = 1; count <= numRecordsAtStart; count++)
             {
-                reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-                reconciliator.MatchCurrentRecord(0);
+                reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+                reconciliator.Match_current_record(0);
             }
-            List<ActualBankRecord> matchedItems = reconciliator.ThirdPartyRecords().Where(x => x.Matched).ToList();
-            Assert.AreEqual(numRecordsAtStart, matchedItems.Count);
-            List<ICSVRecord> originalMatches = new List<ICSVRecord>();
-            List<int> matchIndices = new List<int> { 1, 2, 3 };
-            foreach (var matchIndex in matchIndices)
+            List<ActualBankRecord> matched_items = reconciliator.Third_party_records().Where(x => x.Matched).ToList();
+            Assert.AreEqual(numRecordsAtStart, matched_items.Count);
+            List<ICSVRecord> original_matches = new List<ICSVRecord>();
+            List<int> match_indices = new List<int> { 1, 2, 3 };
+            foreach (var match_index in match_indices)
             {
-                originalMatches.Add(matchedItems[matchIndex].Match);
+                original_matches.Add(matched_items[match_index].Match);
             }
 
             // Act
-            reconciliator.RemoveMultipleFinalMatches(matchIndices);
+            reconciliator.Remove_multiple_final_matches(match_indices);
 
             // Assert
-            matchedItems = reconciliator.ThirdPartyRecords().Where(x => x.Matched).ToList();
-            Assert.AreEqual(numRecordsAtStart - matchIndices.Count, matchedItems.Count);
-            Assert.IsFalse(matchedItems.Any(x => x.Description == text2));
-            Assert.IsFalse(matchedItems.Any(x => x.Description == text3));
-            Assert.IsFalse(matchedItems.Any(x => x.Description == text4));
-            for (int count = 0; count < matchIndices.Count; count++)
+            matched_items = reconciliator.Third_party_records().Where(x => x.Matched).ToList();
+            Assert.AreEqual(numRecordsAtStart - match_indices.Count, matched_items.Count);
+            Assert.IsFalse(matched_items.Any(x => x.Description == text2));
+            Assert.IsFalse(matched_items.Any(x => x.Description == text3));
+            Assert.IsFalse(matched_items.Any(x => x.Description == text4));
+            for (int count = 0; count < match_indices.Count; count++)
             {
-                AssertRecordIsNoLongerMatched(reconciliator.ThirdPartyRecords()[matchIndices[count]]);
-                AssertRecordIsNoLongerMatched(originalMatches[count]);
+                Assert_record_is_no_longer_matched(reconciliator.Third_party_records()[match_indices[count]]);
+                Assert_record_is_no_longer_matched(original_matches[count]);
             }
         }
 
@@ -2640,9 +2640,9 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var text3 = "PINTIPOPLICATION";
             var text4 = "Antidisestablishmentarianism";
             var date1 = new DateTime(2018, 10, 31);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1},
                     new ActualBankRecord {Date = date1.AddDays(10), Amount = amount1, Description = text2},
@@ -2650,49 +2650,49 @@ namespace ReconciliationBaseTests.ReconciliationBase
                     new ActualBankRecord {Date = date1.AddDays(30), Amount = amount1, Description = text4},
                     new ActualBankRecord {Date = date1.AddDays(40), Amount = amount1, Description = text1}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1},
-                    new BankRecord {Date = date1.AddDays(10), UnreconciledAmount = amount1, Description = text2},
-                    new BankRecord {Date = date1.AddDays(20), UnreconciledAmount = amount1, Description = text3},
-                    new BankRecord {Date = date1.AddDays(30), UnreconciledAmount = amount1, Description = text4},
-                    new BankRecord {Date = date1.AddDays(40), UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1},
+                    new BankRecord {Date = date1.AddDays(10), Unreconciled_amount = amount1, Description = text2},
+                    new BankRecord {Date = date1.AddDays(20), Unreconciled_amount = amount1, Description = text3},
+                    new BankRecord {Date = date1.AddDays(30), Unreconciled_amount = amount1, Description = text4},
+                    new BankRecord {Date = date1.AddDays(40), Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
             const int numRecordsAtStart = 5;
             for (int count = 1; count <= numRecordsAtStart; count++)
             {
-                reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-                reconciliator.MatchCurrentRecord(0);
+                reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+                reconciliator.Match_current_record(0);
             }
-            List<ActualBankRecord> matchedItems = reconciliator.ThirdPartyRecords().Where(x => x.Matched).ToList();
-            Assert.AreEqual(numRecordsAtStart, matchedItems.Count);
-            List<ICSVRecord> originalMatches = new List<ICSVRecord>();
-            List<int> matchIndices = new List<int> { 1, 2, 3 };
-            foreach (var matchIndex in matchIndices)
+            List<ActualBankRecord> matched_items = reconciliator.Third_party_records().Where(x => x.Matched).ToList();
+            Assert.AreEqual(numRecordsAtStart, matched_items.Count);
+            List<ICSVRecord> original_matches = new List<ICSVRecord>();
+            List<int> match_indices = new List<int> { 1, 2, 3 };
+            foreach (var match_index in match_indices)
             {
-                originalMatches.Add(matchedItems[matchIndex].Match);
+                original_matches.Add(matched_items[match_index].Match);
             }
 
             // Act
-            reconciliator.RemoveMultipleFinalMatches(matchIndices);
+            reconciliator.Remove_multiple_final_matches(match_indices);
 
             // Assert
             reconciliator.Rewind();
-            for (int count = 0; count < matchIndices.Count; count++)
+            for (int count = 0; count < match_indices.Count; count++)
             {
-                bool foundOne = reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-                Assert.IsTrue(foundOne, "can find new semi-auto match");
-                var currentRecordForMatching = reconciliator.CurrentRecordForMatching();
-                Assert.AreEqual(reconciliator.ThirdPartyRecords()[matchIndices[count]], 
-                    currentRecordForMatching.SourceRecord, 
+                bool found_one = reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+                Assert.IsTrue(found_one, "can find new semi-auto match");
+                var current_record_for_matching = reconciliator.Current_record_for_matching();
+                Assert.AreEqual(reconciliator.Third_party_records()[match_indices[count]], 
+                    current_record_for_matching.SourceRecord, 
                     "3rd party record is available again");
-                Assert.AreEqual(originalMatches[count].Description, 
-                    currentRecordForMatching.Matches[0].ActualRecords[0].Description, 
+                Assert.AreEqual(original_matches[count].Description, 
+                    current_record_for_matching.Matches[0].Actual_records[0].Description, 
                     "Unmatched Owned record is back in the list of matches");
             }
         }
@@ -2706,41 +2706,41 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var text2 = "SOMETHING ELSE";
             var text3 = "PINTIPOPLICATION";
             var date1 = new DateTime(2018, 10, 31);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1},
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text2},
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text3}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1},
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = "nonsense"},
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text3}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1},
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = "nonsense"},
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text3}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
-            reconciliator.DoAutoMatching();
-            var numMatches = 2;
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
+            reconciliator.Do_auto_matching();
+            var num_matches = 2;
 
             // Act
-            var consoleLines = reconciliator.GetAutoMatchesForConsole();
+            var console_lines = reconciliator.Get_auto_matches_for_console();
 
             // Assert
-            Assert.AreEqual(numMatches * 3, consoleLines.Count);
-            var separatorLines = consoleLines.Where(x => x.DateString == "----------");
-            Assert.AreEqual(numMatches, separatorLines.Count(), "output should contain separator lines");
-            var text1Lines = consoleLines.Where(x => x.DescriptionString == text1);
-            Assert.IsTrue(text1Lines.All(x => x.Index == 0), "text1 lines should be indexed correctly");
-            Assert.AreEqual(2, text1Lines.Count(), "text1: one line for third party record and one line for match");
-            var text3Lines = consoleLines.Where(x => x.DescriptionString == text3);
-            Assert.IsTrue(text3Lines.All(x => x.Index == 1), "text3 lines should be indexed correctly");
-            Assert.AreEqual(2, text3Lines.Count(), "text3: one line for third party record and one line for match");
+            Assert.AreEqual(num_matches * 3, console_lines.Count);
+            var separator_lines = console_lines.Where(x => x.Date_string == "----------");
+            Assert.AreEqual(num_matches, separator_lines.Count(), "output should contain separator lines");
+            var text1_lines = console_lines.Where(x => x.Description_string == text1);
+            Assert.IsTrue(text1_lines.All(x => x.Index == 0), "text1 lines should be indexed correctly");
+            Assert.AreEqual(2, text1_lines.Count(), "text1: one line for third party record and one line for match");
+            var text3_lines = console_lines.Where(x => x.Description_string == text3);
+            Assert.IsTrue(text3_lines.All(x => x.Index == 1), "text3 lines should be indexed correctly");
+            Assert.AreEqual(2, text3_lines.Count(), "text3: one line for third party record and one line for match");
         }
 
         [Test]
@@ -2753,400 +2753,400 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var text3 = "PINTIPOPLICATION";
             var text4 = "TRANSUBSTANTIATION";
             var date1 = new DateTime(2018, 10, 31);
-            var mockCredCard2FileIO = new Mock<IFileIO<CredCard2Record>>();
-            var mockCredCard2InOutFileIO = new Mock<IFileIO<CredCard2InOutRecord>>();
-            mockCredCard2FileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_cred_card2_file_io = new Mock<IFileIO<CredCard2Record>>();
+            var mock_cred_card2_in_out_file_io = new Mock<IFileIO<CredCard2InOutRecord>>();
+            mock_cred_card2_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<CredCard2Record> {
                     new CredCard2Record {Date = date1, Amount = amount1, Description = text1},
                     new CredCard2Record {Date = date1.AddDays(1), Amount = amount1, Description = text2},
                     new CredCard2Record {Date = date1.AddDays(2), Amount = amount1, Description = text3},
                     new CredCard2Record {Date = date1.AddDays(3), Amount = amount1, Description = text4}
                 });
-            mockCredCard2InOutFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<CredCard2InOutRecord> {
-                    new CredCard2InOutRecord {Date = date1, UnreconciledAmount = amount1, Description = text1},
-                    new CredCard2InOutRecord {Date = date1.AddDays(1), UnreconciledAmount = amount1 + 10, Description = "nonsense"},
-                    new CredCard2InOutRecord {Date = date1.AddDays(2), UnreconciledAmount = amount1 + 10, Description = text3},
-                    new CredCard2InOutRecord {Date = date1.AddDays(3), UnreconciledAmount = amount1, Description = text4}
+                    new CredCard2InOutRecord {Date = date1, Unreconciled_amount = amount1, Description = text1},
+                    new CredCard2InOutRecord {Date = date1.AddDays(1), Unreconciled_amount = amount1 + 10, Description = "nonsense"},
+                    new CredCard2InOutRecord {Date = date1.AddDays(2), Unreconciled_amount = amount1 + 10, Description = text3},
+                    new CredCard2InOutRecord {Date = date1.AddDays(3), Unreconciled_amount = amount1, Description = text4}
                 });
-            var credCard2File = new CSVFile<CredCard2Record>(mockCredCard2FileIO.Object);
-            credCard2File.Load();
-            var credCard2InOutFile = new CSVFile<CredCard2InOutRecord>(mockCredCard2InOutFileIO.Object);
-            credCard2InOutFile.Load();
-            var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(credCard2File, credCard2InOutFile);
-            reconciliator.DoAutoMatching();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.MatchCurrentRecord(0);
-            var numMatches = 3;
+            var cred_card2_file = new CSVFile<CredCard2Record>(mock_cred_card2_file_io.Object);
+            cred_card2_file.Load();
+            var cred_card2_in_out_file = new CSVFile<CredCard2InOutRecord>(mock_cred_card2_in_out_file_io.Object);
+            cred_card2_in_out_file.Load();
+            var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(cred_card2_file, cred_card2_in_out_file);
+            reconciliator.Do_auto_matching();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Match_current_record(0);
+            var num_matches = 3;
 
             // Act
-            var consoleLines = reconciliator.GetFinalMatchesForConsole();
+            var console_lines = reconciliator.Get_final_matches_for_console();
 
             // Assert
-            Assert.AreEqual(numMatches * 3, consoleLines.Count);
-            var separatorLines = consoleLines.Where(x => x.DateString == "----------");
-            Assert.AreEqual(numMatches, separatorLines.Count(), "output should contain separator lines");
-            var text1Lines = consoleLines.Where(x => x.DescriptionString.Contains(text1));
-            Assert.IsTrue(text1Lines.All(x => x.Index == 0), "text1 lines should be indexed correctly");
-            Assert.AreEqual(2, text1Lines.Count(), "text1: one line for third party record and one line for match");
-            var text3Lines = consoleLines.Where(x => x.DescriptionString.Contains(text3));
-            Assert.IsTrue(text3Lines.All(x => x.Index == 2), "text3 lines should be indexed correctly");
-            Assert.AreEqual(2, text3Lines.Count(), "text3: one line for third party record and one line for match");
-            var text4Lines = consoleLines.Where(x => x.DescriptionString.Contains(text4));
-            Assert.IsTrue(text4Lines.All(x => x.Index == 3), "text4 lines should be indexed correctly");
-            Assert.AreEqual(2, text4Lines.Count(), "text4: one line for third party record and one line for match");
+            Assert.AreEqual(num_matches * 3, console_lines.Count);
+            var separator_lines = console_lines.Where(x => x.Date_string == "----------");
+            Assert.AreEqual(num_matches, separator_lines.Count(), "output should contain separator lines");
+            var text1_lines = console_lines.Where(x => x.Description_string.Contains(text1));
+            Assert.IsTrue(text1_lines.All(x => x.Index == 0), "text1 lines should be indexed correctly");
+            Assert.AreEqual(2, text1_lines.Count(), "text1: one line for third party record and one line for match");
+            var text3_lines = console_lines.Where(x => x.Description_string.Contains(text3));
+            Assert.IsTrue(text3_lines.All(x => x.Index == 2), "text3 lines should be indexed correctly");
+            Assert.AreEqual(2, text3_lines.Count(), "text3: one line for third party record and one line for match");
+            var text4_lines = console_lines.Where(x => x.Description_string.Contains(text4));
+            Assert.IsTrue(text4_lines.All(x => x.Index == 3), "text4 lines should be indexed correctly");
+            Assert.AreEqual(2, text4_lines.Count(), "text4: one line for third party record and one line for match");
         }
 
         [TestCase(TransactionMatchType.Auto)]
         [TestCase(TransactionMatchType.Final)]
-        public void M_WhenAttemptingToRemoveMatchWithBadIndex_ErrorIsThrown(TransactionMatchType TransactionMatchType)
+        public void M_WhenAttemptingToRemoveMatchWithBadIndex_ErrorIsThrown(TransactionMatchType transaction_match_type)
         {
             // Arrange
             var amount1 = 22.23;
             var text1 = "'DIVIDE YOUR GREEN";
             var date1 = new DateTime(2018, 10, 31);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
-            reconciliator.DoAutoMatching();
-            bool exceptionThrown = false;
-            string errorMessage = "";
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
+            reconciliator.Do_auto_matching();
+            bool exception_thrown = false;
+            string error_message = "";
 
             // Act
             try
             {
-                if (TransactionMatchType == TransactionMatchType.Auto)
+                if (transaction_match_type == TransactionMatchType.Auto)
                 {
-                    reconciliator.RemoveAutoMatch(3);
+                    reconciliator.Remove_auto_match(3);
                 }
                 else
                 {
-                    reconciliator.RemoveFinalMatch(3);
+                    reconciliator.Remove_final_match(3);
                 }
             }
             catch (Exception exception)
             {
-                exceptionThrown = true;
-                errorMessage = exception.Message;
+                exception_thrown = true;
+                error_message = exception.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.AreEqual(Reconciliator<ActualBankRecord, BankRecord>.BadMatchNumber, errorMessage);
+            Assert.IsTrue(exception_thrown);
+            Assert.AreEqual(Reconciliator<ActualBankRecord, BankRecord>.BadMatchNumber, error_message);
         }
 
         [TestCase(TransactionMatchType.Auto)]
         [TestCase(TransactionMatchType.Final)]
-        public void M_WhenAttemptingToRemoveMultipleMatchesWithBadIndices_ErrorIsThrown(TransactionMatchType TransactionMatchType)
+        public void M_WhenAttemptingToRemoveMultipleMatchesWithBadIndices_ErrorIsThrown(TransactionMatchType transaction_match_type)
         {
             // Arrange
             var amount1 = 22.23;
             var text1 = "'DIVIDE YOUR GREEN";
             var text2 = "haha bonk";
             var date1 = new DateTime(2018, 10, 31);
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text1},
                     new ActualBankRecord {Date = date1, Amount = amount1, Description = text2}
                 });
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text1},
-                    new BankRecord {Date = date1, UnreconciledAmount = amount1, Description = text2}
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text1},
+                    new BankRecord {Date = date1, Unreconciled_amount = amount1, Description = text2}
                 });
-            var actualBankFile = new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object);
-            actualBankFile.Load();
-            var bankInFile = new CSVFile<BankRecord>(mockBankFileIO.Object);
-            bankInFile.Load();
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actualBankFile, bankInFile);
-            reconciliator.DoAutoMatching();
-            bool exceptionThrown = false;
-            string errorMessage = "";
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            actual_bank_file.Load();
+            var bank_in_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_in_file.Load();
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(actual_bank_file, bank_in_file);
+            reconciliator.Do_auto_matching();
+            bool exception_thrown = false;
+            string error_message = "";
 
             // Act
             try
             {
-                if (TransactionMatchType == TransactionMatchType.Auto)
+                if (transaction_match_type == TransactionMatchType.Auto)
                 {
-                    reconciliator.RemoveMultipleAutoMatches(new List<int> { 0, 1, 2 });
+                    reconciliator.Remove_multiple_auto_matches(new List<int> { 0, 1, 2 });
                 }
                 else
                 {
-                    reconciliator.RemoveMultipleFinalMatches(new List<int>{ 0, 1, 125 });
+                    reconciliator.Remove_multiple_final_matches(new List<int>{ 0, 1, 125 });
                 }
             }
             catch (Exception exception)
             {
-                exceptionThrown = true;
-                errorMessage = exception.Message;
+                exception_thrown = true;
+                error_message = exception.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.AreEqual(Reconciliator<ActualBankRecord, BankRecord>.BadMatchNumber, errorMessage);
+            Assert.IsTrue(exception_thrown);
+            Assert.AreEqual(Reconciliator<ActualBankRecord, BankRecord>.BadMatchNumber, error_message);
         }
 
         [Test]
-        public void WillFindAllExpenseTransactionsFromActualBankIn()
+        public void Will_find_all_expense_transactions_from_actual_bank_in()
         {
             // Arrange
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Description = $"\"'{ReconConsts.EmployerExpenseDescription}\""},
+                    new ActualBankRecord {Description = $"\"'{ReconConsts.Employer_expense_description}\""},
                     new ActualBankRecord {Description = "something else"}
                 });
-            var actualBankFile = new ActualBankInFile(new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object));
-            var mockBankInFile = new Mock<IDataFile<BankRecord>>();
-            mockBankInFile.Setup(x => x.File).Returns(new Mock<ICSVFile<BankRecord>>().Object);
-            var dataLoadingInfo = new DataLoadingInformation<ActualBankRecord, BankRecord>{SheetName = MainSheetNames.BankIn};
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(dataLoadingInfo, actualBankFile, mockBankInFile.Object);
+            var actual_bank_file = new ActualBankInFile(new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object));
+            var mock_bank_in_file = new Mock<IDataFile<BankRecord>>();
+            mock_bank_in_file.Setup(x => x.File).Returns(new Mock<ICSVFile<BankRecord>>().Object);
+            var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord>{Sheet_name = MainSheetNames.Bank_in};
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(data_loading_info, actual_bank_file, mock_bank_in_file.Object);
 
             // Act
-            reconciliator.FilterThirdPartyFile(x => x.Description.RemovePunctuation().ToUpper()
-                                                                 != ReconConsts.EmployerExpenseDescription);
+            reconciliator.Filter_third_party_file(x => x.Description.Remove_punctuation().ToUpper()
+                                                                 != ReconConsts.Employer_expense_description);
 
             // Assert
-            Assert.AreEqual(1, reconciliator.ThirdPartyFile.Records.Count);
-            Assert.AreEqual(ReconConsts.EmployerExpenseDescription, reconciliator.ThirdPartyFile.Records[0].Description.RemovePunctuation());
+            Assert.AreEqual(1, reconciliator.Third_party_file.Records.Count);
+            Assert.AreEqual(ReconConsts.Employer_expense_description, reconciliator.Third_party_file.Records[0].Description.Remove_punctuation());
         }
 
         [Test]
-        public void WillFindAllWagesRowsAndExpenseTransactionsFromExpectedIn()
+        public void Will_find_all_wages_rows_and_expense_transactions_from_expected_in()
         {
             // Arrange
-            var mockBankInFileIO = new Mock<IFileIO<BankRecord>>();
-            var wagesDescription =
-                $"Wages ({ReconConsts.EmployerExpenseDescription}) (!! in an inestimable manner, not forthwith - forever 1st outstanding)";
-            mockBankInFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+            var mock_bank_in_file_io = new Mock<IFileIO<BankRecord>>();
+            var wages_description =
+                $"Wages ({ReconConsts.Employer_expense_description}) (!! in an inestimable manner, not forthwith - forever 1st outstanding)";
+            mock_bank_in_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord> {
                     new BankRecord {Type = Codes.Expenses, Description = Codes.Expenses + "1"},
                     new BankRecord {Type = "Chq", Description = "something"},
                     new BankRecord {Type = Codes.Expenses, Description = Codes.Expenses + "2"},
                     new BankRecord {Type = Codes.Expenses, Description = Codes.Expenses + "3"},
                     new BankRecord {Type = "Chq", Description = "something"},
-                    new BankRecord {Type = "PCL", Description = wagesDescription}
+                    new BankRecord {Type = "PCL", Description = wages_description}
                 });
-            var mockActualBankFile = new Mock<IDataFile<ActualBankRecord>>();
-            mockActualBankFile.Setup(x => x.File).Returns(new Mock<ICSVFile<ActualBankRecord>>().Object);
-            var bankInFile = new GenericFile<BankRecord>(new CSVFile<BankRecord>(mockBankInFileIO.Object));
-            var dataLoadingInfo = new DataLoadingInformation<ActualBankRecord, BankRecord> { SheetName = MainSheetNames.BankIn };
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(dataLoadingInfo, mockActualBankFile.Object, bankInFile);
+            var mock_actual_bank_file = new Mock<IDataFile<ActualBankRecord>>();
+            mock_actual_bank_file.Setup(x => x.File).Returns(new Mock<ICSVFile<ActualBankRecord>>().Object);
+            var bank_in_file = new GenericFile<BankRecord>(new CSVFile<BankRecord>(mock_bank_in_file_io.Object));
+            var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord> { Sheet_name = MainSheetNames.Bank_in };
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(data_loading_info, mock_actual_bank_file.Object, bank_in_file);
 
             // Act
-            reconciliator.FilterOwnedFile(x =>
+            reconciliator.Filter_owned_file(x =>
                 x.Type != Codes.Expenses
-                && !x.Description.Contains(ReconConsts.EmployerExpenseDescription));
+                && !x.Description.Contains(ReconConsts.Employer_expense_description));
 
             // Assert
-            Assert.AreEqual(4, reconciliator.OwnedFile.Records.Count);
-            Assert.AreEqual(Codes.Expenses + "1", reconciliator.OwnedFile.Records[0].Description);
-            Assert.AreEqual(Codes.Expenses + "2", reconciliator.OwnedFile.Records[1].Description);
-            Assert.AreEqual(Codes.Expenses + "3", reconciliator.OwnedFile.Records[2].Description);
-            Assert.AreEqual(wagesDescription, reconciliator.OwnedFile.Records[3].Description);
+            Assert.AreEqual(4, reconciliator.Owned_file.Records.Count);
+            Assert.AreEqual(Codes.Expenses + "1", reconciliator.Owned_file.Records[0].Description);
+            Assert.AreEqual(Codes.Expenses + "2", reconciliator.Owned_file.Records[1].Description);
+            Assert.AreEqual(Codes.Expenses + "3", reconciliator.Owned_file.Records[2].Description);
+            Assert.AreEqual(wages_description, reconciliator.Owned_file.Records[3].Description);
         }
 
         [Test]
-        public void WhenFindingMatchesWillUseCurrentMatchFinder()
+        public void When_finding_matches_will_use_current_match_finder()
         {
             // Arrange
-            var actualBankData = new List<ActualBankRecord>
+            var actual_bank_data = new List<ActualBankRecord>
             {
                 new ActualBankRecord {Description = "ActualBankRecord"}
             };
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankData);
-            var actualBankFile = new GenericFile<ActualBankRecord>(new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object));
-            var mockBankInFile = new Mock<IDataFile<BankRecord>>();
-            mockBankInFile.Setup(x => x.File).Returns(new Mock<ICSVFile<BankRecord>>().Object);
-            var dataLoadingInfo = new DataLoadingInformation<ActualBankRecord, BankRecord> { SheetName = MainSheetNames.BankIn };
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(dataLoadingInfo, actualBankFile, mockBankInFile.Object);
-            var expectedPotentialMatches = new List<PotentialMatch>
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_data);
+            var actual_bank_file = new GenericFile<ActualBankRecord>(new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object));
+            var mock_bank_in_file = new Mock<IDataFile<BankRecord>>();
+            mock_bank_in_file.Setup(x => x.File).Returns(new Mock<ICSVFile<BankRecord>>().Object);
+            var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord> { Sheet_name = MainSheetNames.Bank_in };
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(data_loading_info, actual_bank_file, mock_bank_in_file.Object);
+            var expected_potential_matches = new List<PotentialMatch>
             {
                 new PotentialMatch
                 {
-                    ActualRecords = new List<ICSVRecord>{new BankRecord {Description = "First Match"}},
-                    ConsoleLines = new List<ConsoleLine>{new ConsoleLine{DescriptionString = "Console Description"}}
+                    Actual_records = new List<ICSVRecord>{new BankRecord {Description = "First Match"}},
+                    Console_lines = new List<ConsoleLine>{new ConsoleLine{Description_string = "Console Description"}}
                 }
             };
-            reconciliator.SetMatchFinder((record, file) => expectedPotentialMatches);
+            reconciliator.Set_match_finder((record, file) => expected_potential_matches);
 
             // Act
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matchesFound = reconciliator.CurrentPotentialMatches();
-            Assert.AreEqual(expectedPotentialMatches, matchesFound);
+            var matches_found = reconciliator.Current_potential_matches();
+            Assert.AreEqual(expected_potential_matches, matches_found);
         }
 
         [Test]
-        public void WillNotUseSpecifiedMatchFinderAfterReset()
+        public void Will_not_use_specified_match_finder_after_reset()
         {
             // Arrange
-            var actualBankData = new List<ActualBankRecord>
+            var actual_bank_data = new List<ActualBankRecord>
             {
                 new ActualBankRecord {Description = "ActualBankRecord"}
             };
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankData);
-            var actualBankFile = new GenericFile<ActualBankRecord>(new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object));
-            var bankData = new List<BankRecord>
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_data);
+            var actual_bank_file = new GenericFile<ActualBankRecord>(new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object));
+            var bank_data = new List<BankRecord>
             {
                 new BankRecord {Description = "BankRecord"}
             };
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankData);
-            var bankFile = new GenericFile<BankRecord>(new CSVFile<BankRecord>(mockBankFileIO.Object));
-            var dataLoadingInfo = new DataLoadingInformation<ActualBankRecord, BankRecord> { SheetName = MainSheetNames.BankIn };
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(dataLoadingInfo, actualBankFile, bankFile);
-            var expectedPotentialMatches = new List<PotentialMatch>
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_data);
+            var bank_file = new GenericFile<BankRecord>(new CSVFile<BankRecord>(mock_bank_file_io.Object));
+            var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord> { Sheet_name = MainSheetNames.Bank_in };
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(data_loading_info, actual_bank_file, bank_file);
+            var expected_potential_matches = new List<PotentialMatch>
             {
                 new PotentialMatch
                 {
-                    ActualRecords = new List<ICSVRecord>{new BankRecord {Description = "First Match"}},
-                    ConsoleLines = new List<ConsoleLine>{new ConsoleLine{DescriptionString = "Console Description"}}
+                    Actual_records = new List<ICSVRecord>{new BankRecord {Description = "First Match"}},
+                    Console_lines = new List<ConsoleLine>{new ConsoleLine{Description_string = "Console Description"}}
                 }
             };
-            reconciliator.SetMatchFinder((record, file) => expectedPotentialMatches);
+            reconciliator.Set_match_finder((record, file) => expected_potential_matches);
 
             // Act
             reconciliator.Reset();
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
             // Assert
-            var matchesFound = reconciliator.CurrentPotentialMatches();
-            Assert.AreNotEqual(expectedPotentialMatches, matchesFound);
+            var matches_found = reconciliator.Current_potential_matches();
+            Assert.AreNotEqual(expected_potential_matches, matches_found);
         }
 
         [Test]
-        public void WhenMarkingMatchesWillUseCurrentRecordMatcher()
+        public void When_marking_matches_will_use_current_record_matcher()
         {
             // Arrange
-            var actualBankData = new List<ActualBankRecord>
+            var actual_bank_data = new List<ActualBankRecord>
             {
                 new ActualBankRecord {Description = "ActualBankRecord"}
             };
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankData);
-            var actualBankFile = new GenericFile<ActualBankRecord>(new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object));
-            var mockBankInFile = new Mock<IDataFile<BankRecord>>();
-            mockBankInFile.Setup(x => x.File).Returns(new Mock<ICSVFile<BankRecord>>().Object);
-            var dataLoadingInfo = new DataLoadingInformation<ActualBankRecord, BankRecord> { SheetName = MainSheetNames.BankIn };
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(dataLoadingInfo, actualBankFile, mockBankInFile.Object);
-            var expectedPotentialMatches = new List<PotentialMatch>
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_data);
+            var actual_bank_file = new GenericFile<ActualBankRecord>(new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object));
+            var mock_bank_in_file = new Mock<IDataFile<BankRecord>>();
+            mock_bank_in_file.Setup(x => x.File).Returns(new Mock<ICSVFile<BankRecord>>().Object);
+            var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord> { Sheet_name = MainSheetNames.Bank_in };
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(data_loading_info, actual_bank_file, mock_bank_in_file.Object);
+            var expected_potential_matches = new List<PotentialMatch>
             {
                 new PotentialMatch
                 {
-                    ActualRecords = new List<ICSVRecord>{new BankRecord {Description = "First Match"}},
-                    ConsoleLines = new List<ConsoleLine>{new ConsoleLine{DescriptionString = "Console Description"}}
+                    Actual_records = new List<ICSVRecord>{new BankRecord {Description = "First Match"}},
+                    Console_lines = new List<ConsoleLine>{new ConsoleLine{Description_string = "Console Description"}}
                 }
             };
-            reconciliator.SetMatchFinder((record, file) => expectedPotentialMatches);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            var expectedDescription = "HELLO";
-            reconciliator.SetRecordMatcher((record, matchIndex, file) => 
-                record.Matches[matchIndex].ConsoleLines[0].DescriptionString = expectedDescription);
+            reconciliator.Set_match_finder((record, file) => expected_potential_matches);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            var expected_description = "HELLO";
+            reconciliator.Set_record_matcher((record, match_index, file) => 
+                record.Matches[match_index].Console_lines[0].Description_string = expected_description);
             var index = 0;
             
             // Act
-            reconciliator.MatchCurrentRecord(index);
+            reconciliator.Match_current_record(index);
 
             // Assert
-            var matchesFound = reconciliator.CurrentPotentialMatches();
-            Assert.AreEqual(expectedDescription, matchesFound[index].ConsoleLines[0].DescriptionString);
+            var matches_found = reconciliator.Current_potential_matches();
+            Assert.AreEqual(expected_description, matches_found[index].Console_lines[0].Description_string);
         }
 
         [Test]
-        public void WillNotUseSpecifiedRecordMatcherAfterReset()
+        public void Will_not_use_specified_record_matcher_after_reset()
         {
             // Arrange
-            var actualBankData = new List<ActualBankRecord>
+            var actual_bank_data = new List<ActualBankRecord>
             {
                 new ActualBankRecord {Description = "ActualBankRecord"}
             };
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankData);
-            var actualBankFile = new GenericFile<ActualBankRecord>(new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object));
-            var mockBankInFile = new Mock<IDataFile<BankRecord>>();
-            mockBankInFile.Setup(x => x.File).Returns(new Mock<ICSVFile<BankRecord>>().Object);
-            var dataLoadingInfo = new DataLoadingInformation<ActualBankRecord, BankRecord> { SheetName = MainSheetNames.BankIn };
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(dataLoadingInfo, actualBankFile, mockBankInFile.Object);
-            var expectedPotentialMatches = new List<PotentialMatch>
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_data);
+            var actual_bank_file = new GenericFile<ActualBankRecord>(new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object));
+            var mock_bank_in_file = new Mock<IDataFile<BankRecord>>();
+            mock_bank_in_file.Setup(x => x.File).Returns(new Mock<ICSVFile<BankRecord>>().Object);
+            var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord> { Sheet_name = MainSheetNames.Bank_in };
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(data_loading_info, actual_bank_file, mock_bank_in_file.Object);
+            var expected_potential_matches = new List<PotentialMatch>
             {
                 new PotentialMatch
                 {
-                    ActualRecords = new List<ICSVRecord>{new BankRecord {Description = "First Match"}},
-                    ConsoleLines = new List<ConsoleLine>{new ConsoleLine{DescriptionString = "Console Description"}}
+                    Actual_records = new List<ICSVRecord>{new BankRecord {Description = "First Match"}},
+                    Console_lines = new List<ConsoleLine>{new ConsoleLine{Description_string = "Console Description"}}
                 }
             };
-            reconciliator.SetMatchFinder((record, file) => expectedPotentialMatches);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            var expectedDescription = "HELLO";
-            reconciliator.SetRecordMatcher((record, matchIndex, file) =>
-                record.Matches[matchIndex].ConsoleLines[0].DescriptionString = expectedDescription);
-            reconciliator.ResetRecordMatcher();
+            reconciliator.Set_match_finder((record, file) => expected_potential_matches);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            var expected_description = "HELLO";
+            reconciliator.Set_record_matcher((record, match_index, file) =>
+                record.Matches[match_index].Console_lines[0].Description_string = expected_description);
+            reconciliator.Reset_record_matcher();
             var index = 0;
 
             // Act
-            reconciliator.MatchCurrentRecord(index);
+            reconciliator.Match_current_record(index);
 
             // Assert
-            var matchesFound = reconciliator.CurrentPotentialMatches();
-            Assert.AreNotEqual(expectedDescription, matchesFound[index].ConsoleLines[0].DescriptionString);
+            var matches_found = reconciliator.Current_potential_matches();
+            Assert.AreNotEqual(expected_description, matches_found[index].Console_lines[0].Description_string);
         }
 
         [Test]
-        public void WillNotLosePreviouslyMatchedRecordsWhenFilesAreRefreshed()
+        public void Will_not_lose_previously_matched_records_when_files_are_refreshed()
         {
             // Arrange
-            var actualBankData = new List<ActualBankRecord> { new ActualBankRecord {Description = "ActualBankRecord01"} };
-            var mockActualBankFileIO = new Mock<IFileIO<ActualBankRecord>>();
-            mockActualBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actualBankData);
-            var actualBankFile = new GenericFile<ActualBankRecord>(new CSVFile<ActualBankRecord>(mockActualBankFileIO.Object));
-            var bankData = new List<BankRecord>
+            var actual_bank_data = new List<ActualBankRecord> { new ActualBankRecord {Description = "ActualBankRecord01"} };
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_data);
+            var actual_bank_file = new GenericFile<ActualBankRecord>(new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object));
+            var bank_data = new List<BankRecord>
             {
                 new BankRecord {Description = "BankRecord01"},
                 new BankRecord {Description = "BankRecord02"}
             };
-            var mockBankFileIO = new Mock<IFileIO<BankRecord>>();
-            mockBankFileIO.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bankData);
-            var bankFile = new GenericFile<BankRecord>(new CSVFile<BankRecord>(mockBankFileIO.Object));
-            var dataLoadingInfo = new DataLoadingInformation<ActualBankRecord, BankRecord> { SheetName = MainSheetNames.BankIn };
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(dataLoadingInfo, actualBankFile, bankFile);
-            var expectedPotentialMatches = new List<PotentialMatch>
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_data);
+            var bank_file = new GenericFile<BankRecord>(new CSVFile<BankRecord>(mock_bank_file_io.Object));
+            var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord> { Sheet_name = MainSheetNames.Bank_in };
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(data_loading_info, actual_bank_file, bank_file);
+            var expected_potential_matches = new List<PotentialMatch>
             {
                 new PotentialMatch
                 {
-                    ActualRecords = new List<ICSVRecord>{ bankData[0] },
-                    ConsoleLines = new List<ConsoleLine>{ new ConsoleLine { DescriptionString = "Console Description" } }
+                    Actual_records = new List<ICSVRecord>{ bank_data[0] },
+                    Console_lines = new List<ConsoleLine>{ new ConsoleLine { Description_string = "Console Description" } }
                 }
             };
-            reconciliator.SetMatchFinder((record, file) => expectedPotentialMatches);
-            reconciliator.FindReconciliationMatchesForNextThirdPartyRecord();
-            reconciliator.OwnedFile.Records[0].Matched = true;
-            reconciliator.OwnedFile.Records[0].Match = actualBankData[0];
+            reconciliator.Set_match_finder((record, file) => expected_potential_matches);
+            reconciliator.Find_reconciliation_matches_for_next_third_party_record();
+            reconciliator.Owned_file.Records[0].Matched = true;
+            reconciliator.Owned_file.Records[0].Match = actual_bank_data[0];
 
             // Act
-            reconciliator.RefreshFiles();
+            reconciliator.Refresh_files();
 
             // Assert
-            Assert.AreEqual(actualBankData[0], reconciliator.OwnedFile.Records[0].Match);
-            Assert.IsTrue(reconciliator.OwnedFile.Records[0].Matched);
-            Assert.IsFalse(reconciliator.OwnedFile.Records[1].Matched);
+            Assert.AreEqual(actual_bank_data[0], reconciliator.Owned_file.Records[0].Match);
+            Assert.IsTrue(reconciliator.Owned_file.Records[0].Matched);
+            Assert.IsFalse(reconciliator.Owned_file.Records[1].Matched);
         }
     }
 }

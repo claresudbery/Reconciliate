@@ -11,18 +11,18 @@ namespace ReconciliationBaseTests.ReconciliationBase
     [TestFixture]
     public partial class ReconciliationIntroTests : IInputOutput
     {
-        private Mock<IInputOutput> _mockInputOutput;
+        private Mock<IInputOutput> _mock_input_output;
 
         [OneTimeSetUp]
-        public void OneTimeSetUp()
+        public void One_time_set_up()
         {
-            TestHelper.SetCorrectDateFormatting();
+            TestHelper.Set_correct_date_formatting();
         }
 
         [SetUp]
-        public void SetUp()
+        public void Set_up()
         {
-            _mockInputOutput = new Mock<IInputOutput>();
+            _mock_input_output = new Mock<IInputOutput>();
         }
 
         [Test]
@@ -30,23 +30,23 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             var reconciliate = new ReconciliationIntro(this);
-            var mockClock = new Mock<IClock>();
-            var nowDateTime = DateTime.Now;
-            mockClock.Setup(x => x.NowDateTime()).Returns(nowDateTime);
+            var mock_clock = new Mock<IClock>();
+            var now_date_time = DateTime.Now;
+            mock_clock.Setup(x => x.Now_date_time()).Returns(now_date_time);
 
             // Act
-            reconciliate.CreateBackupOfRealSpreadsheet(mockClock.Object, ReconConsts.TestBackupFilePath);
+            reconciliate.Create_backup_of_real_spreadsheet(mock_clock.Object, ReconConsts.Test_backup_file_path);
 
             // Assert
             // This test will fail on the Mac, so don't even bother.
-            string sourceFilePath = ReconConsts.TestBackupFilePath + "/" + ReconConsts.MainSpreadsheetFileName;
-            if (File.Exists(sourceFilePath))
+            string source_file_path = ReconConsts.Test_backup_file_path + "/" + ReconConsts.Main_spreadsheet_file_name;
+            if (File.Exists(source_file_path))
             {
-                var expectedBackupFile = ReconConsts.TestBackupFilePath
+                var expected_backup_file = ReconConsts.Test_backup_file_path
                                          + @"\SpreadsheetBackups\real_backup_"
-                                         + nowDateTime.ToString().Replace(" ", "_").Replace(":", "-").Replace("/", "-") 
-                                         + "_" + ReconConsts.MainSpreadsheetFileName;
-                Assert.IsTrue(File.Exists(expectedBackupFile));
+                                         + now_date_time.ToString().Replace(" ", "_").Replace(":", "-").Replace("/", "-") 
+                                         + "_" + ReconConsts.Main_spreadsheet_file_name;
+                Assert.IsTrue(File.Exists(expected_backup_file));
             }
         }
 
@@ -55,19 +55,19 @@ namespace ReconciliationBaseTests.ReconciliationBase
         {
             // Arrange
             var reconciliate = new ReconciliationIntro(this);
-            string debugFilePath = Path.Combine(ReconConsts.TestBackupFilePath, ReconConsts.BackupSubFolder, ReconConsts.DebugSpreadsheetFileName);
-            string sourceFilePath = Path.Combine(ReconConsts.TestBackupFilePath, ReconConsts.MainSpreadsheetFileName);
-            File.Delete(debugFilePath);
-            Assert.IsFalse(File.Exists(debugFilePath));
+            string debug_file_path = Path.Combine(ReconConsts.Test_backup_file_path, ReconConsts.Backup_sub_folder, ReconConsts.Debug_spreadsheet_file_name);
+            string source_file_path = Path.Combine(ReconConsts.Test_backup_file_path, ReconConsts.Main_spreadsheet_file_name);
+            File.Delete(debug_file_path);
+            Assert.IsFalse(File.Exists(debug_file_path));
 
             // Act
-            reconciliate.CopySourceSpreadsheetToDebugSpreadsheet(ReconConsts.TestBackupFilePath, ReconConsts.TestBackupFilePath);
+            reconciliate.Copy_source_spreadsheet_to_debug_spreadsheet(ReconConsts.Test_backup_file_path, ReconConsts.Test_backup_file_path);
 
             // Assert
             // This test will fail on the Mac, so don't even bother.
-            if (File.Exists(sourceFilePath))
+            if (File.Exists(source_file_path))
             {
-                Assert.IsTrue(File.Exists(debugFilePath));
+                Assert.IsTrue(File.Exists(debug_file_path));
             }
         }
     }

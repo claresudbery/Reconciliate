@@ -13,208 +13,208 @@ namespace ExcelIntegrationTests.Records
     {
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillPopulateCredCard1InOutRecordCells()
+        public void Will_populate_cred_card1_in_out_record_cells()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord
+            var cred_card1_in_out_record = new CredCard1InOutRecord
             {
                 Date = new DateTime(year: 2017, month: 4, day: 1),
-                UnreconciledAmount = 22.22,
+                Unreconciled_amount = 22.22,
                 Description = "New description which will overwrite what's normally there.",
-                ReconciledAmount = 9999.56
+                Reconciled_amount = 9999.56
             };
-            var cells = _spreadsheet.CurrentCells("CredCard");
-            var lastRowNumber = _spreadsheet.LastRowNumber("CredCard");
-            var previousRecord = new CredCard1InOutRecord();
-            previousRecord.ReadFromSpreadsheetRow(_spreadsheet.ReadLastRow("CredCard"));
+            var cells = _spreadsheet.Current_cells("CredCard");
+            var last_row_number = _spreadsheet.Last_row_number("CredCard");
+            var previous_record = new CredCard1InOutRecord();
+            previous_record.Read_from_spreadsheet_row(_spreadsheet.Read_last_row("CredCard"));
 
             // Act 
-            credCard1InOutRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
-            var newRow = _spreadsheet.ReadLastRow("CredCard");
+            cred_card1_in_out_record.Populate_spreadsheet_row(cells, last_row_number);
+            var new_row = _spreadsheet.Read_last_row("CredCard");
 
             // Assert
-            Assert.AreEqual(credCard1InOutRecord.Date, DateTime.FromOADate((double)newRow.ReadCell(0)));
-            Assert.AreEqual(credCard1InOutRecord.UnreconciledAmount, (Double)newRow.ReadCell(1));
-            Assert.AreEqual(credCard1InOutRecord.Description, (String)newRow.ReadCell(3));
-            Assert.AreEqual(credCard1InOutRecord.ReconciledAmount, (Double)newRow.ReadCell(4));
+            Assert.AreEqual(cred_card1_in_out_record.Date, DateTime.FromOADate((double)new_row.Read_cell(0)));
+            Assert.AreEqual(cred_card1_in_out_record.Unreconciled_amount, (Double)new_row.Read_cell(1));
+            Assert.AreEqual(cred_card1_in_out_record.Description, (String)new_row.Read_cell(3));
+            Assert.AreEqual(cred_card1_in_out_record.Reconciled_amount, (Double)new_row.Read_cell(4));
 
             // Clean up
-            previousRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
+            previous_record.Populate_spreadsheet_row(cells, last_row_number);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillInsertDividerTextInSecondCellWhenCredCard1InOutRecordIsDivider()
+        public void Will_insert_divider_text_in_second_cell_when_cred_card1_in_out_record_is_divider()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord {Divider = true};
-            var cells = _spreadsheet.CurrentCells("CredCard");
-            var lastRowNumber = _spreadsheet.LastRowNumber("CredCard");
-            var previousRecord = new CredCard1InOutRecord();
-            previousRecord.ReadFromSpreadsheetRow(_spreadsheet.ReadLastRow("CredCard"));
+            var cred_card1_in_out_record = new CredCard1InOutRecord {Divider = true};
+            var cells = _spreadsheet.Current_cells("CredCard");
+            var last_row_number = _spreadsheet.Last_row_number("CredCard");
+            var previous_record = new CredCard1InOutRecord();
+            previous_record.Read_from_spreadsheet_row(_spreadsheet.Read_last_row("CredCard"));
 
             // Act 
-            credCard1InOutRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
-            var newRow = _spreadsheet.ReadLastRow("CredCard");
+            cred_card1_in_out_record.Populate_spreadsheet_row(cells, last_row_number);
+            var new_row = _spreadsheet.Read_last_row("CredCard");
 
             // Assert
-            Assert.AreEqual(ReconConsts.DividerText, (String)newRow.ReadCell(1));
+            Assert.AreEqual(ReconConsts.DividerText, (String)new_row.Read_cell(1));
 
             // Clean up
-            previousRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
+            previous_record.Populate_spreadsheet_row(cells, last_row_number);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillInsertXInCellWhenCredCard1InOutRecordIsMatched()
+        public void Will_insert_x_in_cell_when_cred_card1_in_out_record_is_matched()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord {Matched = true};
-            var cells = _spreadsheet.CurrentCells("CredCard");
-            var lastRowNumber = _spreadsheet.LastRowNumber("CredCard");
-            var previousRecord = new CredCard1InOutRecord();
-            previousRecord.ReadFromSpreadsheetRow(_spreadsheet.ReadLastRow("CredCard"));
+            var cred_card1_in_out_record = new CredCard1InOutRecord {Matched = true};
+            var cells = _spreadsheet.Current_cells("CredCard");
+            var last_row_number = _spreadsheet.Last_row_number("CredCard");
+            var previous_record = new CredCard1InOutRecord();
+            previous_record.Read_from_spreadsheet_row(_spreadsheet.Read_last_row("CredCard"));
 
             // Act 
-            credCard1InOutRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
-            var newRow = _spreadsheet.ReadLastRow("CredCard");
+            cred_card1_in_out_record.Populate_spreadsheet_row(cells, last_row_number);
+            var new_row = _spreadsheet.Read_last_row("CredCard");
 
             // Assert
-            Assert.AreEqual("x", (String)newRow.ReadCell(2));
+            Assert.AreEqual("x", (String)new_row.Read_cell(2));
 
             // Clean up
-            previousRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
+            previous_record.Populate_spreadsheet_row(cells, last_row_number);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillInsertNullInRelevantCellWhenCredCard1InOutRecordIsNotMatched()
+        public void Will_insert_null_in_relevant_cell_when_cred_card1_in_out_record_is_not_matched()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord {Matched = false};
-            var cells = _spreadsheet.CurrentCells("CredCard");
-            var lastRowNumber = _spreadsheet.LastRowNumber("CredCard");
-            var previousRecord = new CredCard1InOutRecord();
-            previousRecord.ReadFromSpreadsheetRow(_spreadsheet.ReadLastRow("CredCard"));
+            var cred_card1_in_out_record = new CredCard1InOutRecord {Matched = false};
+            var cells = _spreadsheet.Current_cells("CredCard");
+            var last_row_number = _spreadsheet.Last_row_number("CredCard");
+            var previous_record = new CredCard1InOutRecord();
+            previous_record.Read_from_spreadsheet_row(_spreadsheet.Read_last_row("CredCard"));
 
             // Act 
-            credCard1InOutRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
-            var newRow = _spreadsheet.ReadLastRow("CredCard");
+            cred_card1_in_out_record.Populate_spreadsheet_row(cells, last_row_number);
+            var new_row = _spreadsheet.Read_last_row("CredCard");
 
             // Assert
-            Assert.AreEqual(null, (String)newRow.ReadCell(2));
+            Assert.AreEqual(null, (String)new_row.Read_cell(2));
 
             // Clean up
-            previousRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
+            previous_record.Populate_spreadsheet_row(cells, last_row_number);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillPopulateZeroAmountsAsEmptyCellsForCredCard1InOutRecord()
+        public void Will_populate_zero_amounts_as_empty_cells_for_cred_card1_in_out_record()
         {
             // Arrange
-            var credCard1InOutRecord = new CredCard1InOutRecord
+            var cred_card1_in_out_record = new CredCard1InOutRecord
             {
-                UnreconciledAmount = 0,
-                ReconciledAmount = 0
+                Unreconciled_amount = 0,
+                Reconciled_amount = 0
             };
-            var cells = _spreadsheet.CurrentCells("CredCard");
-            var lastRowNumber = _spreadsheet.LastRowNumber("CredCard");
-            var previousRecord = new CredCard1InOutRecord();
-            previousRecord.ReadFromSpreadsheetRow(_spreadsheet.ReadLastRow("CredCard"));
+            var cells = _spreadsheet.Current_cells("CredCard");
+            var last_row_number = _spreadsheet.Last_row_number("CredCard");
+            var previous_record = new CredCard1InOutRecord();
+            previous_record.Read_from_spreadsheet_row(_spreadsheet.Read_last_row("CredCard"));
 
             // Act 
-            credCard1InOutRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
-            var newRow = _spreadsheet.ReadLastRow("CredCard");
+            cred_card1_in_out_record.Populate_spreadsheet_row(cells, last_row_number);
+            var new_row = _spreadsheet.Read_last_row("CredCard");
 
             // Assert
-            Assert.AreEqual(null, newRow.ReadCell(1));
-            Assert.AreEqual(null, newRow.ReadCell(4));
+            Assert.AreEqual(null, new_row.Read_cell(1));
+            Assert.AreEqual(null, new_row.Read_cell(4));
 
             // Clean up
-            previousRecord.PopulateSpreadsheetRow(cells, lastRowNumber);
+            previous_record.Populate_spreadsheet_row(cells, last_row_number);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillReadFromCredCard1InOutRecordCells()
+        public void Will_read_from_cred_card1_in_out_record_cells()
         {
             // Arrange
-            DateTime expectedDate = new DateTime(year: 2018, month: 4, day: 27);
-            Double expectedUnreconciledAmount = 5.10;
-            String expectedDescription = "pintipoplication";
-            Double expectedReconciledAmount = 10567.89;
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var cells = _spreadsheet.ReadLastRow("CredCard");
+            DateTime expected_date = new DateTime(year: 2018, month: 4, day: 27);
+            Double expected_unreconciled_amount = 5.10;
+            String expected_description = "pintipoplication";
+            Double expected_reconciled_amount = 10567.89;
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var cells = _spreadsheet.Read_last_row("CredCard");
 
             // Act 
-            credCard1InOutRecord.ReadFromSpreadsheetRow(cells);
+            cred_card1_in_out_record.Read_from_spreadsheet_row(cells);
 
             // Assert
-            Assert.AreEqual(expectedDate, credCard1InOutRecord.Date);
-            Assert.AreEqual(expectedUnreconciledAmount, credCard1InOutRecord.UnreconciledAmount);
-            Assert.AreEqual(expectedDescription, credCard1InOutRecord.Description);
-            Assert.AreEqual(expectedReconciledAmount, credCard1InOutRecord.ReconciledAmount);
+            Assert.AreEqual(expected_date, cred_card1_in_out_record.Date);
+            Assert.AreEqual(expected_unreconciled_amount, cred_card1_in_out_record.Unreconciled_amount);
+            Assert.AreEqual(expected_description, cred_card1_in_out_record.Description);
+            Assert.AreEqual(expected_reconciled_amount, cred_card1_in_out_record.Reconciled_amount);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillCopeWithCredCard1InOutCellsWhenNotAllCellsArePopulated()
+        public void Will_cope_with_cred_card1_in_out_cells_when_not_all_cells_are_populated()
         {
             // Arrange
-            String expectedDescription = "SOMETHING EXCITING & SOMEWHERE COOL";
-            var credCard1InOutRecord = new CredCard1InOutRecord();
+            String expected_description = "SOMETHING EXCITING & SOMEWHERE COOL";
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
             List<object> cells = new List<object>
             {
                 (double)43405,
                 13.95,
                 null,
-                expectedDescription
+                expected_description
             };
 
             // Act 
-            credCard1InOutRecord.ReadFromSpreadsheetRow(new ExcelRow(cells));
+            cred_card1_in_out_record.Read_from_spreadsheet_row(new ExcelRow(cells));
 
             // Assert
-            Assert.AreEqual(expectedDescription, credCard1InOutRecord.Description);
+            Assert.AreEqual(expected_description, cred_card1_in_out_record.Description);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillReadFromCellsWhenThereIsANullReconciledAmountOnCredCard1InOutRecord()
+        public void Will_read_from_cells_when_there_is_a_null_reconciled_amount_on_cred_card1_in_out_record()
         {
             // Arrange
-            DateTime expectedDate = new DateTime(year: 2018, month: 4, day: 25);
-            Double expectedUnreconciledAmount = 4.90;
-            String expectedDescription = "pintipoplication";
-            Double expectedReconciledAmount = 0;
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var cells = _spreadsheet.ReadSpecifiedRow("CredCard", 8);
+            DateTime expected_date = new DateTime(year: 2018, month: 4, day: 25);
+            Double expected_unreconciled_amount = 4.90;
+            String expected_description = "pintipoplication";
+            Double expected_reconciled_amount = 0;
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var cells = _spreadsheet.Read_specified_row("CredCard", 8);
 
             // Act 
-            credCard1InOutRecord.ReadFromSpreadsheetRow(cells);
+            cred_card1_in_out_record.Read_from_spreadsheet_row(cells);
 
             // Assert
-            Assert.AreEqual(expectedDate, credCard1InOutRecord.Date);
-            Assert.AreEqual(expectedUnreconciledAmount, credCard1InOutRecord.UnreconciledAmount);
-            Assert.AreEqual(expectedDescription, credCard1InOutRecord.Description);
-            Assert.AreEqual(expectedReconciledAmount, credCard1InOutRecord.ReconciledAmount);
+            Assert.AreEqual(expected_date, cred_card1_in_out_record.Date);
+            Assert.AreEqual(expected_unreconciled_amount, cred_card1_in_out_record.Unreconciled_amount);
+            Assert.AreEqual(expected_description, cred_card1_in_out_record.Description);
+            Assert.AreEqual(expected_reconciled_amount, cred_card1_in_out_record.Reconciled_amount);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillPopulateSourceLineWhenReadingFromCredCard1InOutRecordCells()
+        public void Will_populate_source_line_when_reading_from_cred_card1_in_out_record_cells()
         {
             // Arrange
-            String expectedSourceLine = String.Format("27/04/2018^£5.10^^pintipoplication^\"£10,567.89\"^");
-            var credCard1InOutRecord = new CredCard1InOutRecord();
-            var cells = _spreadsheet.ReadLastRow("CredCard");
+            String expected_source_line = String.Format("27/04/2018^£5.10^^pintipoplication^\"£10,567.89\"^");
+            var cred_card1_in_out_record = new CredCard1InOutRecord();
+            var cells = _spreadsheet.Read_last_row("CredCard");
 
             // Act 
-            credCard1InOutRecord.ReadFromSpreadsheetRow(cells);
+            cred_card1_in_out_record.Read_from_spreadsheet_row(cells);
 
             // Assert
-            Assert.AreEqual(expectedSourceLine, credCard1InOutRecord.SourceLine);
+            Assert.AreEqual(expected_source_line, cred_card1_in_out_record.Source_line);
         }
     }
 }

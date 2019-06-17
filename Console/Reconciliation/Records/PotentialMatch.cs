@@ -9,13 +9,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public const int PartialDateMatchThreshold = 3;
         public const int PartialAmountMatchThreshold = 2;
 
-        public IList<ICSVRecord> ActualRecords { get; set; }
+        public IList<ICSVRecord> Actual_records { get; set; }
 
-        public bool AmountMatch { get; set; }
-        public bool FullTextMatch { get; set; }
-        public bool PartialTextMatch { get; set; }
+        public bool Amount_match { get; set; }
+        public bool Full_text_match { get; set; }
+        public bool Partial_text_match { get; set; }
         public Rankings Rankings { get; set; }
 
-        public List<ConsoleLine> ConsoleLines { get; set; }
+        public List<ConsoleLine> Console_lines { get; set; }
     }
 }

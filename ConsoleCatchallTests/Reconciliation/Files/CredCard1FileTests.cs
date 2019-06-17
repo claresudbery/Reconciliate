@@ -10,17 +10,17 @@ namespace ConsoleCatchallTests.Reconciliation.Files
     public class CredCard1FileTests
     {
         [Test]
-        public void WillSwapSignsOnAmountsWhenLoading()
+        public void Will_swap_signs_on_amounts_when_loading()
         {
             // Arrange
-            var mockCredCard1File = new Mock<ICSVFile<CredCard1Record>>();
-            var credCard1File = new CredCard1File(mockCredCard1File.Object);
+            var mock_cred_card1_file = new Mock<ICSVFile<CredCard1Record>>();
+            var cred_card1_file = new CredCard1File(mock_cred_card1_file.Object);
 
             // Act
-            credCard1File.Load();
+            cred_card1_file.Load();
 
             // Assert
-            mockCredCard1File.Verify(x => x.SwapSignsOfAllAmounts());
+            mock_cred_card1_file.Verify(x => x.Swap_signs_of_all_amounts());
         }
     }
 }

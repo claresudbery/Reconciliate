@@ -2,8 +2,8 @@
 {
     public static class PocketMoneySheetNames
     {
-        static readonly MyXmlReader _xmlReader = new MyXmlReader();
+        static readonly MyXmlReader XmlReader = new MyXmlReader();
 
-        public static string SecondChild => _xmlReader.ReadXml($"{nameof(PocketMoneySheetNames)}.{nameof(PocketMoneySheetNames.SecondChild)}");
+        public static string Second_child => XmlReader.Read_xml($"{nameof(PocketMoneySheetNames)}.{nameof(PocketMoneySheetNames.Second_child)}");
     }
 }

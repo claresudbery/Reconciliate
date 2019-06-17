@@ -20,34 +20,34 @@ namespace ExcelIntegrationTests
 
         public ExcelIntegrationTests()
         {
-            PopulateFilePaths();
-            TestHelper.SetCorrectDateFormatting();
+            Populate_file_paths();
+            TestHelper.Set_correct_date_formatting();
         }
 
-        private void PopulateFilePaths()
+        private void Populate_file_paths()
         {
-            string currentPath = TestContext.CurrentContext.TestDirectory;
+            string current_path = TestContext.CurrentContext.TestDirectory;
 
             _testSpreadsheetFileNameAndPath =
-                TestHelper.FullyQualifiedSpreadsheetFilePath(currentPath)
+                TestHelper.Fully_qualified_spreadsheet_file_path(current_path)
                 + "/" + "Test-Spreadsheet.xlsx";
 
-            _csvFilePath = TestHelper.FullyQualifiedCSVFilePath(currentPath);
+            _csvFilePath = TestHelper.Fully_qualified_csv_file_path(current_path);
         }
 
         [OneTimeSetUp]
-        public void OneTimeSetUp()
+        public void One_time_set_up()
         {
             _excelSpreadsheet = new ExcelSpreadsheetRepo(_testSpreadsheetFileNameAndPath);
         }
 
         [OneTimeTearDown]
-        public void OneTimeTearDown()
+        public void One_time_tear_down()
         {
             _excelSpreadsheet.Dispose();
         }
 
-        private void CloseAndReopenSpreadsheet()
+        private void Close_and_reopen_spreadsheet()
         {
             _excelSpreadsheet.Dispose();
             _excelSpreadsheet = new ExcelSpreadsheetRepo(_testSpreadsheetFileNameAndPath);
@@ -55,11 +55,11 @@ namespace ExcelIntegrationTests
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanReadLastRowOfSpecifiedWorksheetAsObjectList()
+        public void Can_read_last_row_of_specified_worksheet_as_object_list()
         {
             // Arrange
-            CredCard1InOutRecord actualRowAsRecord = new CredCard1InOutRecord();
-            List<String> expectedRow = new List<string>{
+            CredCard1InOutRecord actual_row_as_record = new CredCard1InOutRecord();
+            List<String> expected_row = new List<string>{
                 "27/04/2018",
                 "5.1",
                 "",
@@ -67,70 +67,70 @@ namespace ExcelIntegrationTests
                 "10567.89"};
 
             // Act
-            var actualRow = _excelSpreadsheet.ReadLastRow(TestSheetNames.CredCard);
+            var actual_row = _excelSpreadsheet.Read_last_row(TestSheetNames.Cred_card);
 
             // Assert
-            actualRowAsRecord.ReadFromSpreadsheetRow(actualRow);
-            Assert.AreEqual(expectedRow[0], actualRowAsRecord.Date.ToShortDateString());
-            Assert.AreEqual(expectedRow[1], actualRowAsRecord.UnreconciledAmount.ToString());
-            Assert.AreEqual(expectedRow[3], actualRowAsRecord.Description);
-            Assert.AreEqual(expectedRow[4], actualRowAsRecord.ReconciledAmount.ToString());
+            actual_row_as_record.Read_from_spreadsheet_row(actual_row);
+            Assert.AreEqual(expected_row[0], actual_row_as_record.Date.ToShortDateString());
+            Assert.AreEqual(expected_row[1], actual_row_as_record.Unreconciled_amount.ToString());
+            Assert.AreEqual(expected_row[3], actual_row_as_record.Description);
+            Assert.AreEqual(expected_row[4], actual_row_as_record.Reconciled_amount.ToString());
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanReadLastRowOfWorksheetAsCsv()
+        public void Can_read_last_row_of_worksheet_as_csv()
         {
             // Arrange
-            var credCard1Record = new CredCard1InOutRecord();
-            string expectedCsv = "27/04/2018,£5.10,,\"pintipoplication\",\"£10,567.89\",";
+            var cred_card1_record = new CredCard1InOutRecord();
+            string expected_csv = "27/04/2018,£5.10,,\"pintipoplication\",\"£10,567.89\",";
 
             // Act
-            var result = _excelSpreadsheet.ReadLastRowAsCsv(TestSheetNames.CredCard, credCard1Record);
+            var result = _excelSpreadsheet.Read_last_row_as_csv(TestSheetNames.Cred_card, cred_card1_record);
 
             // Assert
-            Assert.AreEqual(expectedCsv, result);
+            Assert.AreEqual(expected_csv, result);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillAppendAllRowsInCsvFileToSpecifiedWorksheet()
+        public void Will_append_all_rows_in_csv_file_to_specified_worksheet()
         {
             // Arrange
-            var sheetName = TestSheetNames.Bank;
-            var fileIO = new FileIO<BankRecord>(new ExcelSpreadsheetRepoFactory(""), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load();
-            var initialLastRowNumber = _excelSpreadsheet.LastRowNumber(sheetName);
+            var sheet_name = TestSheetNames.Bank;
+            var file_io = new FileIO<BankRecord>(new ExcelSpreadsheetRepoFactory(""), _csvFilePath, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load();
+            var initial_last_row_number = _excelSpreadsheet.Last_row_number(sheet_name);
 
             // Act
-            _excelSpreadsheet.AppendCsvFile<BankRecord>(sheetName, csvFile);
-            var newLastRow = _excelSpreadsheet.ReadLastRow(sheetName);
-            var newRowNumber = _excelSpreadsheet.LastRowNumber(sheetName);
+            _excelSpreadsheet.Append_csv_file<BankRecord>(sheet_name, csv_file);
+            var new_last_row = _excelSpreadsheet.Read_last_row(sheet_name);
+            var new_row_number = _excelSpreadsheet.Last_row_number(sheet_name);
 
             // Clean up
-            for (int count = 1; count <= csvFile.Records.Count; count++)
+            for (int count = 1; count <= csv_file.Records.Count; count++)
             {
-                _excelSpreadsheet.RemoveLastRow(sheetName);
+                _excelSpreadsheet.Remove_last_row(sheet_name);
             }
 
             // Assert
-            var lastRecordInOrderedCsvFile = csvFile.RecordsOrderedForSpreadsheet()[csvFile.Records.Count - 1];
-            Assert.AreEqual(lastRecordInOrderedCsvFile.Date, DateTime.FromOADate((double)newLastRow.ReadCell(0)));
-            Assert.AreEqual(lastRecordInOrderedCsvFile.UnreconciledAmount, (Double)newLastRow.ReadCell(1));
-            Assert.AreEqual(lastRecordInOrderedCsvFile.Type, (String)newLastRow.ReadCell(3));
-            Assert.AreEqual(lastRecordInOrderedCsvFile.Description, (String)newLastRow.ReadCell(4));
-            Assert.AreEqual(null, newLastRow.ReadCell(5));
-            Assert.AreEqual(null, newLastRow.ReadCell(6));
-            Assert.AreEqual(initialLastRowNumber + csvFile.Records.Count, newRowNumber);
+            var last_record_in_ordered_csv_file = csv_file.Records_ordered_for_spreadsheet()[csv_file.Records.Count - 1];
+            Assert.AreEqual(last_record_in_ordered_csv_file.Date, DateTime.FromOADate((double)new_last_row.Read_cell(0)));
+            Assert.AreEqual(last_record_in_ordered_csv_file.Unreconciled_amount, (Double)new_last_row.Read_cell(1));
+            Assert.AreEqual(last_record_in_ordered_csv_file.Type, (String)new_last_row.Read_cell(3));
+            Assert.AreEqual(last_record_in_ordered_csv_file.Description, (String)new_last_row.Read_cell(4));
+            Assert.AreEqual(null, new_last_row.Read_cell(5));
+            Assert.AreEqual(null, new_last_row.Read_cell(6));
+            Assert.AreEqual(initial_last_row_number + csv_file.Records.Count, new_row_number);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanFindRowNumberOfLastRowContainingCell()
+        public void Can_find_row_number_of_last_row_containing_cell()
         {
             // Act
-            var result = _excelSpreadsheet.FindRowNumberOfLastRowContainingCell(TestSheetNames.CredCard, "pintipoplication", 4);
+            var result = _excelSpreadsheet.Find_row_number_of_last_row_containing_cell(TestSheetNames.Cred_card, "pintipoplication", 4);
 
             // Assert
             Assert.AreEqual(11, result);
@@ -138,69 +138,69 @@ namespace ExcelIntegrationTests
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillThrowExceptionIfLastRowContainingCellDoesNotHaveCellInExpectedColumn()
+        public void Will_throw_exception_if_last_row_containing_cell_does_not_have_cell_in_expected_column()
         {
             // Arrange
-            bool exceptionThrown = false;
-            String errorMessage = String.Empty;
-            String worksheetName = TestSheetNames.BadDivider;
+            bool exception_thrown = false;
+            String error_message = String.Empty;
+            String worksheet_name = TestSheetNames.Bad_divider;
 
             // Act
             try
             {
-                _excelSpreadsheet.FindRowNumberOfLastRowContainingCell(
-                    worksheetName,
-                    Dividers.DividerText);
+                _excelSpreadsheet.Find_row_number_of_last_row_containing_cell(
+                    worksheet_name,
+                    Dividers.Divider_text);
             }
             catch (Exception e)
             {
-                exceptionThrown = true;
-                errorMessage = e.Message;
+                exception_thrown = true;
+                error_message = e.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.IsTrue(errorMessage.Contains("divider"));
-            Assert.IsFalse(errorMessage.Contains("row"));
-            Assert.IsTrue(errorMessage.Contains(worksheetName));
+            Assert.IsTrue(exception_thrown);
+            Assert.IsTrue(error_message.Contains("divider"));
+            Assert.IsFalse(error_message.Contains("row"));
+            Assert.IsTrue(error_message.Contains(worksheet_name));
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillThrowExceptionIfThereIsNoRowContainingCell()
+        public void Will_throw_exception_if_there_is_no_row_containing_cell()
         {
             // Arrange
-            bool exceptionThrown = false;
-            String errorMessage = String.Empty;
-            String worksheetName = TestSheetNames.TestRecord;
+            bool exception_thrown = false;
+            String error_message = String.Empty;
+            String worksheet_name = TestSheetNames.Test_record;
 
             // Act
             try
             {
-                _excelSpreadsheet.FindRowNumberOfLastRowContainingCell(
-                    worksheetName,
-                    Dividers.DividerText);
+                _excelSpreadsheet.Find_row_number_of_last_row_containing_cell(
+                    worksheet_name,
+                    Dividers.Divider_text);
             }
             catch (Exception e)
             {
-                exceptionThrown = true;
-                errorMessage = e.Message;
+                exception_thrown = true;
+                error_message = e.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.IsTrue(errorMessage.Contains("divider"));
-            Assert.IsTrue(errorMessage.Contains("row"));
-            Assert.IsTrue(errorMessage.Contains(worksheetName));
+            Assert.IsTrue(exception_thrown);
+            Assert.IsTrue(error_message.Contains("divider"));
+            Assert.IsTrue(error_message.Contains("row"));
+            Assert.IsTrue(error_message.Contains(worksheet_name));
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanFindRowNumberOfLastRowWithCellContainingText()
+        public void Can_find_row_number_of_last_row_with_cell_containing_text()
         {
             // Act
-            var result = _excelSpreadsheet.FindRowNumberOfLastRowWithCellContainingText(
-                TestSheetNames.CredCard,
+            var result = _excelSpreadsheet.Find_row_number_of_last_row_with_cell_containing_text(
+                TestSheetNames.Cred_card,
                 "Thingummybob", 
                 new List<int>{2, 4, 6});
 
@@ -210,71 +210,71 @@ namespace ExcelIntegrationTests
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillThrowExceptionIfLastRowWithCellContainingTextDoesNotHaveCellInExpectedColumn()
+        public void Will_throw_exception_if_last_row_with_cell_containing_text_does_not_have_cell_in_expected_column()
         {
             // Arrange
-            bool exceptionThrown = false;
-            String errorMessage = String.Empty;
-            String worksheetName = TestSheetNames.BadDivider;
+            bool exception_thrown = false;
+            String error_message = String.Empty;
+            String worksheet_name = TestSheetNames.Bad_divider;
             const string targetText = "Thingummybob";
 
             // Act
             try
             {
-                _excelSpreadsheet.FindRowNumberOfLastRowWithCellContainingText(
-                    worksheetName,
+                _excelSpreadsheet.Find_row_number_of_last_row_with_cell_containing_text(
+                    worksheet_name,
                     targetText,
                     new List<int> {ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn});
             }
             catch (Exception e)
             {
-                exceptionThrown = true;
-                errorMessage = e.Message;
+                exception_thrown = true;
+                error_message = e.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.IsTrue(errorMessage.Contains(targetText));
-            Assert.IsFalse(errorMessage.Contains("row"));
-            Assert.IsTrue(errorMessage.Contains(worksheetName));
+            Assert.IsTrue(exception_thrown);
+            Assert.IsTrue(error_message.Contains(targetText));
+            Assert.IsFalse(error_message.Contains("row"));
+            Assert.IsTrue(error_message.Contains(worksheet_name));
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillThrowExceptionIfThereIsNoRowWithCellContainingText()
+        public void Will_throw_exception_if_there_is_no_row_with_cell_containing_text()
         {
             // Arrange
-            bool exceptionThrown = false;
-            String errorMessage = String.Empty;
-            String worksheetName = TestSheetNames.CredCard;
+            bool exception_thrown = false;
+            String error_message = String.Empty;
+            String worksheet_name = TestSheetNames.Cred_card;
 
             // Act
             try
             {
-                _excelSpreadsheet.FindRowNumberOfLastRowWithCellContainingText(
-                    worksheetName,
-                    ReconConsts.CredCard2DdDescription,
+                _excelSpreadsheet.Find_row_number_of_last_row_with_cell_containing_text(
+                    worksheet_name,
+                    ReconConsts.Cred_card2_dd_description,
                     new List<int> {ReconConsts.DdDescriptionColumn});
             }
             catch (Exception e)
             {
-                exceptionThrown = true;
-                errorMessage = e.Message;
+                exception_thrown = true;
+                error_message = e.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.IsTrue(errorMessage.Contains(ReconConsts.CredCard2DdDescription));
-            Assert.IsTrue(errorMessage.Contains("row"));
-            Assert.IsTrue(errorMessage.Contains(worksheetName));
+            Assert.IsTrue(exception_thrown);
+            Assert.IsTrue(error_message.Contains(ReconConsts.Cred_card2_dd_description));
+            Assert.IsTrue(error_message.Contains("row"));
+            Assert.IsTrue(error_message.Contains(worksheet_name));
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanFindRowNumberOfFirstRowContainingCell()
+        public void Can_find_row_number_of_first_row_containing_cell()
         {
             // Act
-            var result = _excelSpreadsheet.FindRowNumberOfFirstRowContainingCell(TestSheetNames.CredCard, "pintipoplication", 4);
+            var result = _excelSpreadsheet.Find_row_number_of_first_row_containing_cell(TestSheetNames.Cred_card, "pintipoplication", 4);
 
             // Assert
             Assert.AreEqual(1, result);
@@ -282,679 +282,679 @@ namespace ExcelIntegrationTests
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillThrowExceptionIfFirstRowContainingCellDoesNotHaveCellInExpectedColumn()
+        public void Will_throw_exception_if_first_row_containing_cell_does_not_have_cell_in_expected_column()
         {
             // Arrange
-            bool exceptionThrown = false;
-            String errorMessage = String.Empty;
-            String worksheetName = TestSheetNames.BadDivider;
+            bool exception_thrown = false;
+            String error_message = String.Empty;
+            String worksheet_name = TestSheetNames.Bad_divider;
 
             // Act
             try
             {
-                _excelSpreadsheet.FindRowNumberOfFirstRowContainingCell(
-                    worksheetName,
-                    Dividers.DividerText);
+                _excelSpreadsheet.Find_row_number_of_first_row_containing_cell(
+                    worksheet_name,
+                    Dividers.Divider_text);
             }
             catch (Exception e)
             {
-                exceptionThrown = true;
-                errorMessage = e.Message;
+                exception_thrown = true;
+                error_message = e.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.IsTrue(errorMessage.Contains("divider"));
-            Assert.IsFalse(errorMessage.Contains("row"));
-            Assert.IsTrue(errorMessage.Contains(worksheetName));
+            Assert.IsTrue(exception_thrown);
+            Assert.IsTrue(error_message.Contains("divider"));
+            Assert.IsFalse(error_message.Contains("row"));
+            Assert.IsTrue(error_message.Contains(worksheet_name));
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillThrowExceptionIfThereIsNoFirstRowContainingCell()
+        public void Will_throw_exception_if_there_is_no_first_row_containing_cell()
         {
             // Arrange
-            bool exceptionThrown = false;
-            String errorMessage = String.Empty;
-            String worksheetName = TestSheetNames.TestRecord;
+            bool exception_thrown = false;
+            String error_message = String.Empty;
+            String worksheet_name = TestSheetNames.Test_record;
 
             // Act
             try
             {
-                _excelSpreadsheet.FindRowNumberOfFirstRowContainingCell(
-                    worksheetName,
-                    Dividers.DividerText);
+                _excelSpreadsheet.Find_row_number_of_first_row_containing_cell(
+                    worksheet_name,
+                    Dividers.Divider_text);
             }
             catch (Exception e)
             {
-                exceptionThrown = true;
-                errorMessage = e.Message;
+                exception_thrown = true;
+                error_message = e.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.IsTrue(errorMessage.Contains("divider"));
-            Assert.IsTrue(errorMessage.Contains("row"));
-            Assert.IsTrue(errorMessage.Contains(worksheetName));
+            Assert.IsTrue(exception_thrown);
+            Assert.IsTrue(error_message.Contains("divider"));
+            Assert.IsTrue(error_message.Contains("row"));
+            Assert.IsTrue(error_message.Contains(worksheet_name));
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void ThrowsExceptionWhenAddingRowToSpreadsheetAlreadyOpen()
+        public void Throws_exception_when_adding_row_to_spreadsheet_already_open()
         {
             // Arrange
-            var secondSpreadsheet = new ExcelSpreadsheetRepo(_testSpreadsheetFileNameAndPath);
-            bool exceptionThrown = false;
-            TestCsvRecord appendedRow = new TestCsvRecord().Build();
+            var second_spreadsheet = new ExcelSpreadsheetRepo(_testSpreadsheetFileNameAndPath);
+            bool exception_thrown = false;
+            TestCsvRecord appended_row = new TestCsvRecord().Build();
 
             // Act
             try
             {
-                secondSpreadsheet.AppendCsvRecord(TestSheetNames.TestRecord, appendedRow);
+                second_spreadsheet.Append_csv_record(TestSheetNames.Test_record, appended_row);
             }
             catch (Exception)
             {
-                exceptionThrown = true;
+                exception_thrown = true;
             }
 
             // Assert
-            Assert.AreEqual(true, exceptionThrown);
+            Assert.AreEqual(true, exception_thrown);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillAppendCsvRecordToSpecifiedWorksheet()
+        public void Will_append_csv_record_to_specified_worksheet()
         {
             // Arrange
-            var sheetName = TestSheetNames.CredCard1;
-            var credCard1InOutRecord = new CredCard1InOutRecord
+            var sheet_name = TestSheetNames.Cred_card1;
+            var cred_card1_in_out_record = new CredCard1InOutRecord
             {
                 Date = new DateTime(year: 2017, month: 4, day: 19),
-                UnreconciledAmount = 1234.56,
+                Unreconciled_amount = 1234.56,
                 Matched = true,
                 Description = "description",
-                ReconciledAmount = 356.29
+                Reconciled_amount = 356.29
             };
-            var initialLastRowNumber = _excelSpreadsheet.LastRowNumber(sheetName);
+            var initial_last_row_number = _excelSpreadsheet.Last_row_number(sheet_name);
 
             // Act
-            _excelSpreadsheet.AppendCsvRecord(sheetName, credCard1InOutRecord);
-            var newRow = _excelSpreadsheet.ReadLastRow(sheetName);
-            var newRowNumber = _excelSpreadsheet.LastRowNumber(sheetName);
+            _excelSpreadsheet.Append_csv_record(sheet_name, cred_card1_in_out_record);
+            var new_row = _excelSpreadsheet.Read_last_row(sheet_name);
+            var new_row_number = _excelSpreadsheet.Last_row_number(sheet_name);
 
             // Clean up
-            _excelSpreadsheet.RemoveLastRow(sheetName);
+            _excelSpreadsheet.Remove_last_row(sheet_name);
 
             // Assert
-            Assert.AreEqual(credCard1InOutRecord.Date, DateTime.FromOADate((double)newRow.ReadCell(CredCard1InOutRecord.DateIndex)));
-            Assert.AreEqual(credCard1InOutRecord.UnreconciledAmount, (Double)newRow.ReadCell(CredCard1InOutRecord.UnreconciledAmountIndex));
-            Assert.AreEqual("x", (String)newRow.ReadCell(CredCard1InOutRecord.MatchedIndex));
-            Assert.AreEqual(credCard1InOutRecord.Description, (String)newRow.ReadCell(CredCard1InOutRecord.DescriptionIndex));
-            Assert.AreEqual(credCard1InOutRecord.ReconciledAmount, (Double)newRow.ReadCell(CredCard1InOutRecord.ReconciledAmountIndex));
-            Assert.AreEqual(initialLastRowNumber + 1, newRowNumber);
+            Assert.AreEqual(cred_card1_in_out_record.Date, DateTime.FromOADate((double)new_row.Read_cell(CredCard1InOutRecord.DateIndex)));
+            Assert.AreEqual(cred_card1_in_out_record.Unreconciled_amount, (Double)new_row.Read_cell(CredCard1InOutRecord.UnreconciledAmountIndex));
+            Assert.AreEqual("x", (String)new_row.Read_cell(CredCard1InOutRecord.MatchedIndex));
+            Assert.AreEqual(cred_card1_in_out_record.Description, (String)new_row.Read_cell(CredCard1InOutRecord.DescriptionIndex));
+            Assert.AreEqual(cred_card1_in_out_record.Reconciled_amount, (Double)new_row.Read_cell(CredCard1InOutRecord.ReconciledAmountIndex));
+            Assert.AreEqual(initial_last_row_number + 1, new_row_number);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillAppendRowsToWorksheetOrderedByMatchedAndThenByDateAndIncludingDivider()
+        public void Will_append_rows_to_worksheet_ordered_by_matched_and_then_by_date_and_including_divider()
         {
             // Arrange
-            var sheetName = TestSheetNames.Bank;
+            var sheet_name = TestSheetNames.Bank;
             const bool doNotOrderByDate = false;
-            var fileIO = new FileIO<BankRecord>(new ExcelSpreadsheetRepoFactory(""), _csvFilePath, "BankIn-formatted-date-only");
-            var csvFile = new CSVFile<BankRecord>(fileIO);
-            csvFile.Load(
+            var file_io = new FileIO<BankRecord>(new ExcelSpreadsheetRepoFactory(""), _csvFilePath, "BankIn-formatted-date-only");
+            var csv_file = new CSVFile<BankRecord>(file_io);
+            csv_file.Load(
                 true,
                 null,
                 doNotOrderByDate);
-            var initialLastRowNumber = _excelSpreadsheet.LastRowNumber(sheetName);
-            csvFile.Records[0].Matched = true;
-            csvFile.Records[1].Matched = true;
-            csvFile.Records[3].Matched = true;
+            var initial_last_row_number = _excelSpreadsheet.Last_row_number(sheet_name);
+            csv_file.Records[0].Matched = true;
+            csv_file.Records[1].Matched = true;
+            csv_file.Records[3].Matched = true;
 
             // Act
-            _excelSpreadsheet.AppendCsvFile<BankRecord>(sheetName, csvFile);
-            List<ICellRow> newRows = new List<ICellRow>();
-            for (int newRowCount = 1; newRowCount <= csvFile.Records.Count + 1; newRowCount++)
+            _excelSpreadsheet.Append_csv_file<BankRecord>(sheet_name, csv_file);
+            List<ICellRow> new_rows = new List<ICellRow>();
+            for (int new_row_count = 1; new_row_count <= csv_file.Records.Count + 1; new_row_count++)
             {
-                newRows.Add(_excelSpreadsheet.ReadSpecifiedRow(sheetName, initialLastRowNumber + newRowCount));
+                new_rows.Add(_excelSpreadsheet.Read_specified_row(sheet_name, initial_last_row_number + new_row_count));
             }
 
             // Clean up
-            for (int count = 1; count <= csvFile.Records.Count + 1; count++)
+            for (int count = 1; count <= csv_file.Records.Count + 1; count++)
             {
-                _excelSpreadsheet.RemoveLastRow(sheetName);
+                _excelSpreadsheet.Remove_last_row(sheet_name);
             }
 
             // Assert
-            Assert.AreEqual("ZZZThing2", (String)newRows[0].ReadCell(4));
-            Assert.AreEqual("ZZZSpecialDescription001", (String)newRows[1].ReadCell(4));
-            Assert.AreEqual("ZZZThing1", (String)newRows[2].ReadCell(4));
-            Assert.AreEqual("Divider", (String)newRows[3].ReadCell(1));
-            Assert.AreEqual("ZZZThing3", (String)newRows[4].ReadCell(4));
-            Assert.AreEqual("ZZZSpecialDescription005", (String)newRows[5].ReadCell(4));
+            Assert.AreEqual("ZZZThing2", (String)new_rows[0].Read_cell(4));
+            Assert.AreEqual("ZZZSpecialDescription001", (String)new_rows[1].Read_cell(4));
+            Assert.AreEqual("ZZZThing1", (String)new_rows[2].Read_cell(4));
+            Assert.AreEqual("Divider", (String)new_rows[3].Read_cell(1));
+            Assert.AreEqual("ZZZThing3", (String)new_rows[4].Read_cell(4));
+            Assert.AreEqual("ZZZSpecialDescription005", (String)new_rows[5].Read_cell(4));
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanDeleteSpecifiedRows()
+        public void Can_delete_specified_rows()
         {
             // Arrange
-            var sheetName = TestSheetNames.CredCard;
-            var testRecord = new CredCard1InOutRecord();
-            string csvLine = String.Format("19/12/2016^£12.34^^Bantams^£33.44^");
-            testRecord.Load(csvLine);
-            var lastRow = new CredCard1InOutRecord();
-            string expectedLastRow = "27/04/2018,£5.10,,\"pintipoplication\",\"£10,567.89\",";
-            var initialLastRowNumber = _excelSpreadsheet.LastRowNumber(sheetName);
-            _excelSpreadsheet.AppendCsvRecord(sheetName, testRecord);
-            _excelSpreadsheet.AppendCsvRecord(sheetName, testRecord);
+            var sheet_name = TestSheetNames.Cred_card;
+            var test_record = new CredCard1InOutRecord();
+            string csv_line = String.Format("19/12/2016^£12.34^^Bantams^£33.44^");
+            test_record.Load(csv_line);
+            var last_row = new CredCard1InOutRecord();
+            string expected_last_row = "27/04/2018,£5.10,,\"pintipoplication\",\"£10,567.89\",";
+            var initial_last_row_number = _excelSpreadsheet.Last_row_number(sheet_name);
+            _excelSpreadsheet.Append_csv_record(sheet_name, test_record);
+            _excelSpreadsheet.Append_csv_record(sheet_name, test_record);
 
             // Act
-            _excelSpreadsheet.DeleteSpecifiedRows(sheetName, 12, 13);
+            _excelSpreadsheet.Delete_specified_rows(sheet_name, 12, 13);
 
             // Assert
-            var newLastRow = _excelSpreadsheet.ReadLastRowAsCsv(sheetName, lastRow);
-            var newLastRowNumber = _excelSpreadsheet.LastRowNumber(sheetName);
-            Assert.AreEqual(newLastRowNumber, initialLastRowNumber);
-            Assert.AreEqual(expectedLastRow, newLastRow);
+            var new_last_row = _excelSpreadsheet.Read_last_row_as_csv(sheet_name, last_row);
+            var new_last_row_number = _excelSpreadsheet.Last_row_number(sheet_name);
+            Assert.AreEqual(new_last_row_number, initial_last_row_number);
+            Assert.AreEqual(expected_last_row, new_last_row);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void IfAmountCodeIsNotPresentThenSensibleErrorWillBeThrown()
+        public void If_amount_code_is_not_present_then_sensible_error_will_be_thrown()
         {
             // Arrange
-            bool exceptionThrown = false;
-            string nonExistentCode = "Non-Existent Code";
-            string actualError = string.Empty;
-            string sheetName = TestSheetNames.ExpectedOut;
-            string expectedError = string.Format(ReconConsts.MissingCodeInWorksheet, nonExistentCode, sheetName);
+            bool exception_thrown = false;
+            string non_existent_code = "Non-Existent Code";
+            string actual_error = string.Empty;
+            string sheet_name = TestSheetNames.Expected_out;
+            string expected_error = string.Format(ReconConsts.MissingCodeInWorksheet, non_existent_code, sheet_name);
 
             // Act
             try
             {
-                _excelSpreadsheet.UpdateAmount(sheetName, nonExistentCode, 10);
+                _excelSpreadsheet.Update_amount(sheet_name, non_existent_code, 10);
             }
             catch (Exception exception)
             {
-                exceptionThrown = true;
-                actualError = exception.Message;
+                exception_thrown = true;
+                actual_error = exception.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown, "Exception should be thrown");
-            Assert.AreEqual(expectedError, actualError);
+            Assert.IsTrue(exception_thrown, "Exception should be thrown");
+            Assert.AreEqual(expected_error, actual_error);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void IfAmountCodeExistsInWrongColumnThenSensibleErrorWillBeThrown()
+        public void If_amount_code_exists_in_wrong_column_then_sensible_error_will_be_thrown()
         {
             // Arrange
-            bool exceptionThrown = false;
-            string wrongColumnCode = "CodeInWrongColumn";
-            string actualError = string.Empty;
-            string sheetName = TestSheetNames.ExpectedOut;
-            string expectedError = string.Format(ReconConsts.CodeInWrongPlace, wrongColumnCode, sheetName);
+            bool exception_thrown = false;
+            string wrong_column_code = "CodeInWrongColumn";
+            string actual_error = string.Empty;
+            string sheet_name = TestSheetNames.Expected_out;
+            string expected_error = string.Format(ReconConsts.CodeInWrongPlace, wrong_column_code, sheet_name);
 
             // Act
             try
             {
-                _excelSpreadsheet.UpdateAmount(sheetName, wrongColumnCode, 10);
+                _excelSpreadsheet.Update_amount(sheet_name, wrong_column_code, 10);
             }
             catch (Exception exception)
             {
-                exceptionThrown = true;
-                actualError = exception.Message;
+                exception_thrown = true;
+                actual_error = exception.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown, "Exception should be thrown");
-            Assert.AreEqual(expectedError, actualError);
+            Assert.IsTrue(exception_thrown, "Exception should be thrown");
+            Assert.AreEqual(expected_error, actual_error);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanReadTextIdentifiedByRowAndColumn()
+        public void Can_read_text_identified_by_row_and_column()
         {
             // Arrange
-            string expectedText = "description1";
-            int rowNumber = 4;
-            int columnNumber = 3;
+            string expected_text = "description1";
+            int row_number = 4;
+            int column_number = 3;
 
             // Act
-            string actualText = _excelSpreadsheet.GetText(TestSheetNames.CredCard1, rowNumber, columnNumber);
+            string actual_text = _excelSpreadsheet.Get_text(TestSheetNames.Cred_card1, row_number, column_number);
 
             // Assert
-            Assert.AreEqual(expectedText, actualText);
+            Assert.AreEqual(expected_text, actual_text);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillThrowSensibleErrorIfTextIdentifiedByRowAndColumnIsNotPresent()
+        public void Will_throw_sensible_error_if_text_identified_by_row_and_column_is_not_present()
         {
             // Arrange
-            string sheetName = TestSheetNames.CredCard1;
-            int rowNumber = 50;
-            int columnNumber = 3;
-            bool exceptionThrown = false;
-            string errorMessage = String.Empty;
+            string sheet_name = TestSheetNames.Cred_card1;
+            int row_number = 50;
+            int column_number = 3;
+            bool exception_thrown = false;
+            string error_message = String.Empty;
 
             // Act
             try
             {
-                _excelSpreadsheet.GetText(sheetName, rowNumber, columnNumber);
+                _excelSpreadsheet.Get_text(sheet_name, row_number, column_number);
             }
             catch (Exception exception)
             {
-                exceptionThrown = true;
-                errorMessage = exception.Message;
+                exception_thrown = true;
+                error_message = exception.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.IsTrue(errorMessage.Contains(ReconConsts.MissingCell), $"error message should contain {ReconConsts.MissingCell}");
-            Assert.IsTrue(errorMessage.Contains(sheetName), $"error message should contain {sheetName}");
-            Assert.IsTrue(errorMessage.Contains($"{rowNumber}"), "error message should contain rowNumber");
-            Assert.IsTrue(errorMessage.Contains($"{columnNumber}"), "error message should contain columnNumber");
+            Assert.IsTrue(exception_thrown);
+            Assert.IsTrue(error_message.Contains(ReconConsts.MissingCell), $"error message should contain {ReconConsts.MissingCell}");
+            Assert.IsTrue(error_message.Contains(sheet_name), $"error message should contain {sheet_name}");
+            Assert.IsTrue(error_message.Contains($"{row_number}"), "error message should contain rowNumber");
+            Assert.IsTrue(error_message.Contains($"{column_number}"), "error message should contain columnNumber");
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanReadDateIdentifiedByRowAndColumn()
+        public void Can_read_date_identified_by_row_and_column()
         {
             // Arrange
-            DateTime expectedDate = new DateTime(2018, 3, 18);
-            int rowNumber = 8;
-            int columnNumber = 1;
+            DateTime expected_date = new DateTime(2018, 3, 18);
+            int row_number = 8;
+            int column_number = 1;
 
             // Act
-            DateTime actualDate = _excelSpreadsheet.GetDate(TestSheetNames.TestRecord, rowNumber, columnNumber);
+            DateTime actual_date = _excelSpreadsheet.Get_date(TestSheetNames.Test_record, row_number, column_number);
 
             // Assert
-            Assert.AreEqual(expectedDate, actualDate);
+            Assert.AreEqual(expected_date, actual_date);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillThrowSensibleErrorIfDateIdentifiedByRowAndColumnIsNotPresent()
+        public void Will_throw_sensible_error_if_date_identified_by_row_and_column_is_not_present()
         {
             // Arrange
-            string sheetName = TestSheetNames.TestRecord;
-            int rowNumber = 50;
-            int columnNumber = 1;
-            bool exceptionThrown = false;
-            string errorMessage = String.Empty;
+            string sheet_name = TestSheetNames.Test_record;
+            int row_number = 50;
+            int column_number = 1;
+            bool exception_thrown = false;
+            string error_message = String.Empty;
 
             // Act
             try
             {
-                _excelSpreadsheet.GetDate(sheetName, rowNumber, columnNumber);
+                _excelSpreadsheet.Get_date(sheet_name, row_number, column_number);
             }
             catch (Exception exception)
             {
-                exceptionThrown = true;
-                errorMessage = exception.Message;
+                exception_thrown = true;
+                error_message = exception.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.IsTrue(errorMessage.Contains(ReconConsts.MissingCell), $"error message should contain {ReconConsts.MissingCell}");
-            Assert.IsTrue(errorMessage.Contains(sheetName), $"error message should contain {sheetName}");
-            Assert.IsTrue(errorMessage.Contains($"{rowNumber}"), "error message should contain rowNumber");
-            Assert.IsTrue(errorMessage.Contains($"{columnNumber}"), "error message should contain columnNumber");
+            Assert.IsTrue(exception_thrown);
+            Assert.IsTrue(error_message.Contains(ReconConsts.MissingCell), $"error message should contain {ReconConsts.MissingCell}");
+            Assert.IsTrue(error_message.Contains(sheet_name), $"error message should contain {sheet_name}");
+            Assert.IsTrue(error_message.Contains($"{row_number}"), "error message should contain rowNumber");
+            Assert.IsTrue(error_message.Contains($"{column_number}"), "error message should contain columnNumber");
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanReadAmountIdentifiedByRowAndColumn()
+        public void Can_read_amount_identified_by_row_and_column()
         {
             // Arrange
-            double expectedAmount = 37957.90;
-            int rowNumber = 5;
-            int columnNumber = 4;
+            double expected_amount = 37957.90;
+            int row_number = 5;
+            int column_number = 4;
 
             // Act
-            double actualAmount = _excelSpreadsheet.GetAmount(TestSheetNames.CredCard1, rowNumber, columnNumber);
+            double actual_amount = _excelSpreadsheet.Get_amount(TestSheetNames.Cred_card1, row_number, column_number);
 
             // Assert
-            Assert.AreEqual(expectedAmount, actualAmount);
+            Assert.AreEqual(expected_amount, actual_amount);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillThrowSensibleErrorIfAmountIdentifiedByRowAndColumnIsNotPresent()
+        public void Will_throw_sensible_error_if_amount_identified_by_row_and_column_is_not_present()
         {
             // Arrange
-            string sheetName = TestSheetNames.CredCard1;
-            int rowNumber = 50;
-            int columnNumber = 4;
-            bool exceptionThrown = false;
-            string errorMessage = String.Empty;
+            string sheet_name = TestSheetNames.Cred_card1;
+            int row_number = 50;
+            int column_number = 4;
+            bool exception_thrown = false;
+            string error_message = String.Empty;
 
             // Act
             try
             {
-                _excelSpreadsheet.GetAmount(sheetName, rowNumber, columnNumber);
+                _excelSpreadsheet.Get_amount(sheet_name, row_number, column_number);
             }
             catch (Exception exception)
             {
-                exceptionThrown = true;
-                errorMessage = exception.Message;
+                exception_thrown = true;
+                error_message = exception.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.IsTrue(errorMessage.Contains(ReconConsts.MissingCell), $"error message should contain {ReconConsts.MissingCell}");
-            Assert.IsTrue(errorMessage.Contains(sheetName), $"error message should contain {sheetName}");
-            Assert.IsTrue(errorMessage.Contains($"{rowNumber}"), "error message should contain rowNumber");
-            Assert.IsTrue(errorMessage.Contains($"{columnNumber}"), "error message should contain columnNumber");
+            Assert.IsTrue(exception_thrown);
+            Assert.IsTrue(error_message.Contains(ReconConsts.MissingCell), $"error message should contain {ReconConsts.MissingCell}");
+            Assert.IsTrue(error_message.Contains(sheet_name), $"error message should contain {sheet_name}");
+            Assert.IsTrue(error_message.Contains($"{row_number}"), "error message should contain rowNumber");
+            Assert.IsTrue(error_message.Contains($"{column_number}"), "error message should contain columnNumber");
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanReadAmountIdentifiedByAmountCode()
+        public void Can_read_amount_identified_by_amount_code()
         {
             // Arrange
-            double expectedAmount = 54.97;
-            string sheetName = TestSheetNames.BudgetOut;
-            string amountCode = "Code003";
+            double expected_amount = 54.97;
+            string sheet_name = TestSheetNames.Budget_out;
+            string amount_code = "Code003";
 
             // Act
-            double actualAmount = _excelSpreadsheet.GetAmount(sheetName, amountCode);
+            double actual_amount = _excelSpreadsheet.Get_amount(sheet_name, amount_code);
 
             // Assert
-            Assert.AreEqual(expectedAmount, actualAmount);
+            Assert.AreEqual(expected_amount, actual_amount);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillThrowSensibleErrorIfAmountIdentifiedByAmountCodeIsNotPresent()
+        public void Will_throw_sensible_error_if_amount_identified_by_amount_code_is_not_present()
         {
             // Arrange
-            string sheetName = TestSheetNames.BudgetOut;
-            string nonExistentCode = "Does not exist";
-            bool exceptionThrown = false;
-            string errorMessage = String.Empty;
-            string expectedError = string.Format(ReconConsts.MissingCodeInWorksheet, nonExistentCode, sheetName);
+            string sheet_name = TestSheetNames.Budget_out;
+            string non_existent_code = "Does not exist";
+            bool exception_thrown = false;
+            string error_message = String.Empty;
+            string expected_error = string.Format(ReconConsts.MissingCodeInWorksheet, non_existent_code, sheet_name);
 
             // Act
             try
             {
-                _excelSpreadsheet.GetAmount(sheetName, nonExistentCode);
+                _excelSpreadsheet.Get_amount(sheet_name, non_existent_code);
             }
             catch (Exception exception)
             {
-                exceptionThrown = true;
-                errorMessage = exception.Message;
+                exception_thrown = true;
+                error_message = exception.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.AreEqual(expectedError, errorMessage);
+            Assert.IsTrue(exception_thrown);
+            Assert.AreEqual(expected_error, error_message);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanUpdateDateIdentifiedByRowAndColumn()
+        public void Can_update_date_identified_by_row_and_column()
         {
             // Arrange
-            string sheetName = TestSheetNames.TestRecord;
-            int dateRow = 10;
-            int dateColumn = 1;
-            DateTime previousDate = _excelSpreadsheet.GetDate(sheetName, dateRow, dateColumn);
-            DateTime newDate = previousDate.AddDays(1);
+            string sheet_name = TestSheetNames.Test_record;
+            int date_row = 10;
+            int date_column = 1;
+            DateTime previous_date = _excelSpreadsheet.Get_date(sheet_name, date_row, date_column);
+            DateTime new_date = previous_date.AddDays(1);
 
             // Act
-            _excelSpreadsheet.UpdateDate(sheetName, dateRow, dateColumn, newDate);
+            _excelSpreadsheet.Update_date(sheet_name, date_row, date_column, new_date);
 
             // Assert
-            DateTime updatedDate = _excelSpreadsheet.GetDate(sheetName, dateRow, dateColumn);
-            Assert.AreEqual(newDate, updatedDate);
-            Assert.AreNotEqual(previousDate, updatedDate);
+            DateTime updated_date = _excelSpreadsheet.Get_date(sheet_name, date_row, date_column);
+            Assert.AreEqual(new_date, updated_date);
+            Assert.AreNotEqual(previous_date, updated_date);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanUpdateTextIdentifiedByRowAndColumn()
+        public void Can_update_text_identified_by_row_and_column()
         {
             // Arrange
-            string sheetName = TestSheetNames.TestRecord;
-            int textRow = 10;
-            int textColumn = 5;
-            string previousText = _excelSpreadsheet.GetText(sheetName, textRow, textColumn);
-            string newText = previousText + "z";
+            string sheet_name = TestSheetNames.Test_record;
+            int text_row = 10;
+            int text_column = 5;
+            string previous_text = _excelSpreadsheet.Get_text(sheet_name, text_row, text_column);
+            string new_text = previous_text + "z";
 
             // Act
-            _excelSpreadsheet.UpdateText(sheetName, textRow, textColumn, newText);
+            _excelSpreadsheet.Update_text(sheet_name, text_row, text_column, new_text);
 
             // Assert
-            string updatedText = _excelSpreadsheet.GetText(sheetName, textRow, textColumn);
-            Assert.AreEqual(newText, updatedText);
-            Assert.AreNotEqual(previousText, updatedText);
+            string updated_text = _excelSpreadsheet.Get_text(sheet_name, text_row, text_column);
+            Assert.AreEqual(new_text, updated_text);
+            Assert.AreNotEqual(previous_text, updated_text);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanUpdateAmountIdentifiedByRowAndColumn()
+        public void Can_update_amount_identified_by_row_and_column()
         {
             // Arrange
-            string sheetName = TestSheetNames.TestRecord;
-            int amountRow = 10;
-            int amountColumn = 2;
-            double previousAmount = _excelSpreadsheet.GetAmount(sheetName, amountRow, amountColumn);
-            double newAmount = Math.Round(previousAmount + 1.2, 2);
+            string sheet_name = TestSheetNames.Test_record;
+            int amount_row = 10;
+            int amount_column = 2;
+            double previous_amount = _excelSpreadsheet.Get_amount(sheet_name, amount_row, amount_column);
+            double new_amount = Math.Round(previous_amount + 1.2, 2);
 
             // Act
-            _excelSpreadsheet.UpdateAmount(sheetName, amountRow, amountColumn, newAmount);
+            _excelSpreadsheet.Update_amount(sheet_name, amount_row, amount_column, new_amount);
 
             // Assert
-            double updatedAmount = _excelSpreadsheet.GetAmount(sheetName, amountRow, amountColumn);
-            Assert.AreEqual(newAmount, updatedAmount);
-            Assert.AreNotEqual(previousAmount, updatedAmount);
+            double updated_amount = _excelSpreadsheet.Get_amount(sheet_name, amount_row, amount_column);
+            Assert.AreEqual(new_amount, updated_amount);
+            Assert.AreNotEqual(previous_amount, updated_amount);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanUpdateAmountAndTextIdentifiedByAmountCode()
+        public void Can_update_amount_and_text_identified_by_amount_code()
         {
             // Arrange
-            string sheetName = TestSheetNames.BudgetOut;
-            string amountCode = "Code007";
-            int textColumn = 6;
-            int amountColumn = 3;
+            string sheet_name = TestSheetNames.Budget_out;
+            string amount_code = "Code007";
+            int text_column = 6;
+            int amount_column = 3;
             int row = 9;
-            double previousAmount = _excelSpreadsheet.GetAmount(sheetName, amountCode, amountColumn);
-            string previousText = _excelSpreadsheet.GetText(sheetName, row, textColumn);
-            double newAmount = Math.Round(previousAmount + 1.2, 2);
-            string newText = previousText + "z";
+            double previous_amount = _excelSpreadsheet.Get_amount(sheet_name, amount_code, amount_column);
+            string previous_text = _excelSpreadsheet.Get_text(sheet_name, row, text_column);
+            double new_amount = Math.Round(previous_amount + 1.2, 2);
+            string new_text = previous_text + "z";
 
             // Act
-            _excelSpreadsheet.UpdateAmountAndText(sheetName, amountCode, newAmount, newText, amountColumn, textColumn);
+            _excelSpreadsheet.Update_amount_and_text(sheet_name, amount_code, new_amount, new_text, amount_column, text_column);
 
             // Assert
-            double updatedAmount = _excelSpreadsheet.GetAmount(sheetName, amountCode, amountColumn);
-            Assert.AreEqual(newAmount, updatedAmount);
-            Assert.AreNotEqual(previousAmount, updatedAmount);
-            string updatedText = _excelSpreadsheet.GetText(sheetName, row, textColumn);
-            Assert.AreEqual(newText, updatedText);
-            Assert.AreNotEqual(previousText, updatedText);
+            double updated_amount = _excelSpreadsheet.Get_amount(sheet_name, amount_code, amount_column);
+            Assert.AreEqual(new_amount, updated_amount);
+            Assert.AreNotEqual(previous_amount, updated_amount);
+            string updated_text = _excelSpreadsheet.Get_text(sheet_name, row, text_column);
+            Assert.AreEqual(new_text, updated_text);
+            Assert.AreNotEqual(previous_text, updated_text);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanUpdateAmountIdentifiedByAmountCode()
+        public void Can_update_amount_identified_by_amount_code()
         {
             // Arrange
-            string sheetName = TestSheetNames.ExpectedOut;
-            string amountCode = "Code005";
-            double previousAmount = _excelSpreadsheet.GetAmount(sheetName, amountCode, 2);
-            double newAmount = Math.Round(previousAmount + 1.2, 2);
+            string sheet_name = TestSheetNames.Expected_out;
+            string amount_code = "Code005";
+            double previous_amount = _excelSpreadsheet.Get_amount(sheet_name, amount_code, 2);
+            double new_amount = Math.Round(previous_amount + 1.2, 2);
 
             // Act
-            _excelSpreadsheet.UpdateAmount(sheetName, amountCode, newAmount);
+            _excelSpreadsheet.Update_amount(sheet_name, amount_code, new_amount);
 
             // Assert
-            double updatedAmount = _excelSpreadsheet.GetAmount(sheetName, amountCode, 2);
-            Assert.AreEqual(newAmount, updatedAmount);
-            Assert.AreNotEqual(previousAmount, updatedAmount);
+            double updated_amount = _excelSpreadsheet.Get_amount(sheet_name, amount_code, 2);
+            Assert.AreEqual(new_amount, updated_amount);
+            Assert.AreNotEqual(previous_amount, updated_amount);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void WillThrowSensibleErrorIfTryingToUpdateAmountWithNonExistentAmountCode()
+        public void Will_throw_sensible_error_if_trying_to_update_amount_with_non_existent_amount_code()
         {
             // Arrange
-            string sheetName = TestSheetNames.BudgetOut;
-            string nonExistentCode = "Does not exist";
-            bool exceptionThrown = false;
-            string errorMessage = String.Empty;
-            string expectedError = string.Format(ReconConsts.MissingCodeInWorksheet, nonExistentCode, sheetName);
+            string sheet_name = TestSheetNames.Budget_out;
+            string non_existent_code = "Does not exist";
+            bool exception_thrown = false;
+            string error_message = String.Empty;
+            string expected_error = string.Format(ReconConsts.MissingCodeInWorksheet, non_existent_code, sheet_name);
 
             // Act
             try
             {
-                _excelSpreadsheet.UpdateAmount(sheetName, nonExistentCode, 34.56);
+                _excelSpreadsheet.Update_amount(sheet_name, non_existent_code, 34.56);
             }
             catch (Exception exception)
             {
-                exceptionThrown = true;
-                errorMessage = exception.Message;
+                exception_thrown = true;
+                error_message = exception.Message;
             }
 
             // Assert
-            Assert.IsTrue(exceptionThrown);
-            Assert.AreEqual(expectedError, errorMessage);
+            Assert.IsTrue(exception_thrown);
+            Assert.AreEqual(expected_error, error_message);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void UpdatedAmountIsStillPresentAfterSpreadsheetIsClosedAndReopened()
+        public void Updated_amount_is_still_present_after_spreadsheet_is_closed_and_reopened()
         {
             // Arrange
             const string amountCode = "Code004";
-            var sheetName = TestSheetNames.ExpectedOut;
-            double previousAmount = _excelSpreadsheet.GetAmount(sheetName, amountCode, 2);
-            double newAmount = Math.Round(previousAmount + 1.2, 2);
+            var sheet_name = TestSheetNames.Expected_out;
+            double previous_amount = _excelSpreadsheet.Get_amount(sheet_name, amountCode, 2);
+            double new_amount = Math.Round(previous_amount + 1.2, 2);
 
             // Act
-            _excelSpreadsheet.UpdateAmount(sheetName, amountCode, newAmount);
-            CloseAndReopenSpreadsheet();
+            _excelSpreadsheet.Update_amount(sheet_name, amountCode, new_amount);
+            Close_and_reopen_spreadsheet();
 
             // Assert
-            double updatedAmount = _excelSpreadsheet.GetAmount(sheetName, amountCode, 2);
-            Assert.AreEqual(newAmount, updatedAmount);
-            Assert.AreNotEqual(previousAmount, updatedAmount);
+            double updated_amount = _excelSpreadsheet.Get_amount(sheet_name, amountCode, 2);
+            Assert.AreEqual(new_amount, updated_amount);
+            Assert.AreNotEqual(previous_amount, updated_amount);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanGetSubsetOfColumnsAsRowsConvertedToRecords()
+        public void Can_get_subset_of_columns_as_rows_converted_to_records()
         {
             // Arrange
             const int expectedNumItems = 9;
-            string sheetName = TestSheetNames.BudgetOut;
-            int firstRowNumber = 3;
-            int lastRowNumber = 11;
+            string sheet_name = TestSheetNames.Budget_out;
+            int first_row_number = 3;
+            int last_row_number = 11;
             const int firstColumnNumber = 2;
             const int lastColumnNumber = 6;
 
             // Act
-            List<BankRecord> budgetItems = _excelSpreadsheet.GetRowsAsRecords<BankRecord>(
-                sheetName,
-                firstRowNumber,
-                lastRowNumber,
+            List<BankRecord> budget_items = _excelSpreadsheet.Get_rows_as_records<BankRecord>(
+                sheet_name,
+                first_row_number,
+                last_row_number,
                 firstColumnNumber,
                 lastColumnNumber);
 
             // Assert
-            Assert.AreEqual(expectedNumItems, budgetItems.Count);
-            Assert.AreEqual("Description001", budgetItems[0].Description);
-            Assert.AreEqual("Description009", budgetItems[expectedNumItems - 1].Description);
+            Assert.AreEqual(expectedNumItems, budget_items.Count);
+            Assert.AreEqual("Description001", budget_items[0].Description);
+            Assert.AreEqual("Description009", budget_items[expectedNumItems - 1].Description);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanInsertNewRow()
+        public void Can_insert_new_row()
         {
             // Arrange
-            var sheetName = TestSheetNames.ExpectedOut;
+            var sheet_name = TestSheetNames.Expected_out;
             const int testRowNumber = 12;
             const int amountColumn = 2;
             const int notesColumn = 4;
-            int previousNumExpectedOutRows = _excelSpreadsheet.LastRowNumber(sheetName);
-            string previousAmountText = _excelSpreadsheet.GetText(sheetName, testRowNumber, amountColumn);
-            double newAmount = 79;
-            string previousNotesText = _excelSpreadsheet.GetText(sheetName, testRowNumber, notesColumn);
-            string newNotes = "Some new notes about some new stuff";
-            var cellValues = new Dictionary<int, object>()
+            int previous_num_expected_out_rows = _excelSpreadsheet.Last_row_number(sheet_name);
+            string previous_amount_text = _excelSpreadsheet.Get_text(sheet_name, testRowNumber, amountColumn);
+            double new_amount = 79;
+            string previous_notes_text = _excelSpreadsheet.Get_text(sheet_name, testRowNumber, notesColumn);
+            string new_notes = "Some new notes about some new stuff";
+            var cell_values = new Dictionary<int, object>()
             {
-                { amountColumn, newAmount },
-                { notesColumn, newNotes }
+                { amountColumn, new_amount },
+                { notesColumn, new_notes }
             };
 
             // Act
-            _excelSpreadsheet.InsertNewRow(sheetName, testRowNumber, cellValues);
+            _excelSpreadsheet.Insert_new_row(sheet_name, testRowNumber, cell_values);
 
             // Assert
-            int newNumExpectedOutRows = _excelSpreadsheet.LastRowNumber(sheetName);
-            double updatedAmount = _excelSpreadsheet.GetAmount(sheetName, testRowNumber, amountColumn);
-            string updatedNotes = _excelSpreadsheet.GetText(sheetName, testRowNumber, notesColumn);
-            Assert.AreEqual(previousNumExpectedOutRows + 1, newNumExpectedOutRows);
-            Assert.AreEqual(newAmount, updatedAmount);
-            Assert.AreNotEqual(previousAmountText, updatedAmount.ToString());
-            Assert.AreEqual(newNotes, updatedNotes);
-            Assert.AreNotEqual(previousNotesText, updatedNotes);
+            int new_num_expected_out_rows = _excelSpreadsheet.Last_row_number(sheet_name);
+            double updated_amount = _excelSpreadsheet.Get_amount(sheet_name, testRowNumber, amountColumn);
+            string updated_notes = _excelSpreadsheet.Get_text(sheet_name, testRowNumber, notesColumn);
+            Assert.AreEqual(previous_num_expected_out_rows + 1, new_num_expected_out_rows);
+            Assert.AreEqual(new_amount, updated_amount);
+            Assert.AreNotEqual(previous_amount_text, updated_amount.ToString());
+            Assert.AreEqual(new_notes, updated_notes);
+            Assert.AreNotEqual(previous_notes_text, updated_notes);
 
             // Teardown
-            _excelSpreadsheet.DeleteSpecifiedRows(sheetName, testRowNumber, testRowNumber);
+            _excelSpreadsheet.Delete_specified_rows(sheet_name, testRowNumber, testRowNumber);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanAppendNewRow()
+        public void Can_append_new_row()
         {
             // Arrange
-            var sheetName = TestSheetNames.CredCard;
+            var sheet_name = TestSheetNames.Cred_card;
             const int testRowNumber = 12;
             const int dateColumn = 1;
             const int amountColumn = 2;
             const int descriptionColumn = 4;
-            int previousNumTestRecordRows = _excelSpreadsheet.LastRowNumber(sheetName);
-            DateTime newDate = new DateTime(2018, 11, 25);
-            double newAmount = 32.45;
-            string newDescription = "monthly payment";
-            var cellValues = new Dictionary<int, object>()
+            int previous_num_test_record_rows = _excelSpreadsheet.Last_row_number(sheet_name);
+            DateTime new_date = new DateTime(2018, 11, 25);
+            double new_amount = 32.45;
+            string new_description = "monthly payment";
+            var cell_values = new Dictionary<int, object>()
             {
-                { dateColumn, newDate.ToOADate() },
-                { amountColumn, newAmount },
-                { descriptionColumn, newDescription }
+                { dateColumn, new_date.ToOADate() },
+                { amountColumn, new_amount },
+                { descriptionColumn, new_description }
             };
 
             // Act
-            _excelSpreadsheet.AppendNewRow(sheetName, cellValues);
+            _excelSpreadsheet.Append_new_row(sheet_name, cell_values);
 
             // Assert
-            int newNumTestRecordRows = _excelSpreadsheet.LastRowNumber(sheetName);
-            DateTime updatedDate = _excelSpreadsheet.GetDate(sheetName, testRowNumber, dateColumn);
-            double updatedAmount = _excelSpreadsheet.GetAmount(sheetName, testRowNumber, amountColumn);
-            string updatedDescription = _excelSpreadsheet.GetText(sheetName, testRowNumber, descriptionColumn);
-            Assert.AreEqual(previousNumTestRecordRows + 1, newNumTestRecordRows);
-            Assert.AreEqual(newDate, updatedDate);
-            Assert.AreEqual(newAmount, updatedAmount);
-            Assert.AreEqual(newDescription, updatedDescription);
+            int new_num_test_record_rows = _excelSpreadsheet.Last_row_number(sheet_name);
+            DateTime updated_date = _excelSpreadsheet.Get_date(sheet_name, testRowNumber, dateColumn);
+            double updated_amount = _excelSpreadsheet.Get_amount(sheet_name, testRowNumber, amountColumn);
+            string updated_description = _excelSpreadsheet.Get_text(sheet_name, testRowNumber, descriptionColumn);
+            Assert.AreEqual(previous_num_test_record_rows + 1, new_num_test_record_rows);
+            Assert.AreEqual(new_date, updated_date);
+            Assert.AreEqual(new_amount, updated_amount);
+            Assert.AreEqual(new_description, updated_description);
 
             // Teardown
-            _excelSpreadsheet.DeleteSpecifiedRows(sheetName, testRowNumber, testRowNumber);
+            _excelSpreadsheet.Delete_specified_rows(sheet_name, testRowNumber, testRowNumber);
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanFindLastRowNumberOfSpecifiedSheet()
+        public void Can_find_last_row_number_of_specified_sheet()
         {
             // Act
-            var result = _excelSpreadsheet.LastRowNumber(TestSheetNames.CredCard);
+            var result = _excelSpreadsheet.Last_row_number(TestSheetNames.Cred_card);
 
             // Assert
             Assert.AreEqual(11, result);
@@ -962,48 +962,48 @@ namespace ExcelIntegrationTests
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanReadSpecifiedRowGivenRowNumber()
+        public void Can_read_specified_row_given_row_number()
         {
             // Arrange
-            var rowNumber = 2;
+            var row_number = 2;
 
             // Act
-            var result = _excelSpreadsheet.ReadSpecifiedRow(TestSheetNames.ActualBank, rowNumber);
+            var result = _excelSpreadsheet.Read_specified_row(TestSheetNames.Actual_bank, row_number);
 
             // Assert
-            Assert.AreEqual("Thing", result.ReadCell(1));
-            Assert.AreEqual("description", result.ReadCell(2));
-            Assert.AreEqual(4567.89, result.ReadCell(3));
-            Assert.AreEqual(7898.88, result.ReadCell(4));
+            Assert.AreEqual("Thing", result.Read_cell(1));
+            Assert.AreEqual("description", result.Read_cell(2));
+            Assert.AreEqual(4567.89, result.Read_cell(3));
+            Assert.AreEqual(7898.88, result.Read_cell(4));
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanReadSpecifiedRowBasedOnSpecifiedRangeOfColumns()
+        public void Can_read_specified_row_based_on_specified_range_of_columns()
         {
             // Arrange
-            var rowNumber = 2;
-            var startColumn = 3;
-            var endColumn = 4;
+            var row_number = 2;
+            var start_column = 3;
+            var end_column = 4;
 
             // Act
-            var result = _excelSpreadsheet.ReadSpecifiedRow(TestSheetNames.ActualBank, rowNumber, startColumn, endColumn);
+            var result = _excelSpreadsheet.Read_specified_row(TestSheetNames.Actual_bank, row_number, start_column, end_column);
 
             // Assert
             Assert.AreEqual(2, result.Count, "Number of cells in row");
-            Assert.AreEqual("description", result.ReadCell(0));
-            Assert.AreEqual(4567.89, result.ReadCell(1));
+            Assert.AreEqual("description", result.Read_cell(0));
+            Assert.AreEqual(4567.89, result.Read_cell(1));
         }
 
         [Test]
         [Parallelizable(ParallelScope.None)]
-        public void CanFindFirstEmptyRowInColumnForSpecifiedSheet()
+        public void Can_find_first_empty_row_in_column_for_specified_sheet()
         {
             // Arrange
-            var columnNumber = 1;
+            var column_number = 1;
 
             // Act
-            int result = _excelSpreadsheet.FindFirstEmptyRowInColumn(TestSheetNames.TestRecord, columnNumber);
+            int result = _excelSpreadsheet.Find_first_empty_row_in_column(TestSheetNames.Test_record, column_number);
 
             // Assert
             Assert.AreEqual(13, result);

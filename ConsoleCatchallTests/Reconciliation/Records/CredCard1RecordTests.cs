@@ -13,431 +13,431 @@ namespace ConsoleCatchallTests.Reconciliation.Records
     public class CredCard1RecordTests
     {
         [Test]
-        public void CanReadDateFromCSV()
+        public void Can_read_date_from_csv()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            string expectedDateAsString = "17/02/2017";
-            string csvLine = String.Format("{0},23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",1.94", expectedDateAsString);
-            var expectedDate = Convert.ToDateTime(expectedDateAsString, StringHelper.Culture());
+            var cred_card1_record = new CredCard1Record();
+            string expected_date_as_string = "17/02/2017";
+            string csv_line = String.Format("{0},23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",1.94", expected_date_as_string);
+            var expected_date = Convert.ToDateTime(expected_date_as_string, StringHelper.Culture());
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedDate, credCard1Record.Date);
+            Assert.AreEqual(expected_date, cred_card1_record.Date);
         }
 
         [Test]
-        public void CanReadReferenceFromCSV()
+        public void Can_read_reference_from_csv()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            string expectedReference = "22223333";
-            string csvLine = String.Format("17/02/2017,23/11/2018,{0},\"ANY STORE 8888        ANYWHERE\",1.94", expectedReference);
+            var cred_card1_record = new CredCard1Record();
+            string expected_reference = "22223333";
+            string csv_line = String.Format("17/02/2017,23/11/2018,{0},\"ANY STORE 8888        ANYWHERE\",1.94", expected_reference);
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedReference, credCard1Record.Reference);
+            Assert.AreEqual(expected_reference, cred_card1_record.Reference);
         }
 
         [Test]
-        public void CanReadDescriptionFromCSV()
+        public void Can_read_description_from_csv()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            var expectedDescription = "\"ANY STORE 8888        ANYWHERE\"";
-            string csvLine = String.Format("17/02/2017,23/11/2018,22223333,{0},1.94", expectedDescription);
+            var cred_card1_record = new CredCard1Record();
+            var expected_description = "\"ANY STORE 8888        ANYWHERE\"";
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,{0},1.94", expected_description);
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedDescription, credCard1Record.Description);
+            Assert.AreEqual(expected_description, cred_card1_record.Description);
         }
 
         [Test]
-        public void CanReadAmountFromCSVWithoutPoundSign()
+        public void Can_read_amount_from_csv_without_pound_sign()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            var expectedAmount = -1.94;
-            var csvAmount = expectedAmount * -1;
-            string csvLine = $"19/10/2018,23/11/2018,11112222,SQ *HAPPY BOOK STORE,{csvAmount},";
+            var cred_card1_record = new CredCard1Record();
+            var expected_amount = -1.94;
+            var csv_amount = expected_amount * -1;
+            string csv_line = $"19/10/2018,23/11/2018,11112222,SQ *HAPPY BOOK STORE,{csv_amount},";
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, credCard1Record.Amount);
+            Assert.AreEqual(expected_amount, cred_card1_record.Amount);
         }
 
         [Test]
         public void When_Description_Ends_With_Spaces_Amount_Can_Still_Be_Read()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            var expectedAmount = -1.94;
-            var csvAmount = expectedAmount * -1;
-            string csvLine = $"19/10/2018,23/11/2018,11112222,SQ *HAPPY BOOK STORE   ,{csvAmount},";
+            var cred_card1_record = new CredCard1Record();
+            var expected_amount = -1.94;
+            var csv_amount = expected_amount * -1;
+            string csv_line = $"19/10/2018,23/11/2018,11112222,SQ *HAPPY BOOK STORE   ,{csv_amount},";
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, credCard1Record.Amount);
+            Assert.AreEqual(expected_amount, cred_card1_record.Amount);
         }
 
         [Test]
-        public void CanReadAmountFromCSVWithPoundSign()
+        public void Can_read_amount_from_csv_with_pound_sign()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            var expectedAmount = 1.94;
-            var inputAmount = "£" + expectedAmount*-1;
-            string csvLine = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",{0}", inputAmount);
+            var cred_card1_record = new CredCard1Record();
+            var expected_amount = 1.94;
+            var input_amount = "£" + expected_amount*-1;
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",{0}", input_amount);
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, credCard1Record.Amount);
+            Assert.AreEqual(expected_amount, cred_card1_record.Amount);
         }
 
         [Test]
-        public void CanCopeWithEmptyDate()
+        public void Can_cope_with_empty_date()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            var expectedDate = new DateTime(9999, 9, 9);
-            string csvLine = String.Format(",23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",1.94");
+            var cred_card1_record = new CredCard1Record();
+            var expected_date = new DateTime(9999, 9, 9);
+            string csv_line = String.Format(",23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",1.94");
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedDate, credCard1Record.Date);
+            Assert.AreEqual(expected_date, cred_card1_record.Date);
         }
 
         [Test]
-        public void CanCopeWithEmptyReference()
+        public void Can_cope_with_empty_reference()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            string csvLine = String.Format("17/02/2017,23/11/2018,,\"ANY STORE 8888        ANYWHERE\",1.94");
+            var cred_card1_record = new CredCard1Record();
+            string csv_line = String.Format("17/02/2017,23/11/2018,,\"ANY STORE 8888        ANYWHERE\",1.94");
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(String.Empty, credCard1Record.Reference);
+            Assert.AreEqual(String.Empty, cred_card1_record.Reference);
         }
 
         [Test]
-        public void CanCopeWithEmptyDescription()
+        public void Can_cope_with_empty_description()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            string csvLine = String.Format("17/02/2017,23/11/2018,22223333,,1.94");
+            var cred_card1_record = new CredCard1Record();
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,,1.94");
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual("", credCard1Record.Description);
+            Assert.AreEqual("", cred_card1_record.Description);
         }
 
         [Test]
-        public void CanCopeWithEmptyAmount()
+        public void Can_cope_with_empty_amount()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            string csvLine = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",");
+            var cred_card1_record = new CredCard1Record();
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",");
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, credCard1Record.Amount);
+            Assert.AreEqual(0, cred_card1_record.Amount);
         }
 
         [Test]
-        public void CanCopeWithBadDate()
+        public void Can_cope_with_bad_date()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            var expectedDate = new DateTime(9999, 9, 9);
-            var badDate = "not a date";
-            string csvLine = String.Format("{0},23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",", badDate);
+            var cred_card1_record = new CredCard1Record();
+            var expected_date = new DateTime(9999, 9, 9);
+            var bad_date = "not a date";
+            string csv_line = String.Format("{0},23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",", bad_date);
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedDate, credCard1Record.Date);
+            Assert.AreEqual(expected_date, cred_card1_record.Date);
         }
 
         [Test]
-        public void CanCopeWithBadAmount()
+        public void Can_cope_with_bad_amount()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            var badAmount = "not an amount";
-            string csvLine = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",{0}", badAmount);
+            var cred_card1_record = new CredCard1Record();
+            var bad_amount = "not an amount";
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",{0}", bad_amount);
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, credCard1Record.Amount);
+            Assert.AreEqual(0, cred_card1_record.Amount);
         }
 
         [Test]
-        public void ShouldBeAbleToCopeWithEmptyInput()
+        public void Should_be_able_to_cope_with_empty_input()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            string csvLine = String.Empty;
+            var cred_card1_record = new CredCard1Record();
+            string csv_line = String.Empty;
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(0, credCard1Record.Amount);
+            Assert.AreEqual(0, cred_card1_record.Amount);
         }
 
         [Test]
-        public void CanMakeMainAmountPositive()
+        public void Can_make_main_amount_positive()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            var negativeAmount = -23.23;
-            var csvNegativeAmount = negativeAmount * -1;
-            string csvLine = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",{0}", csvNegativeAmount);
-            credCard1Record.Load(csvLine);
+            var cred_card1_record = new CredCard1Record();
+            var negative_amount = -23.23;
+            var csv_negative_amount = negative_amount * -1;
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",{0}", csv_negative_amount);
+            cred_card1_record.Load(csv_line);
 
             // Act 
-            credCard1Record.MakeMainAmountPositive();
+            cred_card1_record.Make_main_amount_positive();
 
             // Assert
-            Assert.AreEqual(negativeAmount * -1, credCard1Record.Amount);
+            Assert.AreEqual(negative_amount * -1, cred_card1_record.Amount);
         }
 
         [Test]
-        public void IfMainAmountAlreadyPositiveThenMakingItPositiveHasNoEffect()
+        public void If_main_amount_already_positive_then_making_it_positive_has_no_effect()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            var positiveAmount = 23.23;
-            var csvPositiveAmount = positiveAmount * -1;
-            string csvLine = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",{0}", csvPositiveAmount);
-            credCard1Record.Load(csvLine);
+            var cred_card1_record = new CredCard1Record();
+            var positive_amount = 23.23;
+            var csv_positive_amount = positive_amount * -1;
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",{0}", csv_positive_amount);
+            cred_card1_record.Load(csv_line);
 
             // Act 
-            credCard1Record.MakeMainAmountPositive();
+            cred_card1_record.Make_main_amount_positive();
 
             // Assert
-            Assert.AreEqual(positiveAmount, credCard1Record.Amount);
+            Assert.AreEqual(positive_amount, cred_card1_record.Amount);
         }
 
         [Test]
-        public void CsvIsConstructedCorrectly()
+        public void Csv_is_constructed_correctly()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            string csvLine = String.Format("17/02/2017,23/11/2018,22223333,ANY STORE,-12.33");
-            credCard1Record.Load(csvLine);
-            credCard1Record.Matched = false;
+            var cred_card1_record = new CredCard1Record();
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,ANY STORE,-12.33");
+            cred_card1_record.Load(csv_line);
+            cred_card1_record.Matched = false;
 
             // Act 
-            string constructedCsvLine = credCard1Record.ToCsv();
+            string constructed_csv_line = cred_card1_record.To_csv();
 
             // Assert
-            Assert.AreEqual("17/02/2017,£12.33,\"ANY STORE\"", constructedCsvLine);
+            Assert.AreEqual("17/02/2017,£12.33,\"ANY STORE\"", constructed_csv_line);
         }
 
         [Test]
-        public void CanCopeWithInputContainingCommasSurroundedBySpaces()
+        public void Can_cope_with_input_containing_commas_surrounded_by_spaces()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            double expectedAmount = 12.35;
-            double csvExpectedAmount = expectedAmount * -1;
-            string textContainingCommas = "something ,something , something, something else";
-            string csvLine = String.Format("17/02/2017,23/11/2018,22223333,{0},{1}", textContainingCommas, csvExpectedAmount);
+            var cred_card1_record = new CredCard1Record();
+            double expected_amount = 12.35;
+            double csv_expected_amount = expected_amount * -1;
+            string text_containing_commas = "something ,something , something, something else";
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,{0},{1}", text_containing_commas, csv_expected_amount);
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, credCard1Record.Amount);
+            Assert.AreEqual(expected_amount, cred_card1_record.Amount);
         }
 
         [Test]
-        public void CanCopeWithInputContainingCommasFollowedBySpaces()
+        public void Can_cope_with_input_containing_commas_followed_by_spaces()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            double expectedAmount = 12.35;
-            double csvExpectedAmount = expectedAmount * -1;
-            string textContainingCommas = "something, something, something else";
-            string csvLine = String.Format("17/02/2017,23/11/2018,22223333,{0},{1}", textContainingCommas, csvExpectedAmount);
+            var cred_card1_record = new CredCard1Record();
+            double expected_amount = 12.35;
+            double csv_expected_amount = expected_amount * -1;
+            string text_containing_commas = "something, something, something else";
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,{0},{1}", text_containing_commas, csv_expected_amount);
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, credCard1Record.Amount);
+            Assert.AreEqual(expected_amount, cred_card1_record.Amount);
         }
 
         [Test]
-        public void CanCopeWithInputContainingCommasPrecededBySpaces()
+        public void Can_cope_with_input_containing_commas_preceded_by_spaces()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            double expectedAmount = 12.35;
-            double csvExpectedAmount = expectedAmount * -1;
-            string textContainingCommas = "something ,something ,something else";
-            string csvLine = String.Format("17/02/2017,23/11/2018,22223333,{0},{1}", textContainingCommas, csvExpectedAmount);
+            var cred_card1_record = new CredCard1Record();
+            double expected_amount = 12.35;
+            double csv_expected_amount = expected_amount * -1;
+            string text_containing_commas = "something ,something ,something else";
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,{0},{1}", text_containing_commas, csv_expected_amount);
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual(expectedAmount, credCard1Record.Amount);
+            Assert.AreEqual(expected_amount, cred_card1_record.Amount);
         }
 
         // This doesn't apply to CredCard1InOutRecord and BankRecord because the input uses ^ as a separator, instead of comma.
         [Test]
-        public void CommasInInputAreReplacedBySemiColons()
+        public void Commas_in_input_are_replaced_by_semi_colons()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            string textContainingCommas = "\"something, something, something else\"";
-            string csvLine = String.Format("17/02/2017,23/11/2018,22223333,{0},12.35", textContainingCommas);
+            var cred_card1_record = new CredCard1Record();
+            string text_containing_commas = "\"something, something, something else\"";
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,{0},12.35", text_containing_commas);
 
             // Act 
-            credCard1Record.Load(csvLine);
+            cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual("\"something; something; something else\"", credCard1Record.Description);
+            Assert.AreEqual("\"something; something; something else\"", cred_card1_record.Description);
         }
 
         // This doesn't apply to CredCard1InOutRecord and BankRecord and CredCard2Record because the input is never encased in quotes.
         [Test]
-        public void IfInputIsEncasedInQuotesThenOutputOnlyHasOneEncasingSetOfQuotes()
+        public void If_input_is_encased_in_quotes_then_output_only_has_one_encasing_set_of_quotes()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
-            var descriptionEncasedInOneSetOfQuotes = "\"ANY STORE\"";
-            string csvLine = String.Format("17/02/2017,23/11/2018,22223333,{0},12.33", descriptionEncasedInOneSetOfQuotes);
-            credCard1Record.Load(csvLine);
-            credCard1Record.Matched = false;
+            var cred_card1_record = new CredCard1Record();
+            var description_encased_in_one_set_of_quotes = "\"ANY STORE\"";
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,{0},12.33", description_encased_in_one_set_of_quotes);
+            cred_card1_record.Load(csv_line);
+            cred_card1_record.Matched = false;
 
             // Act 
-            string constructedCsvLine = credCard1Record.ToCsv();
+            string constructed_csv_line = cred_card1_record.To_csv();
 
             // Assert
-            var expectedCsvLine = String.Format("17/02/2017,-£12.33,{0}", descriptionEncasedInOneSetOfQuotes);
-            Assert.AreEqual(expectedCsvLine, constructedCsvLine);
+            var expected_csv_line = String.Format("17/02/2017,-£12.33,{0}", description_encased_in_one_set_of_quotes);
+            Assert.AreEqual(expected_csv_line, constructed_csv_line);
         }
 
         [Test]
-        public void AmountsContainingCommasShouldBeEncasedInQuotes()
+        public void Amounts_containing_commas_should_be_encased_in_quotes()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
+            var cred_card1_record = new CredCard1Record();
             var amount = 1234.55;
-            double csvAmount = amount * -1;
-            var amountContainingComma = "£1,234.55";
-            string csvLine = String.Format("17/02/2017,23/11/2018,22223333,ANY STORE,{0}", csvAmount);
-            credCard1Record.Load(csvLine);
+            double csv_amount = amount * -1;
+            var amount_containing_comma = "£1,234.55";
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,ANY STORE,{0}", csv_amount);
+            cred_card1_record.Load(csv_line);
 
             // Act 
-            string constructedCsvLine = credCard1Record.ToCsv();
+            string constructed_csv_line = cred_card1_record.To_csv();
 
             // Assert
-            string expectedCsvLine = String.Format("17/02/2017,\"{0}\",\"ANY STORE\"", amountContainingComma);
-            Assert.AreEqual(expectedCsvLine, constructedCsvLine);
+            string expected_csv_line = String.Format("17/02/2017,\"{0}\",\"ANY STORE\"", amount_containing_comma);
+            Assert.AreEqual(expected_csv_line, constructed_csv_line);
         }
 
         [Test]
-        public void AmountsShouldBeWrittenUsingPoundSigns()
+        public void Amounts_should_be_written_using_pound_signs()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record();
+            var cred_card1_record = new CredCard1Record();
             var amount = "123.55";
-            string csvAmount = $"-{amount}";
-            var amountWithPoundSign = "£" + amount;
-            string csvLine = String.Format("17/02/2017,23/11/2018,22223333,ANY STORE,{0}", csvAmount);
-            credCard1Record.Load(csvLine);
+            string csv_amount = $"-{amount}";
+            var amount_with_pound_sign = "£" + amount;
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,ANY STORE,{0}", csv_amount);
+            cred_card1_record.Load(csv_line);
 
             // Act 
-            string constructedCsvLine = credCard1Record.ToCsv();
+            string constructed_csv_line = cred_card1_record.To_csv();
 
             // Assert
-            string expectedCsvLine = String.Format("17/02/2017,{0},\"ANY STORE\"", amountWithPoundSign);
-            Assert.AreEqual(expectedCsvLine, constructedCsvLine);
+            string expected_csv_line = String.Format("17/02/2017,{0},\"ANY STORE\"", amount_with_pound_sign);
+            Assert.AreEqual(expected_csv_line, constructed_csv_line);
         }
 
         [Test]
-        public void WhenCopyingRecordWillCopyAllImportantData()
+        public void When_copying_record_will_copy_all_important_data()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record
+            var cred_card1_record = new CredCard1Record
             {
                 Date = DateTime.Today,
                 Amount = 12.34,
                 Description = "Description",
                 Reference = "33334444"
             };
-            credCard1Record.UpdateSourceLineForOutput(',');
+            cred_card1_record.Update_source_line_for_output(',');
 
             // Act 
-            var copiedRecord = (CredCard1Record)credCard1Record.Copy();
+            var copied_record = (CredCard1Record)cred_card1_record.Copy();
 
             // Assert
-            Assert.AreEqual(credCard1Record.Date, copiedRecord.Date);
-            Assert.AreEqual(credCard1Record.Amount, copiedRecord.Amount);
-            Assert.AreEqual(credCard1Record.Description, copiedRecord.Description);
-            Assert.AreEqual(credCard1Record.Reference, copiedRecord.Reference);
-            Assert.AreEqual(credCard1Record.SourceLine, copiedRecord.SourceLine);
+            Assert.AreEqual(cred_card1_record.Date, copied_record.Date);
+            Assert.AreEqual(cred_card1_record.Amount, copied_record.Amount);
+            Assert.AreEqual(cred_card1_record.Description, copied_record.Description);
+            Assert.AreEqual(cred_card1_record.Reference, copied_record.Reference);
+            Assert.AreEqual(cred_card1_record.Source_line, copied_record.Source_line);
         }
 
         [Test]
-        public void WhenCopyingRecordWillCreateNewObject()
+        public void When_copying_record_will_create_new_object()
         {
             // Arrange
-            var originalDate = DateTime.Today;
-            var originalAmount = 12.34;
-            var originalDescription = "Description";
-            var originalReference = "33334444";
-            var credCard1Record = new CredCard1Record
+            var original_date = DateTime.Today;
+            var original_amount = 12.34;
+            var original_description = "Description";
+            var original_reference = "33334444";
+            var cred_card1_record = new CredCard1Record
             {
-                Date = originalDate,
-                Amount = originalAmount,
-                Description = originalDescription,
-                Reference = originalReference
+                Date = original_date,
+                Amount = original_amount,
+                Description = original_description,
+                Reference = original_reference
             };
-            credCard1Record.UpdateSourceLineForOutput(',');
-            var originalSourceLine = credCard1Record.SourceLine;
+            cred_card1_record.Update_source_line_for_output(',');
+            var original_source_line = cred_card1_record.Source_line;
 
             // Act 
-            var copiedRecord = (CredCard1Record)credCard1Record.Copy();
-            copiedRecord.Date = copiedRecord.Date.AddDays(1);
-            copiedRecord.Amount = copiedRecord.Amount + 1;
-            copiedRecord.Description = copiedRecord.Description + "something else";
-            copiedRecord.Reference = copiedRecord.Reference + 1;
-            copiedRecord.UpdateSourceLineForOutput(',');
+            var copied_record = (CredCard1Record)cred_card1_record.Copy();
+            copied_record.Date = copied_record.Date.AddDays(1);
+            copied_record.Amount = copied_record.Amount + 1;
+            copied_record.Description = copied_record.Description + "something else";
+            copied_record.Reference = copied_record.Reference + 1;
+            copied_record.Update_source_line_for_output(',');
 
             // Assert
-            Assert.AreEqual(originalDate, credCard1Record.Date);
-            Assert.AreEqual(originalAmount, credCard1Record.Amount);
-            Assert.AreEqual(originalDescription, credCard1Record.Description);
-            Assert.AreEqual(originalReference, credCard1Record.Reference);
-            Assert.AreEqual(originalSourceLine, credCard1Record.SourceLine);
+            Assert.AreEqual(original_date, cred_card1_record.Date);
+            Assert.AreEqual(original_amount, cred_card1_record.Amount);
+            Assert.AreEqual(original_description, cred_card1_record.Description);
+            Assert.AreEqual(original_reference, cred_card1_record.Reference);
+            Assert.AreEqual(original_source_line, cred_card1_record.Source_line);
         }
 
         [Test]
@@ -445,22 +445,22 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void M_WillPopulateCredCard1RecordCells()
         {
             // Arrange
-            var credCard1Record = new CredCard1Record
+            var cred_card1_record = new CredCard1Record
             {
                 Date = new DateTime(year: 2017, month: 4, day: 19),
                 Amount = 1234.56,
                 Description = "Acme: Esmerelda's birthday"
             };
             var row = 10;
-            var mockCells = new Mock<ICellSet>();
+            var mock_cells = new Mock<ICellSet>();
 
             // Act 
-            credCard1Record.PopulateSpreadsheetRow(mockCells.Object, row);
+            cred_card1_record.Populate_spreadsheet_row(mock_cells.Object, row);
 
             // Assert
-            mockCells.Verify(x => x.PopulateCell(row, CredCard1Record.DateSpreadsheetIndex + 1, credCard1Record.Date), "Date");
-            mockCells.Verify(x => x.PopulateCell(row, CredCard1Record.AmountSpreadsheetIndex + 1, credCard1Record.MainAmount()), "Amount");
-            mockCells.Verify(x => x.PopulateCell(row, CredCard1Record.DescriptionSpreadsheetIndex + 1, credCard1Record.Description), "Desc");
+            mock_cells.Verify(x => x.Populate_cell(row, CredCard1Record.DateSpreadsheetIndex + 1, cred_card1_record.Date), "Date");
+            mock_cells.Verify(x => x.Populate_cell(row, CredCard1Record.AmountSpreadsheetIndex + 1, cred_card1_record.Main_amount()), "Amount");
+            mock_cells.Verify(x => x.Populate_cell(row, CredCard1Record.DescriptionSpreadsheetIndex + 1, cred_card1_record.Description), "Desc");
         }
 
         [Test]
@@ -468,35 +468,35 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         public void M_WillReadFromCredCard1RecordCells()
         {
             // Arrange
-            var sheetName = "MockSheet";
-            DateTime expectedDate = new DateTime(year: 2018, month: 6, day: 1);
-            string expectedReference = "55556666";
-            String expectedDescription = "description3";
-            Double expectedAmount = 37958.90;
-            var excelDate = expectedDate.ToOADate();
-            var excelDate2 = expectedDate.AddDays(1).ToOADate();
-            var fakeCellRow = new FakeCellRow().WithFakeData(new List<object>
+            var sheet_name = "MockSheet";
+            DateTime expected_date = new DateTime(year: 2018, month: 6, day: 1);
+            string expected_reference = "55556666";
+            String expected_description = "description3";
+            Double expected_amount = 37958.90;
+            var excel_date = expected_date.ToOADate();
+            var excel_date2 = expected_date.AddDays(1).ToOADate();
+            var fake_cell_row = new FakeCellRow().With_fake_data(new List<object>
             {
-                excelDate,
-                excelDate2,
-                expectedReference,
-                expectedDescription,
-                expectedAmount
+                excel_date,
+                excel_date2,
+                expected_reference,
+                expected_description,
+                expected_amount
             });
-            var mockSpreadsheetRepo = new Mock<ISpreadsheetRepo>();
-            mockSpreadsheetRepo.Setup(x => x.ReadLastRow(sheetName)).Returns(fakeCellRow);
-            var spreadsheet = new Spreadsheet(mockSpreadsheetRepo.Object);
-            var credCard1Record = new CredCard1Record();
-            var cells = spreadsheet.ReadLastRow(sheetName);
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            mock_spreadsheet_repo.Setup(x => x.Read_last_row(sheet_name)).Returns(fake_cell_row);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            var cred_card1_record = new CredCard1Record();
+            var cells = spreadsheet.Read_last_row(sheet_name);
 
             // Act 
-            credCard1Record.ReadFromSpreadsheetRow(cells);
+            cred_card1_record.Read_from_spreadsheet_row(cells);
 
             // Assert
-            Assert.AreEqual(expectedDate, credCard1Record.Date);
-            Assert.AreEqual(expectedReference, credCard1Record.Reference);
-            Assert.AreEqual(expectedDescription, credCard1Record.Description);
-            Assert.AreEqual(expectedAmount, credCard1Record.Amount);
+            Assert.AreEqual(expected_date, cred_card1_record.Date);
+            Assert.AreEqual(expected_reference, cred_card1_record.Reference);
+            Assert.AreEqual(expected_description, cred_card1_record.Description);
+            Assert.AreEqual(expected_amount, cred_card1_record.Amount);
         }
     }
 }

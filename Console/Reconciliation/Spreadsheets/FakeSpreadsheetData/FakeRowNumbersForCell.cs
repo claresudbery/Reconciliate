@@ -7,41 +7,41 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetDat
     {
         public Dictionary<string, Dictionary<string, int>> Data { get; } = new Dictionary<string, Dictionary<string, int>>
         {
-            { MainSheetNames.BankIn,
+            { MainSheetNames.Bank_in,
                 new Dictionary<string, int> {
-                    {Dividers.DividerText, 5}
+                    {Dividers.Divider_text, 5}
                 }},
-            { MainSheetNames.BankOut,
+            { MainSheetNames.Bank_out,
                 new Dictionary<string, int> {
                     {FakeSpreadsheetRepo.FakeMortgageDescription, 5},
-                    {Dividers.DividerText, 8},
+                    {Dividers.Divider_text, 8},
                 }},
-            { MainSheetNames.CredCard1,
+            { MainSheetNames.Cred_card1,
                 new Dictionary<string, int> {
-                    {Dividers.DividerText, 5}
+                    {Dividers.Divider_text, 5}
                 }},
-            { MainSheetNames.CredCard2,
+            { MainSheetNames.Cred_card2,
                 new Dictionary<string, int> {
-                    {Dividers.DividerText, 5}
+                    {Dividers.Divider_text, 5}
                 }},
-            { MainSheetNames.ExpectedIn,
+            { MainSheetNames.Expected_in,
                 new Dictionary<string, int> {
-                    {Dividers.DividerText, 5}
+                    {Dividers.Divider_text, 5}
                 }},
-            { MainSheetNames.BudgetIn,
+            { MainSheetNames.Budget_in,
                 new Dictionary<string, int> {
                     {Dividers.Date, 1},
                     {Dividers.Total, 5}
                 }},
-            { MainSheetNames.BudgetOut,
+            { MainSheetNames.Budget_out,
                 new Dictionary<string, int> {
-                    {Dividers.SODDs, 8},
+                    {Dividers.Sod_ds, 8},
                     {Codes.Code042, 12},
-                    {Dividers.CredCard1, 13},
-                    {Dividers.CredCard2, 17},
-                    {Dividers.SODDTotal, 21},
-                    {Dividers.AnnualSODDs, 23},
-                    {Dividers.AnnualTotal, 27}
+                    {Dividers.Cred_card1, 13},
+                    {Dividers.Cred_card2, 17},
+                    {Dividers.Sodd_total, 21},
+                    {Dividers.Annual_sod_ds, 23},
+                    {Dividers.Annual_total, 27}
                 }}
         };
     }

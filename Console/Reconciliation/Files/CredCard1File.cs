@@ -7,22 +7,22 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
     {
         public ICSVFile<CredCard1Record> File { get; set; }
 
-        public CredCard1File(ICSVFile<CredCard1Record> csvFile)
+        public CredCard1File(ICSVFile<CredCard1Record> csv_file)
         {
-            File = csvFile;
+            File = csv_file;
         }
 
-        public void Load(bool loadFile = true,
-            char? overrideSeparator = null,
-            bool orderOnLoad = true)
+        public void Load(bool load_file = true,
+            char? override_separator = null,
+            bool order_on_load = true)
         {
-            File.Load(loadFile, overrideSeparator, orderOnLoad);
-            RefreshFileContents();
+            File.Load(load_file, override_separator, order_on_load);
+            Refresh_file_contents();
         }
 
-        public void RefreshFileContents()
+        public void Refresh_file_contents()
         {
-            File.SwapSignsOfAllAmounts();
+            File.Swap_signs_of_all_amounts();
         }
     }
 }

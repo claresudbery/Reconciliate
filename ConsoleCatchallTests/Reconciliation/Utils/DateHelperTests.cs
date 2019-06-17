@@ -6,7 +6,7 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
     public class DateHelperTests
     {
         [Test]
-        public void WillDoSomething()
+        public void Will_do_something()
         {
         }
     }

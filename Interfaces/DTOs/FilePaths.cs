@@ -2,8 +2,8 @@ namespace Interfaces.DTOs
 {
     public class FilePaths
     {
-        public string MainPath { get; set; }
-        public string ThirdPartyFileName { get; set; }
-        public string OwnedFileName { get; set; }
+        public string Main_path { get; set; }
+        public string Third_party_file_name { get; set; }
+        public string Owned_file_name { get; set; }
     }
 }

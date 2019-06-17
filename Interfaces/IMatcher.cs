@@ -4,11 +4,11 @@ namespace Interfaces
 {
     public interface IMatcher
     {
-        void DoMatching(FilePaths mainFilePaths);
+        void Do_matching(FilePaths main_file_paths);
 
-        void DoPreliminaryStuff<TThirdPartyType, TOwnedType>(
+        void Do_preliminary_stuff<TThirdPartyType, TOwnedType>(
                 IReconciliator<TThirdPartyType, TOwnedType> reconciliator,
-                IReconciliationInterface<TThirdPartyType, TOwnedType> reconciliationInterface)
+                IReconciliationInterface<TThirdPartyType, TOwnedType> reconciliation_interface)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new();
 

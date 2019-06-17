@@ -8,7 +8,7 @@ namespace ConsoleCatchall.Console
 {
     internal class InputOutput : IInputOutput
     {
-        public void OutputOptions(List<string> options)
+        public void Output_options(List<string> options)
         {
             foreach (var option in options)
             {
@@ -16,68 +16,68 @@ namespace ConsoleCatchall.Console
             }
         }
 
-        public void OutputAllLinesExceptTheFirst(List<IPotentialMatch> options)
+        public void Output_all_lines_except_the_first(List<IPotentialMatch> options)
         {
-            for (int lineCount = 1; lineCount < options.Count; lineCount++)
+            for (int line_count = 1; line_count < options.Count; line_count++)
             {
-                foreach (var consoleLine in options[lineCount].ConsoleLines)
+                foreach (var console_line in options[line_count].Console_lines)
                 {
-                    OutputLine(consoleLine.GetConsoleSnippets(options[lineCount]));
+                    Output_line(console_line.Get_console_snippets(options[line_count]));
                 }
-                if (options[lineCount].ConsoleLines.Count > 1)
+                if (options[line_count].Console_lines.Count > 1)
                 {
-                    OutputLine("..............");
+                    Output_line("..............");
                 }
             }
         }
 
-        public void OutputAllLines(List<IPotentialMatch> options)
+        public void Output_all_lines(List<IPotentialMatch> options)
         {
             foreach (var option in options)
             {
-                foreach (var consoleLine in option.ConsoleLines)
+                foreach (var console_line in option.Console_lines)
                 {
-                    OutputLine(consoleLine.GetConsoleSnippets(option));
+                    Output_line(console_line.Get_console_snippets(option));
                 }
             }
         }
 
-        public void OutputAllLines(List<ConsoleLine> consoleLines)
+        public void Output_all_lines(List<ConsoleLine> console_lines)
         {
-            foreach (var line in consoleLines)
+            foreach (var line in console_lines)
             {
-                OutputLineWithIndex(line);
+                Output_line_with_index(line);
             }
         }
 
-        public void OutputLine(List<ConsoleSnippet> consoleSnippets)
+        public void Output_line(List<ConsoleSnippet> console_snippets)
         {
-            for (int snippetIndex = 0; snippetIndex < consoleSnippets.Count; snippetIndex++)
+            for (int snippet_index = 0; snippet_index < console_snippets.Count; snippet_index++)
             {
-                System.Console.ForegroundColor = GetColour(consoleSnippets[snippetIndex].TextColour);
-                System.Console.Write(consoleSnippets[snippetIndex].Text);
+                System.Console.ForegroundColor = Get_colour(console_snippets[snippet_index].Text_colour);
+                System.Console.Write(console_snippets[snippet_index].Text);
                 System.Console.ResetColor();
             }
             System.Console.WriteLine("");
         }
 
-        public void OutputLine(ConsoleLine line)
+        public void Output_line(ConsoleLine line)
         {
-            System.Console.Write(line.DateString);
+            System.Console.Write(line.Date_string);
             System.Console.Write(",");
-            System.Console.Write(line.AmountString);
+            System.Console.Write(line.Amount_string);
             System.Console.Write(",");
-            System.Console.WriteLine(line.DescriptionString);
+            System.Console.WriteLine(line.Description_string);
         }
 
-        public void OutputLineWithIndex(ConsoleLine line)
+        public void Output_line_with_index(ConsoleLine line)
         {
             System.Console.Write(line.Index);
             System.Console.Write(". ");
-            OutputLine(line);
+            Output_line(line);
         }
 
-        public void OutputLine(string line)
+        public void Output_line(string line)
         {
             System.Console.WriteLine(line);
         }
@@ -87,7 +87,7 @@ namespace ConsoleCatchall.Console
             System.Console.Write(text);
         }
 
-        private ConsoleColor GetColour(ConsoleColour colour)
+        private ConsoleColor Get_colour(ConsoleColour colour)
         {
             switch (colour)
             {
@@ -100,31 +100,31 @@ namespace ConsoleCatchall.Console
             }
         }
 
-        public void OutputStringList(List<string> stringList)
+        public void Output_string_list(List<string> string_list)
         {
-            foreach (var output in stringList)
+            foreach (var output in string_list)
             {
                 System.Console.WriteLine(output);
             }
         }
 
-        public string GetInput(string explanatoryMessage, string debugDescription = "")
+        public string Get_input(string explanatory_message, string debug_description = "")
         {
             System.Console.WriteLine("");
-            System.Console.WriteLine(explanatoryMessage);
+            System.Console.WriteLine(explanatory_message);
 
-            return GetGenericInput(explanatoryMessage);
+            return Get_generic_input(explanatory_message);
         }
 
-        public string GetGenericInput(string debugDescription)
+        public string Get_generic_input(string debug_description)
         {
             string result = System.Console.ReadLine();
-            CheckForExit(result);
+            Check_for_exit(result);
 
             return result;
         }
 
-        private void CheckForExit(string input)
+        private void Check_for_exit(string input)
         {
             if (input.ToUpper() == "EXIT")
             {
@@ -132,7 +132,7 @@ namespace ConsoleCatchall.Console
             }
         }
 
-        public void ShowError(Exception exception)
+        public void Show_error(Exception exception)
         {
             System.Console.WriteLine("");
             System.Console.WriteLine("Something went wrong:");

@@ -6,125 +6,125 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
 {
     internal class CSVFile<TRecordType> : ICSVFile<TRecordType> where TRecordType : ICSVRecord, new()
     {
-        public IFileIO<TRecordType> FileIO { get; set; }
+        public IFileIO<TRecordType> File_io { get; set; }
 
-        public List<string> FileContents { get; set; }
+        public List<string> File_contents { get; set; }
         // _sourceRecords is held separately from Records because sometimes we filter for negative or positive records only,
         // but we still want to keep hold of all the original source records.
-        private List<TRecordType> SourceRecords { get; set; }
+        private List<TRecordType> Source_records { get; set; }
         public List<TRecordType> Records { get; set; }
 
-        public CSVFile(IFileIO<TRecordType> fileIO)
+        public CSVFile(IFileIO<TRecordType> file_io)
         {
-            FileIO = fileIO;
+            File_io = file_io;
         }
 
         public void Load(
-            bool loadFile = true, 
-            char? overrideSeparator = null,
-            bool orderOnLoad = true)
+            bool load_file = true, 
+            char? override_separator = null,
+            bool order_on_load = true)
         {
-            FileContents = new List<string>();
+            File_contents = new List<string>();
             Records = new List<TRecordType>();
-            SourceRecords = new List<TRecordType>();
-            if (loadFile)
+            Source_records = new List<TRecordType>();
+            if (load_file)
             {
-                SourceRecords = FileIO.Load(FileContents, overrideSeparator);
-                if (SourceRecords != null)
+                Source_records = File_io.Load(File_contents, override_separator);
+                if (Source_records != null)
                 {
-                    if (orderOnLoad)
+                    if (order_on_load)
                     {
-                        OrderByDate();
+                        Order_by_date();
                     }
-                    PopulateRecordsFromOriginalFileLoad();
+                    Populate_records_from_original_file_load();
                 }
             }
         }
 
         public void Reload()
         {
-            FileContents.Clear();
+            File_contents.Clear();
             Records.Clear();
-            SourceRecords.Clear();
-            SourceRecords = FileIO.Load(FileContents);
-            PopulateRecordsFromOriginalFileLoad();
+            Source_records.Clear();
+            Source_records = File_io.Load(File_contents);
+            Populate_records_from_original_file_load();
         }
 
-        public void PopulateSourceRecordsFromRecords()
+        public void Populate_source_records_from_records()
         {
-            SourceRecords.Clear();
+            Source_records.Clear();
             foreach (var record in Records)
             {
-                SourceRecords.Add(record);
+                Source_records.Add(record);
             }
         }
 
-        public void PopulateRecordsFromOriginalFileLoad()
+        public void Populate_records_from_original_file_load()
         {
             Records.Clear();
-            foreach (var record in SourceRecords)
+            foreach (var record in Source_records)
             {
                 Records.Add(record);
             }
         }
 
-        public void RemoveRecordPermanently(TRecordType recordToRemove)
+        public void Remove_record_permanently(TRecordType record_to_remove)
         {
-            SourceRecords.Remove(recordToRemove);
-            Records.Remove(recordToRemove);
+            Source_records.Remove(record_to_remove);
+            Records.Remove(record_to_remove);
         }
 
-        public void AddRecordPermanently(TRecordType recordToAdd)
+        public void Add_record_permanently(TRecordType record_to_add)
         {
-            SourceRecords.Add(recordToAdd);
-            Records.Add(recordToAdd);
+            Source_records.Add(record_to_add);
+            Records.Add(record_to_add);
         }
 
-        private void OrderByDate()
+        private void Order_by_date()
         {
-            SourceRecords = SourceRecords.OrderBy(x => x.Date).ToList();
+            Source_records = Source_records.OrderBy(x => x.Date).ToList();
         }
 
-        public void FilterForPositiveRecordsOnly()
+        public void Filter_for_positive_records_only()
         {
-            PopulateRecordsFromOriginalFileLoad();
-            Records.RemoveAll(x => x.MainAmountIsNegative());
+            Populate_records_from_original_file_load();
+            Records.RemoveAll(x => x.Main_amount_is_negative());
         }
 
-        public void FilterForNegativeRecordsOnly()
+        public void Filter_for_negative_records_only()
         {
-            PopulateRecordsFromOriginalFileLoad();
-            Records.RemoveAll(x => !x.MainAmountIsNegative());
+            Populate_records_from_original_file_load();
+            Records.RemoveAll(x => !x.Main_amount_is_negative());
             foreach (var record in Records)
             {
-                record.MakeMainAmountPositive();
+                record.Make_main_amount_positive();
             }
         }
 
-        public void RemoveRecords(System.Predicate<TRecordType> filterPredicate)
+        public void Remove_records(System.Predicate<TRecordType> filter_predicate)
         {
-            PopulateRecordsFromOriginalFileLoad();
-            Records.RemoveAll(filterPredicate);
+            Populate_records_from_original_file_load();
+            Records.RemoveAll(filter_predicate);
         }
 
-        public void SwapSignsOfAllAmounts()
+        public void Swap_signs_of_all_amounts()
         {
-            PopulateRecordsFromOriginalFileLoad();
+            Populate_records_from_original_file_load();
             foreach (var record in Records)
             {
-                record.SwapSignOfMainAmount();
+                record.Swap_sign_of_main_amount();
             }
         }
 
-        public void CopyRecordsToCsvFile(ICSVFile<TRecordType> targetFile)
+        public void Copy_records_to_csv_file(ICSVFile<TRecordType> target_file)
         {
             foreach (var record in Records)
             {
-                targetFile.Records.Add(record);
+                target_file.Records.Add(record);
             }
         }
 
-        public void ResetAllMatches()
+        public void Reset_all_matches()
         {
             foreach (var record in Records)
             {
@@ -132,96 +132,96 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             }
         }
 
-        public int NumMatchedRecords()
+        public int Num_matched_records()
         {
             return Records.Count(x => x.Matched);
         }
 
-        public int NumUnmatchedRecords()
+        public int Num_unmatched_records()
         {
             return Records.Count(x => !x.Matched);
         }
 
-        public List<string> UnmatchedRecordsAsCsv()
+        public List<string> Unmatched_records_as_csv()
         {
             return Records
                 .Where(x => !x.Matched)
                 .OrderBy(x => x.Date)
-                .Select(record => record.ToCsv())
+                .Select(record => record.To_csv())
                 .ToList();
         }
 
-        public List<string> MatchedRecordsAsCsv()
+        public List<string> Matched_records_as_csv()
         {
             return Records
                 .Where(x => x.Matched)
                 .OrderBy(x => x.Date)
-                .Select(record => record.ToCsv())
+                .Select(record => record.To_csv())
                 .ToList();
         }
 
-        public List<string> AllRecordsAsCsv()
+        public List<string> All_records_as_csv()
         {
             return Records
                 .OrderByDescending(x => x.Matched)
                 .ThenBy(x => x.Date)
-                .Select(record => record.ToCsv())
+                .Select(record => record.To_csv())
                 .ToList();
         }
 
-        public List<string> AllRecordsAsSourceLines()
+        public List<string> All_records_as_source_lines()
         {
             return Records
                 .OrderBy(x => x.Date)
-                .Select(record => record.SourceLine)
+                .Select(record => record.Source_line)
                 .ToList();
         }
 
-        public void WriteToCsvFile(string fileSuffix)
+        public void Write_to_csv_file(string file_suffix)
         {
-            FileIO.WriteToCsvFile(fileSuffix, AllRecordsAsCsv());
+            File_io.Write_to_csv_file(file_suffix, All_records_as_csv());
         }
 
-        public void WriteToFileAsSourceLines(string newFileName)
+        public void Write_to_file_as_source_lines(string new_file_name)
         {
-            FileIO.WriteToFileAsSourceLines(newFileName, AllRecordsAsSourceLines());
+            File_io.Write_to_file_as_source_lines(new_file_name, All_records_as_source_lines());
         }
 
-        public void WriteBackToMainSpreadsheet(string worksheetName)
+        public void Write_back_to_main_spreadsheet(string worksheet_name)
         {
-            FileIO.WriteBackToMainSpreadsheet(this, worksheetName);
+            File_io.Write_back_to_main_spreadsheet(this, worksheet_name);
         }
 
-        public void ConvertSourceLineSeparators(char originalSeparator, char newSeparator)
-        {
-            foreach (var record in Records)
-            {
-                record.ConvertSourceLineSeparators(originalSeparator, newSeparator);
-            }
-        }
-
-        public void UpdateSourceLinesForOutput(char outputSeparator)
+        public void Convert_source_line_separators(char original_separator, char new_separator)
         {
             foreach (var record in Records)
             {
-                record.UpdateSourceLineForOutput(outputSeparator);
+                record.Convert_source_line_separators(original_separator, new_separator);
             }
         }
 
-        public List<TRecordType> RecordsOrderedForSpreadsheet()
+        public void Update_source_lines_for_output(char output_separator)
+        {
+            foreach (var record in Records)
+            {
+                record.Update_source_line_for_output(output_separator);
+            }
+        }
+
+        public List<TRecordType> Records_ordered_for_spreadsheet()
         {
             var divider = new TRecordType {Divider = true};
-            var matchedRecords = Records.Where(x => x.Matched);
-            var unmatchedRecords = Records.Where(x => !x.Matched);
+            var matched_records = Records.Where(x => x.Matched);
+            var unmatched_records = Records.Where(x => !x.Matched);
 
-            var result = matchedRecords
+            var result = matched_records
                 .OrderBy(x => x.Date)
                 .ToList();
             if (result.Count > 0)
             {
                 result.Add(divider);
             }
-            result.AddRange(unmatchedRecords.OrderBy(x => x.Date));
+            result.AddRange(unmatched_records.OrderBy(x => x.Date));
 
             return result;
         }

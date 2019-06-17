@@ -8,53 +8,53 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
     internal class DummyLoader : ILoader<ActualBankRecord, BankRecord>
     {
-        public DataLoadingInformation<ActualBankRecord, BankRecord> LoadingInfo()
+        public DataLoadingInformation<ActualBankRecord, BankRecord> Loading_info()
         {
             return new DataLoadingInformation<ActualBankRecord, BankRecord>
             {
-                FilePaths = new FilePaths
+                File_paths = new FilePaths
                 {
-                    MainPath = ReconConsts.DefaultFilePath,
-                    ThirdPartyFileName = ReconConsts.DefaultCredCard2FileName,
-                    OwnedFileName = ReconConsts.DefaultCredCard2InOutFileName
+                    Main_path = ReconConsts.Default_file_path,
+                    Third_party_file_name = ReconConsts.Default_cred_card2_file_name,
+                    Owned_file_name = ReconConsts.Default_cred_card2_in_out_file_name
                 },
-                DefaultSeparator = ',',
-                LoadingSeparator = '^',
-                PendingFileName = ReconConsts.DefaultCredCard2InOutPendingFileName,
-                SheetName = MainSheetNames.BankOut,
-                ThirdPartyDescriptor = ReconConsts.CredCard2Descriptor,
-                OwnedFileDescriptor = ReconConsts.CredCard2InOutDescriptor,
+                Default_separator = ',',
+                Loading_separator = '^',
+                Pending_file_name = ReconConsts.Default_cred_card2_in_out_pending_file_name,
+                Sheet_name = MainSheetNames.Bank_out,
+                Third_party_descriptor = ReconConsts.Cred_card2_descriptor,
+                Owned_file_descriptor = ReconConsts.Cred_card2_in_out_descriptor,
                 Loader = this,
-                MonthlyBudgetData = new BudgetItemListData
+                Monthly_budget_data = new BudgetItemListData
                 {
-                    SheetName = MainSheetNames.BudgetOut,
-                    StartDivider = Dividers.CredCard2,
-                    EndDivider = Dividers.SODDTotal,
-                    FirstColumnNumber = 2,
-                    LastColumnNumber = 5
+                    Sheet_name = MainSheetNames.Budget_out,
+                    Start_divider = Dividers.Cred_card2,
+                    End_divider = Dividers.Sodd_total,
+                    First_column_number = 2,
+                    Last_column_number = 5
                 },
-                AnnualBudgetData = null
+                Annual_budget_data = null
             };
         }
 
-        public IDataFile<ActualBankRecord> CreateNewThirdPartyFile(IFileIO<ActualBankRecord> thirdPartyFileIO)
+        public IDataFile<ActualBankRecord> Create_new_third_party_file(IFileIO<ActualBankRecord> third_party_file_io)
         {
-            var csvFile = new CSVFile<ActualBankRecord>(thirdPartyFileIO);
-            return new GenericFile<ActualBankRecord>(csvFile);
+            var csv_file = new CSVFile<ActualBankRecord>(third_party_file_io);
+            return new GenericFile<ActualBankRecord>(csv_file);
         }
 
-        public IDataFile<BankRecord> CreateNewOwnedFile(IFileIO<BankRecord> ownedFileIO)
+        public IDataFile<BankRecord> Create_new_owned_file(IFileIO<BankRecord> owned_file_io)
         {
-            var csvFile = new CSVFile<BankRecord>(ownedFileIO);
-            return new GenericFile<BankRecord>(csvFile);
+            var csv_file = new CSVFile<BankRecord>(owned_file_io);
+            return new GenericFile<BankRecord>(csv_file);
         }
 
-        public void MergeBespokeDataWithPendingFile(
-            IInputOutput inputOutput,
+        public void Merge_bespoke_data_with_pending_file(
+            IInputOutput input_output,
             ISpreadsheet spreadsheet,
-            ICSVFile<BankRecord> pendingFile,
-            BudgetingMonths budgetingMonths,
-            DataLoadingInformation<ActualBankRecord, BankRecord> dataLoadingInfo)
+            ICSVFile<BankRecord> pending_file,
+            BudgetingMonths budgeting_months,
+            DataLoadingInformation<ActualBankRecord, BankRecord> data_loading_info)
         {
         }
     }
