@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "Console\Console.csproj", "{3A91246B-E279-4AED-952D-4C869C1282FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleCatchallTests", "ConsoleCatchallTests\ConsoleCatchallTests.csproj", "{909F75A8-EAEC-414F-BE98-1A4E7AEC5ADD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelLibrary", "ExcelLibrary\ExcelLibrary.csproj", "{7DFAF792-DB46-494F-8063-6E3C2AAF7522}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{30D6DC9A-9AE6-41C5-9683-09A49B55A7C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelIntegrationTests", "ExcelIntegrationTests\ExcelIntegrationTests.csproj", "{3DA33919-418E-4819-970F-76E233F9CAD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReconciliationBaseTests", "ReconciliationBaseTests\ReconciliationBaseTests.csproj", "{5744922C-8B6D-40BC-B4CF-44BC4391DCD5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A91246B-E279-4AED-952D-4C869C1282FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A91246B-E279-4AED-952D-4C869C1282FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A91246B-E279-4AED-952D-4C869C1282FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A91246B-E279-4AED-952D-4C869C1282FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{909F75A8-EAEC-414F-BE98-1A4E7AEC5ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{909F75A8-EAEC-414F-BE98-1A4E7AEC5ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{909F75A8-EAEC-414F-BE98-1A4E7AEC5ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{909F75A8-EAEC-414F-BE98-1A4E7AEC5ADD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DFAF792-DB46-494F-8063-6E3C2AAF7522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DFAF792-DB46-494F-8063-6E3C2AAF7522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DFAF792-DB46-494F-8063-6E3C2AAF7522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DFAF792-DB46-494F-8063-6E3C2AAF7522}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30D6DC9A-9AE6-41C5-9683-09A49B55A7C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30D6DC9A-9AE6-41C5-9683-09A49B55A7C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30D6DC9A-9AE6-41C5-9683-09A49B55A7C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30D6DC9A-9AE6-41C5-9683-09A49B55A7C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DA33919-418E-4819-970F-76E233F9CAD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DA33919-418E-4819-970F-76E233F9CAD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DA33919-418E-4819-970F-76E233F9CAD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DA33919-418E-4819-970F-76E233F9CAD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5744922C-8B6D-40BC-B4CF-44BC4391DCD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5744922C-8B6D-40BC-B4CF-44BC4391DCD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5744922C-8B6D-40BC-B4CF-44BC4391DCD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5744922C-8B6D-40BC-B4CF-44BC4391DCD5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2AA7406-0A10-410A-A505-EB323A520FC0}
+	EndGlobalSection
+EndGlobal
