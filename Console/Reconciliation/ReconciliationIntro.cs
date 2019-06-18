@@ -730,8 +730,13 @@ namespace ConsoleCatchall.Console.Reconciliation
             _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
             spreadsheet.Add_budgeted_cred_card1_in_out_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
             _input_output.Output_line("Merging bespoke data with pending file...");
-            Cred_card1_and_cred_card1_in_out__Merge_bespoke_data_with_pending_file(
-                _input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
+            var file_loader = new FileLoader();
+            file_loader.Cred_card1_and_cred_card1_in_out__Merge_bespoke_data_with_pending_file(
+                _input_output, 
+                spreadsheet, 
+                pending_file, 
+                budgeting_months, 
+                data_loading_info);
             _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
             
@@ -805,56 +810,6 @@ namespace ConsoleCatchall.Console.Reconciliation
                 data_loading_info.Third_party_descriptor,
                 data_loading_info.Owned_file_descriptor);
             return reconciliation_interface;
-        }
-
-        public void Cred_card1_and_cred_card1_in_out__Merge_bespoke_data_with_pending_file(
-                IInputOutput input_output,
-                ISpreadsheet spreadsheet,
-                ICSVFile<CredCard1InOutRecord> pending_file,
-                BudgetingMonths budgeting_months,
-                DataLoadingInformation data_loading_info)
-        {
-            var most_recent_cred_card_direct_debit = spreadsheet.Get_most_recent_row_containing_text<BankRecord>(
-                MainSheetNames.Bank_out,
-                ReconConsts.Cred_card1_dd_description,
-                new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn });
-
-            var statement_date = new DateTime();
-            var next_date = most_recent_cred_card_direct_debit.Date.AddMonths(1);
-            var input = input_output.Get_input(string.Format(
-                ReconConsts.AskForCredCardDirectDebit,
-                ReconConsts.Cred_card1_name,
-                next_date.ToShortDateString()));
-            double new_balance = 0;
-            while (input != "0")
-            {
-                if (double.TryParse(input, out new_balance))
-                {
-                    pending_file.Records.Add(new CredCard1InOutRecord
-                    {
-                        Date = next_date,
-                        Description = ReconConsts.Cred_card1_regular_pymt_description,
-                        Unreconciled_amount = new_balance
-                    });
-                }
-                statement_date = next_date.AddMonths(-1);
-                next_date = next_date.Date.AddMonths(1);
-                input = input_output.Get_input(string.Format(
-                    ReconConsts.AskForCredCardDirectDebit,
-                    ReconConsts.Cred_card1_name,
-                    next_date.ToShortDateString()));
-            }
-
-            spreadsheet.Update_balance_on_totals_sheet(
-                Codes.Cred_card1_bal,
-                new_balance * -1,
-                string.Format(
-                    ReconConsts.CredCardBalanceDescription,
-                    ReconConsts.Cred_card1_name,
-                    $"{statement_date.ToString("MMM")} {statement_date.Year}"),
-                balance_column: 5,
-                text_column: 6,
-                code_column: 4);
         }
 
         public void Cred_card2_and_cred_card2_in_out__Merge_bespoke_data_with_pending_file(
