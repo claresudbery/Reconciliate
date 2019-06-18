@@ -13,11 +13,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
 
         public static string[] Make_sure_there_are_at_least_enough_string_values(int min_values_required, string[] source_array)
         {
-            var list = new List<string>(sourceArray);
+            var list = new List<string>(source_array);
 
-            if (sourceArray.Length < minValuesRequired)
+            if (source_array.Length < min_values_required)
             {
-                list.AddRange(Enumerable.Repeat(String.Empty, minValuesRequired - sourceArray.Length));
+                list.AddRange(Enumerable.Repeat(String.Empty, min_values_required - source_array.Length));
             }
 
             return list.ToArray();

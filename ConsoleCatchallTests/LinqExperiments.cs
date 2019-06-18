@@ -9,10 +9,10 @@ namespace ConsoleCatchallTests
     {
         private List<Person> _people = new List<Person>
             {
-                new Person { FirstName = "Jean" },
-                new Person { FirstName = "Jack" },
-                new Person { FirstName = "Jill" },
-                new Person { FirstName = "Jiminy" }
+                new Person { First_name = "Jean" },
+                new Person { First_name = "Jack" },
+                new Person { First_name = "Jill" },
+                new Person { First_name = "Jiminy" }
             };
 
         [Test]
@@ -23,7 +23,7 @@ namespace ConsoleCatchallTests
             // ... and has in fact been copied over there, into CombinedOperationExperiment.cs. 
 
             List<List<char>> names = _people
-                .Select(person => person.FirstName.ToList())
+                .Select(person => person.First_name.ToList())
                 .ToList();
 
             var result = names
@@ -31,25 +31,25 @@ namespace ConsoleCatchallTests
                 .Aggregate(
                     new Thing1
                     {
-                        PreviousElements = new List<List<char>> {names[0]},
-                        CharactersInCommon = new List<char>()
+                        Previous_elements = new List<List<char>> {names[0]},
+                        Characters_in_common = new List<char>()
                     },
                     (result_so_far, next_element) =>
                         new Thing1()
                         {
-                            PreviousElements = resultSoFar.PreviousElements.Union(new List<List<char>> {nextElement}).ToList(),
-                            CharactersInCommon = resultSoFar.PreviousElements
+                            Previous_elements = result_so_far.Previous_elements.Union(new List<List<char>> {next_element}).ToList(),
+                            Characters_in_common = result_so_far.Previous_elements
                                 .Aggregate(
-                                    nextElement.Intersect(resultSoFar.PreviousElements[0])
+                                    next_element.Intersect(result_so_far.Previous_elements[0])
                                         .ToList(),
-                                    (back_result_so_far, next_back_element) => 
-                                    backResultSoFar.Union(
-                                        nextElement
-                                        .Intersect(nextBackElement))
+                                    (back_result_so_far, next_back_element) =>
+                                        back_result_so_far.Union(
+                                        next_element
+                                        .Intersect(next_back_element))
                                         .ToList())
-                                .Union(resultSoFar.CharactersInCommon)
+                                .Union(result_so_far.Characters_in_common)
                                 .ToList()
-                        }).CharactersInCommon;
+                        }).Characters_in_common;
 
             Assert.IsTrue(result.OrderBy(x => x).SequenceEqual(new char[] { 'a', 'i', 'J', 'n' }.OrderBy(x => x)));
         }

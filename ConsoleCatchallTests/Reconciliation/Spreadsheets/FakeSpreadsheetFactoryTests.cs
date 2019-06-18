@@ -18,15 +18,15 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             try
             {
                 // Because we haven't called the Create method, spreadsheet should be null.
-                fakeSpreadsheetFactory.DisposeOfSpreadsheetRepo();
+                fake_spreadsheet_factory.Dispose_of_spreadsheet_repo();
             }
             catch (Exception)
             {
-                exceptionThrown = true;
+                exception_thrown = true;
             }
 
             // Assert
-            Assert.IsFalse(exceptionThrown, "Exception should not be thrown");
+            Assert.IsFalse(exception_thrown, "Exception should not be thrown");
         }
     }
 }

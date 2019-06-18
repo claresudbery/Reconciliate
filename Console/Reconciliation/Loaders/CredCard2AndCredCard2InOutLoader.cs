@@ -31,7 +31,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 {
                     Sheet_name = MainSheetNames.Budget_out,
                     Start_divider = Dividers.Cred_card2,
-                    End_divider = Dividers.Sodd_total,
+                    End_divider = Dividers.SODD_total,
                     First_column_number = 2,
                     Last_column_number = 5
                 },

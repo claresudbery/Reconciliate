@@ -8,17 +8,17 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public ISpreadsheetRepo Create_spreadsheet_repo()
         {
-            _fakeSpreadsheet = new FakeSpreadsheetRepo();
-            return _fakeSpreadsheet;
+            _fake_spreadsheet = new FakeSpreadsheetRepo();
+            return _fake_spreadsheet;
         }
 
         public void Dispose_of_spreadsheet_repo()
         {
             // Not really necessary at the moment as Dispose() does nothing anyway,
             // but leaving this here just in case it ever does do something!
-            if (_fakeSpreadsheet != null)
+            if (_fake_spreadsheet != null)
             {
-                _fakeSpreadsheet.Dispose();
+                _fake_spreadsheet.Dispose();
             }
         }
     }

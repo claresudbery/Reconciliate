@@ -194,11 +194,11 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Divider_text)}", _sample_xml_config_file_path), "divider", _sample_xml_config_file_path);
             Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Expenses)}", _sample_xml_config_file_path), "Expenses", _sample_xml_config_file_path);
             Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Expenses_total)}", _sample_xml_config_file_path), "Expenses Total", _sample_xml_config_file_path);
-            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Sod_ds)}", _sample_xml_config_file_path), "SODDs", _sample_xml_config_file_path);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Sodds)}", _sample_xml_config_file_path), "SODDs", _sample_xml_config_file_path);
             Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Cred_card1)}", _sample_xml_config_file_path), "CredCard1 cred card", _sample_xml_config_file_path);
             Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Cred_card2)}", _sample_xml_config_file_path), "CredCard2 cred card", _sample_xml_config_file_path);
-            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Sodd_total)}", _sample_xml_config_file_path), "SODDTotal", _sample_xml_config_file_path);
-            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Annual_sod_ds)}", _sample_xml_config_file_path), "AnnualSODDs", _sample_xml_config_file_path);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.SODD_total)}", _sample_xml_config_file_path), "SODDTotal", _sample_xml_config_file_path);
+            Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Annual_sodds)}", _sample_xml_config_file_path), "AnnualSODDs", _sample_xml_config_file_path);
             Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Annual_total)}", _sample_xml_config_file_path), "AnnualTotal", _sample_xml_config_file_path);
             Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Date)}", _sample_xml_config_file_path), "Date", _sample_xml_config_file_path);
             Assert.AreEqual(xml_reader.Read_xml($"{nameof(Dividers)}.{nameof(Dividers.Total)}", _sample_xml_config_file_path), "Total", _sample_xml_config_file_path);

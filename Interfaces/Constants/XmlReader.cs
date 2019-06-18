@@ -6,22 +6,22 @@ namespace Interfaces.Constants
 {
     public class MyXmlReader
     {
-        public string Xml_file_path => ReadXml(
+        public string Xml_file_path => Read_xml(
             FilePathConsts.ConfigPathProperty, 
             Path.Combine(FilePathConsts.ConfigFilePath, FilePathConsts.ConfigFileName));
 
-        readonly XElement _loaded_config;
+        private readonly XElement _loaded_config;
 
         public MyXmlReader()
         {
-            _loadedConfig = LoadXml(XmlFilePath);
+            _loaded_config = Load_xml(Xml_file_path);
         }
 
         private XElement Load_xml(string xml_file_path)
         {
             try 
             {
-                return XElement.Load(xmlFilePath);
+                return XElement.Load(xml_file_path);
             }
             catch (System.Exception e)
             {
@@ -32,13 +32,13 @@ namespace Interfaces.Constants
 
         public string Read_xml(string xml_property)
         {
-            return _loadedConfig.Descendants(xmlProperty).First().Value;
+            return _loaded_config.Descendants(xml_property).First().Value;
         }
 
         public string Read_xml(string xml_property, string xml_file_path)
         {
-            var temp_config = LoadXml(xmlFilePath);
-            return temp_config.Descendants(xmlProperty).First().Value;
+            var temp_config = Load_xml(xml_file_path);
+            return temp_config.Descendants(xml_property).First().Value;
         }
     }
 }

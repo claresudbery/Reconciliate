@@ -13,21 +13,21 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         {
             // Arrange
             ISpreadsheetRepo null_spreadsheet = null; 
-            var mock_spreadsheet_factory = new MockSpreadsheetRepoFactory(nullSpreadsheet);
+            var mock_spreadsheet_factory = new MockSpreadsheetRepoFactory(null_spreadsheet);
 
             // Act
             bool exception_thrown = false;
             try
             {
-                mockSpreadsheetFactory.DisposeOfSpreadsheetRepo();
+                mock_spreadsheet_factory.Dispose_of_spreadsheet_repo();
             }
             catch (Exception)
             {
-                exceptionThrown = true;
+                exception_thrown = true;
             }
 
             // Assert
-            Assert.IsFalse(exceptionThrown, "Exception should not be thrown");
+            Assert.IsFalse(exception_thrown, "Exception should not be thrown");
         }
     }
 }

@@ -486,7 +486,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var annual_budget_item_list_data = new BudgetItemListData
             {
                 Sheet_name = MainSheetNames.Budget_out,
-                Start_divider = Dividers.Annual_sod_ds,
+                Start_divider = Dividers.Annual_sodds,
                 End_divider = Dividers.Annual_total,
                 First_column_number = 2,
                 Last_column_number = 6
