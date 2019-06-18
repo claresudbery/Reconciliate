@@ -40,7 +40,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var reconciliation_intro = new ReconciliationIntro(mock_input_output.Object);
 
             // Act
-            reconciliation_intro.BankAndBankIn_MergeBespokeDataWithPendingFile(
+            reconciliation_intro.Bank_and_bank_in__Merge_bespoke_data_with_pending_file(
                 mock_input_output.Object,
                 spreadsheet,
                 mock_pending_file.Object,

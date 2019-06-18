@@ -105,7 +105,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var reconciliation_intro = new ReconciliationIntro(mock_input_output.Object);
 
             // Act
-            reconciliation_intro.CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
+            reconciliation_intro.Cred_card2_and_cred_card2_in_out__Merge_bespoke_data_with_pending_file(
                 mock_input_output.Object,
                 spreadsheet,
                 mock_pending_file.Object,
@@ -155,7 +155,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var reconciliation_intro = new ReconciliationIntro(mock_input_output.Object);
 
             // Act
-            reconciliation_intro.CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
+            reconciliation_intro.Cred_card2_and_cred_card2_in_out__Merge_bespoke_data_with_pending_file(
                 mock_input_output.Object,
                 mock_spreadsheet.Object,
                 mock_pending_file.Object,

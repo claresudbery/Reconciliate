@@ -610,7 +610,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
             spreadsheet.Add_budgeted_bank_in_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
             _input_output.Output_line("Merging bespoke data with pending file...");
-            BankAndBankIn_MergeBespokeDataWithPendingFile(_input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
+            Bank_and_bank_in__Merge_bespoke_data_with_pending_file(_input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
             _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
 
@@ -662,7 +662,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 data_loading_info.Monthly_budget_data,
                 data_loading_info.Annual_budget_data);
             _input_output.Output_line("Merging bespoke data with pending file...");
-            BankAndBankOut_MergeBespokeDataWithPendingFile(_input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
+            Bank_and_bank_out__Merge_bespoke_data_with_pending_file(_input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
             _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
 
@@ -710,7 +710,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
             spreadsheet.Add_budgeted_cred_card1_in_out_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
             _input_output.Output_line("Merging bespoke data with pending file...");
-            CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile(
+            Cred_card1_and_cred_card1_in_out__Merge_bespoke_data_with_pending_file(
                 _input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
             _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
@@ -759,7 +759,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
             spreadsheet.Add_budgeted_cred_card2_in_out_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
             _input_output.Output_line("Merging bespoke data with pending file...");
-            CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
+            Cred_card2_and_cred_card2_in_out__Merge_bespoke_data_with_pending_file(
                 _input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
             _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
@@ -787,7 +787,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             return reconciliation_interface;
         }
 
-        public void BankAndBankIn_MergeBespokeDataWithPendingFile(
+        public void Bank_and_bank_in__Merge_bespoke_data_with_pending_file(
                 IInputOutput input_output,
                 ISpreadsheet spreadsheet,
                 ICSVFile<BankRecord> pending_file,
@@ -806,21 +806,21 @@ namespace ConsoleCatchall.Console.Reconciliation
             expected_income_csv_file.Populate_records_from_original_file_load();
         }
 
-        public void BankAndBankOut_MergeBespokeDataWithPendingFile(
+        public void Bank_and_bank_out__Merge_bespoke_data_with_pending_file(
                 IInputOutput input_output,
                 ISpreadsheet spreadsheet,
                 ICSVFile<BankRecord> pending_file,
                 BudgetingMonths budgeting_months,
                 DataLoadingInformation data_loading_info)
         {
-            BankAndBankOut_AddMostRecentCreditCardDirectDebits(
+            Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
                 input_output,
                 spreadsheet,
                 pending_file,
                 ReconConsts.Cred_card1_name,
                 ReconConsts.Cred_card1_dd_description);
 
-            BankAndBankOut_AddMostRecentCreditCardDirectDebits(
+            Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
                 input_output,
                 spreadsheet,
                 (ICSVFile<BankRecord>)pending_file,
@@ -828,7 +828,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 ReconConsts.Cred_card2_dd_description);
         }
 
-        private void BankAndBankOut_AddMostRecentCreditCardDirectDebits(
+        private void Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
             IInputOutput input_output,
             ISpreadsheet spreadsheet,
             ICSVFile<BankRecord> pending_file,
@@ -866,7 +866,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public void CredCard1AndCredCard1InOut_MergeBespokeDataWithPendingFile(
+        public void Cred_card1_and_cred_card1_in_out__Merge_bespoke_data_with_pending_file(
                 IInputOutput input_output,
                 ISpreadsheet spreadsheet,
                 ICSVFile<CredCard1InOutRecord> pending_file,
@@ -916,7 +916,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 code_column: 4);
         }
 
-        public void CredCard2AndCredCard2InOut_MergeBespokeDataWithPendingFile(
+        public void Cred_card2_and_cred_card2_in_out__Merge_bespoke_data_with_pending_file(
                 IInputOutput input_output,
                 ISpreadsheet spreadsheet,
                 ICSVFile<CredCard2InOutRecord> pending_file,
