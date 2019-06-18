@@ -13,13 +13,12 @@ using NUnit.Framework;
 
 namespace ConsoleCatchallTests.Reconciliation.Loaders
 {
-    // These tests are just testing the BankAndBankOut functionality in ReconciliationIntro
     [TestFixture]
-    public class ReconciliationIntro_BankAndBankOut_Tests
+    public class FileLoaderTests
     {
         private void Assert_pending_record_is_given_the_specified_CredCard1_direct_debit_details(
-            BankRecord pending_record, 
-            DateTime expected_date, 
+            BankRecord pending_record,
+            DateTime expected_date,
             double expected_amount)
         {
             Assert_pending_record_is_given_the_specified_direct_debit_details(
@@ -102,7 +101,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_input_output
                 .Setup(x => x.Get_input(
                     string.Format(
-                        ReconConsts.AskForCredCardDirectDebit, 
+                        ReconConsts.AskForCredCardDirectDebit,
                         cred_card_name,
                         next_direct_debit_date01.ToShortDateString()), ""))
                 .Returns(expected_amount1.ToString);
@@ -126,7 +125,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_cell_row.Setup(x => x.Read_cell(BankRecord.TypeIndex)).Returns("Type");
             mock_cell_row.Setup(x => x.Read_cell(BankRecord.UnreconciledAmountIndex)).Returns((double)0);
             mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_with_cell_containing_text(
-                    MainSheetNames.Bank_out, direct_debit_description, new List<int> {ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn}))
+                    MainSheetNames.Bank_out, direct_debit_description, new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
                 .Returns(direct_debit_row_number);
             mock_spreadsheet_repo.Setup(x => x.Read_specified_row(
                     MainSheetNames.Bank_out, direct_debit_row_number))
@@ -134,7 +133,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         }
 
         [Test]
-        public void M_MergeBespokeDataWithPendingFile_WillAddMostRecentCredCardDirectDebits()
+        public void Bank_and_bank_out__Merge_bespoke_data_with_pending_file__Will_add_most_recent_cred_card_direct_debits()
         {
             // Arrange
             double expected_amount1 = 1234.55;
