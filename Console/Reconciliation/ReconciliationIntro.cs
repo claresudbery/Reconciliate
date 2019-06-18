@@ -513,7 +513,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         #region File loading
 
-        private void Create_pending_csvs(string path = "")
+        private void Create_pending_csvs(string path)
         {
             try
             {
