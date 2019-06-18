@@ -238,21 +238,21 @@ namespace ConsoleCatchall.Console.Reconciliation
             return result;
         }
 
-        private void Get_path_and_file_names()
+        private void Set_path_and_file_names()
         {
             _input_output.Output_line("Mathematical dude! Let's do some reconciliating. Type Exit at any time to leave (although to be honest I'm not sure that actually works...)");
 
-            bool using_defaults = Get_all_file_details();
+            bool using_defaults = Set_all_file_details();
 
             if (!using_defaults)
             {
-                Get_path();
-                Get_third_party_file_name();
-                Get_owned_file_name();
+                Set_path();
+                Set_third_party_file_name();
+                Set_owned_file_name();
             }
         }
 
-        private void Get_path()
+        private void Set_path()
         {
             _input_output.Output_line("");
             _input_output.Output_line("Would you like to enter a file path or use the default?");
@@ -271,7 +271,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        private void Get_third_party_file_name()
+        private void Set_third_party_file_name()
         {
             _input_output.Output_line("");
             _input_output.Output_line("Would you like to enter a file name for your third party csv file, or use a default?");
@@ -294,7 +294,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        private bool Get_all_file_details()
+        private bool Set_all_file_details()
         {
             bool success = true;
 
@@ -316,7 +316,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             return success;
         }
 
-        private void Get_owned_file_name()
+        private void Set_owned_file_name()
         {
             _input_output.Output_line("");
             _input_output.Output_line("Would you like to enter a file name for your own csv file, or use a default?");
@@ -426,7 +426,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             try
             {
                 Show_instructions(working_mode);
-                Get_path_and_file_names();
+                Set_path_and_file_names();
                 Do_matching();
             }
             catch (Exception exception)
@@ -508,7 +508,7 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             try
             {
-                Get_path();
+                Set_path();
                 var pending_csv_file_creator = new PendingCsvFileCreator(_path);
                 pending_csv_file_creator.Create_and_populate_all_csvs();
             }
