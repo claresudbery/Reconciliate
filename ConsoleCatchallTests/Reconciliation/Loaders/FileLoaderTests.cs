@@ -40,16 +40,15 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 ReconConsts.Cred_card2_dd_description);
         }
 
-        private void Assert_pending_record_is_given_the_specified_direct_debit_details(
-            BankRecord pending_record,
+        public void Assert_pending_record_is_given_the_specified_direct_debit_details(
+            ICSVRecord pending_record,
             DateTime expected_date,
             double expected_amount,
             string expected_description)
         {
             Assert.AreEqual(expected_description, pending_record.Description);
             Assert.AreEqual(expected_date, pending_record.Date);
-            Assert.AreEqual(expected_amount, pending_record.Unreconciled_amount);
-            Assert.AreEqual("POS", pending_record.Type);
+            Assert.AreEqual(expected_amount, pending_record.Main_amount());
         }
 
         private FileLoader Set_up_for_CredCard1_and_CredCard2_data(
@@ -84,7 +83,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             return new FileLoader();
         }
 
-        private void Set_up_for_credit_card_data(
+        public void Set_up_for_credit_card_data(
             string cred_card_name,
             string direct_debit_description,
             DateTime last_direct_debit_date,

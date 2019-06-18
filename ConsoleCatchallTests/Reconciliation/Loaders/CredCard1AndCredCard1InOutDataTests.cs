@@ -17,15 +17,15 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     [TestFixture]
     public class ReconciliationIntro_CredCard1AndCredCard1InOut_Tests
     {
-        private void Assert_direct_debit_details_are_correct(
-            CredCard1InOutRecord cred_card1_in_out_record, 
+        private void Assert_pending_record_is_given_the_specified_direct_debit_details(
+            ICSVRecord pending_record, 
             DateTime expected_date, 
             double expected_amount, 
             string expected_description)
         {
-            Assert.AreEqual(expected_description, cred_card1_in_out_record.Description);
-            Assert.AreEqual(expected_date, cred_card1_in_out_record.Date);
-            Assert.AreEqual(expected_amount, cred_card1_in_out_record.Unreconciled_amount);
+            Assert.AreEqual(expected_description, pending_record.Description);
+            Assert.AreEqual(expected_date, pending_record.Date);
+            Assert.AreEqual(expected_amount, pending_record.Main_amount());
         }
 
         private void Set_up_for_credit_card_data(
@@ -80,15 +80,15 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         public void M_MergeBespokeDataWithPendingFile_WillAddMostRecentCredCard1DirectDebits()
         {
             // Arrange
-            TestHelper.Set_correct_date_formatting();
-            var mock_input_output = new Mock<IInputOutput>();
-            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
             double expected_amount1 = 1234.55;
             double expected_amount2 = 5673.99;
             DateTime last_direct_debit_date = new DateTime(2018, 12, 17);
-            var next_direct_debit_date01 = last_direct_debit_date.AddMonths(1);
-            var next_direct_debit_date02 = last_direct_debit_date.AddMonths(2);
-            Set_up_for_credit_card_data(
+
+            TestHelper.Set_correct_date_formatting();
+            var mock_input_output = new Mock<IInputOutput>();
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var fileLoaderTests = new FileLoaderTests();
+            fileLoaderTests.Set_up_for_credit_card_data(
                 ReconConsts.Cred_card1_name,
                 ReconConsts.Cred_card1_dd_description,
                 last_direct_debit_date,
@@ -100,8 +100,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_pending_file = new Mock<ICSVFile<CredCard1InOutRecord>>();
             var pending_records = new List<CredCard1InOutRecord>();
             mock_pending_file.Setup(x => x.Records).Returns(pending_records);
-            var budgeting_months = new BudgetingMonths();
-            var loading_info = CredCard1AndCredCard1InOutData.LoadingInfo; 
             var reconciliation_intro = new ReconciliationIntro(mock_input_output.Object);
 
             // Act
@@ -109,13 +107,16 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_input_output.Object,
                 spreadsheet,
                 mock_pending_file.Object,
-                budgeting_months,
-                loading_info);
+                new BudgetingMonths(),
+                CredCard1AndCredCard1InOutData.LoadingInfo);
 
             // Assert
             Assert.AreEqual(2, pending_records.Count);
-            Assert_direct_debit_details_are_correct(pending_records[0], next_direct_debit_date01, expected_amount1, ReconConsts.Cred_card1_regular_pymt_description);
-            Assert_direct_debit_details_are_correct(pending_records[1], next_direct_debit_date02, expected_amount2, ReconConsts.Cred_card1_regular_pymt_description);
+
+            var next_direct_debit_date01 = last_direct_debit_date.AddMonths(1);
+            var next_direct_debit_date02 = last_direct_debit_date.AddMonths(2);
+            fileLoaderTests.Assert_pending_record_is_given_the_specified_direct_debit_details(pending_records[0], next_direct_debit_date01, expected_amount1, ReconConsts.Cred_card1_regular_pymt_description);
+            fileLoaderTests.Assert_pending_record_is_given_the_specified_direct_debit_details(pending_records[1], next_direct_debit_date02, expected_amount2, ReconConsts.Cred_card1_regular_pymt_description);
         }
 
         [Test]
