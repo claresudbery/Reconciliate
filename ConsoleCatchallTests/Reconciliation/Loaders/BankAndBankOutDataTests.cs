@@ -17,16 +17,40 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     [TestFixture]
     public class ReconciliationIntro_BankAndBankOut_Tests
     {
-        private void Assert_direct_debit_details_are_correct(
-            BankRecord bank_record, 
+        private void Assert_pending_record_is_given_the_specified_CredCard1_direct_debit_details(
+            BankRecord pending_record, 
             DateTime expected_date, 
-            double expected_amount, 
+            double expected_amount)
+        {
+            Assert_pending_record_is_given_the_specified_direct_debit_details(
+                pending_record,
+                expected_date,
+                expected_amount,
+                ReconConsts.Cred_card1_dd_description);
+        }
+
+        private void Assert_pending_record_is_given_the_specified_CredCard2_direct_debit_details(
+            BankRecord pending_record,
+            DateTime expected_date,
+            double expected_amount)
+        {
+            Assert_pending_record_is_given_the_specified_direct_debit_details(
+                pending_record,
+                expected_date,
+                expected_amount,
+                ReconConsts.Cred_card2_dd_description);
+        }
+
+        private void Assert_pending_record_is_given_the_specified_direct_debit_details(
+            BankRecord pending_record,
+            DateTime expected_date,
+            double expected_amount,
             string expected_description)
         {
-            Assert.AreEqual(expected_description, bank_record.Description);
-            Assert.AreEqual(expected_date, bank_record.Date);
-            Assert.AreEqual(expected_amount, bank_record.Unreconciled_amount);
-            Assert.AreEqual("POS", bank_record.Type);
+            Assert.AreEqual(expected_description, pending_record.Description);
+            Assert.AreEqual(expected_date, pending_record.Date);
+            Assert.AreEqual(expected_amount, pending_record.Unreconciled_amount);
+            Assert.AreEqual("POS", pending_record.Type);
         }
 
         private void Set_up_for_credit_card_data(
@@ -123,10 +147,12 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
 
             // Assert
             Assert.AreEqual(4, pending_records.Count);
-            Assert_direct_debit_details_are_correct(pending_records[0], next_direct_debit_date01, expected_amount1, ReconConsts.Cred_card1_dd_description);
-            Assert_direct_debit_details_are_correct(pending_records[1], next_direct_debit_date02, expected_amount2, ReconConsts.Cred_card1_dd_description);
-            Assert_direct_debit_details_are_correct(pending_records[2], next_direct_debit_date01, expected_amount1, ReconConsts.Cred_card2_dd_description);
-            Assert_direct_debit_details_are_correct(pending_records[3], next_direct_debit_date02, expected_amount2, ReconConsts.Cred_card2_dd_description);
+            // CredCard1:
+            Assert_pending_record_is_given_the_specified_CredCard1_direct_debit_details(pending_records[0], next_direct_debit_date01, expected_amount1);
+            Assert_pending_record_is_given_the_specified_CredCard1_direct_debit_details(pending_records[1], next_direct_debit_date02, expected_amount2);
+            // CredCard2:
+            Assert_pending_record_is_given_the_specified_CredCard2_direct_debit_details(pending_records[2], next_direct_debit_date01, expected_amount1);
+            Assert_pending_record_is_given_the_specified_CredCard2_direct_debit_details(pending_records[3], next_direct_debit_date02, expected_amount2);
         }
     }
 }
