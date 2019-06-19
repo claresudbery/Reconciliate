@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
@@ -20,12 +19,10 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private ISpreadsheetRepoFactory _spreadsheet_factory = new FakeSpreadsheetRepoFactory();
         private readonly IInputOutput _input_output;
-        private readonly FileLoader _file_loader;
 
         public ReconciliationIntro(IInputOutput input_output)
         {
             _input_output = input_output;
-            _file_loader = new FileLoader(_input_output, _spreadsheet_factory);
         }
 
         public void Start()
@@ -44,7 +41,8 @@ namespace ConsoleCatchall.Console.Reconciliation
                 case "1":
                 {
                     Set_path();
-                    _file_loader.Create_pending_csvs(_path);
+                    var file_loader = new FileLoader(_input_output, _spreadsheet_factory);
+                    file_loader.Create_pending_csvs(_path);
                 }
                 break;
                 case "2":
@@ -453,7 +451,8 @@ namespace ConsoleCatchall.Console.Reconciliation
                 Owned_file_name = _owned_file_name
             };
 
-            var reconciliation_interface = _file_loader.Load_specific_files_for_reconciliation_type(main_file_paths, _reconciliation_type);
+            var file_loader = new FileLoader(_input_output, _spreadsheet_factory);
+            var reconciliation_interface = file_loader.Load_specific_files_for_reconciliation_type(main_file_paths, _reconciliation_type);
             reconciliation_interface?.Do_the_matching();
         }
 
