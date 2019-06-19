@@ -15,7 +15,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         private readonly IInputOutput _input_output;
         private readonly ISpreadsheetRepoFactory _spreadsheet_factory;
 
-        public FileLoader(IInputOutput input_output, ISpreadsheetRepoFactory spreadsheet_factory = null)
+        public FileLoader(IInputOutput input_output, ISpreadsheetRepoFactory spreadsheet_factory)
         {
             _input_output = input_output;
             _spreadsheet_factory = spreadsheet_factory;
@@ -42,8 +42,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
             spreadsheet.Add_budgeted_bank_in_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
             _input_output.Output_line("Merging bespoke data with pending file...");
-            var file_loader = new FileLoader(_input_output);
-            file_loader.Bank_and_bank_in__Merge_bespoke_data_with_pending_file(
+            Bank_and_bank_in__Merge_bespoke_data_with_pending_file(
                 _input_output,
                 spreadsheet,
                 pending_file,
@@ -100,8 +99,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info.Monthly_budget_data,
                 data_loading_info.Annual_budget_data);
             _input_output.Output_line("Merging bespoke data with pending file...");
-            var file_loader = new FileLoader(_input_output);
-            file_loader.Bank_and_bank_out__Merge_bespoke_data_with_pending_file(
+            Bank_and_bank_out__Merge_bespoke_data_with_pending_file(
                 _input_output,
                 spreadsheet,
                 pending_file,
@@ -154,8 +152,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
             spreadsheet.Add_budgeted_cred_card1_in_out_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
             _input_output.Output_line("Merging bespoke data with pending file...");
-            var file_loader = new FileLoader(_input_output);
-            file_loader.Cred_card1_and_cred_card1_in_out__Merge_bespoke_data_with_pending_file(
+            Cred_card1_and_cred_card1_in_out__Merge_bespoke_data_with_pending_file(
                 _input_output,
                 spreadsheet,
                 pending_file,
@@ -208,8 +205,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
             spreadsheet.Add_budgeted_cred_card2_in_out_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
             _input_output.Output_line("Merging bespoke data with pending file...");
-            var file_loader = new FileLoader(_input_output);
-            file_loader.Cred_card2_and_cred_card2_in_out__Merge_bespoke_data_with_pending_file(
+            Cred_card2_and_cred_card2_in_out__Merge_bespoke_data_with_pending_file(
                 _input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
             _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
