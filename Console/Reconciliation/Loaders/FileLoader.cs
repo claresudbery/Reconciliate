@@ -21,6 +21,81 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _spreadsheet_factory = spreadsheet_factory;
         }
 
+        public ReconciliationInterface Load_specific_files_for_reconciliation_type(
+            FilePaths main_file_paths,
+            ReconciliationType reconciliation_type)
+        {
+            _input_output.Output_line("Loading data...");
+
+            ReconciliationInterface reconciliation_interface = null;
+
+            try
+            {
+                // NB This is the only function the spreadsheet is used in, until the very end (Reconciliator.Finish, called from
+                // ReconciliationInterface), when another spreadsheet instance gets created by FileIO so it can call 
+                // WriteBackToMainSpreadsheet. Between now and then, everything is done using csv files.
+                var spreadsheet_repo = _spreadsheet_factory.Create_spreadsheet_repo();
+                var spreadsheet = new Spreadsheet(spreadsheet_repo);
+                var file_loader = new FileLoader(_input_output, _spreadsheet_factory);
+                var reconciliation_intro = new ReconciliationIntro(_input_output);
+                BudgetingMonths budgeting_months = reconciliation_intro.Recursively_ask_for_budgeting_months(spreadsheet);
+
+                switch (reconciliation_type)
+                {
+                    case ReconciliationType.BankAndBankIn:
+                        {
+                            reconciliation_interface =
+                                file_loader.Load_bank_and_bank_in(
+                                    spreadsheet,
+                                    budgeting_months,
+                                    main_file_paths);
+                        }
+                        break;
+                    case ReconciliationType.BankAndBankOut:
+                        {
+                            reconciliation_interface =
+                                file_loader.Load_bank_and_bank_out(
+                                    spreadsheet,
+                                    budgeting_months,
+                                    main_file_paths);
+                        }
+                        break;
+                    case ReconciliationType.CredCard1AndCredCard1InOut:
+                        {
+                            reconciliation_interface =
+                                file_loader.Load_cred_card1_and_cred_card1_in_out(
+                                    spreadsheet,
+                                    budgeting_months,
+                                    main_file_paths);
+                        }
+                        break;
+                    case ReconciliationType.CredCard2AndCredCard2InOut:
+                        {
+                            reconciliation_interface =
+                                file_loader.Load_cred_card2_and_cred_card2_in_out(
+                                    spreadsheet,
+                                    budgeting_months,
+                                    main_file_paths);
+                        }
+                        break;
+                    default:
+                        {
+                            _input_output.Output_line("I don't know what files to load! Terminating now.");
+                        }
+                        break;
+                }
+            }
+            finally
+            {
+                _spreadsheet_factory.Dispose_of_spreadsheet_repo();
+            }
+
+            _input_output.Output_line("");
+            _input_output.Output_line("");
+
+            return reconciliation_interface;
+        }
+
         public ReconciliationInterface
             Load_bank_and_bank_in(
                 ISpreadsheet spreadsheet,
