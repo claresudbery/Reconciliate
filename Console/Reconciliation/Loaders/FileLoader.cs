@@ -118,16 +118,21 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             data_loading_info.File_paths = main_file_paths;
 
             var pending_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
-            var pending_file = new CSVFile<BankRecord>(pending_file_io);
             pending_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.Pending_file_name);
+            var pending_file = new CSVFile<BankRecord>(pending_file_io);
 
             _input_output.Output_line(ReconConsts.LoadingDataFromPendingFile);
-            // The separator we loaded with had to match the source. Then we convert it here to match its destination.
             pending_file.Load(true, data_loading_info.Default_separator);
+            // The separator we loaded with had to match the source. Then we convert it here to match its destination.
             _input_output.Output_line("Converting source line separators...");
             pending_file.Convert_source_line_separators(data_loading_info.Default_separator, data_loading_info.Loading_separator);
+
             _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
-            spreadsheet.Add_budgeted_bank_in_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
+            spreadsheet.Add_budgeted_bank_in_data_to_pending_file(
+                budgeting_months, 
+                pending_file, 
+                data_loading_info.Monthly_budget_data);
+
             _input_output.Output_line("Merging bespoke data with pending file...");
             Bank_and_bank_in__Merge_bespoke_data_with_pending_file(
                 _input_output,
@@ -135,8 +140,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 pending_file,
                 budgeting_months,
                 data_loading_info);
-            _input_output.Output_line("Updating source lines for output...");
-            pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
 
             // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
             // We loaded it up into memory in the previous file-specific method.
@@ -147,17 +150,20 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output.Output_line("Merging unreconciled rows from spreadsheet with pending and budget data...");
             spreadsheet.Add_unreconciled_rows_to_csv_file(data_loading_info.Sheet_name, pending_file);
             _input_output.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
+            pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
             pending_file.Write_to_file_as_source_lines(data_loading_info.File_paths.Owned_file_name);
             _input_output.Output_line("...");
 
             var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
             var owned_file_io = new FileIO<BankRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
             var reconciliator = new BankReconciliator(third_party_file_io, owned_file_io, data_loading_info);
+
             var reconciliation_interface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,
                 data_loading_info.Third_party_descriptor,
                 data_loading_info.Owned_file_descriptor);
+
             return reconciliation_interface;
         }
 
@@ -171,20 +177,22 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             data_loading_info.File_paths = main_file_paths;
 
             var pending_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
-            var pending_file = new CSVFile<BankRecord>(pending_file_io);
             pending_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.Pending_file_name);
+            var pending_file = new CSVFile<BankRecord>(pending_file_io);
 
             _input_output.Output_line(ReconConsts.LoadingDataFromPendingFile);
-            // The separator we loaded with had to match the source. Then we convert it here to match its destination.
             pending_file.Load(true, data_loading_info.Default_separator);
+            // The separator we loaded with had to match the source. Then we convert it here to match its destination.
             _input_output.Output_line("Converting source line separators...");
             pending_file.Convert_source_line_separators(data_loading_info.Default_separator, data_loading_info.Loading_separator);
+
             _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
             spreadsheet.Add_budgeted_bank_out_data_to_pending_file(
                 budgeting_months,
                 pending_file,
                 data_loading_info.Monthly_budget_data,
                 data_loading_info.Annual_budget_data);
+
             _input_output.Output_line("Merging bespoke data with pending file...");
             Bank_and_bank_out__Merge_bespoke_data_with_pending_file(
                 _input_output,
@@ -192,8 +200,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 pending_file,
                 budgeting_months,
                 data_loading_info);
-            _input_output.Output_line("Updating source lines for output...");
-            pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
 
             // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
             // We loaded it up into memory in the previous file-specific method.
@@ -204,17 +210,20 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output.Output_line("Merging unreconciled rows from spreadsheet with pending and budget data...");
             spreadsheet.Add_unreconciled_rows_to_csv_file(data_loading_info.Sheet_name, pending_file);
             _input_output.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
+            pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
             pending_file.Write_to_file_as_source_lines(data_loading_info.File_paths.Owned_file_name);
             _input_output.Output_line("...");
 
             var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
             var owned_file_io = new FileIO<BankRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
             var reconciliator = new BankReconciliator(third_party_file_io, owned_file_io, data_loading_info);
+
             var reconciliation_interface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,
                 data_loading_info.Third_party_descriptor,
                 data_loading_info.Owned_file_descriptor);
+
             return reconciliation_interface;
         }
 
@@ -228,16 +237,21 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             data_loading_info.File_paths = main_file_paths;
 
             var pending_file_io = new FileIO<CredCard1InOutRecord>(_spreadsheet_factory);
-            var pending_file = new CSVFile<CredCard1InOutRecord>(pending_file_io);
             pending_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.Pending_file_name);
+            var pending_file = new CSVFile<CredCard1InOutRecord>(pending_file_io);
 
             _input_output.Output_line(ReconConsts.LoadingDataFromPendingFile);
-            // The separator we loaded with had to match the source. Then we convert it here to match its destination.
             pending_file.Load(true, data_loading_info.Default_separator);
+            // The separator we loaded with had to match the source. Then we convert it here to match its destination.
             _input_output.Output_line("Converting source line separators...");
             pending_file.Convert_source_line_separators(data_loading_info.Default_separator, data_loading_info.Loading_separator);
+
             _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
-            spreadsheet.Add_budgeted_cred_card1_in_out_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
+            spreadsheet.Add_budgeted_cred_card1_in_out_data_to_pending_file(
+                budgeting_months, 
+                pending_file, 
+                data_loading_info.Monthly_budget_data);
+
             _input_output.Output_line("Merging bespoke data with pending file...");
             Cred_card1_and_cred_card1_in_out__Merge_bespoke_data_with_pending_file(
                 _input_output,
@@ -245,9 +259,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 pending_file,
                 budgeting_months,
                 data_loading_info);
-            _input_output.Output_line("Updating source lines for output...");
-            pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
-
+            
             // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
             // We loaded it up into memory in the previous file-specific method.
             // Then some budget amounts were added to that file (in memory).
@@ -257,17 +269,20 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output.Output_line("Merging unreconciled rows from spreadsheet with pending and budget data...");
             spreadsheet.Add_unreconciled_rows_to_csv_file(data_loading_info.Sheet_name, pending_file);
             _input_output.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
+            pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
             pending_file.Write_to_file_as_source_lines(data_loading_info.File_paths.Owned_file_name);
             _input_output.Output_line("...");
 
             var third_party_file_io = new FileIO<CredCard1Record>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
             var owned_file_io = new FileIO<CredCard1InOutRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
             var reconciliator = new CredCard1Reconciliator(third_party_file_io, owned_file_io);
+
             var reconciliation_interface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,
                 data_loading_info.Third_party_descriptor,
                 data_loading_info.Owned_file_descriptor);
+
             return reconciliation_interface;
         }
 
@@ -281,22 +296,29 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             data_loading_info.File_paths = main_file_paths;
 
             var pending_file_io = new FileIO<CredCard2InOutRecord>(_spreadsheet_factory);
-            var pending_file = new CSVFile<CredCard2InOutRecord>(pending_file_io);
             pending_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.Pending_file_name);
+            var pending_file = new CSVFile<CredCard2InOutRecord>(pending_file_io);
 
             _input_output.Output_line(ReconConsts.LoadingDataFromPendingFile);
-            // The separator we loaded with had to match the source. Then we convert it here to match its destination.
             pending_file.Load(true, data_loading_info.Default_separator);
+            // The separator we loaded with had to match the source. Then we convert it here to match its destination.
             _input_output.Output_line("Converting source line separators...");
             pending_file.Convert_source_line_separators(data_loading_info.Default_separator, data_loading_info.Loading_separator);
+
             _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
-            spreadsheet.Add_budgeted_cred_card2_in_out_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
+            spreadsheet.Add_budgeted_cred_card2_in_out_data_to_pending_file(
+                budgeting_months, 
+                pending_file, 
+                data_loading_info.Monthly_budget_data);
+
             _input_output.Output_line("Merging bespoke data with pending file...");
             Cred_card2_and_cred_card2_in_out__Merge_bespoke_data_with_pending_file(
-                _input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
-            _input_output.Output_line("Updating source lines for output...");
-            pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
-
+                _input_output, 
+                spreadsheet, 
+                pending_file, 
+                budgeting_months, 
+                data_loading_info);
+            
             // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
             // We loaded it up into memory in the previous file-specific method.
             // Then some budget amounts were added to that file (in memory).
@@ -306,17 +328,20 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output.Output_line("Merging unreconciled rows from spreadsheet with pending and budget data...");
             spreadsheet.Add_unreconciled_rows_to_csv_file(data_loading_info.Sheet_name, pending_file);
             _input_output.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
+            pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
             pending_file.Write_to_file_as_source_lines(data_loading_info.File_paths.Owned_file_name);
             _input_output.Output_line("...");
 
             var third_party_file_io = new FileIO<CredCard2Record>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
             var owned_file_io = new FileIO<CredCard2InOutRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
             var reconciliator = new CredCard2Reconciliator(third_party_file_io, owned_file_io);
+
             var reconciliation_interface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,
                 data_loading_info.Third_party_descriptor,
                 data_loading_info.Owned_file_descriptor);
+
             return reconciliation_interface;
         }
 
