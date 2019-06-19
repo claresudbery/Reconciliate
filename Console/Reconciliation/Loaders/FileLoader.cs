@@ -36,7 +36,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 // WriteBackToMainSpreadsheet. Between now and then, everything is done using csv files.
                 var spreadsheet_repo = _spreadsheet_factory.Create_spreadsheet_repo();
                 var spreadsheet = new Spreadsheet(spreadsheet_repo);
-                var file_loader = new FileLoader(_input_output, _spreadsheet_factory);
                 var reconciliation_intro = new ReconciliationIntro(_input_output);
                 BudgetingMonths budgeting_months = reconciliation_intro.Recursively_ask_for_budgeting_months(spreadsheet);
 
@@ -45,7 +44,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     case ReconciliationType.BankAndBankIn:
                         {
                             reconciliation_interface =
-                                file_loader.Load_bank_and_bank_in(
+                                Load_bank_and_bank_in(
                                     spreadsheet,
                                     budgeting_months,
                                     main_file_paths);
@@ -54,7 +53,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     case ReconciliationType.BankAndBankOut:
                         {
                             reconciliation_interface =
-                                file_loader.Load_bank_and_bank_out(
+                                Load_bank_and_bank_out(
                                     spreadsheet,
                                     budgeting_months,
                                     main_file_paths);
@@ -63,7 +62,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     case ReconciliationType.CredCard1AndCredCard1InOut:
                         {
                             reconciliation_interface =
-                                file_loader.Load_cred_card1_and_cred_card1_in_out(
+                                Load_cred_card1_and_cred_card1_in_out(
                                     spreadsheet,
                                     budgeting_months,
                                     main_file_paths);
@@ -72,7 +71,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     case ReconciliationType.CredCard2AndCredCard2InOut:
                         {
                             reconciliation_interface =
-                                file_loader.Load_cred_card2_and_cred_card2_in_out(
+                                Load_cred_card2_and_cred_card2_in_out(
                                     spreadsheet,
                                     budgeting_months,
                                     main_file_paths);
