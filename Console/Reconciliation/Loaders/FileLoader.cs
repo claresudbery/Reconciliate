@@ -21,6 +21,19 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _spreadsheet_factory = spreadsheet_factory;
         }
 
+        public void Create_pending_csvs(string path)
+        {
+            try
+            {
+                var pending_csv_file_creator = new PendingCsvFileCreator(path);
+                pending_csv_file_creator.Create_and_populate_all_csvs();
+            }
+            catch (Exception e)
+            {
+                _input_output.Output_line(e.Message);
+            }
+        }
+
         public ReconciliationInterface Load_specific_files_for_reconciliation_type(
             FilePaths main_file_paths,
             ReconciliationType reconciliation_type)

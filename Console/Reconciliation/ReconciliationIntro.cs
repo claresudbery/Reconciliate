@@ -51,8 +51,9 @@ namespace ConsoleCatchall.Console.Reconciliation
                 case "1":
                 {
                     Set_path();
-                    Create_pending_csvs(_path);
-                } 
+                    var file_loader = new FileLoader(_input_output, _spreadsheet_factory);
+                    file_loader.Create_pending_csvs(_path);
+                }
                 break;
                 case "2":
                 {
@@ -511,23 +512,6 @@ namespace ConsoleCatchall.Console.Reconciliation
         }
 
         #endregion Debug Spreadsheet Operations
-
-        #region File loading
-
-        private void Create_pending_csvs(string path)
-        {
-            try
-            {
-                var pending_csv_file_creator = new PendingCsvFileCreator(path);
-                pending_csv_file_creator.Create_and_populate_all_csvs();
-            }
-            catch (Exception e)
-            {
-                _input_output.Output_line(e.Message);
-            }
-        }
-
-        #endregion File loading
 
         #region Get budgeting months
 
