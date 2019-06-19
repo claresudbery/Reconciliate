@@ -13,8 +13,6 @@ namespace ConsoleCatchall.Console.Reconciliation
 {
     internal class ReconciliationIntro
     {
-        #region Properties, member vars and constructor
-
         private string _path = "";
         private string _third_party_file_name = "";
         private string _owned_file_name = "";
@@ -29,10 +27,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             _input_output = input_output;
             _file_loader = new FileLoader(_input_output, _spreadsheet_factory);
         }
-
-        #endregion Properties, member vars and constructor
-
-        #region User Instructions and Input
 
         public void Start()
         {
@@ -463,10 +457,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             reconciliation_interface?.Do_the_matching();
         }
 
-        #endregion User Instructions and Input
-
-        #region Debug Spreadsheet Operations
-
         public void Copy_source_spreadsheet_to_debug_spreadsheet(string source_spreadsheet_path, string main_spreadsheet_path)
         {
             string source_file_path = Path.Combine(source_spreadsheet_path, ReconConsts.Main_spreadsheet_file_name);
@@ -507,7 +497,5 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             _spreadsheet_factory = spreadsheet_factory;
         }
-
-        #endregion Debug Spreadsheet Operations
     }
 }
