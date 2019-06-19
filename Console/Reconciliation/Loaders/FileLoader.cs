@@ -49,8 +49,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 // WriteBackToMainSpreadsheet. Between now and then, everything is done using csv files.
                 var spreadsheet_repo = _spreadsheet_factory.Create_spreadsheet_repo();
                 var spreadsheet = new Spreadsheet(spreadsheet_repo);
-                var reconciliation_intro = new ReconciliationIntro(_input_output);
-                BudgetingMonths budgeting_months = reconciliation_intro.Recursively_ask_for_budgeting_months(spreadsheet);
+                var budgeting_month_service = new BudgetingMonthService(_input_output);
+                BudgetingMonths budgeting_months = budgeting_month_service.Recursively_ask_for_budgeting_months(spreadsheet);
 
                 switch (reconciliation_type)
                 {
