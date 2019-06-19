@@ -460,7 +460,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 Owned_file_name = _owned_file_name
             };
 
-            var reconciliation_interface = Load_specific_files_for_reconciliation_type(main_file_paths);
+            var reconciliation_interface = Load_specific_files_for_reconciliation_type(main_file_paths, _reconciliation_type);
             reconciliation_interface?.Do_the_matching();
         }
 
@@ -526,7 +526,9 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public ReconciliationInterface Load_specific_files_for_reconciliation_type(FilePaths main_file_paths)
+        public ReconciliationInterface Load_specific_files_for_reconciliation_type(
+            FilePaths main_file_paths,
+            ReconciliationType reconciliation_type)
         {
             _input_output.Output_line("Loading data...");
 
@@ -539,10 +541,10 @@ namespace ConsoleCatchall.Console.Reconciliation
                 // WriteBackToMainSpreadsheet. Between now and then, everything is done using csv files.
                 var spreadsheet_repo = _spreadsheet_factory.Create_spreadsheet_repo();
                 var spreadsheet = new Spreadsheet(spreadsheet_repo);
-                BudgetingMonths budgeting_months = Recursively_ask_for_budgeting_months(spreadsheet);
                 var file_loader = new FileLoader(_input_output, _spreadsheet_factory);
+                BudgetingMonths budgeting_months = Recursively_ask_for_budgeting_months(spreadsheet);
 
-                switch (_reconciliation_type)
+                switch (reconciliation_type)
                 {
                     case ReconciliationType.BankAndBankIn:
                         {
