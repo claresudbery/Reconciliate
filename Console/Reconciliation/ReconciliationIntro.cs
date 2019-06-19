@@ -460,7 +460,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 Owned_file_name = _owned_file_name
             };
 
-            var reconciliation_interface = Load_correct_files(main_file_paths);
+            var reconciliation_interface = Load_specific_files_for_reconciliation_type(main_file_paths);
             reconciliation_interface?.Do_the_matching();
         }
 
@@ -526,7 +526,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public ReconciliationInterface Load_correct_files(FilePaths main_file_paths)
+        public ReconciliationInterface Load_specific_files_for_reconciliation_type(FilePaths main_file_paths)
         {
             _input_output.Output_line("Loading data...");
 
