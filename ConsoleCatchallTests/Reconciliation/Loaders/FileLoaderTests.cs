@@ -80,7 +80,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_spreadsheet_repo,
                 2);
 
-            return new FileLoader();
+            return new FileLoader(mock_input_output.Object);
         }
 
         private void Set_up_for_credit_card_data(
@@ -153,7 +153,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_pending_file.Setup(x => x.Records).Returns(pending_records);
             var budgeting_months = new BudgetingMonths();
             var loading_info = BankAndBankInData.LoadingInfo;
-            var file_loader = new FileLoader();
+            var file_loader = new FileLoader(mock_input_output.Object);
 
             // Act
             file_loader.Bank_and_bank_in__Merge_bespoke_data_with_pending_file(
@@ -235,7 +235,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_pending_file = new Mock<ICSVFile<CredCard1InOutRecord>>();
             var pending_records = new List<CredCard1InOutRecord>();
             mock_pending_file.Setup(x => x.Records).Returns(pending_records);
-            var file_loader = new FileLoader();
+            var file_loader = new FileLoader(mock_input_output.Object);
 
             // Act
             file_loader.Cred_card1_and_cred_card1_in_out__Merge_bespoke_data_with_pending_file(
@@ -288,7 +288,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_pending_file.Setup(x => x.Records).Returns(pending_records);
             var budgeting_months = new BudgetingMonths();
             var loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
-            var file_loader = new FileLoader();
+            var file_loader = new FileLoader(mock_input_output.Object);
 
             // Act
             file_loader.Cred_card1_and_cred_card1_in_out__Merge_bespoke_data_with_pending_file(
@@ -335,7 +335,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_pending_file.Setup(x => x.Records).Returns(pending_records);
             var budgeting_months = new BudgetingMonths();
             var loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
-            var file_loader = new FileLoader();
+            var file_loader = new FileLoader(mock_input_output.Object);
 
             // Act
             file_loader.Cred_card2_and_cred_card2_in_out__Merge_bespoke_data_with_pending_file(
@@ -385,7 +385,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_pending_file.Setup(x => x.Records).Returns(pending_records);
             var budgeting_months = new BudgetingMonths();
             var loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
-            var file_loader = new FileLoader();
+            var file_loader = new FileLoader(mock_input_output.Object);
 
             // Act
             file_loader.Cred_card2_and_cred_card2_in_out__Merge_bespoke_data_with_pending_file(
