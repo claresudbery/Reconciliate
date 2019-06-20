@@ -71,7 +71,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             var reconciliation_interface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,
-                "rubbish",//data_loading_info.Third_party_descriptor,
+                data_loading_info.Third_party_descriptor,
                 data_loading_info.Owned_file_descriptor);
 
             return reconciliation_interface;
