@@ -14,6 +14,12 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     public class BankAndBankInLoaderTests
     {
         [Test]
+        public void Load__Will_create_a_reconciliation_interface_with_the_correct_third_party_file_name()
+        {
+
+        }
+
+        [Test]
         public void Bank_and_bank_in__Merge_bespoke_data_with_pending_file__Will_merge_unreconciled_employer_expenses_with_pending_file()
         {
             // Arrange
@@ -33,8 +39,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
             var pending_records = new List<BankRecord>();
             mock_pending_file.Setup(x => x.Records).Returns(pending_records);
-            var budgeting_months = new BudgetingMonths();
-            var loading_info = BankAndBankInData.LoadingInfo;
             var bank_and_bank_in_loader = new BankAndBankInLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
 
             // Act
@@ -42,8 +46,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_input_output.Object,
                 spreadsheet,
                 mock_pending_file.Object,
-                budgeting_months,
-                loading_info);
+                new BudgetingMonths(),
+                BankAndBankInData.LoadingInfo);
 
             // Assert
             mock_input_output.Verify(x => x.Output_line(ReconConsts.Loading_expenses));

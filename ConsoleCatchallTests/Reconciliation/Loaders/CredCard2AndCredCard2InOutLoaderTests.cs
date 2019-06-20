@@ -89,8 +89,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_pending_file = new Mock<ICSVFile<CredCard2InOutRecord>>();
             var pending_records = new List<CredCard2InOutRecord>();
             mock_pending_file.Setup(x => x.Records).Returns(pending_records);
-            var budgeting_months = new BudgetingMonths();
-            var loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
             var file_loader = new CredCard2AndCredCard2InOutLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
 
             // Act
@@ -98,8 +96,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_input_output.Object,
                 mock_spreadsheet.Object,
                 mock_pending_file.Object,
-                budgeting_months,
-                loading_info);
+                new BudgetingMonths(),
+                CredCard2AndCredCard2InOutData.LoadingInfo);
 
             // Assert
             mock_spreadsheet.Verify(x => x.Update_balance_on_totals_sheet(
