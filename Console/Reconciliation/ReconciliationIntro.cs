@@ -491,10 +491,5 @@ namespace ConsoleCatchall.Console.Reconciliation
                 throw new Exception($"Can't find file: {source_file_path}");
             }
         }
-
-        public void Inject_spreadsheet_factory(ISpreadsheetRepoFactory spreadsheet_factory)
-        {
-            _spreadsheet_factory = spreadsheet_factory;
-        }
     }
 }
