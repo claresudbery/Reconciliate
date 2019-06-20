@@ -51,6 +51,43 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             // Assert 
             Assert.AreEqual(loading_info.Owned_file_descriptor, reconciliation_interface.Owned_file_descriptor);
         }
+        [Test]
+        public void Load__Will_create_a_reconciliation_interface_using_Third_party_descriptor_from_loading_info()
+        {
+            // Arrange
+            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
+            var loading_info = BankAndBankInData.LoadingInfo;
+            int start_divider_row = 1;
+            int end_divider_row = 4;
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
+                    loading_info.Monthly_budget_data.Sheet_name,
+                    loading_info.Monthly_budget_data.Start_divider,
+                    2))
+                .Returns(start_divider_row);
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
+                    loading_info.Monthly_budget_data.Sheet_name,
+                    loading_info.Monthly_budget_data.End_divider,
+                    2))
+                .Returns(end_divider_row);
+            mock_spreadsheet_repo.Setup(x => x.Get_rows_as_records<BankRecord>(
+                    loading_info.Monthly_budget_data.Sheet_name,
+                    start_divider_row + 1,
+                    end_divider_row - 1,
+                    loading_info.Monthly_budget_data.First_column_number,
+                    loading_info.Monthly_budget_data.Last_column_number))
+                .Returns(new List<BankRecord>());
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+
+            // Act
+            var reconciliation_interface = bank_and_bank_in_loader.Load(
+                spreadsheet,
+                new BudgetingMonths(),
+                loading_info.File_paths);
+
+            // Assert 
+            Assert.AreEqual(loading_info.Third_party_descriptor, reconciliation_interface.Third_party_descriptor);
+        }
 
         [Test]
         public void Bank_and_bank_in__Merge_bespoke_data_with_pending_file__Will_merge_unreconciled_employer_expenses_with_pending_file()
