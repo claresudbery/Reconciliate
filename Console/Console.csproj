@@ -43,6 +43,7 @@
     <Compile Include="Reconciliation\Loaders\BankAndBankInLoader.cs" />
     <Compile Include="Reconciliation\Loaders\BankAndBankOutLoader.cs" />
     <Compile Include="Reconciliation\Loaders\BudgetingMonthService.cs" />
+    <Compile Include="Reconciliation\Loaders\CredCard1AndCredCard1InOutLoader.cs" />
     <Compile Include="Reconciliation\Loaders\DummyLoader.cs" />
     <Compile Include="Reconciliation\Loaders\FileLoader.cs" />
     <Compile Include="Reconciliation\ReconciliationType.cs" />
