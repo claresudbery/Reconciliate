@@ -64,8 +64,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             pending_file.Write_to_file_as_source_lines(data_loading_info.File_paths.Owned_file_name);
             _input_output.Output_line("...");
 
-            var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, "rubbish"); //data_loading_info.File_paths.Third_party_file_name);
-            var owned_file_io = new FileIO<BankRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, "rubbish"); //data_loading_info.File_paths.Owned_file_name);
+            var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
+            var owned_file_io = new FileIO<BankRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
             var reconciliator = new BankReconciliator(third_party_file_io, owned_file_io, data_loading_info);
 
             var reconciliation_interface = new ReconciliationInterface(
