@@ -15,43 +15,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     public class BankAndBankInLoaderTests
     {
         [Test]
-        public void Load__Will_create_a_reconciliation_interface_using_Owned_file_descriptor_from_loading_info()
-        {
-            // Arrange
-            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
-            var loading_info = BankAndBankInData.LoadingInfo;
-            var spreadsheet = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<BankRecord>(loading_info);
-
-            // Act
-            var reconciliation_interface = bank_and_bank_in_loader.Load(
-                spreadsheet,
-                new BudgetingMonths(),
-                loading_info.File_paths);
-
-            // Assert 
-            Assert.AreEqual(loading_info.Owned_file_descriptor, reconciliation_interface.Owned_file_descriptor);
-        }
-
-        [Test]
-        public void Load__Will_create_a_reconciliation_interface_using_Third_party_descriptor_from_loading_info()
-        {
-            // Arrange
-            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
-            var loading_info = BankAndBankInData.LoadingInfo;
-            var spreadsheet = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<BankRecord>(loading_info);
-
-            // Act
-            var reconciliation_interface = bank_and_bank_in_loader.Load(
-                spreadsheet,
-                new BudgetingMonths(),
-                loading_info.File_paths);
-
-            // Assert 
-            Assert.AreEqual(loading_info.Third_party_descriptor, reconciliation_interface.Third_party_descriptor);
-        }
-
-        [Test]
-        public void Load__Will_create_a_reconciliator_using_Third_party_file_name_from_loading_info()
+        public void Load__Will_create_a_reconciliation_interface_using_file_details_from_loading_info()
         {
             // Arrange
             var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
@@ -67,25 +31,10 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             // Assert 
             var third_party_file_io = ((BankReconciliator)reconciliation_interface.Reconciliator).Third_party_file.File_io;
             Assert.AreEqual(loading_info.File_paths.Third_party_file_name, third_party_file_io.File_name);
-        }
-
-        [Test]
-        public void Load__Will_create_a_reconciliator_using_Owned_file_name_from_loading_info()
-        {
-            // Arrange
-            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
-            var loading_info = BankAndBankInData.LoadingInfo;
-            var spreadsheet = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<BankRecord>(loading_info);
-
-            // Act
-            var reconciliation_interface = bank_and_bank_in_loader.Load(
-                spreadsheet,
-                new BudgetingMonths(),
-                loading_info.File_paths);
-
-            // Assert 
             var owned_file_io = ((BankReconciliator)reconciliation_interface.Reconciliator).Owned_file.File_io;
             Assert.AreEqual(loading_info.File_paths.Owned_file_name, owned_file_io.File_name);
+            Assert.AreEqual(loading_info.Third_party_descriptor, reconciliation_interface.Third_party_descriptor);
+            Assert.AreEqual(loading_info.Owned_file_descriptor, reconciliation_interface.Owned_file_descriptor);
         }
 
         [Test]
