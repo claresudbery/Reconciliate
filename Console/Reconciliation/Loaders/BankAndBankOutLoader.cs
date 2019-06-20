@@ -46,7 +46,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info.Annual_budget_data);
 
             _input_output.Output_line("Merging bespoke data with pending file...");
-            Bank_and_bank_out__Merge_bespoke_data_with_pending_file(
+            Merge_bespoke_data_with_pending_file(
                 _input_output,
                 spreadsheet,
                 pending_file,
@@ -79,21 +79,21 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return reconciliation_interface;
         }
 
-        public void Bank_and_bank_out__Merge_bespoke_data_with_pending_file(
+        public void Merge_bespoke_data_with_pending_file(
             IInputOutput input_output,
             ISpreadsheet spreadsheet,
             ICSVFile<BankRecord> pending_file,
             BudgetingMonths budgeting_months,
             DataLoadingInformation loading_info)
         {
-            Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
+            Add_most_recent_credit_card_direct_debits(
                 input_output,
                 spreadsheet,
                 pending_file,
                 ReconConsts.Cred_card1_name,
                 ReconConsts.Cred_card1_dd_description);
 
-            Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
+            Add_most_recent_credit_card_direct_debits(
                 input_output,
                 spreadsheet,
                 pending_file,
@@ -101,7 +101,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 ReconConsts.Cred_card2_dd_description);
         }
 
-        private static void Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
+        private static void Add_most_recent_credit_card_direct_debits(
             IInputOutput input_output,
             ISpreadsheet spreadsheet,
             ICSVFile<BankRecord> pending_file,

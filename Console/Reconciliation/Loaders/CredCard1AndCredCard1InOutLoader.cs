@@ -46,7 +46,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info.Monthly_budget_data);
 
             _input_output.Output_line("Merging bespoke data with pending file...");
-            Cred_card1_and_cred_card1_in_out__Merge_bespoke_data_with_pending_file(
+            Merge_bespoke_data_with_pending_file(
                 _input_output,
                 spreadsheet,
                 pending_file,
@@ -79,7 +79,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return reconciliation_interface;
         }
 
-        public void Cred_card1_and_cred_card1_in_out__Merge_bespoke_data_with_pending_file(
+        public void Merge_bespoke_data_with_pending_file(
             IInputOutput input_output,
             ISpreadsheet spreadsheet,
             ICSVFile<CredCard1InOutRecord> pending_file,

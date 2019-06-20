@@ -38,7 +38,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var file_loader = new BankAndBankOutLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
 
             // Act
-            file_loader.Bank_and_bank_out__Merge_bespoke_data_with_pending_file(
+            file_loader.Merge_bespoke_data_with_pending_file(
                 mock_input_output.Object,
                 spreadsheet,
                 mock_pending_file.Object,

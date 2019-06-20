@@ -44,7 +44,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info.Monthly_budget_data);
 
             _input_output.Output_line("Merging bespoke data with pending file...");
-            Bank_and_bank_in__Merge_bespoke_data_with_pending_file(
+            Merge_bespoke_data_with_pending_file(
                 _input_output,
                 spreadsheet,
                 pending_file,
@@ -77,7 +77,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return reconciliation_interface;
         }
 
-        public void Bank_and_bank_in__Merge_bespoke_data_with_pending_file(
+        public void Merge_bespoke_data_with_pending_file(
             IInputOutput input_output,
             ISpreadsheet spreadsheet,
             ICSVFile<BankRecord> pending_file,
