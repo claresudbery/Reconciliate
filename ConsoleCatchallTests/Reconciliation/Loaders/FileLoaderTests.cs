@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using ConsoleCatchall.Console.Reconciliation.Records;
+using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
 using Interfaces;
 using Interfaces.Constants;
+using Interfaces.DTOs;
 using Moq;
 using NUnit.Framework;
 
@@ -122,6 +125,34 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_spreadsheet_repo.Setup(x => x.Read_specified_row(
                     MainSheetNames.Bank_out, direct_debit_row_number))
                 .Returns(mock_cell_row.Object);
+        }
+
+        internal static ISpreadsheet Create_mock_spreadsheet_for_loading<TRecordType>(DataLoadingInformation loading_info)
+            where TRecordType : ICSVRecord, new()
+        {
+            int start_divider_row = 1;
+            int end_divider_row = 4;
+
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
+                    loading_info.Monthly_budget_data.Sheet_name,
+                    loading_info.Monthly_budget_data.Start_divider,
+                    2))
+                .Returns(start_divider_row);
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
+                    loading_info.Monthly_budget_data.Sheet_name,
+                    loading_info.Monthly_budget_data.End_divider,
+                    2))
+                .Returns(end_divider_row);
+            mock_spreadsheet_repo.Setup(x => x.Get_rows_as_records<TRecordType>(
+                    loading_info.Monthly_budget_data.Sheet_name,
+                    start_divider_row + 1,
+                    end_divider_row - 1,
+                    loading_info.Monthly_budget_data.First_column_number,
+                    loading_info.Monthly_budget_data.Last_column_number))
+                .Returns(new List<TRecordType>());
+            
+            return new Spreadsheet(mock_spreadsheet_repo.Object); ;
         }
     }
 }
