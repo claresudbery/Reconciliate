@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using ConsoleCatchall.Console.Reconciliation;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
@@ -16,7 +15,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     [TestFixture]
     public class FileLoaderTests
     {
-        private void Assert_pending_record_is_given_the_specified_CredCard1_direct_debit_details(
+        internal void Assert_pending_record_is_given_the_specified_CredCard1_direct_debit_details(
             BankRecord pending_record,
             DateTime expected_date,
             double expected_amount)
@@ -28,7 +27,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 ReconConsts.Cred_card1_dd_description);
         }
 
-        private void Assert_pending_record_is_given_the_specified_CredCard2_direct_debit_details(
+        internal void Assert_pending_record_is_given_the_specified_CredCard2_direct_debit_details(
             BankRecord pending_record,
             DateTime expected_date,
             double expected_amount)
@@ -40,7 +39,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 ReconConsts.Cred_card2_dd_description);
         }
 
-        private void Assert_pending_record_is_given_the_specified_direct_debit_details(
+        internal void Assert_pending_record_is_given_the_specified_direct_debit_details(
             ICSVRecord pending_record,
             DateTime expected_date,
             double expected_amount,
@@ -51,7 +50,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             Assert.AreEqual(expected_amount, pending_record.Main_amount());
         }
 
-        private FileLoader Set_up_for_CredCard1_and_CredCard2_data(
+        internal FileLoader Set_up_for_CredCard1_and_CredCard2_data(
             DateTime last_direct_debit_date,
             double expected_amount1,
             double expected_amount2,
@@ -83,7 +82,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             return new FileLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
         }
 
-        private void Set_up_for_credit_card_data(
+        internal void Set_up_for_credit_card_data(
             string cred_card_name,
             string direct_debit_description,
             DateTime last_direct_debit_date,
@@ -129,44 +128,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_spreadsheet_repo.Setup(x => x.Read_specified_row(
                     MainSheetNames.Bank_out, direct_debit_row_number))
                 .Returns(mock_cell_row.Object);
-        }
-
-        [Test]
-        public void Bank_and_bank_in__Merge_bespoke_data_with_pending_file__Will_merge_unreconciled_employer_expenses_with_pending_file()
-        {
-            // Arrange
-            var mock_input_output = new Mock<IInputOutput>();
-            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
-            var divider_row_number = 10;
-            var last_row_number = 11;
-            var mock_cell_row = new Mock<ICellRow>();
-            var description = "Hello";
-            var code = Codes.Expenses;
-            mock_cell_row.Setup(x => x.Read_cell(ExpectedIncomeRecord.DescriptionIndex)).Returns(description);
-            mock_cell_row.Setup(x => x.Read_cell(ExpectedIncomeRecord.CodeIndex)).Returns(code);
-            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(MainSheetNames.Expected_in, Dividers.Divider_text, 2)).Returns(divider_row_number);
-            mock_spreadsheet_repo.Setup(x => x.Last_row_number(MainSheetNames.Expected_in)).Returns(last_row_number);
-            mock_spreadsheet_repo.Setup(x => x.Read_specified_row(MainSheetNames.Expected_in, last_row_number)).Returns(mock_cell_row.Object);
-            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
-            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
-            var pending_records = new List<BankRecord>();
-            mock_pending_file.Setup(x => x.Records).Returns(pending_records);
-            var budgeting_months = new BudgetingMonths();
-            var loading_info = BankAndBankInData.LoadingInfo;
-            var file_loader = new FileLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
-
-            // Act
-            file_loader.Bank_and_bank_in__Merge_bespoke_data_with_pending_file(
-                mock_input_output.Object,
-                spreadsheet,
-                mock_pending_file.Object,
-                budgeting_months,
-                loading_info);
-
-            // Assert
-            mock_input_output.Verify(x => x.Output_line(ReconConsts.Loading_expenses));
-            Assert.AreEqual(1, pending_records.Count);
-            Assert.AreEqual(description, pending_records[0].Description);
         }
 
         [Test]
