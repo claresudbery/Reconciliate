@@ -78,6 +78,7 @@
     <Compile Include="Reconciliation\Loaders\BankAndBankInLoaderTests.cs" />
     <Compile Include="Reconciliation\Loaders\BankAndBankOutLoaderTests.cs" />
     <Compile Include="Reconciliation\Loaders\CredCard1AndCredCard1InOutLoaderTests.cs" />
+    <Compile Include="Reconciliation\Loaders\CredCard2AndCredCard2InOutLoaderTests.cs" />
     <Compile Include="Reconciliation\Loaders\FileLoaderTests.cs" />
     <Compile Include="Reconciliation\Loaders\BudgetingMonthServiceTests.cs" />
     <Compile Include="Reconciliation\Loaders\ReconciliationIntroTests.cs" />
