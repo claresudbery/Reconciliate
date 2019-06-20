@@ -72,7 +72,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 new InputOutput(),
                 reconciliator,
                 data_loading_info.Third_party_descriptor,
-                "rubbish");//data_loading_info.Owned_file_descriptor);
+                data_loading_info.Owned_file_descriptor);
 
             return reconciliation_interface;
         }
