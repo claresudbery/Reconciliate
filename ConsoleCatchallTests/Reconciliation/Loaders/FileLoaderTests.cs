@@ -15,7 +15,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     [TestFixture]
     public class FileLoaderTests
     {
-        internal void Assert_pending_record_is_given_the_specified_CredCard1_direct_debit_details(
+        internal static void Assert_pending_record_is_given_the_specified_CredCard1_direct_debit_details(
             BankRecord pending_record,
             DateTime expected_date,
             double expected_amount)
@@ -27,7 +27,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 ReconConsts.Cred_card1_dd_description);
         }
 
-        internal void Assert_pending_record_is_given_the_specified_CredCard2_direct_debit_details(
+        internal static void Assert_pending_record_is_given_the_specified_CredCard2_direct_debit_details(
             BankRecord pending_record,
             DateTime expected_date,
             double expected_amount)
@@ -39,7 +39,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 ReconConsts.Cred_card2_dd_description);
         }
 
-        internal void Assert_pending_record_is_given_the_specified_direct_debit_details(
+        internal static void Assert_pending_record_is_given_the_specified_direct_debit_details(
             ICSVRecord pending_record,
             DateTime expected_date,
             double expected_amount,
@@ -50,7 +50,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             Assert.AreEqual(expected_amount, pending_record.Main_amount());
         }
 
-        internal FileLoader Set_up_for_CredCard1_and_CredCard2_data(
+        internal static void Set_up_for_CredCard1_and_CredCard2_data(
             DateTime last_direct_debit_date,
             double expected_amount1,
             double expected_amount2,
@@ -78,11 +78,9 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_input_output,
                 mock_spreadsheet_repo,
                 2);
-
-            return new FileLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
         }
 
-        internal void Set_up_for_credit_card_data(
+        internal static void Set_up_for_credit_card_data(
             string cred_card_name,
             string direct_debit_description,
             DateTime last_direct_debit_date,
@@ -128,49 +126,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_spreadsheet_repo.Setup(x => x.Read_specified_row(
                     MainSheetNames.Bank_out, direct_debit_row_number))
                 .Returns(mock_cell_row.Object);
-        }
-
-        [Test]
-        public void Bank_and_bank_out__Merge_bespoke_data_with_pending_file__Will_add_most_recent_cred_card_direct_debits()
-        {
-            // Arrange
-            double expected_amount1 = 1234.55;
-            double expected_amount2 = 5673.99;
-            DateTime last_direct_debit_date = new DateTime(2018, 12, 17);
-
-            TestHelper.Set_correct_date_formatting();
-            var mock_input_output = new Mock<IInputOutput>();
-            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
-            var file_loader = Set_up_for_CredCard1_and_CredCard2_data(
-                last_direct_debit_date,
-                expected_amount1,
-                expected_amount2,
-                mock_input_output,
-                mock_spreadsheet_repo);
-            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
-            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
-            var pending_records = new List<BankRecord>();
-            mock_pending_file.Setup(x => x.Records).Returns(pending_records);
-
-            // Act
-            file_loader.Bank_and_bank_out__Merge_bespoke_data_with_pending_file(
-                mock_input_output.Object,
-                spreadsheet,
-                mock_pending_file.Object,
-                new BudgetingMonths(),
-                BankAndBankOutData.LoadingInfo);
-
-            // Assert
-            Assert.AreEqual(4, pending_records.Count);
-
-            var next_direct_debit_date01 = last_direct_debit_date.AddMonths(1);
-            var next_direct_debit_date02 = last_direct_debit_date.AddMonths(2);
-            // CredCard1:
-            Assert_pending_record_is_given_the_specified_CredCard1_direct_debit_details(pending_records[0], next_direct_debit_date01, expected_amount1);
-            Assert_pending_record_is_given_the_specified_CredCard1_direct_debit_details(pending_records[1], next_direct_debit_date02, expected_amount2);
-            // CredCard2:
-            Assert_pending_record_is_given_the_specified_CredCard2_direct_debit_details(pending_records[2], next_direct_debit_date01, expected_amount1);
-            Assert_pending_record_is_given_the_specified_CredCard2_direct_debit_details(pending_records[3], next_direct_debit_date02, expected_amount2);
         }
 
         [Test]

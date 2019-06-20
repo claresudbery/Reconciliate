@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Reconciliation\Files\ExpectedIncomeFileTests.cs" />
     <Compile Include="Reconciliation\Loaders\BankAndBankInLoaderTests.cs" />
+    <Compile Include="Reconciliation\Loaders\BankAndBankOutLoaderTests.cs" />
     <Compile Include="Reconciliation\Loaders\FileLoaderTests.cs" />
     <Compile Include="Reconciliation\Loaders\BudgetingMonthServiceTests.cs" />
     <Compile Include="Reconciliation\Loaders\ReconciliationIntroTests.cs" />

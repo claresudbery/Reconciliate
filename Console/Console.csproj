@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Reconciliation\Files\ExpectedIncomeFile.cs" />
     <Compile Include="Reconciliation\Loaders\BankAndBankInLoader.cs" />
+    <Compile Include="Reconciliation\Loaders\BankAndBankOutLoader.cs" />
     <Compile Include="Reconciliation\Loaders\BudgetingMonthService.cs" />
     <Compile Include="Reconciliation\Loaders\DummyLoader.cs" />
     <Compile Include="Reconciliation\Loaders\FileLoader.cs" />
