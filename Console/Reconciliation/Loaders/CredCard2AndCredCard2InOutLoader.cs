@@ -22,8 +22,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         }
 
         public ReconciliationInterface
-            Load_cred_card2_and_cred_card2_in_out(
-                ISpreadsheet spreadsheet,
+            Load(ISpreadsheet spreadsheet,
                 BudgetingMonths budgeting_months,
                 FilePaths main_file_paths)
         {

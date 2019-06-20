@@ -26,7 +26,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             TestHelper.Set_correct_date_formatting();
             var mock_input_output = new Mock<IInputOutput>();
             var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
-            FileLoaderTests.Set_up_for_credit_card_data(
+            FileLoaderTestHelper.Set_up_for_credit_card_data(
                 ReconConsts.Cred_card1_name,
                 ReconConsts.Cred_card1_dd_description,
                 last_direct_debit_date,
@@ -53,8 +53,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
 
             var next_direct_debit_date01 = last_direct_debit_date.AddMonths(1);
             var next_direct_debit_date02 = last_direct_debit_date.AddMonths(2);
-            FileLoaderTests.Assert_pending_record_is_given_the_specified_direct_debit_details(pending_records[0], next_direct_debit_date01, expected_amount1, ReconConsts.Cred_card1_regular_pymt_description);
-            FileLoaderTests.Assert_pending_record_is_given_the_specified_direct_debit_details(pending_records[1], next_direct_debit_date02, expected_amount2, ReconConsts.Cred_card1_regular_pymt_description);
+            FileLoaderTestHelper.Assert_pending_record_is_given_the_specified_direct_debit_details(pending_records[0], next_direct_debit_date01, expected_amount1, ReconConsts.Cred_card1_regular_pymt_description);
+            FileLoaderTestHelper.Assert_pending_record_is_given_the_specified_direct_debit_details(pending_records[1], next_direct_debit_date02, expected_amount2, ReconConsts.Cred_card1_regular_pymt_description);
         }
 
         [Test]

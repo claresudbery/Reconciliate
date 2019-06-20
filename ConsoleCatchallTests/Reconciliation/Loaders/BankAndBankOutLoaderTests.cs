@@ -25,7 +25,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             TestHelper.Set_correct_date_formatting();
             var mock_input_output = new Mock<IInputOutput>();
             var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
-            FileLoaderTests.Set_up_for_CredCard1_and_CredCard2_data(
+            FileLoaderTestHelper.Set_up_for_CredCard1_and_CredCard2_data(
                 last_direct_debit_date,
                 expected_amount1,
                 expected_amount2,
@@ -51,11 +51,11 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var next_direct_debit_date01 = last_direct_debit_date.AddMonths(1);
             var next_direct_debit_date02 = last_direct_debit_date.AddMonths(2);
             // CredCard1:
-            FileLoaderTests.Assert_pending_record_is_given_the_specified_CredCard1_direct_debit_details(pending_records[0], next_direct_debit_date01, expected_amount1);
-            FileLoaderTests.Assert_pending_record_is_given_the_specified_CredCard1_direct_debit_details(pending_records[1], next_direct_debit_date02, expected_amount2);
+            FileLoaderTestHelper.Assert_pending_record_is_given_the_specified_CredCard1_direct_debit_details(pending_records[0], next_direct_debit_date01, expected_amount1);
+            FileLoaderTestHelper.Assert_pending_record_is_given_the_specified_CredCard1_direct_debit_details(pending_records[1], next_direct_debit_date02, expected_amount2);
             // CredCard2:
-            FileLoaderTests.Assert_pending_record_is_given_the_specified_CredCard2_direct_debit_details(pending_records[2], next_direct_debit_date01, expected_amount1);
-            FileLoaderTests.Assert_pending_record_is_given_the_specified_CredCard2_direct_debit_details(pending_records[3], next_direct_debit_date02, expected_amount2);
+            FileLoaderTestHelper.Assert_pending_record_is_given_the_specified_CredCard2_direct_debit_details(pending_records[2], next_direct_debit_date01, expected_amount1);
+            FileLoaderTestHelper.Assert_pending_record_is_given_the_specified_CredCard2_direct_debit_details(pending_records[3], next_direct_debit_date02, expected_amount2);
         }
     }
 }

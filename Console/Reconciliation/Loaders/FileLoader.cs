@@ -52,7 +52,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     case ReconciliationType.BankAndBankIn:
                         {
                             reconciliation_interface =
-                                new BankAndBankInLoader(_input_output, _spreadsheet_factory).Load_bank_and_bank_in(
+                                new BankAndBankInLoader(_input_output, _spreadsheet_factory).Load(
                                     spreadsheet,
                                     budgeting_months,
                                     main_file_paths);
@@ -61,7 +61,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     case ReconciliationType.BankAndBankOut:
                         {
                             reconciliation_interface =
-                                new BankAndBankOutLoader(_input_output, _spreadsheet_factory).Load_bank_and_bank_out(
+                                new BankAndBankOutLoader(_input_output, _spreadsheet_factory).Load(
                                     spreadsheet,
                                     budgeting_months,
                                     main_file_paths);
@@ -70,7 +70,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     case ReconciliationType.CredCard1AndCredCard1InOut:
                         {
                             reconciliation_interface =
-                                new CredCard1AndCredCard1InOutLoader(_input_output, _spreadsheet_factory).Load_cred_card1_and_cred_card1_in_out(
+                                new CredCard1AndCredCard1InOutLoader(_input_output, _spreadsheet_factory).Load(
                                     spreadsheet,
                                     budgeting_months,
                                     main_file_paths);
@@ -79,7 +79,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     case ReconciliationType.CredCard2AndCredCard2InOut:
                         {
                             reconciliation_interface =
-                                new CredCard2AndCredCard2InOutLoader(_input_output, _spreadsheet_factory).Load_cred_card2_and_cred_card2_in_out(
+                                new CredCard2AndCredCard2InOutLoader(_input_output, _spreadsheet_factory).Load(
                                     spreadsheet,
                                     budgeting_months,
                                     main_file_paths);

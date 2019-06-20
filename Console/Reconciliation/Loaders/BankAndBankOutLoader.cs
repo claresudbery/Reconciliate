@@ -21,8 +21,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         }
 
         public ReconciliationInterface
-            Load_bank_and_bank_out(
-                ISpreadsheet spreadsheet,
+            Load(ISpreadsheet spreadsheet,
                 BudgetingMonths budgeting_months,
                 FilePaths main_file_paths)
         {

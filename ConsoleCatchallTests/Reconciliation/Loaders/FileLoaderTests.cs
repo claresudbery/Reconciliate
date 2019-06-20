@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace ConsoleCatchallTests.Reconciliation.Loaders
 {
     [TestFixture]
-    public class FileLoaderTests
+    public class FileLoaderTestHelper
     {
         internal static void Assert_pending_record_is_given_the_specified_CredCard1_direct_debit_details(
             BankRecord pending_record,
