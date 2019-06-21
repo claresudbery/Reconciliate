@@ -23,12 +23,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             Load(ISpreadsheet spreadsheet,
                 BudgetingMonths budgeting_months,
                 FilePaths main_file_paths,
-                IFileIO<BankRecord> pending_file_io_new = null)
+                IFileIO<BankRecord> pending_file_io)
         {
             var data_loading_info = BankAndBankInData.LoadingInfo;
             data_loading_info.File_paths = main_file_paths;
 
-            var pending_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
             pending_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.Pending_file_name);
             var pending_file = new CSVFile<BankRecord>(pending_file_io);
 

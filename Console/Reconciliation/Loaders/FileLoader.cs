@@ -58,7 +58,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                                 new BankAndBankInLoader(_input_output, _spreadsheet_factory).Load(
                                     spreadsheet,
                                     budgeting_months,
-                                    main_file_paths);
+                                    main_file_paths,
+                                    pending_file_io);
                         }
                         break;
                     case ReconciliationType.BankAndBankOut:
