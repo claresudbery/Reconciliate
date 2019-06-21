@@ -62,7 +62,10 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 last_direct_debit_date,
                 expected_amount1,
                 expected_amount2,
-                mock_input_output,
+                mock_input_output);
+            Set_up_for_credit_card_data(
+                ReconConsts.Cred_card1_dd_description,
+                last_direct_debit_date,
                 mock_spreadsheet_repo,
                 1);
 
@@ -73,9 +76,12 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 last_direct_debit_date,
                 expected_amount1,
                 expected_amount2,
-                mock_input_output,
+                mock_input_output);
+            Set_up_for_credit_card_data(
+                ReconConsts.Cred_card2_dd_description,
+                last_direct_debit_date,
                 mock_spreadsheet_repo,
-                2);
+                1);
         }
 
         internal static void Set_up_for_CredCard1_and_CredCard2_data(
@@ -92,7 +98,9 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 last_direct_debit_date,
                 expected_amount1,
                 expected_amount2,
-                mock_input_output,
+                mock_input_output);
+            Set_up_for_credit_card_data(
+                ReconConsts.Cred_card1_dd_description,
                 mock_spreadsheet);
 
             // CredCard2:
@@ -102,45 +110,18 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 last_direct_debit_date,
                 expected_amount1,
                 expected_amount2,
-                mock_input_output,
+                mock_input_output);
+            Set_up_for_credit_card_data(
+                ReconConsts.Cred_card2_dd_description,
                 mock_spreadsheet);
         }
 
         internal static void Set_up_for_credit_card_data(
-            string cred_card_name,
             string direct_debit_description,
             DateTime last_direct_debit_date,
-            double expected_amount1,
-            double expected_amount2,
-            Mock<IInputOutput> mock_input_output,
             Mock<ISpreadsheetRepo> mock_spreadsheet_repo,
             int direct_debit_row_number)
         {
-            var next_direct_debit_date03 = last_direct_debit_date.AddMonths(3);
-            var next_direct_debit_date01 = last_direct_debit_date.AddMonths(1);
-            var next_direct_debit_date02 = last_direct_debit_date.AddMonths(2);
-            double expected_amount3 = 0;
-            mock_input_output
-                .Setup(x => x.Get_input(
-                    string.Format(
-                        ReconConsts.AskForCredCardDirectDebit,
-                        cred_card_name,
-                        next_direct_debit_date01.ToShortDateString()), ""))
-                .Returns(expected_amount1.ToString);
-            mock_input_output
-                .Setup(x => x.Get_input(
-                    string.Format(
-                        ReconConsts.AskForCredCardDirectDebit,
-                        cred_card_name,
-                        next_direct_debit_date02.ToShortDateString()), ""))
-                .Returns(expected_amount2.ToString);
-            mock_input_output
-                .Setup(x => x.Get_input(
-                    string.Format(
-                        ReconConsts.AskForCredCardDirectDebit,
-                        cred_card_name,
-                        next_direct_debit_date03.ToShortDateString()), ""))
-                .Returns(expected_amount3.ToString);
             var mock_cell_row = new Mock<ICellRow>();
             mock_cell_row.Setup(x => x.Read_cell(BankRecord.DateIndex)).Returns(last_direct_debit_date.ToOADate());
             mock_cell_row.Setup(x => x.Read_cell(BankRecord.DescriptionIndex)).Returns(direct_debit_description);
@@ -155,13 +136,23 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         }
 
         internal static void Set_up_for_credit_card_data(
+            string direct_debit_description,
+            Mock<ISpreadsheet> mock_spreadsheet)
+        {
+            mock_spreadsheet.Setup(x => x.Get_most_recent_row_containing_text<BankRecord>(
+                    MainSheetNames.Bank_out,
+                    direct_debit_description,
+                    new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
+                .Returns(new BankRecord { Date = new DateTime(2018, 12, 17) });
+        }
+
+        internal static void Set_up_for_credit_card_data(
             string cred_card_name,
             string direct_debit_description,
             DateTime last_direct_debit_date,
             double expected_amount1,
             double expected_amount2,
-            Mock<IInputOutput> mock_input_output,
-            Mock<ISpreadsheet> mock_spreadsheet)
+            Mock<IInputOutput> mock_input_output)
         {
             var next_direct_debit_date03 = last_direct_debit_date.AddMonths(3);
             var next_direct_debit_date01 = last_direct_debit_date.AddMonths(1);
@@ -188,16 +179,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                         cred_card_name,
                         next_direct_debit_date03.ToShortDateString()), ""))
                 .Returns(expected_amount3.ToString);
-            var mock_cell_row = new Mock<ICellRow>();
-            mock_cell_row.Setup(x => x.Read_cell(BankRecord.DateIndex)).Returns(last_direct_debit_date.ToOADate());
-            mock_cell_row.Setup(x => x.Read_cell(BankRecord.DescriptionIndex)).Returns(direct_debit_description);
-            mock_cell_row.Setup(x => x.Read_cell(BankRecord.TypeIndex)).Returns("Type");
-            mock_cell_row.Setup(x => x.Read_cell(BankRecord.UnreconciledAmountIndex)).Returns((double)0);
-            mock_spreadsheet.Setup(x => x.Get_most_recent_row_containing_text<BankRecord>(
-                    MainSheetNames.Bank_out,
-                    direct_debit_description,
-                    new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
-                .Returns(new BankRecord { Date = new DateTime(2018, 12, 17) });
         }
 
         internal static Mock<ISpreadsheetRepo> Create_mock_spreadsheet_for_loading<TRecordType>(DataLoadingInformation loading_info)

@@ -33,7 +33,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_spreadsheet_repo);
         }
 
-        private void Prepare_mock_spreadsheet_for_merge_bespoke_data(
+        private void Prepare_mock_spreadsheet_repo_for_merge_bespoke_data(
             Mock<IInputOutput> mock_input_output,
             Mock<ISpreadsheet> mock_spreadsheet)
         {
@@ -58,7 +58,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var loading_info = BankAndBankOutData.LoadingInfo;
             var budgeting_months = new BudgetingMonths();
             var mock_spreadsheet = new Mock<ISpreadsheet>();
-            Prepare_mock_spreadsheet_for_merge_bespoke_data(mock_input_output, mock_spreadsheet);
+            Prepare_mock_spreadsheet_repo_for_merge_bespoke_data(mock_input_output, mock_spreadsheet);
             var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
             mock_pending_file.Setup(x => x.Records).Returns(new List<BankRecord>());
             var bank_and_bank_out_loader = new BankAndBankOutLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
