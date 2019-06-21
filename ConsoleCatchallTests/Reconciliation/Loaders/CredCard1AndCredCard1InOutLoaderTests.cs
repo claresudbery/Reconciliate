@@ -16,25 +16,13 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     [TestFixture]
     public class CredCard1AndCredCard1InOutLoaderTests
     {
-        private void Prepare_mock_spreadsheet_for_merge_bespoke_data(
+        private void Prepare_mock_spreadsheet_repo_for_merge_bespoke_data(
             Mock<IInputOutput> mock_input_output, 
             Mock<ISpreadsheetRepo> mock_spreadsheet_repo)
         {
-            double expected_amount1 = 1234.55;
-            double expected_amount2 = 5673.99;
             DateTime last_direct_debit_date = new DateTime(2018, 12, 17);
-
-            TestHelper.Set_correct_date_formatting();
-
-            FileLoaderTestHelper.Set_up_for_credit_card_data(
-                ReconConsts.Cred_card1_name,
-                ReconConsts.Cred_card1_dd_description,
-                last_direct_debit_date,
-                expected_amount1,
-                expected_amount2,
-                mock_input_output);
-
-            FileLoaderTestHelper.Set_up_for_credit_card_data(
+            Set_up_for_direct_debit_dates(last_direct_debit_date, mock_input_output);
+            FileLoaderTestHelper.Set_up_mock_spreadsheet_repo_for_credit_card_DD(
                 ReconConsts.Cred_card1_dd_description,
                 last_direct_debit_date,
                 mock_spreadsheet_repo,
@@ -45,22 +33,29 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             Mock<IInputOutput> mock_input_output,
             Mock<ISpreadsheet> mock_spreadsheet)
         {
+            DateTime last_direct_debit_date = new DateTime(2018, 12, 17);
+            Set_up_for_direct_debit_dates(last_direct_debit_date, mock_input_output);
+            FileLoaderTestHelper.Set_up_mock_spreadsheet_for_credit_card_DD(
+                ReconConsts.Cred_card1_dd_description,
+                mock_spreadsheet);
+        }
+
+        private void Set_up_for_direct_debit_dates(
+            DateTime last_direct_debit_date,
+            Mock<IInputOutput> mock_input_output)
+        {
             double expected_amount1 = 1234.55;
             double expected_amount2 = 5673.99;
-            DateTime last_direct_debit_date = new DateTime(2018, 12, 17);
 
             TestHelper.Set_correct_date_formatting();
 
-            FileLoaderTestHelper.Set_up_for_credit_card_data(
+            FileLoaderTestHelper.Set_up_for_direct_debit_dates(
                 ReconConsts.Cred_card1_name,
                 ReconConsts.Cred_card1_dd_description,
                 last_direct_debit_date,
                 expected_amount1,
                 expected_amount2,
                 mock_input_output);
-            FileLoaderTestHelper.Set_up_for_credit_card_data(
-                ReconConsts.Cred_card1_dd_description,
-                mock_spreadsheet);
         }
 
         [Test]
@@ -99,7 +94,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_input_output = new Mock<IInputOutput>();
             var loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
             var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<CredCard1InOutRecord>(loading_info);
-            Prepare_mock_spreadsheet_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
+            Prepare_mock_spreadsheet_repo_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
             var mock_pending_file = new Mock<ICSVFile<CredCard1InOutRecord>>();
             mock_pending_file.Setup(x => x.Records).Returns(new List<CredCard1InOutRecord>());
@@ -127,7 +122,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_input_output = new Mock<IInputOutput>();
             var loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
             var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<CredCard1InOutRecord>(loading_info);
-            Prepare_mock_spreadsheet_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
+            Prepare_mock_spreadsheet_repo_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
             var mock_pending_file = new Mock<ICSVFile<CredCard1InOutRecord>>();
             mock_pending_file.Setup(x => x.Records).Returns(new List<CredCard1InOutRecord>());
@@ -153,7 +148,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_input_output = new Mock<IInputOutput>();
             var loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
             var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<CredCard1InOutRecord>(loading_info);
-            Prepare_mock_spreadsheet_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
+            Prepare_mock_spreadsheet_repo_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
             var mock_pending_file = new Mock<ICSVFile<CredCard1InOutRecord>>();
             mock_pending_file.Setup(x => x.Records).Returns(new List<CredCard1InOutRecord>());
@@ -187,14 +182,14 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             TestHelper.Set_correct_date_formatting();
             var mock_input_output = new Mock<IInputOutput>();
             var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
-            FileLoaderTestHelper.Set_up_for_credit_card_data(
+            FileLoaderTestHelper.Set_up_for_direct_debit_dates(
                 ReconConsts.Cred_card1_name,
                 ReconConsts.Cred_card1_dd_description,
                 last_direct_debit_date,
                 expected_amount1,
                 expected_amount2,
                 mock_input_output);
-            FileLoaderTestHelper.Set_up_for_credit_card_data(
+            FileLoaderTestHelper.Set_up_mock_spreadsheet_repo_for_credit_card_DD(
                 ReconConsts.Cred_card1_dd_description,
                 last_direct_debit_date,
                 mock_spreadsheet_repo,

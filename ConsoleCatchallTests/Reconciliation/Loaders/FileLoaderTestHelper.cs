@@ -48,75 +48,64 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             Assert.AreEqual(expected_amount, pending_record.Main_amount());
         }
 
-        internal static void Set_up_for_CredCard1_and_CredCard2_data(
+        internal static void Set_up_dates_for_both_credit_card_direct_debits(
             DateTime last_direct_debit_date,
             double expected_amount1,
             double expected_amount2,
-            Mock<IInputOutput> mock_input_output,
+            Mock<IInputOutput> mock_input_output)
+        {
+            // CredCard1:
+            Set_up_for_direct_debit_dates(
+                ReconConsts.Cred_card1_name,
+                ReconConsts.Cred_card1_dd_description,
+                last_direct_debit_date,
+                expected_amount1,
+                expected_amount2,
+                mock_input_output);
+
+            // CredCard2:
+            Set_up_for_direct_debit_dates(
+                ReconConsts.Cred_card2_name,
+                ReconConsts.Cred_card2_dd_description,
+                last_direct_debit_date,
+                expected_amount1,
+                expected_amount2,
+                mock_input_output);
+        }
+
+        internal static void Set_up_mock_spreadsheet_repo_for_both_credit_card_direct_debits(
+            DateTime last_direct_debit_date,
             Mock<ISpreadsheetRepo> mock_spreadsheet_repo)
         {
             // CredCard1:
-            Set_up_for_credit_card_data(
-                ReconConsts.Cred_card1_name,
-                ReconConsts.Cred_card1_dd_description,
-                last_direct_debit_date,
-                expected_amount1,
-                expected_amount2,
-                mock_input_output);
-            Set_up_for_credit_card_data(
+            Set_up_mock_spreadsheet_repo_for_credit_card_DD(
                 ReconConsts.Cred_card1_dd_description,
                 last_direct_debit_date,
                 mock_spreadsheet_repo,
                 1);
 
             // CredCard2:
-            Set_up_for_credit_card_data(
-                ReconConsts.Cred_card2_name,
-                ReconConsts.Cred_card2_dd_description,
-                last_direct_debit_date,
-                expected_amount1,
-                expected_amount2,
-                mock_input_output);
-            Set_up_for_credit_card_data(
+            Set_up_mock_spreadsheet_repo_for_credit_card_DD(
                 ReconConsts.Cred_card2_dd_description,
                 last_direct_debit_date,
                 mock_spreadsheet_repo,
                 1);
         }
 
-        internal static void Set_up_for_CredCard1_and_CredCard2_data(
-            DateTime last_direct_debit_date,
-            double expected_amount1,
-            double expected_amount2,
-            Mock<IInputOutput> mock_input_output,
-            Mock<ISpreadsheet> mock_spreadsheet)
+        internal static void Set_up_mock_spreadsheet_for_both_credit_card_direct_debits(Mock<ISpreadsheet> mock_spreadsheet)
         {
             // CredCard1:
-            Set_up_for_credit_card_data(
-                ReconConsts.Cred_card1_name,
-                ReconConsts.Cred_card1_dd_description,
-                last_direct_debit_date,
-                expected_amount1,
-                expected_amount2,
-                mock_input_output);
-            Set_up_for_credit_card_data(
+            Set_up_mock_spreadsheet_for_credit_card_DD(
                 ReconConsts.Cred_card1_dd_description,
                 mock_spreadsheet);
 
             // CredCard2:
-            Set_up_for_credit_card_data(
-                ReconConsts.Cred_card2_name,
-                ReconConsts.Cred_card2_dd_description,
-                last_direct_debit_date,
-                expected_amount1,
-                expected_amount2,
-                mock_input_output);
-            Set_up_for_credit_card_data(
+            Set_up_mock_spreadsheet_for_credit_card_DD(
                 ReconConsts.Cred_card2_dd_description,
                 mock_spreadsheet);
         }
 
-        internal static void Set_up_for_credit_card_data(
+        internal static void Set_up_mock_spreadsheet_repo_for_credit_card_DD(
             string direct_debit_description,
             DateTime last_direct_debit_date,
             Mock<ISpreadsheetRepo> mock_spreadsheet_repo,
@@ -135,7 +124,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns(mock_cell_row.Object);
         }
 
-        internal static void Set_up_for_credit_card_data(
+        internal static void Set_up_mock_spreadsheet_for_credit_card_DD(
             string direct_debit_description,
             Mock<ISpreadsheet> mock_spreadsheet)
         {
@@ -146,7 +135,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns(new BankRecord { Date = new DateTime(2018, 12, 17) });
         }
 
-        internal static void Set_up_for_credit_card_data(
+        internal static void Set_up_for_direct_debit_dates(
             string cred_card_name,
             string direct_debit_description,
             DateTime last_direct_debit_date,
