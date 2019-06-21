@@ -16,6 +16,27 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     public class BankAndBankInLoaderTests
     {
         [Test]
+        public void Load__Will_set_file_paths_on_pending_file_io()
+        {
+            // Arrange
+            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
+            var loading_info = BankAndBankInData.LoadingInfo;
+            var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<BankRecord>(loading_info);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
+
+            // Act
+            var reconciliation_interface = bank_and_bank_in_loader.Load(
+                spreadsheet,
+                new BudgetingMonths(),
+                loading_info.File_paths,
+                mock_pending_file_io.Object);
+
+            // Assert 
+            mock_pending_file_io.Verify(x => x.Set_file_paths(loading_info.File_paths.Main_path, loading_info.Pending_file_name));
+        }
+
+        [Test]
         public void Load__Will_create_a_reconciliation_interface_using_file_details_from_loading_info()
         {
             // Arrange
