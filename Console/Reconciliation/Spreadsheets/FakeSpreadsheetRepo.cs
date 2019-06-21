@@ -70,7 +70,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             return 2;
         }
 
-        public int Find_row_number_of_last_row_containing_cell(string sheet_name, string target_cell_text, int expected_column_number = 2)
+        public int Find_row_number_of_last_row_containing_cell(
+            string sheet_name, 
+            string target_cell_text, 
+            int expected_column_number = SpreadsheetConsts.DefaultDividerColumn)
         {
             _debug_log.Append_to_file_as_source_line($"{Get_method_name()}: sheetName {sheet_name}, targetSubText {target_cell_text}");
             return _fake_row_numbers_for_cell.Data.ContainsKey(sheet_name) 
@@ -110,7 +113,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             return "fake";
         }
 
-        public int Find_row_number_of_first_row_containing_cell(string sheet_name, string target_cell_text, int expected_column_number = 2)
+        public int Find_row_number_of_first_row_containing_cell(
+            string sheet_name, 
+            string target_cell_text, 
+            int expected_column_number = SpreadsheetConsts.DefaultDividerColumn)
         {
             _debug_log.Append_to_file_as_source_line($"{Get_method_name()}: sheetName {sheet_name}, targetCellText {target_cell_text}");
             return 2;
@@ -207,12 +213,23 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         {
         }
 
-        public void Update_amount(string sheet_name, string amount_code, double new_amount, int amount_column = 2, int code_column = 1)
+        public void Update_amount(
+            string sheet_name, 
+            string amount_code, 
+            double new_amount, 
+            int amount_column = SpreadsheetConsts.DefaultAmountColumn, 
+            int code_column = SpreadsheetConsts.DefaultCodeColumn)
         {
         }
 
-        public void Update_amount_and_text(string sheet_name, string amount_code, double new_amount, string new_text, int amount_column = 2,
-            int text_column = 3, int code_column = 1)
+        public void Update_amount_and_text(
+            string sheet_name, 
+            string amount_code, 
+            double new_amount, 
+            string new_text, 
+            int amount_column = SpreadsheetConsts.DefaultAmountColumn,
+            int text_column = SpreadsheetConsts.DefaultTextColumn, 
+            int code_column = SpreadsheetConsts.DefaultCodeColumn)
         {
         }
 

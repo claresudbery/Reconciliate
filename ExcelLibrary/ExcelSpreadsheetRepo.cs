@@ -104,7 +104,7 @@ namespace ExcelLibrary
         public int Find_row_number_of_last_row_containing_cell(
             string sheet_name, 
             string target_cell_text, 
-            int expected_column_number = 2)
+            int expected_column_number = SpreadsheetConsts.DefaultDividerColumn)
         {
             return Inner_spreadsheet.Find_row_number_of_last_row_containing_cell(
                 sheet_name,
@@ -120,7 +120,7 @@ namespace ExcelLibrary
                 expected_column_numbers);
         }
 
-        public double Get_amount(string sheet_name, string amount_code, int amount_column = 3)
+        public double Get_amount(string sheet_name, string amount_code, int amount_column = SpreadsheetConsts.DefaultAmountColumn)
         {
             return Inner_spreadsheet.Get_amount(sheet_name, amount_code, amount_column);
         }
@@ -140,7 +140,12 @@ namespace ExcelLibrary
             Inner_spreadsheet.Update_amount(sheet_name, amount_row, amount_column, new_amount);
         }
 
-        public void Update_amount(string sheet_name, string amount_code, double new_amount, int amount_column = 2, int code_column = 1)
+        public void Update_amount(
+            string sheet_name, 
+            string amount_code, 
+            double new_amount, 
+            int amount_column = SpreadsheetConsts.DefaultAmountColumn, 
+            int code_column = SpreadsheetConsts.DefaultCodeColumn)
         {
             Inner_spreadsheet.Update_amount(sheet_name, amount_code, new_amount, amount_column, code_column);
         }
@@ -150,9 +155,9 @@ namespace ExcelLibrary
             string amount_code, 
             double new_amount,
             string new_text,
-            int amount_column = 2,
-            int text_column = 3,
-            int code_column = 1)
+            int amount_column = SpreadsheetConsts.DefaultAmountColumn,
+            int text_column = SpreadsheetConsts.DefaultTextColumn,
+            int code_column = SpreadsheetConsts.DefaultCodeColumn)
         {
             Inner_spreadsheet.Update_amount_and_text(sheet_name, amount_code, new_amount, new_text, amount_column, text_column, code_column);
         }
@@ -172,7 +177,10 @@ namespace ExcelLibrary
             return Inner_spreadsheet.Get_text(sheet_name, row, column);
         }
 
-        public int Find_row_number_of_first_row_containing_cell(string sheet_name, string target_cell_text, int expected_column_number = 2)
+        public int Find_row_number_of_first_row_containing_cell(
+            string sheet_name, 
+            string target_cell_text, 
+            int expected_column_number = SpreadsheetConsts.DefaultDividerColumn)
         {
             return Inner_spreadsheet.Find_row_number_of_first_row_containing_cell(
                 sheet_name, 
@@ -423,7 +431,7 @@ namespace ExcelLibrary
             public int Find_row_number_of_last_row_containing_cell(
                 string sheet_name,
                 string target_cell_text,
-                int expected_column_number = 2)
+                int expected_column_number = SpreadsheetConsts.DefaultDividerColumn)
             {
                 Open_sheet(sheet_name);
                 Range cell_containing_last_target_text = Find_last_cell_containing_text(target_cell_text);
@@ -467,7 +475,7 @@ namespace ExcelLibrary
             public int Find_row_number_of_first_row_containing_cell(
                 string sheet_name,
                 string target_cell_text,
-                int expected_column_number = 2)
+                int expected_column_number = SpreadsheetConsts.DefaultDividerColumn)
             {
                 Open_sheet(sheet_name);
                 Range cell_containing_last_target_text = Find_first_cell_containing_text(target_cell_text);
@@ -613,7 +621,7 @@ namespace ExcelLibrary
                 Update_cell(sheet_name, amount_row, amount_column, new_amount);
             }
 
-            public void Update_amount(string sheet_name, string amount_code, double new_amount, int amount_column, int code_column = 1)
+            public void Update_amount(string sheet_name, string amount_code, double new_amount, int amount_column, int code_column = SpreadsheetConsts.DefaultCodeColumn)
             {
                 int row = Find_row_number_of_last_row_containing_cell(sheet_name, amount_code, code_column);
                 Update_amount(sheet_name, row, amount_column, new_amount);
@@ -626,7 +634,7 @@ namespace ExcelLibrary
                 string new_text, 
                 int amount_column, 
                 int text_column,
-                int code_column = 1)
+                int code_column = SpreadsheetConsts.DefaultCodeColumn)
             {
                 int row = Find_row_number_of_last_row_containing_cell(sheet_name, amount_code, code_column);
 

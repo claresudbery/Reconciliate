@@ -660,9 +660,10 @@ namespace ExcelIntegrationTests
             double expected_amount = 54.97;
             string sheet_name = TestSheetNames.Budget_out;
             string amount_code = "Code003";
+            int amount_column = 3;
 
             // Act
-            double actual_amount = _excelSpreadsheet.Get_amount(sheet_name, amount_code);
+            double actual_amount = _excelSpreadsheet.Get_amount(sheet_name, amount_code, amount_column);
 
             // Assert
             Assert.AreEqual(expected_amount, actual_amount);

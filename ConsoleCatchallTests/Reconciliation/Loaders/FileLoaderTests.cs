@@ -137,12 +137,12 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
                     loading_info.Monthly_budget_data.Sheet_name,
                     loading_info.Monthly_budget_data.Start_divider,
-                    2))
+                    SpreadsheetConsts.DefaultDividerColumn))
                 .Returns(start_divider_row);
             mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
                     loading_info.Monthly_budget_data.Sheet_name,
                     loading_info.Monthly_budget_data.End_divider,
-                    2))
+                    SpreadsheetConsts.DefaultDividerColumn))
                 .Returns(end_divider_row);
             mock_spreadsheet_repo.Setup(x => x.Get_rows_as_records<TRecordType>(
                     loading_info.Monthly_budget_data.Sheet_name,
@@ -166,12 +166,12 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
                     loading_info.Annual_budget_data.Sheet_name,
                     loading_info.Annual_budget_data.Start_divider,
-                    2))
+                    SpreadsheetConsts.DefaultDividerColumn))
                 .Returns(start_divider_row);
             mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
                     loading_info.Annual_budget_data.Sheet_name,
                     loading_info.Annual_budget_data.End_divider,
-                    2))
+                    SpreadsheetConsts.DefaultDividerColumn))
                 .Returns(end_divider_row);
             mock_spreadsheet_repo.Setup(x => x.Get_rows_as_records<TRecordType>(
                     loading_info.Annual_budget_data.Sheet_name,

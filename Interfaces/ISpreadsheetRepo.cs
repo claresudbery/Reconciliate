@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Interfaces.Constants;
 
 namespace Interfaces
 {
@@ -11,11 +12,11 @@ namespace Interfaces
         int Find_row_number_of_first_row_containing_cell(
             string sheet_name,
             string target_cell_text,
-            int expected_column_number = 2);
+            int expected_column_number = SpreadsheetConsts.DefaultDividerColumn);
         int Find_row_number_of_last_row_containing_cell(
             string sheet_name,
             string target_cell_text,
-            int expected_column_number = 2);
+            int expected_column_number = SpreadsheetConsts.DefaultDividerColumn);
         int Find_row_number_of_last_row_with_cell_containing_text(
             string sheet_name,
             string target_sub_text,
@@ -39,19 +40,24 @@ namespace Interfaces
         DateTime Get_date(string sheet_name, int row, int column);
         string Get_text(string sheet_name, int row, int column);
         double Get_amount(string sheet_name, int row, int column);
-        double Get_amount(string sheet_name, string code, int amount_column = 3);
+        double Get_amount(string sheet_name, string code, int amount_column = SpreadsheetConsts.DefaultAmountColumn);
         void Update_date(string sheet_name, int date_row, int date_column, DateTime new_date);
         void Update_text(string sheet_name, int text_row, int text_column, string new_text);
         void Update_amount(string sheet_name, int amount_row, int amount_column, double new_amount);
-        void Update_amount(string sheet_name, string amount_code, double new_amount, int amount_column = 2, int code_column = 1);
+        void Update_amount(
+            string sheet_name, 
+            string amount_code, 
+            double new_amount, 
+            int amount_column = SpreadsheetConsts.DefaultAmountColumn, 
+            int code_column = SpreadsheetConsts.DefaultCodeColumn);
         void Update_amount_and_text(
             string sheet_name,
             string amount_code,
             double new_amount,
             string new_text,
-            int amount_column = 2,
-            int text_column = 3,
-            int code_column = 1);
+            int amount_column = SpreadsheetConsts.DefaultAmountColumn,
+            int text_column = SpreadsheetConsts.DefaultTextColumn,
+            int code_column = SpreadsheetConsts.DefaultCodeColumn);
         void Insert_new_row(string sheet_name, int new_row_number, Dictionary<int, object> cell_values);
         void Append_new_row(string sheet_name, Dictionary<int, object> cell_values);
     }
