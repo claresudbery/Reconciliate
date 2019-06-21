@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Reconciliators;
 using ConsoleCatchall.Console.Reconciliation.Records;
@@ -16,21 +15,50 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     public class BankAndBankInLoaderTests
     {
         [Test]
-        public void Load__Will_set_file_paths_on_pending_file_io()
+        public void Load__Will_load_and_write_to_pending_file()
         {
             // Arrange
-            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
             var loading_info = BankAndBankInData.LoadingInfo;
             var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<BankRecord>(loading_info);
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
-            var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            mock_pending_file.Setup(x => x.Records).Returns(new List<BankRecord>());
+            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
 
             // Act
             bank_and_bank_in_loader.Load(
                 spreadsheet,
                 new BudgetingMonths(),
                 loading_info.File_paths,
-                mock_pending_file_io.Object);
+                new Mock<IFileIO<BankRecord>>().Object,
+                mock_pending_file.Object);
+
+            // Assert 
+            mock_pending_file.Verify(x => x.Load(true, loading_info.Default_separator, true));
+            mock_pending_file.Verify(x => x.Convert_source_line_separators(loading_info.Default_separator, loading_info.Loading_separator));
+            mock_pending_file.Verify(x => x.Update_source_lines_for_output(loading_info.Loading_separator));
+            mock_pending_file.Verify(x => x.Write_to_file_as_source_lines(loading_info.File_paths.Owned_file_name));
+        }
+
+        [Test]
+        public void Load__Will_set_file_paths_on_pending_file_io()
+        {
+            // Arrange
+            var loading_info = BankAndBankInData.LoadingInfo;
+            var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<BankRecord>(loading_info);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            mock_pending_file.Setup(x => x.Records).Returns(new List<BankRecord>());
+            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
+
+            // Act
+            bank_and_bank_in_loader.Load(
+                spreadsheet,
+                new BudgetingMonths(),
+                loading_info.File_paths,
+                mock_pending_file_io.Object,
+                mock_pending_file.Object);
 
             // Assert 
             mock_pending_file_io.Verify(x => x.Set_file_paths(loading_info.File_paths.Main_path, loading_info.Pending_file_name));
@@ -40,17 +68,20 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         public void Load__Will_create_a_reconciliation_interface_using_file_details_from_loading_info()
         {
             // Arrange
-            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
             var loading_info = BankAndBankInData.LoadingInfo;
             var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<BankRecord>(loading_info);
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            mock_pending_file.Setup(x => x.Records).Returns(new List<BankRecord>());
+            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
 
             // Act
             var reconciliation_interface = bank_and_bank_in_loader.Load(
                 spreadsheet,
                 new BudgetingMonths(),
                 loading_info.File_paths,
-                new Mock<IFileIO<BankRecord>>().Object);
+                new Mock<IFileIO<BankRecord>>().Object,
+                mock_pending_file.Object);
 
             // Assert 
             var third_party_file_io = ((BankReconciliator)reconciliation_interface.Reconciliator).Third_party_file.File_io;
