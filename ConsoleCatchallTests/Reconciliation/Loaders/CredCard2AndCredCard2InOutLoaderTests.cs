@@ -16,7 +16,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     [TestFixture]
     public class CredCard2AndCredCard2InOutLoaderTests
     {
-        private void Prepare_mock_spreadsheet_for_merge_bespoke_data(
+        private void Prepare_mock_spreadsheet_repo_for_merge_bespoke_data(
             Mock<IInputOutput> mock_input_output,
             Mock<ISpreadsheetRepo> mock_spreadsheet_repo)
         {
@@ -35,6 +35,54 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_spreadsheet_repo, 1);
         }
 
+        private void Prepare_mock_spreadsheet_for_merge_bespoke_data(
+            Mock<IInputOutput> mock_input_output,
+            Mock<ISpreadsheet> mock_spreadsheet)
+        {
+            double expected_amount1 = 1234.55;
+            double expected_amount2 = 5673.99;
+            DateTime last_direct_debit_date = new DateTime(2018, 12, 17);
+
+            TestHelper.Set_correct_date_formatting();
+            FileLoaderTestHelper.Set_up_for_credit_card_data(
+                ReconConsts.Cred_card2_name,
+                ReconConsts.Cred_card2_dd_description,
+                last_direct_debit_date,
+                expected_amount1,
+                expected_amount2,
+                mock_input_output,
+                mock_spreadsheet);
+        }
+
+        [Test]
+        public void Load__Will_fetch_and_generate_data_from_spreadsheet()
+        {
+            // Arrange
+            var mock_input_output = new Mock<IInputOutput>();
+            var loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
+            var budgeting_months = new BudgetingMonths();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            Prepare_mock_spreadsheet_for_merge_bespoke_data(mock_input_output, mock_spreadsheet);
+            var mock_pending_file = new Mock<ICSVFile<CredCard2InOutRecord>>();
+            mock_pending_file.Setup(x => x.Records).Returns(new List<CredCard2InOutRecord>());
+            var credcard2_and_credcard2_in_out_loader = new CredCard2AndCredCard2InOutLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
+
+            // Act
+            credcard2_and_credcard2_in_out_loader.Load(
+                mock_spreadsheet.Object,
+                budgeting_months,
+                loading_info.File_paths,
+                new Mock<IFileIO<CredCard2InOutRecord>>().Object,
+                mock_pending_file.Object);
+
+            // Assert 
+            mock_spreadsheet.Verify(x => x.Add_budgeted_cred_card2_in_out_data_to_pending_file(
+                budgeting_months, 
+                mock_pending_file.Object, 
+                loading_info.Monthly_budget_data));
+            mock_spreadsheet.Verify(x => x.Add_unreconciled_rows_to_csv_file(loading_info.Sheet_name, mock_pending_file.Object));
+        }
+
         [Test]
         public void Load__Will_load_and_write_to_pending_file()
         {
@@ -42,7 +90,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_input_output = new Mock<IInputOutput>();
             var loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
             var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<CredCard2InOutRecord>(loading_info);
-            Prepare_mock_spreadsheet_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
+            Prepare_mock_spreadsheet_repo_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
             var mock_pending_file = new Mock<ICSVFile<CredCard2InOutRecord>>();
             mock_pending_file.Setup(x => x.Records).Returns(new List<CredCard2InOutRecord>());
@@ -70,7 +118,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_input_output = new Mock<IInputOutput>();
             var loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
             var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<CredCard2InOutRecord>(loading_info);
-            Prepare_mock_spreadsheet_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
+            Prepare_mock_spreadsheet_repo_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
             var mock_pending_file = new Mock<ICSVFile<CredCard2InOutRecord>>();
             mock_pending_file.Setup(x => x.Records).Returns(new List<CredCard2InOutRecord>());
@@ -96,7 +144,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_input_output = new Mock<IInputOutput>();
             var loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
             var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<CredCard2InOutRecord>(loading_info);
-            Prepare_mock_spreadsheet_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
+            Prepare_mock_spreadsheet_repo_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
             var mock_pending_file = new Mock<ICSVFile<CredCard2InOutRecord>>();
             mock_pending_file.Setup(x => x.Records).Returns(new List<CredCard2InOutRecord>());

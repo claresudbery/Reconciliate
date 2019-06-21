@@ -15,6 +15,33 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     public class BankAndBankInLoaderTests
     {
         [Test]
+        public void Load__Will_fetch_and_generate_data_from_spreadsheet()
+        {
+            // Arrange
+            var loading_info = BankAndBankInData.LoadingInfo;
+            var budgeting_months = new BudgetingMonths();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            mock_pending_file.Setup(x => x.Records).Returns(new List<BankRecord>());
+            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
+
+            // Act
+            bank_and_bank_in_loader.Load(
+                mock_spreadsheet.Object,
+                budgeting_months,
+                loading_info.File_paths,
+                new Mock<IFileIO<BankRecord>>().Object,
+                mock_pending_file.Object);
+
+            // Assert 
+            mock_spreadsheet.Verify(x => x.Add_budgeted_bank_in_data_to_pending_file(
+                budgeting_months, 
+                mock_pending_file.Object, 
+                loading_info.Monthly_budget_data));
+            mock_spreadsheet.Verify(x => x.Add_unreconciled_rows_to_csv_file(loading_info.Sheet_name, mock_pending_file.Object));
+        }
+
+        [Test]
         public void Load__Will_load_and_write_to_pending_file()
         {
             // Arrange
