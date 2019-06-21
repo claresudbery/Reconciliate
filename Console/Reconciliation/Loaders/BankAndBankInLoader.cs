@@ -22,7 +22,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         public ReconciliationInterface
             Load(ISpreadsheet spreadsheet,
                 BudgetingMonths budgeting_months,
-                FilePaths main_file_paths)
+                FilePaths main_file_paths,
+                IFileIO<BankRecord> pending_file_io_new = null)
         {
             var data_loading_info = BankAndBankInData.LoadingInfo;
             data_loading_info.File_paths = main_file_paths;
