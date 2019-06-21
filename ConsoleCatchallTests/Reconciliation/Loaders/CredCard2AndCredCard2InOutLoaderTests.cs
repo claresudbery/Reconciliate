@@ -36,7 +36,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         }
 
         [Test]
-        public void Load__Will_create_a_reconciliation_interface_using_third_party_file_name_from_loading_info()
+        public void Load__Will_create_a_reconciliation_interface_using_file_details_from_loading_info()
         {
             // Arrange
             var mock_input_output = new Mock<IInputOutput>();
