@@ -64,29 +64,35 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                         break;
                     case ReconciliationType.BankAndBankOut:
                         {
+                            var pending_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
                             reconciliation_interface =
                                 new BankAndBankOutLoader(_input_output, _spreadsheet_factory).Load(
                                     spreadsheet,
                                     budgeting_months,
-                                    main_file_paths);
+                                    main_file_paths,
+                                    pending_file_io);
                         }
                         break;
                     case ReconciliationType.CredCard1AndCredCard1InOut:
                         {
+                            var pending_file_io = new FileIO<CredCard1InOutRecord>(_spreadsheet_factory);
                             reconciliation_interface =
                                 new CredCard1AndCredCard1InOutLoader(_input_output, _spreadsheet_factory).Load(
                                     spreadsheet,
                                     budgeting_months,
-                                    main_file_paths);
+                                    main_file_paths,
+                                    pending_file_io);
                         }
                         break;
                     case ReconciliationType.CredCard2AndCredCard2InOut:
                         {
+                            var pending_file_io = new FileIO<CredCard2InOutRecord>(_spreadsheet_factory);
                             reconciliation_interface =
                                 new CredCard2AndCredCard2InOutLoader(_input_output, _spreadsheet_factory).Load(
                                     spreadsheet,
                                     budgeting_months,
-                                    main_file_paths);
+                                    main_file_paths,
+                                    pending_file_io);
                         }
                         break;
                     default:

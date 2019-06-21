@@ -26,7 +26,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
 
             // Act
-            var reconciliation_interface = bank_and_bank_in_loader.Load(
+            bank_and_bank_in_loader.Load(
                 spreadsheet,
                 new BudgetingMonths(),
                 loading_info.File_paths,

@@ -31,6 +31,29 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_input_output,
                 mock_spreadsheet_repo);
         }
+        [Test]
+        public void Load__Will_set_file_paths_on_pending_file_io()
+        {
+            // Arrange
+            var mock_input_output = new Mock<IInputOutput>();
+            var loading_info = BankAndBankOutData.LoadingInfo;
+            var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<BankRecord>(loading_info);
+            FileLoaderTestHelper.Prepare_mock_spreadsheet_for_annual_budgeting<BankRecord>(mock_spreadsheet_repo, loading_info);
+            Prepare_mock_spreadsheet_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            var bank_and_bank_out_loader = new BankAndBankOutLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
+            var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
+
+            // Act
+            bank_and_bank_out_loader.Load(
+                spreadsheet,
+                new BudgetingMonths(),
+                loading_info.File_paths,
+                mock_pending_file_io.Object);
+
+            // Assert 
+            mock_pending_file_io.Verify(x => x.Set_file_paths(loading_info.File_paths.Main_path, loading_info.Pending_file_name));
+        }
 
         [Test]
         public void Load__Will_create_a_reconciliation_interface_using_file_details_from_loading_info()
@@ -48,7 +71,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var reconciliation_interface = bank_and_bank_out_loader.Load(
                 spreadsheet,
                 new BudgetingMonths(),
-                loading_info.File_paths);
+                loading_info.File_paths,
+                new Mock<IFileIO<BankRecord>>().Object);
 
             // Assert 
             var third_party_file_io = ((BankReconciliator)reconciliation_interface.Reconciliator).Third_party_file.File_io;
