@@ -20,7 +20,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             // Arrange
             var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
             var loading_info = BankAndBankInData.LoadingInfo;
-            var spreadsheet = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<BankRecord>(loading_info);
+            var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<BankRecord>(loading_info);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
             var reconciliation_interface = bank_and_bank_in_loader.Load(

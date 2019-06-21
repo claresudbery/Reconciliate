@@ -127,7 +127,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns(mock_cell_row.Object);
         }
 
-        internal static ISpreadsheet Create_mock_spreadsheet_for_loading<TRecordType>(DataLoadingInformation loading_info)
+        internal static Mock<ISpreadsheetRepo> Create_mock_spreadsheet_for_loading<TRecordType>(DataLoadingInformation loading_info)
             where TRecordType : ICSVRecord, new()
         {
             int start_divider_row = 1;
@@ -151,8 +151,35 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                     loading_info.Monthly_budget_data.First_column_number,
                     loading_info.Monthly_budget_data.Last_column_number))
                 .Returns(new List<TRecordType>());
-            
-            return new Spreadsheet(mock_spreadsheet_repo.Object); ;
+
+            return mock_spreadsheet_repo;
+        }
+
+        public static void Prepare_mock_spreadsheet_for_annual_budgeting<TRecordType>(
+                Mock<ISpreadsheetRepo> mock_spreadsheet_repo,
+                DataLoadingInformation loading_info)
+            where TRecordType : ICSVRecord, new()
+        {
+            int start_divider_row = 1;
+            int end_divider_row = 4;
+
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
+                    loading_info.Annual_budget_data.Sheet_name,
+                    loading_info.Annual_budget_data.Start_divider,
+                    2))
+                .Returns(start_divider_row);
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
+                    loading_info.Annual_budget_data.Sheet_name,
+                    loading_info.Annual_budget_data.End_divider,
+                    2))
+                .Returns(end_divider_row);
+            mock_spreadsheet_repo.Setup(x => x.Get_rows_as_records<TRecordType>(
+                    loading_info.Annual_budget_data.Sheet_name,
+                    start_divider_row + 1,
+                    end_divider_row - 1,
+                    loading_info.Annual_budget_data.First_column_number,
+                    loading_info.Annual_budget_data.Last_column_number))
+                .Returns(new List<TRecordType>());
         }
     }
 }
