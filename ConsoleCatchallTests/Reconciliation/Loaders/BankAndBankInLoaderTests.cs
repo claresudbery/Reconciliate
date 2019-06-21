@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Reconciliators;
 using ConsoleCatchall.Console.Reconciliation.Records;
@@ -27,7 +28,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var reconciliation_interface = bank_and_bank_in_loader.Load(
                 spreadsheet,
                 new BudgetingMonths(),
-                loading_info.File_paths);
+                loading_info.File_paths,
+                new Mock<IFileIO<BankRecord>>().Object);
 
             // Assert 
             var third_party_file_io = ((BankReconciliator)reconciliation_interface.Reconciliator).Third_party_file.File_io;

@@ -1,4 +1,6 @@
 using System;
+using ConsoleCatchall.Console.Reconciliation.Files;
+using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
 using Interfaces;
 using Interfaces.DTOs;
@@ -51,6 +53,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 {
                     case ReconciliationType.BankAndBankIn:
                         {
+                            var pending_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
                             reconciliation_interface =
                                 new BankAndBankInLoader(_input_output, _spreadsheet_factory).Load(
                                     spreadsheet,
