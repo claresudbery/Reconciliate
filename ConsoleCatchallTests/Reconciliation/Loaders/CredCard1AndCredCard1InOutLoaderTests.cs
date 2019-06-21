@@ -55,69 +55,9 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             // Assert 
             var third_party_file_io = ((CredCard1Reconciliator)reconciliation_interface.Reconciliator).Third_party_file.File_io;
             Assert.AreEqual(loading_info.File_paths.Third_party_file_name, third_party_file_io.File_name);
-        }
-
-        [Test]
-        public void Load__Will_create_a_reconciliation_interface_using_owned_file_name_from_loading_info()
-        {
-            // Arrange
-            var mock_input_output = new Mock<IInputOutput>();
-            var loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
-            var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<CredCard1InOutRecord>(loading_info);
-            Prepare_mock_spreadsheet_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
-            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
-            var credcard1_and_credcard1_in_out_loader = new CredCard1AndCredCard1InOutLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
-
-            // Act
-            var reconciliation_interface = credcard1_and_credcard1_in_out_loader.Load(
-                spreadsheet,
-                new BudgetingMonths(),
-                loading_info.File_paths);
-
-            // Assert 
             var owned_file_io = ((CredCard1Reconciliator)reconciliation_interface.Reconciliator).Owned_file.File_io;
             Assert.AreEqual(loading_info.File_paths.Owned_file_name, owned_file_io.File_name);
-        }
-
-        [Test]
-        public void Load__Will_create_a_reconciliation_interface_using_third_party_descriptor_from_loading_info()
-        {
-            // Arrange
-            var mock_input_output = new Mock<IInputOutput>();
-            var loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
-            var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<CredCard1InOutRecord>(loading_info);
-            Prepare_mock_spreadsheet_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
-            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
-            var credcard1_and_credcard1_in_out_loader = new CredCard1AndCredCard1InOutLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
-
-            // Act
-            var reconciliation_interface = credcard1_and_credcard1_in_out_loader.Load(
-                spreadsheet,
-                new BudgetingMonths(),
-                loading_info.File_paths);
-
-            // Assert 
             Assert.AreEqual(loading_info.Third_party_descriptor, reconciliation_interface.Third_party_descriptor);
-        }
-
-        [Test]
-        public void Load__Will_create_a_reconciliation_interface_using_owned_file_descriptor_from_loading_info()
-        {
-            // Arrange
-            var mock_input_output = new Mock<IInputOutput>();
-            var loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
-            var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<CredCard1InOutRecord>(loading_info);
-            Prepare_mock_spreadsheet_for_merge_bespoke_data(mock_input_output, mock_spreadsheet_repo);
-            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
-            var credcard1_and_credcard1_in_out_loader = new CredCard1AndCredCard1InOutLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
-
-            // Act
-            var reconciliation_interface = credcard1_and_credcard1_in_out_loader.Load(
-                spreadsheet,
-                new BudgetingMonths(),
-                loading_info.File_paths);
-
-            // Assert 
             Assert.AreEqual(loading_info.Owned_file_descriptor, reconciliation_interface.Owned_file_descriptor);
         }
 
