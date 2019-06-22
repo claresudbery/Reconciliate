@@ -42,7 +42,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         }
 
         private ReconciliationInterface Create_reconciliation_interface(
-                BankReconciliator reconciliator, 
+                BankReconciliatorNew<ActualBankRecord, BankRecord> reconciliator, 
                 DataLoadingInformation data_loading_info)
         {
             _input_output.Output_line(ReconConsts.CreatingReconciliationInterface);
@@ -53,7 +53,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info.Owned_file_descriptor);
         }
 
-        private BankReconciliator Load_third_party_and_owned_files_into_reconciliator_reconciliator(
+        private BankReconciliatorNew<ActualBankRecord, BankRecord> Load_third_party_and_owned_files_into_reconciliator_reconciliator(
                 IFileIO<ActualBankRecord> third_party_file_io,
                 IFileIO<BankRecord> owned_file_io, 
                 DataLoadingInformation data_loading_info)
@@ -62,7 +62,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             third_party_file_io.Set_file_paths(data_loading_info.File_paths.Main_path,
                 data_loading_info.File_paths.Third_party_file_name);
             owned_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
-            var reconciliator = new BankReconciliator(third_party_file_io, owned_file_io, data_loading_info);
+            var reconciliator = new BankReconciliatorNew<ActualBankRecord, BankRecord>(third_party_file_io, owned_file_io, data_loading_info);
             return reconciliator;
         }
 
