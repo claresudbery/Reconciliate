@@ -69,6 +69,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             Prepare_mock_spreadsheet_for_merge_bespoke_data(mock_input_output, mock_spreadsheet);
             var mock_pending_file = new Mock<ICSVFile<CredCard2InOutRecord>>();
             mock_pending_file.Setup(x => x.Records).Returns(new List<CredCard2InOutRecord>());
+            var mock_third_party_file_io = new Mock<IFileIO<CredCard2Record>>();
+            mock_third_party_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<CredCard2Record>());
             var credcard2_and_credcard2_in_out_loader = new CredCard2AndCredCard2InOutLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
 
             // Act
@@ -77,7 +79,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 budgeting_months,
                 loading_info.File_paths,
                 new Mock<IFileIO<CredCard2InOutRecord>>().Object,
-                mock_pending_file.Object);
+                mock_pending_file.Object,
+                mock_third_party_file_io.Object);
 
             // Assert 
             mock_spreadsheet.Verify(x => x.Add_budgeted_cred_card2_in_out_data_to_pending_file(
@@ -98,6 +101,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
             var mock_pending_file = new Mock<ICSVFile<CredCard2InOutRecord>>();
             mock_pending_file.Setup(x => x.Records).Returns(new List<CredCard2InOutRecord>());
+            var mock_third_party_file_io = new Mock<IFileIO<CredCard2Record>>();
+            mock_third_party_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<CredCard2Record>());
             var credcard2_and_credcard2_in_out_loader = new CredCard2AndCredCard2InOutLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
             
             // Act
@@ -106,7 +111,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 new BudgetingMonths(),
                 loading_info.File_paths,
                 new Mock<IFileIO<CredCard2InOutRecord>>().Object,
-                mock_pending_file.Object);
+                mock_pending_file.Object,
+                mock_third_party_file_io.Object);
 
             // Assert 
             mock_pending_file.Verify(x => x.Load(true, loading_info.Default_separator, true));
@@ -116,7 +122,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         }
 
         [Test]
-        public void Load__Will_set_file_paths_on_pending_file_io()
+        public void Load__Will_set_file_paths_on_all_file_io_objects()
         {
             // Arrange
             var mock_input_output = new Mock<IInputOutput>();
@@ -126,6 +132,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
             var mock_pending_file = new Mock<ICSVFile<CredCard2InOutRecord>>();
             mock_pending_file.Setup(x => x.Records).Returns(new List<CredCard2InOutRecord>());
+            var mock_third_party_file_io = new Mock<IFileIO<CredCard2Record>>();
+            mock_third_party_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<CredCard2Record>());
             var credcard2_and_credcard2_in_out_loader = new CredCard2AndCredCard2InOutLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
             var mock_pending_file_io = new Mock<IFileIO<CredCard2InOutRecord>>();
 
@@ -135,10 +143,12 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 new BudgetingMonths(),
                 loading_info.File_paths,
                 mock_pending_file_io.Object,
-                mock_pending_file.Object);
+                mock_pending_file.Object,
+                mock_third_party_file_io.Object);
 
             // Assert 
             mock_pending_file_io.Verify(x => x.Set_file_paths(loading_info.File_paths.Main_path, loading_info.Pending_file_name));
+            mock_third_party_file_io.Verify(x => x.Set_file_paths(loading_info.File_paths.Main_path, loading_info.File_paths.Third_party_file_name));
         }
 
         [Test]
@@ -152,6 +162,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
             var mock_pending_file = new Mock<ICSVFile<CredCard2InOutRecord>>();
             mock_pending_file.Setup(x => x.Records).Returns(new List<CredCard2InOutRecord>());
+            var mock_third_party_file_io = new Mock<IFileIO<CredCard2Record>>();
+            mock_third_party_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<CredCard2Record>());
             var credcard2_and_credcard2_in_out_loader = new CredCard2AndCredCard2InOutLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
 
             // Act
@@ -160,13 +172,10 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 new BudgetingMonths(),
                 loading_info.File_paths,
                 new Mock<IFileIO<CredCard2InOutRecord>>().Object,
-                mock_pending_file.Object);
+                mock_pending_file.Object,
+                mock_third_party_file_io.Object);
 
             // Assert 
-            var third_party_file_io = ((CredCard2Reconciliator)reconciliation_interface.Reconciliator).Third_party_file.File_io;
-            Assert.AreEqual(loading_info.File_paths.Third_party_file_name, third_party_file_io.File_name);
-            var owned_file_io = ((CredCard2Reconciliator)reconciliation_interface.Reconciliator).Owned_file.File_io;
-            Assert.AreEqual(loading_info.File_paths.Owned_file_name, owned_file_io.File_name);
             Assert.AreEqual(loading_info.Third_party_descriptor, reconciliation_interface.Third_party_descriptor);
             Assert.AreEqual(loading_info.Owned_file_descriptor, reconciliation_interface.Owned_file_descriptor);
         }

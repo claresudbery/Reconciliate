@@ -26,7 +26,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 BudgetingMonths budgeting_months,
                 FilePaths main_file_paths,
                 IFileIO<CredCard2InOutRecord> pending_file_io,
-                ICSVFile<CredCard2InOutRecord> pending_file)
+                ICSVFile<CredCard2InOutRecord> pending_file,
+                IFileIO<CredCard2Record> third_party_file_io)
         {
             var data_loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
             data_loading_info.File_paths = main_file_paths;
@@ -65,7 +66,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             pending_file.Write_to_file_as_source_lines(data_loading_info.File_paths.Owned_file_name);
             _input_output.Output_line("...");
 
-            var third_party_file_io = new FileIO<CredCard2Record>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
+            third_party_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
             var owned_file_io = new FileIO<CredCard2InOutRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
             var reconciliator = new CredCard2Reconciliator(third_party_file_io, owned_file_io);
 
