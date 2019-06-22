@@ -38,9 +38,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             Merge_other_data(spreadsheet, budgeting_months, pending_file, data_loading_info);
             Merge_unreconciled_data(spreadsheet, pending_file, data_loading_info);
             var reconciliator = Load_third_party_and_owned_files_into_reconciliator_reconciliator(third_party_file_io, owned_file_io, data_loading_info);
-            var reconciliation_interface = Create_reconciliation_interface(reconciliator, data_loading_info);
-
-            return reconciliation_interface;
+            return Create_reconciliation_interface(reconciliator, data_loading_info);
         }
 
         private ReconciliationInterface Create_reconciliation_interface(CredCard1Reconciliator reconciliator, DataLoadingInformation data_loading_info)
