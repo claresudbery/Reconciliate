@@ -26,7 +26,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 FilePaths main_file_paths,
                 IFileIO<BankRecord> pending_file_io,
                 ICSVFile<BankRecord> pending_file,
-                IFileIO<ActualBankRecord> third_party_file_io)
+                IFileIO<ActualBankRecord> third_party_file_io,
+                IFileIO<BankRecord> owned_file_io)
         {
             var data_loading_info = BankAndBankOutData.LoadingInfo;
             data_loading_info.File_paths = main_file_paths;
@@ -67,7 +68,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output.Output_line("...");
 
             third_party_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
-            var owned_file_io = new FileIO<BankRecord>(_spreadsheet_factory, data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
+            owned_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
             var reconciliator = new BankReconciliator(third_party_file_io, owned_file_io, data_loading_info);
 
             var reconciliation_interface = new ReconciliationInterface(
