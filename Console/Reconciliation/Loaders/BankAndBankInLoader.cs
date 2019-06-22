@@ -30,21 +30,21 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         {
             var data_loading_info = BankAndBankInData.LoadingInfo;
             data_loading_info.File_paths = main_file_paths;
-            pending_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.Pending_file_name);
 
             _input_output.Output_line(ReconConsts.LoadingDataFromPendingFile);
+            pending_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.Pending_file_name);
             pending_file.Load(true, data_loading_info.Default_separator);
             // The separator we loaded with had to match the source. Then we convert it here to match its destination.
-            _input_output.Output_line("Converting source line separators...");
+            _input_output.Output_line(ReconConsts.ConvertingSourceLineSeparators);
             pending_file.Convert_source_line_separators(data_loading_info.Default_separator, data_loading_info.Loading_separator);
 
-            _input_output.Output_line(ReconConsts.MergingSomeBudgetData);
+            _input_output.Output_line(ReconConsts.MergingBudgetDataWithPendingData);
             spreadsheet.Add_budgeted_bank_in_data_to_pending_file(
                 budgeting_months,
                 pending_file,
                 data_loading_info.Monthly_budget_data);
 
-            _input_output.Output_line("Merging bespoke data with pending file...");
+            _input_output.Output_line(ReconConsts.MergingBespokeData);
             Merge_bespoke_data_with_pending_file(
                 _input_output,
                 spreadsheet,
@@ -58,17 +58,19 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             // Other budget amounts (like CredCard1 balance) were written directly to the spreadsheet before this too.
             // Now we load the unreconciled rows from the spreadsheet and merge them with the pending and budget data.
             // Then we write all that data away into the 'owned' csv file (eg BankOutPending.csv).
-            _input_output.Output_line("Merging unreconciled rows from spreadsheet with pending and budget data...");
+            _input_output.Output_line(ReconConsts.MergingUnreconciledRows);
             spreadsheet.Add_unreconciled_rows_to_csv_file(data_loading_info.Sheet_name, pending_file);
-            _input_output.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...");
+            _input_output.Output_line(ReconConsts.CopyingMergedData);
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
             pending_file.Write_to_file_as_source_lines(data_loading_info.File_paths.Owned_file_name);
-            _input_output.Output_line("...");
+            _input_output.Output_line(ReconConsts.StuffIsHappening);
 
+            _input_output.Output_line(ReconConsts.LoadingDataFromFiles);
             third_party_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Third_party_file_name);
             owned_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
             var reconciliator = new BankReconciliator(third_party_file_io, owned_file_io, data_loading_info);
 
+            _input_output.Output_line(ReconConsts.CreatingReconciliationInterface);
             var reconciliation_interface = new ReconciliationInterface(
                 new InputOutput(),
                 reconciliator,

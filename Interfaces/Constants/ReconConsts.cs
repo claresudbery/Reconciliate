@@ -1,4 +1,7 @@
-﻿namespace Interfaces.Constants
+﻿using System.Collections.Generic;
+using Interfaces.DTOs;
+
+namespace Interfaces.Constants
 {
     public static class ReconConsts
     {
@@ -107,11 +110,15 @@
         public const string DefaultUnplannedMonth =
                 "Your input was 0 or invalid. Using default of current month for next unplanned month. \nIf this doesn't work for you, exit and return with better input!";
 
-        public const string LoadingDataFromPendingFile =
-            "Loading data from pending file (which you should have already split out, if necessary)...";
-
-        public const string MergingSomeBudgetData =
-            "Merging some budget data with pending data, and writing some direct to spreadsheet...";
+        public const string LoadingDataFromPendingFile = "Loading data from pending file (which you should have already split out, if necessary)...";
+        public const string MergingBudgetDataWithPendingData = "Merging budget data with pending data...";
+        public const string ConvertingSourceLineSeparators = "Converting source line separators...";
+        public const string MergingBespokeData = "Merging bespoke data with pending file...";
+        public const string MergingUnreconciledRows = "Merging unreconciled rows from spreadsheet with pending and budget data...";
+        public const string CopyingMergedData = "Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file...";
+        public const string StuffIsHappening = "...";
+        public const string LoadingDataFromFiles = "Loading data back in from 'owned' and 'third party' files...";
+        public const string CreatingReconciliationInterface = "Creating reconciliation interface...";
 
         public const string PendingOrReconciliate = "1.PendingCsvs, 2.Reconciliate";
         public const string DebugOrReal = "1.Debug, 2.Real";
