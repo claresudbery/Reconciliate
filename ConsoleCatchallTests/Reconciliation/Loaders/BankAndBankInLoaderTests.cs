@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using ConsoleCatchall.Console.Reconciliation;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Reconciliators;
@@ -15,6 +16,47 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     [TestFixture]
     public class BankAndBankInLoaderTests
     {
+        [Test]
+        public void LoadFilesAndMergeData_WillNotLoadData_WhenTesting()
+        {
+            // Arrange
+            var loading_info = BankAndBankInData.LoadingInfo;
+            var budgeting_months = new BudgetingMonths();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            mock_pending_file.Setup(x => x.Records).Returns(new List<BankRecord>());
+            var mock_third_party_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_third_party_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ActualBankRecord>());
+            var mock_owned_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_owned_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<BankRecord>());
+            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
+            var exception_thrown = false;
+            loading_info.File_paths.Main_path = "This is not a path";
+
+            // Act
+            try
+            {
+                bank_and_bank_in_loader.Load(
+                    mock_spreadsheet.Object,
+                    budgeting_months,
+                    loading_info.File_paths,
+                    new Mock<IFileIO<BankRecord>>().Object,
+                    mock_pending_file.Object,
+                    mock_third_party_file_io.Object,
+                    mock_owned_file_io.Object);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                exception_thrown = true;
+
+                // Clean up
+                loading_info.File_paths.Main_path = ReconConsts.Default_file_path;
+            }
+
+            // Assert
+            Assert.IsFalse(exception_thrown);
+        }
+
         [Test]
         public void Will_not_delete_unreconciled_rows_when_merging_pending_with_unreconciled()
         {
