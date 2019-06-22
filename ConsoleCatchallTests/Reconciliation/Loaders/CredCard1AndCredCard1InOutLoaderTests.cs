@@ -58,6 +58,39 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         }
 
         [Test]
+        public void Will_not_delete_unreconciled_rows_when_merging_pending_with_unreconciled()
+        {
+            // Arrange
+            var mock_input_output = new Mock<IInputOutput>();
+            var loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
+            var budgeting_months = new BudgetingMonths();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            Prepare_mock_spreadsheet_for_merge_bespoke_data(mock_input_output, mock_spreadsheet);
+            var mock_pending_file = new Mock<ICSVFile<CredCard1InOutRecord>>();
+            mock_pending_file.Setup(x => x.Records).Returns(new List<CredCard1InOutRecord>());
+            var mock_third_party_file_io = new Mock<IFileIO<CredCard1Record>>();
+            mock_third_party_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<CredCard1Record>());
+            var mock_owned_file_io = new Mock<IFileIO<CredCard1InOutRecord>>();
+            mock_owned_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<CredCard1InOutRecord>());
+            var credcard1_and_credcard1_in_out_loader = new CredCard1AndCredCard1InOutLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
+
+            // Act
+            credcard1_and_credcard1_in_out_loader.Load(
+                mock_spreadsheet.Object,
+                budgeting_months,
+                loading_info.File_paths,
+                new Mock<IFileIO<CredCard1InOutRecord>>().Object,
+                mock_pending_file.Object,
+                mock_third_party_file_io.Object,
+                mock_owned_file_io.Object);
+
+            // Assert
+            mock_spreadsheet
+                .Verify(x => x.Delete_unreconciled_rows(It.IsAny<string>()),
+                    Times.Never);
+        }
+
+        [Test]
         public void Load__Will_fetch_and_generate_data_from_spreadsheet()
         {
             // Arrange
