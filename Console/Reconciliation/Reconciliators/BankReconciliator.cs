@@ -1,30 +1,31 @@
 using System.Collections.Generic;
 using ConsoleCatchall.Console.Reconciliation.Files;
-using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
 {
-    internal class BankReconciliator : IReconciliator
+    internal class BankReconciliator<TThirdPartyType, TOwnedType> : IReconciliator 
+        where TThirdPartyType : ICSVRecord, new()
+        where TOwnedType : ICSVRecord, new()
     {
-        private readonly Reconciliator<ActualBankRecord, BankRecord> _reconciliator;
-        public ICSVFile<ActualBankRecord> Third_party_file { get; set; }
-        public ICSVFile<BankRecord> Owned_file { get; set; }
+        private readonly Reconciliator<TThirdPartyType, TOwnedType> _reconciliator;
+        public ICSVFile<TThirdPartyType> Third_party_file { get; set; }
+        public ICSVFile<TOwnedType> Owned_file { get; set; }
 
         public BankReconciliator(
-            IFileIO<ActualBankRecord> actual_bank_file_io,
-            IFileIO<BankRecord> bank_file_io,
+            IFileIO<TThirdPartyType> actual_bank_file_io,
+            IFileIO<TOwnedType> bank_file_io,
             DataLoadingInformation loading_info)
         {
-            Third_party_file = new CSVFile<ActualBankRecord>(actual_bank_file_io);
+            Third_party_file = new CSVFile<TThirdPartyType>(actual_bank_file_io);
             Third_party_file.Load();
 
-            Owned_file = new CSVFile<BankRecord>(bank_file_io);
+            Owned_file = new CSVFile<TOwnedType>(bank_file_io);
             Owned_file.Load();
 
-            _reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(
-                Third_party_file, 
+            _reconciliator = new Reconciliator<TThirdPartyType, TOwnedType>(
+                Third_party_file,
                 Owned_file,
                 loading_info.Third_party_file_load_action,
                 loading_info.Sheet_name);
