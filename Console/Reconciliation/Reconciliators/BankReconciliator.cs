@@ -6,24 +6,24 @@ using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
 {
-    internal class BankReconciliator<TThirdPartyType> : IReconciliator where TThirdPartyType : ICSVRecord, new()
+    internal class BankReconciliator : IReconciliator
     {
-        private readonly Reconciliator<TThirdPartyType, BankRecord> _reconciliator;
-        public ICSVFile<TThirdPartyType> Third_party_file { get; set; }
+        private readonly Reconciliator<ActualBankRecord, BankRecord> _reconciliator;
+        public ICSVFile<ActualBankRecord> Third_party_file { get; set; }
         public ICSVFile<BankRecord> Owned_file { get; set; }
 
         public BankReconciliator(
-            IFileIO<TThirdPartyType> actual_bank_file_io,
+            IFileIO<ActualBankRecord> actual_bank_file_io,
             IFileIO<BankRecord> bank_file_io,
             DataLoadingInformation loading_info)
         {
-            Third_party_file = new CSVFile<TThirdPartyType>(actual_bank_file_io);
+            Third_party_file = new CSVFile<ActualBankRecord>(actual_bank_file_io);
             Third_party_file.Load();
 
             Owned_file = new CSVFile<BankRecord>(bank_file_io);
             Owned_file.Load();
 
-            _reconciliator = new Reconciliator<TThirdPartyType, BankRecord>(
+            _reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(
                 Third_party_file, 
                 Owned_file,
                 loading_info.Third_party_file_load_action,

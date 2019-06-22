@@ -19,16 +19,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _spreadsheet_factory = spreadsheet_factory;
         }
 
-        public ReconciliationInterface
-            Load<TThirdPartyType>(
+        public ReconciliationInterface Load(
                 ISpreadsheet spreadsheet,
                 BudgetingMonths budgeting_months,
                 FilePaths main_file_paths,
                 IFileIO<BankRecord> pending_file_io,
                 ICSVFile<BankRecord> pending_file,
-                IFileIO<TThirdPartyType> third_party_file_io,
+                IFileIO<ActualBankRecord> third_party_file_io,
                 IFileIO<BankRecord> owned_file_io)
-            where TThirdPartyType : ICSVRecord, new()
         {
             var data_loading_info = BankAndBankInData.LoadingInfo;
             data_loading_info.File_paths = main_file_paths;
@@ -44,8 +42,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         }
 
         private ReconciliationInterface Create_reconciliation_interface(
-            BankReconciliator reconciliator, 
-            DataLoadingInformation data_loading_info)
+                BankReconciliator reconciliator, 
+                DataLoadingInformation data_loading_info)
         {
             _input_output.Output_line(ReconConsts.CreatingReconciliationInterface);
             return new ReconciliationInterface(
@@ -55,11 +53,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info.Owned_file_descriptor);
         }
 
-        private BankReconciliator Load_third_party_and_owned_files_into_reconciliator_reconciliator<TThirdPartyType>(
-                IFileIO<TThirdPartyType> third_party_file_io,
+        private BankReconciliator Load_third_party_and_owned_files_into_reconciliator_reconciliator(
+                IFileIO<ActualBankRecord> third_party_file_io,
                 IFileIO<BankRecord> owned_file_io, 
                 DataLoadingInformation data_loading_info)
-            where TThirdPartyType : ICSVRecord, new()
         {
             _input_output.Output_line(ReconConsts.LoadingDataFromFiles);
             third_party_file_io.Set_file_paths(data_loading_info.File_paths.Main_path,
