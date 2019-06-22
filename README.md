@@ -54,6 +54,11 @@ Gotcha when switching back from .Net Core to .Net Framework: "dll / exe could no
 	Close and reopen VS
 	Rebuild all
 	
+## Troubleshooting
+### HRESULT exception In Windows when writing to spreadsheet
+Go to task manager, scroll down to processes below the line, and get rid of ALL instances of Excel you find (right-click | End task).
+
+	
 An example of a C# app with a Windows interface that edits an Excel spreadsheet:  
 https://www.codeproject.com/Tips/696864/Working-with-Excel-Using-Csharp    
     
