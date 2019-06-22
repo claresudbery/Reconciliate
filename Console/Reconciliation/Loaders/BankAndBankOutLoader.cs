@@ -20,8 +20,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _spreadsheet_factory = spreadsheet_factory;
         }
 
-        public ReconciliationInterface
-            Load(ISpreadsheet spreadsheet,
+        public ReconciliationInterface Load(ISpreadsheet spreadsheet,
                 BudgetingMonths budgeting_months,
                 FilePaths main_file_paths,
                 IFileIO<BankRecord> pending_file_io,
@@ -42,9 +41,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return reconciliation_interface;
         }
 
-        private ReconciliationInterface Create_reconciliation_interface(
-            BankReconciliator<ActualBankRecord, BankRecord> reconciliator, 
-            DataLoadingInformation data_loading_info)
+        private ReconciliationInterface Create_reconciliation_interface<TThirdPartyType, TOwnedType>(
+                BankReconciliator<TThirdPartyType, TOwnedType> reconciliator, 
+                DataLoadingInformation data_loading_info)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
         {
             _input_output.Output_line(ReconConsts.CreatingReconciliationInterface);
             return new ReconciliationInterface(
@@ -54,16 +55,18 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info.Owned_file_descriptor);
         }
 
-        private BankReconciliator<ActualBankRecord, BankRecord> Load_third_party_and_owned_files_into_reconciliator_reconciliator(
-            IFileIO<ActualBankRecord> third_party_file_io,
-            IFileIO<BankRecord> owned_file_io, 
-            DataLoadingInformation data_loading_info)
+        private BankReconciliator<TThirdPartyType, TOwnedType> Load_third_party_and_owned_files_into_reconciliator_reconciliator<TThirdPartyType, TOwnedType>(
+                IFileIO<TThirdPartyType> third_party_file_io,
+                IFileIO<TOwnedType> owned_file_io, 
+                DataLoadingInformation data_loading_info)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
         {
             _input_output.Output_line(ReconConsts.LoadingDataFromFiles);
             third_party_file_io.Set_file_paths(data_loading_info.File_paths.Main_path,
                 data_loading_info.File_paths.Third_party_file_name);
             owned_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
-            var reconciliator = new BankReconciliator<ActualBankRecord, BankRecord>(third_party_file_io, owned_file_io, data_loading_info);
+            var reconciliator = new BankReconciliator<TThirdPartyType, TOwnedType>(third_party_file_io, owned_file_io, data_loading_info);
             return reconciliator;
         }
 
