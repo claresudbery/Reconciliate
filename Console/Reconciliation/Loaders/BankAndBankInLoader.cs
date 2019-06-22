@@ -55,10 +55,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info.Owned_file_descriptor);
         }
 
-        private BankReconciliator Load_third_party_and_owned_files_into_reconciliator_reconciliator(
-            IFileIO<ActualBankRecord> third_party_file_io,
-            IFileIO<BankRecord> owned_file_io, 
-            DataLoadingInformation data_loading_info)
+        private BankReconciliator Load_third_party_and_owned_files_into_reconciliator_reconciliator<TThirdPartyType>(
+                IFileIO<TThirdPartyType> third_party_file_io,
+                IFileIO<BankRecord> owned_file_io, 
+                DataLoadingInformation data_loading_info)
+            where TThirdPartyType : ICSVRecord, new()
         {
             _input_output.Output_line(ReconConsts.LoadingDataFromFiles);
             third_party_file_io.Set_file_paths(data_loading_info.File_paths.Main_path,
