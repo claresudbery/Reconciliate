@@ -1,29 +1,30 @@
 using System.Collections.Generic;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
-using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
 {
-    internal class CredCard1Reconciliator : IReconciliator
+    internal class CredCard1Reconciliator<TThirdPartyType, TOwnedType> : IReconciliator
+        where TThirdPartyType : ICSVRecord, new()
+        where TOwnedType : ICSVRecord, new()
     {
-        private readonly Reconciliator<CredCard1Record, CredCard1InOutRecord> _reconciliator;
-        public ICSVFile<CredCard1Record> Third_party_file { get; set; }
-        public ICSVFile<CredCard1InOutRecord> Owned_file { get; set; }
+        private readonly Reconciliator<TThirdPartyType, TOwnedType> _reconciliator;
+        public ICSVFile<TThirdPartyType> Third_party_file { get; set; }
+        public ICSVFile<TOwnedType> Owned_file { get; set; }
 
         public CredCard1Reconciliator(
-            IFileIO<CredCard1Record> cred_card1_file_io,
-            IFileIO<CredCard1InOutRecord> cred_card1_in_out_file_io)
+            IFileIO<TThirdPartyType> cred_card1_file_io,
+            IFileIO<TOwnedType> cred_card1_in_out_file_io)
         {
-            Third_party_file = new CSVFile<CredCard1Record>(cred_card1_file_io);
+            Third_party_file = new CSVFile<TThirdPartyType>(cred_card1_file_io);
             Third_party_file.Load();
 
-            Owned_file = new CSVFile<CredCard1InOutRecord>(cred_card1_in_out_file_io);
+            Owned_file = new CSVFile<TOwnedType>(cred_card1_in_out_file_io);
             Owned_file.Load();
 
-            _reconciliator = new Reconciliator<CredCard1Record, CredCard1InOutRecord>(
+            _reconciliator = new Reconciliator<TThirdPartyType, TOwnedType>(
                 Third_party_file,
                 Owned_file,
                 CredCard1AndCredCard1InOutData.LoadingInfo.Third_party_file_load_action,

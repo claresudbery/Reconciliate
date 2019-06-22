@@ -44,7 +44,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         }
 
         private ReconciliationInterface Create_reconciliation_interface(
-            CredCard2Reconciliator reconciliator, 
+            CredCard2Reconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator, 
             DataLoadingInformation data_loading_info)
         {
             _input_output.Output_line(ReconConsts.CreatingReconciliationInterface);
@@ -55,7 +55,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info.Owned_file_descriptor);
         }
 
-        private CredCard2Reconciliator Load_third_party_and_owned_files_into_reconciliator_reconciliator(
+        private CredCard2Reconciliator<CredCard2Record, CredCard2InOutRecord> Load_third_party_and_owned_files_into_reconciliator_reconciliator(
             IFileIO<CredCard2Record> third_party_file_io, 
             IFileIO<CredCard2InOutRecord> owned_file_io, 
             DataLoadingInformation data_loading_info)
@@ -64,7 +64,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             third_party_file_io.Set_file_paths(data_loading_info.File_paths.Main_path,
                 data_loading_info.File_paths.Third_party_file_name);
             owned_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.File_paths.Owned_file_name);
-            var reconciliator = new CredCard2Reconciliator(third_party_file_io, owned_file_io);
+            var reconciliator = new CredCard2Reconciliator<CredCard2Record, CredCard2InOutRecord>(third_party_file_io, owned_file_io);
             return reconciliator;
         }
 

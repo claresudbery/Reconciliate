@@ -1,30 +1,31 @@
 using System.Collections.Generic;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
-using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Reconciliators
 {
-    internal class CredCard2Reconciliator : IReconciliator
+    internal class CredCard2Reconciliator<TThirdPartyType, TOwnedType> : IReconciliator
+        where TThirdPartyType : ICSVRecord, new()
+        where TOwnedType : ICSVRecord, new()
     {
-        private readonly Reconciliator<CredCard2Record, CredCard2InOutRecord> _reconciliator;
-        public ICSVFile<CredCard2Record> Third_party_file { get; set; }
-        public ICSVFile<CredCard2InOutRecord> Owned_file { get; set; }
+        private readonly Reconciliator<TThirdPartyType, TOwnedType> _reconciliator;
+        public ICSVFile<TThirdPartyType> Third_party_file { get; set; }
+        public ICSVFile<TOwnedType> Owned_file { get; set; }
 
         public CredCard2Reconciliator(
-            IFileIO<CredCard2Record> cred_card2_file_io,
-            IFileIO<CredCard2InOutRecord> cred_card2_in_out_file_io)
+            IFileIO<TThirdPartyType> cred_card2_file_io,
+            IFileIO<TOwnedType> cred_card2_in_out_file_io)
         {
-            Third_party_file = new CSVFile<CredCard2Record>(cred_card2_file_io);
+            Third_party_file = new CSVFile<TThirdPartyType>(cred_card2_file_io);
             Third_party_file.Load();
 
-            Owned_file = new CSVFile<CredCard2InOutRecord>(cred_card2_in_out_file_io);
+            Owned_file = new CSVFile<TOwnedType>(cred_card2_in_out_file_io);
             Owned_file.Load();
 
-            _reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(
-                Third_party_file, 
+            _reconciliator = new Reconciliator<TThirdPartyType, TOwnedType>(
+                Third_party_file,
                 Owned_file,
                 CredCard2AndCredCard2InOutData.LoadingInfo.Third_party_file_load_action,
                 CredCard2AndCredCard2InOutData.LoadingInfo.Sheet_name);
