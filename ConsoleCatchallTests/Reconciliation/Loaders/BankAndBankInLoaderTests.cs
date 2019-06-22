@@ -17,7 +17,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
     public class BankAndBankInLoaderTests
     {
         [Test]
-        public void LoadFilesAndMergeData_WillNotLoadData_WhenTesting()
+        public void Load_files_and_merge_data_will_not_load_data_when_testing()
         {
             // Arrange
             var loading_info = BankAndBankInData.LoadingInfo;

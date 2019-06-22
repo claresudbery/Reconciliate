@@ -60,7 +60,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         }
 
         [Test]
-        public void LoadFilesAndMergeData_WillNotLoadData_WhenTesting()
+        public void Load_files_and_merge_data_will_not_load_data_when_testing()
         {
             // Arrange
             var mock_input_output = new Mock<IInputOutput>();
