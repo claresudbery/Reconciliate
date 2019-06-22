@@ -20,13 +20,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         }
 
         public ReconciliationInterface
-            Load(ISpreadsheet spreadsheet,
+            Load<TThirdPartyType>(
+                ISpreadsheet spreadsheet,
                 BudgetingMonths budgeting_months,
                 FilePaths main_file_paths,
                 IFileIO<BankRecord> pending_file_io,
                 ICSVFile<BankRecord> pending_file,
-                IFileIO<ActualBankRecord> third_party_file_io,
+                IFileIO<TThirdPartyType> third_party_file_io,
                 IFileIO<BankRecord> owned_file_io)
+            where TThirdPartyType : ICSVRecord, new()
         {
             var data_loading_info = BankAndBankInData.LoadingInfo;
             data_loading_info.File_paths = main_file_paths;
