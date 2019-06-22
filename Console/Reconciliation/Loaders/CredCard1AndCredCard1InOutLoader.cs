@@ -43,7 +43,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return reconciliation_interface;
         }
 
-        private ReconciliationInterface Create_reconciliation_interface(CredCard1Reconciliator reconciliator, DataLoadingInformation data_loading_info)
+        private ReconciliationInterface Create_reconciliation_interface(
+            CredCard1Reconciliator reconciliator, 
+            DataLoadingInformation data_loading_info)
         {
             _input_output.Output_line(ReconConsts.CreatingReconciliationInterface);
             return new ReconciliationInterface(
@@ -54,7 +56,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         }
 
         private CredCard1Reconciliator Load_third_party_and_owned_files_into_reconciliator_reconciliator(
-            IFileIO<CredCard1Record> third_party_file_io, IFileIO<CredCard1InOutRecord> owned_file_io, DataLoadingInformation data_loading_info)
+            IFileIO<CredCard1Record> third_party_file_io, 
+            IFileIO<CredCard1InOutRecord> owned_file_io, 
+            DataLoadingInformation data_loading_info)
         {
             _input_output.Output_line(ReconConsts.LoadingDataFromFiles);
             third_party_file_io.Set_file_paths(data_loading_info.File_paths.Main_path,
@@ -64,10 +68,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return reconciliator;
         }
 
-        private void Merge_unreconciled_data(ISpreadsheet spreadsheet, ICSVFile<CredCard1InOutRecord> pending_file,
+        private void Merge_unreconciled_data(
+            ISpreadsheet spreadsheet, 
+            ICSVFile<CredCard1InOutRecord> pending_file,
             DataLoadingInformation data_loading_info)
         {
-// Pending file will already exist, having already been split out from phone Notes file by a separate function call.
+            // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
             // We loaded it up into memory in the previous file-specific method.
             // Then some budget amounts were added to that file (in memory).
             // Other budget amounts (like CredCard1 balance) were written directly to the spreadsheet before this too.
@@ -75,13 +81,18 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             // Then we write all that data away into the 'owned' csv file (eg BankOutPending.csv).
             _input_output.Output_line(ReconConsts.MergingUnreconciledRows);
             spreadsheet.Add_unreconciled_rows_to_csv_file(data_loading_info.Sheet_name, pending_file);
+
             _input_output.Output_line(ReconConsts.CopyingMergedData);
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
             pending_file.Write_to_file_as_source_lines(data_loading_info.File_paths.Owned_file_name);
+
             _input_output.Output_line(ReconConsts.StuffIsHappening);
         }
 
-        private void Merge_other_data(ISpreadsheet spreadsheet, BudgetingMonths budgeting_months, ICSVFile<CredCard1InOutRecord> pending_file,
+        private void Merge_other_data(
+            ISpreadsheet spreadsheet, 
+            BudgetingMonths budgeting_months, 
+            ICSVFile<CredCard1InOutRecord> pending_file,
             DataLoadingInformation data_loading_info)
         {
             _input_output.Output_line(ReconConsts.MergingBespokeData);
@@ -93,7 +104,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info);
         }
 
-        private void Merge_budget_data(ISpreadsheet spreadsheet, BudgetingMonths budgeting_months, ICSVFile<CredCard1InOutRecord> pending_file,
+        private void Merge_budget_data(
+            ISpreadsheet spreadsheet, 
+            BudgetingMonths budgeting_months, 
+            ICSVFile<CredCard1InOutRecord> pending_file,
             DataLoadingInformation data_loading_info)
         {
             _input_output.Output_line(ReconConsts.MergingBudgetDataWithPendingData);
@@ -103,7 +117,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info.Monthly_budget_data);
         }
 
-        private void Load_pending_data(IFileIO<CredCard1InOutRecord> pending_file_io, ICSVFile<CredCard1InOutRecord> pending_file, DataLoadingInformation data_loading_info)
+        private void Load_pending_data(
+            IFileIO<CredCard1InOutRecord> pending_file_io, 
+            ICSVFile<CredCard1InOutRecord> pending_file, 
+            DataLoadingInformation data_loading_info)
         {
             _input_output.Output_line(ReconConsts.LoadingDataFromPendingFile);
             pending_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.Pending_file_name);
