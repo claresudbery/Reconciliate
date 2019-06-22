@@ -41,9 +41,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return reconciliation_interface;
         }
 
-        private ReconciliationInterface Create_reconciliation_interface(
-                BankReconciliator<ActualBankRecord, BankRecord> reconciliator, 
+        private ReconciliationInterface Create_reconciliation_interface<TThirdPartyType, TOwnedType>(
+                BankReconciliator<TThirdPartyType, TOwnedType> reconciliator, 
                 DataLoadingInformation data_loading_info)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
         {
             _input_output.Output_line(ReconConsts.CreatingReconciliationInterface);
             return new ReconciliationInterface(
