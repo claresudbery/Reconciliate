@@ -57,6 +57,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                             var pending_file = new CSVFile<BankRecord>(pending_file_io);
                             var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheet_factory);
                             var owned_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
+                            var data_loading_info = BankAndBankInData.LoadingInfo;
                             reconciliation_interface =
                                 new BankAndBankInLoader(_input_output, _spreadsheet_factory).Load(
                                     spreadsheet,
@@ -65,7 +66,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                                     pending_file_io,
                                     pending_file,
                                     third_party_file_io,
-                                    owned_file_io);
+                                    owned_file_io,
+                                    data_loading_info);
                         }
                         break;
                     case ReconciliationType.BankAndBankOut:
@@ -74,6 +76,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                             var pending_file = new CSVFile<BankRecord>(pending_file_io);
                             var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheet_factory);
                             var owned_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
+                            var data_loading_info = BankAndBankOutData.LoadingInfo;
                             reconciliation_interface =
                                 new BankAndBankOutLoader(_input_output, _spreadsheet_factory).Load(
                                     spreadsheet,
@@ -82,7 +85,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                                     pending_file_io,
                                     pending_file,
                                     third_party_file_io,
-                                    owned_file_io);
+                                    owned_file_io,
+                                    data_loading_info);
                         }
                         break;
                     case ReconciliationType.CredCard1AndCredCard1InOut:
@@ -91,6 +95,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                             var pending_file = new CSVFile<CredCard1InOutRecord>(pending_file_io);
                             var third_party_file_io = new FileIO<CredCard1Record>(_spreadsheet_factory);
                             var owned_file_io = new FileIO<CredCard1InOutRecord>(_spreadsheet_factory);
+                            var data_loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
                             reconciliation_interface =
                                 new CredCard1AndCredCard1InOutLoader(_input_output, _spreadsheet_factory).Load(
                                     spreadsheet,
@@ -99,7 +104,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                                     pending_file_io,
                                     pending_file,
                                     third_party_file_io,
-                                    owned_file_io);
+                                    owned_file_io,
+                                    data_loading_info);
                         }
                         break;
                     case ReconciliationType.CredCard2AndCredCard2InOut:
@@ -108,6 +114,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                             var pending_file = new CSVFile<CredCard2InOutRecord>(pending_file_io);
                             var third_party_file_io = new FileIO<CredCard2Record>(_spreadsheet_factory);
                             var owned_file_io = new FileIO<CredCard2InOutRecord>(_spreadsheet_factory);
+                            var data_loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
                             reconciliation_interface =
                                 new CredCard2AndCredCard2InOutLoader(_input_output, _spreadsheet_factory).Load(
                                     spreadsheet,
@@ -116,7 +123,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                                     pending_file_io,
                                     pending_file,
                                     third_party_file_io,
-                                    owned_file_io);
+                                    owned_file_io,
+                                    data_loading_info);
                         }
                         break;
                     default:

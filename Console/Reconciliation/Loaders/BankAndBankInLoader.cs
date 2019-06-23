@@ -25,7 +25,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 IFileIO<TOwnedType> pending_file_io,
                 ICSVFile<TOwnedType> pending_file,
                 IFileIO<TThirdPartyType> third_party_file_io,
-                IFileIO<TOwnedType> owned_file_io)
+                IFileIO<TOwnedType> owned_file_io,
+                DataLoadingInformation data_loading_info_new = null)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
