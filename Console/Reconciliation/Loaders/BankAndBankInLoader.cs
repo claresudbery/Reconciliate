@@ -10,12 +10,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
     internal class BankAndBankInLoader : ILoader
     {
         private readonly IInputOutput _input_output;
-        private readonly ISpreadsheetRepoFactory _spreadsheet_factory;
 
-        public BankAndBankInLoader(IInputOutput input_output, ISpreadsheetRepoFactory spreadsheet_factory)
+        public BankAndBankInLoader(IInputOutput input_output)
         {
             _input_output = input_output;
-            _spreadsheet_factory = spreadsheet_factory;
         }
 
         public ReconciliationInterface Load<TThirdPartyType, TOwnedType>(

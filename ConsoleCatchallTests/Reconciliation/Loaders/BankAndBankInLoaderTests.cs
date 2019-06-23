@@ -27,7 +27,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_third_party_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ActualBankRecord>());
             var mock_owned_file_io = new Mock<IFileIO<BankRecord>>();
             mock_owned_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<BankRecord>());
-            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
+            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object);
             var exception_thrown = false;
             loading_info.File_paths.Main_path = "This is not a path";
 
@@ -69,7 +69,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_third_party_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ActualBankRecord>());
             var mock_owned_file_io = new Mock<IFileIO<BankRecord>>();
             mock_owned_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<BankRecord>());
-            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
+            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object);
 
             // Act
             bank_and_bank_in_loader.Load(
@@ -101,7 +101,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_third_party_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ActualBankRecord>());
             var mock_owned_file_io = new Mock<IFileIO<BankRecord>>();
             mock_owned_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<BankRecord>());
-            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
+            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object);
 
             // Act
             bank_and_bank_in_loader.Load(
@@ -135,7 +135,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_third_party_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ActualBankRecord>());
             var mock_owned_file_io = new Mock<IFileIO<BankRecord>>();
             mock_owned_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<BankRecord>());
-            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
+            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object);
 
             // Act
             bank_and_bank_in_loader.Load(
@@ -169,7 +169,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_third_party_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ActualBankRecord>());
             var mock_owned_file_io = new Mock<IFileIO<BankRecord>>();
             mock_owned_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<BankRecord>());
-            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
+            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object);
 
             // Act
             bank_and_bank_in_loader.Load(
@@ -201,7 +201,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_third_party_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ActualBankRecord>());
             var mock_owned_file_io = new Mock<IFileIO<BankRecord>>();
             mock_owned_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<BankRecord>());
-            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object, new Mock<ISpreadsheetRepoFactory>().Object);
+            var bank_and_bank_in_loader = new BankAndBankInLoader(new Mock<IInputOutput>().Object);
 
             // Act
             var reconciliation_interface = bank_and_bank_in_loader.Load(
@@ -243,7 +243,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
             var pending_records = new List<BankRecord>();
             mock_pending_file.Setup(x => x.Records).Returns(pending_records);
-            var bank_and_bank_in_loader = new BankAndBankInLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
+            var bank_and_bank_in_loader = new BankAndBankInLoader(mock_input_output.Object);
 
             // Act
             bank_and_bank_in_loader.Merge_bespoke_data_with_pending_file(

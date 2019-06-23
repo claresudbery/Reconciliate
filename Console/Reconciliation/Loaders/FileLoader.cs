@@ -44,22 +44,22 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             {
                 case ReconciliationType.BankAndBankIn: {
                     data_loading_info = BankAndBankInData.LoadingInfo;
-                    loader = new BankAndBankInLoader(_input_output, _spreadsheet_factory);
+                    loader = new BankAndBankInLoader(_input_output);
                     reconciliation_interface = Load_files_and_merge_data<ActualBankRecord, BankRecord>(data_loading_info, loader, main_file_paths);
                 } break;
                 case ReconciliationType.BankAndBankOut: {
                     data_loading_info = BankAndBankOutData.LoadingInfo;
-                    loader = new BankAndBankOutLoader(_input_output, _spreadsheet_factory);
+                    loader = new BankAndBankOutLoader(_input_output);
                     reconciliation_interface = Load_files_and_merge_data<ActualBankRecord, BankRecord>(data_loading_info, loader, main_file_paths);
                     } break;
                 case ReconciliationType.CredCard1AndCredCard1InOut: {
                     data_loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
-                    loader = new CredCard1AndCredCard1InOutLoader(_input_output, _spreadsheet_factory);
+                    loader = new CredCard1AndCredCard1InOutLoader(_input_output);
                     reconciliation_interface = Load_files_and_merge_data<CredCard1Record, CredCard1InOutRecord>(data_loading_info, loader, main_file_paths);
                     } break;
                 case ReconciliationType.CredCard2AndCredCard2InOut: {
                     data_loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
-                    loader = new CredCard2AndCredCard2InOutLoader(_input_output, _spreadsheet_factory);
+                    loader = new CredCard2AndCredCard2InOutLoader(_input_output);
                     reconciliation_interface = Load_files_and_merge_data<CredCard2Record, CredCard2InOutRecord>(data_loading_info, loader, main_file_paths);
                     } break;
                 default:
