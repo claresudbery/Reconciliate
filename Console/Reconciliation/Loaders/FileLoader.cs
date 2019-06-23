@@ -58,8 +58,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                             var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheet_factory);
                             var owned_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
                             var data_loading_info = BankAndBankInData.LoadingInfo;
-                            reconciliation_interface =
-                                new BankAndBankInLoader(_input_output, _spreadsheet_factory).Load(
+                            var loader = new BankAndBankInLoader(_input_output, _spreadsheet_factory);
+                            reconciliation_interface = loader.Load(
                                     spreadsheet,
                                     budgeting_months,
                                     main_file_paths,
@@ -77,8 +77,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                             var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheet_factory);
                             var owned_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
                             var data_loading_info = BankAndBankOutData.LoadingInfo;
-                            reconciliation_interface =
-                                new BankAndBankOutLoader(_input_output, _spreadsheet_factory).Load(
+                            var loader = new BankAndBankOutLoader(_input_output, _spreadsheet_factory);
+                            reconciliation_interface = loader.Load(
                                     spreadsheet,
                                     budgeting_months,
                                     main_file_paths,
@@ -96,8 +96,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                             var third_party_file_io = new FileIO<CredCard1Record>(_spreadsheet_factory);
                             var owned_file_io = new FileIO<CredCard1InOutRecord>(_spreadsheet_factory);
                             var data_loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
-                            reconciliation_interface =
-                                new CredCard1AndCredCard1InOutLoader(_input_output, _spreadsheet_factory).Load(
+                            var loader = new CredCard1AndCredCard1InOutLoader(_input_output, _spreadsheet_factory);
+                            reconciliation_interface = loader.Load(
                                     spreadsheet,
                                     budgeting_months,
                                     main_file_paths,
@@ -115,8 +115,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                             var third_party_file_io = new FileIO<CredCard2Record>(_spreadsheet_factory);
                             var owned_file_io = new FileIO<CredCard2InOutRecord>(_spreadsheet_factory);
                             var data_loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
-                            reconciliation_interface =
-                                new CredCard2AndCredCard2InOutLoader(_input_output, _spreadsheet_factory).Load(
+                            var loader = new CredCard2AndCredCard2InOutLoader(_input_output, _spreadsheet_factory);
+                            reconciliation_interface = loader.Load(
                                     spreadsheet,
                                     budgeting_months,
                                     main_file_paths,
