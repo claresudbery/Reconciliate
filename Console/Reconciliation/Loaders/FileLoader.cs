@@ -1,6 +1,5 @@
 using System;
 using ConsoleCatchall.Console.Reconciliation.Files;
-using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
 using Interfaces;
 using Interfaces.Constants;
@@ -37,42 +36,30 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             ReconciliationType reconciliation_type)
         {
             ReconciliationInterface reconciliation_interface = null;
-            DataLoadingInformation data_loading_info = null;
-            ILoader loader = null;
 
             switch (reconciliation_type)
             {
                 case ReconciliationType.BankAndBankIn: {
-                    data_loading_info = BankAndBankInData.LoadingInfo;
-                    loader = new BankAndBankInLoader(_input_output);
-                    reconciliation_interface = Load_files_and_merge_data<ActualBankRecord, BankRecord>(data_loading_info, loader, main_file_paths);
+                    reconciliation_interface = new BankAndBankInLoader(_input_output, this).Load_files_and_merge_data(main_file_paths);
                 } break;
                 case ReconciliationType.BankAndBankOut: {
-                    data_loading_info = BankAndBankOutData.LoadingInfo;
-                    loader = new BankAndBankOutLoader(_input_output);
-                    reconciliation_interface = Load_files_and_merge_data<ActualBankRecord, BankRecord>(data_loading_info, loader, main_file_paths);
-                    } break;
+                    reconciliation_interface = new BankAndBankOutLoader(_input_output, this).Load_files_and_merge_data(main_file_paths);
+                } break;
                 case ReconciliationType.CredCard1AndCredCard1InOut: {
-                    data_loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
-                    loader = new CredCard1AndCredCard1InOutLoader(_input_output);
-                    reconciliation_interface = Load_files_and_merge_data<CredCard1Record, CredCard1InOutRecord>(data_loading_info, loader, main_file_paths);
-                    } break;
+                    reconciliation_interface = new CredCard1AndCredCard1InOutLoader(_input_output, this).Load_files_and_merge_data(main_file_paths);
+                } break;
                 case ReconciliationType.CredCard2AndCredCard2InOut: {
-                    data_loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
-                    loader = new CredCard2AndCredCard2InOutLoader(_input_output);
-                    reconciliation_interface = Load_files_and_merge_data<CredCard2Record, CredCard2InOutRecord>(data_loading_info, loader, main_file_paths);
-                    } break;
-                default:
-                {
+                    reconciliation_interface = new CredCard2AndCredCard2InOutLoader(_input_output, this).Load_files_and_merge_data(main_file_paths);
+                } break;
+                default: {
                     _input_output.Output_line("I don't know what files to load! Terminating now.");
-                }
-                break;
+                } break;
             }
 
             return reconciliation_interface;
         }
 
-        private ReconciliationInterface Load_files_and_merge_data<TThirdPartyType, TOwnedType>(
+        public ReconciliationInterface Load_files_and_merge_data<TThirdPartyType, TOwnedType>(
                 DataLoadingInformation data_loading_info, 
                 ILoader loader,
                 FilePaths main_file_paths)

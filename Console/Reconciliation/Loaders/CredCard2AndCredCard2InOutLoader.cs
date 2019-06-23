@@ -11,10 +11,18 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
     internal class CredCard2AndCredCard2InOutLoader : ILoader
     {
         private readonly IInputOutput _input_output;
+        private readonly FileLoader _file_loader;
 
-        public CredCard2AndCredCard2InOutLoader(IInputOutput input_output)
+        public CredCard2AndCredCard2InOutLoader(IInputOutput input_output, FileLoader file_loader = null)
         {
             _input_output = input_output;
+            _file_loader = file_loader;
+        }
+
+        public ReconciliationInterface Load_files_and_merge_data(FilePaths main_file_paths)
+        {
+            return _file_loader.Load_files_and_merge_data<CredCard2Record, CredCard2InOutRecord>(
+                CredCard2AndCredCard2InOutData.LoadingInfo, this, main_file_paths);
         }
 
         public ReconciliationInterface Load<TThirdPartyType, TOwnedType>(

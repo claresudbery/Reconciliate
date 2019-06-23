@@ -10,10 +10,18 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
     internal class BankAndBankOutLoader : ILoader
     {
         private readonly IInputOutput _input_output;
+        private readonly FileLoader _file_loader;
 
-        public BankAndBankOutLoader(IInputOutput input_output)
+        public BankAndBankOutLoader(IInputOutput input_output, FileLoader file_loader = null)
         {
             _input_output = input_output;
+            _file_loader = file_loader;
+        }
+
+        public ReconciliationInterface Load_files_and_merge_data(FilePaths main_file_paths)
+        {
+            return _file_loader.Load_files_and_merge_data<ActualBankRecord, BankRecord>(
+                BankAndBankOutData.LoadingInfo, this, main_file_paths);
         }
 
         public ReconciliationInterface Load<TThirdPartyType, TOwnedType>(
