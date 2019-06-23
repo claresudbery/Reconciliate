@@ -36,8 +36,49 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             FilePaths main_file_paths,
             ReconciliationType reconciliation_type)
         {
-            _input_output.Output_line("Loading data...");
+            ReconciliationInterface reconciliation_interface = null;
+            DataLoadingInformation data_loading_info = null;
+            ILoader loader = null;
 
+            switch (reconciliation_type)
+            {
+                case ReconciliationType.BankAndBankIn: {
+                    data_loading_info = BankAndBankInData.LoadingInfo;
+                    loader = new BankAndBankInLoader(_input_output, _spreadsheet_factory);
+                    reconciliation_interface = Load_files_and_merge_data<ActualBankRecord, BankRecord>(data_loading_info, loader, main_file_paths);
+                } break;
+                case ReconciliationType.BankAndBankOut: {
+                    data_loading_info = BankAndBankOutData.LoadingInfo;
+                    loader = new BankAndBankOutLoader(_input_output, _spreadsheet_factory);
+                    reconciliation_interface = Load_files_and_merge_data<ActualBankRecord, BankRecord>(data_loading_info, loader, main_file_paths);
+                    } break;
+                case ReconciliationType.CredCard1AndCredCard1InOut: {
+                    data_loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
+                    loader = new CredCard1AndCredCard1InOutLoader(_input_output, _spreadsheet_factory);
+                    reconciliation_interface = Load_files_and_merge_data<CredCard1Record, CredCard1InOutRecord>(data_loading_info, loader, main_file_paths);
+                    } break;
+                case ReconciliationType.CredCard2AndCredCard2InOut: {
+                    data_loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
+                    loader = new CredCard2AndCredCard2InOutLoader(_input_output, _spreadsheet_factory);
+                    reconciliation_interface = Load_files_and_merge_data<CredCard2Record, CredCard2InOutRecord>(data_loading_info, loader, main_file_paths);
+                    } break;
+                default:
+                {
+                    _input_output.Output_line("I don't know what files to load! Terminating now.");
+                }
+                break;
+            }
+
+            return reconciliation_interface;
+        }
+
+        private ReconciliationInterface Load_files_and_merge_data<TThirdPartyType, TOwnedType>(
+                DataLoadingInformation data_loading_info, 
+                ILoader loader,
+                FilePaths main_file_paths)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
             ReconciliationInterface reconciliation_interface = null;
 
             try
@@ -49,95 +90,23 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 var spreadsheet = new Spreadsheet(spreadsheet_repo);
                 var budgeting_month_service = new BudgetingMonthService(_input_output);
                 BudgetingMonths budgeting_months = budgeting_month_service.Recursively_ask_for_budgeting_months(spreadsheet);
+                _input_output.Output_line("Loading data...");
 
-                switch (reconciliation_type)
-                {
-                    case ReconciliationType.BankAndBankIn:
-                        {
-                            var pending_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
-                            var pending_file = new CSVFile<BankRecord>(pending_file_io);
-                            var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheet_factory);
-                            var owned_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
-                            var data_loading_info = BankAndBankInData.LoadingInfo;
-                            var loader = new BankAndBankInLoader(_input_output, _spreadsheet_factory);
-                            reconciliation_interface = Load(
-                                    spreadsheet,
-                                    budgeting_months,
-                                    main_file_paths,
-                                    pending_file_io,
-                                    pending_file,
-                                    third_party_file_io,
-                                    owned_file_io,
-                                    data_loading_info,
-                                    loader);
-                        }
-                        break;
-                    case ReconciliationType.BankAndBankOut:
-                        {
-                            var pending_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
-                            var pending_file = new CSVFile<BankRecord>(pending_file_io);
-                            var third_party_file_io = new FileIO<ActualBankRecord>(_spreadsheet_factory);
-                            var owned_file_io = new FileIO<BankRecord>(_spreadsheet_factory);
-                            var data_loading_info = BankAndBankOutData.LoadingInfo;
-                            var loader = new BankAndBankOutLoader(_input_output, _spreadsheet_factory);
-                            reconciliation_interface = Load(
-                                    spreadsheet,
-                                    budgeting_months,
-                                    main_file_paths,
-                                    pending_file_io,
-                                    pending_file,
-                                    third_party_file_io,
-                                    owned_file_io,
-                                    data_loading_info,
-                                    loader);
-                        }
-                        break;
-                    case ReconciliationType.CredCard1AndCredCard1InOut:
-                        {
-                            var pending_file_io = new FileIO<CredCard1InOutRecord>(_spreadsheet_factory);
-                            var pending_file = new CSVFile<CredCard1InOutRecord>(pending_file_io);
-                            var third_party_file_io = new FileIO<CredCard1Record>(_spreadsheet_factory);
-                            var owned_file_io = new FileIO<CredCard1InOutRecord>(_spreadsheet_factory);
-                            var data_loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
-                            var loader = new CredCard1AndCredCard1InOutLoader(_input_output, _spreadsheet_factory);
-                            reconciliation_interface = Load(
-                                    spreadsheet,
-                                    budgeting_months,
-                                    main_file_paths,
-                                    pending_file_io,
-                                    pending_file,
-                                    third_party_file_io,
-                                    owned_file_io,
-                                    data_loading_info,
-                                    loader);
-                        }
-                        break;
-                    case ReconciliationType.CredCard2AndCredCard2InOut:
-                        {
-                            var pending_file_io = new FileIO<CredCard2InOutRecord>(_spreadsheet_factory);
-                            var pending_file = new CSVFile<CredCard2InOutRecord>(pending_file_io);
-                            var third_party_file_io = new FileIO<CredCard2Record>(_spreadsheet_factory);
-                            var owned_file_io = new FileIO<CredCard2InOutRecord>(_spreadsheet_factory);
-                            var data_loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
-                            var loader = new CredCard2AndCredCard2InOutLoader(_input_output, _spreadsheet_factory);
-                            reconciliation_interface = Load(
-                                    spreadsheet,
-                                    budgeting_months,
-                                    main_file_paths,
-                                    pending_file_io,
-                                    pending_file,
-                                    third_party_file_io,
-                                    owned_file_io,
-                                    data_loading_info,
-                                    loader);
-                        }
-                        break;
-                    default:
-                        {
-                            _input_output.Output_line("I don't know what files to load! Terminating now.");
-                        }
-                        break;
-                }
+                var pending_file_io = new FileIO<TOwnedType>(_spreadsheet_factory);
+                var pending_file = new CSVFile<TOwnedType>(pending_file_io);
+                var third_party_file_io = new FileIO<TThirdPartyType>(_spreadsheet_factory);
+                var owned_file_io = new FileIO<TOwnedType>(_spreadsheet_factory);
+
+                reconciliation_interface = Load(
+                    spreadsheet,
+                    budgeting_months,
+                    main_file_paths,
+                    pending_file_io,
+                    pending_file,
+                    third_party_file_io,
+                    owned_file_io,
+                    data_loading_info,
+                    loader);
             }
             finally
             {
