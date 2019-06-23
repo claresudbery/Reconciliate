@@ -37,6 +37,28 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             int code_column);
         DateTime Get_next_unplanned_month();
 
+        void Add_budgeted_bank_in_data_to_pending_file<TOwnedType>(
+                BudgetingMonths budgeting_months,
+                ICSVFile<TOwnedType> pending_file,
+                BudgetItemListData budget_item_list_data)
+            where TOwnedType : ICSVRecord, new();
+        void Add_budgeted_bank_out_data_to_pending_file<TOwnedType>(
+                BudgetingMonths budgeting_months,
+                ICSVFile<TOwnedType> pending_file,
+                BudgetItemListData monthly_budget_item_list_data,
+                BudgetItemListData annual_budget_item_list_data)
+            where TOwnedType : ICSVRecord, new();
+        void Add_budgeted_cred_card1_in_out_data_to_pending_file<TOwnedType>(
+                BudgetingMonths budgeting_months,
+                ICSVFile<TOwnedType> pending_file,
+                BudgetItemListData budget_item_list_data)
+            where TOwnedType : ICSVRecord, new();
+        void Add_budgeted_cred_card2_in_out_data_to_pending_file<TOwnedType>(
+                BudgetingMonths budgeting_months,
+                ICSVFile<TOwnedType> pending_file,
+                BudgetItemListData budget_item_list_data)
+            where TOwnedType : ICSVRecord, new();
+
         void Add_budgeted_bank_in_data_to_pending_file(
             BudgetingMonths budgeting_months,
             ICSVFile<BankRecord> pending_file,
