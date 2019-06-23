@@ -41,17 +41,47 @@ namespace ConsoleCatchall.Console.Reconciliation
         private readonly List<string> _reserved_words = new List<string>{"AND","THE","OR","WITH"};
 
         public Reconciliator(
+            IFileIO<TThirdPartyType> third_party_file_io,
+            IFileIO<TOwnedType> owned_file_io,
+            DataLoadingInformation loading_info)
+        {
+            _worksheet_name = loading_info.Sheet_name;
+
+            var third_party_file = new CSVFile<TThirdPartyType>(third_party_file_io);
+            third_party_file.Load();
+
+            var owned_file = new CSVFile<TOwnedType>(owned_file_io);
+            owned_file.Load();
+            
+            Initialise(
+                third_party_file,
+                owned_file,
+                loading_info.Third_party_file_load_action);
+        }
+
+        public Reconciliator(
             ICSVFile<TThirdPartyType> third_party_csv_file,
             ICSVFile<TOwnedType> owned_csv_file,
             ThirdPartyFileLoadAction third_party_file_load_action,
             string worksheet_name = "")
         {
+            _worksheet_name = worksheet_name;
+
+            Initialise(
+                third_party_csv_file,
+                owned_csv_file,
+                third_party_file_load_action);
+        }
+
+        private void Initialise(
+            ICSVFile<TThirdPartyType> third_party_csv_file,
+            ICSVFile<TOwnedType> owned_csv_file,
+            ThirdPartyFileLoadAction third_party_file_load_action)
+        {
             Third_party_data_file = new GenericFile<TThirdPartyType>(third_party_csv_file);
             Owned_data_file = new GenericFile<TOwnedType>(owned_csv_file);
 
             Perform_third_party_file_load_action(third_party_file_load_action, third_party_csv_file);
-
-            _worksheet_name = worksheet_name;
 
             Reset();
         }
