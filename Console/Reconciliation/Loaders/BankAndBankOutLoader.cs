@@ -70,10 +70,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return reconciliator;
         }
 
-        private void Merge_unreconciled_data(
-            ISpreadsheet spreadsheet, 
-            ICSVFile<BankRecord> pending_file,
-            DataLoadingInformation data_loading_info)
+        private void Merge_unreconciled_data<TOwnedType>(
+                ISpreadsheet spreadsheet, 
+                ICSVFile<TOwnedType> pending_file,
+                DataLoadingInformation data_loading_info)
+            where TOwnedType : ICSVRecord, new()
         {
             // Pending file will already exist, having already been split out from phone Notes file by a separate function call.
             // We loaded it up into memory in the previous file-specific method.
@@ -122,10 +123,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info.Annual_budget_data);
         }
 
-        private void Load_pending_data(
-            IFileIO<BankRecord> pending_file_io, 
-            ICSVFile<BankRecord> pending_file, 
-            DataLoadingInformation data_loading_info)
+        private void Load_pending_data<TOwnedType>(
+                IFileIO<TOwnedType> pending_file_io, 
+                ICSVFile<TOwnedType> pending_file, 
+                DataLoadingInformation data_loading_info)
+            where TOwnedType : ICSVRecord, new()
         {
             _input_output.Output_line(ReconConsts.LoadingDataFromPendingFile);
             pending_file_io.Set_file_paths(data_loading_info.File_paths.Main_path, data_loading_info.Pending_file_name);
