@@ -31,7 +31,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
-            var data_loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
+            var data_loading_info = BankAndBankOutData.LoadingInfo;
             data_loading_info.File_paths = main_file_paths;
 
             Load_pending_data(pending_file_io, pending_file, data_loading_info);
