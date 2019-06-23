@@ -231,5 +231,45 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             Assert.AreEqual(loading_info.Third_party_descriptor, reconciliation_interface.Third_party_descriptor);
             Assert.AreEqual(loading_info.Owned_file_descriptor, reconciliation_interface.Owned_file_descriptor);
         }
+
+        [Test]
+        public void Will_call_merge_bespoke_data_with_pending_file_for_passed_in_loader()
+        {
+            // Arrange
+            var loading_info = BankAndBankInData.LoadingInfo;
+            var mock_spreadsheet_repo = FileLoaderTestHelper.Create_mock_spreadsheet_for_loading<BankRecord>(loading_info);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            mock_pending_file.Setup(x => x.Records).Returns(new List<BankRecord>());
+            var mock_third_party_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_third_party_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<ActualBankRecord>());
+            var mock_owned_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_owned_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(new List<BankRecord>());
+            var budgeting_months = new BudgetingMonths();
+            var mock_loader = new Mock<ILoader>();
+            var mock_input_output = new Mock<IInputOutput>();
+            var file_loader = new FileLoader(mock_input_output.Object, new Mock<ISpreadsheetRepoFactory>().Object);
+
+            // Act
+            file_loader.Load(
+                spreadsheet,
+                budgeting_months,
+                loading_info.File_paths,
+                mock_pending_file_io.Object,
+                mock_pending_file.Object,
+                mock_third_party_file_io.Object,
+                mock_owned_file_io.Object,
+                loading_info,
+                mock_loader.Object);
+
+            // Assert 
+            mock_loader.Verify(x => x.Merge_bespoke_data_with_pending_file(
+                mock_input_output.Object,
+                spreadsheet,
+                mock_pending_file.Object,
+                budgeting_months,
+                loading_info));
+        }
     }
 }
