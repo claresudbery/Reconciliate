@@ -82,6 +82,7 @@
     <Compile Include="Reconciliation\Loaders\FileLoaderTestHelper.cs" />
     <Compile Include="Reconciliation\Loaders\BudgetingMonthServiceTests.cs" />
     <Compile Include="Reconciliation\Loaders\BudgetingMonthServiceTestsSelfShunt.cs" />
+    <Compile Include="Reconciliation\Loaders\FileLoaderTests.cs" />
     <Compile Include="Reconciliation\Matchers\BankAndBankInMatcherTests.cs" />
     <Compile Include="Reconciliation\Matchers\BankAndBankInMatcherTestsSelfShunt.cs" />
     <Compile Include="Reconciliation\Records\ExpectedIncomeRecordTests.cs" />
