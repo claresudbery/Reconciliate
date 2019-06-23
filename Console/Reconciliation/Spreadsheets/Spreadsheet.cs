@@ -142,68 +142,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 budget_item_list_data.Last_column_number);
         }
 
-
-
-        public List<BankRecord> Get_all_monthly_bank_in_budget_items(BudgetItemListData budget_item_list_data)
-        {
-            int first_row_number = _spreadsheet_io
-                                       .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.Start_divider) + 1;
-            int last_row_number = _spreadsheet_io
-                                      .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.End_divider) - 1;
-
-            return _spreadsheet_io.Get_rows_as_records<BankRecord>(
-                budget_item_list_data.Sheet_name,
-                first_row_number,
-                last_row_number,
-                budget_item_list_data.First_column_number,
-                budget_item_list_data.Last_column_number);
-        }
-
-        public List<BankRecord> Get_all_monthly_bank_out_budget_items(BudgetItemListData budget_item_list_data)
-        {
-            int first_row_number = _spreadsheet_io
-                                     .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.Start_divider) + 1;
-            int last_row_number = _spreadsheet_io
-                                    .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.End_divider) - 1;
-
-            return _spreadsheet_io.Get_rows_as_records<BankRecord>(
-                budget_item_list_data.Sheet_name,
-                first_row_number,
-                last_row_number,
-                budget_item_list_data.First_column_number,
-                budget_item_list_data.Last_column_number);
-        }
-
-        public List<CredCard1InOutRecord> Get_all_monthly_cred_card1_budget_items(BudgetItemListData budget_item_list_data)
-        {
-            int first_row_number = _spreadsheet_io
-                                     .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.Start_divider) + 1;
-            int last_row_number = _spreadsheet_io
-                                    .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.End_divider) - 1;
-
-            return _spreadsheet_io.Get_rows_as_records<CredCard1InOutRecord>(
-                budget_item_list_data.Sheet_name,
-                first_row_number,
-                last_row_number,
-                budget_item_list_data.First_column_number,
-                budget_item_list_data.Last_column_number);
-        }
-
-        public List<CredCard2InOutRecord> Get_all_monthly_cred_card2_budget_items(BudgetItemListData budget_item_list_data)
-        {
-            int first_row_number = _spreadsheet_io
-                                     .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.Start_divider) + 1;
-            int last_row_number = _spreadsheet_io
-                                    .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.End_divider) - 1;
-
-            return _spreadsheet_io.Get_rows_as_records<CredCard2InOutRecord>(
-                budget_item_list_data.Sheet_name,
-                first_row_number,
-                last_row_number,
-                budget_item_list_data.First_column_number,
-                budget_item_list_data.Last_column_number);
-        }
-
         public List<TRecordType> Get_all_annual_budget_items<TRecordType>(BudgetItemListData budget_item_list_data)
             where TRecordType : ICSVRecord, new()
         {
