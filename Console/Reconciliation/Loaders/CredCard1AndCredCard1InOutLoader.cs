@@ -8,7 +8,7 @@ using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
-    internal class CredCard1AndCredCard1InOutLoader
+    internal class CredCard1AndCredCard1InOutLoader : ILoader
     {
         private readonly IInputOutput _input_output;
         private readonly ISpreadsheetRepoFactory _spreadsheet_factory;

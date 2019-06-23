@@ -7,7 +7,7 @@ using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
-    internal class BankAndBankOutLoader
+    internal class BankAndBankOutLoader : ILoader
     {
         private readonly IInputOutput _input_output;
         private readonly ISpreadsheetRepoFactory _spreadsheet_factory;
