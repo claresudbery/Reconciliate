@@ -39,7 +39,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             Merge_budget_data(spreadsheet, budgeting_months, pending_file, data_loading_info);
             Merge_other_data(spreadsheet, budgeting_months, pending_file, data_loading_info);
             Merge_unreconciled_data(spreadsheet, pending_file, data_loading_info);
-            var reconciliator = Load_third_party_and_owned_files_into_reconciliator_reconciliator(third_party_file_io, owned_file_io, data_loading_info);
+            var reconciliator = Load_third_party_and_owned_files_into_reconciliator(third_party_file_io, owned_file_io, data_loading_info);
             var reconciliation_interface = Create_reconciliation_interface(reconciliator, data_loading_info);
 
             return reconciliation_interface;
@@ -59,7 +59,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info.Owned_file_descriptor);
         }
 
-        private CredCard2Reconciliator<TThirdPartyType, TOwnedType> Load_third_party_and_owned_files_into_reconciliator_reconciliator<TThirdPartyType, TOwnedType>(
+        private CredCard2Reconciliator<TThirdPartyType, TOwnedType> Load_third_party_and_owned_files_into_reconciliator<TThirdPartyType, TOwnedType>(
                 IFileIO<TThirdPartyType> third_party_file_io, 
                 IFileIO<TOwnedType> owned_file_io, 
                 DataLoadingInformation data_loading_info)
