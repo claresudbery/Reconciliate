@@ -215,14 +215,27 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         }
 
         public void Add_budgeted_monthly_data_to_pending_file<TOwnedType>(
-            BudgetingMonths budgeting_months,
-            ICSVFile<TOwnedType> pending_file,
-            BudgetItemListData budget_item_list_data)
+                BudgetingMonths budgeting_months,
+                ICSVFile<TOwnedType> pending_file,
+                BudgetItemListData monthly_budget_item_list_data)
             where TOwnedType : ICSVRecord, new()
         {
-            var base_records = Get_all_budget_items<TOwnedType>(budget_item_list_data);
+            var monthly_records = Get_all_budget_items<TOwnedType>(monthly_budget_item_list_data);
             Add_records_to_pending_file_for_every_specified_month(
-                base_records,
+                monthly_records,
+                pending_file,
+                budgeting_months);
+        }
+
+        public void Add_budgeted_annual_data_to_pending_file<TOwnedType>(
+                BudgetingMonths budgeting_months,
+                ICSVFile<TOwnedType> pending_file,
+                BudgetItemListData annual_budget_item_list_data)
+            where TOwnedType : ICSVRecord, new()
+        {
+            var annual_records = Get_all_budget_items<TOwnedType>(annual_budget_item_list_data);
+            Add_records_to_pending_file_for_records_that_have_matching_months(
+                annual_records,
                 pending_file,
                 budgeting_months);
         }

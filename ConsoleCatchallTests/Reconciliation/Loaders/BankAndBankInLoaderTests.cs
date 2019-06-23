@@ -114,7 +114,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_owned_file_io.Object);
 
             // Assert 
-            mock_spreadsheet.Verify(x => x.Add_budgeted_bank_in_data_to_pending_file(
+            mock_spreadsheet.Verify(x => x.Add_budgeted_monthly_data_to_pending_file(
                 budgeting_months, 
                 mock_pending_file.Object, 
                 loading_info.Monthly_budget_data));

@@ -157,10 +157,13 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_owned_file_io.Object);
 
             // Assert 
-            mock_spreadsheet.Verify(x => x.Add_budgeted_bank_out_data_to_pending_file(
+            mock_spreadsheet.Verify(x => x.Add_budgeted_monthly_data_to_pending_file(
                 budgeting_months, 
                 mock_pending_file.Object, 
-                loading_info.Monthly_budget_data, 
+                loading_info.Monthly_budget_data));
+            mock_spreadsheet.Verify(x => x.Add_budgeted_annual_data_to_pending_file(
+                budgeting_months,
+                mock_pending_file.Object,
                 loading_info.Annual_budget_data));
             mock_spreadsheet.Verify(x => x.Add_unreconciled_rows_to_csv_file(loading_info.Sheet_name, mock_pending_file.Object));
         }
