@@ -108,11 +108,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info);
         }
 
-        private void Merge_budget_data(
-            ISpreadsheet spreadsheet, 
-            BudgetingMonths budgeting_months, 
-            ICSVFile<CredCard1InOutRecord> pending_file,
-            DataLoadingInformation data_loading_info)
+        private void Merge_budget_data<TOwnedType>(
+                ISpreadsheet spreadsheet,
+                BudgetingMonths budgeting_months,
+                ICSVFile<TOwnedType> pending_file,
+                DataLoadingInformation data_loading_info)
+            where TOwnedType : ICSVRecord, new()
         {
             _input_output.Output_line(ReconConsts.MergingBudgetDataWithPendingData);
             spreadsheet.Add_budgeted_cred_card1_in_out_data_to_pending_file(
