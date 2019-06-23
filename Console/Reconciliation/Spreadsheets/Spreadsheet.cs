@@ -399,61 +399,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 budgeting_months);
         }
 
-        public void Add_budgeted_bank_in_data_to_pending_file(
-            BudgetingMonths budgeting_months,
-            ICSVFile<BankRecord> pending_file,
-            BudgetItemListData budget_item_list_data)
-        {
-            var base_records = Get_all_monthly_bank_in_budget_items(budget_item_list_data);
-            Add_records_to_pending_file_for_every_specified_month(
-                base_records,
-                pending_file,
-                budgeting_months);
-        }
-
-        public void Add_budgeted_bank_out_data_to_pending_file(
-            BudgetingMonths budgeting_months,
-            ICSVFile<BankRecord> pending_file,
-            BudgetItemListData monthly_budget_item_list_data,
-            BudgetItemListData annual_budget_item_list_data)
-        {
-            var monthly_records = Get_all_monthly_bank_out_budget_items(monthly_budget_item_list_data);
-            Add_records_to_pending_file_for_every_specified_month(
-                monthly_records,
-                pending_file,
-                budgeting_months);
-
-            var annual_records = Get_all_annual_budget_items<BankRecord>(annual_budget_item_list_data);
-            Add_records_to_pending_file_for_records_that_have_matching_months(
-                annual_records,
-                pending_file,
-                budgeting_months);
-        }
-
-        public void Add_budgeted_cred_card1_in_out_data_to_pending_file(
-            BudgetingMonths budgeting_months,
-            ICSVFile<CredCard1InOutRecord> pending_file,
-            BudgetItemListData budget_item_list_data)
-        {
-            var base_records = Get_all_monthly_cred_card1_budget_items(budget_item_list_data);
-            Add_records_to_pending_file_for_every_specified_month(
-                base_records,
-                pending_file,
-                budgeting_months);
-        }
-
-        public void Add_budgeted_cred_card2_in_out_data_to_pending_file(
-            BudgetingMonths budgeting_months,
-            ICSVFile<CredCard2InOutRecord> pending_file,
-            BudgetItemListData budget_item_list_data)
-        {
-            var base_records = Get_all_monthly_cred_card2_budget_items(budget_item_list_data);
-            Add_records_to_pending_file_for_every_specified_month(
-                base_records,
-                pending_file,
-                budgeting_months);
-        }
-
         private void Add_records_to_pending_file_for_every_specified_month<TRecordType>(
                 IEnumerable<TRecordType> base_records, 
                 ICSVFile<TRecordType> pending_file,

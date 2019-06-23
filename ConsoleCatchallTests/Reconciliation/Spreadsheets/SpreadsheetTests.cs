@@ -710,7 +710,11 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             };
 
             // Act
-            spreadsheet.Add_budgeted_bank_out_data_to_pending_file(budgeting_months, mock_pending_file.Object, monthly_budget_item_list_data, annual_budget_item_list_data);
+            spreadsheet.Add_budgeted_bank_out_data_to_pending_file<BankRecord>(
+                budgeting_months, 
+                mock_pending_file.Object, 
+                monthly_budget_item_list_data, 
+                annual_budget_item_list_data);
 
             // Assert
             Assert.AreEqual(2, pending_file_records.Count, "total num records");
@@ -772,7 +776,11 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             };
 
             // Act
-            spreadsheet.Add_budgeted_bank_out_data_to_pending_file(budget_data_setup.BudgetingMonths, mock_pending_file.Object, monthly_budget_item_list_data, annual_budget_item_list_data);
+            spreadsheet.Add_budgeted_bank_out_data_to_pending_file<BankRecord>(
+                budget_data_setup.BudgetingMonths, 
+                mock_pending_file.Object, 
+                monthly_budget_item_list_data, 
+                annual_budget_item_list_data);
 
             // Assert
             Assert_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged<BankRecord>(
@@ -818,7 +826,10 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             };
 
             // Act
-            spreadsheet.Add_budgeted_bank_in_data_to_pending_file(budget_data_setup.BudgetingMonths, mock_pending_file.Object, budget_item_list_data);
+            spreadsheet.Add_budgeted_bank_in_data_to_pending_file<BankRecord>(
+                budget_data_setup.BudgetingMonths, 
+                mock_pending_file.Object, 
+                budget_item_list_data);
 
             // Assert
             Assert_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged<BankRecord>(
@@ -864,7 +875,10 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             };
 
             // Act
-            spreadsheet.Add_budgeted_cred_card1_in_out_data_to_pending_file(budget_data_setup.BudgetingMonths, mock_pending_file.Object, budget_item_list_data);
+            spreadsheet.Add_budgeted_cred_card1_in_out_data_to_pending_file<CredCard1InOutRecord>(
+                budget_data_setup.BudgetingMonths, 
+                mock_pending_file.Object, 
+                budget_item_list_data);
 
             // Assert
             Assert_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged<CredCard1InOutRecord>(
@@ -910,7 +924,10 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             };
 
             // Act
-            spreadsheet.Add_budgeted_cred_card2_in_out_data_to_pending_file(budget_data_setup.BudgetingMonths, mock_pending_file.Object, budget_item_list_data);
+            spreadsheet.Add_budgeted_cred_card2_in_out_data_to_pending_file<CredCard2InOutRecord>(
+                budget_data_setup.BudgetingMonths, 
+                mock_pending_file.Object, 
+                budget_item_list_data);
 
             // Assert
             Assert_WillAddAllMonthlyItemsToPendingFile_WithMonthsAndYearsChanged<CredCard2InOutRecord>(
@@ -979,7 +996,11 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             };
 
             // Act
-            spreadsheet.Add_budgeted_bank_out_data_to_pending_file(budget_data_setup.BudgetingMonths, pending_file, monthly_budget_item_list_data, annual_budget_item_list_data);
+            spreadsheet.Add_budgeted_bank_out_data_to_pending_file<BankRecord>(
+                budget_data_setup.BudgetingMonths, 
+                pending_file, 
+                monthly_budget_item_list_data, 
+                annual_budget_item_list_data);
 
             // Assert
             BankRecord previous_record = null;
@@ -1029,7 +1050,10 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             };
 
             // Act
-            spreadsheet.Add_budgeted_bank_in_data_to_pending_file(budget_data_setup.BudgetingMonths, pending_file, budget_item_list_data);
+            spreadsheet.Add_budgeted_bank_in_data_to_pending_file<BankRecord>(
+                budget_data_setup.BudgetingMonths, 
+                pending_file, 
+                budget_item_list_data);
 
             // Assert
             BankRecord previous_record = null;
@@ -1079,7 +1103,10 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             };
 
             // Act
-            spreadsheet.Add_budgeted_cred_card1_in_out_data_to_pending_file(budget_data_setup.BudgetingMonths, pending_file, budget_item_list_data);
+            spreadsheet.Add_budgeted_cred_card1_in_out_data_to_pending_file<CredCard1InOutRecord>(
+                budget_data_setup.BudgetingMonths, 
+                pending_file, 
+                budget_item_list_data);
 
             // Assert
             CredCard1InOutRecord previous_record = null;
@@ -1129,7 +1156,10 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             };
 
             // Act
-            spreadsheet.Add_budgeted_cred_card2_in_out_data_to_pending_file(budget_data_setup.BudgetingMonths, pending_file, budget_item_list_data);
+            spreadsheet.Add_budgeted_cred_card2_in_out_data_to_pending_file<CredCard2InOutRecord>(
+                budget_data_setup.BudgetingMonths, 
+                pending_file, 
+                budget_item_list_data);
 
             // Assert
             CredCard2InOutRecord previous_record = null;
@@ -1177,7 +1207,10 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             // Act
             try
             {
-                spreadsheet.Add_budgeted_bank_in_data_to_pending_file(budget_data_setup.BudgetingMonths, mock_pending_file.Object, budget_item_list_data);
+                spreadsheet.Add_budgeted_bank_in_data_to_pending_file<BankRecord>(
+                    budget_data_setup.BudgetingMonths, 
+                    mock_pending_file.Object, 
+                    budget_item_list_data);
             }
             catch (Exception)
             {
