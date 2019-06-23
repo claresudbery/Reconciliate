@@ -78,7 +78,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             return csv_file;
         }
 
-        public List<TOwnedType> Get_all_monthly_budget_items<TOwnedType>(BudgetItemListData budget_item_list_data)
+        public List<TOwnedType> Get_all_budget_items<TOwnedType>(BudgetItemListData budget_item_list_data)
             where TOwnedType : ICSVRecord, new()
         {
             int first_row_number = _spreadsheet_io
@@ -87,22 +87,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                                       .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.End_divider) - 1;
 
             return _spreadsheet_io.Get_rows_as_records<TOwnedType>(
-                budget_item_list_data.Sheet_name,
-                first_row_number,
-                last_row_number,
-                budget_item_list_data.First_column_number,
-                budget_item_list_data.Last_column_number);
-        }
-
-        public List<TRecordType> Get_all_annual_budget_items<TRecordType>(BudgetItemListData budget_item_list_data)
-            where TRecordType : ICSVRecord, new()
-        {
-            int first_row_number = _spreadsheet_io
-                                     .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.Start_divider) + 1;
-            int last_row_number = _spreadsheet_io
-                                    .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.End_divider) - 1;
-
-            return _spreadsheet_io.Get_rows_as_records<TRecordType>(
                 budget_item_list_data.Sheet_name,
                 first_row_number,
                 last_row_number,
@@ -230,13 +214,26 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             return bank_record.Description;
         }
 
+        public void Add_budgeted_monthly_data_to_pending_file<TOwnedType>(
+            BudgetingMonths budgeting_months,
+            ICSVFile<TOwnedType> pending_file,
+            BudgetItemListData budget_item_list_data)
+            where TOwnedType : ICSVRecord, new()
+        {
+            var base_records = Get_all_budget_items<TOwnedType>(budget_item_list_data);
+            Add_records_to_pending_file_for_every_specified_month(
+                base_records,
+                pending_file,
+                budgeting_months);
+        }
+
         public void Add_budgeted_bank_in_data_to_pending_file<TOwnedType>(
                 BudgetingMonths budgeting_months,
                 ICSVFile<TOwnedType> pending_file,
                 BudgetItemListData budget_item_list_data)
             where TOwnedType : ICSVRecord, new()
         {
-            var base_records = Get_all_monthly_budget_items<TOwnedType>(budget_item_list_data);
+            var base_records = Get_all_budget_items<TOwnedType>(budget_item_list_data);
             Add_records_to_pending_file_for_every_specified_month(
                 base_records,
                 pending_file,
@@ -250,13 +247,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 BudgetItemListData annual_budget_item_list_data)
             where TOwnedType : ICSVRecord, new()
         {
-            var monthly_records = Get_all_monthly_budget_items<TOwnedType>(monthly_budget_item_list_data);
+            var monthly_records = Get_all_budget_items<TOwnedType>(monthly_budget_item_list_data);
             Add_records_to_pending_file_for_every_specified_month(
                 monthly_records,
                 pending_file,
                 budgeting_months);
 
-            var annual_records = Get_all_annual_budget_items<TOwnedType>(annual_budget_item_list_data);
+            var annual_records = Get_all_budget_items<TOwnedType>(annual_budget_item_list_data);
             Add_records_to_pending_file_for_records_that_have_matching_months(
                 annual_records,
                 pending_file,
@@ -269,7 +266,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 BudgetItemListData budget_item_list_data)
             where TOwnedType : ICSVRecord, new()
         {
-            var base_records = Get_all_monthly_budget_items<TOwnedType>(budget_item_list_data);
+            var base_records = Get_all_budget_items<TOwnedType>(budget_item_list_data);
             Add_records_to_pending_file_for_every_specified_month(
                 base_records,
                 pending_file,
@@ -282,7 +279,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 BudgetItemListData budget_item_list_data)
             where TOwnedType : ICSVRecord, new()
         {
-            var base_records = Get_all_monthly_budget_items<TOwnedType>(budget_item_list_data);
+            var base_records = Get_all_budget_items<TOwnedType>(budget_item_list_data);
             Add_records_to_pending_file_for_every_specified_month(
                 base_records,
                 pending_file,
