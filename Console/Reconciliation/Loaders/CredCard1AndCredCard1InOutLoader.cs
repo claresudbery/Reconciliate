@@ -93,11 +93,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output.Output_line(ReconConsts.StuffIsHappening);
         }
 
-        private void Merge_other_data(
-            ISpreadsheet spreadsheet, 
-            BudgetingMonths budgeting_months, 
-            ICSVFile<CredCard1InOutRecord> pending_file,
-            DataLoadingInformation data_loading_info)
+        private void Merge_other_data<TOwnedType>(
+                ISpreadsheet spreadsheet, 
+                BudgetingMonths budgeting_months, 
+                ICSVFile<TOwnedType> pending_file,
+                DataLoadingInformation data_loading_info)
+            where TOwnedType : ICSVRecord, new()
         {
             _input_output.Output_line(ReconConsts.MergingBespokeData);
             Merge_bespoke_data_with_pending_file(
@@ -136,12 +137,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info.Loading_separator);
         }
 
-        public void Merge_bespoke_data_with_pending_file(
-            IInputOutput input_output,
-            ISpreadsheet spreadsheet,
-            ICSVFile<CredCard1InOutRecord> pending_file,
-            BudgetingMonths budgeting_months,
-            DataLoadingInformation data_loading_info)
+        public void Merge_bespoke_data_with_pending_file<TOwnedType>(
+                IInputOutput input_output,
+                ISpreadsheet spreadsheet,
+                ICSVFile<TOwnedType> pending_file,
+                BudgetingMonths budgeting_months,
+                DataLoadingInformation data_loading_info)
+            where TOwnedType : ICSVRecord, new()
         {
             var most_recent_cred_card_direct_debit = spreadsheet.Get_most_recent_row_containing_text<BankRecord>(
                 MainSheetNames.Bank_out,
@@ -159,7 +161,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             {
                 if (double.TryParse(input, out new_balance))
                 {
-                    pending_file.Records.Add(new CredCard1InOutRecord
+                    ((ICSVFile<CredCard1InOutRecord>)(pending_file)).Records.Add(new CredCard1InOutRecord
                     {
                         Date = next_date,
                         Description = ReconConsts.Cred_card1_regular_pymt_description,

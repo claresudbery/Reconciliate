@@ -91,11 +91,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output.Output_line(ReconConsts.StuffIsHappening);
         }
 
-        private void Merge_other_data(
-            ISpreadsheet spreadsheet, 
-            BudgetingMonths budgeting_months, 
-            ICSVFile<BankRecord> pending_file,
-            DataLoadingInformation data_loading_info)
+        private void Merge_other_data<TOwnedType>(
+                ISpreadsheet spreadsheet, 
+                BudgetingMonths budgeting_months, 
+                ICSVFile<TOwnedType> pending_file,
+                DataLoadingInformation data_loading_info)
+            where TOwnedType : ICSVRecord, new()
         {
             _input_output.Output_line(ReconConsts.MergingBespokeData);
             Merge_bespoke_data_with_pending_file(
@@ -134,12 +135,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info.Loading_separator);
         }
 
-        public void Merge_bespoke_data_with_pending_file(
-            IInputOutput input_output,
-            ISpreadsheet spreadsheet,
-            ICSVFile<BankRecord> pending_file,
-            BudgetingMonths budgeting_months,
-            DataLoadingInformation loading_info)
+        public void Merge_bespoke_data_with_pending_file<TOwnedType>(
+                IInputOutput input_output,
+                ISpreadsheet spreadsheet,
+                ICSVFile<TOwnedType> pending_file,
+                BudgetingMonths budgeting_months,
+                DataLoadingInformation loading_info)
+            where TOwnedType : ICSVRecord, new()
         {
             input_output.Output_line(ReconConsts.Loading_expenses);
             var expected_income_file_io = new FileIO<ExpectedIncomeRecord>(new FakeSpreadsheetRepoFactory());
@@ -149,7 +151,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             spreadsheet.Add_unreconciled_rows_to_csv_file<ExpectedIncomeRecord>(MainSheetNames.Expected_in, expected_income_file.File);
             expected_income_csv_file.Populate_source_records_from_records();
             expected_income_file.Filter_for_employer_expenses_only();
-            expected_income_file.Copy_to_pending_file(pending_file);
+            expected_income_file.Copy_to_pending_file((ICSVFile<BankRecord>)pending_file);
             expected_income_csv_file.Populate_records_from_original_file_load();
         }
     }

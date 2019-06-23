@@ -91,11 +91,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output.Output_line(ReconConsts.StuffIsHappening);
         }
 
-        private void Merge_other_data(
-            ISpreadsheet spreadsheet, 
-            BudgetingMonths budgeting_months, 
-            ICSVFile<BankRecord> pending_file,
-            DataLoadingInformation data_loading_info)
+        private void Merge_other_data<TOwnedType>(
+                ISpreadsheet spreadsheet, 
+                BudgetingMonths budgeting_months, 
+                ICSVFile<TOwnedType> pending_file,
+                DataLoadingInformation data_loading_info)
+            where TOwnedType : ICSVRecord, new()
         {
             _input_output.Output_line(ReconConsts.MergingBespokeData);
             Merge_bespoke_data_with_pending_file(
@@ -135,24 +136,25 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 data_loading_info.Loading_separator);
         }
 
-        public void Merge_bespoke_data_with_pending_file(
-            IInputOutput input_output,
-            ISpreadsheet spreadsheet,
-            ICSVFile<BankRecord> pending_file,
-            BudgetingMonths budgeting_months,
-            DataLoadingInformation loading_info)
+        public void Merge_bespoke_data_with_pending_file<TOwnedType>(
+                IInputOutput input_output,
+                ISpreadsheet spreadsheet,
+                ICSVFile<TOwnedType> pending_file,
+                BudgetingMonths budgeting_months,
+                DataLoadingInformation loading_info)
+            where TOwnedType : ICSVRecord, new()
         {
             Add_most_recent_credit_card_direct_debits(
                 input_output,
                 spreadsheet,
-                pending_file,
+                (ICSVFile<BankRecord>)pending_file,
                 ReconConsts.Cred_card1_name,
                 ReconConsts.Cred_card1_dd_description);
 
             Add_most_recent_credit_card_direct_debits(
                 input_output,
                 spreadsheet,
-                pending_file,
+                (ICSVFile<BankRecord>)pending_file,
                 ReconConsts.Cred_card2_name,
                 ReconConsts.Cred_card2_dd_description);
         }
