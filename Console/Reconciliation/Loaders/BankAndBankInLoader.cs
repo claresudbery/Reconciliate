@@ -43,28 +43,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return reconciliation_interface;
         }
 
-        public ReconciliationInterface Load(
-                ISpreadsheet spreadsheet,
-                BudgetingMonths budgeting_months,
-                FilePaths main_file_paths,
-                IFileIO<BankRecord> pending_file_io,
-                ICSVFile<BankRecord> pending_file,
-                IFileIO<ActualBankRecord> third_party_file_io,
-                IFileIO<BankRecord> owned_file_io)
-        {
-            var data_loading_info = BankAndBankInData.LoadingInfo;
-            data_loading_info.File_paths = main_file_paths;
-
-            Load_pending_data(pending_file_io, pending_file, data_loading_info);
-            Merge_budget_data(spreadsheet, budgeting_months, pending_file, data_loading_info);
-            Merge_other_data(spreadsheet, budgeting_months, pending_file, data_loading_info);
-            Merge_unreconciled_data(spreadsheet, pending_file, data_loading_info);
-            var reconciliator = Load_third_party_and_owned_files_into_reconciliator_reconciliator(third_party_file_io, owned_file_io, data_loading_info);
-            var reconciliation_interface = Create_reconciliation_interface(reconciliator, data_loading_info);
-
-            return reconciliation_interface;
-        }
-
         private ReconciliationInterface Create_reconciliation_interface<TThirdPartyType, TOwnedType>(
                 BankReconciliator<TThirdPartyType, TOwnedType> reconciliator, 
                 DataLoadingInformation data_loading_info)
