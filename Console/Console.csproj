@@ -48,9 +48,6 @@
     <Compile Include="Reconciliation\Loaders\DummyLoader.cs" />
     <Compile Include="Reconciliation\Loaders\FileLoader.cs" />
     <Compile Include="Reconciliation\ReconciliationType.cs" />
-    <Compile Include="Reconciliation\Reconciliators\BankReconciliator.cs" />
-    <Compile Include="Reconciliation\Reconciliators\CredCard1Reconciliator.cs" />
-    <Compile Include="Reconciliation\Reconciliators\CredCard2Reconciliator.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\FakeRowNumbersForCell.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\FakeRowNumbersForText.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\FakeRows.cs" />
