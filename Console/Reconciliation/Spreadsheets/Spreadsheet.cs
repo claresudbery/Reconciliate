@@ -78,61 +78,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             return csv_file;
         }
 
-        public List<TOwnedType> Get_all_monthly_bank_in_budget_items<TOwnedType>(BudgetItemListData budget_item_list_data)
+        public List<TOwnedType> Get_all_monthly_budget_items<TOwnedType>(BudgetItemListData budget_item_list_data)
             where TOwnedType : ICSVRecord, new()
         {
             int first_row_number = _spreadsheet_io
-                                     .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.Start_divider) + 1;
+                                       .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.Start_divider) + 1;
             int last_row_number = _spreadsheet_io
-                                    .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.End_divider) - 1;
-
-            return _spreadsheet_io.Get_rows_as_records<TOwnedType>(
-                budget_item_list_data.Sheet_name,
-                first_row_number,
-                last_row_number,
-                budget_item_list_data.First_column_number,
-                budget_item_list_data.Last_column_number);
-        }
-
-        public List<TOwnedType> Get_all_monthly_bank_out_budget_items<TOwnedType>(BudgetItemListData budget_item_list_data)
-            where TOwnedType : ICSVRecord, new()
-        {
-            int first_row_number = _spreadsheet_io
-                                     .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.Start_divider) + 1;
-            int last_row_number = _spreadsheet_io
-                                    .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.End_divider) - 1;
-
-            return _spreadsheet_io.Get_rows_as_records<TOwnedType>(
-                budget_item_list_data.Sheet_name,
-                first_row_number,
-                last_row_number,
-                budget_item_list_data.First_column_number,
-                budget_item_list_data.Last_column_number);
-        }
-
-        public List<TOwnedType> Get_all_monthly_cred_card1_budget_items<TOwnedType>(BudgetItemListData budget_item_list_data)
-            where TOwnedType : ICSVRecord, new()
-        {
-            int first_row_number = _spreadsheet_io
-                                     .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.Start_divider) + 1;
-            int last_row_number = _spreadsheet_io
-                                    .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.End_divider) - 1;
-
-            return _spreadsheet_io.Get_rows_as_records<TOwnedType>(
-                budget_item_list_data.Sheet_name,
-                first_row_number,
-                last_row_number,
-                budget_item_list_data.First_column_number,
-                budget_item_list_data.Last_column_number);
-        }
-
-        public List<TOwnedType> Get_all_monthly_cred_card2_budget_items<TOwnedType>(BudgetItemListData budget_item_list_data)
-            where TOwnedType : ICSVRecord, new()
-        {
-            int first_row_number = _spreadsheet_io
-                                     .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.Start_divider) + 1;
-            int last_row_number = _spreadsheet_io
-                                    .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.End_divider) - 1;
+                                      .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.End_divider) - 1;
 
             return _spreadsheet_io.Get_rows_as_records<TOwnedType>(
                 budget_item_list_data.Sheet_name,
@@ -284,7 +236,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 BudgetItemListData budget_item_list_data)
             where TOwnedType : ICSVRecord, new()
         {
-            var base_records = Get_all_monthly_bank_in_budget_items<TOwnedType>(budget_item_list_data);
+            var base_records = Get_all_monthly_budget_items<TOwnedType>(budget_item_list_data);
             Add_records_to_pending_file_for_every_specified_month(
                 base_records,
                 pending_file,
@@ -298,7 +250,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 BudgetItemListData annual_budget_item_list_data)
             where TOwnedType : ICSVRecord, new()
         {
-            var monthly_records = Get_all_monthly_bank_out_budget_items<TOwnedType>(monthly_budget_item_list_data);
+            var monthly_records = Get_all_monthly_budget_items<TOwnedType>(monthly_budget_item_list_data);
             Add_records_to_pending_file_for_every_specified_month(
                 monthly_records,
                 pending_file,
@@ -317,7 +269,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 BudgetItemListData budget_item_list_data)
             where TOwnedType : ICSVRecord, new()
         {
-            var base_records = Get_all_monthly_cred_card1_budget_items<TOwnedType>(budget_item_list_data);
+            var base_records = Get_all_monthly_budget_items<TOwnedType>(budget_item_list_data);
             Add_records_to_pending_file_for_every_specified_month(
                 base_records,
                 pending_file,
@@ -330,7 +282,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
                 BudgetItemListData budget_item_list_data)
             where TOwnedType : ICSVRecord, new()
         {
-            var base_records = Get_all_monthly_cred_card2_budget_items<TOwnedType>(budget_item_list_data);
+            var base_records = Get_all_monthly_budget_items<TOwnedType>(budget_item_list_data);
             Add_records_to_pending_file_for_every_specified_month(
                 base_records,
                 pending_file,

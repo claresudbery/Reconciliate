@@ -255,7 +255,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            spreadsheet.Get_all_monthly_bank_out_budget_items<BankRecord>(budget_item_list_data);
+            spreadsheet.Get_all_monthly_budget_items<BankRecord>(budget_item_list_data);
 
             // Assert
             mock_spreadsheet_repo.Verify(x => x.Get_rows_as_records<BankRecord>(
@@ -290,7 +290,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            spreadsheet.Get_all_monthly_bank_in_budget_items<BankRecord>(budget_item_list_data);
+            spreadsheet.Get_all_monthly_budget_items<BankRecord>(budget_item_list_data);
 
             // Assert
             mock_spreadsheet_repo.Verify(x => x.Get_rows_as_records<BankRecord>(
@@ -325,7 +325,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            spreadsheet.Get_all_monthly_cred_card1_budget_items<CredCard1InOutRecord>(budget_item_list_data);
+            spreadsheet.Get_all_monthly_budget_items<CredCard1InOutRecord>(budget_item_list_data);
 
             // Assert
             mock_spreadsheet_repo.Verify(x => x.Get_rows_as_records<CredCard1InOutRecord>(
@@ -360,7 +360,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
 
             // Act
-            spreadsheet.Get_all_monthly_cred_card2_budget_items<CredCard2InOutRecord>(budget_item_list_data);
+            spreadsheet.Get_all_monthly_budget_items<CredCard2InOutRecord>(budget_item_list_data);
 
             // Assert
             mock_spreadsheet_repo.Verify(x => x.Get_rows_as_records<CredCard2InOutRecord>(
