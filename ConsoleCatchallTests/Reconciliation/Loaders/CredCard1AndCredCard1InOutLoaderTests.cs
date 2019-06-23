@@ -87,7 +87,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                     new Mock<IFileIO<CredCard1InOutRecord>>().Object,
                     mock_pending_file.Object,
                     mock_third_party_file_io.Object,
-                    mock_owned_file_io.Object);
+                    mock_owned_file_io.Object,
+                    loading_info);
             }
             catch (DirectoryNotFoundException)
             {
@@ -126,7 +127,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 new Mock<IFileIO<CredCard1InOutRecord>>().Object,
                 mock_pending_file.Object,
                 mock_third_party_file_io.Object,
-                mock_owned_file_io.Object);
+                mock_owned_file_io.Object,
+                loading_info);
 
             // Assert
             mock_spreadsheet
@@ -159,7 +161,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 new Mock<IFileIO<CredCard1InOutRecord>>().Object,
                 mock_pending_file.Object,
                 mock_third_party_file_io.Object,
-                mock_owned_file_io.Object);
+                mock_owned_file_io.Object,
+                loading_info);
 
             // Assert 
             mock_spreadsheet.Verify(x => x.Add_budgeted_monthly_data_to_pending_file(
@@ -194,7 +197,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 new Mock<IFileIO<CredCard1InOutRecord>>().Object,
                 mock_pending_file.Object,
                 mock_third_party_file_io.Object,
-                mock_owned_file_io.Object);
+                mock_owned_file_io.Object,
+                loading_info);
 
             // Assert 
             mock_pending_file.Verify(x => x.Load(true, loading_info.Default_separator, true));
@@ -229,7 +233,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_pending_file_io.Object,
                 mock_pending_file.Object,
                 mock_third_party_file_io.Object,
-                mock_owned_file_io.Object);
+                mock_owned_file_io.Object,
+                loading_info);
 
             // Assert 
             mock_pending_file_io.Verify(x => x.Set_file_paths(loading_info.File_paths.Main_path, loading_info.Pending_file_name));
@@ -262,7 +267,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 new Mock<IFileIO<CredCard1InOutRecord>>().Object,
                 mock_pending_file.Object,
                 mock_third_party_file_io.Object,
-                mock_owned_file_io.Object);
+                mock_owned_file_io.Object,
+                loading_info);
 
             // Assert 
             Assert.AreEqual(loading_info.Third_party_descriptor, reconciliation_interface.Third_party_descriptor);

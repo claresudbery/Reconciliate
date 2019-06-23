@@ -26,13 +26,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 ICSVFile<TOwnedType> pending_file,
                 IFileIO<TThirdPartyType> third_party_file_io,
                 IFileIO<TOwnedType> owned_file_io,
-                DataLoadingInformation data_loading_info_new = null)
+                DataLoadingInformation data_loading_info)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
-            var data_loading_info = BankAndBankOutData.LoadingInfo;
             data_loading_info.File_paths = main_file_paths;
-
             Load_pending_data(pending_file_io, pending_file, data_loading_info);
             Merge_budget_data(spreadsheet, budgeting_months, pending_file, data_loading_info);
             Merge_other_data(spreadsheet, budgeting_months, pending_file, data_loading_info);
