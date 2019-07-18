@@ -3,9 +3,9 @@
 # This script makes sure the most up to date versions of .Net Framework files are in the DotNetEnablement folder, 
 # to be used for .Net conversion.
 
-# To run this script on my Windows machine:
+# To run this script on a Windows machine:
 #	your-root-project-path/UpdateDotNetFrameworkProjectFiles.sh your-root-project-path
-# To run this script on my Macbook:
+# To run this script on a Mac:
 #   First (one time only per machine) run this: 
 #       chmod u+x your-root-project-path/UpdateDotNetFrameworkProjectFiles.sh
 #   Then to run the script each time:

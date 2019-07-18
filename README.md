@@ -35,7 +35,7 @@ If you want to run the code in .Net Core:
 		To get more info on converting to/from .Net Core, see comments in DotNetConversion.sh  
 	3a. Make sure all your csv files are in place and your config is correctly set up - see ReconciliationProcess.txt.  
 	3b. Be aware that in .Net Core, no actual spreadsheet read/writes occur. Instead a stub with fake data is used (see FakeSpreadsheetRepo.cs).  
-	This data is based on the data in the shipped version of Your-Spreadsheet.xlsx. If you want different data, you'll have to edit the code.  
+	This data is based on the data in the shipped version of Your-Spreadsheet.xlsx. If you want different data, you'll have to edit the code in FakeSpreadsheetRepo.cs.  
 	4.	On the command line...  	
 	4a) In Windows: Use "dotnet run" from the Console folder or "dotnet test" from the ConsoleCatchallTests folder.  
 	4b) On a Mac: Use "dotnet run [path-to-main-config]" from the Console folder or "dotnet test" from the ConsoleCatchallTests folder.  
