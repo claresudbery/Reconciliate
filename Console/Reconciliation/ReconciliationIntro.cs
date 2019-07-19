@@ -475,11 +475,18 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void Copy_file(string source_file_path, string dest_file_path)
         {
-            // There seems to be an intermittent fault in Windows - sometimes it copes with mixed slashes and sometimes it doesn't!
-            source_file_path = source_file_path.Replace("/", "\\");
-            dest_file_path = dest_file_path.Replace("/", "\\");
+            try
+            {
+                File.Copy(source_file_path, dest_file_path, true);
+            }
+            catch (System.IO.FileNotFoundException e)
+            {
+                // There seems to be an intermittent fault in Windows - sometimes it copes with mixed slashes and sometimes it doesn't!
+                source_file_path = source_file_path.Replace("/", "\\");
+                dest_file_path = dest_file_path.Replace("/", "\\");
 
-            File.Copy(source_file_path, dest_file_path, true);
+                File.Copy(source_file_path, dest_file_path, true);
+            }
         }
 
         public void Create_backup_of_real_spreadsheet(IClock clock, string spreadsheet_path)
