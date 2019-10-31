@@ -10,8 +10,6 @@ namespace ConsoleCatchall.Console.Reconciliation
 {
     internal class ReconciliationIntro
     {
-        #region Properties, vars and constructor
-
         private ISpreadsheetRepoFactory _spreadsheet_factory;
         private readonly IInputOutput _input_output;
 
@@ -19,10 +17,6 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             _input_output = input_output;
         }
-
-        #endregion // Properties, vars and constructor
-
-        #region Reconciliation Intro actions
 
         public void Start()
         {
@@ -79,7 +73,5 @@ namespace ConsoleCatchall.Console.Reconciliation
             var reconciliation_interface = file_loader.Load_specific_files_for_reconciliation_type();
             reconciliation_interface?.Do_the_matching();
         }
-
-        #endregion // Reconciliation Intro actions
     }
 }
