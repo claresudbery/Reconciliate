@@ -101,10 +101,8 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void Do_matching()
         {
-            var main_file_paths = new PathSetter(_input_output).Set_path_and_file_names();
-
             var file_loader = new FileLoader(_input_output, _spreadsheet_factory);
-            var reconciliation_interface = file_loader.Load_specific_files_for_reconciliation_type(main_file_paths, main_file_paths.Reconciliation_type);
+            var reconciliation_interface = file_loader.Load_specific_files_for_reconciliation_type();
             reconciliation_interface?.Do_the_matching();
         }
 

@@ -1,6 +1,7 @@
 using System;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
+using ConsoleCatchall.Console.Reconciliation.Utils;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
@@ -31,13 +32,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             }
         }
 
-        public ReconciliationInterface Load_specific_files_for_reconciliation_type(
-            FilePaths main_file_paths,
-            ReconciliationType reconciliation_type)
+        public ReconciliationInterface Load_specific_files_for_reconciliation_type()
         {
+            var main_file_paths = new PathSetter(_input_output).Set_path_and_file_names();
             ReconciliationInterface reconciliation_interface = null;
 
-            switch (reconciliation_type)
+            switch (main_file_paths.Reconciliation_type)
             {
                 case ReconciliationType.BankAndBankIn: {
                     reconciliation_interface = new BankAndBankInLoader(_input_output, this).Load_files_and_merge_data(main_file_paths);
