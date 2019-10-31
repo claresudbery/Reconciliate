@@ -1,0 +1,349 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1ac4943d5edf0a3f90e0848529be3f7783" prot="private" static="no" mutable="no">
+        <type>readonly IInputOutput</type>
+        <definition>readonly IInputOutput ConsoleCatchall.Console.Reconciliation.Loaders.FileLoader._input_output</definition>
+        <argsstring></argsstring>
+        <name>_input_output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" line="12" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a3a3052ed7dd33f2b470b374af70820cf" prot="private" static="no" mutable="no">
+        <type>readonly ISpreadsheetRepoFactory</type>
+        <definition>readonly ISpreadsheetRepoFactory ConsoleCatchall.Console.Reconciliation.Loaders.FileLoader._spreadsheet_factory</definition>
+        <argsstring></argsstring>
+        <name>_spreadsheet_factory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" line="13" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1ab408ed53069e70f9375cd4ec03a10051" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ConsoleCatchall.Console.Reconciliation.Loaders.FileLoader.FileLoader</definition>
+        <argsstring>(IInputOutput input_output, ISpreadsheetRepoFactory spreadsheet_factory)</argsstring>
+        <name>FileLoader</name>
+        <param>
+          <type>IInputOutput</type>
+          <declname>input_output</declname>
+        </param>
+        <param>
+          <type>ISpreadsheetRepoFactory</type>
+          <declname>spreadsheet_factory</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" line="15" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" bodystart="15" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a25da705289b15b718af2181fd13b5666" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Loaders.FileLoader.Create_pending_csvs</definition>
+        <argsstring>(string path)</argsstring>
+        <name>Create_pending_csvs</name>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" line="21" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" bodystart="21" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a5ca9274c7d349183fde7641c3f09767d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface" kindref="compound">ReconciliationInterface</ref></type>
+        <definition>ReconciliationInterface ConsoleCatchall.Console.Reconciliation.Loaders.FileLoader.Load_specific_files_for_reconciliation_type</definition>
+        <argsstring>(FilePaths main_file_paths, ReconciliationType reconciliation_type)</argsstring>
+        <name>Load_specific_files_for_reconciliation_type</name>
+        <param>
+          <type>FilePaths</type>
+          <declname>main_file_paths</declname>
+        </param>
+        <param>
+          <type><ref refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4" kindref="member">ReconciliationType</ref></type>
+          <declname>reconciliation_type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" line="34" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" bodystart="34" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a77aa437ad04b0d9e2efea05bc037bcdb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface" kindref="compound">ReconciliationInterface</ref></type>
+        <definition>ReconciliationInterface ConsoleCatchall.Console.Reconciliation.Loaders.FileLoader.Load_files_and_merge_data&lt; TThirdPartyType, TOwnedType &gt;</definition>
+        <argsstring>(DataLoadingInformation data_loading_info, ILoader loader, FilePaths main_file_paths)</argsstring>
+        <name>Load_files_and_merge_data&lt; TThirdPartyType, TOwnedType &gt;</name>
+        <param>
+          <type>DataLoadingInformation</type>
+          <declname>data_loading_info</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader" kindref="compound">ILoader</ref></type>
+          <declname>loader</declname>
+        </param>
+        <param>
+          <type>FilePaths</type>
+          <declname>main_file_paths</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" line="62" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" bodystart="62" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a52857169ac1227efa8fdac9b2ea07f17" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface" kindref="compound">ReconciliationInterface</ref></type>
+        <definition>ReconciliationInterface ConsoleCatchall.Console.Reconciliation.Loaders.FileLoader.Load&lt; TThirdPartyType, TOwnedType &gt;</definition>
+        <argsstring>(ISpreadsheet spreadsheet, BudgetingMonths budgeting_months, FilePaths main_file_paths, IFileIO&lt; TOwnedType &gt; pending_file_io, ICSVFile&lt; TOwnedType &gt; pending_file, IFileIO&lt; TThirdPartyType &gt; third_party_file_io, IFileIO&lt; TOwnedType &gt; owned_file_io, DataLoadingInformation data_loading_info, ILoader loader)</argsstring>
+        <name>Load&lt; TThirdPartyType, TOwnedType &gt;</name>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kindref="compound">ISpreadsheet</ref></type>
+          <declname>spreadsheet</declname>
+        </param>
+        <param>
+          <type>BudgetingMonths</type>
+          <declname>budgeting_months</declname>
+        </param>
+        <param>
+          <type>FilePaths</type>
+          <declname>main_file_paths</declname>
+        </param>
+        <param>
+          <type>IFileIO&lt; TOwnedType &gt;</type>
+          <declname>pending_file_io</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TOwnedType &gt;</type>
+          <declname>pending_file</declname>
+        </param>
+        <param>
+          <type>IFileIO&lt; TThirdPartyType &gt;</type>
+          <declname>third_party_file_io</declname>
+        </param>
+        <param>
+          <type>IFileIO&lt; TOwnedType &gt;</type>
+          <declname>owned_file_io</declname>
+        </param>
+        <param>
+          <type>DataLoadingInformation</type>
+          <declname>data_loading_info</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader" kindref="compound">ILoader</ref></type>
+          <declname>loader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" line="109" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" bodystart="109" bodyend="131"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1abf622f7f37d0b1b463a2654f81deaaa2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface" kindref="compound">ReconciliationInterface</ref></type>
+        <definition>ReconciliationInterface ConsoleCatchall.Console.Reconciliation.Loaders.FileLoader.Create_reconciliation_interface&lt; TThirdPartyType, TOwnedType &gt;</definition>
+        <argsstring>(Reconciliator&lt; TThirdPartyType, TOwnedType &gt; reconciliator, DataLoadingInformation data_loading_info)</argsstring>
+        <name>Create_reconciliation_interface&lt; TThirdPartyType, TOwnedType &gt;</name>
+        <param>
+          <type>Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</type>
+          <declname>reconciliator</declname>
+        </param>
+        <param>
+          <type>DataLoadingInformation</type>
+          <declname>data_loading_info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" line="133" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" bodystart="133" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a65d0fd0da2159f636a901100cedb8ec6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</type>
+        <definition>Reconciliator&lt;TThirdPartyType, TOwnedType&gt; ConsoleCatchall.Console.Reconciliation.Loaders.FileLoader.Load_third_party_and_owned_files_into_reconciliator&lt; TThirdPartyType, TOwnedType &gt;</definition>
+        <argsstring>(IFileIO&lt; TThirdPartyType &gt; third_party_file_io, IFileIO&lt; TOwnedType &gt; owned_file_io, DataLoadingInformation data_loading_info)</argsstring>
+        <name>Load_third_party_and_owned_files_into_reconciliator&lt; TThirdPartyType, TOwnedType &gt;</name>
+        <param>
+          <type>IFileIO&lt; TThirdPartyType &gt;</type>
+          <declname>third_party_file_io</declname>
+        </param>
+        <param>
+          <type>IFileIO&lt; TOwnedType &gt;</type>
+          <declname>owned_file_io</declname>
+        </param>
+        <param>
+          <type>DataLoadingInformation</type>
+          <declname>data_loading_info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" line="147" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" bodystart="147" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1afff0930beebe546ed919f93375dcca08" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Loaders.FileLoader.Merge_unreconciled_data&lt; TOwnedType &gt;</definition>
+        <argsstring>(ISpreadsheet spreadsheet, ICSVFile&lt; TOwnedType &gt; pending_file, DataLoadingInformation data_loading_info)</argsstring>
+        <name>Merge_unreconciled_data&lt; TOwnedType &gt;</name>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kindref="compound">ISpreadsheet</ref></type>
+          <declname>spreadsheet</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TOwnedType &gt;</type>
+          <declname>pending_file</declname>
+        </param>
+        <param>
+          <type>DataLoadingInformation</type>
+          <declname>data_loading_info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" line="166" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" bodystart="166" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1acca10dbdd5e9c04f6177b36226a4f614" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Loaders.FileLoader.Merge_other_data&lt; TOwnedType &gt;</definition>
+        <argsstring>(ISpreadsheet spreadsheet, BudgetingMonths budgeting_months, ICSVFile&lt; TOwnedType &gt; pending_file, DataLoadingInformation data_loading_info, ILoader loader)</argsstring>
+        <name>Merge_other_data&lt; TOwnedType &gt;</name>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kindref="compound">ISpreadsheet</ref></type>
+          <declname>spreadsheet</declname>
+        </param>
+        <param>
+          <type>BudgetingMonths</type>
+          <declname>budgeting_months</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TOwnedType &gt;</type>
+          <declname>pending_file</declname>
+        </param>
+        <param>
+          <type>DataLoadingInformation</type>
+          <declname>data_loading_info</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader" kindref="compound">ILoader</ref></type>
+          <declname>loader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" line="188" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" bodystart="188" bodyend="203"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a6492ebf4eefe905be7488e3db3c9bf1c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Loaders.FileLoader.Merge_budget_data&lt; TOwnedType &gt;</definition>
+        <argsstring>(ISpreadsheet spreadsheet, BudgetingMonths budgeting_months, ICSVFile&lt; TOwnedType &gt; pending_file, DataLoadingInformation data_loading_info)</argsstring>
+        <name>Merge_budget_data&lt; TOwnedType &gt;</name>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kindref="compound">ISpreadsheet</ref></type>
+          <declname>spreadsheet</declname>
+        </param>
+        <param>
+          <type>BudgetingMonths</type>
+          <declname>budgeting_months</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TOwnedType &gt;</type>
+          <declname>pending_file</declname>
+        </param>
+        <param>
+          <type>DataLoadingInformation</type>
+          <declname>data_loading_info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" line="205" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" bodystart="205" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a81439a48d3f2c6f114a0a70312464a28" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Loaders.FileLoader.Load_pending_data&lt; TOwnedType &gt;</definition>
+        <argsstring>(IFileIO&lt; TOwnedType &gt; pending_file_io, ICSVFile&lt; TOwnedType &gt; pending_file, DataLoadingInformation data_loading_info)</argsstring>
+        <name>Load_pending_data&lt; TOwnedType &gt;</name>
+        <param>
+          <type>IFileIO&lt; TOwnedType &gt;</type>
+          <declname>pending_file_io</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TOwnedType &gt;</type>
+          <declname>pending_file</declname>
+        </param>
+        <param>
+          <type>DataLoadingInformation</type>
+          <declname>data_loading_info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" line="226" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" bodystart="226" bodyend="239"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" line="11" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/FileLoader.cs" bodystart="10" bodyend="240"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1ac4943d5edf0a3f90e0848529be3f7783" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</scope><name>_input_output</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a3a3052ed7dd33f2b470b374af70820cf" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</scope><name>_spreadsheet_factory</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a25da705289b15b718af2181fd13b5666" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</scope><name>Create_pending_csvs</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1abf622f7f37d0b1b463a2654f81deaaa2" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</scope><name>Create_reconciliation_interface&lt; TThirdPartyType, TOwnedType &gt;</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1ab408ed53069e70f9375cd4ec03a10051" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</scope><name>FileLoader</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a52857169ac1227efa8fdac9b2ea07f17" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</scope><name>Load&lt; TThirdPartyType, TOwnedType &gt;</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a77aa437ad04b0d9e2efea05bc037bcdb" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</scope><name>Load_files_and_merge_data&lt; TThirdPartyType, TOwnedType &gt;</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a81439a48d3f2c6f114a0a70312464a28" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</scope><name>Load_pending_data&lt; TOwnedType &gt;</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a5ca9274c7d349183fde7641c3f09767d" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</scope><name>Load_specific_files_for_reconciliation_type</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a65d0fd0da2159f636a901100cedb8ec6" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</scope><name>Load_third_party_and_owned_files_into_reconciliator&lt; TThirdPartyType, TOwnedType &gt;</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a6492ebf4eefe905be7488e3db3c9bf1c" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</scope><name>Merge_budget_data&lt; TOwnedType &gt;</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1acca10dbdd5e9c04f6177b36226a4f614" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</scope><name>Merge_other_data&lt; TOwnedType &gt;</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1afff0930beebe546ed919f93375dcca08" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</scope><name>Merge_unreconciled_data&lt; TOwnedType &gt;</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

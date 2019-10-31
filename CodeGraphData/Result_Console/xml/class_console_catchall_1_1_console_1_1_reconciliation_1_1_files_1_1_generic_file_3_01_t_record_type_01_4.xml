@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Files::GenericFile&lt; TRecordType &gt;</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IDataFile&lt; TRecordType &gt;</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>TRecordType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4_1a7964bb96b530f5eff9fe4f160a9152ac" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>ICSVFile&lt; TRecordType &gt;</type>
+        <definition>ICSVFile&lt;TRecordType&gt; ConsoleCatchall.Console.Reconciliation.Files.GenericFile&lt; TRecordType &gt;.File</definition>
+        <argsstring></argsstring>
+        <name>File</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/GenericFile.cs" line="7" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/GenericFile.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4_1ae58304ba16eccdc19248527df414014e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ConsoleCatchall.Console.Reconciliation.Files.GenericFile&lt; TRecordType &gt;.GenericFile</definition>
+        <argsstring>(ICSVFile&lt; TRecordType &gt; csv_file)</argsstring>
+        <name>GenericFile</name>
+        <param>
+          <type>ICSVFile&lt; TRecordType &gt;</type>
+          <declname>csv_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/GenericFile.cs" line="9" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/GenericFile.cs" bodystart="9" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4_1a2d9ab137c1d146bdaf912dae4765e9e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Files.GenericFile&lt; TRecordType &gt;.Load</definition>
+        <argsstring>(bool load_file=true, char?override_separator=null, bool order_on_load=true)</argsstring>
+        <name>Load</name>
+        <param>
+          <type>bool</type>
+          <declname>load_file</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>char?</type>
+          <declname>override_separator</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>order_on_load</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/GenericFile.cs" line="14" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/GenericFile.cs" bodystart="14" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4_1ab5830a400860f43d3f91b4e30f009d36" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Files.GenericFile&lt; TRecordType &gt;.Refresh_file_contents</definition>
+        <argsstring>()</argsstring>
+        <name>Refresh_file_contents</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/GenericFile.cs" line="21" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/GenericFile.cs" bodystart="21" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="118">
+        <label>ConsoleCatchall.Console.Reconciliation.Files.GenericFile&lt; TRecordType &gt;</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4"/>
+        <childnode refid="119" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="119">
+        <label>IDataFile&lt; TRecordType &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="120">
+        <label>ConsoleCatchall.Console.Reconciliation.Files.GenericFile&lt; TRecordType &gt;</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4"/>
+        <childnode refid="121" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="121">
+        <label>IDataFile&lt; TRecordType &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/GenericFile.cs" line="6" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/GenericFile.cs" bodystart="5" bodyend="25"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4_1a7964bb96b530f5eff9fe4f160a9152ac" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::GenericFile&lt; TRecordType &gt;</scope><name>File</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4_1ae58304ba16eccdc19248527df414014e" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::GenericFile&lt; TRecordType &gt;</scope><name>GenericFile</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4_1a2d9ab137c1d146bdaf912dae4765e9e9" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::GenericFile&lt; TRecordType &gt;</scope><name>Load</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4_1ab5830a400860f43d3f91b4e30f009d36" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::GenericFile&lt; TRecordType &gt;</scope><name>Refresh_file_contents</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

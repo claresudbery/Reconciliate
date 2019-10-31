@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_factory" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepoFactory</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ISpreadsheetRepoFactory</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_factory_1a8a5ba6a8722551d87fdf620d78b8aae6" prot="private" static="no" mutable="no">
+        <type><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo" kindref="compound">FakeSpreadsheetRepo</ref></type>
+        <definition>FakeSpreadsheetRepo ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepoFactory._fake_spreadsheet</definition>
+        <argsstring></argsstring>
+        <name>_fake_spreadsheet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepoFactory.cs" line="7" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepoFactory.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_factory_1a8bb0d94d5074ceeb897c6097c5c27c72" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ISpreadsheetRepo</type>
+        <definition>ISpreadsheetRepo ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepoFactory.Create_spreadsheet_repo</definition>
+        <argsstring>()</argsstring>
+        <name>Create_spreadsheet_repo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepoFactory.cs" line="9" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepoFactory.cs" bodystart="9" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_factory_1a9d2e9bd23558db5846c81865cd48bb6d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepoFactory.Dispose_of_spreadsheet_repo</definition>
+        <argsstring>()</argsstring>
+        <name>Dispose_of_spreadsheet_repo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepoFactory.cs" line="15" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepoFactory.cs" bodystart="15" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="103">
+        <label>ISpreadsheetRepoFactory</label>
+      </node>
+      <node id="102">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepoFactory</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_factory"/>
+        <childnode refid="103" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="110">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetData.FakeRowNumbersForText</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_row_numbers_for_text"/>
+      </node>
+      <node id="105">
+        <label>ISpreadsheetRepoFactory</label>
+      </node>
+      <node id="106">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo"/>
+        <childnode refid="107" relation="public-inheritance">
+        </childnode>
+        <childnode refid="108" relation="usage">
+          <edgelabel>_fake_row_numbers_for_cell</edgelabel>
+        </childnode>
+        <childnode refid="109" relation="usage">
+          <edgelabel>_fake_rows</edgelabel>
+        </childnode>
+        <childnode refid="110" relation="usage">
+          <edgelabel>_fake_row_numbers_for_text</edgelabel>
+        </childnode>
+        <childnode refid="111" relation="usage">
+          <edgelabel>_last_row_numbers</edgelabel>
+        </childnode>
+      </node>
+      <node id="108">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetData.FakeRowNumbersForCell</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_row_numbers_for_cell"/>
+      </node>
+      <node id="111">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetData.LastRowNumbers</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_last_row_numbers"/>
+      </node>
+      <node id="107">
+        <label>ISpreadsheetRepo</label>
+      </node>
+      <node id="109">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetData.FakeRows</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_rows"/>
+      </node>
+      <node id="104">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepoFactory</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_factory"/>
+        <childnode refid="105" relation="public-inheritance">
+        </childnode>
+        <childnode refid="106" relation="usage">
+          <edgelabel>_fake_spreadsheet</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepoFactory.cs" line="6" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepoFactory.cs" bodystart="5" bodyend="24"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_factory_1a8a5ba6a8722551d87fdf620d78b8aae6" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepoFactory</scope><name>_fake_spreadsheet</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_factory_1a8bb0d94d5074ceeb897c6097c5c27c72" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepoFactory</scope><name>Create_spreadsheet_repo</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_factory_1a9d2e9bd23558db5846c81865cd48bb6d" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepoFactory</scope><name>Dispose_of_spreadsheet_repo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders" kind="namespace">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Loaders</compoundname>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_data" prot="package">ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankInData</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_loader" prot="package">ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankInLoader</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_data" prot="package">ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankOutData</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader" prot="package">ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankOutLoader</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service" prot="package">ConsoleCatchall::Console::Reconciliation::Loaders::BudgetingMonthService</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_data" prot="package">ConsoleCatchall::Console::Reconciliation::Loaders::CredCard1AndCredCard1InOutData</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader" prot="package">ConsoleCatchall::Console::Reconciliation::Loaders::CredCard1AndCredCard1InOutLoader</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card2_and_cred_card2_in_out_data" prot="package">ConsoleCatchall::Console::Reconciliation::Loaders::CredCard2AndCredCard2InOutData</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card2_and_cred_card2_in_out_loader" prot="package">ConsoleCatchall::Console::Reconciliation::Loaders::CredCard2AndCredCard2InOutLoader</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_dummy_loader" prot="package">ConsoleCatchall::Console::Reconciliation::Loaders::DummyLoader</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader" prot="package">ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</innerclass>
+    <innerclass refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader" prot="package">ConsoleCatchall::Console::Reconciliation::Loaders::ILoader</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator" prot="package">ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankInData.cs" line="5" column="1"/>
+  </compounddef>
+</doxygen>

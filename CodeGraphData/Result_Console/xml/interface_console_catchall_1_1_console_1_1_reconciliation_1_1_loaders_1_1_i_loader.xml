@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader" kind="interface" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Loaders::ILoader</compoundname>
+    <derivedcompoundref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_loader" prot="public" virt="non-virtual">ConsoleCatchall.Console.Reconciliation.Loaders.BankAndBankInLoader</derivedcompoundref>
+    <derivedcompoundref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader" prot="public" virt="non-virtual">ConsoleCatchall.Console.Reconciliation.Loaders.BankAndBankOutLoader</derivedcompoundref>
+    <derivedcompoundref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader" prot="public" virt="non-virtual">ConsoleCatchall.Console.Reconciliation.Loaders.CredCard1AndCredCard1InOutLoader</derivedcompoundref>
+    <derivedcompoundref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card2_and_cred_card2_in_out_loader" prot="public" virt="non-virtual">ConsoleCatchall.Console.Reconciliation.Loaders.CredCard2AndCredCard2InOutLoader</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader_1afd740f45de19cbf020bf619fb455ec0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface" kindref="compound">ReconciliationInterface</ref></type>
+        <definition>ReconciliationInterface ConsoleCatchall.Console.Reconciliation.Loaders.ILoader.Load_files_and_merge_data</definition>
+        <argsstring>(FilePaths main_file_paths)</argsstring>
+        <name>Load_files_and_merge_data</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1a3e6a5dddaf28abfe2d1a504341bc12b4">Load_files_and_merge_data</reimplementedby>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_loader_1ac3481072586d59ca4d8368e081bd2b44">Load_files_and_merge_data</reimplementedby>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card2_and_cred_card2_in_out_loader_1ac9b8d9b714a83011db9813bc0eb2eaba">Load_files_and_merge_data</reimplementedby>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1a9a7c9f6b441e586df6c0b14f3a8b83cd">Load_files_and_merge_data</reimplementedby>
+        <param>
+          <type>FilePaths</type>
+          <declname>main_file_paths</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/ILoader.cs" line="9" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader_1a41cf9617c72caffa61f335402199bc74" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Loaders.ILoader.Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</definition>
+        <argsstring>(IInputOutput input_output, ISpreadsheet spreadsheet, ICSVFile&lt; TOwnedType &gt; pending_file, BudgetingMonths budgeting_months, DataLoadingInformation loading_info)</argsstring>
+        <name>Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1aaec7652df2277b6d80e6693445413e5f">Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</reimplementedby>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_loader_1a45e8a79b1e3110dfe90348f4e092be80">Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</reimplementedby>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card2_and_cred_card2_in_out_loader_1a02509e62f1ac01877c3fa49402f6870a">Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</reimplementedby>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1af79d8d7d371f04f6dbb7767c7f47023e">Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</reimplementedby>
+        <param>
+          <type>IInputOutput</type>
+          <declname>input_output</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kindref="compound">ISpreadsheet</ref></type>
+          <declname>spreadsheet</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TOwnedType &gt;</type>
+          <declname>pending_file</declname>
+        </param>
+        <param>
+          <type>BudgetingMonths</type>
+          <declname>budgeting_months</declname>
+        </param>
+        <param>
+          <type>DataLoadingInformation</type>
+          <declname>loading_info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/ILoader.cs" line="11" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="124">
+        <label>ConsoleCatchall.Console.Reconciliation.Loaders.BankAndBankOutLoader</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader"/>
+        <childnode refid="122" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="123">
+        <label>ConsoleCatchall.Console.Reconciliation.Loaders.BankAndBankInLoader</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_loader"/>
+        <childnode refid="122" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="126">
+        <label>ConsoleCatchall.Console.Reconciliation.Loaders.CredCard2AndCredCard2InOutLoader</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card2_and_cred_card2_in_out_loader"/>
+        <childnode refid="122" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="125">
+        <label>ConsoleCatchall.Console.Reconciliation.Loaders.CredCard1AndCredCard1InOutLoader</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader"/>
+        <childnode refid="122" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="122">
+        <label>ConsoleCatchall.Console.Reconciliation.Loaders.ILoader</label>
+        <link refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader"/>
+      </node>
+    </inheritancegraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/ILoader.cs" line="8" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/ILoader.cs" bodystart="7" bodyend="18"/>
+    <listofallmembers>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader_1afd740f45de19cbf020bf619fb455ec0b" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::ILoader</scope><name>Load_files_and_merge_data</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader_1a41cf9617c72caffa61f335402199bc74" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::ILoader</scope><name>Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

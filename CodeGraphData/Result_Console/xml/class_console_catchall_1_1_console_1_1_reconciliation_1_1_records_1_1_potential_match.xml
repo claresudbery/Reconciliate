@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Records::PotentialMatch</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IPotentialMatch</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a0576514f51e52dfa654d57bae44f8360" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.PotentialMatch.PartialDateMatchThreshold</definition>
+        <argsstring></argsstring>
+        <name>PartialDateMatchThreshold</name>
+        <initializer>= 3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" line="9" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" bodystart="9" bodyend="-1"/>
+        <referencedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a4ef43b4c5c6e7b4286a9573244c3c37b" compoundref="_reconciliator_8cs" startline="554" endline="563">ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Find_single_match_by_amount_and_text_and_near_date</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a2fc631e5f1615aea46a0ec37aed1b4b8" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.PotentialMatch.PartialAmountMatchThreshold</definition>
+        <argsstring></argsstring>
+        <name>PartialAmountMatchThreshold</name>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" line="10" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1afb6ff7f103025d2b1333b6f151db706a" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>IList&lt; ICSVRecord &gt;</type>
+        <definition>IList&lt;ICSVRecord&gt; ConsoleCatchall.Console.Reconciliation.Records.PotentialMatch.Actual_records</definition>
+        <argsstring></argsstring>
+        <name>Actual_records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" line="12" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a235236f19a3a037b74d10ce91943b807" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Records.PotentialMatch.Amount_match</definition>
+        <argsstring></argsstring>
+        <name>Amount_match</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" line="14" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a0f40ee5926f67ed8dc2d65224aa37f6d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Records.PotentialMatch.Full_text_match</definition>
+        <argsstring></argsstring>
+        <name>Full_text_match</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" line="15" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a76db67ca97df6b8f6c9a5e3d85a1e183" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Records.PotentialMatch.Partial_text_match</definition>
+        <argsstring></argsstring>
+        <name>Partial_text_match</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" line="16" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a3ffb693a2257278b509cbd2864dec6b9" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>Rankings</type>
+        <definition>Rankings ConsoleCatchall.Console.Reconciliation.Records.PotentialMatch.Rankings</definition>
+        <argsstring></argsstring>
+        <name>Rankings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" line="17" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a92eaf91c4fcc541021704b5366bb7ef7" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>List&lt; ConsoleLine &gt;</type>
+        <definition>List&lt;ConsoleLine&gt; ConsoleCatchall.Console.Reconciliation.Records.PotentialMatch.Console_lines</definition>
+        <argsstring></argsstring>
+        <name>Console_lines</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" line="19" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="142">
+        <label>ConsoleCatchall.Console.Reconciliation.Records.PotentialMatch</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match"/>
+        <childnode refid="143" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="143">
+        <label>IPotentialMatch</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="144">
+        <label>ConsoleCatchall.Console.Reconciliation.Records.PotentialMatch</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match"/>
+        <childnode refid="145" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="145">
+        <label>IPotentialMatch</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" line="8" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs" bodystart="7" bodyend="20"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1afb6ff7f103025d2b1333b6f151db706a" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::PotentialMatch</scope><name>Actual_records</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a235236f19a3a037b74d10ce91943b807" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::PotentialMatch</scope><name>Amount_match</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a92eaf91c4fcc541021704b5366bb7ef7" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::PotentialMatch</scope><name>Console_lines</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a0f40ee5926f67ed8dc2d65224aa37f6d" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::PotentialMatch</scope><name>Full_text_match</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a76db67ca97df6b8f6c9a5e3d85a1e183" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::PotentialMatch</scope><name>Partial_text_match</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a2fc631e5f1615aea46a0ec37aed1b4b8" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::PotentialMatch</scope><name>PartialAmountMatchThreshold</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a0576514f51e52dfa654d57bae44f8360" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::PotentialMatch</scope><name>PartialDateMatchThreshold</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a3ffb693a2257278b509cbd2864dec6b9" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::PotentialMatch</scope><name>Rankings</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

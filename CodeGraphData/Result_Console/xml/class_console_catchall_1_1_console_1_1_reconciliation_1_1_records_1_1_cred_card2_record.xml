@@ -1,0 +1,633 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ICSVRecord</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ab8d04e81c4fc3d1959e68455d2737b65" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>ICSVRecord</type>
+        <definition>ICSVRecord ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Match</definition>
+        <argsstring></argsstring>
+        <name>Match</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="12" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a70781e7c8e217c48da6f31f204088088" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Matched</definition>
+        <argsstring></argsstring>
+        <name>Matched</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="13" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ae9824beeae59c5fbfac73cf1d592bca6" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Divider</definition>
+        <argsstring></argsstring>
+        <name>Divider</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="14" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ab9f628074245375b1ec73ee200ff7c78" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Source_line</definition>
+        <argsstring></argsstring>
+        <name>Source_line</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="15" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ac96b394aadca5f1b38389ffe0d20ea26" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>DateTime</type>
+        <definition>DateTime ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Date</definition>
+        <argsstring></argsstring>
+        <name>Date</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="17" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a7b0f33b3e205f103fe20b929e8c02cb0" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Description</definition>
+        <argsstring></argsstring>
+        <name>Description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="18" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a1b040989d2a1995ba63b20b32f596cb2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Amount</definition>
+        <argsstring></argsstring>
+        <name>Amount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="19" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a572866490c10b25f20eb3019edc7aa7d" prot="private" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record._separator</definition>
+        <argsstring></argsstring>
+        <name>_separator</name>
+        <initializer>= &apos;,&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="21" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a7246547b9b7b78c3362d2d5dcf83ec6e" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record._expected_number_of_fields_per_row</definition>
+        <argsstring></argsstring>
+        <name>_expected_number_of_fields_per_row</name>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="22" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a1987169ff59bc04dbfd3deba2293fd1f" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.DateIndex</definition>
+        <argsstring></argsstring>
+        <name>DateIndex</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="24" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a44578f962a4818273225b6c65925815c" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.AmountIndex</definition>
+        <argsstring></argsstring>
+        <name>AmountIndex</name>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="25" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1aaac525bad6fb82a1b2e4dc23e52810b5" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.DescriptionIndex</definition>
+        <argsstring></argsstring>
+        <name>DescriptionIndex</name>
+        <initializer>= 3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="26" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a5441fd3bc0140f9737ae9ef0c15b83dd" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.DateSpreadsheetIndex</definition>
+        <argsstring></argsstring>
+        <name>DateSpreadsheetIndex</name>
+        <initializer>= <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1abf8f78c45333ba16f1550e5fe0f5ff8d" kindref="member">CredCard2InOutRecord.MatchOffset</ref> + 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="28" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1acc83fbe0a74edbf1fadb728bc487cc44" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.AmountSpreadsheetIndex</definition>
+        <argsstring></argsstring>
+        <name>AmountSpreadsheetIndex</name>
+        <initializer>= <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1abf8f78c45333ba16f1550e5fe0f5ff8d" kindref="member">CredCard2InOutRecord.MatchOffset</ref> + 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="29" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a4468de493e9b612c5ff9becb3801b608" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.DescriptionSpreadsheetIndex</definition>
+        <argsstring></argsstring>
+        <name>DescriptionSpreadsheetIndex</name>
+        <initializer>= <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1abf8f78c45333ba16f1550e5fe0f5ff8d" kindref="member">CredCard2InOutRecord.MatchOffset</ref> + 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="30" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1acc75bd6799dd08278e56256335184db5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Create_from_match</definition>
+        <argsstring>(DateTime date, double amount, string type, string description, int extra_info, ICSVRecord matched_record)</argsstring>
+        <name>Create_from_match</name>
+        <param>
+          <type>DateTime</type>
+          <declname>date</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>amount</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>description</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>extra_info</declname>
+        </param>
+        <param>
+          <type>ICSVRecord</type>
+          <declname>matched_record</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="32" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="32" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ab24a8298196686e8d783a90e6d64293c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Load</definition>
+        <argsstring>(string csv_line, char?override_separator=null)</argsstring>
+        <name>Load</name>
+        <param>
+          <type>string</type>
+          <declname>csv_line</declname>
+        </param>
+        <param>
+          <type>char?</type>
+          <declname>override_separator</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="42" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="42" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1aad11083ae153420df3e90b843d48a6be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.To_csv</definition>
+        <argsstring>(bool format_currency=true)</argsstring>
+        <name>To_csv</name>
+        <param>
+          <type>bool</type>
+          <declname>format_currency</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="77" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="77" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1af6c73681fa7c586be13a4ad96263f851" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.To_string</definition>
+        <argsstring>(char separator= &apos;,&apos;, bool format_currency=true)</argsstring>
+        <name>To_string</name>
+        <param>
+          <type>char</type>
+          <declname>separator</declname>
+          <defval>&apos;,&apos;</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>format_currency</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="82" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="82" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a9095d58803ddd5cb05735cd27c29dfff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ConsoleLine</type>
+        <definition>ConsoleLine ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.To_console</definition>
+        <argsstring>(int index=-1)</argsstring>
+        <name>To_console</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="89" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="89" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a20a09f734cc029637abefad3b04d007c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Populate_spreadsheet_row</definition>
+        <argsstring>(ICellSet cell_set, int row_number)</argsstring>
+        <name>Populate_spreadsheet_row</name>
+        <param>
+          <type>ICellSet</type>
+          <declname>cell_set</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>row_number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="100" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="100" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a2dd67d9b320692e24dc9ba1106d31554" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Read_from_spreadsheet_row</definition>
+        <argsstring>(ICellRow cell_set)</argsstring>
+        <name>Read_from_spreadsheet_row</name>
+        <param>
+          <type>ICellRow</type>
+          <declname>cell_set</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="107" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="107" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a559a9ac03db96c326ca306a04a051560" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Main_amount_is_negative</definition>
+        <argsstring>()</argsstring>
+        <name>Main_amount_is_negative</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="114" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="114" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1aa9113a6f6b45e54fd500e6db9bf25d70" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Make_main_amount_positive</definition>
+        <argsstring>()</argsstring>
+        <name>Make_main_amount_positive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="119" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="119" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a3b964db5d70f2c29b12a3cc2a7d2703e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Swap_sign_of_main_amount</definition>
+        <argsstring>()</argsstring>
+        <name>Swap_sign_of_main_amount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="127" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="127" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a7e0094a43c0a1556609a6a6ebf2a26b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Main_amount</definition>
+        <argsstring>()</argsstring>
+        <name>Main_amount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="132" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="132" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a646e9a5ce57586298acdc80f8903d101" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Change_main_amount</definition>
+        <argsstring>(double new_value)</argsstring>
+        <name>Change_main_amount</name>
+        <param>
+          <type>double</type>
+          <declname>new_value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="137" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="137" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a51a3c477d718fd72ef696073c2e314d2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Transaction_type</definition>
+        <argsstring>()</argsstring>
+        <name>Transaction_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="142" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="142" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a940b717f82712c475ef0d81eb5b38e3f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Extra_info</definition>
+        <argsstring>()</argsstring>
+        <name>Extra_info</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="147" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="147" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ac6797ad962fcf5a0c68a0d2ee5353f14" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ICSVRecord</type>
+        <definition>ICSVRecord ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.With_date</definition>
+        <argsstring>(DateTime new_date)</argsstring>
+        <name>With_date</name>
+        <param>
+          <type>DateTime</type>
+          <declname>new_date</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="152" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="152" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a63ed2c3124d7b28f463e7c24bc81efcd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ICSVRecord</type>
+        <definition>ICSVRecord ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Copy</definition>
+        <argsstring>()</argsstring>
+        <name>Copy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="158" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="158" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a54f06b6cc2063b3a117e62e0efc2ed02" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Update_source_line_for_output</definition>
+        <argsstring>(char output_separator)</argsstring>
+        <name>Update_source_line_for_output</name>
+        <param>
+          <type>char</type>
+          <declname>output_separator</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="169" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="169" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a9a388d804e839e99bfc8669edd6f0598" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Reconcile</definition>
+        <argsstring>()</argsstring>
+        <name>Reconcile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="174" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="174" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a32e1cbaf4962bfb8425290fda0cbb236" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Convert_source_line_separators</definition>
+        <argsstring>(char original_separator, char new_separator)</argsstring>
+        <name>Convert_source_line_separators</name>
+        <param>
+          <type>char</type>
+          <declname>original_separator</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>new_separator</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="179" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="179" bodyend="182"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a1ca0aa3a2c2e512e94f4f7da0bc51dd7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record.Get_amount_with_possible_comma</definition>
+        <argsstring>(string[] values)</argsstring>
+        <name>Get_amount_with_possible_comma</name>
+        <param>
+          <type>string[]</type>
+          <declname>values</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="64" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="64" bodyend="75"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="55">
+        <label>ICSVRecord</label>
+      </node>
+      <node id="54">
+        <label>ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record"/>
+        <childnode refid="55" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="57">
+        <label>ICSVRecord</label>
+      </node>
+      <node id="56">
+        <label>ConsoleCatchall.Console.Reconciliation.Records.CredCard2Record</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record"/>
+        <childnode refid="57" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" line="11" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/CredCard2Record.cs" bodystart="10" bodyend="183"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a7246547b9b7b78c3362d2d5dcf83ec6e" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>_expected_number_of_fields_per_row</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a572866490c10b25f20eb3019edc7aa7d" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>_separator</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a1b040989d2a1995ba63b20b32f596cb2" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a44578f962a4818273225b6c65925815c" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>AmountIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1acc83fbe0a74edbf1fadb728bc487cc44" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>AmountSpreadsheetIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a646e9a5ce57586298acdc80f8903d101" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Change_main_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a32e1cbaf4962bfb8425290fda0cbb236" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Convert_source_line_separators</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a63ed2c3124d7b28f463e7c24bc81efcd" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Copy</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1acc75bd6799dd08278e56256335184db5" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Create_from_match</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ac96b394aadca5f1b38389ffe0d20ea26" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Date</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a1987169ff59bc04dbfd3deba2293fd1f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>DateIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a5441fd3bc0140f9737ae9ef0c15b83dd" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>DateSpreadsheetIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a7b0f33b3e205f103fe20b929e8c02cb0" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Description</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1aaac525bad6fb82a1b2e4dc23e52810b5" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>DescriptionIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a4468de493e9b612c5ff9becb3801b608" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>DescriptionSpreadsheetIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ae9824beeae59c5fbfac73cf1d592bca6" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Divider</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a940b717f82712c475ef0d81eb5b38e3f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Extra_info</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a1ca0aa3a2c2e512e94f4f7da0bc51dd7" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Get_amount_with_possible_comma</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ab24a8298196686e8d783a90e6d64293c" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Load</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a7e0094a43c0a1556609a6a6ebf2a26b2" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Main_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a559a9ac03db96c326ca306a04a051560" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Main_amount_is_negative</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1aa9113a6f6b45e54fd500e6db9bf25d70" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Make_main_amount_positive</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ab8d04e81c4fc3d1959e68455d2737b65" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Match</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a70781e7c8e217c48da6f31f204088088" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Matched</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a20a09f734cc029637abefad3b04d007c" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Populate_spreadsheet_row</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a2dd67d9b320692e24dc9ba1106d31554" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Read_from_spreadsheet_row</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a9a388d804e839e99bfc8669edd6f0598" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Reconcile</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ab9f628074245375b1ec73ee200ff7c78" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Source_line</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a3b964db5d70f2c29b12a3cc2a7d2703e" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Swap_sign_of_main_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a9095d58803ddd5cb05735cd27c29dfff" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>To_console</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1aad11083ae153420df3e90b843d48a6be" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>To_csv</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1af6c73681fa7c586be13a4ad96263f851" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>To_string</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a51a3c477d718fd72ef696073c2e314d2" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Transaction_type</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a54f06b6cc2063b3a117e62e0efc2ed02" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>Update_source_line_for_output</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ac6797ad962fcf5a0c68a0d2ee5353f14" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</scope><name>With_date</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

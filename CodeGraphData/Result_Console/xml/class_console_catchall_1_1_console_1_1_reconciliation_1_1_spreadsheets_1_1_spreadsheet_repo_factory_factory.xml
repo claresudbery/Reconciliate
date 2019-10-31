@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_repo_factory_factory" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Spreadsheets::SpreadsheetRepoFactoryFactory</compoundname>
+    <basecompoundref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_repo_factory_factory" prot="public" virt="non-virtual">ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheetRepoFactoryFactory</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_repo_factory_factory_1a002c6069e5fa4026277b336af6bce81c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ISpreadsheetRepoFactory</type>
+        <definition>ISpreadsheetRepoFactory ConsoleCatchall.Console.Reconciliation.Spreadsheets.SpreadsheetRepoFactoryFactory.Get_factory</definition>
+        <argsstring>(string spreadsheet_file_name_and_path)</argsstring>
+        <name>Get_factory</name>
+        <reimplements refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_repo_factory_factory_1abe41502e874bdebcb2a2879f49b2e5e0">Get_factory</reimplements>
+        <param>
+          <type>string</type>
+          <declname>spreadsheet_file_name_and_path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/SpreadsheetRepoFactoryFactory.cs" line="9" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/SpreadsheetRepoFactoryFactory.cs" bodystart="9" bodyend="12"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="163">
+        <label>ISpreadsheetRepoFactoryFactory</label>
+        <link refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_repo_factory_factory"/>
+      </node>
+      <node id="162">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.SpreadsheetRepoFactoryFactory</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_repo_factory_factory"/>
+        <childnode refid="163" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="165">
+        <label>ISpreadsheetRepoFactoryFactory</label>
+        <link refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_repo_factory_factory"/>
+      </node>
+      <node id="164">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.SpreadsheetRepoFactoryFactory</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_repo_factory_factory"/>
+        <childnode refid="165" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/SpreadsheetRepoFactoryFactory.cs" line="8" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/SpreadsheetRepoFactoryFactory.cs" bodystart="7" bodyend="13"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_repo_factory_factory_1a002c6069e5fa4026277b336af6bce81c" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::SpreadsheetRepoFactoryFactory</scope><name>Get_factory</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,241 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Extensions::StringExtensions</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a60bda472d967a255a63044404aa072e3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ConsoleCatchall.Console.Reconciliation.Extensions.StringExtensions.Is_alpha</definition>
+        <argsstring>(this string source)</argsstring>
+        <name>Is_alpha</name>
+        <param>
+          <type>this string</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" line="9" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" bodystart="9" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a4a55ba7b270f30583c1a9490f3c66b7b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ConsoleCatchall.Console.Reconciliation.Extensions.StringExtensions.Is_numeric</definition>
+        <argsstring>(this string source)</argsstring>
+        <name>Is_numeric</name>
+        <param>
+          <type>this string</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" line="16" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" bodystart="16" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1adb66d27547e4258a002877585f34e952" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ConsoleCatchall.Console.Reconciliation.Extensions.StringExtensions.Replace_commas_surrounded_by_spaces</definition>
+        <argsstring>(this string source)</argsstring>
+        <name>Replace_commas_surrounded_by_spaces</name>
+        <param>
+          <type>this string</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" line="24" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" bodystart="24" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1ab5bde01e841719ced638377e6b12c36f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ConsoleCatchall.Console.Reconciliation.Extensions.StringExtensions.Get_rid_of_spaces_before_comma_before_digit</definition>
+        <argsstring>(this string source)</argsstring>
+        <name>Get_rid_of_spaces_before_comma_before_digit</name>
+        <param>
+          <type>this string</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" line="33" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" bodystart="33" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1abcff6b4dca0fc2a16b9d92110bba8510" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ConsoleCatchall.Console.Reconciliation.Extensions.StringExtensions.Encase_in_escaped_quotes_if_not_already_encased</definition>
+        <argsstring>(this string source)</argsstring>
+        <name>Encase_in_escaped_quotes_if_not_already_encased</name>
+        <param>
+          <type>this string</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" line="38" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" bodystart="38" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1ac44f0a7f7471130fddd0241157d42787" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ConsoleCatchall.Console.Reconciliation.Extensions.StringExtensions.Trim_amount</definition>
+        <argsstring>(this string amount)</argsstring>
+        <name>Trim_amount</name>
+        <param>
+          <type>this string</type>
+          <declname>amount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" line="49" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" bodystart="49" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a5347b49d05f7599f555140934a5e1dc4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ConsoleCatchall.Console.Reconciliation.Extensions.StringExtensions.Remove_leading_non_numeric_character</definition>
+        <argsstring>(this string source)</argsstring>
+        <name>Remove_leading_non_numeric_character</name>
+        <param>
+          <type>this string</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" line="57" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" bodystart="57" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a7a18863f546116b9f6347404b8e1dde5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ConsoleCatchall.Console.Reconciliation.Extensions.StringExtensions.Convert_separators</definition>
+        <argsstring>(this string source, char original_separator, char new_separator)</argsstring>
+        <name>Convert_separators</name>
+        <param>
+          <type>this string</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>original_separator</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>new_separator</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" line="64" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" bodystart="64" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1ac331f88b215d5f8c9213e14880d0b7e7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ConsoleCatchall.Console.Reconciliation.Extensions.StringExtensions.Strip_leading_apostrophe</definition>
+        <argsstring>(this string source)</argsstring>
+        <name>Strip_leading_apostrophe</name>
+        <param>
+          <type>this string</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" line="77" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" bodystart="77" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a223f44393a2016cae08eeeb5be42462c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ConsoleCatchall.Console.Reconciliation.Extensions.StringExtensions.Replace_punctuation_with_spaces</definition>
+        <argsstring>(this string source)</argsstring>
+        <name>Replace_punctuation_with_spaces</name>
+        <param>
+          <type>this string</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" line="85" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" bodystart="85" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a1e2f03238bcf6d6fafe59a73300dec54" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ConsoleCatchall.Console.Reconciliation.Extensions.StringExtensions.Remove_punctuation</definition>
+        <argsstring>(this string source)</argsstring>
+        <name>Remove_punctuation</name>
+        <param>
+          <type>this string</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" line="93" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" bodystart="93" bodyend="96"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a1837cc4240395f3aaad31e04c8231b5c" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ConsoleCatchall.Console.Reconciliation.Extensions.StringExtensions.Throw_error_if_string_is_empty</definition>
+        <argsstring>(string source)</argsstring>
+        <name>Throw_error_if_string_is_empty</name>
+        <param>
+          <type>string</type>
+          <declname>source</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" line="69" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" bodystart="69" bodyend="75"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" line="8" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/StringExtensions.cs" bodystart="7" bodyend="97"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a7a18863f546116b9f6347404b8e1dde5" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Extensions::StringExtensions</scope><name>Convert_separators</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1abcff6b4dca0fc2a16b9d92110bba8510" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Extensions::StringExtensions</scope><name>Encase_in_escaped_quotes_if_not_already_encased</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1ab5bde01e841719ced638377e6b12c36f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Extensions::StringExtensions</scope><name>Get_rid_of_spaces_before_comma_before_digit</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a60bda472d967a255a63044404aa072e3" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Extensions::StringExtensions</scope><name>Is_alpha</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a4a55ba7b270f30583c1a9490f3c66b7b" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Extensions::StringExtensions</scope><name>Is_numeric</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a5347b49d05f7599f555140934a5e1dc4" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Extensions::StringExtensions</scope><name>Remove_leading_non_numeric_character</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a1e2f03238bcf6d6fafe59a73300dec54" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Extensions::StringExtensions</scope><name>Remove_punctuation</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1adb66d27547e4258a002877585f34e952" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Extensions::StringExtensions</scope><name>Replace_commas_surrounded_by_spaces</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a223f44393a2016cae08eeeb5be42462c" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Extensions::StringExtensions</scope><name>Replace_punctuation_with_spaces</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1ac331f88b215d5f8c9213e14880d0b7e7" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Extensions::StringExtensions</scope><name>Strip_leading_apostrophe</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a1837cc4240395f3aaad31e04c8231b5c" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Extensions::StringExtensions</scope><name>Throw_error_if_string_is_empty</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1ac44f0a7f7471130fddd0241157d42787" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Extensions::StringExtensions</scope><name>Trim_amount</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

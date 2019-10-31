@@ -1,0 +1,701 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ICSVRecord</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a1cfc4c0b413f588a816504eafb7bd41c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>ICSVRecord</type>
+        <definition>ICSVRecord ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Match</definition>
+        <argsstring></argsstring>
+        <name>Match</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="11" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a9611999c4447c53cd5acfec33ab72ce4" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Matched</definition>
+        <argsstring></argsstring>
+        <name>Matched</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="12" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ae4633e00199db7151347b1d4ce7b5f5d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Divider</definition>
+        <argsstring></argsstring>
+        <name>Divider</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="13" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ad28fd46e1460949b3e1503576974802b" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Source_line</definition>
+        <argsstring></argsstring>
+        <name>Source_line</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="14" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a923028d2e39716c86ddfefb266020ee3" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>DateTime</type>
+        <definition>DateTime ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Date</definition>
+        <argsstring></argsstring>
+        <name>Date</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="16" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1adb9e1bf87cbf9bc37293633589679306" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Type</definition>
+        <argsstring></argsstring>
+        <name>Type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="17" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ab3037996b4312776eb7f249809ffe0e2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Description</definition>
+        <argsstring></argsstring>
+        <name>Description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="18" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a59922cf0232a7fff8312db1117b9531b" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Amount</definition>
+        <argsstring></argsstring>
+        <name>Amount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="19" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a6c1834aad009f947295c1a802adbeb1a" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Balance</definition>
+        <argsstring></argsstring>
+        <name>Balance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="20" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a4b4259598c829fc25e3ac890af7b3c98" prot="private" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord._separator</definition>
+        <argsstring></argsstring>
+        <name>_separator</name>
+        <initializer>= &apos;,&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="22" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1af18728df73599ed231efb53208f8ce1a" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord._expected_number_of_fields_per_row</definition>
+        <argsstring></argsstring>
+        <name>_expected_number_of_fields_per_row</name>
+        <initializer>= 5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="23" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a6a510c67ea0a799eb3a1e786de88b2d0" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.DateIndex</definition>
+        <argsstring></argsstring>
+        <name>DateIndex</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="25" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1af209d43bb10d63c2e0712ca4cef7bd78" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.TypeIndex</definition>
+        <argsstring></argsstring>
+        <name>TypeIndex</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="26" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1aaab128071f54980d6a9079c7019b9db2" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.DescriptionIndex</definition>
+        <argsstring></argsstring>
+        <name>DescriptionIndex</name>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="27" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a9fe3e0e698651f2e8748da211ea3484f" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.AmountIndex</definition>
+        <argsstring></argsstring>
+        <name>AmountIndex</name>
+        <initializer>= 3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="28" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a67e15b111dbe6f2c069a31cfb4f2642d" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.BalanceIndex</definition>
+        <argsstring></argsstring>
+        <name>BalanceIndex</name>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="29" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a5dddf5497ae820821ba69af8d2546acb" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.DateSpreadsheetIndex</definition>
+        <argsstring></argsstring>
+        <name>DateSpreadsheetIndex</name>
+        <initializer>= <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1aa115f3b28f05ecdc7601e4dd3b6cf061" kindref="member">BankRecord.MatchOffset</ref> + 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="31" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ab6ee58495fe2c961d610245136d1faef" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.AmountSpreadsheetIndex</definition>
+        <argsstring></argsstring>
+        <name>AmountSpreadsheetIndex</name>
+        <initializer>= <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1aa115f3b28f05ecdc7601e4dd3b6cf061" kindref="member">BankRecord.MatchOffset</ref> + 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="32" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a349c1ec65577e596cf3e9f26a9f34a77" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.TypeSpreadsheetIndex</definition>
+        <argsstring></argsstring>
+        <name>TypeSpreadsheetIndex</name>
+        <initializer>= <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1aa115f3b28f05ecdc7601e4dd3b6cf061" kindref="member">BankRecord.MatchOffset</ref> + 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="33" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1aa872d1805d5db1dfa34859b62d59eb26" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.DescriptionSpreadsheetIndex</definition>
+        <argsstring></argsstring>
+        <name>DescriptionSpreadsheetIndex</name>
+        <initializer>= <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1aa115f3b28f05ecdc7601e4dd3b6cf061" kindref="member">BankRecord.MatchOffset</ref> + 3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="34" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a520ae5e0e62034a858258e78712aec89" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.ActualBankRecord</definition>
+        <argsstring>()</argsstring>
+        <name>ActualBankRecord</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="36" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="36" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a6e126e7b512e9c799297fcdd30b31219" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Create_from_match</definition>
+        <argsstring>(DateTime date, double amount, string type, string description, int extra_info, ICSVRecord matched_record)</argsstring>
+        <name>Create_from_match</name>
+        <param>
+          <type>DateTime</type>
+          <declname>date</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>amount</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>description</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>extra_info</declname>
+        </param>
+        <param>
+          <type>ICSVRecord</type>
+          <declname>matched_record</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="41" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="41" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a0780446e05e1fa661a41785159ac047e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Load</definition>
+        <argsstring>(string csv_line, char?override_separator=null)</argsstring>
+        <name>Load</name>
+        <param>
+          <type>string</type>
+          <declname>csv_line</declname>
+        </param>
+        <param>
+          <type>char?</type>
+          <declname>override_separator</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="52" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="52" bodyend="79"/>
+        <references refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_string_helper_1aba776a2bb0f4fc0a497b00bb7d5ab49a" compoundref="_string_helper_8cs" startline="9" endline="12">ConsoleCatchall.Console.Reconciliation.Utils.StringHelper.Culture</references>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a90285588c20c6f2c27038e12ebe07a28" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.To_csv</definition>
+        <argsstring>(bool format_currency=true)</argsstring>
+        <name>To_csv</name>
+        <param>
+          <type>bool</type>
+          <declname>format_currency</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="81" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="81" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1afd6bb7c4afb9ac105e041752e3e58c04" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.To_string</definition>
+        <argsstring>(char separator= &apos;,&apos;, bool format_currency=true)</argsstring>
+        <name>To_string</name>
+        <param>
+          <type>char</type>
+          <declname>separator</declname>
+          <defval>&apos;,&apos;</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>format_currency</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="86" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="86" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1afd11ff9da42f39847c0a0eba8ab4664c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ConsoleLine</type>
+        <definition>ConsoleLine ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.To_console</definition>
+        <argsstring>(int index=-1)</argsstring>
+        <name>To_console</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="94" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="94" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a342236873b14ba56751e5fa960a0e819" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Populate_spreadsheet_row</definition>
+        <argsstring>(ICellSet cell_set, int row_number)</argsstring>
+        <name>Populate_spreadsheet_row</name>
+        <param>
+          <type>ICellSet</type>
+          <declname>cell_set</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>row_number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="105" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="105" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1abc1b0b94b44f069e1054991f581f7cf2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Read_from_spreadsheet_row</definition>
+        <argsstring>(ICellRow cell_set)</argsstring>
+        <name>Read_from_spreadsheet_row</name>
+        <param>
+          <type>ICellRow</type>
+          <declname>cell_set</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="113" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="113" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a97a3744301cd276f856b2c0cec18f9bb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Main_amount_is_negative</definition>
+        <argsstring>()</argsstring>
+        <name>Main_amount_is_negative</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="122" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="122" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ab2f2168438e9f186ff1907b9e8221140" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Make_main_amount_positive</definition>
+        <argsstring>()</argsstring>
+        <name>Make_main_amount_positive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="127" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="127" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1aab4c1e02a7365421341a77ea16f9e2d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Swap_sign_of_main_amount</definition>
+        <argsstring>()</argsstring>
+        <name>Swap_sign_of_main_amount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="135" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="135" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a3518274f4088c6a779487c5a20069553" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Main_amount</definition>
+        <argsstring>()</argsstring>
+        <name>Main_amount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="140" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="140" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a242245c1a8ca7e56fff65d29e8c5716a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Change_main_amount</definition>
+        <argsstring>(double new_value)</argsstring>
+        <name>Change_main_amount</name>
+        <param>
+          <type>double</type>
+          <declname>new_value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="145" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="145" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a17baf5d91363d16eb8feffb7e77373ea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Transaction_type</definition>
+        <argsstring>()</argsstring>
+        <name>Transaction_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="150" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="150" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a6af23f10e9ed737634d8a5c1621437ac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Extra_info</definition>
+        <argsstring>()</argsstring>
+        <name>Extra_info</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="155" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="155" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ac0c467cf6d3e5716779aa07fec1db305" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ICSVRecord</type>
+        <definition>ICSVRecord ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.With_date</definition>
+        <argsstring>(DateTime new_date)</argsstring>
+        <name>With_date</name>
+        <param>
+          <type>DateTime</type>
+          <declname>new_date</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="160" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="160" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a64a8161574dea723729745d7f0599fad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ICSVRecord</type>
+        <definition>ICSVRecord ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Copy</definition>
+        <argsstring>()</argsstring>
+        <name>Copy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="166" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="166" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a60bc10f4dc2557a0568eba3f11a1b793" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Update_source_line_for_output</definition>
+        <argsstring>(char output_separator)</argsstring>
+        <name>Update_source_line_for_output</name>
+        <param>
+          <type>char</type>
+          <declname>output_separator</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="179" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="179" bodyend="182"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1aed5835927b08680d33cef75777260b51" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Reconcile</definition>
+        <argsstring>()</argsstring>
+        <name>Reconcile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="184" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="184" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a0a36a6f3c5b405f14cb754a416bbcae2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Convert_source_line_separators</definition>
+        <argsstring>(char original_separator, char new_separator)</argsstring>
+        <name>Convert_source_line_separators</name>
+        <param>
+          <type>char</type>
+          <declname>original_separator</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>new_separator</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="189" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="189" bodyend="192"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ICSVRecord</label>
+      </node>
+      <node id="0">
+        <label>ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ICSVRecord</label>
+      </node>
+      <node id="2">
+        <label>ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" line="10" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ActualBankRecord.cs" bodystart="9" bodyend="193"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1af18728df73599ed231efb53208f8ce1a" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>_expected_number_of_fields_per_row</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a4b4259598c829fc25e3ac890af7b3c98" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>_separator</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a520ae5e0e62034a858258e78712aec89" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>ActualBankRecord</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a59922cf0232a7fff8312db1117b9531b" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a9fe3e0e698651f2e8748da211ea3484f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>AmountIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ab6ee58495fe2c961d610245136d1faef" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>AmountSpreadsheetIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a6c1834aad009f947295c1a802adbeb1a" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Balance</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a67e15b111dbe6f2c069a31cfb4f2642d" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>BalanceIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a242245c1a8ca7e56fff65d29e8c5716a" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Change_main_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a0a36a6f3c5b405f14cb754a416bbcae2" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Convert_source_line_separators</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a64a8161574dea723729745d7f0599fad" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Copy</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a6e126e7b512e9c799297fcdd30b31219" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Create_from_match</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a923028d2e39716c86ddfefb266020ee3" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Date</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a6a510c67ea0a799eb3a1e786de88b2d0" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>DateIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a5dddf5497ae820821ba69af8d2546acb" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>DateSpreadsheetIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ab3037996b4312776eb7f249809ffe0e2" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Description</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1aaab128071f54980d6a9079c7019b9db2" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>DescriptionIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1aa872d1805d5db1dfa34859b62d59eb26" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>DescriptionSpreadsheetIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ae4633e00199db7151347b1d4ce7b5f5d" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Divider</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a6af23f10e9ed737634d8a5c1621437ac" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Extra_info</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a0780446e05e1fa661a41785159ac047e" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Load</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a3518274f4088c6a779487c5a20069553" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Main_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a97a3744301cd276f856b2c0cec18f9bb" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Main_amount_is_negative</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ab2f2168438e9f186ff1907b9e8221140" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Make_main_amount_positive</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a1cfc4c0b413f588a816504eafb7bd41c" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Match</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a9611999c4447c53cd5acfec33ab72ce4" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Matched</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a342236873b14ba56751e5fa960a0e819" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Populate_spreadsheet_row</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1abc1b0b94b44f069e1054991f581f7cf2" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Read_from_spreadsheet_row</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1aed5835927b08680d33cef75777260b51" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Reconcile</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ad28fd46e1460949b3e1503576974802b" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Source_line</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1aab4c1e02a7365421341a77ea16f9e2d9" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Swap_sign_of_main_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1afd11ff9da42f39847c0a0eba8ab4664c" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>To_console</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a90285588c20c6f2c27038e12ebe07a28" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>To_csv</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1afd6bb7c4afb9ac105e041752e3e58c04" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>To_string</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a17baf5d91363d16eb8feffb7e77373ea" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Transaction_type</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1adb9e1bf87cbf9bc37293633589679306" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Type</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1af209d43bb10d63c2e0712ca4cef7bd78" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>TypeIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a349c1ec65577e596cf3e9f26a9f34a77" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>TypeSpreadsheetIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a60bc10f4dc2557a0568eba3f11a1b793" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>Update_source_line_for_output</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ac0c467cf6d3e5716779aa07fec1db305" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</scope><name>With_date</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

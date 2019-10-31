@@ -1,0 +1,315 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_input_output" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::InputOutput</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IInputOutput</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_input_output_1adc70cb7f78241d2198019cfc137b8495" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.InputOutput.Output_options</definition>
+        <argsstring>(List&lt; string &gt; options)</argsstring>
+        <name>Output_options</name>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="11" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="11" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_input_output_1a3984d877b75e7078bde9dfe31664dfad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.InputOutput.Output_all_lines_except_the_first</definition>
+        <argsstring>(List&lt; IPotentialMatch &gt; options)</argsstring>
+        <name>Output_all_lines_except_the_first</name>
+        <param>
+          <type>List&lt; IPotentialMatch &gt;</type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="19" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="19" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_input_output_1a36488e31924a6b0cc99e067c40715494" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.InputOutput.Output_all_lines</definition>
+        <argsstring>(List&lt; IPotentialMatch &gt; options)</argsstring>
+        <name>Output_all_lines</name>
+        <param>
+          <type>List&lt; IPotentialMatch &gt;</type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="34" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="34" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_input_output_1ad25ff8c6360c1d90bb5b7beb4b796ee6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.InputOutput.Output_all_lines</definition>
+        <argsstring>(List&lt; ConsoleLine &gt; console_lines)</argsstring>
+        <name>Output_all_lines</name>
+        <param>
+          <type>List&lt; ConsoleLine &gt;</type>
+          <declname>console_lines</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="45" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="45" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_input_output_1afb7b98fea9b5778c09faf9ad913b3fa8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.InputOutput.Output_line</definition>
+        <argsstring>(List&lt; ConsoleSnippet &gt; console_snippets)</argsstring>
+        <name>Output_line</name>
+        <param>
+          <type>List&lt; ConsoleSnippet &gt;</type>
+          <declname>console_snippets</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="53" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="53" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_input_output_1a24496e0d8a1bb4b9a41a3a870ddcbe1a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.InputOutput.Output_line</definition>
+        <argsstring>(ConsoleLine line)</argsstring>
+        <name>Output_line</name>
+        <param>
+          <type>ConsoleLine</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="64" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="64" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_input_output_1a47d3e433ae8c58046cbc37807a94e312" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.InputOutput.Output_line_with_index</definition>
+        <argsstring>(ConsoleLine line)</argsstring>
+        <name>Output_line_with_index</name>
+        <param>
+          <type>ConsoleLine</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="73" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="73" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_input_output_1a6fc39394e905e065e39436303dddea62" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.InputOutput.Output_line</definition>
+        <argsstring>(string line)</argsstring>
+        <name>Output_line</name>
+        <param>
+          <type>string</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="80" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="80" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_input_output_1a3f5435dc39a6fac2e82dccd90ae471fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.InputOutput.Output</definition>
+        <argsstring>(string text)</argsstring>
+        <name>Output</name>
+        <param>
+          <type>string</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="85" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="85" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_input_output_1a1df4ddbc5787654b96aa42eaedb63f34" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.InputOutput.Output_string_list</definition>
+        <argsstring>(List&lt; string &gt; string_list)</argsstring>
+        <name>Output_string_list</name>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>string_list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="103" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="103" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_input_output_1abf2b088a817f912c56b9033ffd5800e2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.InputOutput.Get_input</definition>
+        <argsstring>(string explanatory_message, string debug_description=&quot;&quot;)</argsstring>
+        <name>Get_input</name>
+        <param>
+          <type>string</type>
+          <declname>explanatory_message</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>debug_description</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="111" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="111" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_input_output_1ac4f59c8a39921e3f58c5f00d51174003" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.InputOutput.Get_generic_input</definition>
+        <argsstring>(string debug_description)</argsstring>
+        <name>Get_generic_input</name>
+        <param>
+          <type>string</type>
+          <declname>debug_description</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="119" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="119" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_input_output_1a47817bfb1430d7b42c2ae2e0901ed6d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.InputOutput.Show_error</definition>
+        <argsstring>(Exception exception)</argsstring>
+        <name>Show_error</name>
+        <param>
+          <type>Exception</type>
+          <declname>exception</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="135" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="135" bodyend="149"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_input_output_1a3891b3d7876453396addfadd37b27253" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ConsoleColor</type>
+        <definition>ConsoleColor ConsoleCatchall.Console.InputOutput.Get_colour</definition>
+        <argsstring>(ConsoleColour colour)</argsstring>
+        <name>Get_colour</name>
+        <param>
+          <type>ConsoleColour</type>
+          <declname>colour</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="90" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="90" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_input_output_1aecafe65c766b04589a2fe7d795888482" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.InputOutput.Check_for_exit</definition>
+        <argsstring>(string input)</argsstring>
+        <name>Check_for_exit</name>
+        <param>
+          <type>string</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="127" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="127" bodyend="133"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="129">
+        <label>IInputOutput</label>
+      </node>
+      <node id="128">
+        <label>ConsoleCatchall.Console.InputOutput</label>
+        <link refid="class_console_catchall_1_1_console_1_1_input_output"/>
+        <childnode refid="129" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="131">
+        <label>IInputOutput</label>
+      </node>
+      <node id="130">
+        <label>ConsoleCatchall.Console.InputOutput</label>
+        <link refid="class_console_catchall_1_1_console_1_1_input_output"/>
+        <childnode refid="131" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="10" column="1" bodyfile="C:/Development/Reconciliate/Console/InputOutput.cs" bodystart="9" bodyend="150"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_input_output_1aecafe65c766b04589a2fe7d795888482" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::InputOutput</scope><name>Check_for_exit</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_input_output_1a3891b3d7876453396addfadd37b27253" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::InputOutput</scope><name>Get_colour</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_input_output_1ac4f59c8a39921e3f58c5f00d51174003" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::InputOutput</scope><name>Get_generic_input</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_input_output_1abf2b088a817f912c56b9033ffd5800e2" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::InputOutput</scope><name>Get_input</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_input_output_1a3f5435dc39a6fac2e82dccd90ae471fe" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::InputOutput</scope><name>Output</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_input_output_1a36488e31924a6b0cc99e067c40715494" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::InputOutput</scope><name>Output_all_lines</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_input_output_1ad25ff8c6360c1d90bb5b7beb4b796ee6" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::InputOutput</scope><name>Output_all_lines</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_input_output_1a3984d877b75e7078bde9dfe31664dfad" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::InputOutput</scope><name>Output_all_lines_except_the_first</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_input_output_1afb7b98fea9b5778c09faf9ad913b3fa8" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::InputOutput</scope><name>Output_line</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_input_output_1a24496e0d8a1bb4b9a41a3a870ddcbe1a" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::InputOutput</scope><name>Output_line</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_input_output_1a6fc39394e905e065e39436303dddea62" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::InputOutput</scope><name>Output_line</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_input_output_1a47d3e433ae8c58046cbc37807a94e312" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::InputOutput</scope><name>Output_line_with_index</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_input_output_1adc70cb7f78241d2198019cfc137b8495" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::InputOutput</scope><name>Output_options</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_input_output_1a1df4ddbc5787654b96aa42eaedb63f34" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::InputOutput</scope><name>Output_string_list</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_input_output_1a47817bfb1430d7b42c2ae2e0901ed6d3" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::InputOutput</scope><name>Show_error</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

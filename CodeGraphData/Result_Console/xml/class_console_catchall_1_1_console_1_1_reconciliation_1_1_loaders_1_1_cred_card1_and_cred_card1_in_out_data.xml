@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_data" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Loaders::CredCard1AndCredCard1InOutData</compoundname>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_data_1a8f405fd8e0d77777de8624e3d9bd7773" prot="public" static="yes" mutable="no">
+        <type>DataLoadingInformation</type>
+        <definition>DataLoadingInformation ConsoleCatchall.Console.Reconciliation.Loaders.CredCard1AndCredCard1InOutData.LoadingInfo</definition>
+        <argsstring></argsstring>
+        <name>LoadingInfo</name>
+        <initializer>=
+            new DataLoadingInformation
+            {
+                File_paths = new FilePaths
+                {
+                    Main_path = ReconConsts.Default_file_path,
+                    Third_party_file_name = ReconConsts.Default_cred_card1_file_name,
+                    Owned_file_name = ReconConsts.Default_cred_card1_in_out_file_name
+                },
+                Default_separator = &apos;,&apos;,
+                Loading_separator = &apos;^&apos;,
+                Pending_file_name = ReconConsts.Default_cred_card1_in_out_pending_file_name,
+                Sheet_name = MainSheetNames.Cred_card1,
+                Third_party_descriptor = ReconConsts.Cred_card1_descriptor,
+                Owned_file_descriptor = ReconConsts.Cred_card1_in_out_descriptor,
+                Monthly_budget_data = new BudgetItemListData
+                {
+                    Sheet_name = MainSheetNames.Budget_out,
+                    Start_divider = Dividers.Cred_card1,
+                    End_divider = Dividers.Cred_card2,
+                    First_column_number = 2,
+                    Last_column_number = 5
+                },
+                Annual_budget_data = null,
+                
+                Third_party_file_load_action = ThirdPartyFileLoadAction.NoAction
+            }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutData.cs" line="8" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutData.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutData.cs" line="7" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutData.cs" bodystart="6" bodyend="35"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_data_1a8f405fd8e0d77777de8624e3d9bd7773" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::CredCard1AndCredCard1InOutData</scope><name>LoadingInfo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

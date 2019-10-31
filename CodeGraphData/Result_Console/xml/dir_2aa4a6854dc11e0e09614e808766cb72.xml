@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_2aa4a6854dc11e0e09614e808766cb72" kind="dir">
+    <compoundname>C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetData</compoundname>
+    <innerfile refid="_fake_row_numbers_for_cell_8cs">FakeRowNumbersForCell.cs</innerfile>
+    <innerfile refid="_fake_row_numbers_for_text_8cs">FakeRowNumbersForText.cs</innerfile>
+    <innerfile refid="_fake_rows_8cs">FakeRows.cs</innerfile>
+    <innerfile refid="_last_row_numbers_8cs">LastRowNumbers.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetData/"/>
+  </compounddef>
+</doxygen>

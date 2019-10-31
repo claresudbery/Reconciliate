@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="_potential_match_8cs" kind="file">
+    <compoundname>PotentialMatch.cs</compoundname>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match" prot="package">ConsoleCatchall::Console::Reconciliation::Records::PotentialMatch</innerclass>
+    <innernamespace refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_records">ConsoleCatchall::Console::Reconciliation::Records</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections.Generic;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Interfaces;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Interfaces.DTOs;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">ConsoleCatchall.Console.Reconciliation.Records</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7" refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">internal</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match" kindref="compound">PotentialMatch</ref><sp/>:<sp/>IPotentialMatch</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="9" refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a0576514f51e52dfa654d57bae44f8360" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>PartialDateMatchThreshold<sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="10" refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a2fc631e5f1615aea46a0ec37aed1b4b8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>PartialAmountMatchThreshold<sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1afb6ff7f103025d2b1333b6f151db706a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>IList&lt;ICSVRecord&gt;<sp/>Actual_records<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a235236f19a3a037b74d10ce91943b807" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Amount_match<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="15" refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a0f40ee5926f67ed8dc2d65224aa37f6d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Full_text_match<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="16" refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a76db67ca97df6b8f6c9a5e3d85a1e183" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Partial_text_match<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="17" refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a3ffb693a2257278b509cbd2864dec6b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Rankings<sp/>Rankings<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a92eaf91c4fcc541021704b5366bb7ef7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>List&lt;ConsoleLine&gt;<sp/>Console_lines<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/PotentialMatch.cs"/>
+  </compounddef>
+</doxygen>

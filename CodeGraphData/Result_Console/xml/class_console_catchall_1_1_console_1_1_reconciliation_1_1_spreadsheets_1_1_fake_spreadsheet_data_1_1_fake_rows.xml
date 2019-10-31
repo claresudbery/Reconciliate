@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_rows" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetData::FakeRows</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_rows_1a3fe773efda31d3651f5d1ce7428e169b" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>Dictionary&lt; string, List&lt; ICellRow &gt; &gt;</type>
+        <definition>Dictionary&lt;string, List&lt;ICellRow&gt; &gt; ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetData.FakeRows.Data</definition>
+        <argsstring></argsstring>
+        <name>Data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetData/FakeRows.cs" line="10" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetData/FakeRows.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetData/FakeRows.cs" line="9" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetData/FakeRows.cs" bodystart="8" bodyend="139"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_rows_1a3fe773efda31d3651f5d1ce7428e169b" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetData::FakeRows</scope><name>Data</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,478 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a5a582948245eda0a5aad0eea90293db8" prot="private" static="no" mutable="no">
+        <type>readonly IInputOutput</type>
+        <definition>readonly IInputOutput ConsoleCatchall.Console.Reconciliation.ReconciliationInterface._input_output</definition>
+        <argsstring></argsstring>
+        <name>_input_output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="13" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a6fe227a02e60880c44a59a1110797f4b" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.ReconciliationInterface._doing_semi_automatic_matching</definition>
+        <argsstring></argsstring>
+        <name>_doing_semi_automatic_matching</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="19" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a6c7c07fd636048ee5cbcfe250a76889f" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>IReconciliator</type>
+        <definition>IReconciliator ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Reconciliator</definition>
+        <argsstring></argsstring>
+        <name>Reconciliator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="15" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a44e1df956971a9accebd9d49ad461110" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Third_party_descriptor</definition>
+        <argsstring></argsstring>
+        <name>Third_party_descriptor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="16" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1ae1bb8006d99718bec8fc41ff7650f6ce" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Owned_file_descriptor</definition>
+        <argsstring></argsstring>
+        <name>Owned_file_descriptor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="17" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1abb74e79eec5744f1461c46a6258af11b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.ReconciliationInterface</definition>
+        <argsstring>(IInputOutput input_output, IReconciliator reconciliator, string third_party_descriptor, string owned_file_descriptor)</argsstring>
+        <name>ReconciliationInterface</name>
+        <param>
+          <type>IInputOutput</type>
+          <declname>input_output</declname>
+        </param>
+        <param>
+          <type>IReconciliator</type>
+          <declname>reconciliator</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>third_party_descriptor</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>owned_file_descriptor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="21" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="21" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a09de9fcb3b6606cd339a6becef52a5a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Do_the_matching</definition>
+        <argsstring>()</argsstring>
+        <name>Do_the_matching</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="33" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="33" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1afc61c4f349d3f9da5a0c8cbe6afa15e5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Do_matching_for_non_matching_records</definition>
+        <argsstring>()</argsstring>
+        <name>Do_matching_for_non_matching_records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="42" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="42" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1aa6a3e720c5397c4cb815b1ef4e1813a4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Do_semi_automatic_matching</definition>
+        <argsstring>()</argsstring>
+        <name>Do_semi_automatic_matching</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="55" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="55" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a60481a96ba0d4b12f85f776151f80657" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Show_current_record_and_semi_auto_matches</definition>
+        <argsstring>()</argsstring>
+        <name>Show_current_record_and_semi_auto_matches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="108" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="108" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a216221b3b08bbcbf7612ba6559cf63bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Show_current_record_and_manual_matches</definition>
+        <argsstring>()</argsstring>
+        <name>Show_current_record_and_manual_matches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="130" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="130" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a22c82fc03662386973b5e61e32164ca8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Finish</definition>
+        <argsstring>()</argsstring>
+        <name>Finish</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="239" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="239" bodyend="246"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1aade37b702eb70279403a5b431c3b2c5a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Do_automatic_matching</definition>
+        <argsstring>()</argsstring>
+        <name>Do_automatic_matching</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="49" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="49" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a5af6022d8c200fabae8f3e32131c035f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Do_manual_matching</definition>
+        <argsstring>()</argsstring>
+        <name>Do_manual_matching</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="68" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="68" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1aa2f3a5e684a3e582886296691af5b1c8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Recursively_show_auto_matches_and_get_choices</definition>
+        <argsstring>()</argsstring>
+        <name>Recursively_show_auto_matches_and_get_choices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="81" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="81" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a89bbf81ed554e21c6a245ab04869165a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Show_auto_matches</definition>
+        <argsstring>(List&lt; ConsoleLine &gt; auto_matches)</argsstring>
+        <name>Show_auto_matches</name>
+        <param>
+          <type>List&lt; ConsoleLine &gt;</type>
+          <declname>auto_matches</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="96" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="96" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a214431810084190f62942ea221194f1e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Show_final_results_of_matching</definition>
+        <argsstring>()</argsstring>
+        <name>Show_final_results_of_matching</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="143" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="143" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a7b40424644e7b4fa2b70633078314990" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Recursively_show_final_matches_and_get_choices</definition>
+        <argsstring>()</argsstring>
+        <name>Recursively_show_final_matches_and_get_choices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="154" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="154" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a52b764ee788349a47b36969ed1663595" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Show_final_matches</definition>
+        <argsstring>(List&lt; ConsoleLine &gt; final_matches)</argsstring>
+        <name>Show_final_matches</name>
+        <param>
+          <type>List&lt; ConsoleLine &gt;</type>
+          <declname>final_matches</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="169" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="169" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a832532b7041927d160d6368d11a4bcd1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Proceed_after_showing_matching_results</definition>
+        <argsstring>()</argsstring>
+        <name>Proceed_after_showing_matching_results</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="190" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="190" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1aa05c1188180cc8959247b974ed1f6bd7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Go_again</definition>
+        <argsstring>()</argsstring>
+        <name>Go_again</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="207" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="207" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a120ea6fb67755bd1728f20d51113ef8a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Show_warnings</definition>
+        <argsstring>()</argsstring>
+        <name>Show_warnings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="213" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="213" bodyend="237"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a2c369c844790ec06b5484aeaf51a52f4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Act_on_choices_for_auto_matching</definition>
+        <argsstring>()</argsstring>
+        <name>Act_on_choices_for_auto_matching</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="248" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="248" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a2fb3ca02507bdb6f8a31fa4ba242644f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Remove_auto_matches</definition>
+        <argsstring>(string input)</argsstring>
+        <name>Remove_auto_matches</name>
+        <param>
+          <type>string</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="266" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="266" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1ac46e0a9248e7da0acbafce626fe8a67c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Act_on_choices_for_final_matching</definition>
+        <argsstring>()</argsstring>
+        <name>Act_on_choices_for_final_matching</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="282" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="282" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1acdc8c9e30ffc09bc4733c44b66776eb6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Remove_final_matches</definition>
+        <argsstring>(string input)</argsstring>
+        <name>Remove_final_matches</name>
+        <param>
+          <type>string</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="300" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="300" bodyend="315"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a9205cfbe4843a5bf94834ed38ec43d6d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Get_and_record_choice_of_matching</definition>
+        <argsstring>()</argsstring>
+        <name>Get_and_record_choice_of_matching</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="317" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="317" bodyend="340"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a0810fafe594826935072532044a276f6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Mark_the_match</definition>
+        <argsstring>(string input)</argsstring>
+        <name>Mark_the_match</name>
+        <param>
+          <type>string</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="342" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="342" bodyend="345"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a95d5b2e686c33892e9e846f1260ba95e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Process_deletion</definition>
+        <argsstring>()</argsstring>
+        <name>Process_deletion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="347" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="347" bodyend="367"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1aed8fbbf3aa0717d3805ddc345d83904f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.ReconciliationInterface.Delete_record_from_list_of_matches</definition>
+        <argsstring>()</argsstring>
+        <name>Delete_record_from_list_of_matches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="369" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="369" bodyend="394"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" line="12" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationInterface.cs" bodystart="11" bodyend="395"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a6fe227a02e60880c44a59a1110797f4b" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>_doing_semi_automatic_matching</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a5a582948245eda0a5aad0eea90293db8" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>_input_output</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a2c369c844790ec06b5484aeaf51a52f4" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Act_on_choices_for_auto_matching</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1ac46e0a9248e7da0acbafce626fe8a67c" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Act_on_choices_for_final_matching</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1aed8fbbf3aa0717d3805ddc345d83904f" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Delete_record_from_list_of_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1aade37b702eb70279403a5b431c3b2c5a" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Do_automatic_matching</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a5af6022d8c200fabae8f3e32131c035f" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Do_manual_matching</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1afc61c4f349d3f9da5a0c8cbe6afa15e5" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Do_matching_for_non_matching_records</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1aa6a3e720c5397c4cb815b1ef4e1813a4" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Do_semi_automatic_matching</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a09de9fcb3b6606cd339a6becef52a5a2" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Do_the_matching</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a22c82fc03662386973b5e61e32164ca8" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Finish</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a9205cfbe4843a5bf94834ed38ec43d6d" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Get_and_record_choice_of_matching</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1aa05c1188180cc8959247b974ed1f6bd7" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Go_again</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a0810fafe594826935072532044a276f6" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Mark_the_match</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1ae1bb8006d99718bec8fc41ff7650f6ce" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Owned_file_descriptor</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a832532b7041927d160d6368d11a4bcd1" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Proceed_after_showing_matching_results</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a95d5b2e686c33892e9e846f1260ba95e" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Process_deletion</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1abb74e79eec5744f1461c46a6258af11b" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>ReconciliationInterface</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a6c7c07fd636048ee5cbcfe250a76889f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Reconciliator</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1aa2f3a5e684a3e582886296691af5b1c8" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Recursively_show_auto_matches_and_get_choices</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a7b40424644e7b4fa2b70633078314990" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Recursively_show_final_matches_and_get_choices</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a2fb3ca02507bdb6f8a31fa4ba242644f" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Remove_auto_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1acdc8c9e30ffc09bc4733c44b66776eb6" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Remove_final_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a89bbf81ed554e21c6a245ab04869165a" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Show_auto_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a216221b3b08bbcbf7612ba6559cf63bf" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Show_current_record_and_manual_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a60481a96ba0d4b12f85f776151f80657" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Show_current_record_and_semi_auto_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a52b764ee788349a47b36969ed1663595" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Show_final_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a214431810084190f62942ea221194f1e" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Show_final_results_of_matching</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a120ea6fb67755bd1728f20d51113ef8a" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Show_warnings</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a44e1df956971a9accebd9d49ad461110" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</scope><name>Third_party_descriptor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

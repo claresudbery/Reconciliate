@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankOutLoader</compoundname>
+    <basecompoundref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader" prot="public" virt="non-virtual">ConsoleCatchall.Console.Reconciliation.Loaders.ILoader</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1a49933d58ded220702a09911417c09982" prot="private" static="no" mutable="no">
+        <type>readonly IInputOutput</type>
+        <definition>readonly IInputOutput ConsoleCatchall.Console.Reconciliation.Loaders.BankAndBankOutLoader._input_output</definition>
+        <argsstring></argsstring>
+        <name>_input_output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutLoader.cs" line="12" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutLoader.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1a4b0b602afaee4a75c8699365cba48d2a" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader" kindref="compound">FileLoader</ref></type>
+        <definition>readonly FileLoader ConsoleCatchall.Console.Reconciliation.Loaders.BankAndBankOutLoader._file_loader</definition>
+        <argsstring></argsstring>
+        <name>_file_loader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutLoader.cs" line="13" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutLoader.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1a92f86bde30aef796f766a0124f6746a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ConsoleCatchall.Console.Reconciliation.Loaders.BankAndBankOutLoader.BankAndBankOutLoader</definition>
+        <argsstring>(IInputOutput input_output, FileLoader file_loader=null)</argsstring>
+        <name>BankAndBankOutLoader</name>
+        <param>
+          <type>IInputOutput</type>
+          <declname>input_output</declname>
+        </param>
+        <param>
+          <type><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader" kindref="compound">FileLoader</ref></type>
+          <declname>file_loader</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutLoader.cs" line="15" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutLoader.cs" bodystart="15" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1a3e6a5dddaf28abfe2d1a504341bc12b4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface" kindref="compound">ReconciliationInterface</ref></type>
+        <definition>ReconciliationInterface ConsoleCatchall.Console.Reconciliation.Loaders.BankAndBankOutLoader.Load_files_and_merge_data</definition>
+        <argsstring>(FilePaths main_file_paths)</argsstring>
+        <name>Load_files_and_merge_data</name>
+        <reimplements refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader_1afd740f45de19cbf020bf619fb455ec0b">Load_files_and_merge_data</reimplements>
+        <param>
+          <type>FilePaths</type>
+          <declname>main_file_paths</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutLoader.cs" line="21" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutLoader.cs" bodystart="21" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1aaec7652df2277b6d80e6693445413e5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Loaders.BankAndBankOutLoader.Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</definition>
+        <argsstring>(IInputOutput input_output, ISpreadsheet spreadsheet, ICSVFile&lt; TOwnedType &gt; pending_file, BudgetingMonths budgeting_months, DataLoadingInformation loading_info)</argsstring>
+        <name>Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</name>
+        <reimplements refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader_1a41cf9617c72caffa61f335402199bc74">Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</reimplements>
+        <param>
+          <type>IInputOutput</type>
+          <declname>input_output</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kindref="compound">ISpreadsheet</ref></type>
+          <declname>spreadsheet</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TOwnedType &gt;</type>
+          <declname>pending_file</declname>
+        </param>
+        <param>
+          <type>BudgetingMonths</type>
+          <declname>budgeting_months</declname>
+        </param>
+        <param>
+          <type>DataLoadingInformation</type>
+          <declname>loading_info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutLoader.cs" line="27" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutLoader.cs" bodystart="27" bodyend="48"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1ab5aafbbc0e58cd70ba1fd297353e28c2" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ConsoleCatchall.Console.Reconciliation.Loaders.BankAndBankOutLoader.Add_most_recent_credit_card_direct_debits</definition>
+        <argsstring>(IInputOutput input_output, ISpreadsheet spreadsheet, ICSVFile&lt; BankRecord &gt; pending_file, string cred_card_name, string direct_debit_description)</argsstring>
+        <name>Add_most_recent_credit_card_direct_debits</name>
+        <param>
+          <type>IInputOutput</type>
+          <declname>input_output</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kindref="compound">ISpreadsheet</ref></type>
+          <declname>spreadsheet</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record" kindref="compound">BankRecord</ref> &gt;</type>
+          <declname>pending_file</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>cred_card_name</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>direct_debit_description</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutLoader.cs" line="50" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutLoader.cs" bodystart="50" bodyend="86"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="14">
+        <label>ILoader</label>
+        <link refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader"/>
+      </node>
+      <node id="13">
+        <label>ConsoleCatchall.Console.Reconciliation.Loaders.BankAndBankOutLoader</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="16">
+        <label>ILoader</label>
+        <link refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader"/>
+      </node>
+      <node id="17">
+        <label>ConsoleCatchall.Console.Reconciliation.Loaders.FileLoader</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader"/>
+      </node>
+      <node id="15">
+        <label>ConsoleCatchall.Console.Reconciliation.Loaders.BankAndBankOutLoader</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>_file_loader</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutLoader.cs" line="11" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutLoader.cs" bodystart="10" bodyend="87"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1a4b0b602afaee4a75c8699365cba48d2a" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankOutLoader</scope><name>_file_loader</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1a49933d58ded220702a09911417c09982" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankOutLoader</scope><name>_input_output</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1ab5aafbbc0e58cd70ba1fd297353e28c2" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankOutLoader</scope><name>Add_most_recent_credit_card_direct_debits</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1a92f86bde30aef796f766a0124f6746a5" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankOutLoader</scope><name>BankAndBankOutLoader</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1a3e6a5dddaf28abfe2d1a504341bc12b4" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankOutLoader</scope><name>Load_files_and_merge_data</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1aaec7652df2277b6d80e6693445413e5f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankOutLoader</scope><name>Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

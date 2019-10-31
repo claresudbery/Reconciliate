@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="_c_s_v_factory_8cs" kind="file">
+    <compoundname>CSVFactory.cs</compoundname>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_factory_3_01_t_record_type_01_4" prot="package">ConsoleCatchall::Console::Reconciliation::Files::CSVFileFactory&lt; TRecordType &gt;</innerclass>
+    <innernamespace refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_files">ConsoleCatchall::Console::Reconciliation::Files</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>ConsoleCatchall.Console.Reconciliation.Spreadsheets;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Interfaces;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Interfaces.Constants;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_files" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">ConsoleCatchall.Console.Reconciliation.Files</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7" refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_factory_3_01_t_record_type_01_4" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">internal</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">CSVFileFactory&lt;TRecordType&gt;<sp/>:<sp/>ICSVFileFactory&lt;TRecordType&gt;<sp/>where<sp/>TRecordType<sp/>:<sp/>ICSVRecord,<sp/>new()</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="9" refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_factory_3_01_t_record_type_01_4_1adb33ad563c03e5b33f123f0e246980cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>ICSVFile&lt;TRecordType&gt;<sp/><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_factory_3_01_t_record_type_01_4_1adb33ad563c03e5b33f123f0e246980cd" kindref="member">Create_csv_file</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>load_file<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">?<sp/>override_separator<sp/>=<sp/>null,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>order_on_load<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>file_io<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4" kindref="compound">FileIO&lt;TRecordType&gt;</ref>(</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_repo_factory_factory" kindref="compound">SpreadsheetRepoFactoryFactory</ref>()</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.Get_factory(ReconConsts.Main_spreadsheet_path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/&quot;</highlight><highlight class="normal"><sp/>+<sp/>ReconConsts.Main_spreadsheet_file_name),<sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>csv_file<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4" kindref="compound">CSVFile&lt;TRecordType&gt;</ref>(file_io);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>csv_file.Load(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>csv_file;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/CSVFactory.cs"/>
+  </compounddef>
+</doxygen>

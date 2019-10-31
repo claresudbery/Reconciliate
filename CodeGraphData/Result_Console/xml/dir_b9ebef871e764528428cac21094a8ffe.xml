@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_b9ebef871e764528428cac21094a8ffe" kind="dir">
+    <compoundname>C:/Development/Reconciliate/Console/Reconciliation/Records</compoundname>
+    <innerfile refid="_actual_bank_record_8cs">ActualBankRecord.cs</innerfile>
+    <innerfile refid="_bank_record_8cs">BankRecord.cs</innerfile>
+    <innerfile refid="_cred_card1_in_out_record_8cs">CredCard1InOutRecord.cs</innerfile>
+    <innerfile refid="_cred_card1_record_8cs">CredCard1Record.cs</innerfile>
+    <innerfile refid="_cred_card2_in_out_record_8cs">CredCard2InOutRecord.cs</innerfile>
+    <innerfile refid="_cred_card2_record_8cs">CredCard2Record.cs</innerfile>
+    <innerfile refid="_expected_income_record_8cs">ExpectedIncomeRecord.cs</innerfile>
+    <innerfile refid="_potential_match_8cs">PotentialMatch.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/"/>
+  </compounddef>
+</doxygen>

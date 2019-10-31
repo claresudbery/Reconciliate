@@ -1,0 +1,900 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ISpreadsheetRepo</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a5e8dba8891a23fc0c058c1bb8e03d6e2" prot="private" static="no" mutable="no">
+        <type>FileIO&lt; <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record" kindref="compound">BankRecord</ref> &gt;</type>
+        <definition>FileIO&lt;BankRecord&gt; ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo._debug_log</definition>
+        <argsstring></argsstring>
+        <name>_debug_log</name>
+        <initializer>= new FileIO&lt;<ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record" kindref="compound">BankRecord</ref>&gt;(
+            new <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_factory" kindref="compound">FakeSpreadsheetRepoFactory</ref>(), 
+            ReconConsts.Default_file_path,
+            &quot;FakeSpreadsheetDataInfo&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="17" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1adfcb4c74d1f9035dfe3d7db7409397f5" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_row_numbers_for_cell" kindref="compound">FakeRowNumbersForCell</ref></type>
+        <definition>readonly FakeRowNumbersForCell ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo._fake_row_numbers_for_cell</definition>
+        <argsstring></argsstring>
+        <name>_fake_row_numbers_for_cell</name>
+        <initializer>= new <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_row_numbers_for_cell" kindref="compound">FakeRowNumbersForCell</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="22" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1aadec03b8154c8f09e56ad0e487e28359" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_row_numbers_for_text" kindref="compound">FakeRowNumbersForText</ref></type>
+        <definition>readonly FakeRowNumbersForText ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo._fake_row_numbers_for_text</definition>
+        <argsstring></argsstring>
+        <name>_fake_row_numbers_for_text</name>
+        <initializer>= new <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_row_numbers_for_text" kindref="compound">FakeRowNumbersForText</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="23" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a82f31426b0607649a0020484aeec88a2" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_rows" kindref="compound">FakeRows</ref></type>
+        <definition>readonly FakeRows ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo._fake_rows</definition>
+        <argsstring></argsstring>
+        <name>_fake_rows</name>
+        <initializer>= new <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_rows" kindref="compound">FakeRows</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="24" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1ac9b7a55f9d3a4b7a604d78e53142f8df" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_last_row_numbers" kindref="compound">LastRowNumbers</ref></type>
+        <definition>readonly LastRowNumbers ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo._last_row_numbers</definition>
+        <argsstring></argsstring>
+        <name>_last_row_numbers</name>
+        <initializer>= new <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_last_row_numbers" kindref="compound">LastRowNumbers</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="25" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a5fc9c7d02975d28508897bb57b948f21" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.FakeMortgageDescription</definition>
+        <argsstring></argsstring>
+        <name>FakeMortgageDescription</name>
+        <initializer>= &quot;Mortgage description&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="27" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a22d555e33b690a6687e43caf28090a00" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.FakeSpreadsheetRepo</definition>
+        <argsstring>()</argsstring>
+        <name>FakeSpreadsheetRepo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="29" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="29" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a8a5775ba7c13765e797359c3f0cbc1f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Dispose</definition>
+        <argsstring>()</argsstring>
+        <name>Dispose</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="39" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="39" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1acfaebf2ef61402c3a501ec3aaa7a3ba0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ICellSet</type>
+        <definition>ICellSet ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Current_cells</definition>
+        <argsstring>(string sheet_name)</argsstring>
+        <name>Current_cells</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="43" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="43" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1aa231d56131b6d1ee4ab60e47cea6e9f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Last_row_number</definition>
+        <argsstring>(string sheet_name)</argsstring>
+        <name>Last_row_number</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="49" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="49" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a80fe7edb003062d90ad9afbaaa22b58e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ICellRow</type>
+        <definition>ICellRow ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Read_specified_row</definition>
+        <argsstring>(string sheet_name, int row_number)</argsstring>
+        <name>Read_specified_row</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>row_number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="58" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="58" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a6a2543c7fd0b9640684f871350874319" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Find_first_empty_row_in_column</definition>
+        <argsstring>(string sheet_name, int column_number)</argsstring>
+        <name>Find_first_empty_row_in_column</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>column_number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="67" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="67" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1acae5b7fdc3a43d2bd834a2f3cf1c0e18" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Find_row_number_of_last_row_containing_cell</definition>
+        <argsstring>(string sheet_name, string target_cell_text, int expected_column_number=SpreadsheetConsts.DefaultDividerColumn)</argsstring>
+        <name>Find_row_number_of_last_row_containing_cell</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>target_cell_text</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>expected_column_number</declname>
+          <defval>SpreadsheetConsts.DefaultDividerColumn</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="73" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="73" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a87ff0f3faf30046f95e7f2e711fa6292" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Find_row_number_of_last_row_with_cell_containing_text</definition>
+        <argsstring>(string sheet_name, string target_sub_text, List&lt; int &gt; expected_column_numbers)</argsstring>
+        <name>Find_row_number_of_last_row_with_cell_containing_text</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>target_sub_text</declname>
+        </param>
+        <param>
+          <type>List&lt; int &gt;</type>
+          <declname>expected_column_numbers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="84" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="84" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a28bea1ae5fa73558f6155a75df078b92" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Get_amount</definition>
+        <argsstring>(string sheet_name, string code, int column)</argsstring>
+        <name>Get_amount</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>code</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>column</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="92" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="92" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1af5bb4e9665e84396a02550cfe03e00c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Get_amount</definition>
+        <argsstring>(string sheet_name, int row, int column)</argsstring>
+        <name>Get_amount</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>row</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>column</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="98" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="98" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a50d8d77ee1328beda032414198bc888f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>DateTime</type>
+        <definition>DateTime ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Get_date</definition>
+        <argsstring>(string sheet_name, int row, int column)</argsstring>
+        <name>Get_date</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>row</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>column</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="104" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="104" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a4a83ce58d2549b4f2226d2b8248bc6f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Get_text</definition>
+        <argsstring>(string sheet_name, int row, int column)</argsstring>
+        <name>Get_text</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>row</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>column</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="110" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="110" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a3f7c7a3888b8bae3033b5f99ff8e960e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Find_row_number_of_first_row_containing_cell</definition>
+        <argsstring>(string sheet_name, string target_cell_text, int expected_column_number=SpreadsheetConsts.DefaultDividerColumn)</argsstring>
+        <name>Find_row_number_of_first_row_containing_cell</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>target_cell_text</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>expected_column_number</declname>
+          <defval>SpreadsheetConsts.DefaultDividerColumn</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="116" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="116" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a50b8a4935166e04b7e60aadb3911abc3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ICellRow</type>
+        <definition>ICellRow ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Read_last_row</definition>
+        <argsstring>(string sheet_name)</argsstring>
+        <name>Read_last_row</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="125" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="125" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a8d0899bec2f5701f9131cccceff8adf2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Read_last_row_as_csv</definition>
+        <argsstring>(string sheet_name, ICSVRecord csv_record)</argsstring>
+        <name>Read_last_row_as_csv</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>ICSVRecord</type>
+          <declname>csv_record</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="131" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="131" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a49a8a04cf8918dabb0ddcc9539a3cd98" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; TRecordType &gt;</type>
+        <definition>List&lt;TRecordType&gt; ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Get_rows_as_records&lt; TRecordType &gt;</definition>
+        <argsstring>(string sheet_name, int first_row_number, int last_row_number, int first_column_number, int last_column_number)</argsstring>
+        <name>Get_rows_as_records&lt; TRecordType &gt;</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>first_row_number</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>last_row_number</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>first_column_number</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>last_column_number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="138" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="138" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a8f2b50ca6debdf86e032ec623061a3cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ICellRow</type>
+        <definition>ICellRow ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Read_specified_row</definition>
+        <argsstring>(string sheet_name, int row_number, int start_column, int end_column)</argsstring>
+        <name>Read_specified_row</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>row_number</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>start_column</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>end_column</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="163" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="163" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a978b9b3930bc7abaf040813f85f7fc14" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ICellRow</type>
+        <definition>ICellRow ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Read_specified_row</definition>
+        <argsstring>(int row_number)</argsstring>
+        <name>Read_specified_row</name>
+        <param>
+          <type>int</type>
+          <declname>row_number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="181" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="181" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a464ee9f0a6b2b4c159c5ebddc56443ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Append_csv_record</definition>
+        <argsstring>(string sheet_name, ICSVRecord csv_record)</argsstring>
+        <name>Append_csv_record</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>ICSVRecord</type>
+          <declname>csv_record</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>/////////////////////////////////////////////////////////////////////////////// /// /////////////////////////////////////////////////////////////////////////////// /// /////////////////////////////////////////////////////////////////////////////// /// /////////////////////////////////////////////////////////////////////////////// </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="192" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="192" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1ac28724d67bbdf2e3fd14b16aa444de5a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Remove_last_row</definition>
+        <argsstring>(string sheet_name)</argsstring>
+        <name>Remove_last_row</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="196" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="196" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1ac59c6261a02b6e33595f9232c9477c8e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Append_csv_file&lt; TRecordType &gt;</definition>
+        <argsstring>(string sheet_name, ICSVFile&lt; TRecordType &gt; csv_file)</argsstring>
+        <name>Append_csv_file&lt; TRecordType &gt;</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TRecordType &gt;</type>
+          <declname>csv_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="200" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="200" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1afcfc996dfce8aac5ef30ec6f64a6e9c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Update_date</definition>
+        <argsstring>(string sheet_name, int date_row, int date_column, DateTime new_date)</argsstring>
+        <name>Update_date</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>date_row</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>date_column</declname>
+        </param>
+        <param>
+          <type>DateTime</type>
+          <declname>new_date</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="204" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="204" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1ad42de0deb0d8544c631a59acba9969ea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Update_text</definition>
+        <argsstring>(string sheet_name, int text_row, int text_column, string new_text)</argsstring>
+        <name>Update_text</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>text_row</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>text_column</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>new_text</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="208" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="208" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1acf5f12e5c19572b9823653b242b5e238" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Update_amount</definition>
+        <argsstring>(string sheet_name, int amount_row, int amount_column, double new_amount)</argsstring>
+        <name>Update_amount</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>amount_row</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>amount_column</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>new_amount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="212" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="212" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a5b4134701bd0574895739936a10429ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Update_amount</definition>
+        <argsstring>(string sheet_name, string amount_code, double new_amount, int amount_column=SpreadsheetConsts.DefaultAmountColumn, int code_column=SpreadsheetConsts.DefaultCodeColumn)</argsstring>
+        <name>Update_amount</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>amount_code</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>new_amount</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>amount_column</declname>
+          <defval>SpreadsheetConsts.DefaultAmountColumn</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>code_column</declname>
+          <defval>SpreadsheetConsts.DefaultCodeColumn</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="216" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="216" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a588b91acde8df7b293142cc9fa1fb082" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Update_amount_and_text</definition>
+        <argsstring>(string sheet_name, string amount_code, double new_amount, string new_text, int amount_column=SpreadsheetConsts.DefaultAmountColumn, int text_column=SpreadsheetConsts.DefaultTextColumn, int code_column=SpreadsheetConsts.DefaultCodeColumn)</argsstring>
+        <name>Update_amount_and_text</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>amount_code</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>new_amount</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>new_text</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>amount_column</declname>
+          <defval>SpreadsheetConsts.DefaultAmountColumn</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>text_column</declname>
+          <defval>SpreadsheetConsts.DefaultTextColumn</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>code_column</declname>
+          <defval>SpreadsheetConsts.DefaultCodeColumn</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="225" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="225" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a5b5241a2ff0c3f60a1d10c4bdbc1ded5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Insert_new_row</definition>
+        <argsstring>(string sheet_name, int new_row_number, Dictionary&lt; int, object &gt; cell_values)</argsstring>
+        <name>Insert_new_row</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>new_row_number</declname>
+        </param>
+        <param>
+          <type>Dictionary&lt; int, object &gt;</type>
+          <declname>cell_values</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="236" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="236" bodyend="238"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1ae57ac2784a4cc28137bb9ec946555196" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Append_new_row</definition>
+        <argsstring>(string sheet_name, Dictionary&lt; int, object &gt; cell_values)</argsstring>
+        <name>Append_new_row</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>Dictionary&lt; int, object &gt;</type>
+          <declname>cell_values</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="240" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="240" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a459a699f40e6b88c0acb5e3746a05fbc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Delete_specified_rows</definition>
+        <argsstring>(string sheet_name, int first_row_number, int last_row_number)</argsstring>
+        <name>Delete_specified_rows</name>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>first_row_number</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>last_row_number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="244" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="244" bodyend="246"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a553f9da4afdb1e14fd6b54b8186e8e05" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo.Get_method_name</definition>
+        <argsstring>()</argsstring>
+        <name>Get_method_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="248" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="248" bodyend="251"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="94">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo"/>
+        <childnode refid="95" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="95">
+        <label>ISpreadsheetRepo</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="100">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetData.FakeRowNumbersForText</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_row_numbers_for_text"/>
+      </node>
+      <node id="96">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetRepo</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo"/>
+        <childnode refid="97" relation="public-inheritance">
+        </childnode>
+        <childnode refid="98" relation="usage">
+          <edgelabel>_fake_row_numbers_for_cell</edgelabel>
+        </childnode>
+        <childnode refid="99" relation="usage">
+          <edgelabel>_fake_rows</edgelabel>
+        </childnode>
+        <childnode refid="100" relation="usage">
+          <edgelabel>_fake_row_numbers_for_text</edgelabel>
+        </childnode>
+        <childnode refid="101" relation="usage">
+          <edgelabel>_last_row_numbers</edgelabel>
+        </childnode>
+      </node>
+      <node id="98">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetData.FakeRowNumbersForCell</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_row_numbers_for_cell"/>
+      </node>
+      <node id="101">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetData.LastRowNumbers</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_last_row_numbers"/>
+      </node>
+      <node id="97">
+        <label>ISpreadsheetRepo</label>
+      </node>
+      <node id="99">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetData.FakeRows</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_rows"/>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" line="16" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetRepo.cs" bodystart="15" bodyend="252"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a5e8dba8891a23fc0c058c1bb8e03d6e2" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>_debug_log</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1adfcb4c74d1f9035dfe3d7db7409397f5" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>_fake_row_numbers_for_cell</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1aadec03b8154c8f09e56ad0e487e28359" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>_fake_row_numbers_for_text</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a82f31426b0607649a0020484aeec88a2" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>_fake_rows</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1ac9b7a55f9d3a4b7a604d78e53142f8df" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>_last_row_numbers</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1ac59c6261a02b6e33595f9232c9477c8e" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Append_csv_file&lt; TRecordType &gt;</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a464ee9f0a6b2b4c159c5ebddc56443ae" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Append_csv_record</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1ae57ac2784a4cc28137bb9ec946555196" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Append_new_row</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1acfaebf2ef61402c3a501ec3aaa7a3ba0" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Current_cells</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a459a699f40e6b88c0acb5e3746a05fbc" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Delete_specified_rows</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a8a5775ba7c13765e797359c3f0cbc1f6" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Dispose</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a5fc9c7d02975d28508897bb57b948f21" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>FakeMortgageDescription</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a22d555e33b690a6687e43caf28090a00" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>FakeSpreadsheetRepo</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a6a2543c7fd0b9640684f871350874319" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Find_first_empty_row_in_column</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a3f7c7a3888b8bae3033b5f99ff8e960e" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Find_row_number_of_first_row_containing_cell</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1acae5b7fdc3a43d2bd834a2f3cf1c0e18" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Find_row_number_of_last_row_containing_cell</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a87ff0f3faf30046f95e7f2e711fa6292" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Find_row_number_of_last_row_with_cell_containing_text</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a28bea1ae5fa73558f6155a75df078b92" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Get_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1af5bb4e9665e84396a02550cfe03e00c8" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Get_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a50d8d77ee1328beda032414198bc888f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Get_date</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a553f9da4afdb1e14fd6b54b8186e8e05" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Get_method_name</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a49a8a04cf8918dabb0ddcc9539a3cd98" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Get_rows_as_records&lt; TRecordType &gt;</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a4a83ce58d2549b4f2226d2b8248bc6f1" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Get_text</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a5b5241a2ff0c3f60a1d10c4bdbc1ded5" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Insert_new_row</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1aa231d56131b6d1ee4ab60e47cea6e9f1" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Last_row_number</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a50b8a4935166e04b7e60aadb3911abc3" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Read_last_row</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a8d0899bec2f5701f9131cccceff8adf2" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Read_last_row_as_csv</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a80fe7edb003062d90ad9afbaaa22b58e" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Read_specified_row</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a8f2b50ca6debdf86e032ec623061a3cb" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Read_specified_row</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a978b9b3930bc7abaf040813f85f7fc14" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Read_specified_row</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1ac28724d67bbdf2e3fd14b16aa444de5a" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Remove_last_row</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1acf5f12e5c19572b9823653b242b5e238" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Update_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a5b4134701bd0574895739936a10429ca" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Update_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a588b91acde8df7b293142cc9fa1fb082" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Update_amount_and_text</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1afcfc996dfce8aac5ef30ec6f64a6e9c9" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Update_date</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1ad42de0deb0d8544c631a59acba9969ea" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</scope><name>Update_text</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

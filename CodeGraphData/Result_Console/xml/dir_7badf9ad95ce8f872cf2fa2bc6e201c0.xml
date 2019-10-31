@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_7badf9ad95ce8f872cf2fa2bc6e201c0" kind="dir">
+    <compoundname>C:/Development/Reconciliate/Console/Reconciliation/Extensions</compoundname>
+    <innerfile refid="_date_extensions_8cs">DateExtensions.cs</innerfile>
+    <innerfile refid="_double_extensions_8cs">DoubleExtensions.cs</innerfile>
+    <innerfile refid="_string_extensions_8cs">StringExtensions.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/"/>
+  </compounddef>
+</doxygen>

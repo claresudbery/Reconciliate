@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_utils" kind="namespace">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Utils</compoundname>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_clock" prot="package">ConsoleCatchall::Console::Reconciliation::Utils::Clock</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_string_helper" prot="package">ConsoleCatchall::Console::Reconciliation::Utils::StringHelper</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Utils/Clock.cs" line="5" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_22d85ae4e09a5f4068a8bb2014a6b43c" kind="dir">
+    <compoundname>C:/Development/Reconciliate/Console</compoundname>
+    <innerdir refid="dir_4a94b4d204df8b15f3617be32b4e8f76">C:/Development/Reconciliate/Console/Properties</innerdir>
+    <innerdir refid="dir_890e74efa3effa929ed819647fbd4535">C:/Development/Reconciliate/Console/Reconciliation</innerdir>
+    <innerfile refid="_input_output_8cs">InputOutput.cs</innerfile>
+    <innerfile refid="_program_8cs">Program.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/"/>
+  </compounddef>
+</doxygen>

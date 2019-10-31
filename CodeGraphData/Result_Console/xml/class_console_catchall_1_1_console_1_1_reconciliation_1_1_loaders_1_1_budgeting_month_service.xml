@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Loaders::BudgetingMonthService</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a69b73194610d233a70825f3691ed25ca" prot="private" static="no" mutable="no">
+        <type>readonly IInputOutput</type>
+        <definition>readonly IInputOutput ConsoleCatchall.Console.Reconciliation.Loaders.BudgetingMonthService._input_output</definition>
+        <argsstring></argsstring>
+        <name>_input_output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" line="12" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a55c4b9a03c51729fe6501e86fff33c31" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ConsoleCatchall.Console.Reconciliation.Loaders.BudgetingMonthService.BudgetingMonthService</definition>
+        <argsstring>(IInputOutput input_output)</argsstring>
+        <name>BudgetingMonthService</name>
+        <param>
+          <type>IInputOutput</type>
+          <declname>input_output</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" line="14" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" bodystart="14" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1ae5b5466d1f38e4b3ecd7fac852eeb875" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BudgetingMonths</type>
+        <definition>BudgetingMonths ConsoleCatchall.Console.Reconciliation.Loaders.BudgetingMonthService.Recursively_ask_for_budgeting_months</definition>
+        <argsstring>(ISpreadsheet spreadsheet)</argsstring>
+        <name>Recursively_ask_for_budgeting_months</name>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kindref="compound">ISpreadsheet</ref></type>
+          <declname>spreadsheet</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" line="19" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" bodystart="19" bodyend="34"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a4441bf6431f0a8fea7d4adabaed2133a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>DateTime</type>
+        <definition>DateTime ConsoleCatchall.Console.Reconciliation.Loaders.BudgetingMonthService.Get_next_unplanned_month</definition>
+        <argsstring>(ISpreadsheet spreadsheet)</argsstring>
+        <name>Get_next_unplanned_month</name>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kindref="compound">ISpreadsheet</ref></type>
+          <declname>spreadsheet</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" line="36" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" bodystart="36" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a83fff989a4c707c8925b8480f9994142" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Loaders.BudgetingMonthService.Get_last_month_for_budget_planning</definition>
+        <argsstring>(ISpreadsheet spreadsheet, int next_unplanned_month)</argsstring>
+        <name>Get_last_month_for_budget_planning</name>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kindref="compound">ISpreadsheet</ref></type>
+          <declname>spreadsheet</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>next_unplanned_month</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" line="87" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" bodystart="87" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a0c95832bbe65e9100a2af738eae9a696" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Loaders.BudgetingMonthService.Confirm_budgeting_month_choices_with_user</definition>
+        <argsstring>(BudgetingMonths budgeting_months, ISpreadsheet spreadsheet)</argsstring>
+        <name>Confirm_budgeting_month_choices_with_user</name>
+        <param>
+          <type>BudgetingMonths</type>
+          <declname>budgeting_months</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kindref="compound">ISpreadsheet</ref></type>
+          <declname>spreadsheet</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" line="114" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" bodystart="114" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1ab3b9e284d307e162dc17102ab847bbe7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Loaders.BudgetingMonthService.Get_response_to_budgeting_months_confirmation_message</definition>
+        <argsstring>(BudgetingMonths budgeting_months)</argsstring>
+        <name>Get_response_to_budgeting_months_confirmation_message</name>
+        <param>
+          <type>BudgetingMonths</type>
+          <declname>budgeting_months</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" line="133" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" bodystart="133" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a86a2cd8eabdf7fbe4e31a7e30f871b56" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Loaders.BudgetingMonthService.Handle_zero_month_choice_result</definition>
+        <argsstring>(int chosen_month, ISpreadsheet spreadsheet, int next_unplanned_month)</argsstring>
+        <name>Handle_zero_month_choice_result</name>
+        <param>
+          <type>int</type>
+          <declname>chosen_month</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kindref="compound">ISpreadsheet</ref></type>
+          <declname>spreadsheet</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>next_unplanned_month</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" line="145" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" bodystart="145" bodyend="164"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" line="11" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BudgetingMonthService.cs" bodystart="10" bodyend="165"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a69b73194610d233a70825f3691ed25ca" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BudgetingMonthService</scope><name>_input_output</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a55c4b9a03c51729fe6501e86fff33c31" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BudgetingMonthService</scope><name>BudgetingMonthService</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a0c95832bbe65e9100a2af738eae9a696" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BudgetingMonthService</scope><name>Confirm_budgeting_month_choices_with_user</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a83fff989a4c707c8925b8480f9994142" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BudgetingMonthService</scope><name>Get_last_month_for_budget_planning</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a4441bf6431f0a8fea7d4adabaed2133a" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BudgetingMonthService</scope><name>Get_next_unplanned_month</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1ab3b9e284d307e162dc17102ab847bbe7" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BudgetingMonthService</scope><name>Get_response_to_budgeting_months_confirmation_message</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a86a2cd8eabdf7fbe4e31a7e30f871b56" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BudgetingMonthService</scope><name>Handle_zero_month_choice_result</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1ae5b5466d1f38e4b3ecd7fac852eeb875" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BudgetingMonthService</scope><name>Recursively_ask_for_budgeting_months</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

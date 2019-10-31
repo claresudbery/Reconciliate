@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_f5820196b67107d03be1214523eb369b" kind="dir">
+    <compoundname>C:/Development/Reconciliate/Console/Reconciliation/Loaders</compoundname>
+    <innerfile refid="_bank_and_bank_in_data_8cs">BankAndBankInData.cs</innerfile>
+    <innerfile refid="_bank_and_bank_in_loader_8cs">BankAndBankInLoader.cs</innerfile>
+    <innerfile refid="_bank_and_bank_out_data_8cs">BankAndBankOutData.cs</innerfile>
+    <innerfile refid="_bank_and_bank_out_loader_8cs">BankAndBankOutLoader.cs</innerfile>
+    <innerfile refid="_budgeting_month_service_8cs">BudgetingMonthService.cs</innerfile>
+    <innerfile refid="_cred_card1_and_cred_card1_in_out_data_8cs">CredCard1AndCredCard1InOutData.cs</innerfile>
+    <innerfile refid="_cred_card1_and_cred_card1_in_out_loader_8cs">CredCard1AndCredCard1InOutLoader.cs</innerfile>
+    <innerfile refid="_cred_card2_and_cred_card2_in_out_data_8cs">CredCard2AndCredCard2InOutData.cs</innerfile>
+    <innerfile refid="_cred_card2_and_cred_card2_in_out_loader_8cs">CredCard2AndCredCard2InOutLoader.cs</innerfile>
+    <innerfile refid="_dummy_loader_8cs">DummyLoader.cs</innerfile>
+    <innerfile refid="_file_loader_8cs">FileLoader.cs</innerfile>
+    <innerfile refid="_i_loader_8cs">ILoader.cs</innerfile>
+    <innerfile refid="_pending_csv_file_creator_8cs">PendingCsvFileCreator.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/"/>
+  </compounddef>
+</doxygen>

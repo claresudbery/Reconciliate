@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_console_catchall_1_1_console_1_1_reconciliation" kind="namespace">
+    <compoundname>ConsoleCatchall::Console::Reconciliation</compoundname>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface" prot="package">ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro" prot="package">ConsoleCatchall::Console::Reconciliation::ReconciliationIntro</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4" prot="package">ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</innerclass>
+    <innernamespace refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions">ConsoleCatchall::Console::Reconciliation::Extensions</innernamespace>
+    <innernamespace refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_files">ConsoleCatchall::Console::Reconciliation::Files</innernamespace>
+    <innernamespace refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders">ConsoleCatchall::Console::Reconciliation::Loaders</innernamespace>
+    <innernamespace refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_records">ConsoleCatchall::Console::Reconciliation::Records</innernamespace>
+    <innernamespace refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets">ConsoleCatchall::Console::Reconciliation::Spreadsheets</innernamespace>
+    <innernamespace refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_utils">ConsoleCatchall::Console::Reconciliation::Utils</innernamespace>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4" prot="package" static="no">
+        <name>ReconciliationType</name>
+        <enumvalue id="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4a88183b946cc5f0e8c96b2e66e1c74a7e" prot="public">
+          <name>Unknown</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4ae6b4507aadecdeab72fc5cc68bb8178c" prot="public">
+          <name>BankAndBankIn</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4af77e644b9f30b910f2457541eae2557b" prot="public">
+          <name>BankAndBankOut</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4aafaac00b54523c31a77735c40e674a44" prot="public">
+          <name>CredCard1AndCredCard1InOut</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4a4afaa35b79ff525371932001e5e5dd88" prot="public">
+          <name>CredCard2AndCredCard2InOut</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationType.cs" line="4" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationType.cs" bodystart="3" bodyend="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="[generated]" line="1" column="1"/>
+  </compounddef>
+</doxygen>

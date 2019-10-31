@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Files::FileIO&lt; TRecordType &gt;</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IFileIO&lt; TRecordType &gt;</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>TRecordType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a1cd5147fd8db49f8bd5cc40f413b40a0" prot="private" static="no" mutable="no">
+        <type>readonly ISpreadsheetRepoFactory</type>
+        <definition>readonly ISpreadsheetRepoFactory ConsoleCatchall.Console.Reconciliation.Files.FileIO&lt; TRecordType &gt;._spreadsheet_factory</definition>
+        <argsstring></argsstring>
+        <name>_spreadsheet_factory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" line="11" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a4a826261a6156c61191d613ae75cde98" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Files.FileIO&lt; TRecordType &gt;.File_path</definition>
+        <argsstring></argsstring>
+        <name>File_path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" line="12" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a808caa481dc60c0fd4806242341f4968" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Files.FileIO&lt; TRecordType &gt;.File_name</definition>
+        <argsstring></argsstring>
+        <name>File_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" line="13" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1aeac5d08f89ee4f19294361b69fa4694c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ConsoleCatchall.Console.Reconciliation.Files.FileIO&lt; TRecordType &gt;.FileIO</definition>
+        <argsstring>(ISpreadsheetRepoFactory spreadsheet_factory, string file_path=&quot;&quot;, string file_name=&quot;&quot;)</argsstring>
+        <name>FileIO</name>
+        <param>
+          <type>ISpreadsheetRepoFactory</type>
+          <declname>spreadsheet_factory</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>file_path</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>file_name</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" line="15" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" bodystart="15" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a210e706c9dd4c7e2a34abeab08ef33c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Files.FileIO&lt; TRecordType &gt;.Set_file_paths</definition>
+        <argsstring>(string file_path, string file_name)</argsstring>
+        <name>Set_file_paths</name>
+        <param>
+          <type>string</type>
+          <declname>file_path</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>file_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" line="21" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" bodystart="21" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a5920ee2e132793c169f1dc14df86e11a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Files.FileIO&lt; TRecordType &gt;.Write_to_csv_file</definition>
+        <argsstring>(string file_suffix, List&lt; string &gt; csv_lines)</argsstring>
+        <name>Write_to_csv_file</name>
+        <param>
+          <type>string</type>
+          <declname>file_suffix</declname>
+        </param>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>csv_lines</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" line="27" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" bodystart="27" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a5d4e7be127d259a824afe1d40a6e890f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Files.FileIO&lt; TRecordType &gt;.Write_to_file_as_source_lines</definition>
+        <argsstring>(string new_file_name, List&lt; string &gt; source_lines)</argsstring>
+        <name>Write_to_file_as_source_lines</name>
+        <param>
+          <type>string</type>
+          <declname>new_file_name</declname>
+        </param>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>source_lines</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" line="38" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" bodystart="38" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a432744a95fc33cfc510dd5033fc35164" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Files.FileIO&lt; TRecordType &gt;.Append_to_file_as_source_line</definition>
+        <argsstring>(string source_line)</argsstring>
+        <name>Append_to_file_as_source_line</name>
+        <param>
+          <type>string</type>
+          <declname>source_line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" line="49" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" bodystart="49" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a360c9867c24ede003fb95fe50e815cde" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Files.FileIO&lt; TRecordType &gt;.Write_back_to_main_spreadsheet</definition>
+        <argsstring>(ICSVFile&lt; TRecordType &gt; csv_file, string worksheet_name)</argsstring>
+        <name>Write_back_to_main_spreadsheet</name>
+        <param>
+          <type>ICSVFile&lt; TRecordType &gt;</type>
+          <declname>csv_file</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>worksheet_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" line="57" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" bodystart="57" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a2350022e8359139d87fccb060e5b8436" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Files.FileIO&lt; TRecordType &gt;.Write_back_to_spreadsheet</definition>
+        <argsstring>(ISpreadsheet spreadsheet, ICSVFile&lt; TRecordType &gt; csv_file, string worksheet_name)</argsstring>
+        <name>Write_back_to_spreadsheet</name>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kindref="compound">ISpreadsheet</ref></type>
+          <declname>spreadsheet</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TRecordType &gt;</type>
+          <declname>csv_file</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>worksheet_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" line="73" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" bodystart="73" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a32901f003e327590d810f066ef9edf86" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; TRecordType &gt;</type>
+        <definition>List&lt;TRecordType&gt; ConsoleCatchall.Console.Reconciliation.Files.FileIO&lt; TRecordType &gt;.Load</definition>
+        <argsstring>(List&lt; string &gt; file_contents, char?override_separator=null)</argsstring>
+        <name>Load</name>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>file_contents</declname>
+        </param>
+        <param>
+          <type>char?</type>
+          <declname>override_separator</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" line="79" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" bodystart="79" bodyend="114"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1aa06b3dca3f7acef2eb8a80408cd6429c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Files.FileIO&lt; TRecordType &gt;.Line_is_header</definition>
+        <argsstring>(string line)</argsstring>
+        <name>Line_is_header</name>
+        <param>
+          <type>string</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" line="116" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" bodystart="116" bodyend="120"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="112">
+        <label>ConsoleCatchall.Console.Reconciliation.Files.FileIO&lt; TRecordType &gt;</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4"/>
+        <childnode refid="113" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="113">
+        <label>IFileIO&lt; TRecordType &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="114">
+        <label>ConsoleCatchall.Console.Reconciliation.Files.FileIO&lt; TRecordType &gt;</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4"/>
+        <childnode refid="115" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="115">
+        <label>IFileIO&lt; TRecordType &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" line="10" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/FileIO.cs" bodystart="9" bodyend="121"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a1cd5147fd8db49f8bd5cc40f413b40a0" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::FileIO&lt; TRecordType &gt;</scope><name>_spreadsheet_factory</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a432744a95fc33cfc510dd5033fc35164" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::FileIO&lt; TRecordType &gt;</scope><name>Append_to_file_as_source_line</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a808caa481dc60c0fd4806242341f4968" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::FileIO&lt; TRecordType &gt;</scope><name>File_name</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a4a826261a6156c61191d613ae75cde98" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::FileIO&lt; TRecordType &gt;</scope><name>File_path</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1aeac5d08f89ee4f19294361b69fa4694c" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::FileIO&lt; TRecordType &gt;</scope><name>FileIO</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1aa06b3dca3f7acef2eb8a80408cd6429c" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::FileIO&lt; TRecordType &gt;</scope><name>Line_is_header</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a32901f003e327590d810f066ef9edf86" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::FileIO&lt; TRecordType &gt;</scope><name>Load</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a210e706c9dd4c7e2a34abeab08ef33c8" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::FileIO&lt; TRecordType &gt;</scope><name>Set_file_paths</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a360c9867c24ede003fb95fe50e815cde" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::FileIO&lt; TRecordType &gt;</scope><name>Write_back_to_main_spreadsheet</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a2350022e8359139d87fccb060e5b8436" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::FileIO&lt; TRecordType &gt;</scope><name>Write_back_to_spreadsheet</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a5920ee2e132793c169f1dc14df86e11a" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::FileIO&lt; TRecordType &gt;</scope><name>Write_to_csv_file</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a5d4e7be127d259a824afe1d40a6e890f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::FileIO&lt; TRecordType &gt;</scope><name>Write_to_file_as_source_lines</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

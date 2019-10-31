@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeCellRow</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ICellRow</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row_1a9f7a16fd299f6c9982ad4405bf2a91ad" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeCellRow.Count</definition>
+        <argsstring></argsstring>
+        <name>Count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeCellRow.cs" line="8" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeCellRow.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row_1a248b8d0a5efbef2199b5636694ff193f" prot="private" static="no" mutable="no">
+        <type>List&lt; object &gt;</type>
+        <definition>List&lt;object&gt; ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeCellRow._fake_cells</definition>
+        <argsstring></argsstring>
+        <name>_fake_cells</name>
+        <initializer>= new List&lt;object&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeCellRow.cs" line="13" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeCellRow.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row_1a49bf13eba4dae59430eba232accb8d13" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row" kindref="compound">FakeCellRow</ref></type>
+        <definition>FakeCellRow ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeCellRow.With_fake_data</definition>
+        <argsstring>(List&lt; object &gt; fake_data)</argsstring>
+        <name>With_fake_data</name>
+        <param>
+          <type>List&lt; object &gt;</type>
+          <declname>fake_data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeCellRow.cs" line="15" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeCellRow.cs" bodystart="15" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row_1ad58754aa822b1c526879e00648141b24" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeCellRow.Populate_cell</definition>
+        <argsstring>(int row_number, int column_number, object cell_content)</argsstring>
+        <name>Populate_cell</name>
+        <param>
+          <type>int</type>
+          <declname>row_number</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>column_number</declname>
+        </param>
+        <param>
+          <type>object</type>
+          <declname>cell_content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeCellRow.cs" line="21" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeCellRow.cs" bodystart="21" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row_1a3e8ab8e95c3d143cbdafc34ceeb97beb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>object ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeCellRow.Read_cell</definition>
+        <argsstring>(int column_number)</argsstring>
+        <name>Read_cell</name>
+        <param>
+          <type>int</type>
+          <declname>column_number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeCellRow.cs" line="25" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeCellRow.cs" bodystart="25" bodyend="28"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="80">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeCellRow</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row"/>
+        <childnode refid="81" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="81">
+        <label>ICellRow</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="82">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeCellRow</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row"/>
+        <childnode refid="83" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="83">
+        <label>ICellRow</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeCellRow.cs" line="7" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeCellRow.cs" bodystart="6" bodyend="29"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row_1a248b8d0a5efbef2199b5636694ff193f" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeCellRow</scope><name>_fake_cells</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row_1a9f7a16fd299f6c9982ad4405bf2a91ad" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeCellRow</scope><name>Count</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row_1ad58754aa822b1c526879e00648141b24" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeCellRow</scope><name>Populate_cell</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row_1a3e8ab8e95c3d143cbdafc34ceeb97beb" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeCellRow</scope><name>Read_cell</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row_1a49bf13eba4dae59430eba232accb8d13" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeCellRow</scope><name>With_fake_data</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

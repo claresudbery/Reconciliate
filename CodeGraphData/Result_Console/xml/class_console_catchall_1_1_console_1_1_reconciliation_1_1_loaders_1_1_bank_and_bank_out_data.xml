@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_data" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankOutData</compoundname>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_data_1aa9cff9a78a599a6eebf9d440bd64e7f2" prot="public" static="yes" mutable="no">
+        <type>DataLoadingInformation</type>
+        <definition>DataLoadingInformation ConsoleCatchall.Console.Reconciliation.Loaders.BankAndBankOutData.LoadingInfo</definition>
+        <argsstring></argsstring>
+        <name>LoadingInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutData.cs" line="8" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutData.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutData.cs" line="7" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankOutData.cs" bodystart="6" bodyend="41"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_data_1aa9cff9a78a599a6eebf9d440bd64e7f2" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankOutData</scope><name>LoadingInfo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

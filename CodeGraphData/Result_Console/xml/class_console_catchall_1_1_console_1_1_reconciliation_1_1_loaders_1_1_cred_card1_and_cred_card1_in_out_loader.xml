@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Loaders::CredCard1AndCredCard1InOutLoader</compoundname>
+    <basecompoundref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader" prot="public" virt="non-virtual">ConsoleCatchall.Console.Reconciliation.Loaders.ILoader</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1a3647f8a3ff0f27931b8d87a69e7ac7dc" prot="private" static="no" mutable="no">
+        <type>readonly IInputOutput</type>
+        <definition>readonly IInputOutput ConsoleCatchall.Console.Reconciliation.Loaders.CredCard1AndCredCard1InOutLoader._input_output</definition>
+        <argsstring></argsstring>
+        <name>_input_output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutLoader.cs" line="13" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutLoader.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1a82d35920b04e5a0d25762085de943d3e" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader" kindref="compound">FileLoader</ref></type>
+        <definition>readonly FileLoader ConsoleCatchall.Console.Reconciliation.Loaders.CredCard1AndCredCard1InOutLoader._file_loader</definition>
+        <argsstring></argsstring>
+        <name>_file_loader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutLoader.cs" line="14" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutLoader.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1ac35a06a2bc1669f10cfc5d2bbabd783b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ConsoleCatchall.Console.Reconciliation.Loaders.CredCard1AndCredCard1InOutLoader.CredCard1AndCredCard1InOutLoader</definition>
+        <argsstring>(IInputOutput input_output, FileLoader file_loader=null)</argsstring>
+        <name>CredCard1AndCredCard1InOutLoader</name>
+        <param>
+          <type>IInputOutput</type>
+          <declname>input_output</declname>
+        </param>
+        <param>
+          <type><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader" kindref="compound">FileLoader</ref></type>
+          <declname>file_loader</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutLoader.cs" line="16" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutLoader.cs" bodystart="16" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1a9a7c9f6b441e586df6c0b14f3a8b83cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface" kindref="compound">ReconciliationInterface</ref></type>
+        <definition>ReconciliationInterface ConsoleCatchall.Console.Reconciliation.Loaders.CredCard1AndCredCard1InOutLoader.Load_files_and_merge_data</definition>
+        <argsstring>(FilePaths main_file_paths)</argsstring>
+        <name>Load_files_and_merge_data</name>
+        <reimplements refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader_1afd740f45de19cbf020bf619fb455ec0b">Load_files_and_merge_data</reimplements>
+        <param>
+          <type>FilePaths</type>
+          <declname>main_file_paths</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutLoader.cs" line="22" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutLoader.cs" bodystart="22" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1af79d8d7d371f04f6dbb7767c7f47023e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Loaders.CredCard1AndCredCard1InOutLoader.Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</definition>
+        <argsstring>(IInputOutput input_output, ISpreadsheet spreadsheet, ICSVFile&lt; TOwnedType &gt; pending_file, BudgetingMonths budgeting_months, DataLoadingInformation data_loading_info)</argsstring>
+        <name>Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</name>
+        <reimplements refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader_1a41cf9617c72caffa61f335402199bc74">Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</reimplements>
+        <param>
+          <type>IInputOutput</type>
+          <declname>input_output</declname>
+        </param>
+        <param>
+          <type><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kindref="compound">ISpreadsheet</ref></type>
+          <declname>spreadsheet</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TOwnedType &gt;</type>
+          <declname>pending_file</declname>
+        </param>
+        <param>
+          <type>BudgetingMonths</type>
+          <declname>budgeting_months</declname>
+        </param>
+        <param>
+          <type>DataLoadingInformation</type>
+          <declname>data_loading_info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutLoader.cs" line="28" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutLoader.cs" bodystart="28" bodyend="77"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="31">
+        <label>ILoader</label>
+        <link refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader"/>
+      </node>
+      <node id="30">
+        <label>ConsoleCatchall.Console.Reconciliation.Loaders.CredCard1AndCredCard1InOutLoader</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader"/>
+        <childnode refid="31" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="33">
+        <label>ILoader</label>
+        <link refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader"/>
+      </node>
+      <node id="34">
+        <label>ConsoleCatchall.Console.Reconciliation.Loaders.FileLoader</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader"/>
+      </node>
+      <node id="32">
+        <label>ConsoleCatchall.Console.Reconciliation.Loaders.CredCard1AndCredCard1InOutLoader</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader"/>
+        <childnode refid="33" relation="public-inheritance">
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>_file_loader</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutLoader.cs" line="12" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/CredCard1AndCredCard1InOutLoader.cs" bodystart="11" bodyend="78"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1a82d35920b04e5a0d25762085de943d3e" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::CredCard1AndCredCard1InOutLoader</scope><name>_file_loader</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1a3647f8a3ff0f27931b8d87a69e7ac7dc" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::CredCard1AndCredCard1InOutLoader</scope><name>_input_output</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1ac35a06a2bc1669f10cfc5d2bbabd783b" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::CredCard1AndCredCard1InOutLoader</scope><name>CredCard1AndCredCard1InOutLoader</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1a9a7c9f6b441e586df6c0b14f3a8b83cd" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::CredCard1AndCredCard1InOutLoader</scope><name>Load_files_and_merge_data</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1af79d8d7d371f04f6dbb7767c7f47023e" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::CredCard1AndCredCard1InOutLoader</scope><name>Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

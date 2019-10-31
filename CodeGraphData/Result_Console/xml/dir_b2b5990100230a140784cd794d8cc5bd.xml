@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_b2b5990100230a140784cd794d8cc5bd" kind="dir">
+    <compoundname>C:/Development/Reconciliate/Console/Reconciliation/Files</compoundname>
+    <innerfile refid="_c_s_v_factory_8cs">CSVFactory.cs</innerfile>
+    <innerfile refid="_c_s_v_file_8cs">CSVFile.cs</innerfile>
+    <innerfile refid="_expected_income_file_8cs">ExpectedIncomeFile.cs</innerfile>
+    <innerfile refid="_file_i_o_8cs">FileIO.cs</innerfile>
+    <innerfile refid="_generic_file_8cs">GenericFile.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/"/>
+  </compounddef>
+</doxygen>

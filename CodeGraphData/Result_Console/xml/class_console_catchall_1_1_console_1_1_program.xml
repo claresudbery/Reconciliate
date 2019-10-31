@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_program" kind="class" prot="public">
+    <compoundname>ConsoleCatchall::Console::Program</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_program_1af067e6da184b35dc134fe3c71e8ae86f" prot="private" static="yes" mutable="no">
+        <type><ref refid="class_console_catchall_1_1_console_1_1_input_output" kindref="compound">InputOutput</ref></type>
+        <definition>InputOutput ConsoleCatchall.Console.Program._inputOutput</definition>
+        <argsstring></argsstring>
+        <name>_inputOutput</name>
+        <initializer>= new <ref refid="class_console_catchall_1_1_console_1_1_input_output" kindref="compound">InputOutput</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Program.cs" line="10" column="1" bodyfile="C:/Development/Reconciliate/Console/Program.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_program_1a58f6470036a09943a6da65ca80013a27" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ConsoleCatchall.Console.Program.Main</definition>
+        <argsstring>(string[] args)</argsstring>
+        <name>Main</name>
+        <param>
+          <type>string[]</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Program.cs" line="11" column="1" bodyfile="C:/Development/Reconciliate/Console/Program.cs" bodystart="11" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_program_1a85a161650b3eb4c42537521cfece5b6e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ConsoleCatchall.Console.Program.Set_correct_date_formatting</definition>
+        <argsstring>()</argsstring>
+        <name>Set_correct_date_formatting</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Program.cs" line="56" column="1" bodyfile="C:/Development/Reconciliate/Console/Program.cs" bodystart="56" bodyend="60"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="147">
+        <label>ConsoleCatchall.Console.Program</label>
+        <link refid="class_console_catchall_1_1_console_1_1_program"/>
+        <childnode refid="148" relation="usage">
+          <edgelabel>_inputOutput</edgelabel>
+        </childnode>
+      </node>
+      <node id="149">
+        <label>IInputOutput</label>
+      </node>
+      <node id="148">
+        <label>ConsoleCatchall.Console.InputOutput</label>
+        <link refid="class_console_catchall_1_1_console_1_1_input_output"/>
+        <childnode refid="149" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Program.cs" line="9" column="1" bodyfile="C:/Development/Reconciliate/Console/Program.cs" bodystart="8" bodyend="61"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_program_1af067e6da184b35dc134fe3c71e8ae86f" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Program</scope><name>_inputOutput</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_program_1a58f6470036a09943a6da65ca80013a27" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Program</scope><name>Main</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_program_1a85a161650b3eb4c42537521cfece5b6e" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Program</scope><name>Set_correct_date_formatting</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_date_extensions" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Extensions::DateExtensions</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_date_extensions_1a3b59f7c4d2fe596233c5c8a77c796b76" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double ConsoleCatchall.Console.Reconciliation.Extensions.DateExtensions.Proximity_score</definition>
+        <argsstring>(this DateTime source, DateTime other_date)</argsstring>
+        <name>Proximity_score</name>
+        <param>
+          <type>this DateTime</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>DateTime</type>
+          <declname>other_date</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/DateExtensions.cs" line="7" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/DateExtensions.cs" bodystart="7" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/DateExtensions.cs" line="6" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/DateExtensions.cs" bodystart="5" bodyend="12"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_date_extensions_1a3b59f7c4d2fe596233c5c8a77c796b76" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Extensions::DateExtensions</scope><name>Proximity_score</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

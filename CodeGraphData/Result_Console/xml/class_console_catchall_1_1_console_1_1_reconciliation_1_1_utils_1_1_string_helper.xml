@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_string_helper" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Utils::StringHelper</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_string_helper_1aba776a2bb0f4fc0a497b00bb7d5ab49a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>System.Globalization.CultureInfo</type>
+        <definition>static System.Globalization.CultureInfo ConsoleCatchall.Console.Reconciliation.Utils.StringHelper.Culture</definition>
+        <argsstring>()</argsstring>
+        <name>Culture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Utils/StringHelper.cs" line="9" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Utils/StringHelper.cs" bodystart="9" bodyend="12"/>
+        <referencedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a248fab6ee96256cd70f030ffac756a11" compoundref="_cred_card1_in_out_record_8cs" startline="43" endline="69">ConsoleCatchall.Console.Reconciliation.Records.CredCard1InOutRecord.Load</referencedby>
+        <referencedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a8de45cd9594cad03dd58a6d24969fc43" compoundref="_cred_card2_in_out_record_8cs" startline="43" endline="69">ConsoleCatchall.Console.Reconciliation.Records.CredCard2InOutRecord.Load</referencedby>
+        <referencedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a4e6ead33b0c6e04c05dc229fef9c4bc3" compoundref="_cred_card1_record_8cs" startline="44" endline="66">ConsoleCatchall.Console.Reconciliation.Records.CredCard1Record.Load</referencedby>
+        <referencedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a0780446e05e1fa661a41785159ac047e" compoundref="_actual_bank_record_8cs" startline="52" endline="79">ConsoleCatchall.Console.Reconciliation.Records.ActualBankRecord.Load</referencedby>
+        <referencedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a9ee8ee88b2504a0ab183686ebb9bfa30" compoundref="_bank_record_8cs" startline="53" endline="86">ConsoleCatchall.Console.Reconciliation.Records.BankRecord.Load</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_string_helper_1a499e376c21b058670a683a5e81613f0b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string[]</type>
+        <definition>static string [] ConsoleCatchall.Console.Reconciliation.Utils.StringHelper.Make_sure_there_are_at_least_enough_string_values</definition>
+        <argsstring>(int min_values_required, string[] source_array)</argsstring>
+        <name>Make_sure_there_are_at_least_enough_string_values</name>
+        <param>
+          <type>int</type>
+          <declname>min_values_required</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>source_array</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Utils/StringHelper.cs" line="14" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Utils/StringHelper.cs" bodystart="14" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Utils/StringHelper.cs" line="8" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Utils/StringHelper.cs" bodystart="7" bodyend="25"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_string_helper_1aba776a2bb0f4fc0a497b00bb7d5ab49a" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Utils::StringHelper</scope><name>Culture</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_string_helper_1a499e376c21b058670a683a5e81613f0b" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Utils::StringHelper</scope><name>Make_sure_there_are_at_least_enough_string_values</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

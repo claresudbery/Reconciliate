@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_factory_3_01_t_record_type_01_4" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Files::CSVFileFactory&lt; TRecordType &gt;</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ICSVFileFactory&lt; TRecordType &gt;</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>TRecordType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_factory_3_01_t_record_type_01_4_1adb33ad563c03e5b33f123f0e246980cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ICSVFile&lt; TRecordType &gt;</type>
+        <definition>ICSVFile&lt;TRecordType&gt; ConsoleCatchall.Console.Reconciliation.Files.CSVFileFactory&lt; TRecordType &gt;.Create_csv_file</definition>
+        <argsstring>(bool load_file=true, char?override_separator=null, bool order_on_load=true)</argsstring>
+        <name>Create_csv_file</name>
+        <param>
+          <type>bool</type>
+          <declname>load_file</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>char?</type>
+          <declname>override_separator</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>order_on_load</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/CSVFactory.cs" line="9" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/CSVFactory.cs" bodystart="9" bodyend="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="63">
+        <label>ICSVFileFactory&lt; TRecordType &gt;</label>
+      </node>
+      <node id="62">
+        <label>ConsoleCatchall.Console.Reconciliation.Files.CSVFileFactory&lt; TRecordType &gt;</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_factory_3_01_t_record_type_01_4"/>
+        <childnode refid="63" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="65">
+        <label>ICSVFileFactory&lt; TRecordType &gt;</label>
+      </node>
+      <node id="64">
+        <label>ConsoleCatchall.Console.Reconciliation.Files.CSVFileFactory&lt; TRecordType &gt;</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_factory_3_01_t_record_type_01_4"/>
+        <childnode refid="65" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/CSVFactory.cs" line="8" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Files/CSVFactory.cs" bodystart="7" bodyend="19"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_factory_3_01_t_record_type_01_4_1adb33ad563c03e5b33f123f0e246980cd" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Files::CSVFileFactory&lt; TRecordType &gt;</scope><name>Create_csv_file</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

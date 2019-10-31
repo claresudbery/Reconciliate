@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets" kind="namespace">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Spreadsheets</compoundname>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row" prot="package">ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeCellRow</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_set" prot="package">ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeCellSet</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo" prot="package">ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_factory" prot="package">ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepoFactory</innerclass>
+    <innerclass refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" prot="package">ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</innerclass>
+    <innerclass refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_repo_factory_factory" prot="package">ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheetRepoFactoryFactory</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet" prot="package">ConsoleCatchall::Console::Reconciliation::Spreadsheets::Spreadsheet</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_repo_factory_factory" prot="package">ConsoleCatchall::Console::Reconciliation::Spreadsheets::SpreadsheetRepoFactoryFactory</innerclass>
+    <innernamespace refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data">ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetData</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeCellRow.cs" line="5" column="1"/>
+  </compounddef>
+</doxygen>

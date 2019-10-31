@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="_reconciliation_type_8cs" kind="file">
+    <compoundname>ReconciliationType.cs</compoundname>
+    <innernamespace refid="namespace_console_catchall_1_1_console_1_1_reconciliation">ConsoleCatchall::Console::Reconciliation</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">ConsoleCatchall.Console.Reconciliation</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="3" refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">internal</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4" kindref="member">ReconciliationType</ref></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4a88183b946cc5f0e8c96b2e66e1c74a7e" kindref="member">Unknown</ref>,</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4ae6b4507aadecdeab72fc5cc68bb8178c" kindref="member">BankAndBankIn</ref>,</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4af77e644b9f30b910f2457541eae2557b" kindref="member">BankAndBankOut</ref>,</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4aafaac00b54523c31a77735c40e674a44" kindref="member">CredCard1AndCredCard1InOut</ref>,</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4a4afaa35b79ff525371932001e5e5dd88" kindref="member">CredCard2AndCredCard2InOut</ref></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/ReconciliationType.cs"/>
+  </compounddef>
+</doxygen>

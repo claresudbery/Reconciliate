@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="_spreadsheet_repo_factory_factory_8cs" kind="file">
+    <compoundname>SpreadsheetRepoFactoryFactory.cs</compoundname>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_repo_factory_factory" prot="package">ConsoleCatchall::Console::Reconciliation::Spreadsheets::SpreadsheetRepoFactoryFactory</innerclass>
+    <innernamespace refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets">ConsoleCatchall::Console::Reconciliation::Spreadsheets</innernamespace>
+    <innernamespace refid="namespace_excel_library">ExcelLibrary</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>ExcelLibrary;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Interfaces;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">ConsoleCatchall.Console.Reconciliation.Spreadsheets</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>In<sp/>the<sp/>.Net<sp/>Core<sp/>version<sp/>of<sp/>this<sp/>file,<sp/>the<sp/>factory-factory<sp/>returns<sp/>a<sp/>FakeSpreadsheetFactory.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_repo_factory_factory" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">internal</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_repo_factory_factory" kindref="compound">SpreadsheetRepoFactoryFactory</ref><sp/>:<sp/><ref refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_repo_factory_factory" kindref="compound">ISpreadsheetRepoFactoryFactory</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="9" refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_repo_factory_factory_1a002c6069e5fa4026277b336af6bce81c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>ISpreadsheetRepoFactory<sp/><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_repo_factory_factory_1a002c6069e5fa4026277b336af6bce81c" kindref="member">Get_factory</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>spreadsheet_file_name_and_path)</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>ExcelSpreadsheetRepoFactory(spreadsheet_file_name_and_path);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/SpreadsheetRepoFactoryFactory.cs"/>
+  </compounddef>
+</doxygen>

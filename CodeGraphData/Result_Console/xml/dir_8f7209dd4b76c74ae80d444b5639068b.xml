@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_8f7209dd4b76c74ae80d444b5639068b" kind="dir">
+    <compoundname>C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets</compoundname>
+    <innerdir refid="dir_2aa4a6854dc11e0e09614e808766cb72">C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetData</innerdir>
+    <innerfile refid="_fake_cell_row_8cs">FakeCellRow.cs</innerfile>
+    <innerfile refid="_fake_cell_set_8cs">FakeCellSet.cs</innerfile>
+    <innerfile refid="_fake_spreadsheet_repo_8cs">FakeSpreadsheetRepo.cs</innerfile>
+    <innerfile refid="_fake_spreadsheet_repo_factory_8cs">FakeSpreadsheetRepoFactory.cs</innerfile>
+    <innerfile refid="_i_spreadsheet_8cs">ISpreadsheet.cs</innerfile>
+    <innerfile refid="_i_spreadsheet_repo_factory_factory_8cs">ISpreadsheetRepoFactoryFactory.cs</innerfile>
+    <innerfile refid="_spreadsheet_8cs">Spreadsheet.cs</innerfile>
+    <innerfile refid="_spreadsheet_repo_factory_factory_8cs">SpreadsheetRepoFactoryFactory.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/"/>
+  </compounddef>
+</doxygen>

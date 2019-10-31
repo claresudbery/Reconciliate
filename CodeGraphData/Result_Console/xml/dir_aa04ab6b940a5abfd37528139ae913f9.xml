@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_aa04ab6b940a5abfd37528139ae913f9" kind="dir">
+    <compoundname>C:/Development/Reconciliate/Console/Reconciliation/Utils</compoundname>
+    <innerfile refid="_clock_8cs">Clock.cs</innerfile>
+    <innerfile refid="_string_helper_8cs">StringHelper.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Utils/"/>
+  </compounddef>
+</doxygen>

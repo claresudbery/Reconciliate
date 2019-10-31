@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_files" kind="namespace">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Files</compoundname>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_factory_3_01_t_record_type_01_4" prot="package">ConsoleCatchall::Console::Reconciliation::Files::CSVFileFactory&lt; TRecordType &gt;</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4" prot="package">ConsoleCatchall::Console::Reconciliation::Files::CSVFile&lt; TRecordType &gt;</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_expected_income_file" prot="package">ConsoleCatchall::Console::Reconciliation::Files::ExpectedIncomeFile</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4" prot="package">ConsoleCatchall::Console::Reconciliation::Files::FileIO&lt; TRecordType &gt;</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4" prot="package">ConsoleCatchall::Console::Reconciliation::Files::GenericFile&lt; TRecordType &gt;</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Files/CSVFactory.cs" line="6" column="1"/>
+  </compounddef>
+</doxygen>

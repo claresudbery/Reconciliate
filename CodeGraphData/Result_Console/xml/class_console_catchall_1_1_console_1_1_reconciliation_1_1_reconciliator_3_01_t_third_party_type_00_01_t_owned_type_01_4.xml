@@ -1,0 +1,1300 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IReconciliator</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>TThirdPartyType</type>
+      </param>
+      <param>
+        <type>TOwnedType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a36b7ce1461a2bfe992b29904c60537f3" prot="public" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.CannotDeleteCurrentRecordNoMatching</definition>
+        <argsstring></argsstring>
+        <name>CannotDeleteCurrentRecordNoMatching</name>
+        <initializer>= &quot;Cannot delete current record if no matching has been done yet.&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="18" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a70812b2e14130045978641f19007cae5" prot="public" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.CannotDeleteMatchedRecordNoMatching</definition>
+        <argsstring></argsstring>
+        <name>CannotDeleteMatchedRecordNoMatching</name>
+        <initializer>= &quot;Cannot delete matched record if no matching has been done yet.&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="19" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa23ec1a62442d30063c4bb3510768422" prot="public" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.CannotDeleteThirdPartyRecordDoesNotExist</definition>
+        <argsstring></argsstring>
+        <name>CannotDeleteThirdPartyRecordDoesNotExist</name>
+        <initializer>= &quot;There is no third-party record to delete with the specified index.&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="20" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a847826517927750e4f41cf7e69e31bf2" prot="public" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.CannotDeleteOwnedRecordDoesNotExist</definition>
+        <argsstring></argsstring>
+        <name>CannotDeleteOwnedRecordDoesNotExist</name>
+        <initializer>= &quot;There is no owned record to delete with the specified index.&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="21" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a1e74e330c7679994d27c5e2b3029ccf5" prot="public" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.CannotDeleteMatchedOwnedRecord</definition>
+        <argsstring></argsstring>
+        <name>CannotDeleteMatchedOwnedRecord</name>
+        <initializer>= &quot;You can&apos;t delete an owned record that has already been matched with a third party record.&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="22" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1abf31553c2eec5dc5a989f5272af5071f" prot="public" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.BadMatchNumber</definition>
+        <argsstring></argsstring>
+        <name>BadMatchNumber</name>
+        <initializer>= &quot;Bad match number.&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="23" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a597d6b2d1f598c8ff7238463555dbbaa" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>ICSVFile&lt; TThirdPartyType &gt;</type>
+        <definition>ICSVFile&lt;TThirdPartyType&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Third_party_file</definition>
+        <argsstring></argsstring>
+        <name>Third_party_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="25" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a421224b84a1dc00a02773127c77d8104" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>ICSVFile&lt; TOwnedType &gt;</type>
+        <definition>ICSVFile&lt;TOwnedType&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Owned_file</definition>
+        <argsstring></argsstring>
+        <name>Owned_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="30" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a220ac33baa4024e5ede74a73dbb67308" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>IDataFile&lt; TThirdPartyType &gt;</type>
+        <definition>IDataFile&lt;TThirdPartyType&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Third_party_data_file</definition>
+        <argsstring></argsstring>
+        <name>Third_party_data_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="35" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aafc73391d9eca837711f7cb2b2d3d470" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>IDataFile&lt; TOwnedType &gt;</type>
+        <definition>IDataFile&lt;TOwnedType&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Owned_data_file</definition>
+        <argsstring></argsstring>
+        <name>Owned_data_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="36" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a55435224b8731e302af8573993073046" prot="private" static="no" mutable="no">
+        <type>readonly string</type>
+        <definition>readonly string ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;._worksheet_name</definition>
+        <argsstring></argsstring>
+        <name>_worksheet_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="37" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ae2b43ba6dfc3a4d57f330375fbc839c7" prot="private" static="no" mutable="no">
+        <type>RecordForMatching&lt; TThirdPartyType &gt;</type>
+        <definition>RecordForMatching&lt;TThirdPartyType&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;._latest_record_for_matching</definition>
+        <argsstring></argsstring>
+        <name>_latest_record_for_matching</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="38" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a0eba796ae35c0f5bfe4caabd8e0151e5" prot="private" static="no" mutable="no">
+        <type>List&lt; AutoMatchedRecord&lt; TThirdPartyType &gt; &gt;</type>
+        <definition>List&lt;AutoMatchedRecord&lt;TThirdPartyType&gt; &gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;._auto_matches</definition>
+        <argsstring></argsstring>
+        <name>_auto_matches</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="39" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a6b27faf03128663cbe3619e51d0c6a81" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;._current_index</definition>
+        <argsstring></argsstring>
+        <name>_current_index</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="40" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a6bca8f7691563ea4e327707875acdc6e" prot="private" static="no" mutable="no">
+        <type>readonly List&lt; string &gt;</type>
+        <definition>readonly List&lt;string&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;._reserved_words</definition>
+        <argsstring></argsstring>
+        <name>_reserved_words</name>
+        <initializer>= new List&lt;string&gt;{&quot;AND&quot;,&quot;THE&quot;,&quot;OR&quot;,&quot;WITH&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="41" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a06c908157e56671aa2ac6d8244a70911" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Reconciliator</definition>
+        <argsstring>(IFileIO&lt; TThirdPartyType &gt; third_party_file_io, IFileIO&lt; TOwnedType &gt; owned_file_io, DataLoadingInformation loading_info)</argsstring>
+        <name>Reconciliator</name>
+        <param>
+          <type>IFileIO&lt; TThirdPartyType &gt;</type>
+          <declname>third_party_file_io</declname>
+        </param>
+        <param>
+          <type>IFileIO&lt; TOwnedType &gt;</type>
+          <declname>owned_file_io</declname>
+        </param>
+        <param>
+          <type>DataLoadingInformation</type>
+          <declname>loading_info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="43" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="43" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a25f0b6e85c5c0b68a94d2a937e629a99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Reconciliator</definition>
+        <argsstring>(ICSVFile&lt; TThirdPartyType &gt; third_party_csv_file, ICSVFile&lt; TOwnedType &gt; owned_csv_file, ThirdPartyFileLoadAction third_party_file_load_action, string worksheet_name=&quot;&quot;)</argsstring>
+        <name>Reconciliator</name>
+        <param>
+          <type>ICSVFile&lt; TThirdPartyType &gt;</type>
+          <declname>third_party_csv_file</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TOwnedType &gt;</type>
+          <declname>owned_csv_file</declname>
+        </param>
+        <param>
+          <type>ThirdPartyFileLoadAction</type>
+          <declname>third_party_file_load_action</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>worksheet_name</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="62" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="62" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1af092005958ffa306afc7f295bdac0f45" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Find_reconciliation_matches_for_next_third_party_record</definition>
+        <argsstring>()</argsstring>
+        <name>Find_reconciliation_matches_for_next_third_party_record</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="110" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="110" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1acd1e8db9337d58fd1a80bb30179bd746" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Move_to_next_unmatched_third_party_record_for_manual_matching</definition>
+        <argsstring>()</argsstring>
+        <name>Move_to_next_unmatched_third_party_record_for_manual_matching</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="133" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="133" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a870599184a3061276b67bc8b4403b9c0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Check_for_partial_text_match</definition>
+        <argsstring>(string source_description, string target_description)</argsstring>
+        <name>Check_for_partial_text_match</name>
+        <param>
+          <type>string</type>
+          <declname>source_description</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>target_description</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="211" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="211" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a75e5eb802fbd435dfa164edd8dd73e34" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Match_current_record</definition>
+        <argsstring>(int match_index)</argsstring>
+        <name>Match_current_record</name>
+        <param>
+          <type>int</type>
+          <declname>match_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="279" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="279" bodyend="282"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aba4f4c162018720ac606f1a1b631ef7c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Reset</definition>
+        <argsstring>()</argsstring>
+        <name>Reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="335" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="335" bodyend="340"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa0e98853d9e357cf944e88b67fb60817" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Refresh_files</definition>
+        <argsstring>()</argsstring>
+        <name>Refresh_files</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="342" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="342" bodyend="346"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a2bb4c39fd97fd21ad39d178da51c9e01" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Rewind</definition>
+        <argsstring>()</argsstring>
+        <name>Rewind</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="348" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="348" bodyend="351"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a0ac5abe83af144d41331095783638e36" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Finish</definition>
+        <argsstring>(string file_suffix)</argsstring>
+        <name>Finish</name>
+        <param>
+          <type>string</type>
+          <declname>file_suffix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="353" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="353" bodyend="363"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a34b81661db43d9d920767497166adca9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Not_at_end</definition>
+        <argsstring>()</argsstring>
+        <name>Not_at_end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="389" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="389" bodyend="392"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a17add8b85bc37dbef44e21965043094b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; IPotentialMatch &gt;</type>
+        <definition>List&lt;IPotentialMatch&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Current_potential_matches</definition>
+        <argsstring>()</argsstring>
+        <name>Current_potential_matches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="394" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="394" bodyend="403"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1acc6babe63ee4122b60f02365db5596ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Current_source_record_as_string</definition>
+        <argsstring>()</argsstring>
+        <name>Current_source_record_as_string</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="420" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="420" bodyend="425"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa1fd7ed150038a837e890474a4273b65" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ConsoleLine</type>
+        <definition>ConsoleLine ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Current_source_record_as_console_line</definition>
+        <argsstring>()</argsstring>
+        <name>Current_source_record_as_console_line</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="427" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="427" bodyend="432"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a9683e1533913c299254265f50e7168f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Current_source_description</definition>
+        <argsstring>()</argsstring>
+        <name>Current_source_description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="434" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="434" bodyend="439"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a7b5e5cfb9df6216c73240b795341ef6a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>RecordForMatching&lt; TThirdPartyType &gt;</type>
+        <definition>RecordForMatching&lt;TThirdPartyType&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Current_record_for_matching</definition>
+        <argsstring>()</argsstring>
+        <name>Current_record_for_matching</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="441" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="441" bodyend="444"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a9937c612dd813a99b006652dd5e0eb1d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; TOwnedType &gt;</type>
+        <definition>List&lt;TOwnedType&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Owned_file_records</definition>
+        <argsstring>()</argsstring>
+        <name>Owned_file_records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="446" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="446" bodyend="449"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a7e09f7b2b5ed5ffb48785a7f55f2829f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Delete_current_third_party_record</definition>
+        <argsstring>()</argsstring>
+        <name>Delete_current_third_party_record</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="451" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="451" bodyend="468"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a01e1134228237d065ccaf30656ab4179" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Delete_specific_third_party_record</definition>
+        <argsstring>(int specified_index)</argsstring>
+        <name>Delete_specific_third_party_record</name>
+        <param>
+          <type>int</type>
+          <declname>specified_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="470" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="470" bodyend="490"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1afc7eb2690d6eb3a589931f1b35475f69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Delete_specific_owned_record_from_list_of_matches</definition>
+        <argsstring>(int specified_index)</argsstring>
+        <name>Delete_specific_owned_record_from_list_of_matches</name>
+        <param>
+          <type>int</type>
+          <declname>specified_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="492" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="492" bodyend="520"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a4fe4cd77fb7e8d6d3910afef45f49b04" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Num_potential_matches</definition>
+        <argsstring>()</argsstring>
+        <name>Num_potential_matches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="522" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="522" bodyend="527"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a9dfcbd7f81cdb3ccf01d15eedb86fb15" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; AutoMatchedRecord&lt; TThirdPartyType &gt; &gt;</type>
+        <definition>List&lt;AutoMatchedRecord&lt;TThirdPartyType&gt; &gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Return_auto_matches</definition>
+        <argsstring>()</argsstring>
+        <name>Return_auto_matches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="529" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="529" bodyend="552"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a43e1da43cc8a36fbc04a7b80e95339a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; AutoMatchedRecord&lt; TThirdPartyType &gt; &gt;</type>
+        <definition>List&lt;AutoMatchedRecord&lt;TThirdPartyType&gt; &gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Get_auto_matches</definition>
+        <argsstring>()</argsstring>
+        <name>Get_auto_matches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="572" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="572" bodyend="575"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a956798adbc5ff60075e7bef5260c019c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; ConsoleLine &gt;</type>
+        <definition>List&lt;ConsoleLine&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Get_auto_matches_for_console</definition>
+        <argsstring>()</argsstring>
+        <name>Get_auto_matches_for_console</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="577" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="577" bodyend="590"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a794e3713797994b77f3a41da5ee4be50" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; ConsoleLine &gt;</type>
+        <definition>List&lt;ConsoleLine&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Get_final_matches_for_console</definition>
+        <argsstring>()</argsstring>
+        <name>Get_final_matches_for_console</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="592" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="592" bodyend="606"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1abbd0fbe1a093596737848e5cbadadb33" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Remove_auto_match</definition>
+        <argsstring>(int match_index)</argsstring>
+        <name>Remove_auto_match</name>
+        <param>
+          <type>int</type>
+          <declname>match_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="608" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="608" bodyend="619"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aca4ee63e6e56acb03b9b66cfe05c7c2f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Remove_final_match</definition>
+        <argsstring>(int third_party_index)</argsstring>
+        <name>Remove_final_match</name>
+        <param>
+          <type>int</type>
+          <declname>third_party_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="621" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="621" bodyend="632"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aaf24c19f54413a2ca00f6c3fa68b273f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Remove_multiple_auto_matches</definition>
+        <argsstring>(List&lt; int &gt; match_indices)</argsstring>
+        <name>Remove_multiple_auto_matches</name>
+        <param>
+          <type>List&lt; int &gt;</type>
+          <declname>match_indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="634" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="634" bodyend="640"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aee66c2ae585101494e3fef3d3d9f49e8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Remove_multiple_final_matches</definition>
+        <argsstring>(List&lt; int &gt; third_party_indices)</argsstring>
+        <name>Remove_multiple_final_matches</name>
+        <param>
+          <type>List&lt; int &gt;</type>
+          <declname>third_party_indices</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="642" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="642" bodyend="648"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a640f769577e67afb2127e9c9e027dbfb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; TThirdPartyType &gt;</type>
+        <definition>List&lt;TThirdPartyType&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Third_party_records</definition>
+        <argsstring>()</argsstring>
+        <name>Third_party_records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="650" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="650" bodyend="653"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1af6fa265cdc8985545d7fcb69e234a85e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Num_third_party_records</definition>
+        <argsstring>()</argsstring>
+        <name>Num_third_party_records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="655" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="655" bodyend="658"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a41107000b06800dd272e74d5549417ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Num_owned_records</definition>
+        <argsstring>()</argsstring>
+        <name>Num_owned_records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="660" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="660" bodyend="663"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa9140fa98543d2debaf849efbd8e2a2f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Num_matched_third_party_records</definition>
+        <argsstring>()</argsstring>
+        <name>Num_matched_third_party_records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="665" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="665" bodyend="668"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aac04737c09436d8e143f8c14f779c4cf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Num_matched_owned_records</definition>
+        <argsstring>()</argsstring>
+        <name>Num_matched_owned_records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="670" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="670" bodyend="673"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ad0e62f7cb7a386abe2c445c43eb94229" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Num_unmatched_third_party_records</definition>
+        <argsstring>()</argsstring>
+        <name>Num_unmatched_third_party_records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="675" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="675" bodyend="678"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1adc8bc7b5402d45f9a661f7436b0124fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Num_unmatched_owned_records</definition>
+        <argsstring>()</argsstring>
+        <name>Num_unmatched_owned_records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="680" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="680" bodyend="683"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a95230ab005841253f3a8d4a0eaa5e136" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Unmatched_third_party_records</definition>
+        <argsstring>()</argsstring>
+        <name>Unmatched_third_party_records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="685" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="685" bodyend="688"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1abc83960041ff1a113be89e0fa7e0126e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt;string&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Unmatched_owned_records</definition>
+        <argsstring>()</argsstring>
+        <name>Unmatched_owned_records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="690" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="690" bodyend="693"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ab7e4a4ec7937395299eba26e8b4c3b10" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Mark_latest_match_index</definition>
+        <argsstring>(int match_index)</argsstring>
+        <name>Mark_latest_match_index</name>
+        <param>
+          <type>int</type>
+          <declname>match_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="695" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="695" bodyend="706"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a0e15e75639d8843541da0a5bbd8d037f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Match_non_matching_record</definition>
+        <argsstring>(int match_index)</argsstring>
+        <name>Match_non_matching_record</name>
+        <param>
+          <type>int</type>
+          <declname>match_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="708" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="708" bodyend="715"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa262363aaa2ebf7bcdfa97b347aed9ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Do_auto_matching</definition>
+        <argsstring>()</argsstring>
+        <name>Do_auto_matching</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="717" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="717" bodyend="720"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa6e1e4c2c1bf1c48869d5b67480e2fef" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Initialise</definition>
+        <argsstring>(ICSVFile&lt; TThirdPartyType &gt; third_party_csv_file, ICSVFile&lt; TOwnedType &gt; owned_csv_file, ThirdPartyFileLoadAction third_party_file_load_action)</argsstring>
+        <name>Initialise</name>
+        <param>
+          <type>ICSVFile&lt; TThirdPartyType &gt;</type>
+          <declname>third_party_csv_file</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TOwnedType &gt;</type>
+          <declname>owned_csv_file</declname>
+        </param>
+        <param>
+          <type>ThirdPartyFileLoadAction</type>
+          <declname>third_party_file_load_action</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="76" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="76" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a35a271292bf5ba642f54dcf2d8f0d255" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Perform_third_party_file_load_action&lt; TThirdPartyType &gt;</definition>
+        <argsstring>(ThirdPartyFileLoadAction third_party_file_load_action, ICSVFile&lt; TThirdPartyType &gt; third_party_csv_file)</argsstring>
+        <name>Perform_third_party_file_load_action&lt; TThirdPartyType &gt;</name>
+        <param>
+          <type>ThirdPartyFileLoadAction</type>
+          <declname>third_party_file_load_action</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TThirdPartyType &gt;</type>
+          <declname>third_party_csv_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="89" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="89" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a1bf9c48b83ec2e342ae22d569e87fff1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Get_date_ranking</definition>
+        <argsstring>(TOwnedType candidate_record, TThirdPartyType master_record)</argsstring>
+        <name>Get_date_ranking</name>
+        <param>
+          <type>TOwnedType</type>
+          <declname>candidate_record</declname>
+        </param>
+        <param>
+          <type>TThirdPartyType</type>
+          <declname>master_record</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="156" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="156" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ad0f3b77ed235d4480b9a2c04d8e24518" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Get_amount_ranking</definition>
+        <argsstring>(TOwnedType candidate_record, TThirdPartyType master_record)</argsstring>
+        <name>Get_amount_ranking</name>
+        <param>
+          <type>TOwnedType</type>
+          <declname>candidate_record</declname>
+        </param>
+        <param>
+          <type>TThirdPartyType</type>
+          <declname>master_record</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="161" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="161" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ae3e1cadc146ecec0540ac31c5d1e93ac" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerable&lt; IPotentialMatch &gt;</type>
+        <definition>IEnumerable&lt;IPotentialMatch&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Find_latest_ordered_matches</definition>
+        <argsstring>(TThirdPartyType source_record, ICSVFile&lt; TOwnedType &gt; owned_file)</argsstring>
+        <name>Find_latest_ordered_matches</name>
+        <param>
+          <type>TThirdPartyType</type>
+          <declname>source_record</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TOwnedType &gt;</type>
+          <declname>owned_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="166" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="166" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a4c9468324e85988d21fce7d7e47bfc1d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerable&lt; IPotentialMatch &gt;</type>
+        <definition>IEnumerable&lt;IPotentialMatch&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Convert_unmatched_owned_records_to_potential_matches</definition>
+        <argsstring>(TThirdPartyType source_record, ICSVFile&lt; TOwnedType &gt; owned_file)</argsstring>
+        <name>Convert_unmatched_owned_records_to_potential_matches</name>
+        <param>
+          <type>TThirdPartyType</type>
+          <declname>source_record</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TOwnedType &gt;</type>
+          <declname>owned_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="181" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="181" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a5d3ffe60a6d2996219383342d05a7401" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Check_for_full_text_match</definition>
+        <argsstring>(string source_description, string target_description)</argsstring>
+        <name>Check_for_full_text_match</name>
+        <param>
+          <type>string</type>
+          <declname>source_description</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>target_description</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="203" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="203" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a5d0f26a613fd8043a3ec2c968b7c7f12" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerable&lt; IPotentialMatch &gt;</type>
+        <definition>IEnumerable&lt;IPotentialMatch&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Current_unmatched_owned_records</definition>
+        <argsstring>(TThirdPartyType source_record)</argsstring>
+        <name>Current_unmatched_owned_records</name>
+        <param>
+          <type>TThirdPartyType</type>
+          <declname>source_record</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="248" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="248" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a5f7be30ad6f870b4a7aa98e35e37d385" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Rankings</type>
+        <definition>Rankings ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Get_rankings</definition>
+        <argsstring>(TOwnedType candidate_record, TThirdPartyType master_record)</argsstring>
+        <name>Get_rankings</name>
+        <param>
+          <type>TOwnedType</type>
+          <declname>candidate_record</declname>
+        </param>
+        <param>
+          <type>TThirdPartyType</type>
+          <declname>master_record</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="267" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="267" bodyend="277"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ab6e59bb1c308e4e1499e7a60b9f9686c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Match_specified_records</definition>
+        <argsstring>(RecordForMatching&lt; TThirdPartyType &gt; record_for_matching, int match_index, ICSVFile&lt; TOwnedType &gt; owned_file)</argsstring>
+        <name>Match_specified_records</name>
+        <param>
+          <type>RecordForMatching&lt; TThirdPartyType &gt;</type>
+          <declname>record_for_matching</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>match_index</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TOwnedType &gt;</type>
+          <declname>owned_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="284" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="284" bodyend="306"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a3742cc009c7b2667fabb70b9c868b2f2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Match_records</definition>
+        <argsstring>(TThirdPartyType source, ICSVRecord match)</argsstring>
+        <name>Match_records</name>
+        <param>
+          <type>TThirdPartyType</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>ICSVRecord</type>
+          <declname>match</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="308" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="308" bodyend="315"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a609fcedd5ba287a6901ad1c6c1968e54" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Unmatch_records</definition>
+        <argsstring>(TThirdPartyType source, ICSVRecord match)</argsstring>
+        <name>Unmatch_records</name>
+        <param>
+          <type>TThirdPartyType</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>ICSVRecord</type>
+          <declname>match</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="317" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="317" bodyend="324"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1abdc445b107c13033815507ab512713ba" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Change_amount_and_description_to_match_third_party_record</definition>
+        <argsstring>(TThirdPartyType source_record, ICSVRecord matched_record)</argsstring>
+        <name>Change_amount_and_description_to_match_third_party_record</name>
+        <param>
+          <type>TThirdPartyType</type>
+          <declname>source_record</declname>
+        </param>
+        <param>
+          <type>ICSVRecord</type>
+          <declname>matched_record</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="326" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="326" bodyend="333"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1af602571cd2f4549c4aa8cb40708f17d0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Reconcile_all_matched_items</definition>
+        <argsstring>()</argsstring>
+        <name>Reconcile_all_matched_items</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="365" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="365" bodyend="371"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a57b199ca7121706b340b8dc43d5b8cdd" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Add_unmatched_source_items_to_owned_file</definition>
+        <argsstring>()</argsstring>
+        <name>Add_unmatched_source_items_to_owned_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="373" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="373" bodyend="387"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a4ef43b4c5c6e7b4286a9573244c3c37b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IPotentialMatch</type>
+        <definition>IPotentialMatch ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Find_single_match_by_amount_and_text_and_near_date</definition>
+        <argsstring>(TThirdPartyType source_record)</argsstring>
+        <name>Find_single_match_by_amount_and_text_and_near_date</name>
+        <param>
+          <type>TThirdPartyType</type>
+          <declname>source_record</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="554" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="554" bodyend="563"/>
+        <references refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a0576514f51e52dfa654d57bae44f8360" compoundref="_potential_match_8cs" startline="9">ConsoleCatchall.Console.Reconciliation.Records.PotentialMatch.PartialDateMatchThreshold</references>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1af81985e183e32d36f5247ea399897e3c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IPotentialMatch</type>
+        <definition>IPotentialMatch ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Single_match_only</definition>
+        <argsstring>(IEnumerable&lt; IPotentialMatch &gt; all_matches)</argsstring>
+        <name>Single_match_only</name>
+        <param>
+          <type>IEnumerable&lt; IPotentialMatch &gt;</type>
+          <declname>all_matches</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="565" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="565" bodyend="570"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a7c3ec4f2c118f297fea4025b3591cf55" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; IPotentialMatch &gt;</type>
+        <definition>static List&lt;IPotentialMatch&gt; ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;.Indexed</definition>
+        <argsstring>(List&lt; IPotentialMatch &gt; source_list)</argsstring>
+        <name>Indexed</name>
+        <param>
+          <type>List&lt; IPotentialMatch &gt;</type>
+          <declname>source_list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="405" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="405" bodyend="418"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="154">
+        <label>ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4"/>
+        <childnode refid="155" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="155">
+        <label>IReconciliator</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="156">
+        <label>ConsoleCatchall.Console.Reconciliation.Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4"/>
+        <childnode refid="157" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="157">
+        <label>IReconciliator</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" line="17" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Reconciliator.cs" bodystart="14" bodyend="721"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a0eba796ae35c0f5bfe4caabd8e0151e5" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>_auto_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a6b27faf03128663cbe3619e51d0c6a81" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>_current_index</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ae2b43ba6dfc3a4d57f330375fbc839c7" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>_latest_record_for_matching</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a6bca8f7691563ea4e327707875acdc6e" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>_reserved_words</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a55435224b8731e302af8573993073046" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>_worksheet_name</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a57b199ca7121706b340b8dc43d5b8cdd" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Add_unmatched_source_items_to_owned_file</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1abf31553c2eec5dc5a989f5272af5071f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>BadMatchNumber</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a36b7ce1461a2bfe992b29904c60537f3" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>CannotDeleteCurrentRecordNoMatching</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a1e74e330c7679994d27c5e2b3029ccf5" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>CannotDeleteMatchedOwnedRecord</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a70812b2e14130045978641f19007cae5" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>CannotDeleteMatchedRecordNoMatching</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a847826517927750e4f41cf7e69e31bf2" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>CannotDeleteOwnedRecordDoesNotExist</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa23ec1a62442d30063c4bb3510768422" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>CannotDeleteThirdPartyRecordDoesNotExist</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1abdc445b107c13033815507ab512713ba" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Change_amount_and_description_to_match_third_party_record</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a5d3ffe60a6d2996219383342d05a7401" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Check_for_full_text_match</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a870599184a3061276b67bc8b4403b9c0" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Check_for_partial_text_match</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a4c9468324e85988d21fce7d7e47bfc1d" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Convert_unmatched_owned_records_to_potential_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a17add8b85bc37dbef44e21965043094b" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Current_potential_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a7b5e5cfb9df6216c73240b795341ef6a" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Current_record_for_matching</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a9683e1533913c299254265f50e7168f9" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Current_source_description</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa1fd7ed150038a837e890474a4273b65" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Current_source_record_as_console_line</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1acc6babe63ee4122b60f02365db5596ff" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Current_source_record_as_string</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a5d0f26a613fd8043a3ec2c968b7c7f12" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Current_unmatched_owned_records</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a7e09f7b2b5ed5ffb48785a7f55f2829f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Delete_current_third_party_record</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1afc7eb2690d6eb3a589931f1b35475f69" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Delete_specific_owned_record_from_list_of_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a01e1134228237d065ccaf30656ab4179" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Delete_specific_third_party_record</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa262363aaa2ebf7bcdfa97b347aed9ae" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Do_auto_matching</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ae3e1cadc146ecec0540ac31c5d1e93ac" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Find_latest_ordered_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1af092005958ffa306afc7f295bdac0f45" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Find_reconciliation_matches_for_next_third_party_record</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a4ef43b4c5c6e7b4286a9573244c3c37b" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Find_single_match_by_amount_and_text_and_near_date</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a0ac5abe83af144d41331095783638e36" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Finish</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ad0f3b77ed235d4480b9a2c04d8e24518" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Get_amount_ranking</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a43e1da43cc8a36fbc04a7b80e95339a6" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Get_auto_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a956798adbc5ff60075e7bef5260c019c" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Get_auto_matches_for_console</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a1bf9c48b83ec2e342ae22d569e87fff1" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Get_date_ranking</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a794e3713797994b77f3a41da5ee4be50" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Get_final_matches_for_console</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a5f7be30ad6f870b4a7aa98e35e37d385" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Get_rankings</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a7c3ec4f2c118f297fea4025b3591cf55" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Indexed</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa6e1e4c2c1bf1c48869d5b67480e2fef" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Initialise</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ab7e4a4ec7937395299eba26e8b4c3b10" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Mark_latest_match_index</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a75e5eb802fbd435dfa164edd8dd73e34" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Match_current_record</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a0e15e75639d8843541da0a5bbd8d037f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Match_non_matching_record</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a3742cc009c7b2667fabb70b9c868b2f2" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Match_records</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ab6e59bb1c308e4e1499e7a60b9f9686c" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Match_specified_records</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1acd1e8db9337d58fd1a80bb30179bd746" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Move_to_next_unmatched_third_party_record_for_manual_matching</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a34b81661db43d9d920767497166adca9" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Not_at_end</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aac04737c09436d8e143f8c14f779c4cf" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Num_matched_owned_records</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa9140fa98543d2debaf849efbd8e2a2f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Num_matched_third_party_records</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a41107000b06800dd272e74d5549417ad" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Num_owned_records</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a4fe4cd77fb7e8d6d3910afef45f49b04" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Num_potential_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1af6fa265cdc8985545d7fcb69e234a85e" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Num_third_party_records</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1adc8bc7b5402d45f9a661f7436b0124fe" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Num_unmatched_owned_records</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ad0e62f7cb7a386abe2c445c43eb94229" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Num_unmatched_third_party_records</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aafc73391d9eca837711f7cb2b2d3d470" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Owned_data_file</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a421224b84a1dc00a02773127c77d8104" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Owned_file</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a9937c612dd813a99b006652dd5e0eb1d" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Owned_file_records</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a35a271292bf5ba642f54dcf2d8f0d255" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Perform_third_party_file_load_action&lt; TThirdPartyType &gt;</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1af602571cd2f4549c4aa8cb40708f17d0" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Reconcile_all_matched_items</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a06c908157e56671aa2ac6d8244a70911" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Reconciliator</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a25f0b6e85c5c0b68a94d2a937e629a99" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Reconciliator</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa0e98853d9e357cf944e88b67fb60817" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Refresh_files</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1abbd0fbe1a093596737848e5cbadadb33" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Remove_auto_match</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aca4ee63e6e56acb03b9b66cfe05c7c2f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Remove_final_match</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aaf24c19f54413a2ca00f6c3fa68b273f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Remove_multiple_auto_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aee66c2ae585101494e3fef3d3d9f49e8" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Remove_multiple_final_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aba4f4c162018720ac606f1a1b631ef7c" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Reset</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a9dfcbd7f81cdb3ccf01d15eedb86fb15" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Return_auto_matches</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a2bb4c39fd97fd21ad39d178da51c9e01" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Rewind</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1af81985e183e32d36f5247ea399897e3c" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Single_match_only</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a220ac33baa4024e5ede74a73dbb67308" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Third_party_data_file</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a597d6b2d1f598c8ff7238463555dbbaa" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Third_party_file</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a640f769577e67afb2127e9c9e027dbfb" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Third_party_records</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a609fcedd5ba287a6901ad1c6c1968e54" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Unmatch_records</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1abc83960041ff1a113be89e0fa7e0126e" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Unmatched_owned_records</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a95230ab005841253f3a8d4a0eaa5e136" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</scope><name>Unmatched_third_party_records</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

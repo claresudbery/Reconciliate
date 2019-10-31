@@ -1,0 +1,434 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kind="interface" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</compoundname>
+    <derivedcompoundref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet" prot="public" virt="non-virtual">ConsoleCatchall.Console.Reconciliation.Spreadsheets.Spreadsheet</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a17e70c905469a7515892a2721e78aed6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ICellRow</type>
+        <definition>ICellRow ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Read_last_row</definition>
+        <argsstring>(String sheet_name)</argsstring>
+        <name>Read_last_row</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1afcffdbd90426fb13154a2c01d0c85555">Read_last_row</reimplementedby>
+        <param>
+          <type>String</type>
+          <declname>sheet_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="10" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1adf240c9d7232db981d88477705be1038" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Find_row_number_of_last_divider_row</definition>
+        <argsstring>(string sheet_name)</argsstring>
+        <name>Find_row_number_of_last_divider_row</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a989a6a2cd8d5e75a79a59d57bfb786fa">Find_row_number_of_last_divider_row</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="11" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a7ce4a742a4169ae365de8c10b5aa9449" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Read_last_row_as_csv</definition>
+        <argsstring>(String sheet_name, ICSVRecord csv_record)</argsstring>
+        <name>Read_last_row_as_csv</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a41fe7123ab2f8ca2324e9e051b10c716">Read_last_row_as_csv</reimplementedby>
+        <param>
+          <type>String</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>ICSVRecord</type>
+          <declname>csv_record</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="12" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1af6a4484d21b002944d821eb133f3444b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>String</type>
+        <definition>String ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Read_specified_row_as_csv</definition>
+        <argsstring>(String sheet_name, int row_number, ICSVRecord csv_record)</argsstring>
+        <name>Read_specified_row_as_csv</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1af5fa3ec22e1c94c0931910f5b5368cc9">Read_specified_row_as_csv</reimplementedby>
+        <param>
+          <type>String</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>row_number</declname>
+        </param>
+        <param>
+          <type>ICSVRecord</type>
+          <declname>csv_record</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="13" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1adc199f3ccffe11b1067541ab15e9abc7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Add_unreconciled_rows_to_csv_file&lt; TRecordType &gt;</definition>
+        <argsstring>(string sheet_name, ICSVFile&lt; TRecordType &gt; csv_file)</argsstring>
+        <name>Add_unreconciled_rows_to_csv_file&lt; TRecordType &gt;</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1af757ad00300b76d8dc4bf8a5ad76f9b9">Add_unreconciled_rows_to_csv_file&lt; TRecordType &gt;</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TRecordType &gt;</type>
+          <declname>csv_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="14" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a2d586b938161b08d2d8eb14854bd2560" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Append_csv_file&lt; TRecordType &gt;</definition>
+        <argsstring>(string sheet_name, ICSVFile&lt; TRecordType &gt; csv_file)</argsstring>
+        <name>Append_csv_file&lt; TRecordType &gt;</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a55e5b47544d1b86052f9261a3bca8577">Append_csv_file&lt; TRecordType &gt;</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TRecordType &gt;</type>
+          <declname>csv_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="15" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a54605f0de8bf7f6a300f07ab398b3e8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ICSVFile&lt; TRecordType &gt;</type>
+        <definition>ICSVFile&lt;TRecordType&gt; ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Read_unreconciled_rows_as_csv_file&lt; TRecordType &gt;</definition>
+        <argsstring>(ICSVFileFactory&lt; TRecordType &gt; csv_file_factory, String sheet_name)</argsstring>
+        <name>Read_unreconciled_rows_as_csv_file&lt; TRecordType &gt;</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1ae6362699c8b24542b7bf716f4aca0802">Read_unreconciled_rows_as_csv_file&lt; TRecordType &gt;</reimplementedby>
+        <param>
+          <type>ICSVFileFactory&lt; TRecordType &gt;</type>
+          <declname>csv_file_factory</declname>
+        </param>
+        <param>
+          <type>String</type>
+          <declname>sheet_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="15" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a530a4dcd3663aa397276ebed09ea66d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Delete_unreconciled_rows</definition>
+        <argsstring>(string sheet_name)</argsstring>
+        <name>Delete_unreconciled_rows</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1ab30670f9ee77f5c0532e25bd6ab63648">Delete_unreconciled_rows</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="19" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a8028011802a51b58f238fb04f1b8976c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Get_second_child_pocket_money_amount</definition>
+        <argsstring>(string short_date_time)</argsstring>
+        <name>Get_second_child_pocket_money_amount</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a1bb76f82cac675304aac039e6f482ea2">Get_second_child_pocket_money_amount</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>short_date_time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="20" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a0712b5ebda03013b3042d6640d969b07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>TRecordType</type>
+        <definition>TRecordType ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Get_most_recent_row_containing_text&lt; TRecordType &gt;</definition>
+        <argsstring>(string sheet_name, string text_to_search_for, List&lt; int &gt; expected_column_numbers)</argsstring>
+        <name>Get_most_recent_row_containing_text&lt; TRecordType &gt;</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1acce7a672f68082819495d599ca00f109">Get_most_recent_row_containing_text&lt; TRecordType &gt;</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>sheet_name</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>text_to_search_for</declname>
+        </param>
+        <param>
+          <type>List&lt; int &gt;</type>
+          <declname>expected_column_numbers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="21" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a2191f58984f40c5c27960b88f504afd9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Get_planning_expenses_already_done</definition>
+        <argsstring>()</argsstring>
+        <name>Get_planning_expenses_already_done</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a54c72e4f73180061eeb9be1f6308a76d">Get_planning_expenses_already_done</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="26" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a893594592fcac3931c35fe8dc82bfb5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Get_planning_money_paid_by_guests</definition>
+        <argsstring>()</argsstring>
+        <name>Get_planning_money_paid_by_guests</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1aad4584e6b6a05a4b7863153635cf2da5">Get_planning_money_paid_by_guests</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="27" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a2a82adc4fd2eefdba16abcb08f84dd10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Insert_new_row_on_expected_out</definition>
+        <argsstring>(double new_amount, string new_notes)</argsstring>
+        <name>Insert_new_row_on_expected_out</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a9322f009985ee19490b04dbd8d05ac46">Insert_new_row_on_expected_out</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>new_amount</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>new_notes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="28" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1ae9e442f83a11b27bde3dbd8435405598" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Add_new_transaction_to_savings</definition>
+        <argsstring>(DateTime new_date, double new_amount)</argsstring>
+        <name>Add_new_transaction_to_savings</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1adde4460f3257bceaaf1248dd1fff7cad">Add_new_transaction_to_savings</reimplementedby>
+        <param>
+          <type>DateTime</type>
+          <declname>new_date</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>new_amount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="29" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a95be0a15879d3d3c0c969815467bc4ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Update_balance_on_totals_sheet</definition>
+        <argsstring>(string balance_code, double new_balance, string new_text, int balance_column, int text_column, int code_column)</argsstring>
+        <name>Update_balance_on_totals_sheet</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a21fadc265a08e4eff3e293f46235fa97">Update_balance_on_totals_sheet</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>balance_code</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>new_balance</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>new_text</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>balance_column</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>text_column</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>code_column</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="30" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a6582113a95c13505d89ca267c72d054f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>DateTime</type>
+        <definition>DateTime ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Get_next_unplanned_month</definition>
+        <argsstring>()</argsstring>
+        <name>Get_next_unplanned_month</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a7488734db4195a34de33e785e53d2482">Get_next_unplanned_month</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="37" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a87b4af4258cb49acf9bb5738ee30334a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Add_budgeted_monthly_data_to_pending_file&lt; TOwnedType &gt;</definition>
+        <argsstring>(BudgetingMonths budgeting_months, ICSVFile&lt; TOwnedType &gt; pending_file, BudgetItemListData monthly_budget_item_list_data)</argsstring>
+        <name>Add_budgeted_monthly_data_to_pending_file&lt; TOwnedType &gt;</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a881e1394c54bb67a5757a164e412a083">Add_budgeted_monthly_data_to_pending_file&lt; TOwnedType &gt;</reimplementedby>
+        <param>
+          <type>BudgetingMonths</type>
+          <declname>budgeting_months</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TOwnedType &gt;</type>
+          <declname>pending_file</declname>
+        </param>
+        <param>
+          <type>BudgetItemListData</type>
+          <declname>monthly_budget_item_list_data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="39" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a0cac71a577ecb60f316e7cbb7ee07380" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet.Add_budgeted_annual_data_to_pending_file&lt; TOwnedType &gt;</definition>
+        <argsstring>(BudgetingMonths budgeting_months, ICSVFile&lt; TOwnedType &gt; pending_file, BudgetItemListData annual_budget_item_list_data)</argsstring>
+        <name>Add_budgeted_annual_data_to_pending_file&lt; TOwnedType &gt;</name>
+        <reimplementedby refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a8cd80bc443d2463e8910c1c05fef74f3">Add_budgeted_annual_data_to_pending_file&lt; TOwnedType &gt;</reimplementedby>
+        <param>
+          <type>BudgetingMonths</type>
+          <declname>budgeting_months</declname>
+        </param>
+        <param>
+          <type>ICSVFile&lt; TOwnedType &gt;</type>
+          <declname>pending_file</declname>
+        </param>
+        <param>
+          <type>BudgetItemListData</type>
+          <declname>annual_budget_item_list_data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="44" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="132">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.ISpreadsheet</label>
+        <link refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet"/>
+      </node>
+      <node id="133">
+        <label>ConsoleCatchall.Console.Reconciliation.Spreadsheets.Spreadsheet</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet"/>
+        <childnode refid="132" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" line="9" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/ISpreadsheet.cs" bodystart="8" bodyend="49"/>
+    <listofallmembers>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a0cac71a577ecb60f316e7cbb7ee07380" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Add_budgeted_annual_data_to_pending_file&lt; TOwnedType &gt;</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a87b4af4258cb49acf9bb5738ee30334a" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Add_budgeted_monthly_data_to_pending_file&lt; TOwnedType &gt;</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1ae9e442f83a11b27bde3dbd8435405598" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Add_new_transaction_to_savings</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1adc199f3ccffe11b1067541ab15e9abc7" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Add_unreconciled_rows_to_csv_file&lt; TRecordType &gt;</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a2d586b938161b08d2d8eb14854bd2560" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Append_csv_file&lt; TRecordType &gt;</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a530a4dcd3663aa397276ebed09ea66d5" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Delete_unreconciled_rows</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1adf240c9d7232db981d88477705be1038" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Find_row_number_of_last_divider_row</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a0712b5ebda03013b3042d6640d969b07" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Get_most_recent_row_containing_text&lt; TRecordType &gt;</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a6582113a95c13505d89ca267c72d054f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Get_next_unplanned_month</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a2191f58984f40c5c27960b88f504afd9" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Get_planning_expenses_already_done</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a893594592fcac3931c35fe8dc82bfb5e" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Get_planning_money_paid_by_guests</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a8028011802a51b58f238fb04f1b8976c" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Get_second_child_pocket_money_amount</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a2a82adc4fd2eefdba16abcb08f84dd10" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Insert_new_row_on_expected_out</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a17e70c905469a7515892a2721e78aed6" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Read_last_row</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a7ce4a742a4169ae365de8c10b5aa9449" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Read_last_row_as_csv</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1af6a4484d21b002944d821eb133f3444b" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Read_specified_row_as_csv</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a54605f0de8bf7f6a300f07ab398b3e8d" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Read_unreconciled_rows_as_csv_file&lt; TRecordType &gt;</name></member>
+      <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a95be0a15879d3d3c0c969815467bc4ee" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</scope><name>Update_balance_on_totals_sheet</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

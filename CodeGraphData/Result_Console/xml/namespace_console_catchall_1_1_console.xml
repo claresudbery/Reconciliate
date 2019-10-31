@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_console_catchall_1_1_console" kind="namespace">
+    <compoundname>ConsoleCatchall::Console</compoundname>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_input_output" prot="package">ConsoleCatchall::Console::InputOutput</innerclass>
+    <innerclass refid="class_console_catchall_1_1_console_1_1_program" prot="public">ConsoleCatchall::Console::Program</innerclass>
+    <innernamespace refid="namespace_console_catchall_1_1_console_1_1_reconciliation">ConsoleCatchall::Console::Reconciliation</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/InputOutput.cs" line="8" column="1"/>
+  </compounddef>
+</doxygen>

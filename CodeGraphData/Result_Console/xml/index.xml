@@ -1,0 +1,948 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.6">
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Records::ActualBankRecord</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a1cfc4c0b413f588a816504eafb7bd41c" kind="property"><name>Match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a9611999c4447c53cd5acfec33ab72ce4" kind="property"><name>Matched</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ae4633e00199db7151347b1d4ce7b5f5d" kind="property"><name>Divider</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ad28fd46e1460949b3e1503576974802b" kind="property"><name>Source_line</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a923028d2e39716c86ddfefb266020ee3" kind="property"><name>Date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1adb9e1bf87cbf9bc37293633589679306" kind="property"><name>Type</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ab3037996b4312776eb7f249809ffe0e2" kind="property"><name>Description</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a59922cf0232a7fff8312db1117b9531b" kind="property"><name>Amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a6c1834aad009f947295c1a802adbeb1a" kind="property"><name>Balance</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a4b4259598c829fc25e3ac890af7b3c98" kind="variable"><name>_separator</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1af18728df73599ed231efb53208f8ce1a" kind="variable"><name>_expected_number_of_fields_per_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a6a510c67ea0a799eb3a1e786de88b2d0" kind="variable"><name>DateIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1af209d43bb10d63c2e0712ca4cef7bd78" kind="variable"><name>TypeIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1aaab128071f54980d6a9079c7019b9db2" kind="variable"><name>DescriptionIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a9fe3e0e698651f2e8748da211ea3484f" kind="variable"><name>AmountIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a67e15b111dbe6f2c069a31cfb4f2642d" kind="variable"><name>BalanceIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a5dddf5497ae820821ba69af8d2546acb" kind="variable"><name>DateSpreadsheetIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ab6ee58495fe2c961d610245136d1faef" kind="variable"><name>AmountSpreadsheetIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a349c1ec65577e596cf3e9f26a9f34a77" kind="variable"><name>TypeSpreadsheetIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1aa872d1805d5db1dfa34859b62d59eb26" kind="variable"><name>DescriptionSpreadsheetIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a520ae5e0e62034a858258e78712aec89" kind="function"><name>ActualBankRecord</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a6e126e7b512e9c799297fcdd30b31219" kind="function"><name>Create_from_match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a0780446e05e1fa661a41785159ac047e" kind="function"><name>Load</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a90285588c20c6f2c27038e12ebe07a28" kind="function"><name>To_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1afd6bb7c4afb9ac105e041752e3e58c04" kind="function"><name>To_string</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1afd11ff9da42f39847c0a0eba8ab4664c" kind="function"><name>To_console</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a342236873b14ba56751e5fa960a0e819" kind="function"><name>Populate_spreadsheet_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1abc1b0b94b44f069e1054991f581f7cf2" kind="function"><name>Read_from_spreadsheet_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a97a3744301cd276f856b2c0cec18f9bb" kind="function"><name>Main_amount_is_negative</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ab2f2168438e9f186ff1907b9e8221140" kind="function"><name>Make_main_amount_positive</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1aab4c1e02a7365421341a77ea16f9e2d9" kind="function"><name>Swap_sign_of_main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a3518274f4088c6a779487c5a20069553" kind="function"><name>Main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a242245c1a8ca7e56fff65d29e8c5716a" kind="function"><name>Change_main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a17baf5d91363d16eb8feffb7e77373ea" kind="function"><name>Transaction_type</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a6af23f10e9ed737634d8a5c1621437ac" kind="function"><name>Extra_info</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1ac0c467cf6d3e5716779aa07fec1db305" kind="function"><name>With_date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a64a8161574dea723729745d7f0599fad" kind="function"><name>Copy</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a60bc10f4dc2557a0568eba3f11a1b793" kind="function"><name>Update_source_line_for_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1aed5835927b08680d33cef75777260b51" kind="function"><name>Reconcile</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_actual_bank_record_1a0a36a6f3c5b405f14cb754a416bbcae2" kind="function"><name>Convert_source_line_separators</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_data" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankInData</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_data_1a943cdbcf40be82a7d47269b92af3b2d4" kind="variable"><name>LoadingInfo</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_loader" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankInLoader</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_loader_1a78bf1f72bf5db2421c5fb2c28a8f2424" kind="variable"><name>_input_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_loader_1a0fe394a8d535ced6a7354bdf7c5ce0ca" kind="variable"><name>_file_loader</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_loader_1a1399549aa73321f56cd396ec18c2f46d" kind="function"><name>BankAndBankInLoader</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_loader_1ac3481072586d59ca4d8368e081bd2b44" kind="function"><name>Load_files_and_merge_data</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_loader_1a45e8a79b1e3110dfe90348f4e092be80" kind="function"><name>Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_data" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankOutData</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_data_1aa9cff9a78a599a6eebf9d440bd64e7f2" kind="variable"><name>LoadingInfo</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankOutLoader</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1a49933d58ded220702a09911417c09982" kind="variable"><name>_input_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1a4b0b602afaee4a75c8699365cba48d2a" kind="variable"><name>_file_loader</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1a92f86bde30aef796f766a0124f6746a5" kind="function"><name>BankAndBankOutLoader</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1a3e6a5dddaf28abfe2d1a504341bc12b4" kind="function"><name>Load_files_and_merge_data</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1aaec7652df2277b6d80e6693445413e5f" kind="function"><name>Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_out_loader_1ab5aafbbc0e58cd70ba1fd297353e28c2" kind="function"><name>Add_most_recent_credit_card_direct_debits</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Records::BankRecord</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a4aca825de1303d7411886ccd9e9601f1" kind="property"><name>Match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a996a9eb3046743c844cabb5c1aa04da0" kind="property"><name>Matched</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a79d83dec503322a1f47de45200f63d31" kind="property"><name>Divider</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a86291493ddb46d5ddadb1aded7c5f7da" kind="property"><name>Source_line</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1acd69311ec9c15c370cdb740b55d67f69" kind="property"><name>Date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a65e98ecafbd9d76ef38c013d1d0030d6" kind="property"><name>Unreconciled_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1ae9f2b7ba09aa8d373e99fbcf47d4be5c" kind="property"><name>Type</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a94d388204bb2ac463a5bf1fc892706a7" kind="property"><name>Description</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1ae14c54fac6d3d4c6bccc1d6a22846e4c" kind="property"><name>Reconciled_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a1fa7b177c08cadb559c58f9f0e58b63d" kind="property"><name>Cheque_number</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a45013aa102c30ed9a06dffbbbec2d550" kind="variable"><name>EmptyType</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1aee236e866204eea957e30ca48e463297" kind="variable"><name>EssentialFields</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a26e9592eeeda574a3f6dec264babd251" kind="variable"><name>DateIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a7e879d0af25aad48b155a6fd86132370" kind="variable"><name>UnreconciledAmountIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a18b132a155c3d1b6b6229a7622ac532f" kind="variable"><name>DividerIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a719c9e094d852821297a1aff468ce105" kind="variable"><name>MatchedIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1ac1514ec46c51d3b26a693599aa0ae114" kind="variable"><name>TypeIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a4415a522e7c26276fbbd2fd359cb24cf" kind="variable"><name>DescriptionIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a66e556befacb2a109ca921714852803c" kind="variable"><name>ChequeNumberIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a0d1e6e92ca5afa734315ce6bea9b6d92" kind="variable"><name>ReconciledAmountIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1aa115f3b28f05ecdc7601e4dd3b6cf061" kind="variable"><name>MatchOffset</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1aec765ab1e364b371e9d2693854b96d73" kind="variable"><name>_separator</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a68a50a0667ad3894796507834775ceb9" kind="variable"><name>_expected_number_of_fields_per_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1af5075f7aab4263ddcd3b373cfd45969d" kind="function"><name>Create_from_match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a9ee8ee88b2504a0ab183686ebb9bfa30" kind="function"><name>Load</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a6b9290b8625459eedf4a7d179152b5f1" kind="function"><name>To_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1ad4c76df2ec9c9b562325b2f03652d390" kind="function"><name>Populate_spreadsheet_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a5ec8b2cedbce19fdee251abc72f87f02" kind="function"><name>Read_from_spreadsheet_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a9359b2f1bed05d6617084fbc7ff108ee" kind="function"><name>To_console</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a7e6a279001837c143b42294adfa6e5d1" kind="function"><name>Main_amount_is_negative</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a204cdfd2defcbb23c18efa24d758c35a" kind="function"><name>Make_main_amount_positive</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1ab78790549334479ec8b0085afc143081" kind="function"><name>Swap_sign_of_main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a9a5f3f02abbbd786ce666c440dd593ff" kind="function"><name>Main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a503d7ca3a3a504ad43d2d40bb57195ba" kind="function"><name>Change_main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a384e7aee39f0131343d60a343bbce512" kind="function"><name>Transaction_type</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a0d7f3c971086c7a6fe63578e8a8ef5f7" kind="function"><name>Extra_info</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a07789df78a1c2cb49d78fba148f77639" kind="function"><name>Reconcile</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a44da5377fa6181bda5e342fdcb5c719f" kind="function"><name>Convert_source_line_separators</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a151a8a97b8521c043a046aec6d7d9839" kind="function"><name>With_date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1ac3c6aacfcfebbfeaa3f19484e51480f4" kind="function"><name>Copy</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1acb1a1bb17f6eaa0525bdca958f8fdb5b" kind="function"><name>Update_source_line_for_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a4a3d852d153ab2653376c2a30a0a3563" kind="function"><name>Check_for_empty_fields</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1af0a74ebeab7eeb8ee9ab21328755ac14" kind="function"><name>We_have_an_empty_essential_field</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a4e4b3690d1e7c2f2f512872b98281016" kind="function"><name>Split_values_based_on_separator_and_handle_commas_in_amounts</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1afb34002eece11253113f36805971eba0" kind="function"><name>Rectify_comma_problem</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a4f850be2a625a3516e32b091406222fb" kind="function"><name>Populate_cell_with_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record_1a4040666bbb2a5ecb9d962ff2143a5bf5" kind="function"><name>To_string</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Loaders::BudgetingMonthService</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a69b73194610d233a70825f3691ed25ca" kind="variable"><name>_input_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a55c4b9a03c51729fe6501e86fff33c31" kind="function"><name>BudgetingMonthService</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1ae5b5466d1f38e4b3ecd7fac852eeb875" kind="function"><name>Recursively_ask_for_budgeting_months</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a4441bf6431f0a8fea7d4adabaed2133a" kind="function"><name>Get_next_unplanned_month</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a83fff989a4c707c8925b8480f9994142" kind="function"><name>Get_last_month_for_budget_planning</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a0c95832bbe65e9100a2af738eae9a696" kind="function"><name>Confirm_budgeting_month_choices_with_user</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1ab3b9e284d307e162dc17102ab847bbe7" kind="function"><name>Get_response_to_budgeting_months_confirmation_message</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_budgeting_month_service_1a86a2cd8eabdf7fbe4e31a7e30f871b56" kind="function"><name>Handle_zero_month_choice_result</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_clock" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Utils::Clock</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_clock_1acd1a4e50f34d716c940f94fb899b6fab" kind="function"><name>Now_date_time</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_data" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Loaders::CredCard1AndCredCard1InOutData</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_data_1a8f405fd8e0d77777de8624e3d9bd7773" kind="variable"><name>LoadingInfo</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Loaders::CredCard1AndCredCard1InOutLoader</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1a3647f8a3ff0f27931b8d87a69e7ac7dc" kind="variable"><name>_input_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1a82d35920b04e5a0d25762085de943d3e" kind="variable"><name>_file_loader</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1ac35a06a2bc1669f10cfc5d2bbabd783b" kind="function"><name>CredCard1AndCredCard1InOutLoader</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1a9a7c9f6b441e586df6c0b14f3a8b83cd" kind="function"><name>Load_files_and_merge_data</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card1_and_cred_card1_in_out_loader_1af79d8d7d371f04f6dbb7767c7f47023e" kind="function"><name>Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Records::CredCard1InOutRecord</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a9e6209c445563606267790b48785034a" kind="property"><name>Match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a0b02f3fd79ef4ad54638beea13098797" kind="property"><name>Matched</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a222eb31646ceb51548e48649c06687fa" kind="property"><name>Divider</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1ab6e7a4a75c601f8ae2850c1f04e8da54" kind="property"><name>Source_line</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a86017f73a6b9918e51df8051083175cf" kind="property"><name>Date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1aba69321b4370f5c21754e9cc5091bb27" kind="property"><name>Unreconciled_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1ab7e445e5e6ab7945c1d9718087b89056" kind="property"><name>Description</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1aa945403e10bf3a61bbfc9f64c072531b" kind="property"><name>Reconciled_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1ace92af14ed8988b61555e4537310ef69" kind="variable"><name>_separator</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1ab3f2f43b1f7935aad7de77a76774f89d" kind="variable"><name>_expected_number_of_fields_per_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a831232209de1649cfdb9a104d171cb15" kind="variable"><name>DateIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1acf45872d13f1ff2d8f940ef01a11ef6b" kind="variable"><name>UnreconciledAmountIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a1e50e6a63f4c43f4e35920fb923a5fbc" kind="variable"><name>DividerIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1aebd5d447dd46b8a4d093df9e42206640" kind="variable"><name>MatchedIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a6a857dde9c44f6e22fde3efe5fc701e0" kind="variable"><name>DescriptionIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1acedcbf43490762eb6bd36ad09ecfc330" kind="variable"><name>ReconciledAmountIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a84d75659febf696987d3aea834f0db15" kind="variable"><name>MatchOffset</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a4d28015210eb715b1c71c7d3fee8dbc9" kind="function"><name>Create_from_match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a248fab6ee96256cd70f030ffac756a11" kind="function"><name>Load</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1abf02f41a17d0149142dabac601a71e5a" kind="function"><name>To_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a0a1b5af0a36b8fd18e8da6417e1404cd" kind="function"><name>Populate_spreadsheet_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a50fdc492cb258427c845dd1ab9c1e021" kind="function"><name>Read_from_spreadsheet_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1aa7cc8beca9f6840dcacb9357ff82c227" kind="function"><name>To_console</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a5fcab72a92f8f764ae93419ab42ef229" kind="function"><name>Main_amount_is_negative</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1ab6046471114a80218dac6e4f9248e81e" kind="function"><name>Make_main_amount_positive</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1ad604cd8460a3735dd07c2a3c401c6764" kind="function"><name>Swap_sign_of_main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1aa26a598ee1aee12733ae58eb6e776ea9" kind="function"><name>Main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1ade0daab3a04999a5f05b3930beafa410" kind="function"><name>Change_main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1ad0f7848426dd1b4f5f4a96308bd8500f" kind="function"><name>Transaction_type</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a5fa7a02f411ddd8d3115c2f98133ac4d" kind="function"><name>Extra_info</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1aa5daad3dfaa13c5572133e3efdf21742" kind="function"><name>Reconcile</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1af69864f9056b67e4f68c5a96a8574ab8" kind="function"><name>Convert_source_line_separators</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1af48cf939adcd508e205b40cc1f1b1b83" kind="function"><name>With_date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a50155257e637621c19c57c2b87423b3d" kind="function"><name>Copy</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a475b3970e99335756646b1d3fd361775" kind="function"><name>Update_source_line_for_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a3d81ddc822940edf81c5a08eb4f9171e" kind="function"><name>Populate_cell_with_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_in_out_record_1a42da302b35be21c10390094618ef341b" kind="function"><name>To_string</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Records::CredCard1Record</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a214cb49a9f31ed12e627571e834451db" kind="property"><name>Match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a036bc62d820cae7c9483a28a08a44937" kind="property"><name>Matched</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a62c9a0a7183560e9b0c416aae98563fc" kind="property"><name>Divider</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1aadf5e639012a38c4150144febfcda871" kind="property"><name>Source_line</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a94418ac16eab448afed5031b9fcca4e5" kind="property"><name>Date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a2ea72805e192cda652982340925d7e6d" kind="property"><name>Reference</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a6c0ca28e44e4f07d374cce09fd3bc75a" kind="property"><name>Description</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1aa39580dbd25d6c24b8eb67d780e3b364" kind="property"><name>Amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1ae20b1076ca70134e53390686e1b0e479" kind="variable"><name>_separator</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a18730013ff2c8cb4e28efe345fd74903" kind="variable"><name>_expected_number_of_fields_per_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1af976bf7e05f32605a7bde085cff633e5" kind="variable"><name>DateIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a4a4d7586eb94773dc8d63bdccdf197b8" kind="variable"><name>ReferenceIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a70cf46457ed6bb85b52632787719e97a" kind="variable"><name>DescriptionIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1ae2676d4cdf9a0599173a477e6f2e7ecb" kind="variable"><name>AmountIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a6215d575ae61cc0c0f9f239924d6daa8" kind="variable"><name>DateSpreadsheetIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a6ce8acf29ca6ab59da853ad0b8ba8c35" kind="variable"><name>AmountSpreadsheetIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1aa2377f8c3f684da0625e7c5bd56194f0" kind="variable"><name>DescriptionSpreadsheetIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a9cbd79772f4217b3d843aa97aa5a97d4" kind="function"><name>Create_from_match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a4e6ead33b0c6e04c05dc229fef9c4bc3" kind="function"><name>Load</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a05d935fb2d4b05ec0d62a1ae62af3d1f" kind="function"><name>To_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1ab2caa3d0865e34f8f40f6e582896a9e1" kind="function"><name>To_string</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a2fce6a6453efd7309381a5c5bc712552" kind="function"><name>To_console</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a390580eb9021e69929eb5ea87e5bac43" kind="function"><name>Populate_spreadsheet_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1af10004859d6dbc12766bd875668a3455" kind="function"><name>Read_from_spreadsheet_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a114fa1115413ae202440a5435b16a962" kind="function"><name>Main_amount_is_negative</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a1a455bc83ab945771de052e97a770d2e" kind="function"><name>Make_main_amount_positive</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1afe530d8077d25d347041dcf0e2e87587" kind="function"><name>Swap_sign_of_main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1aeacfcfbec1f8316f40090df9b1a5d337" kind="function"><name>Main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a7416fa92501cf06da3b0c031b74963df" kind="function"><name>Change_main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1aed61868c18aabd77d0438fcda2cde72e" kind="function"><name>Transaction_type</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1ab50832ac66b1aaefd5a64c8ff89e122c" kind="function"><name>Extra_info</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a04a8eec2861240520273ee5a95e1886d" kind="function"><name>With_date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a9a4f251024b04e3df8364995ce42f955" kind="function"><name>Copy</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1aefc858d0afc367fe138c708c7ba26a39" kind="function"><name>Update_source_line_for_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a5ddeceebcae9736b931234cab4ea04aa" kind="function"><name>Reconcile</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card1_record_1a5db91330ae36da515a6bc9d2f327dbac" kind="function"><name>Convert_source_line_separators</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card2_and_cred_card2_in_out_data" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Loaders::CredCard2AndCredCard2InOutData</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card2_and_cred_card2_in_out_data_1a2378e551e59bebba6736a7d3da88b430" kind="variable"><name>LoadingInfo</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card2_and_cred_card2_in_out_loader" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Loaders::CredCard2AndCredCard2InOutLoader</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card2_and_cred_card2_in_out_loader_1a82e5f8aaaf620ace042ef7cdd50741f7" kind="variable"><name>_input_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card2_and_cred_card2_in_out_loader_1a8069d045e15ea25c9c0daa084e6d52e8" kind="variable"><name>_file_loader</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card2_and_cred_card2_in_out_loader_1a39e0e6641a04db2c037c29e30782c0a9" kind="function"><name>CredCard2AndCredCard2InOutLoader</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card2_and_cred_card2_in_out_loader_1ac9b8d9b714a83011db9813bc0eb2eaba" kind="function"><name>Load_files_and_merge_data</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_cred_card2_and_cred_card2_in_out_loader_1a02509e62f1ac01877c3fa49402f6870a" kind="function"><name>Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Records::CredCard2InOutRecord</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a76d666b379c5f55a2eebec4a2abeea21" kind="property"><name>Match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1adce8a57a3edb8f2fbe0f386e315ea724" kind="property"><name>Matched</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1ad039a1f9b40ab358088005b5d2c5f078" kind="property"><name>Divider</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1ab51b47a6f46c5b97efd18836c8db56f7" kind="property"><name>Source_line</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1acfdb6553dc04a5966195e1eb966726da" kind="property"><name>Date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1aca08162f2b6221dd972c4bbcd166f1f5" kind="property"><name>Unreconciled_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a40b0073c3c13f27fa4113e59658a1236" kind="property"><name>Description</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a087af8be4181b956c52681e134663d79" kind="property"><name>Reconciled_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1adbfcc648828a84ab814d4b12bc562aae" kind="variable"><name>_separator</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a68e20a07c5ade4cb9d740c4eeff00161" kind="variable"><name>_expected_number_of_fields_per_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a0cfe87f7714f1c0c27379c468ce21832" kind="variable"><name>DateIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1ad332a437c5a324f2b3fc68ad7cc0cf75" kind="variable"><name>UnreconciledAmountIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a4ea6117f898c0ba773a6b70e9d0aba47" kind="variable"><name>DividerIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a9f0421416e514dda0a271451ae780969" kind="variable"><name>MatchedIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a2dd5b385f1734fc99c3672560c419ee1" kind="variable"><name>DescriptionIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a90b66a64ade51e19334c2ea2685a7154" kind="variable"><name>ReconciledAmountIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1abf8f78c45333ba16f1550e5fe0f5ff8d" kind="variable"><name>MatchOffset</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a0790c8ec1c579dc3a371bbbd01432ece" kind="function"><name>Create_from_match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a8de45cd9594cad03dd58a6d24969fc43" kind="function"><name>Load</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1ad8a349b8ba6fe4a59b5ce95f1a9c59bd" kind="function"><name>To_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a023435972d7d11b44761b361691d0831" kind="function"><name>Populate_spreadsheet_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a33cefc57e0d97c270b5805662827017d" kind="function"><name>Read_from_spreadsheet_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a2254f6e7d91930dcd86a97abca27afec" kind="function"><name>To_console</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a84e1126ed86d16f4f212707dbc325e9a" kind="function"><name>Main_amount_is_negative</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1aa48da1a4058fa9a63462d23c22982fd9" kind="function"><name>Make_main_amount_positive</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1aee6827c3d97682a86ed917432404c8f6" kind="function"><name>Swap_sign_of_main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a0bc0af43245879a7f2be86cb1ce05c06" kind="function"><name>Main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1acedc7d5d559dbac43718e80eaf4b48a7" kind="function"><name>Change_main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1afbdeef30f52678fba6569a1a9fec00de" kind="function"><name>Transaction_type</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a8a899dace6c3c0b9fd5efde667c7c77b" kind="function"><name>Extra_info</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1aa09fc3e00d486ff79702230e54d067b4" kind="function"><name>Reconcile</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a516f5ccdc1503feb639f4b6b9ab76b69" kind="function"><name>Convert_source_line_separators</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a34ab3a4080fb368b28f1758bf25eda65" kind="function"><name>With_date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a08392c3cc262bf16d43c7ce8f88a7549" kind="function"><name>Copy</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1ac019be94281bdcb66fffe691a6841d84" kind="function"><name>Update_source_line_for_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a27b941a55e24b1e66c14f53c6f307700" kind="function"><name>Populate_cell_with_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_in_out_record_1a6e9d026058c3dbc79f4ca1873e910c44" kind="function"><name>To_string</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Records::CredCard2Record</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ab8d04e81c4fc3d1959e68455d2737b65" kind="property"><name>Match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a70781e7c8e217c48da6f31f204088088" kind="property"><name>Matched</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ae9824beeae59c5fbfac73cf1d592bca6" kind="property"><name>Divider</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ab9f628074245375b1ec73ee200ff7c78" kind="property"><name>Source_line</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ac96b394aadca5f1b38389ffe0d20ea26" kind="property"><name>Date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a7b0f33b3e205f103fe20b929e8c02cb0" kind="property"><name>Description</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a1b040989d2a1995ba63b20b32f596cb2" kind="property"><name>Amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a572866490c10b25f20eb3019edc7aa7d" kind="variable"><name>_separator</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a7246547b9b7b78c3362d2d5dcf83ec6e" kind="variable"><name>_expected_number_of_fields_per_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a1987169ff59bc04dbfd3deba2293fd1f" kind="variable"><name>DateIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a44578f962a4818273225b6c65925815c" kind="variable"><name>AmountIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1aaac525bad6fb82a1b2e4dc23e52810b5" kind="variable"><name>DescriptionIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a5441fd3bc0140f9737ae9ef0c15b83dd" kind="variable"><name>DateSpreadsheetIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1acc83fbe0a74edbf1fadb728bc487cc44" kind="variable"><name>AmountSpreadsheetIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a4468de493e9b612c5ff9becb3801b608" kind="variable"><name>DescriptionSpreadsheetIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1acc75bd6799dd08278e56256335184db5" kind="function"><name>Create_from_match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ab24a8298196686e8d783a90e6d64293c" kind="function"><name>Load</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1aad11083ae153420df3e90b843d48a6be" kind="function"><name>To_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1af6c73681fa7c586be13a4ad96263f851" kind="function"><name>To_string</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a9095d58803ddd5cb05735cd27c29dfff" kind="function"><name>To_console</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a20a09f734cc029637abefad3b04d007c" kind="function"><name>Populate_spreadsheet_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a2dd67d9b320692e24dc9ba1106d31554" kind="function"><name>Read_from_spreadsheet_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a559a9ac03db96c326ca306a04a051560" kind="function"><name>Main_amount_is_negative</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1aa9113a6f6b45e54fd500e6db9bf25d70" kind="function"><name>Make_main_amount_positive</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a3b964db5d70f2c29b12a3cc2a7d2703e" kind="function"><name>Swap_sign_of_main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a7e0094a43c0a1556609a6a6ebf2a26b2" kind="function"><name>Main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a646e9a5ce57586298acdc80f8903d101" kind="function"><name>Change_main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a51a3c477d718fd72ef696073c2e314d2" kind="function"><name>Transaction_type</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a940b717f82712c475ef0d81eb5b38e3f" kind="function"><name>Extra_info</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1ac6797ad962fcf5a0c68a0d2ee5353f14" kind="function"><name>With_date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a63ed2c3124d7b28f463e7c24bc81efcd" kind="function"><name>Copy</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a54f06b6cc2063b3a117e62e0efc2ed02" kind="function"><name>Update_source_line_for_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a9a388d804e839e99bfc8669edd6f0598" kind="function"><name>Reconcile</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a32e1cbaf4962bfb8425290fda0cbb236" kind="function"><name>Convert_source_line_separators</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_cred_card2_record_1a1ca0aa3a2c2e512e94f4f7da0bc51dd7" kind="function"><name>Get_amount_with_possible_comma</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Files::CSVFile&lt; TRecordType &gt;</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a6c21d7bd727f002f0bbe1fba4a1fe390" kind="property"><name>File_io</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a81d2fb88d82483aee76cff0f906d0fb1" kind="property"><name>File_contents</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a25a53e56e07b5f66e2cbdb797b7ec244" kind="property"><name>Source_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1abcda8a42882aac3efdf243b7c185337b" kind="property"><name>Records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a131c77d4a9bf5fd2a4622f61a4ff2860" kind="function"><name>CSVFile</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1ad8338d4ab394b64e1eace617ca9a6f80" kind="function"><name>Load</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1abef8f0c5e938113432c1ef46eab24b2d" kind="function"><name>Reload</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1ae8954559f7c8c9a93b62d29bc13b931c" kind="function"><name>Populate_source_records_from_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a27ad87b6ee3b1caa71da7aa85502bb5a" kind="function"><name>Populate_records_from_original_file_load</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a13b9088344971319bf0fdb33e7ef8537" kind="function"><name>Remove_record_permanently</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1af973f618ed95ea586e97c9fff2b3e25a" kind="function"><name>Add_record_permanently</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1ab8fa11cbb22fa8e9c52d8aa6a3498a64" kind="function"><name>Filter_for_positive_records_only</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a777d37f8a8f9d9b947ef0c9e4200c669" kind="function"><name>Filter_for_negative_records_only</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a92a3e2f79077edf57e51bbb51fe74a90" kind="function"><name>Remove_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1ac8787c1af589b4bc4775f5a16c9a9d78" kind="function"><name>Swap_signs_of_all_amounts</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a953a9ecb3141a1741f16a542f18e32e4" kind="function"><name>Copy_records_to_csv_file</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a844726d06d340a4db4fba2095e505f47" kind="function"><name>Reset_all_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a620c5a164b43a0c10a66e3ae6a4b04d6" kind="function"><name>Num_matched_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a586d437964c9495086dfa316c57c364e" kind="function"><name>Num_unmatched_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a4283d6892a49f4be4231fc9fc51f517b" kind="function"><name>Unmatched_records_as_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a54702d90812507691ddc998aef343db9" kind="function"><name>Matched_records_as_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a55719261536846eaaa2bf4468d8fe1d7" kind="function"><name>All_records_as_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a7d635f3de53a2e9ced216111d62c113f" kind="function"><name>All_records_as_source_lines</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1adb78020c33d7c1525904e692dd2ec680" kind="function"><name>Write_to_csv_file</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1acb34c256fdead8c4c658ccbfe785d7b2" kind="function"><name>Write_to_file_as_source_lines</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a39bb9bdba2275d44968b49398b9d0774" kind="function"><name>Write_back_to_main_spreadsheet</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1a31dacf56dbde03f07130f6b0bfd89e57" kind="function"><name>Convert_source_line_separators</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1aba2a21094b68810d9fab2e3dbbb34f63" kind="function"><name>Update_source_lines_for_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1aef645d2e86b652782f8edcf64328d230" kind="function"><name>Records_ordered_for_spreadsheet</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_3_01_t_record_type_01_4_1abaff9a1f6603dc774aaf220111caf1ba" kind="function"><name>Order_by_date</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_factory_3_01_t_record_type_01_4" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Files::CSVFileFactory&lt; TRecordType &gt;</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_c_s_v_file_factory_3_01_t_record_type_01_4_1adb33ad563c03e5b33f123f0e246980cd" kind="function"><name>Create_csv_file</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_date_extensions" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Extensions::DateExtensions</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_date_extensions_1a3b59f7c4d2fe596233c5c8a77c796b76" kind="function"><name>Proximity_score</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_double_extensions" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Extensions::DoubleExtensions</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_double_extensions_1a116adf2ae0ef0aa1af12d9ee93e6cd01" kind="function"><name>To_csv_string</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_double_extensions_1a7e8f62789e07119e3e935dcff0beed7d" kind="function"><name>Proximity_score</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_dummy_loader" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Loaders::DummyLoader</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_dummy_loader_1a72b39a1b9150ffde7516ad71546355e3" kind="variable"><name>LoadingInfo</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_expected_income_file" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Files::ExpectedIncomeFile</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_expected_income_file_1a708140fd4c929d07a071d8bf8b1c727a" kind="property"><name>File</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_expected_income_file_1a7a4a64ca4e139a80726501161bf2e056" kind="function"><name>ExpectedIncomeFile</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_expected_income_file_1a26bffd495434cc70fee65633f73fb70f" kind="function"><name>Load</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_expected_income_file_1a59cb8ad052ff39052a770fc51d79e18a" kind="function"><name>Refresh_file_contents</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_expected_income_file_1adb029f32009a012b89f3df80cb113670" kind="function"><name>Filter_for_employer_expenses_only</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_expected_income_file_1abe84cc2e80ea67a80d42039c1bebb0c2" kind="function"><name>Copy_to_pending_file</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_expected_income_file_1a3da4ee1f8649c7335366d315ca1cd815" kind="function"><name>Update_expected_income_record_when_matched</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a82795ff79f5684ed11f4cfa1beff5fc7" kind="property"><name>Match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aa137a243ceda22d7d3d1bb21c3277b27" kind="property"><name>Matched</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a06f70c9dc917fc6252f3c7e3fc6128d2" kind="property"><name>Divider</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ac9c4f1705c90d26ff555132af6ba8763" kind="property"><name>Source_line</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a0b12631c57b975fee0197807030245f2" kind="property"><name>Date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a74c19a29b7129933dada332e480f0315" kind="property"><name>Unreconciled_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ae387ae7f9e6dae658049eb202ffece6d" kind="property"><name>Code</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1af679140b17f987496aa61ce5330079d5" kind="property"><name>Reconciled_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aaabe512225f4b5987cd1972879571d83" kind="property"><name>Date_paid</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ae81e298fb8a847df5aff0cbd9351f377" kind="property"><name>Total_paid</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ac785485dda059ffe4fd2fe8c4e914b26" kind="property"><name>Description</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1abcdc14823f79b3613455799be35cbb20" kind="variable"><name>_separator</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aa8571362c41624093ed8bfa19bf820d8" kind="variable"><name>DateIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1afb9ba645c4b6e6329d1967131c037494" kind="variable"><name>UnreconciledAmountIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a2c295d9293472725e63a58c0b0a4d034" kind="variable"><name>DividerIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a8bbedba75f89ca57ae7522d95ba126ef" kind="variable"><name>CodeIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ac8664a637a888ed70dcbba89e407731e" kind="variable"><name>ReconciledAmountIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1acfbbc16613af6f81b1b225645ae18135" kind="variable"><name>DatePaidIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1acf822b3bbd5bab66fbd1ba9320ae94cb" kind="variable"><name>TotalPaidIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ad341f55b0a6e333e0e07b1eafd13f26f" kind="variable"><name>DescriptionIndex</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a4fe9a35ee6fc09fa23a296787b038bc7" kind="variable"><name>EssentialFields</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ac1799fa09c505aa2bd5561a6f372dd07" kind="function"><name>Create_from_match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a31bb50cc0ae543a6262d3678ead5687d" kind="function"><name>Load</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a926245ab17ea47c3649c72edb73b50c4" kind="function"><name>Main_amount_is_negative</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1afb33a795e8a5b296ebbe44c7a3770ed7" kind="function"><name>Make_main_amount_positive</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a001c8a5cdbf9877e619ca986c7aa37e6" kind="function"><name>Swap_sign_of_main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a34cee845f2d3e0e947aa8d4daa39522e" kind="function"><name>Reconcile</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a3bfbfdcd6fd5081e3d0489a664700816" kind="function"><name>To_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a4db910b410415e00f47dba2e4f99264c" kind="function"><name>To_console</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a9a7fb470291417347420dc68fda5d025" kind="function"><name>Populate_spreadsheet_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a235c4c418d28bd4cde3763d0e46098fe" kind="function"><name>Read_from_spreadsheet_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a7c84d2a32cf530280e4032b95181b37b" kind="function"><name>Convert_source_line_separators</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ae06c800964b70f45bcf9ae0ac7e3beab" kind="function"><name>Main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a449c846e69dc5c99313192bfd1121806" kind="function"><name>Change_main_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aae2c32402dac4cea15e86728463c8155" kind="function"><name>Transaction_type</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aff7684b21a25bedc7a964891e6bd2c97" kind="function"><name>Extra_info</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ac11115cc3f013c0b7f91f0abdbf61be2" kind="function"><name>Copy</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a5d1bc56a5053e0e0c454a4c997b06d2f" kind="function"><name>With_date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a536d218c426ca18756f2a1e6931cd710" kind="function"><name>Update_source_line_for_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a2eeb129c7bba66de2133d803c9da3e1c" kind="function"><name>Convert_to_bank_record</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aaecdb543a16050d7bd8d6a4722573cc9" kind="function"><name>Populate_cell_with_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a5250ce04ee67a707739b0705e9f2030a" kind="function"><name>To_string</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeCellRow</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row_1a9f7a16fd299f6c9982ad4405bf2a91ad" kind="property"><name>Count</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row_1a248b8d0a5efbef2199b5636694ff193f" kind="variable"><name>_fake_cells</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row_1a49bf13eba4dae59430eba232accb8d13" kind="function"><name>With_fake_data</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row_1ad58754aa822b1c526879e00648141b24" kind="function"><name>Populate_cell</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_row_1a3e8ab8e95c3d143cbdafc34ceeb97beb" kind="function"><name>Read_cell</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_set" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeCellSet</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_set_1a2963d74855ae95e95dc2803120e72639" kind="function"><name>Populate_cell</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_cell_set_1a2f3ce14c1c6100471dedd3f3f72fc5d7" kind="function"><name>Get_cell</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_row_numbers_for_cell" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetData::FakeRowNumbersForCell</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_row_numbers_for_cell_1a38e7fcee1598142990bfd5d73e1fb74a" kind="property"><name>Data</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_row_numbers_for_text" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetData::FakeRowNumbersForText</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_row_numbers_for_text_1a270b8324ea27937c3b5036ba337c967e" kind="property"><name>Data</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_rows" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetData::FakeRows</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_rows_1a3fe773efda31d3651f5d1ce7428e169b" kind="property"><name>Data</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepo</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a5e8dba8891a23fc0c058c1bb8e03d6e2" kind="variable"><name>_debug_log</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1adfcb4c74d1f9035dfe3d7db7409397f5" kind="variable"><name>_fake_row_numbers_for_cell</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1aadec03b8154c8f09e56ad0e487e28359" kind="variable"><name>_fake_row_numbers_for_text</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a82f31426b0607649a0020484aeec88a2" kind="variable"><name>_fake_rows</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1ac9b7a55f9d3a4b7a604d78e53142f8df" kind="variable"><name>_last_row_numbers</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a5fc9c7d02975d28508897bb57b948f21" kind="variable"><name>FakeMortgageDescription</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a22d555e33b690a6687e43caf28090a00" kind="function"><name>FakeSpreadsheetRepo</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a8a5775ba7c13765e797359c3f0cbc1f6" kind="function"><name>Dispose</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1acfaebf2ef61402c3a501ec3aaa7a3ba0" kind="function"><name>Current_cells</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1aa231d56131b6d1ee4ab60e47cea6e9f1" kind="function"><name>Last_row_number</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a80fe7edb003062d90ad9afbaaa22b58e" kind="function"><name>Read_specified_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a6a2543c7fd0b9640684f871350874319" kind="function"><name>Find_first_empty_row_in_column</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1acae5b7fdc3a43d2bd834a2f3cf1c0e18" kind="function"><name>Find_row_number_of_last_row_containing_cell</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a87ff0f3faf30046f95e7f2e711fa6292" kind="function"><name>Find_row_number_of_last_row_with_cell_containing_text</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a28bea1ae5fa73558f6155a75df078b92" kind="function"><name>Get_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1af5bb4e9665e84396a02550cfe03e00c8" kind="function"><name>Get_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a50d8d77ee1328beda032414198bc888f" kind="function"><name>Get_date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a4a83ce58d2549b4f2226d2b8248bc6f1" kind="function"><name>Get_text</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a3f7c7a3888b8bae3033b5f99ff8e960e" kind="function"><name>Find_row_number_of_first_row_containing_cell</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a50b8a4935166e04b7e60aadb3911abc3" kind="function"><name>Read_last_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a8d0899bec2f5701f9131cccceff8adf2" kind="function"><name>Read_last_row_as_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a49a8a04cf8918dabb0ddcc9539a3cd98" kind="function"><name>Get_rows_as_records&lt; TRecordType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a8f2b50ca6debdf86e032ec623061a3cb" kind="function"><name>Read_specified_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a978b9b3930bc7abaf040813f85f7fc14" kind="function"><name>Read_specified_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a464ee9f0a6b2b4c159c5ebddc56443ae" kind="function"><name>Append_csv_record</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1ac28724d67bbdf2e3fd14b16aa444de5a" kind="function"><name>Remove_last_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1ac59c6261a02b6e33595f9232c9477c8e" kind="function"><name>Append_csv_file&lt; TRecordType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1afcfc996dfce8aac5ef30ec6f64a6e9c9" kind="function"><name>Update_date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1ad42de0deb0d8544c631a59acba9969ea" kind="function"><name>Update_text</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1acf5f12e5c19572b9823653b242b5e238" kind="function"><name>Update_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a5b4134701bd0574895739936a10429ca" kind="function"><name>Update_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a588b91acde8df7b293142cc9fa1fb082" kind="function"><name>Update_amount_and_text</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a5b5241a2ff0c3f60a1d10c4bdbc1ded5" kind="function"><name>Insert_new_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1ae57ac2784a4cc28137bb9ec946555196" kind="function"><name>Append_new_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a459a699f40e6b88c0acb5e3746a05fbc" kind="function"><name>Delete_specified_rows</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_1a553f9da4afdb1e14fd6b54b8186e8e05" kind="function"><name>Get_method_name</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_factory" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetRepoFactory</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_factory_1a8a5ba6a8722551d87fdf620d78b8aae6" kind="variable"><name>_fake_spreadsheet</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_factory_1a8bb0d94d5074ceeb897c6097c5c27c72" kind="function"><name>Create_spreadsheet_repo</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_repo_factory_1a9d2e9bd23558db5846c81865cd48bb6d" kind="function"><name>Dispose_of_spreadsheet_repo</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Files::FileIO&lt; TRecordType &gt;</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a1cd5147fd8db49f8bd5cc40f413b40a0" kind="variable"><name>_spreadsheet_factory</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a4a826261a6156c61191d613ae75cde98" kind="property"><name>File_path</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a808caa481dc60c0fd4806242341f4968" kind="property"><name>File_name</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1aeac5d08f89ee4f19294361b69fa4694c" kind="function"><name>FileIO</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a210e706c9dd4c7e2a34abeab08ef33c8" kind="function"><name>Set_file_paths</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a5920ee2e132793c169f1dc14df86e11a" kind="function"><name>Write_to_csv_file</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a5d4e7be127d259a824afe1d40a6e890f" kind="function"><name>Write_to_file_as_source_lines</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a432744a95fc33cfc510dd5033fc35164" kind="function"><name>Append_to_file_as_source_line</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a360c9867c24ede003fb95fe50e815cde" kind="function"><name>Write_back_to_main_spreadsheet</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a2350022e8359139d87fccb060e5b8436" kind="function"><name>Write_back_to_spreadsheet</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1a32901f003e327590d810f066ef9edf86" kind="function"><name>Load</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_file_i_o_3_01_t_record_type_01_4_1aa06b3dca3f7acef2eb8a80408cd6429c" kind="function"><name>Line_is_header</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Loaders::FileLoader</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1ac4943d5edf0a3f90e0848529be3f7783" kind="variable"><name>_input_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a3a3052ed7dd33f2b470b374af70820cf" kind="variable"><name>_spreadsheet_factory</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1ab408ed53069e70f9375cd4ec03a10051" kind="function"><name>FileLoader</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a25da705289b15b718af2181fd13b5666" kind="function"><name>Create_pending_csvs</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a5ca9274c7d349183fde7641c3f09767d" kind="function"><name>Load_specific_files_for_reconciliation_type</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a77aa437ad04b0d9e2efea05bc037bcdb" kind="function"><name>Load_files_and_merge_data&lt; TThirdPartyType, TOwnedType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a52857169ac1227efa8fdac9b2ea07f17" kind="function"><name>Load&lt; TThirdPartyType, TOwnedType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1abf622f7f37d0b1b463a2654f81deaaa2" kind="function"><name>Create_reconciliation_interface&lt; TThirdPartyType, TOwnedType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a65d0fd0da2159f636a901100cedb8ec6" kind="function"><name>Load_third_party_and_owned_files_into_reconciliator&lt; TThirdPartyType, TOwnedType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1afff0930beebe546ed919f93375dcca08" kind="function"><name>Merge_unreconciled_data&lt; TOwnedType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1acca10dbdd5e9c04f6177b36226a4f614" kind="function"><name>Merge_other_data&lt; TOwnedType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a6492ebf4eefe905be7488e3db3c9bf1c" kind="function"><name>Merge_budget_data&lt; TOwnedType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_file_loader_1a81439a48d3f2c6f114a0a70312464a28" kind="function"><name>Load_pending_data&lt; TOwnedType &gt;</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Files::GenericFile&lt; TRecordType &gt;</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4_1a7964bb96b530f5eff9fe4f160a9152ac" kind="property"><name>File</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4_1ae58304ba16eccdc19248527df414014e" kind="function"><name>GenericFile</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4_1a2d9ab137c1d146bdaf912dae4765e9e9" kind="function"><name>Load</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_files_1_1_generic_file_3_01_t_record_type_01_4_1ab5830a400860f43d3f91b4e30f009d36" kind="function"><name>Refresh_file_contents</name></member>
+  </compound>
+  <compound refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader" kind="interface"><name>ConsoleCatchall::Console::Reconciliation::Loaders::ILoader</name>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader_1afd740f45de19cbf020bf619fb455ec0b" kind="function"><name>Load_files_and_merge_data</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_i_loader_1a41cf9617c72caffa61f335402199bc74" kind="function"><name>Merge_bespoke_data_with_pending_file&lt; TOwnedType &gt;</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_input_output" kind="class"><name>ConsoleCatchall::Console::InputOutput</name>
+    <member refid="class_console_catchall_1_1_console_1_1_input_output_1adc70cb7f78241d2198019cfc137b8495" kind="function"><name>Output_options</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_input_output_1a3984d877b75e7078bde9dfe31664dfad" kind="function"><name>Output_all_lines_except_the_first</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_input_output_1a36488e31924a6b0cc99e067c40715494" kind="function"><name>Output_all_lines</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_input_output_1ad25ff8c6360c1d90bb5b7beb4b796ee6" kind="function"><name>Output_all_lines</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_input_output_1afb7b98fea9b5778c09faf9ad913b3fa8" kind="function"><name>Output_line</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_input_output_1a24496e0d8a1bb4b9a41a3a870ddcbe1a" kind="function"><name>Output_line</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_input_output_1a47d3e433ae8c58046cbc37807a94e312" kind="function"><name>Output_line_with_index</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_input_output_1a6fc39394e905e065e39436303dddea62" kind="function"><name>Output_line</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_input_output_1a3f5435dc39a6fac2e82dccd90ae471fe" kind="function"><name>Output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_input_output_1a1df4ddbc5787654b96aa42eaedb63f34" kind="function"><name>Output_string_list</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_input_output_1abf2b088a817f912c56b9033ffd5800e2" kind="function"><name>Get_input</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_input_output_1ac4f59c8a39921e3f58c5f00d51174003" kind="function"><name>Get_generic_input</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_input_output_1a47817bfb1430d7b42c2ae2e0901ed6d3" kind="function"><name>Show_error</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_input_output_1a3891b3d7876453396addfadd37b27253" kind="function"><name>Get_colour</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_input_output_1aecafe65c766b04589a2fe7d795888482" kind="function"><name>Check_for_exit</name></member>
+  </compound>
+  <compound refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet" kind="interface"><name>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheet</name>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a17e70c905469a7515892a2721e78aed6" kind="function"><name>Read_last_row</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1adf240c9d7232db981d88477705be1038" kind="function"><name>Find_row_number_of_last_divider_row</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a7ce4a742a4169ae365de8c10b5aa9449" kind="function"><name>Read_last_row_as_csv</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1af6a4484d21b002944d821eb133f3444b" kind="function"><name>Read_specified_row_as_csv</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1adc199f3ccffe11b1067541ab15e9abc7" kind="function"><name>Add_unreconciled_rows_to_csv_file&lt; TRecordType &gt;</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a2d586b938161b08d2d8eb14854bd2560" kind="function"><name>Append_csv_file&lt; TRecordType &gt;</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a54605f0de8bf7f6a300f07ab398b3e8d" kind="function"><name>Read_unreconciled_rows_as_csv_file&lt; TRecordType &gt;</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a530a4dcd3663aa397276ebed09ea66d5" kind="function"><name>Delete_unreconciled_rows</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a8028011802a51b58f238fb04f1b8976c" kind="function"><name>Get_second_child_pocket_money_amount</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a0712b5ebda03013b3042d6640d969b07" kind="function"><name>Get_most_recent_row_containing_text&lt; TRecordType &gt;</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a2191f58984f40c5c27960b88f504afd9" kind="function"><name>Get_planning_expenses_already_done</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a893594592fcac3931c35fe8dc82bfb5e" kind="function"><name>Get_planning_money_paid_by_guests</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a2a82adc4fd2eefdba16abcb08f84dd10" kind="function"><name>Insert_new_row_on_expected_out</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1ae9e442f83a11b27bde3dbd8435405598" kind="function"><name>Add_new_transaction_to_savings</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a95be0a15879d3d3c0c969815467bc4ee" kind="function"><name>Update_balance_on_totals_sheet</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a6582113a95c13505d89ca267c72d054f" kind="function"><name>Get_next_unplanned_month</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a87b4af4258cb49acf9bb5738ee30334a" kind="function"><name>Add_budgeted_monthly_data_to_pending_file&lt; TOwnedType &gt;</name></member>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_1a0cac71a577ecb60f316e7cbb7ee07380" kind="function"><name>Add_budgeted_annual_data_to_pending_file&lt; TOwnedType &gt;</name></member>
+  </compound>
+  <compound refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_repo_factory_factory" kind="interface"><name>ConsoleCatchall::Console::Reconciliation::Spreadsheets::ISpreadsheetRepoFactoryFactory</name>
+    <member refid="interface_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_i_spreadsheet_repo_factory_factory_1abe41502e874bdebcb2a2879f49b2e5e0" kind="function"><name>Get_factory</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_last_row_numbers" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetData::LastRowNumbers</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_last_row_numbers_1a6994a7d2b7027775f24387a4dd85bfdd" kind="property"><name>Data</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1ae1e475744f8c2d6598b32dccf0e37934" kind="variable"><name>BankInPendingFileName</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a14911f2e36df81160a620f240b2ee82e" kind="variable"><name>BankOutPendingFileName</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1abb4df19e747fb96e2f9c959a33781cc8" kind="variable"><name>CredCard2InOutPendingFileName</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a05f8d25fadb81988d2fecd0c7ce8db42" kind="variable"><name>PendingSourceFileName</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1ac7af9001b9eb08a83e13a35c981a1365" kind="variable"><name>_bank_out_pending_file_path</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1ad662d1ae5ec5c04ed0884d69c932745c" kind="variable"><name>_bank_in_pending_file_path</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1acd44e2ec538a4749017005557bd2644e" kind="variable"><name>_cred_card2_in_out_pending_file_path</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a0bf16cd3908e0accf3a43262c0a1734e" kind="variable"><name>_pending_source_file_path</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a3db6e46df6c1c837fffe2a54430339c2" kind="variable"><name>_file_path</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1ac391f564fee5560c02cbfcf551680a42" kind="function"><name>PendingCsvFileCreator</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a022ee0176e7d37848073ebe907c07cba" kind="function"><name>Create_and_populate_all_csvs</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a2380b00eb1557bae09f8b95cca86ec0c" kind="function"><name>Read_lines</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1ae3d6dba90c0b3c20f8211e0be09a2880" kind="function"><name>Populate_bank_out_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a936c8a57e883322d3dc76e7daf4f1893" kind="function"><name>Populate_bank_in_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a877f60126d4f0bda73640890b3a9ef52" kind="function"><name>Populate_cred_card2_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1af672d1089dab3f0858c0abb7316b1c07" kind="function"><name>Populate_csv_file</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a9e8a5b6e2df24f01d3be80c9db94c47a" kind="function"><name>Create_files</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a0256eccb927e3bd076bfc0f178a1869e" kind="function"><name>Find_subset_of_lines</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Records::PotentialMatch</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a0576514f51e52dfa654d57bae44f8360" kind="variable"><name>PartialDateMatchThreshold</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a2fc631e5f1615aea46a0ec37aed1b4b8" kind="variable"><name>PartialAmountMatchThreshold</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1afb6ff7f103025d2b1333b6f151db706a" kind="property"><name>Actual_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a235236f19a3a037b74d10ce91943b807" kind="property"><name>Amount_match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a0f40ee5926f67ed8dc2d65224aa37f6d" kind="property"><name>Full_text_match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a76db67ca97df6b8f6c9a5e3d85a1e183" kind="property"><name>Partial_text_match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a3ffb693a2257278b509cbd2864dec6b9" kind="property"><name>Rankings</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_potential_match_1a92eaf91c4fcc541021704b5366bb7ef7" kind="property"><name>Console_lines</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_program" kind="class"><name>ConsoleCatchall::Console::Program</name>
+    <member refid="class_console_catchall_1_1_console_1_1_program_1af067e6da184b35dc134fe3c71e8ae86f" kind="variable"><name>_inputOutput</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_program_1a58f6470036a09943a6da65ca80013a27" kind="function"><name>Main</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_program_1a85a161650b3eb4c42537521cfece5b6e" kind="function"><name>Set_correct_date_formatting</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface" kind="class"><name>ConsoleCatchall::Console::Reconciliation::ReconciliationInterface</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a5a582948245eda0a5aad0eea90293db8" kind="variable"><name>_input_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a6fe227a02e60880c44a59a1110797f4b" kind="variable"><name>_doing_semi_automatic_matching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a6c7c07fd636048ee5cbcfe250a76889f" kind="property"><name>Reconciliator</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a44e1df956971a9accebd9d49ad461110" kind="property"><name>Third_party_descriptor</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1ae1bb8006d99718bec8fc41ff7650f6ce" kind="property"><name>Owned_file_descriptor</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1abb74e79eec5744f1461c46a6258af11b" kind="function"><name>ReconciliationInterface</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a09de9fcb3b6606cd339a6becef52a5a2" kind="function"><name>Do_the_matching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1afc61c4f349d3f9da5a0c8cbe6afa15e5" kind="function"><name>Do_matching_for_non_matching_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1aa6a3e720c5397c4cb815b1ef4e1813a4" kind="function"><name>Do_semi_automatic_matching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a60481a96ba0d4b12f85f776151f80657" kind="function"><name>Show_current_record_and_semi_auto_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a216221b3b08bbcbf7612ba6559cf63bf" kind="function"><name>Show_current_record_and_manual_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a22c82fc03662386973b5e61e32164ca8" kind="function"><name>Finish</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1aade37b702eb70279403a5b431c3b2c5a" kind="function"><name>Do_automatic_matching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a5af6022d8c200fabae8f3e32131c035f" kind="function"><name>Do_manual_matching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1aa2f3a5e684a3e582886296691af5b1c8" kind="function"><name>Recursively_show_auto_matches_and_get_choices</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a89bbf81ed554e21c6a245ab04869165a" kind="function"><name>Show_auto_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a214431810084190f62942ea221194f1e" kind="function"><name>Show_final_results_of_matching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a7b40424644e7b4fa2b70633078314990" kind="function"><name>Recursively_show_final_matches_and_get_choices</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a52b764ee788349a47b36969ed1663595" kind="function"><name>Show_final_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a832532b7041927d160d6368d11a4bcd1" kind="function"><name>Proceed_after_showing_matching_results</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1aa05c1188180cc8959247b974ed1f6bd7" kind="function"><name>Go_again</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a120ea6fb67755bd1728f20d51113ef8a" kind="function"><name>Show_warnings</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a2c369c844790ec06b5484aeaf51a52f4" kind="function"><name>Act_on_choices_for_auto_matching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a2fb3ca02507bdb6f8a31fa4ba242644f" kind="function"><name>Remove_auto_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1ac46e0a9248e7da0acbafce626fe8a67c" kind="function"><name>Act_on_choices_for_final_matching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1acdc8c9e30ffc09bc4733c44b66776eb6" kind="function"><name>Remove_final_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a9205cfbe4843a5bf94834ed38ec43d6d" kind="function"><name>Get_and_record_choice_of_matching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a0810fafe594826935072532044a276f6" kind="function"><name>Mark_the_match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1a95d5b2e686c33892e9e846f1260ba95e" kind="function"><name>Process_deletion</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_interface_1aed8fbbf3aa0717d3805ddc345d83904f" kind="function"><name>Delete_record_from_list_of_matches</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro" kind="class"><name>ConsoleCatchall::Console::Reconciliation::ReconciliationIntro</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a319dae4c24093c294a7ddb655982d920" kind="variable"><name>_path</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1ad668ad8ce1dd625350594adc30b26653" kind="variable"><name>_third_party_file_name</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a6a124779eb98cff4e374371310f5250e" kind="variable"><name>_owned_file_name</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a617243268ee2f180a68395fe4267732e" kind="variable"><name>_reconciliation_type</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a041f9c4e16b1b5848daa5a77c463f52f" kind="variable"><name>_spreadsheet_factory</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a642659d132dc2251de2819e16a5550cf" kind="variable"><name>_input_output</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a7e25394d4c2cd5b9fcb388237637dc89" kind="function"><name>ReconciliationIntro</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a1202d13bed771e4bbb67392c39a0142b" kind="function"><name>Start</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a0437f63a63ea9403f24ed2bfe8ebe966" kind="function"><name>Decide_on_debug</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a0782cd05669b62cbf02fa22c01d668fa" kind="function"><name>Debug_mode_a</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1aad4b564b1992ce72a0f8dcfa811df541" kind="function"><name>Debug_mode_b</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1aef4d973dee421b32e0b410034e80754f" kind="function"><name>Debug_mode_c</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1adfd6ba4439ce2db036d615aa87f7c56e" kind="function"><name>Set_file_details_according_to_user_input</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1acced3d6ee90e45a6c999058f76546346" kind="function"><name>Do_actual_reconciliation</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a2a1fb0278a2db9c50fc614517c19cf85" kind="function"><name>Copy_source_spreadsheet_to_debug_spreadsheet</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a0615a5120eb547c12682f38ab626f6d0" kind="function"><name>Create_backup_of_real_spreadsheet</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a27e2737c974fcad0c5093cca50afc57a" kind="function"><name>Real_mode</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a4c84ae81fdcb41a67c786fc8a94f4f50" kind="function"><name>Show_instructions</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a50aae3492884ae171675f2bb7b60add9" kind="function"><name>Show_debug_a_data_message</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1aa4bfc7e3b71500f1f02452fd80f45e49" kind="function"><name>Show_debug_b_data_message</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a638b8693e57276f8ed444839f66b01dc" kind="function"><name>Show_debug_c_data_message</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1abf9f320a5506fcdb3ad10bfa21fe8d17" kind="function"><name>Show_real_data_message</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1ad909d8610ff713a2a0ae5a6a8ceb0946" kind="function"><name>Get_reconciliaton_type_from_user</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a7df7fa1a9758f5267850b589cf5536b0" kind="function"><name>Set_path_and_file_names</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a8272d03b906fba020c08dcd32344dc65" kind="function"><name>Set_path</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1ac1428fa9d44c36c96a2de5142b80df6a" kind="function"><name>Set_third_party_file_name</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a23f1fbe0f6bf1864f97db817ff0f44f9" kind="function"><name>Set_all_file_details</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a476f78de26360dac17bb632d57e366ac" kind="function"><name>Set_owned_file_name</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a4e604cc1361cc8e8d3168da0902b2696" kind="function"><name>Capture_owned_file_name</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a91711f4ceee72fdf8050ba14ca494ff9" kind="function"><name>Do_matching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliation_intro_1a8e08be0c624365ce6a1effd0d9564272" kind="function"><name>Copy_file</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Reconciliator&lt; TThirdPartyType, TOwnedType &gt;</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a36b7ce1461a2bfe992b29904c60537f3" kind="variable"><name>CannotDeleteCurrentRecordNoMatching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a70812b2e14130045978641f19007cae5" kind="variable"><name>CannotDeleteMatchedRecordNoMatching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa23ec1a62442d30063c4bb3510768422" kind="variable"><name>CannotDeleteThirdPartyRecordDoesNotExist</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a847826517927750e4f41cf7e69e31bf2" kind="variable"><name>CannotDeleteOwnedRecordDoesNotExist</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a1e74e330c7679994d27c5e2b3029ccf5" kind="variable"><name>CannotDeleteMatchedOwnedRecord</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1abf31553c2eec5dc5a989f5272af5071f" kind="variable"><name>BadMatchNumber</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a597d6b2d1f598c8ff7238463555dbbaa" kind="property"><name>Third_party_file</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a421224b84a1dc00a02773127c77d8104" kind="property"><name>Owned_file</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a220ac33baa4024e5ede74a73dbb67308" kind="property"><name>Third_party_data_file</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aafc73391d9eca837711f7cb2b2d3d470" kind="property"><name>Owned_data_file</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a55435224b8731e302af8573993073046" kind="variable"><name>_worksheet_name</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ae2b43ba6dfc3a4d57f330375fbc839c7" kind="variable"><name>_latest_record_for_matching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a0eba796ae35c0f5bfe4caabd8e0151e5" kind="variable"><name>_auto_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a6b27faf03128663cbe3619e51d0c6a81" kind="variable"><name>_current_index</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a6bca8f7691563ea4e327707875acdc6e" kind="variable"><name>_reserved_words</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a06c908157e56671aa2ac6d8244a70911" kind="function"><name>Reconciliator</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a25f0b6e85c5c0b68a94d2a937e629a99" kind="function"><name>Reconciliator</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1af092005958ffa306afc7f295bdac0f45" kind="function"><name>Find_reconciliation_matches_for_next_third_party_record</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1acd1e8db9337d58fd1a80bb30179bd746" kind="function"><name>Move_to_next_unmatched_third_party_record_for_manual_matching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a870599184a3061276b67bc8b4403b9c0" kind="function"><name>Check_for_partial_text_match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a75e5eb802fbd435dfa164edd8dd73e34" kind="function"><name>Match_current_record</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aba4f4c162018720ac606f1a1b631ef7c" kind="function"><name>Reset</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa0e98853d9e357cf944e88b67fb60817" kind="function"><name>Refresh_files</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a2bb4c39fd97fd21ad39d178da51c9e01" kind="function"><name>Rewind</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a0ac5abe83af144d41331095783638e36" kind="function"><name>Finish</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a34b81661db43d9d920767497166adca9" kind="function"><name>Not_at_end</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a17add8b85bc37dbef44e21965043094b" kind="function"><name>Current_potential_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1acc6babe63ee4122b60f02365db5596ff" kind="function"><name>Current_source_record_as_string</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa1fd7ed150038a837e890474a4273b65" kind="function"><name>Current_source_record_as_console_line</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a9683e1533913c299254265f50e7168f9" kind="function"><name>Current_source_description</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a7b5e5cfb9df6216c73240b795341ef6a" kind="function"><name>Current_record_for_matching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a9937c612dd813a99b006652dd5e0eb1d" kind="function"><name>Owned_file_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a7e09f7b2b5ed5ffb48785a7f55f2829f" kind="function"><name>Delete_current_third_party_record</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a01e1134228237d065ccaf30656ab4179" kind="function"><name>Delete_specific_third_party_record</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1afc7eb2690d6eb3a589931f1b35475f69" kind="function"><name>Delete_specific_owned_record_from_list_of_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a4fe4cd77fb7e8d6d3910afef45f49b04" kind="function"><name>Num_potential_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a9dfcbd7f81cdb3ccf01d15eedb86fb15" kind="function"><name>Return_auto_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a43e1da43cc8a36fbc04a7b80e95339a6" kind="function"><name>Get_auto_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a956798adbc5ff60075e7bef5260c019c" kind="function"><name>Get_auto_matches_for_console</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a794e3713797994b77f3a41da5ee4be50" kind="function"><name>Get_final_matches_for_console</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1abbd0fbe1a093596737848e5cbadadb33" kind="function"><name>Remove_auto_match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aca4ee63e6e56acb03b9b66cfe05c7c2f" kind="function"><name>Remove_final_match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aaf24c19f54413a2ca00f6c3fa68b273f" kind="function"><name>Remove_multiple_auto_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aee66c2ae585101494e3fef3d3d9f49e8" kind="function"><name>Remove_multiple_final_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a640f769577e67afb2127e9c9e027dbfb" kind="function"><name>Third_party_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1af6fa265cdc8985545d7fcb69e234a85e" kind="function"><name>Num_third_party_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a41107000b06800dd272e74d5549417ad" kind="function"><name>Num_owned_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa9140fa98543d2debaf849efbd8e2a2f" kind="function"><name>Num_matched_third_party_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aac04737c09436d8e143f8c14f779c4cf" kind="function"><name>Num_matched_owned_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ad0e62f7cb7a386abe2c445c43eb94229" kind="function"><name>Num_unmatched_third_party_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1adc8bc7b5402d45f9a661f7436b0124fe" kind="function"><name>Num_unmatched_owned_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a95230ab005841253f3a8d4a0eaa5e136" kind="function"><name>Unmatched_third_party_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1abc83960041ff1a113be89e0fa7e0126e" kind="function"><name>Unmatched_owned_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ab7e4a4ec7937395299eba26e8b4c3b10" kind="function"><name>Mark_latest_match_index</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a0e15e75639d8843541da0a5bbd8d037f" kind="function"><name>Match_non_matching_record</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa262363aaa2ebf7bcdfa97b347aed9ae" kind="function"><name>Do_auto_matching</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1aa6e1e4c2c1bf1c48869d5b67480e2fef" kind="function"><name>Initialise</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a35a271292bf5ba642f54dcf2d8f0d255" kind="function"><name>Perform_third_party_file_load_action&lt; TThirdPartyType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a1bf9c48b83ec2e342ae22d569e87fff1" kind="function"><name>Get_date_ranking</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ad0f3b77ed235d4480b9a2c04d8e24518" kind="function"><name>Get_amount_ranking</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ae3e1cadc146ecec0540ac31c5d1e93ac" kind="function"><name>Find_latest_ordered_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a4c9468324e85988d21fce7d7e47bfc1d" kind="function"><name>Convert_unmatched_owned_records_to_potential_matches</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a5d3ffe60a6d2996219383342d05a7401" kind="function"><name>Check_for_full_text_match</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a5d0f26a613fd8043a3ec2c968b7c7f12" kind="function"><name>Current_unmatched_owned_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a5f7be30ad6f870b4a7aa98e35e37d385" kind="function"><name>Get_rankings</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1ab6e59bb1c308e4e1499e7a60b9f9686c" kind="function"><name>Match_specified_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a3742cc009c7b2667fabb70b9c868b2f2" kind="function"><name>Match_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a609fcedd5ba287a6901ad1c6c1968e54" kind="function"><name>Unmatch_records</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1abdc445b107c13033815507ab512713ba" kind="function"><name>Change_amount_and_description_to_match_third_party_record</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1af602571cd2f4549c4aa8cb40708f17d0" kind="function"><name>Reconcile_all_matched_items</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a57b199ca7121706b340b8dc43d5b8cdd" kind="function"><name>Add_unmatched_source_items_to_owned_file</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a4ef43b4c5c6e7b4286a9573244c3c37b" kind="function"><name>Find_single_match_by_amount_and_text_and_near_date</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1af81985e183e32d36f5247ea399897e3c" kind="function"><name>Single_match_only</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_reconciliator_3_01_t_third_party_type_00_01_t_owned_type_01_4_1a7c3ec4f2c118f297fea4025b3591cf55" kind="function"><name>Indexed</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Spreadsheets::Spreadsheet</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a8141df5626c147891124f4edc49a455e" kind="variable"><name>_spreadsheet_io</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a6a720c6ef5f523756b73072182048820" kind="function"><name>Spreadsheet</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1afcffdbd90426fb13154a2c01d0c85555" kind="function"><name>Read_last_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a41fe7123ab2f8ca2324e9e051b10c716" kind="function"><name>Read_last_row_as_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1af5fa3ec22e1c94c0931910f5b5368cc9" kind="function"><name>Read_specified_row_as_csv</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a989a6a2cd8d5e75a79a59d57bfb786fa" kind="function"><name>Find_row_number_of_last_divider_row</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1af757ad00300b76d8dc4bf8a5ad76f9b9" kind="function"><name>Add_unreconciled_rows_to_csv_file&lt; TRecordType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a55e5b47544d1b86052f9261a3bca8577" kind="function"><name>Append_csv_file&lt; TRecordType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1ab30670f9ee77f5c0532e25bd6ab63648" kind="function"><name>Delete_unreconciled_rows</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1ae6362699c8b24542b7bf716f4aca0802" kind="function"><name>Read_unreconciled_rows_as_csv_file&lt; TRecordType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1ae38cff4447601e7bb9a244983d761591" kind="function"><name>Get_all_budget_items&lt; TOwnedType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a1bb76f82cac675304aac039e6f482ea2" kind="function"><name>Get_second_child_pocket_money_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a54c72e4f73180061eeb9be1f6308a76d" kind="function"><name>Get_planning_expenses_already_done</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1aad4584e6b6a05a4b7863153635cf2da5" kind="function"><name>Get_planning_money_paid_by_guests</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a9322f009985ee19490b04dbd8d05ac46" kind="function"><name>Insert_new_row_on_expected_out</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a4fb1d02371211200fc3b478f019fef1a" kind="function"><name>Add_new_transaction_to_cred_card3</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1adde4460f3257bceaaf1248dd1fff7cad" kind="function"><name>Add_new_transaction_to_savings</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a7488734db4195a34de33e785e53d2482" kind="function"><name>Get_next_unplanned_month</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a881e1394c54bb67a5757a164e412a083" kind="function"><name>Add_budgeted_monthly_data_to_pending_file&lt; TOwnedType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a8cd80bc443d2463e8910c1c05fef74f3" kind="function"><name>Add_budgeted_annual_data_to_pending_file&lt; TOwnedType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1acce7a672f68082819495d599ca00f109" kind="function"><name>Get_most_recent_row_containing_text&lt; TRecordType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a21fadc265a08e4eff3e293f46235fa97" kind="function"><name>Update_balance_on_totals_sheet</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a507a62e8a5f34a2723a3f59089e60ea7" kind="function"><name>Get_last_bank_out_record_with_specified_description</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a8e537a423dce312c5a0aaad4358c57ff" kind="function"><name>Get_budget_item_description</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a52ec438a11be6c52f553bd077e02119b" kind="function"><name>Add_records_to_pending_file_for_every_specified_month&lt; TRecordType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1afa57d2f1e5d0b12fd9f64f91adac9673" kind="function"><name>Add_records_to_pending_file_for_records_that_have_matching_months&lt; TRecordType &gt;</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_1a569fb07cfa2f28769431ac587a65a163" kind="function"><name>With_correct_days_per_month</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_repo_factory_factory" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Spreadsheets::SpreadsheetRepoFactoryFactory</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_spreadsheet_repo_factory_factory_1a002c6069e5fa4026277b336af6bce81c" kind="function"><name>Get_factory</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Extensions::StringExtensions</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a60bda472d967a255a63044404aa072e3" kind="function"><name>Is_alpha</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a4a55ba7b270f30583c1a9490f3c66b7b" kind="function"><name>Is_numeric</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1adb66d27547e4258a002877585f34e952" kind="function"><name>Replace_commas_surrounded_by_spaces</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1ab5bde01e841719ced638377e6b12c36f" kind="function"><name>Get_rid_of_spaces_before_comma_before_digit</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1abcff6b4dca0fc2a16b9d92110bba8510" kind="function"><name>Encase_in_escaped_quotes_if_not_already_encased</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1ac44f0a7f7471130fddd0241157d42787" kind="function"><name>Trim_amount</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a5347b49d05f7599f555140934a5e1dc4" kind="function"><name>Remove_leading_non_numeric_character</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a7a18863f546116b9f6347404b8e1dde5" kind="function"><name>Convert_separators</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1ac331f88b215d5f8c9213e14880d0b7e7" kind="function"><name>Strip_leading_apostrophe</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a223f44393a2016cae08eeeb5be42462c" kind="function"><name>Replace_punctuation_with_spaces</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a1e2f03238bcf6d6fafe59a73300dec54" kind="function"><name>Remove_punctuation</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_string_extensions_1a1837cc4240395f3aaad31e04c8231b5c" kind="function"><name>Throw_error_if_string_is_empty</name></member>
+  </compound>
+  <compound refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_string_helper" kind="class"><name>ConsoleCatchall::Console::Reconciliation::Utils::StringHelper</name>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_string_helper_1aba776a2bb0f4fc0a497b00bb7d5ab49a" kind="function"><name>Culture</name></member>
+    <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_string_helper_1a499e376c21b058670a683a5e81613f0b" kind="function"><name>Make_sure_there_are_at_least_enough_string_values</name></member>
+  </compound>
+  <compound refid="namespace_console_catchall" kind="namespace"><name>ConsoleCatchall</name>
+  </compound>
+  <compound refid="namespace_console_catchall_1_1_console" kind="namespace"><name>ConsoleCatchall::Console</name>
+  </compound>
+  <compound refid="namespace_console_catchall_1_1_console_1_1_reconciliation" kind="namespace"><name>ConsoleCatchall::Console::Reconciliation</name>
+    <member refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4" kind="enum"><name>ReconciliationType</name></member>
+    <member refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4a88183b946cc5f0e8c96b2e66e1c74a7e" kind="enumvalue"><name>Unknown</name></member>
+    <member refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4ae6b4507aadecdeab72fc5cc68bb8178c" kind="enumvalue"><name>BankAndBankIn</name></member>
+    <member refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4af77e644b9f30b910f2457541eae2557b" kind="enumvalue"><name>BankAndBankOut</name></member>
+    <member refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4aafaac00b54523c31a77735c40e674a44" kind="enumvalue"><name>CredCard1AndCredCard1InOut</name></member>
+    <member refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1a99fb8113a2af189d8db4aa36a692a6a4a4afaa35b79ff525371932001e5e5dd88" kind="enumvalue"><name>CredCard2AndCredCard2InOut</name></member>
+  </compound>
+  <compound refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions" kind="namespace"><name>ConsoleCatchall::Console::Reconciliation::Extensions</name>
+  </compound>
+  <compound refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_files" kind="namespace"><name>ConsoleCatchall::Console::Reconciliation::Files</name>
+  </compound>
+  <compound refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders" kind="namespace"><name>ConsoleCatchall::Console::Reconciliation::Loaders</name>
+  </compound>
+  <compound refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_records" kind="namespace"><name>ConsoleCatchall::Console::Reconciliation::Records</name>
+  </compound>
+  <compound refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets" kind="namespace"><name>ConsoleCatchall::Console::Reconciliation::Spreadsheets</name>
+  </compound>
+  <compound refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data" kind="namespace"><name>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetData</name>
+  </compound>
+  <compound refid="namespace_console_catchall_1_1_console_1_1_reconciliation_1_1_utils" kind="namespace"><name>ConsoleCatchall::Console::Reconciliation::Utils</name>
+  </compound>
+  <compound refid="namespace_excel_library" kind="namespace"><name>ExcelLibrary</name>
+  </compound>
+  <compound refid="namespace_interfaces" kind="namespace"><name>Interfaces</name>
+  </compound>
+  <compound refid="namespace_interfaces_1_1_constants" kind="namespace"><name>Interfaces::Constants</name>
+  </compound>
+  <compound refid="namespace_interfaces_1_1_d_t_os" kind="namespace"><name>Interfaces::DTOs</name>
+  </compound>
+  <compound refid="namespace_system" kind="namespace"><name>System</name>
+  </compound>
+  <compound refid="namespace_system_1_1_collections_1_1_generic" kind="namespace"><name>System::Collections::Generic</name>
+  </compound>
+  <compound refid="namespace_system_1_1_diagnostics" kind="namespace"><name>System::Diagnostics</name>
+  </compound>
+  <compound refid="namespace_system_1_1_globalization" kind="namespace"><name>System::Globalization</name>
+  </compound>
+  <compound refid="namespace_system_1_1_i_o" kind="namespace"><name>System::IO</name>
+  </compound>
+  <compound refid="namespace_system_1_1_linq" kind="namespace"><name>System::Linq</name>
+  </compound>
+  <compound refid="namespace_system_1_1_reflection" kind="namespace"><name>System::Reflection</name>
+  </compound>
+  <compound refid="namespace_system_1_1_runtime_1_1_interop_services" kind="namespace"><name>System::Runtime::InteropServices</name>
+  </compound>
+  <compound refid="namespace_system_1_1_text_1_1_regular_expressions" kind="namespace"><name>System::Text::RegularExpressions</name>
+  </compound>
+  <compound refid="namespace_system_1_1_threading" kind="namespace"><name>System::Threading</name>
+  </compound>
+  <compound refid="_input_output_8cs" kind="file"><name>InputOutput.cs</name>
+  </compound>
+  <compound refid="_program_8cs" kind="file"><name>Program.cs</name>
+  </compound>
+  <compound refid="_assembly_info_8cs" kind="file"><name>AssemblyInfo.cs</name>
+  </compound>
+  <compound refid="_date_extensions_8cs" kind="file"><name>DateExtensions.cs</name>
+  </compound>
+  <compound refid="_double_extensions_8cs" kind="file"><name>DoubleExtensions.cs</name>
+  </compound>
+  <compound refid="_string_extensions_8cs" kind="file"><name>StringExtensions.cs</name>
+  </compound>
+  <compound refid="_c_s_v_factory_8cs" kind="file"><name>CSVFactory.cs</name>
+  </compound>
+  <compound refid="_c_s_v_file_8cs" kind="file"><name>CSVFile.cs</name>
+  </compound>
+  <compound refid="_expected_income_file_8cs" kind="file"><name>ExpectedIncomeFile.cs</name>
+  </compound>
+  <compound refid="_file_i_o_8cs" kind="file"><name>FileIO.cs</name>
+  </compound>
+  <compound refid="_generic_file_8cs" kind="file"><name>GenericFile.cs</name>
+  </compound>
+  <compound refid="_bank_and_bank_in_data_8cs" kind="file"><name>BankAndBankInData.cs</name>
+  </compound>
+  <compound refid="_bank_and_bank_in_loader_8cs" kind="file"><name>BankAndBankInLoader.cs</name>
+  </compound>
+  <compound refid="_bank_and_bank_out_data_8cs" kind="file"><name>BankAndBankOutData.cs</name>
+  </compound>
+  <compound refid="_bank_and_bank_out_loader_8cs" kind="file"><name>BankAndBankOutLoader.cs</name>
+  </compound>
+  <compound refid="_budgeting_month_service_8cs" kind="file"><name>BudgetingMonthService.cs</name>
+  </compound>
+  <compound refid="_cred_card1_and_cred_card1_in_out_data_8cs" kind="file"><name>CredCard1AndCredCard1InOutData.cs</name>
+  </compound>
+  <compound refid="_cred_card1_and_cred_card1_in_out_loader_8cs" kind="file"><name>CredCard1AndCredCard1InOutLoader.cs</name>
+  </compound>
+  <compound refid="_cred_card2_and_cred_card2_in_out_data_8cs" kind="file"><name>CredCard2AndCredCard2InOutData.cs</name>
+  </compound>
+  <compound refid="_cred_card2_and_cred_card2_in_out_loader_8cs" kind="file"><name>CredCard2AndCredCard2InOutLoader.cs</name>
+  </compound>
+  <compound refid="_dummy_loader_8cs" kind="file"><name>DummyLoader.cs</name>
+  </compound>
+  <compound refid="_file_loader_8cs" kind="file"><name>FileLoader.cs</name>
+  </compound>
+  <compound refid="_i_loader_8cs" kind="file"><name>ILoader.cs</name>
+  </compound>
+  <compound refid="_pending_csv_file_creator_8cs" kind="file"><name>PendingCsvFileCreator.cs</name>
+  </compound>
+  <compound refid="_reconciliation_interface_8cs" kind="file"><name>ReconciliationInterface.cs</name>
+  </compound>
+  <compound refid="_reconciliation_intro_8cs" kind="file"><name>ReconciliationIntro.cs</name>
+  </compound>
+  <compound refid="_reconciliation_type_8cs" kind="file"><name>ReconciliationType.cs</name>
+  </compound>
+  <compound refid="_reconciliator_8cs" kind="file"><name>Reconciliator.cs</name>
+  </compound>
+  <compound refid="_actual_bank_record_8cs" kind="file"><name>ActualBankRecord.cs</name>
+  </compound>
+  <compound refid="_bank_record_8cs" kind="file"><name>BankRecord.cs</name>
+  </compound>
+  <compound refid="_cred_card1_in_out_record_8cs" kind="file"><name>CredCard1InOutRecord.cs</name>
+  </compound>
+  <compound refid="_cred_card1_record_8cs" kind="file"><name>CredCard1Record.cs</name>
+  </compound>
+  <compound refid="_cred_card2_in_out_record_8cs" kind="file"><name>CredCard2InOutRecord.cs</name>
+  </compound>
+  <compound refid="_cred_card2_record_8cs" kind="file"><name>CredCard2Record.cs</name>
+  </compound>
+  <compound refid="_expected_income_record_8cs" kind="file"><name>ExpectedIncomeRecord.cs</name>
+  </compound>
+  <compound refid="_potential_match_8cs" kind="file"><name>PotentialMatch.cs</name>
+  </compound>
+  <compound refid="_fake_cell_row_8cs" kind="file"><name>FakeCellRow.cs</name>
+  </compound>
+  <compound refid="_fake_cell_set_8cs" kind="file"><name>FakeCellSet.cs</name>
+  </compound>
+  <compound refid="_fake_row_numbers_for_cell_8cs" kind="file"><name>FakeRowNumbersForCell.cs</name>
+  </compound>
+  <compound refid="_fake_row_numbers_for_text_8cs" kind="file"><name>FakeRowNumbersForText.cs</name>
+  </compound>
+  <compound refid="_fake_rows_8cs" kind="file"><name>FakeRows.cs</name>
+  </compound>
+  <compound refid="_last_row_numbers_8cs" kind="file"><name>LastRowNumbers.cs</name>
+  </compound>
+  <compound refid="_fake_spreadsheet_repo_8cs" kind="file"><name>FakeSpreadsheetRepo.cs</name>
+  </compound>
+  <compound refid="_fake_spreadsheet_repo_factory_8cs" kind="file"><name>FakeSpreadsheetRepoFactory.cs</name>
+  </compound>
+  <compound refid="_i_spreadsheet_8cs" kind="file"><name>ISpreadsheet.cs</name>
+  </compound>
+  <compound refid="_i_spreadsheet_repo_factory_factory_8cs" kind="file"><name>ISpreadsheetRepoFactoryFactory.cs</name>
+  </compound>
+  <compound refid="_spreadsheet_8cs" kind="file"><name>Spreadsheet.cs</name>
+  </compound>
+  <compound refid="_spreadsheet_repo_factory_factory_8cs" kind="file"><name>SpreadsheetRepoFactoryFactory.cs</name>
+  </compound>
+  <compound refid="_clock_8cs" kind="file"><name>Clock.cs</name>
+  </compound>
+  <compound refid="_string_helper_8cs" kind="file"><name>StringHelper.cs</name>
+  </compound>
+  <compound refid="dir_22d85ae4e09a5f4068a8bb2014a6b43c" kind="dir"><name>C:/Development/Reconciliate/Console</name>
+  </compound>
+  <compound refid="dir_50be7ca8e7f6f42adb4809c7ca56f92f" kind="dir"><name>C:/Development</name>
+  </compound>
+  <compound refid="dir_7badf9ad95ce8f872cf2fa2bc6e201c0" kind="dir"><name>C:/Development/Reconciliate/Console/Reconciliation/Extensions</name>
+  </compound>
+  <compound refid="dir_2aa4a6854dc11e0e09614e808766cb72" kind="dir"><name>C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetData</name>
+  </compound>
+  <compound refid="dir_b2b5990100230a140784cd794d8cc5bd" kind="dir"><name>C:/Development/Reconciliate/Console/Reconciliation/Files</name>
+  </compound>
+  <compound refid="dir_f5820196b67107d03be1214523eb369b" kind="dir"><name>C:/Development/Reconciliate/Console/Reconciliation/Loaders</name>
+  </compound>
+  <compound refid="dir_4a94b4d204df8b15f3617be32b4e8f76" kind="dir"><name>C:/Development/Reconciliate/Console/Properties</name>
+  </compound>
+  <compound refid="dir_3a18ff423557a310fed53cd38a09024c" kind="dir"><name>C:/Development/Reconciliate</name>
+  </compound>
+  <compound refid="dir_890e74efa3effa929ed819647fbd4535" kind="dir"><name>C:/Development/Reconciliate/Console/Reconciliation</name>
+  </compound>
+  <compound refid="dir_b9ebef871e764528428cac21094a8ffe" kind="dir"><name>C:/Development/Reconciliate/Console/Reconciliation/Records</name>
+  </compound>
+  <compound refid="dir_8f7209dd4b76c74ae80d444b5639068b" kind="dir"><name>C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets</name>
+  </compound>
+  <compound refid="dir_aa04ab6b940a5abfd37528139ae913f9" kind="dir"><name>C:/Development/Reconciliate/Console/Reconciliation/Utils</name>
+  </compound>
+</doxygenindex>

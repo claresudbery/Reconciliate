@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_data" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankInData</compoundname>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_data_1a943cdbcf40be82a7d47269b92af3b2d4" prot="public" static="yes" mutable="no">
+        <type>DataLoadingInformation</type>
+        <definition>DataLoadingInformation ConsoleCatchall.Console.Reconciliation.Loaders.BankAndBankInData.LoadingInfo</definition>
+        <argsstring></argsstring>
+        <name>LoadingInfo</name>
+        <initializer>=
+            new DataLoadingInformation
+            {
+                File_paths = new FilePaths
+                {
+                    Main_path = ReconConsts.Default_file_path,
+                    Third_party_file_name = ReconConsts.Default_bank_file_name,
+                    Owned_file_name = ReconConsts.DefaultBankInFileName
+                },
+                Default_separator = &apos;,&apos;,
+                Loading_separator = &apos;^&apos;,
+                Pending_file_name = ReconConsts.DefaultBankInPendingFileName,
+                Sheet_name = MainSheetNames.Bank_in,
+                Third_party_descriptor = ReconConsts.Bank_descriptor,
+                Owned_file_descriptor = ReconConsts.BankInDescriptor,
+                Monthly_budget_data = new BudgetItemListData
+                {
+                    Sheet_name = MainSheetNames.Budget_in,
+                    Start_divider = Dividers.Date,
+                    End_divider = Dividers.Total,
+                    First_column_number = 2,
+                    Last_column_number = 6
+                },
+                Annual_budget_data = null,
+                Third_party_file_load_action = ThirdPartyFileLoadAction.FilterForPositiveRecordsOnly
+            }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankInData.cs" line="8" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankInData.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankInData.cs" line="7" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/BankAndBankInData.cs" bodystart="6" bodyend="34"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_bank_and_bank_in_data_1a943cdbcf40be82a7d47269b92af3b2d4" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::BankAndBankInData</scope><name>LoadingInfo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

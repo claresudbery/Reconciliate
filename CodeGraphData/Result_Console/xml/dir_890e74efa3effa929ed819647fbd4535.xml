@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_890e74efa3effa929ed819647fbd4535" kind="dir">
+    <compoundname>C:/Development/Reconciliate/Console/Reconciliation</compoundname>
+    <innerdir refid="dir_7badf9ad95ce8f872cf2fa2bc6e201c0">C:/Development/Reconciliate/Console/Reconciliation/Extensions</innerdir>
+    <innerdir refid="dir_b2b5990100230a140784cd794d8cc5bd">C:/Development/Reconciliate/Console/Reconciliation/Files</innerdir>
+    <innerdir refid="dir_f5820196b67107d03be1214523eb369b">C:/Development/Reconciliate/Console/Reconciliation/Loaders</innerdir>
+    <innerdir refid="dir_b9ebef871e764528428cac21094a8ffe">C:/Development/Reconciliate/Console/Reconciliation/Records</innerdir>
+    <innerdir refid="dir_8f7209dd4b76c74ae80d444b5639068b">C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets</innerdir>
+    <innerdir refid="dir_aa04ab6b940a5abfd37528139ae913f9">C:/Development/Reconciliate/Console/Reconciliation/Utils</innerdir>
+    <innerfile refid="_reconciliation_interface_8cs">ReconciliationInterface.cs</innerfile>
+    <innerfile refid="_reconciliation_intro_8cs">ReconciliationIntro.cs</innerfile>
+    <innerfile refid="_reconciliation_type_8cs">ReconciliationType.cs</innerfile>
+    <innerfile refid="_reconciliator_8cs">Reconciliator.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/"/>
+  </compounddef>
+</doxygen>

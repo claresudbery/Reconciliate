@@ -1,0 +1,319 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</compoundname>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1ae1e475744f8c2d6598b32dccf0e37934" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator.BankInPendingFileName</definition>
+        <argsstring></argsstring>
+        <name>BankInPendingFileName</name>
+        <initializer>= ReconConsts.DefaultBankInPendingFileName</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="11" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a14911f2e36df81160a620f240b2ee82e" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator.BankOutPendingFileName</definition>
+        <argsstring></argsstring>
+        <name>BankOutPendingFileName</name>
+        <initializer>= ReconConsts.DefaultBankOutPendingFileName</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="12" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1abb4df19e747fb96e2f9c959a33781cc8" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator.CredCard2InOutPendingFileName</definition>
+        <argsstring></argsstring>
+        <name>CredCard2InOutPendingFileName</name>
+        <initializer>= ReconConsts.Default_cred_card2_in_out_pending_file_name</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="13" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a05f8d25fadb81988d2fecd0c7ce8db42" prot="public" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator.PendingSourceFileName</definition>
+        <argsstring></argsstring>
+        <name>PendingSourceFileName</name>
+        <initializer>= &quot;Pending.txt&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="14" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1ac7af9001b9eb08a83e13a35c981a1365" prot="private" static="no" mutable="no">
+        <type>readonly string</type>
+        <definition>readonly string ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator._bank_out_pending_file_path</definition>
+        <argsstring></argsstring>
+        <name>_bank_out_pending_file_path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="16" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1ad662d1ae5ec5c04ed0884d69c932745c" prot="private" static="no" mutable="no">
+        <type>readonly string</type>
+        <definition>readonly string ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator._bank_in_pending_file_path</definition>
+        <argsstring></argsstring>
+        <name>_bank_in_pending_file_path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="17" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1acd44e2ec538a4749017005557bd2644e" prot="private" static="no" mutable="no">
+        <type>readonly string</type>
+        <definition>readonly string ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator._cred_card2_in_out_pending_file_path</definition>
+        <argsstring></argsstring>
+        <name>_cred_card2_in_out_pending_file_path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="18" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a0bf16cd3908e0accf3a43262c0a1734e" prot="private" static="no" mutable="no">
+        <type>readonly string</type>
+        <definition>readonly string ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator._pending_source_file_path</definition>
+        <argsstring></argsstring>
+        <name>_pending_source_file_path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="19" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a3db6e46df6c1c837fffe2a54430339c2" prot="private" static="no" mutable="no">
+        <type>readonly String</type>
+        <definition>readonly String ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator._file_path</definition>
+        <argsstring></argsstring>
+        <name>_file_path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="21" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1ac391f564fee5560c02cbfcf551680a42" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator.PendingCsvFileCreator</definition>
+        <argsstring>(String file_path)</argsstring>
+        <name>PendingCsvFileCreator</name>
+        <param>
+          <type>String</type>
+          <declname>file_path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="23" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="23" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a022ee0176e7d37848073ebe907c07cba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator.Create_and_populate_all_csvs</definition>
+        <argsstring>()</argsstring>
+        <name>Create_and_populate_all_csvs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="47" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="47" bodyend="56"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a2380b00eb1557bae09f8b95cca86ec0c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerable&lt; string &gt;</type>
+        <definition>IEnumerable&lt;string&gt; ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator.Read_lines</definition>
+        <argsstring>(string file_path)</argsstring>
+        <name>Read_lines</name>
+        <param>
+          <type>string</type>
+          <declname>file_path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="33" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="33" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1ae3d6dba90c0b3c20f8211e0be09a2880" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator.Populate_bank_out_csv</definition>
+        <argsstring>(IEnumerable&lt; string &gt; all_lines)</argsstring>
+        <name>Populate_bank_out_csv</name>
+        <param>
+          <type>IEnumerable&lt; string &gt;</type>
+          <declname>all_lines</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="58" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="58" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a936c8a57e883322d3dc76e7daf4f1893" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator.Populate_bank_in_csv</definition>
+        <argsstring>(IEnumerable&lt; string &gt; all_lines)</argsstring>
+        <name>Populate_bank_in_csv</name>
+        <param>
+          <type>IEnumerable&lt; string &gt;</type>
+          <declname>all_lines</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="63" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="63" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a877f60126d4f0bda73640890b3a9ef52" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator.Populate_cred_card2_csv</definition>
+        <argsstring>(IEnumerable&lt; string &gt; all_lines)</argsstring>
+        <name>Populate_cred_card2_csv</name>
+        <param>
+          <type>IEnumerable&lt; string &gt;</type>
+          <declname>all_lines</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="68" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="68" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1af672d1089dab3f0858c0abb7316b1c07" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator.Populate_csv_file</definition>
+        <argsstring>(IEnumerable&lt; string &gt; all_lines, string header_string, string file_path)</argsstring>
+        <name>Populate_csv_file</name>
+        <param>
+          <type>IEnumerable&lt; string &gt;</type>
+          <declname>all_lines</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>header_string</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>file_path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="73" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="73" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a9e8a5b6e2df24f01d3be80c9db94c47a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator.Create_files</definition>
+        <argsstring>()</argsstring>
+        <name>Create_files</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="79" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="79" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a0256eccb927e3bd076bfc0f178a1869e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerable&lt; string &gt;</type>
+        <definition>IEnumerable&lt;string&gt; ConsoleCatchall.Console.Reconciliation.Loaders.PendingCsvFileCreator.Find_subset_of_lines</definition>
+        <argsstring>(IEnumerable&lt; string &gt; all_lines, string subsection_header)</argsstring>
+        <name>Find_subset_of_lines</name>
+        <param>
+          <type>IEnumerable&lt; string &gt;</type>
+          <declname>all_lines</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>subsection_header</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="86" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="86" bodyend="119"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" line="10" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Loaders/PendingCsvFileCreator.cs" bodystart="9" bodyend="120"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1ad662d1ae5ec5c04ed0884d69c932745c" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>_bank_in_pending_file_path</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1ac7af9001b9eb08a83e13a35c981a1365" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>_bank_out_pending_file_path</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1acd44e2ec538a4749017005557bd2644e" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>_cred_card2_in_out_pending_file_path</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a3db6e46df6c1c837fffe2a54430339c2" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>_file_path</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a0bf16cd3908e0accf3a43262c0a1734e" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>_pending_source_file_path</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1ae1e475744f8c2d6598b32dccf0e37934" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>BankInPendingFileName</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a14911f2e36df81160a620f240b2ee82e" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>BankOutPendingFileName</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a022ee0176e7d37848073ebe907c07cba" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>Create_and_populate_all_csvs</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a9e8a5b6e2df24f01d3be80c9db94c47a" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>Create_files</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1abb4df19e747fb96e2f9c959a33781cc8" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>CredCard2InOutPendingFileName</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a0256eccb927e3bd076bfc0f178a1869e" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>Find_subset_of_lines</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1ac391f564fee5560c02cbfcf551680a42" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>PendingCsvFileCreator</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a05f8d25fadb81988d2fecd0c7ce8db42" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>PendingSourceFileName</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a936c8a57e883322d3dc76e7daf4f1893" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>Populate_bank_in_csv</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1ae3d6dba90c0b3c20f8211e0be09a2880" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>Populate_bank_out_csv</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a877f60126d4f0bda73640890b3a9ef52" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>Populate_cred_card2_csv</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1af672d1089dab3f0858c0abb7316b1c07" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>Populate_csv_file</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_loaders_1_1_pending_csv_file_creator_1a2380b00eb1557bae09f8b95cca86ec0c" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Loaders::PendingCsvFileCreator</scope><name>Read_lines</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

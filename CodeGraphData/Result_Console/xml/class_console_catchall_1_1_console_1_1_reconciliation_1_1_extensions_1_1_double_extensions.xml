@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_double_extensions" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Extensions::DoubleExtensions</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_double_extensions_1a116adf2ae0ef0aa1af12d9ee93e6cd01" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string ConsoleCatchall.Console.Reconciliation.Extensions.DoubleExtensions.To_csv_string</definition>
+        <argsstring>(this double source, bool format_currency)</argsstring>
+        <name>To_csv_string</name>
+        <param>
+          <type>this double</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>format_currency</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/DoubleExtensions.cs" line="8" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/DoubleExtensions.cs" bodystart="8" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_double_extensions_1a7e8f62789e07119e3e935dcff0beed7d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double ConsoleCatchall.Console.Reconciliation.Extensions.DoubleExtensions.Proximity_score</definition>
+        <argsstring>(this double source, double other_amount)</argsstring>
+        <name>Proximity_score</name>
+        <param>
+          <type>this double</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>other_amount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/DoubleExtensions.cs" line="25" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/DoubleExtensions.cs" bodystart="25" bodyend="29"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Extensions/DoubleExtensions.cs" line="7" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Extensions/DoubleExtensions.cs" bodystart="6" bodyend="30"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_double_extensions_1a7e8f62789e07119e3e935dcff0beed7d" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Extensions::DoubleExtensions</scope><name>Proximity_score</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_extensions_1_1_double_extensions_1a116adf2ae0ef0aa1af12d9ee93e6cd01" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Extensions::DoubleExtensions</scope><name>To_csv_string</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

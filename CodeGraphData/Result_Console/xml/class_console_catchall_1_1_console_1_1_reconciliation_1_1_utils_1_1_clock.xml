@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_clock" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Utils::Clock</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IClock</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_clock_1acd1a4e50f34d716c940f94fb899b6fab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>DateTime</type>
+        <definition>DateTime ConsoleCatchall.Console.Reconciliation.Utils.Clock.Now_date_time</definition>
+        <argsstring>()</argsstring>
+        <name>Now_date_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Utils/Clock.cs" line="8" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Utils/Clock.cs" bodystart="8" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="25">
+        <label>IClock</label>
+      </node>
+      <node id="24">
+        <label>ConsoleCatchall.Console.Reconciliation.Utils.Clock</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_clock"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="27">
+        <label>IClock</label>
+      </node>
+      <node id="26">
+        <label>ConsoleCatchall.Console.Reconciliation.Utils.Clock</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_clock"/>
+        <childnode refid="27" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Utils/Clock.cs" line="7" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Utils/Clock.cs" bodystart="6" bodyend="12"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_utils_1_1_clock_1acd1a4e50f34d716c940f94fb899b6fab" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Utils::Clock</scope><name>Now_date_time</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

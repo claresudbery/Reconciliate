@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_row_numbers_for_text" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetData::FakeRowNumbersForText</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_row_numbers_for_text_1a270b8324ea27937c3b5036ba337c967e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>Dictionary&lt; string, Dictionary&lt; string, int &gt; &gt;</type>
+        <definition>Dictionary&lt;string, Dictionary&lt;string, int&gt; &gt; ConsoleCatchall.Console.Reconciliation.Spreadsheets.FakeSpreadsheetData.FakeRowNumbersForText.Data</definition>
+        <argsstring></argsstring>
+        <name>Data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetData/FakeRowNumbersForText.cs" line="8" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetData/FakeRowNumbersForText.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetData/FakeRowNumbersForText.cs" line="7" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Spreadsheets/FakeSpreadsheetData/FakeRowNumbersForText.cs" bodystart="6" bodyend="16"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_spreadsheets_1_1_fake_spreadsheet_data_1_1_fake_row_numbers_for_text_1a270b8324ea27937c3b5036ba337c967e" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Spreadsheets::FakeSpreadsheetData::FakeRowNumbersForText</scope><name>Data</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

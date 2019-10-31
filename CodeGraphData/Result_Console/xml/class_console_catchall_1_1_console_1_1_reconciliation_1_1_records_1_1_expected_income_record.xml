@@ -1,0 +1,749 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record" kind="class" prot="package">
+    <compoundname>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ICSVRecord</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a82795ff79f5684ed11f4cfa1beff5fc7" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>ICSVRecord</type>
+        <definition>ICSVRecord ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Match</definition>
+        <argsstring></argsstring>
+        <name>Match</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="11" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aa137a243ceda22d7d3d1bb21c3277b27" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Matched</definition>
+        <argsstring></argsstring>
+        <name>Matched</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="12" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a06f70c9dc917fc6252f3c7e3fc6128d2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Divider</definition>
+        <argsstring></argsstring>
+        <name>Divider</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="13" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ac9c4f1705c90d26ff555132af6ba8763" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Source_line</definition>
+        <argsstring></argsstring>
+        <name>Source_line</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="14" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a0b12631c57b975fee0197807030245f2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>DateTime</type>
+        <definition>DateTime ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Date</definition>
+        <argsstring></argsstring>
+        <name>Date</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="17" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a74c19a29b7129933dada332e480f0315" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Unreconciled_amount</definition>
+        <argsstring></argsstring>
+        <name>Unreconciled_amount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="18" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ae387ae7f9e6dae658049eb202ffece6d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Code</definition>
+        <argsstring></argsstring>
+        <name>Code</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="19" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1af679140b17f987496aa61ce5330079d5" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Reconciled_amount</definition>
+        <argsstring></argsstring>
+        <name>Reconciled_amount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="20" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aaabe512225f4b5987cd1972879571d83" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>DateTime</type>
+        <definition>DateTime ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Date_paid</definition>
+        <argsstring></argsstring>
+        <name>Date_paid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="21" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ae81e298fb8a847df5aff0cbd9351f377" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Total_paid</definition>
+        <argsstring></argsstring>
+        <name>Total_paid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="22" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ac785485dda059ffe4fd2fe8c4e914b26" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Description</definition>
+        <argsstring></argsstring>
+        <name>Description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="23" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1abcdc14823f79b3613455799be35cbb20" prot="private" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord._separator</definition>
+        <argsstring></argsstring>
+        <name>_separator</name>
+        <initializer>= &apos;,&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="25" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aa8571362c41624093ed8bfa19bf820d8" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.DateIndex</definition>
+        <argsstring></argsstring>
+        <name>DateIndex</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="27" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1afb9ba645c4b6e6329d1967131c037494" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.UnreconciledAmountIndex</definition>
+        <argsstring></argsstring>
+        <name>UnreconciledAmountIndex</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="28" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a2c295d9293472725e63a58c0b0a4d034" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.DividerIndex</definition>
+        <argsstring></argsstring>
+        <name>DividerIndex</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="29" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a8bbedba75f89ca57ae7522d95ba126ef" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.CodeIndex</definition>
+        <argsstring></argsstring>
+        <name>CodeIndex</name>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="30" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ac8664a637a888ed70dcbba89e407731e" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.ReconciledAmountIndex</definition>
+        <argsstring></argsstring>
+        <name>ReconciledAmountIndex</name>
+        <initializer>= 3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="31" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1acfbbc16613af6f81b1b225645ae18135" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.DatePaidIndex</definition>
+        <argsstring></argsstring>
+        <name>DatePaidIndex</name>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="32" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1acf822b3bbd5bab66fbd1ba9320ae94cb" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.TotalPaidIndex</definition>
+        <argsstring></argsstring>
+        <name>TotalPaidIndex</name>
+        <initializer>= 5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="33" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ad341f55b0a6e333e0e07b1eafd13f26f" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.DescriptionIndex</definition>
+        <argsstring></argsstring>
+        <name>DescriptionIndex</name>
+        <initializer>= 6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="34" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a4fe9a35ee6fc09fa23a296787b038bc7" prot="public" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.EssentialFields</definition>
+        <argsstring></argsstring>
+        <name>EssentialFields</name>
+        <initializer>= &quot;unreconciled amount, code or description&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="36" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ac1799fa09c505aa2bd5561a6f372dd07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Create_from_match</definition>
+        <argsstring>(DateTime date, double amount, string type, string description, int extra_info, ICSVRecord matched_record)</argsstring>
+        <name>Create_from_match</name>
+        <param>
+          <type>DateTime</type>
+          <declname>date</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>amount</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>description</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>extra_info</declname>
+        </param>
+        <param>
+          <type>ICSVRecord</type>
+          <declname>matched_record</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="38" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="38" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a31bb50cc0ae543a6262d3678ead5687d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Load</definition>
+        <argsstring>(string csv_line, char?override_separator=null)</argsstring>
+        <name>Load</name>
+        <param>
+          <type>string</type>
+          <declname>csv_line</declname>
+        </param>
+        <param>
+          <type>char?</type>
+          <declname>override_separator</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="44" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="44" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a926245ab17ea47c3649c72edb73b50c4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Main_amount_is_negative</definition>
+        <argsstring>()</argsstring>
+        <name>Main_amount_is_negative</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="49" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="49" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1afb33a795e8a5b296ebbe44c7a3770ed7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Make_main_amount_positive</definition>
+        <argsstring>()</argsstring>
+        <name>Make_main_amount_positive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="54" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="54" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a001c8a5cdbf9877e619ca986c7aa37e6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Swap_sign_of_main_amount</definition>
+        <argsstring>()</argsstring>
+        <name>Swap_sign_of_main_amount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="59" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="59" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a34cee845f2d3e0e947aa8d4daa39522e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Reconcile</definition>
+        <argsstring>()</argsstring>
+        <name>Reconcile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="64" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="64" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a3bfbfdcd6fd5081e3d0489a664700816" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.To_csv</definition>
+        <argsstring>(bool format_currency=true)</argsstring>
+        <name>To_csv</name>
+        <param>
+          <type>bool</type>
+          <declname>format_currency</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="70" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="70" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a4db910b410415e00f47dba2e4f99264c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ConsoleLine</type>
+        <definition>ConsoleLine ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.To_console</definition>
+        <argsstring>(int index=-1)</argsstring>
+        <name>To_console</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="75" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="75" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a9a7fb470291417347420dc68fda5d025" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Populate_spreadsheet_row</definition>
+        <argsstring>(ICellSet cell_set, int row_number)</argsstring>
+        <name>Populate_spreadsheet_row</name>
+        <param>
+          <type>ICellSet</type>
+          <declname>cell_set</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>row_number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="86" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="86" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a235c4c418d28bd4cde3763d0e46098fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Read_from_spreadsheet_row</definition>
+        <argsstring>(ICellRow cell_row)</argsstring>
+        <name>Read_from_spreadsheet_row</name>
+        <param>
+          <type>ICellRow</type>
+          <declname>cell_row</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="116" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="116" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a7c84d2a32cf530280e4032b95181b37b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Convert_source_line_separators</definition>
+        <argsstring>(char original_separator, char new_separator)</argsstring>
+        <name>Convert_source_line_separators</name>
+        <param>
+          <type>char</type>
+          <declname>original_separator</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>new_separator</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="152" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="152" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ae06c800964b70f45bcf9ae0ac7e3beab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Main_amount</definition>
+        <argsstring>()</argsstring>
+        <name>Main_amount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="157" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="157" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a449c846e69dc5c99313192bfd1121806" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Change_main_amount</definition>
+        <argsstring>(double new_value)</argsstring>
+        <name>Change_main_amount</name>
+        <param>
+          <type>double</type>
+          <declname>new_value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="162" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="162" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aae2c32402dac4cea15e86728463c8155" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Transaction_type</definition>
+        <argsstring>()</argsstring>
+        <name>Transaction_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="167" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="167" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aff7684b21a25bedc7a964891e6bd2c97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Extra_info</definition>
+        <argsstring>()</argsstring>
+        <name>Extra_info</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="172" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="172" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ac11115cc3f013c0b7f91f0abdbf61be2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ICSVRecord</type>
+        <definition>ICSVRecord ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Copy</definition>
+        <argsstring>()</argsstring>
+        <name>Copy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="177" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="177" bodyend="190"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a5d1bc56a5053e0e0c454a4c997b06d2f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ICSVRecord</type>
+        <definition>ICSVRecord ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.With_date</definition>
+        <argsstring>(DateTime new_date)</argsstring>
+        <name>With_date</name>
+        <param>
+          <type>DateTime</type>
+          <declname>new_date</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="192" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="192" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a536d218c426ca18756f2a1e6931cd710" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Update_source_line_for_output</definition>
+        <argsstring>(char output_separator)</argsstring>
+        <name>Update_source_line_for_output</name>
+        <param>
+          <type>char</type>
+          <declname>output_separator</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="198" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="198" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a2eeb129c7bba66de2133d803c9da3e1c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_bank_record" kindref="compound">BankRecord</ref></type>
+        <definition>BankRecord ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Convert_to_bank_record</definition>
+        <argsstring>()</argsstring>
+        <name>Convert_to_bank_record</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="203" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="203" bodyend="212"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aaecdb543a16050d7bd8d6a4722573cc9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.Populate_cell_with_amount</definition>
+        <argsstring>(ICellSet cell_set, int row_number, int amount_index, double amount)</argsstring>
+        <name>Populate_cell_with_amount</name>
+        <param>
+          <type>ICellSet</type>
+          <declname>cell_set</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>row_number</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>amount_index</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>amount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="104" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="104" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a5250ce04ee67a707739b0705e9f2030a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>String</type>
+        <definition>String ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord.To_string</definition>
+        <argsstring>(char separator, bool encase_description_in_quotes=true, bool format_currency=true)</argsstring>
+        <name>To_string</name>
+        <param>
+          <type>char</type>
+          <declname>separator</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>encase_description_in_quotes</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>format_currency</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="139" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="139" bodyend="150"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="77">
+        <label>ICSVRecord</label>
+      </node>
+      <node id="76">
+        <label>ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record"/>
+        <childnode refid="77" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="79">
+        <label>ICSVRecord</label>
+      </node>
+      <node id="78">
+        <label>ConsoleCatchall.Console.Reconciliation.Records.ExpectedIncomeRecord</label>
+        <link refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record"/>
+        <childnode refid="79" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" line="10" column="1" bodyfile="C:/Development/Reconciliate/Console/Reconciliation/Records/ExpectedIncomeRecord.cs" bodystart="9" bodyend="213"/>
+    <listofallmembers>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1abcdc14823f79b3613455799be35cbb20" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>_separator</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a449c846e69dc5c99313192bfd1121806" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Change_main_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ae387ae7f9e6dae658049eb202ffece6d" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Code</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a8bbedba75f89ca57ae7522d95ba126ef" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>CodeIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a7c84d2a32cf530280e4032b95181b37b" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Convert_source_line_separators</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a2eeb129c7bba66de2133d803c9da3e1c" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Convert_to_bank_record</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ac11115cc3f013c0b7f91f0abdbf61be2" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Copy</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ac1799fa09c505aa2bd5561a6f372dd07" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Create_from_match</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a0b12631c57b975fee0197807030245f2" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Date</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aaabe512225f4b5987cd1972879571d83" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Date_paid</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aa8571362c41624093ed8bfa19bf820d8" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>DateIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1acfbbc16613af6f81b1b225645ae18135" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>DatePaidIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ac785485dda059ffe4fd2fe8c4e914b26" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Description</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ad341f55b0a6e333e0e07b1eafd13f26f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>DescriptionIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a06f70c9dc917fc6252f3c7e3fc6128d2" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Divider</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a2c295d9293472725e63a58c0b0a4d034" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>DividerIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a4fe9a35ee6fc09fa23a296787b038bc7" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>EssentialFields</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aff7684b21a25bedc7a964891e6bd2c97" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Extra_info</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a31bb50cc0ae543a6262d3678ead5687d" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Load</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ae06c800964b70f45bcf9ae0ac7e3beab" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Main_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a926245ab17ea47c3649c72edb73b50c4" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Main_amount_is_negative</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1afb33a795e8a5b296ebbe44c7a3770ed7" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Make_main_amount_positive</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a82795ff79f5684ed11f4cfa1beff5fc7" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Match</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aa137a243ceda22d7d3d1bb21c3277b27" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Matched</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aaecdb543a16050d7bd8d6a4722573cc9" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Populate_cell_with_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a9a7fb470291417347420dc68fda5d025" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Populate_spreadsheet_row</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a235c4c418d28bd4cde3763d0e46098fe" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Read_from_spreadsheet_row</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a34cee845f2d3e0e947aa8d4daa39522e" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Reconcile</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1af679140b17f987496aa61ce5330079d5" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Reconciled_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ac8664a637a888ed70dcbba89e407731e" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>ReconciledAmountIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ac9c4f1705c90d26ff555132af6ba8763" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Source_line</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a001c8a5cdbf9877e619ca986c7aa37e6" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Swap_sign_of_main_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a4db910b410415e00f47dba2e4f99264c" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>To_console</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a3bfbfdcd6fd5081e3d0489a664700816" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>To_csv</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a5250ce04ee67a707739b0705e9f2030a" prot="private" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>To_string</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1ae81e298fb8a847df5aff0cbd9351f377" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Total_paid</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1acf822b3bbd5bab66fbd1ba9320ae94cb" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>TotalPaidIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1aae2c32402dac4cea15e86728463c8155" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Transaction_type</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a74c19a29b7129933dada332e480f0315" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Unreconciled_amount</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1afb9ba645c4b6e6329d1967131c037494" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>UnreconciledAmountIndex</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a536d218c426ca18756f2a1e6931cd710" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>Update_source_line_for_output</name></member>
+      <member refid="class_console_catchall_1_1_console_1_1_reconciliation_1_1_records_1_1_expected_income_record_1a5d1bc56a5053e0e0c454a4c997b06d2f" prot="public" virt="non-virtual"><scope>ConsoleCatchall::Console::Reconciliation::Records::ExpectedIncomeRecord</scope><name>With_date</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
