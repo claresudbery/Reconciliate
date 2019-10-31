@@ -106,16 +106,10 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void Do_matching()
         {
-            Set_path_and_file_names();
-            var main_file_paths = new FilePaths
-            {
-                Main_path = _path,
-                Third_party_file_name = _third_party_file_name,
-                Owned_file_name = _owned_file_name
-            };
+            var main_file_paths = Set_path_and_file_names();
 
             var file_loader = new FileLoader(_input_output, _spreadsheet_factory);
-            var reconciliation_interface = file_loader.Load_specific_files_for_reconciliation_type(main_file_paths, _reconciliation_type);
+            var reconciliation_interface = file_loader.Load_specific_files_for_reconciliation_type(main_file_paths, main_file_paths.Reconciliation_type);
             reconciliation_interface?.Do_the_matching();
         }
 
@@ -123,7 +117,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         #region Gathering file / path info
 
-        private void Set_path_and_file_names()
+        private FilePaths Set_path_and_file_names()
         {
             _input_output.Output_line("Mathematical dude! Let's do some reconciliating. Type Exit at any time to leave (although to be honest I'm not sure that actually works...)");
 
@@ -135,6 +129,14 @@ namespace ConsoleCatchall.Console.Reconciliation
                 Set_third_party_file_name();
                 Set_owned_file_name();
             }
+
+            return new FilePaths
+            {
+                Reconciliation_type = _reconciliation_type,
+                Main_path = _path,
+                Third_party_file_name = _third_party_file_name,
+                Owned_file_name = _owned_file_name
+            };
         }
 
         private bool Set_all_file_details()
