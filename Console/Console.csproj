@@ -39,6 +39,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Reconciliation\Utils\Communicator.cs" />
     <Compile Include="Reconciliation\Files\ExpectedIncomeFile.cs" />
     <Compile Include="Reconciliation\Loaders\BankAndBankInLoader.cs" />
     <Compile Include="Reconciliation\Loaders\BankAndBankOutLoader.cs" />
