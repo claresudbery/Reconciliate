@@ -89,7 +89,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             try
             {
                 new Communicator(_input_output).Show_instructions(working_mode);
-                Set_path_and_file_names();
                 Do_matching();
             }
             catch (Exception exception)
@@ -107,6 +106,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void Do_matching()
         {
+            Set_path_and_file_names();
             var main_file_paths = new FilePaths
             {
                 Main_path = _path,
