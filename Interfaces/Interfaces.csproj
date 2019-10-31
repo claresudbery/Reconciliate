@@ -43,6 +43,7 @@
     <Compile Include="Constants\MainSheetNames.cs" />
     <Compile Include="Constants\Codes.cs" />
     <Compile Include="Constants\PocketMoneySheetNames.cs" />
+    <Compile Include="Constants\ReconciliationType.cs" />
     <Compile Include="Constants\ReconConsts.cs" />
     <Compile Include="Constants\PlanningSheetNames.cs" />
     <Compile Include="Constants\SpreadsheetConsts.cs" />

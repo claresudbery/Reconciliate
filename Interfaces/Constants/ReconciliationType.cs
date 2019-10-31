@@ -1,6 +1,6 @@
-﻿namespace ConsoleCatchall.Console.Reconciliation
+namespace Interfaces.Constants
 {
-    internal enum ReconciliationType
+    public enum ReconciliationType
     {
         Unknown,
         BankAndBankIn,

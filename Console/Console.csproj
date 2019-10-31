@@ -49,7 +49,6 @@
     <Compile Include="Reconciliation\Loaders\DummyLoader.cs" />
     <Compile Include="Reconciliation\Loaders\FileLoader.cs" />
     <Compile Include="Reconciliation\Loaders\ILoader.cs" />
-    <Compile Include="Reconciliation\ReconciliationType.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\FakeRowNumbersForCell.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\FakeRowNumbersForText.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\FakeRows.cs" />
