@@ -145,7 +145,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             return result;
         }
 
-        private string Set_path()
+        public string Set_path()
         {
             _input_output.Output_line("");
             _input_output.Output_line("Would you like to enter a file path or use the default?");
