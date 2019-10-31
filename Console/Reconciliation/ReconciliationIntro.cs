@@ -14,7 +14,7 @@ namespace ConsoleCatchall.Console.Reconciliation
     {
         #region Properties, vars and constructor
 
-        private ISpreadsheetRepoFactory _spreadsheet_factory = new FakeSpreadsheetRepoFactory();
+        private ISpreadsheetRepoFactory _spreadsheet_factory;
         private readonly IInputOutput _input_output;
 
         public ReconciliationIntro(IInputOutput input_output)
@@ -42,19 +42,51 @@ namespace ConsoleCatchall.Console.Reconciliation
                 case "1":
                 {
                     var path = new PathSetter(_input_output).Set_path();
-                    var file_loader = new FileLoader(_input_output, _spreadsheet_factory);
+                    ISpreadsheetRepoFactory spreadsheet_factory = new FakeSpreadsheetRepoFactory();
+                    var file_loader = new FileLoader(_input_output, spreadsheet_factory);
                     file_loader.Create_pending_csvs(path);
                 }
                 break;
                 case "2":
                 {
-                    Decide_on_debug(); 
+                    Do_actual_reconciliation();
                 }
                 break;
             }
         }
 
-        public void Decide_on_debug()
+        public void Do_actual_reconciliation()
+        {
+            try
+            {
+                ISpreadsheetRepoFactory spreadsheet_factory = Decide_on_debug();
+                Do_matching(spreadsheet_factory);
+            }
+            catch (Exception exception)
+            {
+                if (exception.Message.ToUpper() == "EXIT")
+                {
+                    _input_output.Output_line("Taking you back to the main screen so you can start again if you want.");
+                }
+                else
+                {
+                    _input_output.Show_error(exception);
+                }
+            }
+        }
+
+        private void Do_matching(ISpreadsheetRepoFactory spreadsheet_factory)
+        {
+            var file_loader = new FileLoader(_input_output, spreadsheet_factory);
+            var reconciliation_interface = file_loader.Load_specific_files_for_reconciliation_type();
+            reconciliation_interface?.Do_the_matching();
+        }
+
+        #endregion // Reconciliation Intro actions
+
+        #region Debug mode switching code
+
+        public ISpreadsheetRepoFactory Decide_on_debug()
         {
             _input_output.Output_line("");
             _input_output.Output_options(new List<string>
@@ -76,39 +108,10 @@ namespace ConsoleCatchall.Console.Reconciliation
                 case "4": { working_mode = WorkingMode.Real; Real_mode(); } break;
             }
 
-            Do_actual_reconciliation(working_mode);
+            new Communicator(_input_output).Show_instructions(working_mode);
+
+            return _spreadsheet_factory;
         }
-
-        public void Do_actual_reconciliation(WorkingMode working_mode)
-        {
-            try
-            {
-                new Communicator(_input_output).Show_instructions(working_mode);
-                Do_matching();
-            }
-            catch (Exception exception)
-            {
-                if (exception.Message.ToUpper() == "EXIT")
-                {
-                    _input_output.Output_line("Taking you back to the main screen so you can start again if you want.");
-                }
-                else
-                {
-                    _input_output.Show_error(exception);
-                }
-            }
-        }
-
-        private void Do_matching()
-        {
-            var file_loader = new FileLoader(_input_output, _spreadsheet_factory);
-            var reconciliation_interface = file_loader.Load_specific_files_for_reconciliation_type();
-            reconciliation_interface?.Do_the_matching();
-        }
-
-        #endregion // Reconciliation Intro actions
-
-        #region Debug mode switching code
 
         public void Debug_mode_a()
         {
