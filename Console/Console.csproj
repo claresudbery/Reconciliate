@@ -88,6 +88,7 @@
     <Compile Include="Reconciliation\Records\CredCard1Record.cs" />
     <Compile Include="Reconciliation\Records\ActualBankRecord.cs" />
     <Compile Include="Reconciliation\Extensions\StringExtensions.cs" />
+    <Compile Include="Reconciliation\Utils\DebugModeSwitcher.cs" />
     <Compile Include="Reconciliation\Utils\PathSetter.cs" />
     <Compile Include="Reconciliation\Utils\StringHelper.cs" />
   </ItemGroup>
