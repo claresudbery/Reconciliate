@@ -10,7 +10,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
     internal class DebugModeSwitcher
     {
         private readonly IInputOutput _input_output;
-        private ISpreadsheetRepoFactory _spreadsheet_factory;
 
         public DebugModeSwitcher(IInputOutput input_output)
         {
@@ -31,51 +30,52 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             string input = _input_output.Get_generic_input(ReconConsts.DebugOrReal);
 
             WorkingMode working_mode = WorkingMode.DebugA;
+            ISpreadsheetRepoFactory spreadsheet_factory = new FakeSpreadsheetRepoFactory(); ;
             switch (input)
             {
-                case "1": { working_mode = WorkingMode.DebugA; Debug_mode_a(); } break;
-                case "2": { working_mode = WorkingMode.DebugB; Debug_mode_b(); } break;
-                case "3": { working_mode = WorkingMode.DebugC; Debug_mode_c(); } break;
-                case "4": { working_mode = WorkingMode.Real; Real_mode(); } break;
+                case "1": { working_mode = WorkingMode.DebugA; spreadsheet_factory = Debug_mode_a(); } break;
+                case "2": { working_mode = WorkingMode.DebugB; spreadsheet_factory = Debug_mode_b(); } break;
+                case "3": { working_mode = WorkingMode.DebugC; spreadsheet_factory = Debug_mode_c(); } break;
+                case "4": { working_mode = WorkingMode.Real; spreadsheet_factory = Real_mode(); } break;
             }
 
             new Communicator(_input_output).Show_instructions(working_mode);
 
-            return _spreadsheet_factory;
+            return spreadsheet_factory;
         }
 
-        public void Debug_mode_a()
+        private ISpreadsheetRepoFactory Debug_mode_a()
         {
             Copy_source_spreadsheet_to_debug_spreadsheet(ReconConsts.Main_spreadsheet_path, ReconConsts.Main_spreadsheet_path);
             string debug_file_path = Path.Combine(
                 ReconConsts.Main_spreadsheet_path,
                 ReconConsts.Backup_sub_folder,
                 ReconConsts.Debug_spreadsheet_file_name);
-            _spreadsheet_factory = new SpreadsheetRepoFactoryFactory().Get_factory(debug_file_path);
+            return new SpreadsheetRepoFactoryFactory().Get_factory(debug_file_path);
         }
 
-        public void Debug_mode_b()
+        private ISpreadsheetRepoFactory Debug_mode_b()
         {
             Copy_source_spreadsheet_to_debug_spreadsheet(ReconConsts.Source_debug_spreadsheet_path, ReconConsts.Main_spreadsheet_path);
             string debug_file_path = Path.Combine(
                 ReconConsts.Main_spreadsheet_path,
                 ReconConsts.Backup_sub_folder,
                 ReconConsts.Debug_spreadsheet_file_name);
-            _spreadsheet_factory = new SpreadsheetRepoFactoryFactory().Get_factory(debug_file_path);
+            return new SpreadsheetRepoFactoryFactory().Get_factory(debug_file_path);
         }
 
-        public void Debug_mode_c()
+        private ISpreadsheetRepoFactory Debug_mode_c()
         {
-            _spreadsheet_factory = new FakeSpreadsheetRepoFactory();
+            return new FakeSpreadsheetRepoFactory();
         }
 
-        private void Real_mode()
+        private ISpreadsheetRepoFactory Real_mode()
         {
             Create_backup_of_real_spreadsheet(new Clock(), ReconConsts.Main_spreadsheet_path);
             string file_path = Path.Combine(
                 ReconConsts.Main_spreadsheet_path,
                 ReconConsts.Main_spreadsheet_file_name);
-            _spreadsheet_factory = new SpreadsheetRepoFactoryFactory().Get_factory(file_path);
+            return new SpreadsheetRepoFactoryFactory().Get_factory(file_path);
         }
 
         public void Copy_source_spreadsheet_to_debug_spreadsheet(string source_spreadsheet_path, string main_spreadsheet_path)
