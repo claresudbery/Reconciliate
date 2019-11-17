@@ -48,8 +48,17 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             switch (input)
             {
-                case "1": Create_pending_csvs(); break;
-                case "2": Decide_on_debug(); break;
+                case "1":
+                {
+                    Set_path();
+                    Create_pending_csvs(_path);
+                } 
+                break;
+                case "2":
+                {
+                    Decide_on_debug(); 
+                }
+                break;
             }
         }
 
