@@ -517,8 +517,7 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             try
             {
-                Set_path();
-                var pending_csv_file_creator = new PendingCsvFileCreator(_path);
+                var pending_csv_file_creator = new PendingCsvFileCreator(path);
                 pending_csv_file_creator.Create_and_populate_all_csvs();
             }
             catch (Exception e)
