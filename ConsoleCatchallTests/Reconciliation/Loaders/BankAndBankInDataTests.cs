@@ -11,8 +11,9 @@ using NUnit.Framework;
 
 namespace ConsoleCatchallTests.Reconciliation.Loaders
 {
+    // These tests are just testing the BankAndBankIn functionality in ReconciliationIntro
     [TestFixture]
-    public class BankAndBankInDataTests
+    public class ReconciliationIntro_BankAndBankIn_Tests
     {
         [Test]
         public void M_MergeBespokeDataWithPendingFile_WillMergeUnreconciledEmployerExpensesWithPendingFile()

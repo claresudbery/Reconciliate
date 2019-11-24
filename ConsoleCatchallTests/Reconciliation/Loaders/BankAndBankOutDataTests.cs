@@ -13,8 +13,9 @@ using NUnit.Framework;
 
 namespace ConsoleCatchallTests.Reconciliation.Loaders
 {
+    // These tests are just testing the BankAndBankOut functionality in ReconciliationIntro
     [TestFixture]
-    public class BankAndBankOutDataTests
+    public class ReconciliationIntro_BankAndBankOut_Tests
     {
         private void Assert_direct_debit_details_are_correct(
             BankRecord bank_record, 

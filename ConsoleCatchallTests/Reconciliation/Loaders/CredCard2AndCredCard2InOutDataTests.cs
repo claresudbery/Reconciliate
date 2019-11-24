@@ -13,8 +13,9 @@ using NUnit.Framework;
 
 namespace ConsoleCatchallTests.Reconciliation.Loaders
 {
+    // These tests are just testing the CredCard2AndCredCard2InOut functionality in ReconciliationIntro
     [TestFixture]
-    public class CredCard2AndCredCard2InOutDataTests
+    public class ReconciliationIntro_CredCard2AndCredCard2InOut_Tests
     {
         private void Assert_direct_debit_details_are_correct(
             CredCard2InOutRecord cred_card2_in_out_record, 
