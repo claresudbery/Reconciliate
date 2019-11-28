@@ -89,6 +89,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             Merge_unreconciled_data(spreadsheet, pending_file, data_loading_info);
             var reconciliator = Load_third_party_and_owned_files_into_reconciliator<TThirdPartyType, TOwnedType>(data_loading_info, third_party_file_io, owned_file_io);
             var reconciliation_interface = Create_reconciliation_interface(data_loading_info, reconciliator, matcher);
+
             return reconciliation_interface;
         }
 
