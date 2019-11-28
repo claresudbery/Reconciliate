@@ -1,10 +1,8 @@
-﻿using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
-using Interfaces;
-using Interfaces.DTOs;
+﻿using Interfaces.DTOs;
 
-namespace ConsoleCatchall.Console.Reconciliation.Loaders
+namespace Interfaces
 {
-    internal interface ILoader
+    public interface ILoader
     {
         void Load_files_and_merge_data(FilePaths main_file_paths, ISpreadsheetRepoFactory spreadsheet_factory);
 

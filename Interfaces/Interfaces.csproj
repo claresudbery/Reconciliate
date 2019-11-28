@@ -67,11 +67,13 @@
     <Compile Include="ICSVRecord.cs" />
     <Compile Include="ICellSet.cs" />
     <Compile Include="IDataFile.cs" />
+    <Compile Include="ILoader.cs" />
     <Compile Include="IReconciliationInterface.cs" />
     <Compile Include="IFileIO.cs" />
     <Compile Include="IInputOutput.cs" />
     <Compile Include="IPotentialMatch.cs" />
     <Compile Include="IReconciliator.cs" />
+    <Compile Include="ISpreadsheet.cs" />
     <Compile Include="ISpreadsheetRepoFactory.cs" />
     <Compile Include="ISpreadsheetRepo.cs" />
     <Compile Include="Delegates\MatchFindingDelegate.cs" />

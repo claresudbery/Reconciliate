@@ -48,12 +48,10 @@
     <Compile Include="Reconciliation\Loaders\CredCard2AndCredCard2InOutLoader.cs" />
     <Compile Include="Reconciliation\Loaders\DummyLoader.cs" />
     <Compile Include="Reconciliation\Loaders\FileLoader.cs" />
-    <Compile Include="Reconciliation\Loaders\ILoader.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\FakeRowNumbersForCell.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\FakeRowNumbersForText.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\FakeRows.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\LastRowNumbers.cs" />
-    <Compile Include="Reconciliation\Spreadsheets\ISpreadsheet.cs" />
     <Compile Include="Reconciliation\Utils\Clock.cs" />
     <Compile Include="Reconciliation\Files\GenericFile.cs" />
     <Compile Include="Reconciliation\Loaders\CredCard2AndCredCard2InOutData.cs" />

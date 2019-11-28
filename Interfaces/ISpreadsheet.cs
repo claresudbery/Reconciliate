@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Interfaces;
 using Interfaces.DTOs;
 
-namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
+namespace Interfaces
 {
-    internal interface ISpreadsheet
+    public interface ISpreadsheet
     {
         ICellRow Read_last_row(String sheet_name);
         int Find_row_number_of_last_divider_row(string sheet_name);
