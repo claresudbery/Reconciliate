@@ -34,14 +34,17 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 DataLoadingInformation loading_info)
             where TOwnedType : ICSVRecord, new()
         {
-            input_output.Output_line(ReconConsts.Loading_expenses);
             var expected_income_file_io = new FileIO<ExpectedIncomeRecord>(new FakeSpreadsheetRepoFactory());
             var expected_income_csv_file = new CSVFile<ExpectedIncomeRecord>(expected_income_file_io);
-            expected_income_csv_file.Load(false);
             var expected_income_file = new ExpectedIncomeFile(expected_income_csv_file);
+
+            input_output.Output_line(ReconConsts.Loading_expenses);
+            expected_income_csv_file.Load(false);
+
             spreadsheet.Add_unreconciled_rows_to_csv_file<ExpectedIncomeRecord>(MainSheetNames.Expected_in, expected_income_file.File);
             expected_income_csv_file.Populate_source_records_from_records();
             expected_income_file.Filter_for_employer_expenses_only();
+
             expected_income_file.Copy_to_pending_file((ICSVFile<BankRecord>)pending_file);
             expected_income_csv_file.Populate_records_from_original_file_load();
         }
