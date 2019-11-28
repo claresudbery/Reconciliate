@@ -6,6 +6,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
     internal class Communicator
     {
         private readonly IInputOutput _input_output;
+
         public Communicator(IInputOutput input_output)
         {
             _input_output = input_output;
