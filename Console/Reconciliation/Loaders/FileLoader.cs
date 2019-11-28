@@ -11,12 +11,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
     internal class FileLoader
     {
         private readonly IInputOutput _input_output;
-        private readonly ISpreadsheetRepoFactory _spreadsheet_factory;
 
-        public FileLoader(IInputOutput input_output, ISpreadsheetRepoFactory spreadsheet_factory)
+        public FileLoader(IInputOutput input_output)
         {
             _input_output = input_output;
-            _spreadsheet_factory = spreadsheet_factory;
         }
 
         public void Create_pending_csvs(string path)
@@ -73,16 +71,16 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 // NB This is the only function the spreadsheet is used in, until the very end (Reconciliator.Finish, called from
                 // ReconciliationInterface), when another spreadsheet instance gets created by FileIO so it can call 
                 // WriteBackToMainSpreadsheet. Between now and then, everything is done using csv files.
-                var spreadsheet_repo = _spreadsheet_factory.Create_spreadsheet_repo();
+                var spreadsheet_repo = spreadsheet_factory.Create_spreadsheet_repo();
                 var spreadsheet = new Spreadsheet(spreadsheet_repo);
                 var budgeting_month_service = new BudgetingMonthService(_input_output);
                 BudgetingMonths budgeting_months = budgeting_month_service.Recursively_ask_for_budgeting_months(spreadsheet);
                 _input_output.Output_line("Loading data...");
 
-                var pending_file_io = new FileIO<TOwnedType>(_spreadsheet_factory);
+                var pending_file_io = new FileIO<TOwnedType>(spreadsheet_factory);
                 var pending_file = new CSVFile<TOwnedType>(pending_file_io);
-                var third_party_file_io = new FileIO<TThirdPartyType>(_spreadsheet_factory);
-                var owned_file_io = new FileIO<TOwnedType>(_spreadsheet_factory);
+                var third_party_file_io = new FileIO<TThirdPartyType>(spreadsheet_factory);
+                var owned_file_io = new FileIO<TOwnedType>(spreadsheet_factory);
 
                 reconciliation_interface = Load(
                     spreadsheet,
@@ -96,7 +94,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             }
             finally
             {
-                _spreadsheet_factory.Dispose_of_spreadsheet_repo();
+                spreadsheet_factory.Dispose_of_spreadsheet_repo();
             }
 
             _input_output.Output_line("");
