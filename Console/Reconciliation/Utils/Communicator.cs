@@ -52,7 +52,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             _input_output.Output_line($"***  {ReconConsts.Main_spreadsheet_path}/{ReconConsts.Backup_sub_folder}  ***");
             _input_output.Output_line("***                                                                 ***");
             _input_output.Output_line("***  You can find debug versions of all csv files and a spreadsheet ***");
-            _input_output.Output_line($"***     in [project root]/reconciliation-samples/For debugging     ***");
+            _input_output.Output_line("***      in [project root]/reconciliation-samples/For debugging     ***");
             _input_output.Output_line("***                                                                 ***");
             _input_output.Output_line("***********************************************************************");
             _input_output.Output_line("***********************************************************************");
@@ -70,10 +70,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             _input_output.Output_line("***      We'll copy the spreadsheet from the following folder:      ***");
             _input_output.Output_line($"***                {ReconConsts.Source_debug_spreadsheet_path}                 ***");
             _input_output.Output_line("***              The working copy will be placed here:              ***");
-            _input_output.Output_line($"***  {ReconConsts.Main_spreadsheet_path}/{ReconConsts.Backup_sub_folder}  ***");
+            _input_output.Output_line($"***        {ReconConsts.Main_spreadsheet_path}/{ReconConsts.Backup_sub_folder}        ***");
             _input_output.Output_line("***                                                                 ***");
             _input_output.Output_line("***  You can find debug versions of all csv files and a spreadsheet ***");
-            _input_output.Output_line($"***     in [project root]/reconciliation-samples/For debugging     ***");
+            _input_output.Output_line("***      in [project root]/reconciliation-samples/For debugging     ***");
             _input_output.Output_line("***                                                                 ***");
             _input_output.Output_line("***********************************************************************");
             _input_output.Output_line("***********************************************************************");
