@@ -37,6 +37,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
 
             return new FilePaths
             {
+                File_loader = _file_loader,
                 Reconciliation_type = _reconciliation_type,
                 Main_path = _path,
                 Third_party_file_name = _third_party_file_name,
