@@ -10,7 +10,6 @@ namespace ConsoleCatchall.Console.Reconciliation
 {
     internal class ReconciliationIntro
     {
-        private ISpreadsheetRepoFactory _spreadsheet_factory;
         private readonly IInputOutput _input_output;
 
         public ReconciliationIntro(IInputOutput input_output)
