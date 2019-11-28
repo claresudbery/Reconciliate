@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ConsoleCatchall.Console.Reconciliation.Loaders;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
@@ -13,6 +14,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
         private string _path = "";
         private string _third_party_file_name = "";
         private string _owned_file_name = "";
+
+        private ILoader _file_loader = null;
 
         public PathSetter(IInputOutput input_output)
         {
@@ -67,13 +70,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
         {
             bool success = true;
             _reconciliation_type = ReconciliationType.Unknown;
+            _file_loader = null;
 
             switch (input)
             {
                 case "1":
                     {
                         success = false;
-                        _reconciliation_type = Get_reconciliaton_type_from_user();
+                        _reconciliation_type = ReconciliationType.Unknown; 
+                        _file_loader = Get_reconciliaton_type_from_user();
                     }
                     break;
                 case "2":
@@ -81,6 +86,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
                         _owned_file_name = ReconConsts.Default_cred_card1_in_out_file_name;
                         _third_party_file_name = ReconConsts.Default_cred_card1_file_name;
                         _reconciliation_type = ReconciliationType.CredCard1AndCredCard1InOut;
+                        _file_loader = new CredCard1AndCredCard1InOutLoader(_input_output);
                     }
                     break;
                 case "3":
@@ -88,6 +94,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
                         _owned_file_name = ReconConsts.Default_cred_card2_in_out_file_name;
                         _third_party_file_name = ReconConsts.Default_cred_card2_file_name;
                         _reconciliation_type = ReconciliationType.CredCard2AndCredCard2InOut;
+                        _file_loader = new CredCard2AndCredCard2InOutLoader(_input_output);
                     }
                     break;
                 case "4":
@@ -95,6 +102,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
                         _owned_file_name = ReconConsts.DefaultBankInFileName;
                         _third_party_file_name = ReconConsts.Default_bank_file_name;
                         _reconciliation_type = ReconciliationType.BankAndBankIn;
+                        _file_loader = new BankAndBankInLoader(_input_output);
                     }
                     break;
                 case "5":
@@ -102,6 +110,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
                         _owned_file_name = ReconConsts.DefaultBankOutFileName;
                         _third_party_file_name = ReconConsts.Default_bank_file_name;
                         _reconciliation_type = ReconciliationType.BankAndBankOut;
+                        _file_loader = new BankAndBankOutLoader(_input_output);
                     }
                     break;
             }
@@ -118,9 +127,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             return success;
         }
 
-        private ReconciliationType Get_reconciliaton_type_from_user()
+        private ILoader Get_reconciliaton_type_from_user()
         {
-            ReconciliationType result = ReconciliationType.Unknown;
+            ILoader result = null;
 
             _input_output.Output_line("");
             _input_output.Output_line("What type are your third party and owned files?");
@@ -136,10 +145,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
 
             switch (input)
             {
-                case "1": result = ReconciliationType.CredCard1AndCredCard1InOut; break;
-                case "2": result = ReconciliationType.CredCard2AndCredCard2InOut; break;
-                case "3": result = ReconciliationType.BankAndBankIn; break;
-                case "4": result = ReconciliationType.BankAndBankOut; break;
+                case "1": result = new CredCard1AndCredCard1InOutLoader(_input_output); break;
+                case "2": result = new CredCard2AndCredCard2InOutLoader(_input_output); break;
+                case "3": result = new BankAndBankInLoader(_input_output); break;
+                case "4": result = new BankAndBankOutLoader(_input_output); break; 
             }
 
             return result;
