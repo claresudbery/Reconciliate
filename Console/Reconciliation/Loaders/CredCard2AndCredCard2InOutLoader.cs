@@ -21,8 +21,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
         public ReconciliationInterface Load_files_and_merge_data(FilePaths main_file_paths)
         {
+            var loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
+            loading_info.File_paths = main_file_paths;
             return _file_loader.Load_files_and_merge_data<CredCard2Record, CredCard2InOutRecord>(
-                CredCard2AndCredCard2InOutData.LoadingInfo, this, main_file_paths);
+                loading_info, this, main_file_paths);
         }
 
         public void Merge_bespoke_data_with_pending_file<TOwnedType>(

@@ -20,8 +20,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
         public ReconciliationInterface Load_files_and_merge_data(FilePaths main_file_paths)
         {
+            var loading_info = BankAndBankOutData.LoadingInfo;
+            loading_info.File_paths = main_file_paths;
             return _file_loader.Load_files_and_merge_data<ActualBankRecord, BankRecord>(
-                BankAndBankOutData.LoadingInfo, this, main_file_paths);
+                loading_info, this, main_file_paths);
         }
 
         public void Merge_bespoke_data_with_pending_file<TOwnedType>(
