@@ -467,11 +467,27 @@ namespace ConsoleCatchall.Console.Reconciliation
                     main_spreadsheet_path,
                     ReconConsts.Backup_sub_folder,
                     ReconConsts.Debug_spreadsheet_file_name);
-                File.Copy(source_file_path, debug_file_path, true);
+                Copy_file(source_file_path, debug_file_path);
             }
             else
             {
                 throw new Exception($"Can't find file: {source_file_path}");
+            }
+        }
+
+        private void Copy_file(string source_file_path, string dest_file_path)
+        {
+            try
+            {
+                File.Copy(source_file_path, dest_file_path, true);
+            }
+            catch (System.IO.FileNotFoundException e)
+            {
+                // There seems to be an intermittent fault in Windows - sometimes it copes with mixed slashes and sometimes it doesn't!
+                source_file_path = source_file_path.Replace("/", "\\");
+                dest_file_path = dest_file_path.Replace("/", "\\");
+
+                File.Copy(source_file_path, dest_file_path, true);
             }
         }
 
@@ -486,7 +502,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 string backup_file_name = file_name_prefix + "_" + ReconConsts.Main_spreadsheet_file_name;
                 string backup_file_path = spreadsheet_path + "\\" + backup_file_name;
 
-                File.Copy(source_file_path, backup_file_path, true);
+                Copy_file(source_file_path, backup_file_path);
             }
             else
             {
