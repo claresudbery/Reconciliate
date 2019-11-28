@@ -13,6 +13,8 @@ namespace ConsoleCatchall.Console.Reconciliation
 {
     internal class ReconciliationIntro
     {
+        #region Properties, vars and constructor
+
         private string _path = "";
         private string _third_party_file_name = "";
         private string _owned_file_name = "";
@@ -25,6 +27,10 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             _input_output = input_output;
         }
+
+        #endregion // Properties, vars and constructor
+
+        #region Reconciliation Intro actions
 
         public void Start()
         {
@@ -69,39 +75,55 @@ namespace ConsoleCatchall.Console.Reconciliation
             Do_actual_reconciliation(working_mode);
         }
 
-        public void Debug_mode_a()
+        public void Do_actual_reconciliation(WorkingMode working_mode)
         {
-            Copy_source_spreadsheet_to_debug_spreadsheet(ReconConsts.Main_spreadsheet_path, ReconConsts.Main_spreadsheet_path);
-            string debug_file_path = Path.Combine(
-                ReconConsts.Main_spreadsheet_path, 
-                ReconConsts.Backup_sub_folder, 
-                ReconConsts.Debug_spreadsheet_file_name);
-            _spreadsheet_factory = new SpreadsheetRepoFactoryFactory().Get_factory(debug_file_path);
+            try
+            {
+                Show_instructions(working_mode);
+                Set_path_and_file_names();
+                Do_matching();
+            }
+            catch (Exception exception)
+            {
+                if (exception.Message.ToUpper() == "EXIT")
+                {
+                    _input_output.Output_line("Taking you back to the main screen so you can start again if you want.");
+                }
+                else
+                {
+                    _input_output.Show_error(exception);
+                }
+            }
         }
 
-        public void Debug_mode_b()
+        private void Do_matching()
         {
-            Copy_source_spreadsheet_to_debug_spreadsheet(ReconConsts.Source_debug_spreadsheet_path, ReconConsts.Main_spreadsheet_path);
-            string debug_file_path = Path.Combine(
-                ReconConsts.Main_spreadsheet_path,
-                ReconConsts.Backup_sub_folder,
-                ReconConsts.Debug_spreadsheet_file_name);
-            _spreadsheet_factory = new SpreadsheetRepoFactoryFactory().Get_factory(debug_file_path);
+            var main_file_paths = new FilePaths
+            {
+                Main_path = _path,
+                Third_party_file_name = _third_party_file_name,
+                Owned_file_name = _owned_file_name
+            };
+            _matcher.Do_matching(main_file_paths);
         }
 
-        public void Debug_mode_c()
+        private void Create_pending_csvs()
         {
-            _spreadsheet_factory = new FakeSpreadsheetRepoFactory();
+            try
+            {
+                Set_path();
+                var pending_csv_file_creator = new PendingCsvFileCreator(_path);
+                pending_csv_file_creator.Create_and_populate_all_csvs();
+            }
+            catch (Exception e)
+            {
+                _input_output.Output_line(e.Message);
+            }
         }
 
-        private void Real_mode()
-        {
-            Create_backup_of_real_spreadsheet(new Clock(), ReconConsts.Main_spreadsheet_path);
-            string file_path = Path.Combine(
-                ReconConsts.Main_spreadsheet_path,
-                ReconConsts.Main_spreadsheet_file_name);
-            _spreadsheet_factory = new SpreadsheetRepoFactoryFactory().Get_factory(file_path);
-        }
+        #endregion // Reconciliation Intro actions
+
+        #region User instructions
 
         private void Show_instructions(WorkingMode working_mode)
         {
@@ -202,32 +224,9 @@ namespace ConsoleCatchall.Console.Reconciliation
             _input_output.Output_line("");
         }
 
-        private IMatcher Get_reconciliaton_type_from_user()
-        {
-            IMatcher result = null;
+        #endregion // User instructions
 
-            _input_output.Output_line("");
-            _input_output.Output_line("What type are your third party and owned files?");
-            _input_output.Output_options(new List<string>
-            {
-                ReconConsts.Accounting_type_01,
-                ReconConsts.Accounting_type_02,
-                ReconConsts.Accounting_type_03,
-                ReconConsts.Accounting_type_04,
-            });
-
-            string input = _input_output.Get_generic_input(ReconConsts.Four_accounting_types);
-
-            switch (input)
-            {
-                case "1": result = new CredCard1AndCredCard1InOutMatcher(_input_output, _spreadsheet_factory); break;
-                case "2": result = new CredCard2AndCredCard2InOutMatcher(_input_output, _spreadsheet_factory); break;
-                case "3": result = new BankAndBankInMatcher(_input_output, _spreadsheet_factory, new BankAndBankInLoader(_spreadsheet_factory)); break;
-                case "4": result = new BankAndBankOutMatcher(_input_output, _spreadsheet_factory); break;
-            }
-
-            return result;
-        }
+        #region Gathering file / path info
 
         private void Set_path_and_file_names()
         {
@@ -240,48 +239,6 @@ namespace ConsoleCatchall.Console.Reconciliation
                 Set_path();
                 Set_third_party_file_name();
                 Set_owned_file_name();
-            }
-        }
-
-        private void Set_path()
-        {
-            _input_output.Output_line("");
-            _input_output.Output_line("Would you like to enter a file path or use the default?");
-            _input_output.Output_options(new List<string>
-            {
-                "1. Enter a path",
-                $"2. Use default ({ReconConsts.Default_file_path})"
-            });
-
-            string input = _input_output.Get_generic_input(ReconConsts.PathOrDefault);
-
-            switch (input)
-            {
-                case "1": _path = _input_output.Get_input(ReconConsts.EnterCsvPath); break;
-                case "2": _path = ReconConsts.Default_file_path; break;
-            }
-        }
-
-        private void Set_third_party_file_name()
-        {
-            _input_output.Output_line("");
-            _input_output.Output_line("Would you like to enter a file name for your third party csv file, or use a default?");
-            _input_output.Output_options(new List<string>
-            {
-                "1. Enter a file name",
-                string.Format(ReconConsts.File_name_option_02, ReconConsts.Default_cred_card1_file_name),
-                string.Format(ReconConsts.File_name_option_03, ReconConsts.Default_cred_card2_file_name),
-                string.Format(ReconConsts.File_name_option_04, ReconConsts.Default_bank_file_name)
-            });
-
-            string input = _input_output.Get_generic_input(ReconConsts.Four_file_name_options);
-
-            switch (input)
-            {
-                case "1": _third_party_file_name = _input_output.Get_input(ReconConsts.EnterThirdPartyFileName); break;
-                case "2": _third_party_file_name = ReconConsts.Default_cred_card1_file_name; break;
-                case "3": _third_party_file_name = ReconConsts.Default_cred_card2_file_name; break;
-                case "4": _third_party_file_name = ReconConsts.Default_bank_file_name; break;
             }
         }
 
@@ -305,56 +262,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             success = Set_file_details_according_to_user_input(input);
 
             return success;
-        }
-
-        private void Set_owned_file_name()
-        {
-            _input_output.Output_line("");
-            _input_output.Output_line("Would you like to enter a file name for your own csv file, or use a default?");
-            _input_output.Output_options(new List<string>
-            {
-                "1. Enter a file name",
-                string.Format(ReconConsts.File_option_02, ReconConsts.Default_cred_card1_in_out_file_name),
-                string.Format(ReconConsts.File_option_03, ReconConsts.Default_cred_card2_in_out_file_name),
-                string.Format(ReconConsts.File_option_04, ReconConsts.DefaultBankInFileName),
-                string.Format(ReconConsts.File_option_05, ReconConsts.DefaultBankOutFileName),
-            });
-
-            string input = _input_output.Get_generic_input(ReconConsts.Five_file_options);
-
-            Capture_owned_file_name(input);
-        }
-
-        private void Capture_owned_file_name(string input)
-        {
-            switch (input)
-            {
-                case "1":
-                    {
-                        _owned_file_name = _input_output.Get_input(ReconConsts.EnterOwnedFileName);
-                    }
-                    break;
-                case "2":
-                    {
-                        _owned_file_name = ReconConsts.Default_cred_card1_in_out_file_name;
-                    }
-                    break;
-                case "3":
-                    {
-                        _owned_file_name = ReconConsts.Default_cred_card2_in_out_file_name;
-                    }
-                    break;
-                case "4":
-                    {
-                        _owned_file_name = ReconConsts.DefaultBankInFileName;
-                    }
-                    break;
-                case "5":
-                    {
-                        _owned_file_name = ReconConsts.DefaultBankOutFileName;
-                    }
-                    break;
-            }
         }
 
         private bool Set_file_details_according_to_user_input(string input)
@@ -412,50 +319,161 @@ namespace ConsoleCatchall.Console.Reconciliation
             return success;
         }
 
-        public void Do_actual_reconciliation(WorkingMode working_mode)
+        private IMatcher Get_reconciliaton_type_from_user()
         {
-            try
+            IMatcher result = null;
+
+            _input_output.Output_line("");
+            _input_output.Output_line("What type are your third party and owned files?");
+            _input_output.Output_options(new List<string>
             {
-                Show_instructions(working_mode);
-                Set_path_and_file_names();
-                Do_matching();
+                ReconConsts.Accounting_type_01,
+                ReconConsts.Accounting_type_02,
+                ReconConsts.Accounting_type_03,
+                ReconConsts.Accounting_type_04,
+            });
+
+            string input = _input_output.Get_generic_input(ReconConsts.Four_accounting_types);
+
+            switch (input)
+            {
+                case "1": result = new CredCard1AndCredCard1InOutMatcher(_input_output, _spreadsheet_factory); break;
+                case "2": result = new CredCard2AndCredCard2InOutMatcher(_input_output, _spreadsheet_factory); break;
+                case "3": result = new BankAndBankInMatcher(_input_output, _spreadsheet_factory, new BankAndBankInLoader(_spreadsheet_factory)); break;
+                case "4": result = new BankAndBankOutMatcher(_input_output, _spreadsheet_factory); break;
             }
-            catch (Exception exception)
+
+            return result;
+        }
+
+        private void Set_path()
+        {
+            _input_output.Output_line("");
+            _input_output.Output_line("Would you like to enter a file path or use the default?");
+            _input_output.Output_options(new List<string>
             {
-                if (exception.Message.ToUpper() == "EXIT")
-                {
-                    _input_output.Output_line("Taking you back to the main screen so you can start again if you want.");
-                }
-                else
-                {
-                    _input_output.Show_error(exception);
-                }
+                "1. Enter a path",
+                $"2. Use default ({ReconConsts.Default_file_path})"
+            });
+
+            string input = _input_output.Get_generic_input(ReconConsts.PathOrDefault);
+
+            switch (input)
+            {
+                case "1": _path = _input_output.Get_input(ReconConsts.EnterCsvPath); break;
+                case "2": _path = ReconConsts.Default_file_path; break;
             }
         }
 
-        private void Do_matching()
+        private void Set_third_party_file_name()
         {
-            var main_file_paths = new FilePaths
+            _input_output.Output_line("");
+            _input_output.Output_line("Would you like to enter a file name for your third party csv file, or use a default?");
+            _input_output.Output_options(new List<string>
             {
-                Main_path = _path,
-                Third_party_file_name = _third_party_file_name,
-                Owned_file_name = _owned_file_name
-            };
-            _matcher.Do_matching(main_file_paths);
+                "1. Enter a file name",
+                string.Format(ReconConsts.File_name_option_02, ReconConsts.Default_cred_card1_file_name),
+                string.Format(ReconConsts.File_name_option_03, ReconConsts.Default_cred_card2_file_name),
+                string.Format(ReconConsts.File_name_option_04, ReconConsts.Default_bank_file_name)
+            });
+
+            string input = _input_output.Get_generic_input(ReconConsts.Four_file_name_options);
+
+            switch (input)
+            {
+                case "1": _third_party_file_name = _input_output.Get_input(ReconConsts.EnterThirdPartyFileName); break;
+                case "2": _third_party_file_name = ReconConsts.Default_cred_card1_file_name; break;
+                case "3": _third_party_file_name = ReconConsts.Default_cred_card2_file_name; break;
+                case "4": _third_party_file_name = ReconConsts.Default_bank_file_name; break;
+            }
         }
 
-        private void Create_pending_csvs()
+        private void Set_owned_file_name()
         {
-            try
+            _input_output.Output_line("");
+            _input_output.Output_line("Would you like to enter a file name for your own csv file, or use a default?");
+            _input_output.Output_options(new List<string>
             {
-                Set_path();
-                var pending_csv_file_creator = new PendingCsvFileCreator(_path);
-                pending_csv_file_creator.Create_and_populate_all_csvs();
-            }
-            catch (Exception e)
+                "1. Enter a file name",
+                string.Format(ReconConsts.File_option_02, ReconConsts.Default_cred_card1_in_out_file_name),
+                string.Format(ReconConsts.File_option_03, ReconConsts.Default_cred_card2_in_out_file_name),
+                string.Format(ReconConsts.File_option_04, ReconConsts.DefaultBankInFileName),
+                string.Format(ReconConsts.File_option_05, ReconConsts.DefaultBankOutFileName),
+            });
+
+            string input = _input_output.Get_generic_input(ReconConsts.Five_file_options);
+
+            Capture_owned_file_name(input);
+        }
+
+        private void Capture_owned_file_name(string input)
+        {
+            switch (input)
             {
-                _input_output.Output_line(e.Message);
+                case "1":
+                    {
+                        _owned_file_name = _input_output.Get_input(ReconConsts.EnterOwnedFileName);
+                    }
+                    break;
+                case "2":
+                    {
+                        _owned_file_name = ReconConsts.Default_cred_card1_in_out_file_name;
+                    }
+                    break;
+                case "3":
+                    {
+                        _owned_file_name = ReconConsts.Default_cred_card2_in_out_file_name;
+                    }
+                    break;
+                case "4":
+                    {
+                        _owned_file_name = ReconConsts.DefaultBankInFileName;
+                    }
+                    break;
+                case "5":
+                    {
+                        _owned_file_name = ReconConsts.DefaultBankOutFileName;
+                    }
+                    break;
             }
+        }
+
+        #endregion // Gathering file / path info
+
+        #region Debug mode switching code
+
+        public void Debug_mode_a()
+        {
+            Copy_source_spreadsheet_to_debug_spreadsheet(ReconConsts.Main_spreadsheet_path, ReconConsts.Main_spreadsheet_path);
+            string debug_file_path = Path.Combine(
+                ReconConsts.Main_spreadsheet_path, 
+                ReconConsts.Backup_sub_folder, 
+                ReconConsts.Debug_spreadsheet_file_name);
+            _spreadsheet_factory = new SpreadsheetRepoFactoryFactory().Get_factory(debug_file_path);
+        }
+
+        public void Debug_mode_b()
+        {
+            Copy_source_spreadsheet_to_debug_spreadsheet(ReconConsts.Source_debug_spreadsheet_path, ReconConsts.Main_spreadsheet_path);
+            string debug_file_path = Path.Combine(
+                ReconConsts.Main_spreadsheet_path,
+                ReconConsts.Backup_sub_folder,
+                ReconConsts.Debug_spreadsheet_file_name);
+            _spreadsheet_factory = new SpreadsheetRepoFactoryFactory().Get_factory(debug_file_path);
+        }
+
+        public void Debug_mode_c()
+        {
+            _spreadsheet_factory = new FakeSpreadsheetRepoFactory();
+        }
+
+        private void Real_mode()
+        {
+            Create_backup_of_real_spreadsheet(new Clock(), ReconConsts.Main_spreadsheet_path);
+            string file_path = Path.Combine(
+                ReconConsts.Main_spreadsheet_path,
+                ReconConsts.Main_spreadsheet_file_name);
+            _spreadsheet_factory = new SpreadsheetRepoFactoryFactory().Get_factory(file_path);
         }
 
         public void Copy_source_spreadsheet_to_debug_spreadsheet(string source_spreadsheet_path, string main_spreadsheet_path)
@@ -468,6 +486,25 @@ namespace ConsoleCatchall.Console.Reconciliation
                     ReconConsts.Backup_sub_folder,
                     ReconConsts.Debug_spreadsheet_file_name);
                 Copy_file(source_file_path, debug_file_path);
+            }
+            else
+            {
+                throw new Exception($"Can't find file: {source_file_path}");
+            }
+        }
+
+        public void Create_backup_of_real_spreadsheet(IClock clock, string spreadsheet_path)
+        {
+            string source_file_path = Path.Combine(spreadsheet_path, ReconConsts.Main_spreadsheet_file_name);
+            if (File.Exists(source_file_path))
+            {
+                string file_name_prefix = $"{ReconConsts.Backup_sub_folder}\\real_backup_";
+                file_name_prefix = file_name_prefix + clock.Now_date_time();
+                file_name_prefix = file_name_prefix.Replace(" ", "_").Replace(":", "-").Replace("/", "-");
+                string backup_file_name = file_name_prefix + "_" + ReconConsts.Main_spreadsheet_file_name;
+                string backup_file_path = spreadsheet_path + "\\" + backup_file_name;
+
+                Copy_file(source_file_path, backup_file_path);
             }
             else
             {
@@ -491,23 +528,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        public void Create_backup_of_real_spreadsheet(IClock clock, string spreadsheet_path)
-        {
-            string source_file_path = Path.Combine(spreadsheet_path, ReconConsts.Main_spreadsheet_file_name);
-            if (File.Exists(source_file_path))
-            {
-                string file_name_prefix = $"{ReconConsts.Backup_sub_folder}\\real_backup_";
-                file_name_prefix = file_name_prefix + clock.Now_date_time();
-                file_name_prefix = file_name_prefix.Replace(" ", "_").Replace(":", "-").Replace("/", "-");
-                string backup_file_name = file_name_prefix + "_" + ReconConsts.Main_spreadsheet_file_name;
-                string backup_file_path = spreadsheet_path + "\\" + backup_file_name;
-
-                Copy_file(source_file_path, backup_file_path);
-            }
-            else
-            {
-                throw new Exception($"Can't find file: {source_file_path}");
-            }
-        }
+        #endregion // Debug mode switching code
     }
 }
