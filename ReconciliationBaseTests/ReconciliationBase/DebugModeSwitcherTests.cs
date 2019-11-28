@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
-using ConsoleCatchall.Console.Reconciliation;
+using ConsoleCatchall.Console;
+using ConsoleCatchall.Console.Reconciliation.Utils;
 using Interfaces;
 using Interfaces.Constants;
 using Moq;
@@ -9,20 +10,12 @@ using NUnit.Framework;
 namespace ReconciliationBaseTests.ReconciliationBase
 {
     [TestFixture]
-    public partial class ReconciliationIntroTests : IInputOutput
+    public partial class DebugModeSwitcherTests
     {
-        private Mock<IInputOutput> _mock_input_output;
-
         [OneTimeSetUp]
         public void One_time_set_up()
         {
             TestHelper.Set_correct_date_formatting();
-        }
-
-        [SetUp]
-        public void Set_up()
-        {
-            _mock_input_output = new Mock<IInputOutput>();
         }
 
         private string Mix_slashes(string path)
@@ -38,13 +31,13 @@ namespace ReconciliationBaseTests.ReconciliationBase
         public void Create_backup_of_real_spreadsheet__Will_create_backup_in_correct_location_with_date_time_appended()
         {
             // Arrange
-            var reconciliate = new ReconciliationIntro(this);
+            var debug_mode_switcher = new DebugModeSwitcher(new InputOutput());
             var mock_clock = new Mock<IClock>();
             var now_date_time = DateTime.Now;
             mock_clock.Setup(x => x.Now_date_time()).Returns(now_date_time);
 
             // Act
-            reconciliate.Create_backup_of_real_spreadsheet(mock_clock.Object, ReconConsts.Test_backup_file_path);
+            debug_mode_switcher.Create_backup_of_real_spreadsheet(mock_clock.Object, ReconConsts.Test_backup_file_path);
 
             // Assert
             // This test will fail on the Mac, so don't even bother.
@@ -63,14 +56,14 @@ namespace ReconciliationBaseTests.ReconciliationBase
         public void Create_backup_of_real_spreadsheet__Will_create_backup_even_when_paths_contain_a_mix_of_slashes()
         {
             // Arrange
-            var reconciliate = new ReconciliationIntro(this);
+            var debug_mode_switcher = new DebugModeSwitcher(new InputOutput());
             var mock_clock = new Mock<IClock>();
             var now_date_time = DateTime.Now;
             mock_clock.Setup(x => x.Now_date_time()).Returns(now_date_time);
             var path_with_mixed_slashes = Mix_slashes(ReconConsts.Test_backup_file_path);
 
             // Act
-            reconciliate.Create_backup_of_real_spreadsheet(mock_clock.Object, path_with_mixed_slashes);
+            debug_mode_switcher.Create_backup_of_real_spreadsheet(mock_clock.Object, path_with_mixed_slashes);
 
             // Assert
             // This test will fail on the Mac, so don't even bother.
@@ -89,14 +82,14 @@ namespace ReconciliationBaseTests.ReconciliationBase
         public void Copy_source_spreadsheet_to_debug_spreadsheet__Will_copy_real_spreadsheet_into_debug_spreadsheet()
         {
             // Arrange
-            var reconciliate = new ReconciliationIntro(this);
+            var debug_mode_switcher = new DebugModeSwitcher(new InputOutput());
             string debug_file_path = Path.Combine(ReconConsts.Test_backup_file_path, ReconConsts.Backup_sub_folder, ReconConsts.Debug_spreadsheet_file_name);
             string source_file_path = Path.Combine(ReconConsts.Test_backup_file_path, ReconConsts.Main_spreadsheet_file_name);
             File.Delete(debug_file_path);
             Assert.IsFalse(File.Exists(debug_file_path));
 
             // Act
-            reconciliate.Copy_source_spreadsheet_to_debug_spreadsheet(ReconConsts.Test_backup_file_path, ReconConsts.Test_backup_file_path);
+            debug_mode_switcher.Copy_source_spreadsheet_to_debug_spreadsheet(ReconConsts.Test_backup_file_path, ReconConsts.Test_backup_file_path);
 
             // Assert
             // This test will fail on the Mac, so don't even bother.
@@ -110,7 +103,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
         public void Copy_source_spreadsheet_to_debug_spreadsheet__Will_copy_spreadsheet_even_when_paths_contain_a_mix_of_slashes()
         {
             // Arrange
-            var reconciliate = new ReconciliationIntro(this);
+            var debug_mode_switcher = new DebugModeSwitcher(new InputOutput());
             string debug_file_path = Path.Combine(ReconConsts.Test_backup_file_path, ReconConsts.Backup_sub_folder, ReconConsts.Debug_spreadsheet_file_name);
             string source_file_path = Path.Combine(ReconConsts.Test_backup_file_path, ReconConsts.Main_spreadsheet_file_name);
             File.Delete(debug_file_path);
@@ -118,7 +111,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             var path_with_mixed_slashes = Mix_slashes(ReconConsts.Test_backup_file_path);
 
             // Act
-            reconciliate.Copy_source_spreadsheet_to_debug_spreadsheet(path_with_mixed_slashes, path_with_mixed_slashes);
+            debug_mode_switcher.Copy_source_spreadsheet_to_debug_spreadsheet(path_with_mixed_slashes, path_with_mixed_slashes);
 
             // Assert
             // This test will fail on the Mac, so don't even bother.

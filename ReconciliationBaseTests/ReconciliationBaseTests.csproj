@@ -68,8 +68,7 @@
     <Compile Include="ReconciliationBase\ReconciliationInterfaceTests.cs" />
     <Compile Include="ReconciliationBase\ReconciliationInterfaceTestsHelperMethods.cs" />
     <Compile Include="ReconciliationBase\ReconciliationInterfaceTestsSelfShunt.cs" />
-    <Compile Include="ReconciliationBase\ReconciliationIntroTests.cs" />
-    <Compile Include="ReconciliationBase\ReconciliationIntroTestsSelfShunt.cs" />
+    <Compile Include="ReconciliationBase\DebugModeSwitcherTests.cs" />
     <Compile Include="ReconciliationBase\ReconciliatorDeletionTests.cs" />
     <Compile Include="ReconciliationBase\ReconciliatorMatchingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
