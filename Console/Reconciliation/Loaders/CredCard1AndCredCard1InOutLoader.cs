@@ -17,7 +17,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output = input_output;
         }
 
-        public void Load_files_and_merge_data(FilePaths main_file_paths, ISpreadsheetRepoFactory spreadsheet_factory)
+        public void Do_matching(FilePaths main_file_paths, ISpreadsheetRepoFactory spreadsheet_factory)
         {
             var loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
             loading_info.File_paths = main_file_paths;

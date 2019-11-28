@@ -37,16 +37,16 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             switch (main_file_paths.Reconciliation_type)
             {
                 case ReconciliationType.BankAndBankIn: {
-                    new BankAndBankInLoader(_input_output).Load_files_and_merge_data(main_file_paths, spreadsheet_factory);
+                    new BankAndBankInLoader(_input_output).Do_matching(main_file_paths, spreadsheet_factory);
                 } break;
                 case ReconciliationType.BankAndBankOut: {
-                    new BankAndBankOutLoader(_input_output).Load_files_and_merge_data(main_file_paths, spreadsheet_factory);
+                    new BankAndBankOutLoader(_input_output).Do_matching(main_file_paths, spreadsheet_factory);
                 } break;
                 case ReconciliationType.CredCard1AndCredCard1InOut: {
-                    new CredCard1AndCredCard1InOutLoader(_input_output).Load_files_and_merge_data(main_file_paths, spreadsheet_factory);
+                    new CredCard1AndCredCard1InOutLoader(_input_output).Do_matching(main_file_paths, spreadsheet_factory);
                 } break;
                 case ReconciliationType.CredCard2AndCredCard2InOut: {
-                    new CredCard2AndCredCard2InOutLoader(_input_output).Load_files_and_merge_data(main_file_paths, spreadsheet_factory);
+                    new CredCard2AndCredCard2InOutLoader(_input_output).Do_matching(main_file_paths, spreadsheet_factory);
                 } break;
                 default: {
                     _input_output.Output_line("I don't know what files to load! Terminating now.");
