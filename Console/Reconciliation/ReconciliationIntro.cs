@@ -69,7 +69,7 @@ namespace ConsoleCatchall.Console.Reconciliation
         private void Do_matching(ISpreadsheetRepoFactory spreadsheet_factory)
         {
             var file_loader = new FileLoader(_input_output, spreadsheet_factory);
-            var reconciliation_interface = file_loader.Load_specific_files_for_reconciliation_type();
+            var reconciliation_interface = file_loader.Load_specific_files_for_reconciliation_type(spreadsheet_factory);
             reconciliation_interface?.Do_the_matching();
         }
     }
