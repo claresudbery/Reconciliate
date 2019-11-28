@@ -68,8 +68,8 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private void Do_matching(ISpreadsheetRepoFactory spreadsheet_factory)
         {
-            var file_loader = new FileLoader(_input_output);
-            file_loader.Load_specific_files_for_reconciliation_type(spreadsheet_factory);
+            var main_file_paths = new PathSetter(_input_output).Set_path_and_file_names();
+            main_file_paths.File_loader.Do_matching(main_file_paths, spreadsheet_factory);
         }
     }
 }
