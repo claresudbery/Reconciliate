@@ -32,10 +32,8 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 case "1":
                 {
-                    ISpreadsheetRepoFactory spreadsheet_factory = new FakeSpreadsheetRepoFactory();
-                    var path = new PathSetter(_input_output, spreadsheet_factory).Set_path();
                     var file_loader = new FileLoader(_input_output);
-                    file_loader.Create_pending_csvs(path);
+                    file_loader.Create_pending_csvs();
                 } 
                 break;
                 case "2":

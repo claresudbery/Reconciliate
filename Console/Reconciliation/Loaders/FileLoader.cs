@@ -2,6 +2,7 @@
 using System.Globalization;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
+using ConsoleCatchall.Console.Reconciliation.Utils;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
@@ -17,10 +18,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output = input_output;
         }
 
-        public void Create_pending_csvs(string path)
+        public void Create_pending_csvs()
         {
             try
             {
+                ISpreadsheetRepoFactory spreadsheet_factory = new FakeSpreadsheetRepoFactory();
+                var path = new PathSetter(_input_output, spreadsheet_factory).Set_path();
                 var pending_csv_file_creator = new PendingCsvFileCreator(path);
                 pending_csv_file_creator.Create_and_populate_all_csvs();
             }
