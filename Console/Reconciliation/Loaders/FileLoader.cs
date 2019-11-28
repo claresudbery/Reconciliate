@@ -62,7 +62,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         public ReconciliationInterface Load_files_and_merge_data<TThirdPartyType, TOwnedType>(
                 DataLoadingInformation data_loading_info, 
                 ILoader loader,
-                ISpreadsheetRepoFactory spreadsheet_factory = null)
+                ISpreadsheetRepoFactory spreadsheet_factory)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {

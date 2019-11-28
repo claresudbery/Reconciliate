@@ -24,7 +24,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             var loading_info = CredCard2AndCredCard2InOutData.LoadingInfo;
             loading_info.File_paths = main_file_paths;
             return _file_loader.Load_files_and_merge_data<CredCard2Record, CredCard2InOutRecord>(
-                loading_info, this);
+                loading_info, this, spreadsheet_factory);
         }
 
         public void Merge_bespoke_data_with_pending_file<TOwnedType>(
