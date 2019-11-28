@@ -25,8 +25,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
-            _input_output.Output_line("Loading data...");
-
             ReconciliationInterface<TThirdPartyType, TOwnedType> reconciliation_interface = null;
 
             try
@@ -37,14 +35,22 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 var spreadsheet_repo = spreadsheet_factory.Create_spreadsheet_repo();
                 var spreadsheet = new Spreadsheet(spreadsheet_repo);
                 BudgetingMonths budgeting_months = Recursively_ask_for_budgeting_months(spreadsheet);
+                _input_output.Output_line("Loading data...");
+
                 var pending_file_io = new FileIO<TOwnedType>(spreadsheet_factory);
                 var third_party_file_io = new FileIO<TThirdPartyType>(spreadsheet_factory);
                 var owned_file_io = new FileIO<TOwnedType>(spreadsheet_factory);
                 var pending_file = new CSVFile<TOwnedType>(pending_file_io);
 
-                reconciliation_interface =
-                    Load_files_and_merge_data<TThirdPartyType, TOwnedType>(
-                        spreadsheet, pending_file_io, pending_file, third_party_file_io, owned_file_io, budgeting_months, data_loading_info, matcher);
+                reconciliation_interface = Load_files_and_merge_data<TThirdPartyType, TOwnedType>(
+                        spreadsheet, 
+                        pending_file_io, 
+                        pending_file, 
+                        third_party_file_io, 
+                        owned_file_io, 
+                        budgeting_months, 
+                        data_loading_info, 
+                        matcher);
             }
             finally
             {
