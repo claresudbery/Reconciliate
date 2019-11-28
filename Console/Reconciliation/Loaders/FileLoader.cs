@@ -17,6 +17,19 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output = input_output;
         }
 
+        public void Create_pending_csvs(string path)
+        {
+            try
+            {
+                var pending_csv_file_creator = new PendingCsvFileCreator(path);
+                pending_csv_file_creator.Create_and_populate_all_csvs();
+            }
+            catch (Exception e)
+            {
+                _input_output.Output_line(e.Message);
+            }
+        }
+
         public ReconciliationInterface<TThirdPartyType, TOwnedType>
             Load_files_and_merge_data<TThirdPartyType, TOwnedType>(
                 DataLoadingInformation<TThirdPartyType, TOwnedType> data_loading_info,

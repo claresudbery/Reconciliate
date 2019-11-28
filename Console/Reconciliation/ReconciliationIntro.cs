@@ -32,7 +32,10 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 case "1":
                 {
-                    Create_pending_csvs();
+                    ISpreadsheetRepoFactory spreadsheet_factory = new FakeSpreadsheetRepoFactory();
+                    var path = new PathSetter(_input_output, spreadsheet_factory).Set_path();
+                    var file_loader = new FileLoader(_input_output);
+                    file_loader.Create_pending_csvs(path);
                 } 
                 break;
                 case "2":
@@ -67,21 +70,6 @@ namespace ConsoleCatchall.Console.Reconciliation
         {
             var main_file_paths = new PathSetter(_input_output, spreadsheet_factory).Set_path_and_file_names();
             main_file_paths.Matcher.Do_matching(main_file_paths);
-        }
-
-        private void Create_pending_csvs()
-        {
-            try
-            {
-                ISpreadsheetRepoFactory spreadsheet_factory = new FakeSpreadsheetRepoFactory();
-                var path = new PathSetter(_input_output, spreadsheet_factory).Set_path();
-                var pending_csv_file_creator = new PendingCsvFileCreator(path);
-                pending_csv_file_creator.Create_and_populate_all_csvs();
-            }
-            catch (Exception e)
-            {
-                _input_output.Output_line(e.Message);
-            }
         }
     }
 }
