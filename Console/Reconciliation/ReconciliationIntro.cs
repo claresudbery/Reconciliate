@@ -15,7 +15,7 @@ namespace ConsoleCatchall.Console.Reconciliation
     {
         #region Properties, vars and constructor
 
-        private ISpreadsheetRepoFactory _spreadsheet_factory = new FakeSpreadsheetRepoFactory();
+        private ISpreadsheetRepoFactory _spreadsheet_factory;
         private readonly IInputOutput _input_output;
 
         public ReconciliationIntro(IInputOutput input_output)
@@ -40,12 +40,65 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             switch (input)
             {
-                case "1": Create_pending_csvs(); break;
-                case "2": Decide_on_debug(); break;
+                case "1":
+                {
+                    Create_pending_csvs();
+                } 
+                break;
+                case "2":
+                {
+                    Do_actual_reconciliation();
+                } 
+                break;
             }
         }
 
-        public void Decide_on_debug()
+        public void Do_actual_reconciliation()
+        {
+            try
+            {
+                ISpreadsheetRepoFactory spreadsheet_factory = Decide_on_debug();
+                Do_matching(spreadsheet_factory);
+            }
+            catch (Exception exception)
+            {
+                if (exception.Message.ToUpper() == "EXIT")
+                {
+                    _input_output.Output_line("Taking you back to the main screen so you can start again if you want.");
+                }
+                else
+                {
+                    _input_output.Show_error(exception);
+                }
+            }
+        }
+
+        private void Do_matching(ISpreadsheetRepoFactory spreadsheet_factory)
+        {
+            var main_file_paths = new PathSetter(_input_output, spreadsheet_factory).Set_path_and_file_names();
+            main_file_paths.Matcher.Do_matching(main_file_paths);
+        }
+
+        private void Create_pending_csvs()
+        {
+            try
+            {
+                ISpreadsheetRepoFactory spreadsheet_factory = new FakeSpreadsheetRepoFactory();
+                var path = new PathSetter(_input_output, spreadsheet_factory).Set_path();
+                var pending_csv_file_creator = new PendingCsvFileCreator(path);
+                pending_csv_file_creator.Create_and_populate_all_csvs();
+            }
+            catch (Exception e)
+            {
+                _input_output.Output_line(e.Message);
+            }
+        }
+
+        #endregion // Reconciliation Intro actions
+
+        #region Debug mode switching code
+
+        public ISpreadsheetRepoFactory Decide_on_debug()
         {
             _input_output.Output_line("");
             _input_output.Output_options(new List<string>
@@ -67,52 +120,10 @@ namespace ConsoleCatchall.Console.Reconciliation
                 case "4": { working_mode = WorkingMode.Real; Real_mode(); } break;
             }
 
-            Do_actual_reconciliation(working_mode);
+            new Communicator(_input_output).Show_instructions(working_mode);
+
+            return _spreadsheet_factory;
         }
-
-        public void Do_actual_reconciliation(WorkingMode working_mode)
-        {
-            try
-            {
-                new Communicator(_input_output).Show_instructions(working_mode);
-                Do_matching();
-            }
-            catch (Exception exception)
-            {
-                if (exception.Message.ToUpper() == "EXIT")
-                {
-                    _input_output.Output_line("Taking you back to the main screen so you can start again if you want.");
-                }
-                else
-                {
-                    _input_output.Show_error(exception);
-                }
-            }
-        }
-
-        private void Do_matching()
-        {
-            var main_file_paths = new PathSetter(_input_output, _spreadsheet_factory).Set_path_and_file_names();
-            main_file_paths.Matcher.Do_matching(main_file_paths);
-        }
-
-        private void Create_pending_csvs()
-        {
-            try
-            {
-                var path = new PathSetter(_input_output, _spreadsheet_factory).Set_path();
-                var pending_csv_file_creator = new PendingCsvFileCreator(path);
-                pending_csv_file_creator.Create_and_populate_all_csvs();
-            }
-            catch (Exception e)
-            {
-                _input_output.Output_line(e.Message);
-            }
-        }
-
-        #endregion // Reconciliation Intro actions
-
-        #region Debug mode switching code
 
         public void Debug_mode_a()
         {
