@@ -22,8 +22,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             var loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
             loading_info.File_paths = main_file_paths;
             var file_loader = new FileLoader(_input_output);
-            return file_loader.Load_files_and_merge_data<CredCard1Record, CredCard1InOutRecord>(
+            var reconciliation_interface = file_loader.Load_files_and_merge_data<CredCard1Record, CredCard1InOutRecord>(
                 loading_info, this, spreadsheet_factory);
+            reconciliation_interface?.Do_the_matching();
+            return reconciliation_interface;
         }
 
         public void Merge_bespoke_data_with_pending_file<TOwnedType>(
