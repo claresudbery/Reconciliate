@@ -103,93 +103,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             _spreadsheet_factory = new SpreadsheetRepoFactoryFactory().Get_factory(file_path);
         }
 
-        public void Copy_source_spreadsheet_to_debug_spreadsheet(string source_spreadsheet_path, string main_spreadsheet_path)
-        {
-            string source_file_path = Path.Combine(source_spreadsheet_path, ReconConsts.Main_spreadsheet_file_name);
-            if (File.Exists(source_file_path))
-            {
-                string debug_file_path = Path.Combine(
-                    main_spreadsheet_path, 
-                    ReconConsts.Backup_sub_folder,
-                    ReconConsts.Debug_spreadsheet_file_name);
-                File.Copy(source_file_path, debug_file_path, true);
-            }
-            else
-            {
-                throw new Exception($"Can't find file: {source_file_path}");
-            }
-        }
-
-        public void Create_backup_of_real_spreadsheet(IClock clock, string spreadsheet_path)
-        {
-            string source_file_path = Path.Combine(spreadsheet_path, ReconConsts.Main_spreadsheet_file_name);
-            if (File.Exists(source_file_path))
-            {
-                string file_name_prefix = $"{ReconConsts.Backup_sub_folder}\\real_backup_";
-                file_name_prefix = file_name_prefix + clock.Now_date_time();
-                file_name_prefix = file_name_prefix.Replace(" ", "_").Replace(":", "-").Replace("/", "-");
-                string backup_file_name = file_name_prefix + "_" + ReconConsts.Main_spreadsheet_file_name;
-                string backup_file_path = spreadsheet_path + "\\" + backup_file_name;
-
-                File.Copy(source_file_path, backup_file_path, true);
-            }
-            else
-            {
-                throw new Exception($"Can't find file: {source_file_path}");
-            }
-        }
-
-        public void Inject_spreadsheet_factory(ISpreadsheetRepoFactory spreadsheet_factory)
-        {
-            _spreadsheet_factory = spreadsheet_factory;
-        }
-
-        public void Do_actual_reconciliation(WorkingMode working_mode)
-        {
-            try
-            {
-                Show_instructions(working_mode);
-                Get_path_and_file_names();
-                Do_matching();
-            }
-            catch (Exception exception)
-            {
-                if (exception.Message.ToUpper() == "EXIT")
-                {
-                    _input_output.Output_line("Taking you back to the main screen so you can start again if you want.");
-                }
-                else
-                {
-                    _input_output.Show_error(exception);
-                }
-            }
-        }
-
-        private void Do_matching()
-        {
-            var main_file_paths = new FilePaths
-            {
-                Main_path = _path,
-                Third_party_file_name = _third_party_file_name,
-                Owned_file_name = _owned_file_name
-            };
-            _matcher.Do_matching(main_file_paths);
-        }
-
-        private void Create_pending_csvs()
-        {
-            try
-            {
-                Get_path();
-                var pending_csv_file_creator = new PendingCsvFileCreator(_path);
-                pending_csv_file_creator.Create_and_populate_all_csvs();
-            }
-            catch (Exception e)
-            {
-                _input_output.Output_line(e.Message);
-            }
-        }
-
         private void Show_instructions(WorkingMode working_mode)
         {
             _input_output.Output_line("Here's how it works:");
@@ -394,53 +307,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             return success;
         }
 
-        private bool Set_file_details_according_to_user_input(string input)
-        {
-            bool success = true;
-            _matcher = null;
-
-            switch (input)
-            {
-                case "1": {
-                    success = false;
-                    _matcher = Get_reconciliaton_type_from_user();
-                } break;
-                case "2": {
-                    _owned_file_name = ReconConsts.Default_cred_card1_in_out_file_name;
-                    _third_party_file_name = ReconConsts.Default_cred_card1_file_name;
-                    _matcher = new CredCard1AndCredCard1InOutMatcher(_input_output, _spreadsheet_factory);
-                } break;
-                case "3": {
-                    _owned_file_name = ReconConsts.Default_cred_card2_in_out_file_name;
-                    _third_party_file_name = ReconConsts.Default_cred_card2_file_name;
-                    _matcher = new CredCard2AndCredCard2InOutMatcher(_input_output, _spreadsheet_factory);
-                } break;
-                case "4":
-                {
-                    _owned_file_name = ReconConsts.DefaultBankInFileName;
-                    _third_party_file_name = ReconConsts.Default_bank_file_name;
-                    _matcher = new BankAndBankInMatcher(_input_output, _spreadsheet_factory, new BankAndBankInLoader(_spreadsheet_factory));
-                } break;
-                case "5":
-                {
-                    _owned_file_name = ReconConsts.DefaultBankOutFileName;
-                    _third_party_file_name = ReconConsts.Default_bank_file_name;
-                    _matcher = new BankAndBankOutMatcher(_input_output, _spreadsheet_factory);
-                } break;
-            }
-
-            if (success)
-            {
-                _path = ReconConsts.Default_file_path;
-                _input_output.Output_line("You are using the following defaults:");
-                _input_output.Output_line("File path will be " + _path);
-                _input_output.Output_line("Third party file name will be " + _third_party_file_name + ".csv");
-                _input_output.Output_line("Owned file name will be " + _owned_file_name + ".csv");
-            }
-
-            return success;
-        }
-
         private void Get_owned_file_name()
         {
             _input_output.Output_line("");
@@ -488,6 +354,148 @@ namespace ConsoleCatchall.Console.Reconciliation
                         _owned_file_name = ReconConsts.DefaultBankOutFileName;
                     }
                     break;
+            }
+        }
+
+        private bool Set_file_details_according_to_user_input(string input)
+        {
+            bool success = true;
+            _matcher = null;
+
+            switch (input)
+            {
+                case "1":
+                    {
+                        success = false;
+                        _matcher = Get_reconciliaton_type_from_user();
+                    }
+                    break;
+                case "2":
+                    {
+                        _owned_file_name = ReconConsts.Default_cred_card1_in_out_file_name;
+                        _third_party_file_name = ReconConsts.Default_cred_card1_file_name;
+                        _matcher = new CredCard1AndCredCard1InOutMatcher(_input_output, _spreadsheet_factory);
+                    }
+                    break;
+                case "3":
+                    {
+                        _owned_file_name = ReconConsts.Default_cred_card2_in_out_file_name;
+                        _third_party_file_name = ReconConsts.Default_cred_card2_file_name;
+                        _matcher = new CredCard2AndCredCard2InOutMatcher(_input_output, _spreadsheet_factory);
+                    }
+                    break;
+                case "4":
+                    {
+                        _owned_file_name = ReconConsts.DefaultBankInFileName;
+                        _third_party_file_name = ReconConsts.Default_bank_file_name;
+                        _matcher = new BankAndBankInMatcher(_input_output, _spreadsheet_factory, new BankAndBankInLoader(_spreadsheet_factory));
+                    }
+                    break;
+                case "5":
+                    {
+                        _owned_file_name = ReconConsts.DefaultBankOutFileName;
+                        _third_party_file_name = ReconConsts.Default_bank_file_name;
+                        _matcher = new BankAndBankOutMatcher(_input_output, _spreadsheet_factory);
+                    }
+                    break;
+            }
+
+            if (success)
+            {
+                _path = ReconConsts.Default_file_path;
+                _input_output.Output_line("You are using the following defaults:");
+                _input_output.Output_line("File path will be " + _path);
+                _input_output.Output_line("Third party file name will be " + _third_party_file_name + ".csv");
+                _input_output.Output_line("Owned file name will be " + _owned_file_name + ".csv");
+            }
+
+            return success;
+        }
+
+        public void Inject_spreadsheet_factory(ISpreadsheetRepoFactory spreadsheet_factory)
+        {
+            _spreadsheet_factory = spreadsheet_factory;
+        }
+
+        public void Do_actual_reconciliation(WorkingMode working_mode)
+        {
+            try
+            {
+                Show_instructions(working_mode);
+                Get_path_and_file_names();
+                Do_matching();
+            }
+            catch (Exception exception)
+            {
+                if (exception.Message.ToUpper() == "EXIT")
+                {
+                    _input_output.Output_line("Taking you back to the main screen so you can start again if you want.");
+                }
+                else
+                {
+                    _input_output.Show_error(exception);
+                }
+            }
+        }
+
+        private void Do_matching()
+        {
+            var main_file_paths = new FilePaths
+            {
+                Main_path = _path,
+                Third_party_file_name = _third_party_file_name,
+                Owned_file_name = _owned_file_name
+            };
+            _matcher.Do_matching(main_file_paths);
+        }
+
+        private void Create_pending_csvs()
+        {
+            try
+            {
+                Get_path();
+                var pending_csv_file_creator = new PendingCsvFileCreator(_path);
+                pending_csv_file_creator.Create_and_populate_all_csvs();
+            }
+            catch (Exception e)
+            {
+                _input_output.Output_line(e.Message);
+            }
+        }
+
+        public void Copy_source_spreadsheet_to_debug_spreadsheet(string source_spreadsheet_path, string main_spreadsheet_path)
+        {
+            string source_file_path = Path.Combine(source_spreadsheet_path, ReconConsts.Main_spreadsheet_file_name);
+            if (File.Exists(source_file_path))
+            {
+                string debug_file_path = Path.Combine(
+                    main_spreadsheet_path,
+                    ReconConsts.Backup_sub_folder,
+                    ReconConsts.Debug_spreadsheet_file_name);
+                File.Copy(source_file_path, debug_file_path, true);
+            }
+            else
+            {
+                throw new Exception($"Can't find file: {source_file_path}");
+            }
+        }
+
+        public void Create_backup_of_real_spreadsheet(IClock clock, string spreadsheet_path)
+        {
+            string source_file_path = Path.Combine(spreadsheet_path, ReconConsts.Main_spreadsheet_file_name);
+            if (File.Exists(source_file_path))
+            {
+                string file_name_prefix = $"{ReconConsts.Backup_sub_folder}\\real_backup_";
+                file_name_prefix = file_name_prefix + clock.Now_date_time();
+                file_name_prefix = file_name_prefix.Replace(" ", "_").Replace(":", "-").Replace("/", "-");
+                string backup_file_name = file_name_prefix + "_" + ReconConsts.Main_spreadsheet_file_name;
+                string backup_file_path = spreadsheet_path + "\\" + backup_file_name;
+
+                File.Copy(source_file_path, backup_file_path, true);
+            }
+            else
+            {
+                throw new Exception($"Can't find file: {source_file_path}");
             }
         }
     }
