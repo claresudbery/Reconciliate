@@ -10,7 +10,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
     {
         private readonly IInputOutput _input_output;
 
-        private ReconciliationType _reconciliation_type;
         private string _path = "";
         private string _third_party_file_name = "";
         private string _owned_file_name = "";
@@ -38,7 +37,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             return new FilePaths
             {
                 File_loader = _file_loader,
-                Reconciliation_type = _reconciliation_type,
                 Main_path = _path,
                 Third_party_file_name = _third_party_file_name,
                 Owned_file_name = _owned_file_name
@@ -70,7 +68,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
         public bool Set_file_details_according_to_user_input(string input)
         {
             bool success = true;
-            _reconciliation_type = ReconciliationType.Unknown;
             _file_loader = null;
 
             switch (input)
@@ -78,7 +75,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
                 case "1":
                     {
                         success = false;
-                        _reconciliation_type = ReconciliationType.Unknown; 
                         _file_loader = Get_reconciliaton_type_from_user();
                     }
                     break;
@@ -86,7 +82,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
                     {
                         _owned_file_name = ReconConsts.Default_cred_card1_in_out_file_name;
                         _third_party_file_name = ReconConsts.Default_cred_card1_file_name;
-                        _reconciliation_type = ReconciliationType.CredCard1AndCredCard1InOut;
                         _file_loader = new CredCard1AndCredCard1InOutLoader(_input_output);
                     }
                     break;
@@ -94,7 +89,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
                     {
                         _owned_file_name = ReconConsts.Default_cred_card2_in_out_file_name;
                         _third_party_file_name = ReconConsts.Default_cred_card2_file_name;
-                        _reconciliation_type = ReconciliationType.CredCard2AndCredCard2InOut;
                         _file_loader = new CredCard2AndCredCard2InOutLoader(_input_output);
                     }
                     break;
@@ -102,7 +96,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
                     {
                         _owned_file_name = ReconConsts.DefaultBankInFileName;
                         _third_party_file_name = ReconConsts.Default_bank_file_name;
-                        _reconciliation_type = ReconciliationType.BankAndBankIn;
                         _file_loader = new BankAndBankInLoader(_input_output);
                     }
                     break;
@@ -110,7 +103,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
                     {
                         _owned_file_name = ReconConsts.DefaultBankOutFileName;
                         _third_party_file_name = ReconConsts.Default_bank_file_name;
-                        _reconciliation_type = ReconciliationType.BankAndBankOut;
                         _file_loader = new BankAndBankOutLoader(_input_output);
                     }
                     break;
