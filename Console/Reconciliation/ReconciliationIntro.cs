@@ -412,11 +412,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             return success;
         }
 
-        public void Inject_spreadsheet_factory(ISpreadsheetRepoFactory spreadsheet_factory)
-        {
-            _spreadsheet_factory = spreadsheet_factory;
-        }
-
         public void Do_actual_reconciliation(WorkingMode working_mode)
         {
             try
