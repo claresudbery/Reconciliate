@@ -17,7 +17,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output = input_output;
         }
 
-        public ReconciliationInterface Load_files_and_merge_data(FilePaths main_file_paths, ISpreadsheetRepoFactory spreadsheet_factory)
+        public void Load_files_and_merge_data(FilePaths main_file_paths, ISpreadsheetRepoFactory spreadsheet_factory)
         {
             var loading_info = CredCard1AndCredCard1InOutData.LoadingInfo;
             loading_info.File_paths = main_file_paths;
@@ -25,7 +25,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             var reconciliation_interface = file_loader.Load_files_and_merge_data<CredCard1Record, CredCard1InOutRecord>(
                 loading_info, this, spreadsheet_factory);
             reconciliation_interface?.Do_the_matching();
-            return reconciliation_interface;
         }
 
         public void Merge_bespoke_data_with_pending_file<TOwnedType>(

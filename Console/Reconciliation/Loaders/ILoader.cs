@@ -6,7 +6,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
     internal interface ILoader
     {
-        ReconciliationInterface Load_files_and_merge_data(FilePaths main_file_paths, ISpreadsheetRepoFactory spreadsheet_factory);
+        void Load_files_and_merge_data(FilePaths main_file_paths, ISpreadsheetRepoFactory spreadsheet_factory);
 
         void Merge_bespoke_data_with_pending_file<TOwnedType>(
                 IInputOutput input_output,

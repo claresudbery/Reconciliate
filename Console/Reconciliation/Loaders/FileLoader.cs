@@ -30,31 +30,28 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             }
         }
 
-        public ReconciliationInterface Load_specific_files_for_reconciliation_type(ISpreadsheetRepoFactory spreadsheet_factory)
+        public void Load_specific_files_for_reconciliation_type(ISpreadsheetRepoFactory spreadsheet_factory)
         {
             var main_file_paths = new PathSetter(_input_output).Set_path_and_file_names();
-            ReconciliationInterface reconciliation_interface = null;
 
             switch (main_file_paths.Reconciliation_type)
             {
                 case ReconciliationType.BankAndBankIn: {
-                    reconciliation_interface = new BankAndBankInLoader(_input_output).Load_files_and_merge_data(main_file_paths, spreadsheet_factory);
+                    new BankAndBankInLoader(_input_output).Load_files_and_merge_data(main_file_paths, spreadsheet_factory);
                 } break;
                 case ReconciliationType.BankAndBankOut: {
-                    reconciliation_interface = new BankAndBankOutLoader(_input_output).Load_files_and_merge_data(main_file_paths, spreadsheet_factory);
+                    new BankAndBankOutLoader(_input_output).Load_files_and_merge_data(main_file_paths, spreadsheet_factory);
                 } break;
                 case ReconciliationType.CredCard1AndCredCard1InOut: {
-                    reconciliation_interface = new CredCard1AndCredCard1InOutLoader(_input_output).Load_files_and_merge_data(main_file_paths, spreadsheet_factory);
+                    new CredCard1AndCredCard1InOutLoader(_input_output).Load_files_and_merge_data(main_file_paths, spreadsheet_factory);
                 } break;
                 case ReconciliationType.CredCard2AndCredCard2InOut: {
-                    reconciliation_interface = new CredCard2AndCredCard2InOutLoader(_input_output).Load_files_and_merge_data(main_file_paths, spreadsheet_factory);
+                    new CredCard2AndCredCard2InOutLoader(_input_output).Load_files_and_merge_data(main_file_paths, spreadsheet_factory);
                 } break;
                 default: {
                     _input_output.Output_line("I don't know what files to load! Terminating now.");
                 } break;
             }
-
-            return reconciliation_interface;
         }
 
         public ReconciliationInterface Load_files_and_merge_data<TThirdPartyType, TOwnedType>(
