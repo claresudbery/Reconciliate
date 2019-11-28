@@ -32,7 +32,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             }
         }
 
-        public ReconciliationInterface Load_specific_files_for_reconciliation_type()
+        public ReconciliationInterface Load_specific_files_for_reconciliation_type(ISpreadsheetRepoFactory spreadsheet_factory = null)
         {
             var main_file_paths = new PathSetter(_input_output).Set_path_and_file_names();
             ReconciliationInterface reconciliation_interface = null;
@@ -61,7 +61,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
         public ReconciliationInterface Load_files_and_merge_data<TThirdPartyType, TOwnedType>(
                 DataLoadingInformation data_loading_info, 
-                ILoader loader)
+                ILoader loader,
+                ISpreadsheetRepoFactory spreadsheet_factory = null)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {

@@ -18,7 +18,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _file_loader = file_loader;
         }
 
-        public ReconciliationInterface Load_files_and_merge_data(FilePaths main_file_paths)
+        public ReconciliationInterface Load_files_and_merge_data(FilePaths main_file_paths, ISpreadsheetRepoFactory spreadsheet_factory = null)
         {
             var loading_info = BankAndBankInData.LoadingInfo;
             loading_info.File_paths = main_file_paths;
