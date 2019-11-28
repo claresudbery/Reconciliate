@@ -35,7 +35,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             loading_info.File_paths = main_file_paths;
             var file_loader = new FileLoader(_input_output);
             ReconciliationInterface<ActualBankRecord, BankRecord> reconciliation_interface
-                = file_loader.Load_correct_files<ActualBankRecord, BankRecord>(loading_info, _spreadsheet_factory, this);
+                = file_loader.Load_files_and_merge_data<ActualBankRecord, BankRecord>(loading_info, _spreadsheet_factory, this);
             reconciliation_interface?.Do_the_matching();
         }
 

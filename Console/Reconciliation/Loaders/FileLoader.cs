@@ -18,7 +18,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         }
 
         public ReconciliationInterface<TThirdPartyType, TOwnedType>
-            Load_correct_files<TThirdPartyType, TOwnedType>(
+            Load_files_and_merge_data<TThirdPartyType, TOwnedType>(
                 DataLoadingInformation<TThirdPartyType, TOwnedType> data_loading_info,
                 ISpreadsheetRepoFactory spreadsheet_factory,
                 IMatcher matcher)
@@ -42,7 +42,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 var owned_file_io = new FileIO<TOwnedType>(spreadsheet_factory);
                 var pending_file = new CSVFile<TOwnedType>(pending_file_io);
 
-                reconciliation_interface = Load_files_and_merge_data<TThirdPartyType, TOwnedType>(
+                reconciliation_interface = Load<TThirdPartyType, TOwnedType>(
                         spreadsheet, 
                         pending_file_io, 
                         pending_file, 
@@ -71,7 +71,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         // Then we write all that data away into the 'owned' csv file (eg BankOut.csv). Then we read it back in again!
         // Also we load up the third party data, and pass it all on to the reconciliation interface.
         public ReconciliationInterface<TThirdPartyType, TOwnedType>
-            Load_files_and_merge_data<TThirdPartyType, TOwnedType>(
+            Load<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 IFileIO<TOwnedType> pending_file_io,
                 ICSVFile<TOwnedType> pending_file,

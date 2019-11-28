@@ -22,7 +22,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             loading_info.File_paths = main_file_paths;
             var file_loader = new FileLoader(_input_output);
             ReconciliationInterface<CredCard2Record, CredCard2InOutRecord> reconciliation_interface
-                = file_loader.Load_correct_files<CredCard2Record, CredCard2InOutRecord>(loading_info, _spreadsheet_factory, this);
+                = file_loader.Load_files_and_merge_data<CredCard2Record, CredCard2InOutRecord>(loading_info, _spreadsheet_factory, this);
             reconciliation_interface?.Do_the_matching();
         }
 

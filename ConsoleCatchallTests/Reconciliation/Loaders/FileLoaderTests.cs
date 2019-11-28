@@ -77,7 +77,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_matcher = new Mock<IMatcher>();
 
             // Act
-            var reconciliation_interface = reconciliate.Load_files_and_merge_data<ActualBankRecord, BankRecord>(
+            var reconciliation_interface = reconciliate.Load<ActualBankRecord, BankRecord>(
                 mock_spreadsheet.Object,
                 mock_pending_file_io.Object,
                 mock_pending_file.Object,
@@ -375,7 +375,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             Set_up_for_loader_bespoke_stuff(mock_input_output, mock_spreadsheet);
 
             // Act
-            var reconciliation_interface = reconciliate.Load_files_and_merge_data<ActualBankRecord, BankRecord>(
+            var reconciliation_interface = reconciliate.Load<ActualBankRecord, BankRecord>(
                 mock_spreadsheet.Object,
                 mock_pending_file_io.Object,
                 mock_pending_file.Object,
@@ -440,7 +440,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_matcher = new Mock<IMatcher>();
 
             // Act
-            var reconciliation_interface = reconciliate.Load_files_and_merge_data<ActualBankRecord, BankRecord>(
+            var reconciliation_interface = reconciliate.Load<ActualBankRecord, BankRecord>(
                 mock_spreadsheet.Object,
                 mock_pending_file_io.Object,
                 mock_pending_file.Object,
@@ -483,7 +483,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             // Act
             try
             {
-                var reconciliation_interface = reconciliate.Load_files_and_merge_data<ActualBankRecord, BankRecord>(
+                var reconciliation_interface = reconciliate.Load<ActualBankRecord, BankRecord>(
                     mock_spreadsheet.Object,
                     mock_pending_file_io.Object,
                     mock_pending_file.Object,
