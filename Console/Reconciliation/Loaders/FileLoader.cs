@@ -30,30 +30,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             }
         }
 
-        public void Load_specific_files_for_reconciliation_type(ISpreadsheetRepoFactory spreadsheet_factory)
-        {
-            var main_file_paths = new PathSetter(_input_output).Set_path_and_file_names();
-
-            switch (main_file_paths.Reconciliation_type)
-            {
-                case ReconciliationType.BankAndBankIn: {
-                    new BankAndBankInLoader(_input_output).Do_matching(main_file_paths, spreadsheet_factory);
-                } break;
-                case ReconciliationType.BankAndBankOut: {
-                    new BankAndBankOutLoader(_input_output).Do_matching(main_file_paths, spreadsheet_factory);
-                } break;
-                case ReconciliationType.CredCard1AndCredCard1InOut: {
-                    new CredCard1AndCredCard1InOutLoader(_input_output).Do_matching(main_file_paths, spreadsheet_factory);
-                } break;
-                case ReconciliationType.CredCard2AndCredCard2InOut: {
-                    new CredCard2AndCredCard2InOutLoader(_input_output).Do_matching(main_file_paths, spreadsheet_factory);
-                } break;
-                default: {
-                    _input_output.Output_line("I don't know what files to load! Terminating now.");
-                } break;
-            }
-        }
-
         public ReconciliationInterface Load_files_and_merge_data<TThirdPartyType, TOwnedType>(
                 DataLoadingInformation data_loading_info, 
                 ILoader loader,
