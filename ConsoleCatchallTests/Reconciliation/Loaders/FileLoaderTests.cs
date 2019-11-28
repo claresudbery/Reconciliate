@@ -39,7 +39,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 file_loader.Load(
                     mock_spreadsheet.Object,
                     budgeting_months,
-                    loading_info.File_paths,
                     new Mock<IFileIO<BankRecord>>().Object,
                     mock_pending_file.Object,
                     mock_third_party_file_io.Object,
@@ -79,7 +78,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             file_loader.Load(
                 mock_spreadsheet.Object,
                 budgeting_months,
-                loading_info.File_paths,
                 new Mock<IFileIO<BankRecord>>().Object,
                 mock_pending_file.Object,
                 mock_third_party_file_io.Object,
@@ -113,7 +111,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             file_loader.Load(
                 mock_spreadsheet.Object,
                 budgeting_months,
-                loading_info.File_paths,
                 new Mock<IFileIO<BankRecord>>().Object,
                 mock_pending_file.Object,
                 mock_third_party_file_io.Object,
@@ -149,7 +146,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             file_loader.Load(
                 spreadsheet,
                 new BudgetingMonths(),
-                loading_info.File_paths,
                 new Mock<IFileIO<BankRecord>>().Object,
                 mock_pending_file.Object,
                 mock_third_party_file_io.Object,
@@ -185,7 +181,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             file_loader.Load(
                 spreadsheet,
                 new BudgetingMonths(),
-                loading_info.File_paths,
                 mock_pending_file_io.Object,
                 mock_pending_file.Object,
                 mock_third_party_file_io.Object,
@@ -219,7 +214,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var reconciliation_interface = file_loader.Load(
                 spreadsheet,
                 new BudgetingMonths(),
-                loading_info.File_paths,
                 new Mock<IFileIO<BankRecord>>().Object,
                 mock_pending_file.Object,
                 mock_third_party_file_io.Object,
@@ -255,7 +249,6 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             file_loader.Load(
                 spreadsheet,
                 budgeting_months,
-                loading_info.File_paths,
                 mock_pending_file_io.Object,
                 mock_pending_file.Object,
                 mock_third_party_file_io.Object,

@@ -61,8 +61,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
         public ReconciliationInterface Load_files_and_merge_data<TThirdPartyType, TOwnedType>(
                 DataLoadingInformation data_loading_info, 
-                ILoader loader,
-                FilePaths main_file_paths)
+                ILoader loader)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
@@ -87,7 +86,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 reconciliation_interface = Load(
                     spreadsheet,
                     budgeting_months,
-                    main_file_paths,
                     pending_file_io,
                     pending_file,
                     third_party_file_io,
@@ -109,7 +107,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         public ReconciliationInterface Load<TThirdPartyType, TOwnedType>(
                 ISpreadsheet spreadsheet,
                 BudgetingMonths budgeting_months,
-                FilePaths main_file_paths,
                 IFileIO<TOwnedType> pending_file_io,
                 ICSVFile<TOwnedType> pending_file,
                 IFileIO<TThirdPartyType> third_party_file_io,
@@ -119,7 +116,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
-            data_loading_info.File_paths = main_file_paths;
             Load_pending_data(pending_file_io, pending_file, data_loading_info);
             Merge_budget_data(spreadsheet, budgeting_months, pending_file, data_loading_info);
             Merge_other_data(spreadsheet, budgeting_months, pending_file, data_loading_info, loader);
