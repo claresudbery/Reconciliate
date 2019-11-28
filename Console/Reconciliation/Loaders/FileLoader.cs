@@ -17,10 +17,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _input_output = input_output;
         }
 
-        public void Create_pending_csvs(string path)
+        public void Create_pending_csvs()
         {
             try
             {
+                var path = new PathSetter(_input_output).Set_path();
                 var pending_csv_file_creator = new PendingCsvFileCreator(path);
                 pending_csv_file_creator.Create_and_populate_all_csvs();
             }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
-using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
 using ConsoleCatchall.Console.Reconciliation.Utils;
 using Interfaces;
 using Interfaces.Constants;
@@ -32,10 +31,8 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 case "1":
                 {
-                    var path = new PathSetter(_input_output).Set_path();
-                    ISpreadsheetRepoFactory spreadsheet_factory = new FakeSpreadsheetRepoFactory();
                     var file_loader = new FileLoader(_input_output);
-                    file_loader.Create_pending_csvs(path);
+                    file_loader.Create_pending_csvs();
                 }
                 break;
                 case "2":
