@@ -100,7 +100,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
                         catch (Exception exception)
                         {
                             throw new FormatException(
-                                message: $"Input {File_name}.csv not in correct format: " + new_record.Source_line + ": " + exception.Message,
+                                message: $"Input file {File_name}.csv not in correct format: " + new_record.Source_line + ": " + exception.Message,
                                 innerException: exception.InnerException);
                         }
 
