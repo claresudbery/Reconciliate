@@ -8,21 +8,19 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
     internal class BankAndBankOutMatcher : IMatcher
     {
         private readonly IInputOutput _input_output;
-        private readonly ISpreadsheetRepoFactory _spreadsheet_factory;
 
-        public BankAndBankOutMatcher(IInputOutput input_output, ISpreadsheetRepoFactory spreadsheet_factory)
+        public BankAndBankOutMatcher(IInputOutput input_output)
         {
             _input_output = input_output;
-            _spreadsheet_factory = spreadsheet_factory;
         }
 
-        public void Do_matching(FilePaths main_file_paths)
+        public void Do_matching(FilePaths main_file_paths, ISpreadsheetRepoFactory spreadsheet_factory)
         {
             var loading_info = new BankAndBankOutLoader().Loading_info();
             loading_info.File_paths = main_file_paths;
             var file_loader = new FileLoader(_input_output);
             ReconciliationInterface<ActualBankRecord, BankRecord> reconciliation_interface
-                = file_loader.Load_files_and_merge_data<ActualBankRecord, BankRecord>(loading_info, _spreadsheet_factory, this);
+                = file_loader.Load_files_and_merge_data<ActualBankRecord, BankRecord>(loading_info, spreadsheet_factory, this);
             reconciliation_interface?.Do_the_matching();
         }
 

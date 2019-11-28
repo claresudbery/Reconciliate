@@ -52,7 +52,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var actual_bank_file = new ActualBankInFile(new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object));
             var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord> { Sheet_name = MainSheetNames.Bank_in };
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(data_loading_info, actual_bank_file, bank_in_file);
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
 
             // Act
             matcher.Filter_for_all_wages_rows_and_expense_transactions_from_expected_in(reconciliator);
@@ -85,7 +85,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var bank_in_file = new GenericFile<BankRecord>(new CSVFile<BankRecord>(mock_bank_in_file_io.Object));
             var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord> { Sheet_name = MainSheetNames.Bank_in };
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(data_loading_info, actual_bank_file, bank_in_file);
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
 
             // Act
             matcher.Filter_for_all_expense_transactions_from_actual_bank_in(reconciliator);
@@ -102,7 +102,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_reconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mock_reconciliation_interface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
 
             // Act
             matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
@@ -118,7 +118,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_reconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mock_reconciliation_interface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
 
             // Act
             matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
@@ -134,7 +134,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_reconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mock_reconciliation_interface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
 
             // Act
             matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
@@ -150,7 +150,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_reconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mock_reconciliation_interface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
 
             // Act
             matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
@@ -166,7 +166,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_reconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mock_reconciliation_interface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
 
             // Act
             matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
@@ -182,7 +182,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_reconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mock_reconciliation_interface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
 
             // Act
             matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
@@ -198,7 +198,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_reconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mock_reconciliation_interface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
 
             // Act
             matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
@@ -214,7 +214,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_reconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
             var mock_reconciliation_interface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
 
             // Act
             matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
@@ -243,7 +243,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                     new BankRecord {Type = "Chq", Description = "something else"}
                 });
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", mock_actual_bank_file_io.Object, mock_bank_file_io.Object);
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
 
             // Act
             matcher.Debug_preliminary_stuff(reconciliator);
@@ -267,7 +267,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_owned_file = new Mock<ICSVFile<BankRecord>>();
             mock_owned_file.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
             var source_record = new ActualBankRecord
             {
                 Amount = 34.56,
@@ -299,7 +299,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_owned_file = new Mock<ICSVFile<BankRecord>>();
             mock_owned_file.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
             var source_record = new ActualBankRecord
             {
                 Amount = 34.56,
@@ -335,7 +335,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_owned_file = new Mock<ICSVFile<BankRecord>>();
             mock_owned_file.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
             var source_record = new ActualBankRecord
             {
                 Amount = 34.56,
@@ -374,7 +374,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_owned_file = new Mock<ICSVFile<BankRecord>>();
             mock_owned_file.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
             var source_record = new ActualBankRecord
             {
                 Date = DateTime.Today,
@@ -411,7 +411,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_owned_file = new Mock<ICSVFile<BankRecord>>();
             mock_owned_file.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
             var source_record = new ActualBankRecord
             {
                 Date = DateTime.Today,
@@ -450,7 +450,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_owned_file = new Mock<ICSVFile<BankRecord>>();
             mock_owned_file.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
             var source_record = new ActualBankRecord
             {
                 Date = DateTime.Today,
@@ -488,7 +488,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_owned_file = new Mock<ICSVFile<BankRecord>>();
             mock_owned_file.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
             var source_record = new ActualBankRecord
             {
                 Date = DateTime.Today,
@@ -526,7 +526,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_owned_file = new Mock<ICSVFile<BankRecord>>();
             mock_owned_file.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
             var source_record = new ActualBankRecord
             {
                 Date = DateTime.Today,
@@ -562,7 +562,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         {
             // Arrange
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
             var source_record = new ActualBankRecord
             {
                 Date = DateTime.Today,
@@ -606,7 +606,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         {
             // Arrange
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
             var source_record = new ActualBankRecord
             {
                 Date = DateTime.Today,
@@ -650,7 +650,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_owned_file = new Mock<ICSVFile<BankRecord>>();
             mock_owned_file.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
             var desc0 = "Source 01";
             var source_record = new ActualBankRecord
             {
@@ -696,7 +696,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var mock_owned_file = new Mock<ICSVFile<BankRecord>>();
             mock_owned_file.Setup(x => x.Records).Returns(new List<BankRecord>());
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
             var desc0 = "Source 01";
             var source_record = new ActualBankRecord
             {
@@ -766,7 +766,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                 }
             };
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
             matcher.Filter_for_all_expense_transactions_from_actual_bank_in(reconciliator);
             matcher.Filter_for_all_wages_rows_and_expense_transactions_from_expected_in(reconciliator);
             reconciliator.Set_match_finder((record, file) => expected_potential_matches);
@@ -809,7 +809,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var bank_in_file = new CSVFile<BankRecord>(bank_in_file_io.Object);
             bank_in_file.Load();
             ActualBankRecord expense_transaction = new ActualBankRecord { Amount = expense_amount };
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
 
             // Act
             var result = matcher.Standby_find_expense_matches(expense_transaction, bank_in_file).ToList();
@@ -831,7 +831,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var bank_in_file = new CSVFile<BankRecord>(bank_in_file_io.Object);
             bank_in_file.Load();
             ActualBankRecord expense_transaction = new ActualBankRecord { Amount = expense_amount - 1 };
-            var matcher = new BankAndBankInMatcher(this, new FakeSpreadsheetRepoFactory(), mock_bank_and_bank_in_loader.Object);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
 
             // Act
             var result = matcher.Standby_find_expense_matches(expense_transaction, bank_in_file).ToList();

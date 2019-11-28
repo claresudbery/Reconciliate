@@ -15,27 +15,24 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         public List<ExpectedIncomeRecord> MatchedExpectedIncomeRecords;
 
         private readonly IInputOutput _input_output;
-        private readonly ISpreadsheetRepoFactory _spreadsheet_factory;
         private readonly IBankAndBankInLoader _bank_and_bank_in_loader;
 
         public BankAndBankInMatcher(
             IInputOutput input_output, 
-            ISpreadsheetRepoFactory spreadsheet_factory,
             IBankAndBankInLoader bank_and_bank_in_loader)
         {
             _input_output = input_output;
-            _spreadsheet_factory = spreadsheet_factory;
             _bank_and_bank_in_loader = bank_and_bank_in_loader;
             MatchedExpectedIncomeRecords = new List<ExpectedIncomeRecord>();
         }
 
-        public void Do_matching(FilePaths main_file_paths)
+        public void Do_matching(FilePaths main_file_paths, ISpreadsheetRepoFactory spreadsheet_factory)
         {
             var loading_info = ((BankAndBankInLoader)_bank_and_bank_in_loader).Loading_info();
             loading_info.File_paths = main_file_paths;
             var file_loader = new FileLoader(_input_output);
             ReconciliationInterface<ActualBankRecord, BankRecord> reconciliation_interface
-                = file_loader.Load_files_and_merge_data<ActualBankRecord, BankRecord>(loading_info, _spreadsheet_factory, this);
+                = file_loader.Load_files_and_merge_data<ActualBankRecord, BankRecord>(loading_info, spreadsheet_factory, this);
             reconciliation_interface?.Do_the_matching();
         }
 

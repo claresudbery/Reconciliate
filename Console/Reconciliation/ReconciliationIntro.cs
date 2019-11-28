@@ -67,7 +67,7 @@ namespace ConsoleCatchall.Console.Reconciliation
         private void Do_matching(ISpreadsheetRepoFactory spreadsheet_factory)
         {
             var main_file_paths = new PathSetter(_input_output, spreadsheet_factory).Set_path_and_file_names();
-            main_file_paths.Matcher.Do_matching(main_file_paths);
+            main_file_paths.Matcher.Do_matching(main_file_paths, spreadsheet_factory);
         }
     }
 }

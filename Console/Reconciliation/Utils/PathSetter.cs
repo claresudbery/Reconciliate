@@ -86,28 +86,28 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
                     {
                         _owned_file_name = ReconConsts.Default_cred_card1_in_out_file_name;
                         _third_party_file_name = ReconConsts.Default_cred_card1_file_name;
-                        _matcher = new CredCard1AndCredCard1InOutMatcher(_input_output, _spreadsheet_factory);
+                        _matcher = new CredCard1AndCredCard1InOutMatcher(_input_output);
                     }
                     break;
                 case "3":
                     {
                         _owned_file_name = ReconConsts.Default_cred_card2_in_out_file_name;
                         _third_party_file_name = ReconConsts.Default_cred_card2_file_name;
-                        _matcher = new CredCard2AndCredCard2InOutMatcher(_input_output, _spreadsheet_factory);
+                        _matcher = new CredCard2AndCredCard2InOutMatcher(_input_output);
                     }
                     break;
                 case "4":
                     {
                         _owned_file_name = ReconConsts.DefaultBankInFileName;
                         _third_party_file_name = ReconConsts.Default_bank_file_name;
-                        _matcher = new BankAndBankInMatcher(_input_output, _spreadsheet_factory, new BankAndBankInLoader(_spreadsheet_factory));
+                        _matcher = new BankAndBankInMatcher(_input_output, new BankAndBankInLoader(_spreadsheet_factory));
                     }
                     break;
                 case "5":
                     {
                         _owned_file_name = ReconConsts.DefaultBankOutFileName;
                         _third_party_file_name = ReconConsts.Default_bank_file_name;
-                        _matcher = new BankAndBankOutMatcher(_input_output, _spreadsheet_factory);
+                        _matcher = new BankAndBankOutMatcher(_input_output);
                     }
                     break;
             }
@@ -142,10 +142,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
 
             switch (input)
             {
-                case "1": result = new CredCard1AndCredCard1InOutMatcher(_input_output, _spreadsheet_factory); break;
-                case "2": result = new CredCard2AndCredCard2InOutMatcher(_input_output, _spreadsheet_factory); break;
-                case "3": result = new BankAndBankInMatcher(_input_output, _spreadsheet_factory, new BankAndBankInLoader(_spreadsheet_factory)); break;
-                case "4": result = new BankAndBankOutMatcher(_input_output, _spreadsheet_factory); break;
+                case "1": result = new CredCard1AndCredCard1InOutMatcher(_input_output); break;
+                case "2": result = new CredCard2AndCredCard2InOutMatcher(_input_output); break;
+                case "3": result = new BankAndBankInMatcher(_input_output, new BankAndBankInLoader(_spreadsheet_factory)); break;
+                case "4": result = new BankAndBankOutMatcher(_input_output); break;
             }
 
             return result;
