@@ -46,7 +46,8 @@ Here are the main test data elements:
 
 When you run the software I would suggest you start by making the following selections in this order (see ReconciliationProcess.txt for more info):
 * Reconciliate!
-* Load pending csvs for CredCard2, Bank In and Bank Out (from phone). 
+* Load pending csvs for CredCard2, Bank In and Bank Out (from phone).  
+  * This step loads the data in Pending.txt and converts it to three separate csv files, ready for the actual reconciliation.
 * Reconciliate!
 * Do actual reconciliation.
 * Debug Mode B
