@@ -1,5 +1,16 @@
+## Config
+There are TWO config files. The first is the main entry point and only contains one line, which is the path to the full config. This is so that you can put your main config in a secure non-public location. If you're Clare and you've forgotten where your config is, check C:/Config/Config.Xml for the location, but also remember that it's stored in the separate ReconciliationConfig private git repo.
+
+The entry-level config file path can be passed in as a command-line argument, but it has a default value which is C:/Config/Config.Xml. That won't work unless you're on Windows, so if you're on Mac you HAVE to pass in your entry-level config file path.
+
+There are two config files in the code base: at the root level is Config.xml, and there is also spreadsheet-samples/SampleConfig.xml. SampleConfig.xml contains a starter version of the full config, designed to get you up and running asap out of the box. The simplest way to get started is as follows:
+
+1. Edit Config.xml so that it contains the path to SampleConfig.xml in the repo.
+2. Check the various paths in SampleConfig.xml. Change them if necessary.
+3. Pass in the location of Config.Xml when you run the software.
+
 ## Refactoring Example  
-If you see this text, it means you are in the Refactor-genericise-start branch of this code base.  
+If you see this text, it probably means you are in the Refactor-genericise-start branch of this code base (unless I accidentally copied it into the master branch).  
 This branch has been created to demonstrate some refactoring code.  
 It is NOT the most up to date version of the code. It will contain bugs.  
 Also, it is deliberately in need of refactoring. Because that's the point. :)  
@@ -17,25 +28,20 @@ NB:
 	When doing real accounting: Just hit ignore for all the Expenses matches for now, because it's not fully implemented yet.  
 
 ## Manual Testing
+See [manual-testing.md](manual-testing.md)
 
-If you want to do a quick manual end to end test, there are files in /reconciliation-samples/For debugging which you can use.  
-They contain simple data which is hopefully easy enough to reason about.  
-You need to copy the .txt and .csv files into the folder you have configured as DefaultFilePath in your xml config.  
-You can copy the spreadsheet (*.xlsx) into the folder you have configured as SourceDebugSpreadsheetPath in your xml config.  
-You need to be sure that all file names match what you have in your config. If you haven't edited your config then everything will work as-is, as long as you have followed the instructions to set up your config in ReconciliationProcess.txt.  
-Then you can run the software in one of the debug modes.  
-Note that at the time of writing, when running in debug mode the debug spreadsheet is recreated every time you do a different type of reconciliation.  
-So, for instance, if you do Bank In then Bank Out, you won’t see Bank In stuff unless you look at the spreadsheet between the two reconciliations.  
-	
 ## .Net Core   
 
 If you want to run the code in .Net Core:   
 	1.	update the stored .Net Framework files, using the script UpdateDotNetFrameworkProjectFiles.sh (see instructions in script)   
-	2.	convert to .Net Core using the script DotNetConversion.sh (there are instructions on using the script in the script itself)   
-		To get more info on converting to/from .Net Core, see comments in DotNetConversion.sh  
+	2.	convert to .Net Core using the script DotNetConversion.sh 
+	  a. If you're Clare, check the separate private ReconciliationConfig repo - you've stored all the commands for Mac and Windows there  
+	  b. There are instructions on using the script in the script itself  
+	  c. To get more info on converting to/from .Net Core, see comments in DotNetConversion.sh    
 	3a. Make sure all your csv files are in place and your config is correctly set up - see ReconciliationProcess.txt.  
 	3b. Be aware that in .Net Core, no actual spreadsheet read/writes occur. Instead a stub with fake data is used (see FakeSpreadsheetRepo.cs).  
 	This data is based on the data in the shipped version of Your-Spreadsheet.xlsx. If you want different data, you'll have to edit the code in FakeSpreadsheetRepo.cs.  
+
 	4.	On the command line...  	
 	4a) In Windows: Use "dotnet run" from the Console folder or "dotnet test" from the ConsoleCatchallTests folder.  
 	4b) On a Mac: Use "dotnet run [path-to-main-config]" from the Console folder or "dotnet test" from the ConsoleCatchallTests folder.  

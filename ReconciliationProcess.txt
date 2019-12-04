@@ -1,4 +1,4 @@
-NB: The original process which was in here has been moved to the same place as the main config.  
+NB: The original process which was in here has been moved to the same place as the main config, which is now stored in a separate private ReconciliationConfig repo - the location is in C:/Config/Config.Xml.  
  
 ## How to Use This Software 
  
@@ -12,7 +12,7 @@ The functionality is regularly updated and I can't guarantee this file will alwa
 !! Most of the functionality in this software assumes you have a Microsoft Excel spreadsheet! This functionality will not work on a Mac.  
 There is some functionality that operates purely on csv files, which will work on a Mac.  
 Also it is possible to convert the project to .Net Core and run it on a Mac, but in that case stubs will be used instead of spreadsheets.  
-See your-project-path/DotNetConversion.sh for info on .Net Core.  
+See readme.md and your-project-path/DotNetConversion.sh for info on .Net Core.  
  
 ### You will have to edit the code for your own banks and credit cards.  
 
@@ -31,11 +31,12 @@ CredCard1File.cs
 Sadly I am not able to share with you which providers are currently coded.  
  
 ### How to do Manual Testing  
-This might be a good place to start, because then you can see how the data works. Instructions for manual testing are in readme.md.  
+This might be a good place to start, because then you can see how the data works. Instructions for manual testing are in manual-testing.md.  
  
 ### How to Get Set Up  
 
 A) Set up your config:  
+(there is a full explanation of the config files in readme.md)  
 1) You should create a reconciliation config file, using your-project-path/spreadsheet-samples/SampleConfig.xml as a base.  
 2a) If on a Mac, create a folder for your main config and copy Config.xml into it.  
 2b) On Windows, create your main config by copying Config.xml to C:/Config/Config.xml.  
@@ -72,7 +73,7 @@ The resulting files need to be named ActualBank.csv, CredCard1.csv or CredCard2.
 (Or use the names you have put in the config under DefaultBankFileName, DefaultCredCard1FileName and DefaultCredCard2FileName).  
 The files should be placed in the location you have configured in your config under DefaultFilePath.  
  
-4) Run the software, by running it from an IDE or building it and launching the exe (or follow .Net Core instructiuons - see above).  
+4) Run the software, by running it from an IDE or building it and launching the exe (or follow .Net Core instructiuons - see readme.md).  
  
 4A) Before doing any reconciliation, you need to run the "load pending CSVs" step.  
  
