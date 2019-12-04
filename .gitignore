@@ -236,3 +236,6 @@ reconciliation-samples/For-debugging/BankIn-recon.csv
 reconciliation-samples/For-debugging/SpreadsheetBackups/real_backup_*.xlsx
 reconciliation-samples/For-debugging/FakeSpreadsheetDataInfo.csv
 reconciliation-samples/For-debugging/SpreadsheetBackups/debug-backup-spreadsheet.xlsx
+
+# Vim
+*.swp
