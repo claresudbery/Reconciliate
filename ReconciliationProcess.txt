@@ -1,4 +1,4 @@
-NB: The original process which was in here has been moved to the same place as the main config.  
+NB: The original process which was in here has been moved to the same place as the main config, which is now stored in a separate private ReconciliationConfig repo - the location is in C:/Config/Config.Xml.  
  
 ## How to Use This Software 
  
@@ -36,6 +36,7 @@ This might be a good place to start, because then you can see how the data works
 ### How to Get Set Up  
 
 A) Set up your config:  
+(there is a full explanation of the config files in readme.md)  
 1) You should create a reconciliation config file, using your-project-path/spreadsheet-samples/SampleConfig.xml as a base.  
 2a) If on a Mac, create a folder for your main config and copy Config.xml into it.  
 2b) On Windows, create your main config by copying Config.xml to C:/Config/Config.xml.  

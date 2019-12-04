@@ -1,5 +1,13 @@
 ## Config
-For .Net Core in Windows, there is an assumption that your main config is in C:/Config/Config.Xml. There is a sample version of this in the root of the repo. This is a one-line xml file that contains the path to your full config, which obviously you can put wherever you like.
+There are TWO config files. The first is the main entry point and only contains one line, which is the path to the full config. This is so that you can put your main config in a secure non-public location. If you're Clare and you've forgotten where your config is, check C:/Config/Config.Xml for the location, but also remember that it's stored in the separate ReconciliationConfig private git repo.
+
+The entry-level config file path can be passed in as a command-line argument, but it has a default value which is C:/Config/Config.Xml. That won't work unless you're on Windows, so if you're on Mac you HAVE to pass in your entry-level config file path.
+
+There are two config files in the code base: at the root level is Config.xml, and there is also spreadsheet-samples/SampleConfig.xml. SampleConfig.xml contains a starter version of the full config, designed to get you up and running asap out of the box. The simplest way to get started is as follows:
+
+1. Edit Config.xml so that it contains the path to SampleConfig.xml in the repo.
+2. Check the various paths in SampleConfig.xml. Change them if necessary.
+3. Pass in the location of Config.Xml when you run the software.
 
 ## Refactoring Example  
 If you see this text, it probably means you are in the Refactor-genericise-start branch of this code base (unless I accidentally copied it into the master branch).  
