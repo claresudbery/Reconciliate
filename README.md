@@ -1,5 +1,5 @@
 ## Refactoring Example  
-If you see this text, it means you are in the Refactor-genericise-start branch of this code base.  
+If you see this text, it probably means you are in the Refactor-genericise-start branch of this code base (unless I accidentally copied it into the master branch).  
 This branch has been created to demonstrate some refactoring code.  
 It is NOT the most up to date version of the code. It will contain bugs.  
 Also, it is deliberately in need of refactoring. Because that's the point. :)  
@@ -20,12 +20,28 @@ NB:
 
 If you want to do a quick manual end to end test, there are files in /reconciliation-samples/For debugging which you can use.  
 They contain simple data which is hopefully easy enough to reason about.  
-You need to copy the .txt and .csv files into the folder you have configured as DefaultFilePath in your xml config.  
+You need to copy all the .txt and .csv files apart from the -recon csvs and FakeSpreadsheetDataInfo.csv into the folder you have configured as DefaultFilePath in your xml config.  
 You can copy the spreadsheet (*.xlsx) into the folder you have configured as SourceDebugSpreadsheetPath in your xml config.  
-You need to be sure that all file names match what you have in your config. If you haven't edited your config then everything will work as-is, as long as you have followed the instructions to set up your config in ReconciliationProcess.txt.  
-Then you can run the software in one of the debug modes.  
+You need to be sure that all file names or their prefixes match what you have in your config, in the following elements:    
+	<Five_file_options>                   
+    <Default_bank_file_name>
+    <Default_cred_card1_file_name>
+    <Default_cred_card2_file_name>
+    <Default_cred_card1_in_out_file_name>
+    <Default_cred_card2_in_out_file_name>
+    <Default_cred_card2_in_out_pending_file_name>
+    <Default_cred_card1_in_out_pending_file_name>
+If you haven't edited your config then everything will work as-is, as long as you have followed the instructions to set up your config in ReconciliationProcess.txt.  
+Then you can run the software in one of the debug modes. See "things to know while testing" below.   
+	
+### Things to know while testing:
 Note that at the time of writing, when running in debug mode the debug spreadsheet is recreated every time you do a different type of reconciliation.  
-So, for instance, if you do Bank In then Bank Out, you won’t see Bank In stuff unless you look at the spreadsheet between the two reconciliations.  
+   So, for instance, if you do Bank In then Bank Out, you won’t see Bank In stuff unless you look at the spreadsheet between the two reconciliations.  
+Don't worry about "can't find mortgage row" if it's stil in Trello - it's a known bug.  
+Enter 6 for both the first month and the last month.   
+* For bank in:
+  * Automatic matches should be cheese and doughnut *
+  * Semi-auto matches should be 
 	
 ## .Net Core   
 
