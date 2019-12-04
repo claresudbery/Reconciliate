@@ -9,14 +9,6 @@ There are two config files in the code base: at the root level is Config.xml, an
 2. Check the various paths in SampleConfig.xml. Change them if necessary.
 3. Pass in the location of Config.Xml when you run the software.
 
-## Refactoring Example  
-If you see this text, it probably means you are in the Refactor-genericise-start branch of this code base (unless I accidentally copied it into the master branch).  
-This branch has been created to demonstrate some refactoring code.  
-It is NOT the most up to date version of the code. It will contain bugs.  
-Also, it is deliberately in need of refactoring. Because that's the point. :)  
-Note: This branch was based off the Refactor-eg-genericise branch, where I deliberately unravelled a lot of code for demonstration purposes.  
-(It took flippin' ages. I don't think I'm going to do that again.)  
-
 ## Reconciliation:   
 This code has been designed to speed up my slightly idiosyncratic accounting process - I can't guarantee it'll be any use to anyone else!  
 Follow the instructions on screen.  
@@ -40,7 +32,8 @@ If you want to run the code in .Net Core:
 	  c. To get more info on converting to/from .Net Core, see comments in DotNetConversion.sh    
 	3a. Make sure all your csv files are in place and your config is correctly set up - see ReconciliationProcess.txt.  
 	3b. Be aware that in .Net Core, no actual spreadsheet read/writes occur. Instead a stub with fake data is used (see FakeSpreadsheetRepo.cs).  
-	This data is based on the data in the shipped version of Your-Spreadsheet.xlsx. If you want different data, you'll have to edit the code.  
+	This data is based on the data in the shipped version of Your-Spreadsheet.xlsx. If you want different data, you'll have to edit the code in FakeSpreadsheetRepo.cs.  
+
 	4.	On the command line...  	
 	4a) In Windows: Use "dotnet run" from the Console folder or "dotnet test" from the ConsoleCatchallTests folder.  
 	4b) On a Mac: Use "dotnet run [path-to-main-config]" from the Console folder or "dotnet test" from the ConsoleCatchallTests folder.  
