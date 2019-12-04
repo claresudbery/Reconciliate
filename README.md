@@ -1,13 +1,21 @@
 ## Config
 There are TWO config files. The first is the main entry point and only contains one line, which is the path to the full config. This is so that you can put your main config in a secure non-public location. If you're Clare and you've forgotten where your config is, check C:/Config/Config.Xml for the location, but also remember that it's stored in the separate ReconciliationConfig private git repo.
 
-The entry-level config file path can be passed in as a command-line argument, but it has a default value which is C:/Config/Config.Xml. That won't work unless you're on Windows, so if you're on Mac you HAVE to pass in your entry-level config file path.
+The entry-level config is assumed to be in a file called Config.Xml. Its location can be passed in as a command-line argument, but it has a default value which is C:/Config. That won't work unless you're on Windows, so if you're on Mac you HAVE to pass in your entry-level config file location.
 
 There are two config files in the code base: at the root level is Config.xml, and there is also spreadsheet-samples/SampleConfig.xml. SampleConfig.xml contains a starter version of the full config, designed to get you up and running asap out of the box. The simplest way to get started is as follows:
 
-1. Edit Config.xml so that it contains the path to SampleConfig.xml in the repo.
+On a Mac:  
+
+1. Edit Config.xml so that it contains the path to the repo version of SampleConfig.xml.
 2. Check the various paths in SampleConfig.xml. Change them if necessary.
 3. Pass in the location of Config.Xml when you run the software.
+
+On Windows:  
+
+1. Copy Config.Xml to C:/Config/Config.Xml.
+2. Edit Config.xml so that it contains the path to the repo version of SampleConfig.xml.
+3. Check the various paths in SampleConfig.xml. Change them if necessary.
 
 ## Reconciliation:   
 This code has been designed to speed up my slightly idiosyncratic accounting process - I can't guarantee it'll be any use to anyone else!  
