@@ -32,7 +32,8 @@ namespace Interfaces
             string new_text,
             int balance_column,
             int text_column,
-            int code_column);
+            int code_column,
+            IInputOutput input_output);
         DateTime Get_next_unplanned_month();
 
         void Add_budgeted_monthly_data_to_pending_file<TRecordType>(

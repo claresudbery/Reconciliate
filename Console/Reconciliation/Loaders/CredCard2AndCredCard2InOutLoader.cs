@@ -98,7 +98,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     $"{statement_date.ToString("MMM")} {statement_date.Year}"),
                 balance_column: 5,
                 text_column: 6,
-                code_column: 4);
+                code_column: 4,
+                input_output);
         }
     }
 }

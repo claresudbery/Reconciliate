@@ -320,8 +320,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             string new_text,
             int balance_column,
             int text_column,
-            int code_column)
+            int code_column,
+            IInputOutput input_output)
         {
+            input_output.Output_line($"Updating {MainSheetNames.Totals} with {balance_code} {new_balance} '{new_text}'.");
+            
             _spreadsheet_io.Update_amount_and_text(
                 MainSheetNames.Totals,
                 balance_code,

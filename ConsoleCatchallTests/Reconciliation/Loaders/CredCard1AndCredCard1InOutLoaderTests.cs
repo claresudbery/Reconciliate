@@ -168,7 +168,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                     ReconConsts.CredCardBalanceDescription, 
                     ReconConsts.Cred_card1_name,
                     $"{last_direct_debit_date.ToString("MMM")} {last_direct_debit_date.Year}"),
-                5, 6, 4), Times.Exactly(1));
+                5, 6, 4, mock_input_output.Object), Times.Exactly(1));
         }
     }
 }
