@@ -71,6 +71,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
                 matched_record.Reconcile();
             }
             File.Write_back_to_main_spreadsheet(MainSheetNames.Expected_in);
+            File.Write_to_csv_file("recon");
         }
     }
 }
