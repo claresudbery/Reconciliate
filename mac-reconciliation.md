@@ -1,4 +1,5 @@
 ## Full Reconciliation on a Mac
+(Note that several commit Ids are referenced here - just in case those commits are removed by a rebase, they are all from the series of about 10 commits that start with the one with description "Show user what balance data is being written to Totals worksheet.", committed 12/12/19 to master branch).
 At the time of writing, the way to achieve this is as follows:
 * Depending on your data, you'll probably want to edit your SampleConfig.xml to contain real data
     * (If you're Clare, see below).
@@ -9,13 +10,13 @@ At the time of writing, the way to achieve this is as follows:
 * Edit the mortgage row so that its date is the month BEFORE the first month you want to budget for.
     * This is the row in FakeRows.cs under MainSheetNames.Bank_out that has the description FakeSpreadsheetRepo.FakeMortgageDescription
     * It's the first date on the row that counts, not the second one.
-    * See commit c4be0b8 for an example.
-    * !! Remember to reverse the change afterwards! See commit ab167be.
+    * See commit 6054e6e for an example.
+    * !! Remember to reverse the change afterwards! See commit 3e07895.
 * At the time of writing a small hack is also needed:
     * Edit the function ExpectedIncomeFile.Finish so that it writes to an ExpectedIn csv file.
-    * See commits 69417cf and 00a6815 for an example.
+    * See commits 00a6815 and aedce66 for an example.
     * If you do it this way, you might need to create the csv file first (not sure about this).
-    * !! Remember to undo the change once you're done! See commit d1850c6.
+    * !! Remember to undo the change once you're done! See commit b5dc4e6.
 * All the data that is normally written to the spreadsheet will instead be written to files with the suffix "-recon"
     * They will be in the same place as your source csvs (the default is reconciliation-samples/For-debugging)
 * Note that some data is normally written to the Totals tab on the spreadsheet.
