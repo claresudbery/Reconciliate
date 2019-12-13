@@ -120,7 +120,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             {
                 File.Copy(source_file_path, dest_file_path, true);
             }
-            catch (System.IO.FileNotFoundException e)
+            catch (System.IO.FileNotFoundException)
             {
                 // There seems to be an intermittent fault in Windows - sometimes it copes with mixed slashes and sometimes it doesn't!
                 source_file_path = source_file_path.Replace("/", "\\");
