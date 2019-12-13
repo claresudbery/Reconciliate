@@ -99,7 +99,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 balance_column: 5,
                 text_column: 6,
                 code_column: 4,
-                input_output);
+                input_output: input_output);
         }
     }
 }
