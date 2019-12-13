@@ -12,6 +12,8 @@ The functionality is regularly updated and I can't guarantee this file will alwa
 !! Most of the functionality in this software assumes you have a Microsoft Excel spreadsheet! This functionality will not work on a Mac.  
 There is some functionality that operates purely on csv files, which will work on a Mac.  
 Also it is possible to convert the project to .Net Core and run it on a Mac, but in that case stubs will be used instead of spreadsheets.  
+It is also possible to get full functionality on a Mac by replacing the spreadsheet with a series of csvs. 
+- I have done this, but it's non-trivial. See mac-reconciliation.md for details.
 See readme.md and your-project-path/DotNetConversion.sh for info on .Net Core.  
  
 ### You will have to edit the code for your own banks and credit cards.  
