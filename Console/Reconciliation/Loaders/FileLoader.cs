@@ -31,7 +31,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 ReconConsts.Cred_card2_dd_description);
         }
 
-        public void Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
+        private void Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
             IInputOutput input_output,
             ISpreadsheet spreadsheet,
             ICSVFile<BankRecord> pending_file,
