@@ -54,7 +54,7 @@ When you run the software I would suggest you start by making the following sele
   * This step loads the data in Pending.txt and converts it to three separate csv files, ready for the actual reconciliation.
 * Reconciliate!
 * Do actual reconciliation.
-* Debug Mode B if you're using a live config, or Real Mode if you're using a test config (there'll be a message on screen telling you where your spreadsheet data will be written to depending on which mode you choose).
+* Debug Mode B (remember to read the description on screen to see where your spreadsheet data will be written).
 
 After this you want to test the four modes one at a time. I would suggest you do them in the following order:
 * ActualBank and BankIn
