@@ -670,7 +670,8 @@ namespace ConsoleCatchall.Console.Reconciliation
                 data_loading_info.Monthly_budget_data,
                 data_loading_info.Annual_budget_data);
             _input_output.Output_line("Merging bespoke data with pending file...");
-            Bank_and_bank_out__Merge_bespoke_data_with_pending_file(_input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
+            var file_loader = new FileLoader();
+            file_loader.Bank_and_bank_out__Merge_bespoke_data_with_pending_file(_input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
             _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
 
