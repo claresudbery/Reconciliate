@@ -3,11 +3,34 @@ using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
 using Interfaces;
 using Interfaces.Constants;
+using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
     internal class FileLoader
     {
+        public void Bank_and_bank_out__Merge_bespoke_data_with_pending_file(
+            IInputOutput input_output,
+            ISpreadsheet spreadsheet,
+            ICSVFile<BankRecord> pending_file,
+            BudgetingMonths budgeting_months,
+            DataLoadingInformation data_loading_info)
+        {
+            Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
+                input_output,
+                spreadsheet,
+                pending_file,
+                ReconConsts.Cred_card1_name,
+                ReconConsts.Cred_card1_dd_description);
+
+            Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
+                input_output,
+                spreadsheet,
+                (ICSVFile<BankRecord>)pending_file,
+                ReconConsts.Cred_card2_name,
+                ReconConsts.Cred_card2_dd_description);
+        }
+
         public void Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
             IInputOutput input_output,
             ISpreadsheet spreadsheet,
