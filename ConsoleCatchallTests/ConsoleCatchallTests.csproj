@@ -77,7 +77,6 @@
     <Compile Include="Reconciliation\Files\ExpectedIncomeFileTests.cs" />
     <Compile Include="Reconciliation\Loaders\CredCard2AndCredCard2InOutDataTests.cs" />
     <Compile Include="Reconciliation\Loaders\CredCard1AndCredCard1InOutDataTests.cs" />
-    <Compile Include="Reconciliation\Loaders\BankAndBankInDataTests.cs" />
     <Compile Include="Reconciliation\Loaders\FileLoaderTests.cs" />
     <Compile Include="Reconciliation\Loaders\ReconciliationIntroTests.cs" />
     <Compile Include="Reconciliation\Loaders\ReconciliationIntroTestsSelfShunt.cs" />
