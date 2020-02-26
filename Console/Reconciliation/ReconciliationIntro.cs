@@ -37,13 +37,13 @@ namespace ConsoleCatchall.Console.Reconciliation
                 break;
                 case "2":
                 {
-                    Do_actual_reconciliation();
+                    Reconciliate();
                 }
                 break;
             }
         }
 
-        public void Do_actual_reconciliation()
+        public void Reconciliate()
         {
             try
             {
