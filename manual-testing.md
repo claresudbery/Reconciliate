@@ -78,6 +78,8 @@ Once you're done, choose "Write csv and finish." If you're on Windows (but not o
 
 (See below for what to expect from the data in each of the four modes.)
 
+!! Some of the behaviour described below will be slightly different because the test data is in 2019 and the budget functionality will change dates to the current year. To fix this you'll have to edit the test data to be in whatever your current year is.
+
 ### Bank In and Bank Out
 
 ActualBank.csv contains three budgeted "monthly incoming" transactions and three "monthly outgoing" transactions. These will all be matched exactly by transactions in the spreadsheet (Your-Spreadsheet.xlsx), in the "Budget In" and "Budget Out" worksheets. This means they'll pop up at the start as "automatic matches".
