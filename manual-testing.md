@@ -10,7 +10,7 @@ You need to copy some .txt and .csv files from `reconciliation-samples/For-debug
 
 * ActualBank.csv
 * CredCard1.csv
-* CredCardInOutPending.casv
+* CredCard1InOutPending.csv
 * CredCard2.csv
 * Pending.txt
 
