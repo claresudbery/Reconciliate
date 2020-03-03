@@ -11,7 +11,7 @@ The quickest way to get up and running for testing purposes is:
 1. Copy Config.Xml to C:/Config/Config.Xml.
 2. Edit Config.xml so that it contains the path to the repo version of SampleConfig.xml (which is in the spreadsheet-samples folder).
 (If you're on a Mac, it's similar but slightly different - see [README.md](/README.md)).
-3. Jump to [the next section](issues-to-know-about-while-testing) and start testing.
+3. Jump to [the next section](#issues-to-know-about-while-testing) and start testing.
 
 If you haven't edited your config at all then everything will work as-is. If you have edited your config, you need to do the following:
 
