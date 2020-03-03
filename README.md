@@ -5,25 +5,17 @@ The entry-level config is assumed to be in a file called Config.Xml. Its locatio
 
 There are two config files in the code base: at the root level is Config.xml, and there is also spreadsheet-samples/SampleConfig.xml. SampleConfig.xml contains a starter version of the full config, designed to get you up and running asap out of the box. The simplest way to get started is as follows:
 
+1. Check the various paths in SampleConfig.xml. Change them if necessary (for instance, at the time of writing in SampleConfig.xml, Test_backup_file_path is set to C:/Temp/ManualTesting/TestSpreadsheetBackups. You either need to create these folders or edit that path value in the xml).
+
 On a Mac:  
 
-1. Edit Config.xml so that it contains the path to the repo version of SampleConfig.xml.
-2. Check the various paths in SampleConfig.xml. Change them if necessary.
+2. Edit Config.xml so that it contains the path to the repo version of SampleConfig.xml.
 3. Pass in the location of Config.Xml when you run the software.
 
 On Windows:  
 
-1. Copy Config.Xml to C:/Config/Config.Xml.
-2. Edit Config.xml so that it contains the path to the repo version of SampleConfig.xml.
-3. Check the various paths in SampleConfig.xml. Change them if necessary.
-
-## Refactoring Example  
-If you see this text, it probably means you are in the Refactor-genericise-start branch of this code base (unless I accidentally copied it into the master branch).  
-This branch has been created to demonstrate some refactoring code.  
-It is NOT the most up to date version of the code. It will contain bugs.  
-Also, it is deliberately in need of refactoring. Because that's the point. :)  
-Note: This branch was based off the Refactor-eg-genericise branch, where I deliberately unravelled a lot of code for demonstration purposes.  
-(It took flippin' ages. I don't think I'm going to do that again.)  
+2. Copy Config.Xml to C:/Config/Config.Xml.
+3. Edit Config.xml so that it contains the path to the repo version of SampleConfig.xml.
 
 ## Reconciliation:   
 This code has been designed to speed up my slightly idiosyncratic accounting process - I can't guarantee it'll be any use to anyone else!  
