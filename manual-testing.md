@@ -2,7 +2,7 @@
 
 If you want to do a quick manual end to end test, there are files in `reconciliation-samples/For-debugging` which you can use. They contain simple data which is hopefully easy enough to reason about.
 
-You'll need to be aware of how your config works. See the config section in [readme.md](/readme.md).
+You'll need to be aware of how your config works. See the config section in [README.md](/README.md).
 
 If you're Clare, all the config and other files you need are in the private ReconciliationConfig code base (so you don't need to copy files from `reconciliation-samples/For-debugging` in the step below).
 
