@@ -11,6 +11,7 @@ The quickest way to get up and running for testing purposes is:
 1. Copy Config.Xml to C:/Config/Config.Xml (or if you're Clare, copy C:/Config/OutOfTheBoxTestConfig.xml into C:/Config/Config.Xml).
 2. Edit Config.xml so that it contains the path to the repo version of SampleConfig.xml (which is in the spreadsheet-samples folder).
 (If you're on a Mac, it's similar but slightly different - see [README.md](/README.md)).
+3. By default in SampleConfig.xml, Test_backup_file_path is set to C:/Temp/ManualTesting/TestSpreadsheetBackups. You either need to create these folders or edit that path value in the xml.
 3. Jump to [the next section](#issues-to-know-about-while-testing) and start testing.
 
 If you haven't edited your config at all then everything will work as-is. If you have edited your config, you need to do the following:
