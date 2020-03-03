@@ -8,7 +8,7 @@ If you're Clare (and you're not planning an out-of-the-box vanilla test), all th
 
 The quickest way to get up and running for testing purposes is:
 
-1. Copy Config.Xml to C:/Config/Config.Xml.
+1. Copy Config.Xml to C:/Config/Config.Xml (or if you're Clare, copy C:/Config/OutOfTheBoxTestConfig.xml into C:/Config/Config.Xml).
 2. Edit Config.xml so that it contains the path to the repo version of SampleConfig.xml (which is in the spreadsheet-samples folder).
 (If you're on a Mac, it's similar but slightly different - see [README.md](/README.md)).
 3. Jump to [the next section](#issues-to-know-about-while-testing) and start testing.
