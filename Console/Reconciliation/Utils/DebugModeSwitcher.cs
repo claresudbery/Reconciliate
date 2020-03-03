@@ -21,8 +21,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             _input_output.Output_line("");
             _input_output.Output_options(new List<string>
             {
-                $"1. Debug Mode A: Copy live sheet to debug version in [live location]/{ReconConsts.Backup_sub_folder}, and work on it from there.",
-                $"2. Debug Mode B: Copy sheet from {ReconConsts.Source_debug_spreadsheet_path} to [live location]/{ReconConsts.Backup_sub_folder}, and work on it from there.",
+                $"1. Debug Mode A: Copy live sheet to debug version in [Main_spreadsheet_path in config xml]/{ReconConsts.Backup_sub_folder}, and work on it from there.",
+                $"2. Debug Mode B: Copy sheet from {ReconConsts.Source_debug_spreadsheet_path} to [Main_spreadsheet_path in config xml]/{ReconConsts.Backup_sub_folder}, and work on it from there.",
                 "3. Debug Mode C: Use fake spreadsheet repo (like you would get in .Net Core).",
                 "4. Work in REAL mode"
             });
