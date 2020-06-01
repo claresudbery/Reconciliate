@@ -92,7 +92,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
             spreadsheet.Update_balance_on_totals_sheet(
                 Codes.Cred_card2_bal,
-                new_balance * -1,
+                new_balance,
                 string.Format(
                     ReconConsts.CredCardBalanceDescription,
                     ReconConsts.Cred_card2_name,
