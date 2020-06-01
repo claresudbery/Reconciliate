@@ -41,8 +41,6 @@ Note that at the time of writing, *when running in debug mode* (not real mode) t
 
 Don't worry about "can't find mortgage row" if it's stil in Trello - it's a known bug. Just enter month numbers for first and last month manually. 
 
-At the time of writing there is a bug in Trello relating to the sign (ie pos/neg) of cred card debit amounts - if not fixed, you'll notice this when running tests.
-
 ## What to expect from the test data
 
 If you're using the test data in `reconciliation-samples/For-debugging`, this is how the data is structured / what you should expect to see.
