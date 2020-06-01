@@ -39,8 +39,6 @@ Then you can run the software in one of the debug modes. See "things to know whi
 
 Note that at the time of writing, *when running in debug mode* (not real mode) the debug spreadsheet is recreated every time you do a different type of reconciliation. So, for instance, if you do Bank In then Bank Out, you won’t see Bank In stuff unless you look at the spreadsheet between the two reconciliations.  
 
-Don't worry about "can't find mortgage row" if it's stil in Trello - it's a known bug. Just enter month numbers for first and last month manually. 
-
 ## What to expect from the test data
 
 If you're using the test data in `reconciliation-samples/For-debugging`, this is how the data is structured / what you should expect to see.
