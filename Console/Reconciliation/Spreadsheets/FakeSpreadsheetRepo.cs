@@ -70,7 +70,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             return 2;
         }
 
-        public int Find_row_number_of_last_row_containing_cell(string sheet_name, string target_cell_text, int expected_column_number = 2)
+        public int Find_row_number_of_last_row_containing_cell(string sheet_name, string target_cell_text, List <int> expected_column_numbers)
         {
             _debug_log.Append_to_file_as_source_line($"{Get_method_name()}: sheetName {sheet_name}, targetSubText {target_cell_text}");
             return _fake_row_numbers_for_cell.Data.ContainsKey(sheet_name) 

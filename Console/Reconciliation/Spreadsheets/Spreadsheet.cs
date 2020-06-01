@@ -37,7 +37,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         {
             return _spreadsheet_io.Find_row_number_of_last_row_containing_cell(
                 sheet_name,
-                Dividers.Divider_text);
+                Dividers.Divider_text,
+                new List<int> {2});
         }
 
         public void Add_unreconciled_rows_to_csv_file<TRecordType>(string sheet_name, ICSVFile<TRecordType> csv_file) where TRecordType : ICSVRecord, new()
@@ -82,9 +83,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             where TRecordType : ICSVRecord, new()
         {
             int first_row_number = _spreadsheet_io
-                                     .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.Start_divider) + 1;
+                                     .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.Start_divider, new List<int> { 2 }) + 1;
             int last_row_number = _spreadsheet_io
-                                    .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.End_divider) - 1;
+                                    .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.End_divider, new List<int> { 2 }) - 1;
 
             return _spreadsheet_io.Get_rows_as_records<TRecordType>(
                 budget_item_list_data.Sheet_name,
@@ -99,7 +100,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             const int dateColumn = 1;
             const int amountColumn = 4;
             var sheet_name = PocketMoneySheetNames.Second_child;
-            int row = _spreadsheet_io.Find_row_number_of_last_row_containing_cell(sheet_name, short_date_time, dateColumn);
+            int row = _spreadsheet_io.Find_row_number_of_last_row_containing_cell(sheet_name, short_date_time, new List<int> { dateColumn });
 
             return _spreadsheet_io.Get_amount(sheet_name, row, amountColumn);
         }
@@ -183,7 +184,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             var row_number_of_last_relevant_payment = _spreadsheet_io.Find_row_number_of_last_row_containing_cell(
                 MainSheetNames.Bank_out,
                 description,
-                BankRecord.DescriptionIndex + 1);
+                new List<int> { ReconConsts.DescriptionColumn });
+                //new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn });
             var bank_out_row = _spreadsheet_io.Read_specified_row(
                 MainSheetNames.Bank_out,
                 row_number_of_last_relevant_payment);
@@ -203,7 +205,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             var row_number_of_budget_item = _spreadsheet_io.Find_row_number_of_last_row_containing_cell(
                 MainSheetNames.Budget_out,
                 budget_item_code,
-                budget_out_code_column);
+                new List<int> { budget_out_code_column });
             var budget_item_row = _spreadsheet_io.Read_specified_row(
                 MainSheetNames.Budget_out,
                 row_number_of_budget_item,

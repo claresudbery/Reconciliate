@@ -130,7 +130,7 @@ namespace ExcelIntegrationTests
         public void Can_find_row_number_of_last_row_containing_cell()
         {
             // Act
-            var result = _excelSpreadsheet.Find_row_number_of_last_row_containing_cell(TestSheetNames.Cred_card, "pintipoplication", 4);
+            var result = _excelSpreadsheet.Find_row_number_of_last_row_containing_cell(TestSheetNames.Cred_card, "pintipoplication", new List<int> { 4 });
 
             // Assert
             Assert.AreEqual(11, result);
@@ -150,7 +150,8 @@ namespace ExcelIntegrationTests
             {
                 _excelSpreadsheet.Find_row_number_of_last_row_containing_cell(
                     worksheet_name,
-                    Dividers.Divider_text);
+                    Dividers.Divider_text,
+                    new List<int> { 2 });
             }
             catch (Exception e)
             {
@@ -179,7 +180,8 @@ namespace ExcelIntegrationTests
             {
                 _excelSpreadsheet.Find_row_number_of_last_row_containing_cell(
                     worksheet_name,
-                    Dividers.Divider_text);
+                    Dividers.Divider_text,
+                    new List<int> { 2 });
             }
             catch (Exception e)
             {

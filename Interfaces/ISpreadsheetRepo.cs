@@ -15,7 +15,7 @@ namespace Interfaces
         int Find_row_number_of_last_row_containing_cell(
             string sheet_name,
             string target_cell_text,
-            int expected_column_number = 2);
+            List<int> expected_column_numbers);
         int Find_row_number_of_last_row_with_cell_containing_text(
             string sheet_name,
             string target_sub_text,

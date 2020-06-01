@@ -103,16 +103,19 @@ namespace ExcelLibrary
 
         public int Find_row_number_of_last_row_containing_cell(
             string sheet_name, 
-            string target_cell_text, 
-            int expected_column_number = 2)
+            string target_cell_text,
+            List<int> expected_column_numbers)
         {
             return Inner_spreadsheet.Find_row_number_of_last_row_containing_cell(
                 sheet_name,
                 target_cell_text,
-                expected_column_number);
+                expected_column_numbers);
         }
 
-        public int Find_row_number_of_last_row_with_cell_containing_text(string sheet_name, string target_sub_text, List<int> expected_column_numbers)
+        public int Find_row_number_of_last_row_with_cell_containing_text(
+            string sheet_name, 
+            string target_sub_text, 
+            List<int> expected_column_numbers)
         {
             return Inner_spreadsheet.Find_row_number_of_last_row_with_cell_containing_text(
                 sheet_name,
@@ -423,7 +426,7 @@ namespace ExcelLibrary
             public int Find_row_number_of_last_row_containing_cell(
                 string sheet_name,
                 string target_cell_text,
-                int expected_column_number = 2)
+                List<int> expected_column_numbers)
             {
                 Open_sheet(sheet_name);
                 Range cell_containing_last_target_text = Find_last_cell_containing_text(target_cell_text);
@@ -433,7 +436,7 @@ namespace ExcelLibrary
                     throw new Exception(String.Format(ReconConsts.MissingCodeInWorksheet, target_cell_text,
                         _current_worksheet.Name));
                 }
-                if (cell_containing_last_target_text.Column != expected_column_number)
+                if (!expected_column_numbers.Contains(cell_containing_last_target_text.Column))
                 {
                     throw new Exception(String.Format(ReconConsts.CodeInWrongPlace, target_cell_text,
                         _current_worksheet.Name));
@@ -579,7 +582,7 @@ namespace ExcelLibrary
             public double Get_amount(string sheet_name, string amount_code, int amount_column)
             {
                 const int codeColumn = 1;
-                int row = Find_row_number_of_last_row_containing_cell(sheet_name, amount_code, codeColumn);
+                int row = Find_row_number_of_last_row_containing_cell(sheet_name, amount_code, new List<int> { codeColumn });
 
                 var excel_cell = Read_specified_cell(sheet_name, row, amount_column);
 
@@ -615,7 +618,7 @@ namespace ExcelLibrary
 
             public void Update_amount(string sheet_name, string amount_code, double new_amount, int amount_column, int code_column = 1)
             {
-                int row = Find_row_number_of_last_row_containing_cell(sheet_name, amount_code, code_column);
+                int row = Find_row_number_of_last_row_containing_cell(sheet_name, amount_code, new List<int> { code_column });
                 Update_amount(sheet_name, row, amount_column, new_amount);
             }
 
@@ -628,7 +631,7 @@ namespace ExcelLibrary
                 int text_column,
                 int code_column = 1)
             {
-                int row = Find_row_number_of_last_row_containing_cell(sheet_name, amount_code, code_column);
+                int row = Find_row_number_of_last_row_containing_cell(sheet_name, amount_code, new List<int> { code_column });
 
                 Open_sheet(sheet_name);
                 _current_worksheet.Cells[row, amount_column] = new_amount;
