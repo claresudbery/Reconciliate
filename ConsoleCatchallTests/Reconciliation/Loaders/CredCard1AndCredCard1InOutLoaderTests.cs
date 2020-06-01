@@ -75,14 +75,14 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         }
 
         [Test]
-        public void M_MergeBespokeDataWithPendingFile_WillAddMostRecentCredCard1DirectDebits()
+        public void M_MergeBespokeDataWithPendingFile_WillAddMostRecentCredCard1DirectDebitsAsNegative()
         {
             // Arrange
             TestHelper.Set_correct_date_formatting();
             var mock_input_output = new Mock<IInputOutput>();
             var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
-            double expected_amount1 = 1234.55;
-            double expected_amount2 = 5673.99;
+            double entered_amount1 = 1234.55;
+            double entered_amount2 = 5673.99;
             DateTime last_direct_debit_date = new DateTime(2018, 12, 17);
             var next_direct_debit_date01 = last_direct_debit_date.AddMonths(1);
             var next_direct_debit_date02 = last_direct_debit_date.AddMonths(2);
@@ -90,8 +90,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 ReconConsts.Cred_card1_name,
                 ReconConsts.Cred_card1_dd_description,
                 last_direct_debit_date,
-                expected_amount1,
-                expected_amount2,
+                entered_amount1,
+                entered_amount2,
                 mock_input_output,
                 mock_spreadsheet_repo, 1);
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
@@ -111,6 +111,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 loading_info);
 
             // Assert
+            double expected_amount1 = entered_amount1 * -1;
+            double expected_amount2 = entered_amount2 * -1;
             Assert.AreEqual(2, pending_records.Count);
             Assert_direct_debit_details_are_correct(pending_records[0], next_direct_debit_date01, expected_amount1, ReconConsts.Cred_card1_regular_pymt_description);
             Assert_direct_debit_details_are_correct(pending_records[1], next_direct_debit_date02, expected_amount2, ReconConsts.Cred_card1_regular_pymt_description);

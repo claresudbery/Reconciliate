@@ -74,6 +74,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             {
                 if (double.TryParse(input, out new_balance))
                 {
+                    new_balance = new_balance * -1;
                     pending_file.Records.Add(new CredCard1InOutRecord
                     {
                         Date = next_date,
