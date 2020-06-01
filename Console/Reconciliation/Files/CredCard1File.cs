@@ -22,7 +22,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
 
         public void Refresh_file_contents()
         {
-            File.Swap_signs_of_all_amounts();
         }
     }
 }

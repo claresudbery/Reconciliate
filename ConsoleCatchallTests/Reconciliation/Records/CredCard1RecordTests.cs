@@ -64,8 +64,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             // Arrange
             var cred_card1_record = new CredCard1Record();
             var expected_amount = -1.94;
-            var csv_amount = expected_amount * -1;
-            string csv_line = $"19/10/2018,23/11/2018,11112222,SQ *HAPPY BOOK STORE,{csv_amount},";
+            string csv_line = $"19/10/2018,23/11/2018,11112222,SQ *HAPPY BOOK STORE,{expected_amount},";
 
             // Act 
             cred_card1_record.Load(csv_line);
@@ -80,8 +79,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             // Arrange
             var cred_card1_record = new CredCard1Record();
             var expected_amount = -1.94;
-            var csv_amount = expected_amount * -1;
-            string csv_line = $"19/10/2018,23/11/2018,11112222,SQ *HAPPY BOOK STORE   ,{csv_amount},";
+            string csv_line = $"19/10/2018,23/11/2018,11112222,SQ *HAPPY BOOK STORE   ,{expected_amount},";
 
             // Act 
             cred_card1_record.Load(csv_line);
@@ -96,8 +94,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             // Arrange
             var cred_card1_record = new CredCard1Record();
             var expected_amount = 1.94;
-            var input_amount = "£" + expected_amount*-1;
-            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",{0}", input_amount);
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE 8888        ANYWHERE\",{0}", expected_amount);
 
             // Act 
             cred_card1_record.Load(csv_line);
@@ -247,7 +244,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
-            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,ANY STORE,-12.33");
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,ANY STORE,12.33");
             cred_card1_record.Load(csv_line);
             cred_card1_record.Matched = false;
 
@@ -264,9 +261,8 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             // Arrange
             var cred_card1_record = new CredCard1Record();
             double expected_amount = 12.35;
-            double csv_expected_amount = expected_amount * -1;
             string text_containing_commas = "something ,something , something, something else";
-            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,{0},{1}", text_containing_commas, csv_expected_amount);
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,{0},{1}", text_containing_commas, expected_amount);
 
             // Act 
             cred_card1_record.Load(csv_line);
@@ -281,9 +277,8 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             // Arrange
             var cred_card1_record = new CredCard1Record();
             double expected_amount = 12.35;
-            double csv_expected_amount = expected_amount * -1;
             string text_containing_commas = "something, something, something else";
-            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,{0},{1}", text_containing_commas, csv_expected_amount);
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,{0},{1}", text_containing_commas, expected_amount);
 
             // Act 
             cred_card1_record.Load(csv_line);
@@ -298,9 +293,8 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             // Arrange
             var cred_card1_record = new CredCard1Record();
             double expected_amount = 12.35;
-            double csv_expected_amount = expected_amount * -1;
             string text_containing_commas = "something ,something ,something else";
-            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,{0},{1}", text_containing_commas, csv_expected_amount);
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,{0},{1}", text_containing_commas, expected_amount);
 
             // Act 
             cred_card1_record.Load(csv_line);
@@ -340,7 +334,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             string constructed_csv_line = cred_card1_record.To_csv();
 
             // Assert
-            var expected_csv_line = String.Format("17/02/2017,-£12.33,{0}", description_encased_in_one_set_of_quotes);
+            var expected_csv_line = String.Format("17/02/2017,£12.33,{0}", description_encased_in_one_set_of_quotes);
             Assert.AreEqual(expected_csv_line, constructed_csv_line);
         }
 
@@ -350,9 +344,8 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             // Arrange
             var cred_card1_record = new CredCard1Record();
             var amount = 1234.55;
-            double csv_amount = amount * -1;
             var amount_containing_comma = "£1,234.55";
-            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,ANY STORE,{0}", csv_amount);
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,ANY STORE,{0}", amount);
             cred_card1_record.Load(csv_line);
 
             // Act 
@@ -369,9 +362,8 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             // Arrange
             var cred_card1_record = new CredCard1Record();
             var amount = "123.55";
-            string csv_amount = $"-{amount}";
             var amount_with_pound_sign = "£" + amount;
-            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,ANY STORE,{0}", csv_amount);
+            string csv_line = String.Format("17/02/2017,23/11/2018,22223333,ANY STORE,{0}", amount);
             cred_card1_record.Load(csv_line);
 
             // Act 
@@ -497,6 +489,23 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             Assert.AreEqual(expected_reference, cred_card1_record.Reference);
             Assert.AreEqual(expected_description, cred_card1_record.Description);
             Assert.AreEqual(expected_amount, cred_card1_record.Amount);
+        }
+
+        [Test]
+        public void Amounts_will_come_in_positive_and_stay_positive()
+        {
+            // Arrange
+            var cred_card1_record = new CredCard1Record();
+            var expectedAmount = 12.33;
+            string csv_line = String.Format($"17/02/2017,23/11/2018,22223333,ANY STORE,{expectedAmount}");
+            cred_card1_record.Load(csv_line);
+            cred_card1_record.Matched = false;
+
+            // Act 
+            string constructed_csv_line = cred_card1_record.To_csv();
+
+            // Assert
+            Assert.AreEqual(expectedAmount, cred_card1_record.Amount);
         }
     }
 }

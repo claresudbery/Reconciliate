@@ -265,7 +265,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             string csv_line = String.Format("19/12/2016^£12.34^^Bantams^£33.44^");
             cred_card1_in_out_record.Load(csv_line);
             cred_card1_in_out_record.Matched = false;
-            string matched_record_csv_line = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE\",-12.33");
+            string matched_record_csv_line = String.Format("17/02/2017,23/11/2018,22223333,\"ANY STORE\",12.33");
             var matched_record = new CredCard1Record();
             matched_record.Load(matched_record_csv_line);
             cred_card1_in_out_record.Match = matched_record;

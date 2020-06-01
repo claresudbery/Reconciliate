@@ -62,7 +62,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             Amount = Convert.ToDouble(simple_amount != "" && simple_amount.Is_numeric()
                 ? simple_amount
                 : "0");
-            Amount = Amount * -1;
         }
 
         public string To_csv(bool format_currency = true)

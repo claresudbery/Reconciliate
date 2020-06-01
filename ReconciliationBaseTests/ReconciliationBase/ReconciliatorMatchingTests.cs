@@ -172,7 +172,6 @@ namespace ReconciliationBaseTests.ReconciliationBase
             // Arrange
             _credCard1InOutFile.Reload();
             _credCard1File.Reload();
-            _credCard1File.Filter_for_negative_records_only();
             var reconciliator = new Reconciliator<CredCard1Record, CredCard1InOutRecord>(_credCard1File, _credCard1InOutFile);
             reconciliator.Find_reconciliation_matches_for_next_third_party_record();
 
