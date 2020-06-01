@@ -84,7 +84,6 @@
     <Compile Include="Reconciliation\Records\ExpectedIncomeRecordTests.cs" />
     <Compile Include="Reconciliation\Records\ConsoleLineTests.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetFactoryTests.cs" />
-    <Compile Include="Reconciliation\Files\CredCard1FileTests.cs" />
     <Compile Include="Reconciliation\Files\ActualBankInFileTests.cs" />
     <Compile Include="Reconciliation\Loaders\FileLoaderTests.cs" />
     <Compile Include="Reconciliation\Loaders\FileLoaderTestsSelfShunt.cs" />

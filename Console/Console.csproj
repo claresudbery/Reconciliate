@@ -49,7 +49,6 @@
     <Compile Include="Reconciliation\Matchers\CredCard2AndCredCard2InOutMatcher.cs" />
     <Compile Include="Reconciliation\Loaders\FileLoader.cs" />
     <Compile Include="Reconciliation\Files\GenericFile.cs" />
-    <Compile Include="Reconciliation\Files\CredCard1File.cs" />
     <Compile Include="Reconciliation\Files\ActualBankInFile.cs" />
     <Compile Include="Reconciliation\Loaders\CredCard2AndCredCard2InOutLoader.cs" />
     <Compile Include="Reconciliation\Loaders\CredCard1AndCredCard1InOutLoader.cs" />

@@ -42,7 +42,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         public IDataFile<CredCard1Record> Create_new_third_party_file(IFileIO<CredCard1Record> third_party_file_io)
         {
             var csv_file = new CSVFile<CredCard1Record>(third_party_file_io);
-            return new CredCard1File(csv_file);
+            return new GenericFile<CredCard1Record>(csv_file);
         }
 
         public IDataFile<CredCard1InOutRecord> Create_new_owned_file(IFileIO<CredCard1InOutRecord> owned_file_io)
