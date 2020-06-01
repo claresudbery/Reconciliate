@@ -184,7 +184,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             var row_number_of_last_relevant_payment = _spreadsheet_io.Find_row_number_of_last_row_containing_cell(
                 MainSheetNames.Bank_out,
                 description,
-                new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn });
+                new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn },
+                false);
             var bank_out_row = _spreadsheet_io.Read_specified_row(
                 MainSheetNames.Bank_out,
                 row_number_of_last_relevant_payment);

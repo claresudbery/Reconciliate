@@ -104,12 +104,14 @@ namespace ExcelLibrary
         public int Find_row_number_of_last_row_containing_cell(
             string sheet_name, 
             string target_cell_text,
-            List<int> expected_column_numbers)
+            List<int> expected_column_numbers,
+            bool exact_match = true)
         {
             return Inner_spreadsheet.Find_row_number_of_last_row_containing_cell(
                 sheet_name,
                 target_cell_text,
-                expected_column_numbers);
+                expected_column_numbers,
+                exact_match);
         }
 
         public int Find_row_number_of_last_row_with_cell_containing_text(
@@ -426,10 +428,11 @@ namespace ExcelLibrary
             public int Find_row_number_of_last_row_containing_cell(
                 string sheet_name,
                 string target_cell_text,
-                List<int> expected_column_numbers)
+                List<int> expected_column_numbers,
+                bool exact_match = true)
             {
                 Open_sheet(sheet_name);
-                Range cell_containing_last_target_text = Find_last_cell_containing_text(target_cell_text);
+                Range cell_containing_last_target_text = Find_last_cell_containing_text(target_cell_text, exact_match);
 
                 if (cell_containing_last_target_text == null)
                 {
