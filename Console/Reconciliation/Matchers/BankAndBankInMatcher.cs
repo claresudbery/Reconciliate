@@ -251,5 +251,72 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                 result.Add(new_match);
             }
         }
+
+        private IEnumerable<MatchList> Find_match_lists(double target_amount, IEnumerable<double> candidates)
+        {
+            List<MatchList> results = new List<MatchList>();
+
+            var concrete_candidates = candidates.ToList();
+            concrete_candidates.RemoveAll(x => x > target_amount);
+            double candidate_total = concrete_candidates.Sum();
+
+            if (candidate_total.Equals(target_amount))
+            {
+                results.Add(new MatchList
+                {
+                    TargetAmount = target_amount,
+                    Matches = new List<double>(concrete_candidates)
+                });
+            }
+            else if (candidate_total < target_amount)
+            {
+                // !! We need this to sometimes be an empty list!
+                results.Add(new MatchList
+                {
+                    TargetAmount = target_amount,
+                    Matches = new List<double>(concrete_candidates)
+                });
+            }
+            else
+            {
+                foreach (double candidate in concrete_candidates)
+                {
+                    List<double> new_candidates = new List<double>(concrete_candidates);
+                    new_candidates.Remove(candidate);
+                    double new_target = target_amount - candidate;
+                    IEnumerable<MatchList> new_match_lists = Find_match_lists(new_target, new_candidates);
+                    foreach (MatchList match_list in new_match_lists)
+                    {
+                        var new_result = new MatchList
+                        {
+                            TargetAmount = target_amount,
+                            Matches = match_list.Matches.Concat(new List<double> {candidate}).ToList()
+                        };
+                        if (!results.Any(x => x.Matches.SequenceEqual(new_result.Matches)))
+                        {
+                            results.Add(new_result);
+                        }
+                    }
+                }
+            }
+
+            return results;
+        }
+    }
+
+    class MatchList
+    {
+        public double TargetAmount { get; set; }
+        public List<double> Matches { get; set; }
+
+        public double ActualAmount()
+        {
+            return Matches.Sum();
+        }
+
+        public bool ExactMatch()
+        {
+            return ActualAmount().Equals(TargetAmount);
+        }
     }
 }
