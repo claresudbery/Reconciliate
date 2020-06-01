@@ -198,7 +198,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             _input_output.Output_options(new List<string>
             {
                 "1. Go again! (this means you can match any item, regardless of amount)",
-                "2. Write csv and finish.",
+                "2. Write csv and finish (WARNING: IF YOU DON'T DO THIS, YOU WILL LOSE DATA).",
             });
 
             string input = _input_output.Get_generic_input(ReconConsts.GoAgainFinish);
@@ -207,7 +207,15 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 case "1": Go_again(); break;
                 case "2": Finish(); break;
+                default: CheckExit(); break;
             }
+        }
+
+        private void CheckExit()
+        {
+            // Get_generic_input will throw another exception if they type Exit again.
+            _input_output.Get_input(ReconConsts.CheckExit);
+            Proceed_after_showing_matching_results();
         }
 
         private void Go_again()

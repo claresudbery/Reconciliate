@@ -127,6 +127,7 @@
         public const string DefaultBankOutPendingFileName = "BankOutPending";
 
         public const string GoAgainFinish = "1. GoAgain; 2. Finish";
+        public const string CheckExit = "ARE YOU SURE? None of your data will be saved. Enter Exit if you're sure; anything else if not.";
         public const string EnterNumberOfMatch = "Enter the number of the matching item, or I for ignore, or D for delete.";
         public const string WhetherToDeleteThirdParty = "Delete third party record? Y/N";
         public const string EnterAnyKeyToContinue = "Enter any character to continue, or Exit if you want to abandon ship.";
