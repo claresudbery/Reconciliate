@@ -434,7 +434,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
                     MainSheetNames.Bank_out,
                     mortgage_description,
-                    new List<int> { BankRecord.DescriptionIndex + 1 }))
+                    new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
                 .Returns(expected_bank_out_row_number);
             mock_spreadsheet_repo.Setup(x => x.Read_specified_row(
                     MainSheetNames.Bank_out,
