@@ -114,23 +114,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         {
             if (record_for_matching.Matches[match_index].Actual_records.Count > 1)
             {
-                var expense_amounts_match = record_for_matching.SourceRecord.Main_amount() 
-                                          .Double_equals(record_for_matching.Matches[match_index].Actual_records.Sum(x => x.Main_amount()));
-                var new_match = new TOwnedType
-                {
-                    Date = record_for_matching.SourceRecord.Date,
-                    Description = Create_new_description(record_for_matching.Matches[match_index], expense_amounts_match)
-                };
-                (new_match as BankRecord).Unreconciled_amount = record_for_matching.SourceRecord.Main_amount();
-                (new_match as BankRecord).Type = (record_for_matching.Matches[match_index].Actual_records[0] as BankRecord).Type;
-                foreach (var actual_record in record_for_matching.Matches[match_index].Actual_records)
-                {
-                    _bank_and_bank_in_loader.Update_expected_income_record_when_matched(record_for_matching.SourceRecord, (TOwnedType)actual_record);
-                    owned_file.Remove_record_permanently((TOwnedType)actual_record);
-                }
-                record_for_matching.Matches[match_index].Actual_records.Clear();
-                record_for_matching.Matches[match_index].Actual_records.Add(new_match);
-                owned_file.Add_record_permanently(new_match);
+                Create_new_combined_record(record_for_matching, match_index, owned_file);
             }
             else
             {
@@ -139,6 +123,72 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                     (TOwnedType)record_for_matching.Matches[match_index].Actual_records[0]);
             }
             Match_records(record_for_matching.SourceRecord, record_for_matching.Matches[match_index].Actual_records[0]);
+        }
+
+        public void Create_new_combined_record<TThirdPartyType, TOwnedType>(
+                RecordForMatching<TThirdPartyType> record_for_matching,
+                int match_index,
+                ICSVFile<TOwnedType> owned_file)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            var sum_of_all_matches =
+                record_for_matching.Matches[match_index].Actual_records.Sum(x => x.Main_amount());
+            var expense_amounts_match = record_for_matching.SourceRecord.Main_amount()
+                .Double_equals(sum_of_all_matches);
+
+            TOwnedType new_match = New_combined_record<TThirdPartyType, TOwnedType>(record_for_matching, match_index, expense_amounts_match);
+            Update_expected_income_and_owned_files<TThirdPartyType, TOwnedType>(
+                record_for_matching, 
+                match_index, 
+                expense_amounts_match,
+                sum_of_all_matches,
+                owned_file);
+
+            record_for_matching.Matches[match_index].Actual_records.Clear();
+            record_for_matching.Matches[match_index].Actual_records.Add(new_match);
+            owned_file.Add_record_permanently(new_match);
+        }
+
+        private void Update_expected_income_and_owned_files<TThirdPartyType, TOwnedType>(
+                RecordForMatching<TThirdPartyType> record_for_matching,
+                int match_index,
+                bool expense_amounts_match,
+                double sum_of_all_matches,
+                ICSVFile<TOwnedType> owned_file)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            foreach (var actual_record in record_for_matching.Matches[match_index].Actual_records)
+            {
+                _bank_and_bank_in_loader.Update_expected_income_record_when_matched(record_for_matching.SourceRecord, (TOwnedType)actual_record);
+                owned_file.Remove_record_permanently((TOwnedType)actual_record);
+            }
+
+            if (!expense_amounts_match)
+            {
+                var missing_balance = record_for_matching.SourceRecord.Main_amount() - sum_of_all_matches;
+                _bank_and_bank_in_loader.Create_new_expenses_record_to_match_balance(
+                    record_for_matching.SourceRecord,
+                    missing_balance);
+            }
+        }
+
+        private TOwnedType New_combined_record<TThirdPartyType, TOwnedType>(
+                RecordForMatching<TThirdPartyType> record_for_matching,
+                int match_index,
+                bool expense_amounts_match)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            var new_match = new TOwnedType
+            {
+                Date = record_for_matching.SourceRecord.Date,
+                Description = Create_new_description(record_for_matching.Matches[match_index], expense_amounts_match)
+            };
+            (new_match as BankRecord).Unreconciled_amount = record_for_matching.SourceRecord.Main_amount();
+            (new_match as BankRecord).Type = (record_for_matching.Matches[match_index].Actual_records[0] as BankRecord).Type;
+            return new_match;
         }
 
         private void Match_records<TThirdPartyType>(TThirdPartyType source, ICSVRecord match) where TThirdPartyType : ICSVRecord, new()

@@ -777,6 +777,52 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
+        public void M_WhenMatchingSpecifiedRecords_AndMultipleMatchesAreChosen_AndSummedAmountsMatch_WillNOTCreateNewExpectedIncomeRecord()
+        {
+            // Arrange
+            var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
+            var mock_owned_file = new Mock<ICSVFile<BankRecord>>();
+            mock_owned_file.Setup(x => x.Records).Returns(new List<BankRecord>());
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
+            var desc0 = "Source 01";
+            var source_record = new ActualBankRecord
+            {
+                Date = DateTime.Today.AddDays(10),
+                Amount = 30,
+                Description = desc0
+            };
+            var desc1 = "Match 01";
+            var desc2 = "Match 02";
+            var amount1 = source_record.Main_amount() / 3;
+            var amount2 = source_record.Main_amount() - amount1;
+            var date1 = DateTime.Today;
+            var date2 = DateTime.Today.AddDays(1);
+            var potential_matches = new List<IPotentialMatch>
+            {
+                new PotentialMatch
+                {
+                    Actual_records = new List<ICSVRecord>
+                    {
+                        new BankRecord {Description = desc1, Unreconciled_amount = amount1, Date = date1},
+                        new BankRecord {Description = desc2, Unreconciled_amount = amount2, Date = date2}
+                    }
+                }
+            };
+            var index = 0;
+            var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
+            Assert.AreEqual(0, matcher.MatchedExpectedIncomeRecords.Count);
+
+            // Act
+            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+
+            // Assert
+            mock_bank_and_bank_in_loader.Verify(x => x.Create_new_expenses_record_to_match_balance(
+                It.IsAny<ICSVRecord>(),
+                It.IsAny<double>()),
+                Times.Never);
+        }
+
+        [Test]
         public void M_WhenMatchingSpecifiedRecords_WillUpdateExpectedIncomeRecordForSingleMatches()
         {
             // Arrange

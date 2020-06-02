@@ -45,6 +45,19 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
 
         public void Create_new_expenses_record_to_match_balance(ICSVRecord source_record, double balance)
         {
+            if (File.Records != null)
+            {
+                File.Records.Add( new ExpectedIncomeRecord
+                {
+                    Description = ReconConsts.UnknownExpense,
+                    Unreconciled_amount = balance,
+                    Match = source_record,
+                    Matched = true,
+                    Date = source_record.Date,
+                    Date_paid = source_record.Date,
+                    Total_paid = source_record.Main_amount()
+                });
+            }
         }
 
         public void Update_expected_income_record_when_matched(ICSVRecord source_record, ICSVRecord match)
