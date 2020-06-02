@@ -9,7 +9,9 @@ namespace ExcelIntegrationTests.TestUtils
         public static string Bank => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Bank)}");
         public static string Cred_card1 => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Cred_card1)}");
         public static string Cred_card => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Cred_card)}");
+        public static string Expected_in => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Expected_in)}");
         public static string Expected_out => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Expected_out)}");
+        public static string Budget_in => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Budget_in)}");
         public static string Budget_out => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Budget_out)}");
         public static string Test_record => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Test_record)}");
         public static string Bad_divider => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Bad_divider)}");

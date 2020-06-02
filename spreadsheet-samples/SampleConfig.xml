@@ -161,7 +161,9 @@
     <TestSheetNames.Bank>Bank</TestSheetNames.Bank>
     <TestSheetNames.Actual_bank>ActualBank</TestSheetNames.Actual_bank>
     <TestSheetNames.Bad_divider>BadDivider</TestSheetNames.Bad_divider>
+    <TestSheetNames.Budget_in>Budget In</TestSheetNames.Budget_in>
     <TestSheetNames.Budget_out>Budget Out</TestSheetNames.Budget_out>
+    <TestSheetNames.Expected_in>Expected In</TestSheetNames.Expected_in>
     <TestSheetNames.Expected_out>Expected Out</TestSheetNames.Expected_out>
 	<!--**************-->
 	<!--MainSheetNames-->
