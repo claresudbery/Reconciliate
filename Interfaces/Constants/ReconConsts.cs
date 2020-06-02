@@ -143,6 +143,7 @@
         public const string FinalMatches = "Final matches";
         public const string OriginalAmountWas = " !! original amount was ";
         public const string UnmatchedFromThirdParty = "!! Unmatched from 3rd party: ";
+        public const string ExpensesDontAddUp = " !! Expenses don't add up.";
 
         public const string BankInDescriptor = "Bank In";
         public const string BankOutDescriptor = "Bank Out";

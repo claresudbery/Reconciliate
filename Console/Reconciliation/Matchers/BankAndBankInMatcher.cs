@@ -114,12 +114,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         {
             if (record_for_matching.Matches[match_index].Actual_records.Count > 1)
             {
+                var expense_amounts_match = record_for_matching.SourceRecord.Main_amount() 
+                                          .Double_equals(record_for_matching.Matches[match_index].Actual_records.Sum(x => x.Main_amount()));
                 var new_match = new TOwnedType
                 {
                     Date = record_for_matching.SourceRecord.Date,
-                    Description = Create_new_description(record_for_matching.Matches[match_index])
+                    Description = Create_new_description(record_for_matching.Matches[match_index], expense_amounts_match)
                 };
-                var sum_of_matched_records = record_for_matching.Matches[match_index].Actual_records.Sum(x => x.Main_amount());
                 (new_match as BankRecord).Unreconciled_amount = record_for_matching.SourceRecord.Main_amount();
                 (new_match as BankRecord).Type = (record_for_matching.Matches[match_index].Actual_records[0] as BankRecord).Type;
                 foreach (var actual_record in record_for_matching.Matches[match_index].Actual_records)
@@ -148,14 +149,19 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             (source as ICSVRecord).Match = match;
         }
 
-        private string Create_new_description(IPotentialMatch potential_match)
+        private string Create_new_description(IPotentialMatch potential_match, bool expense_amounts_match)
         {
             var combined_amounts = potential_match.Actual_records[0].Main_amount().To_csv_string(true);
             for (int count = 1; count < potential_match.Actual_records.Count; count++)
             {
                 combined_amounts += $", {potential_match.Actual_records[count].Main_amount().To_csv_string(true)}";
             }
-            return $"{ReconConsts.SeveralExpenses} ({combined_amounts})";
+
+            var extra_text = expense_amounts_match
+                ? ""
+                : ReconConsts.ExpensesDontAddUp;
+
+            return $"{ReconConsts.SeveralExpenses} ({combined_amounts}){extra_text}";
         }
 
         public IEnumerable<IPotentialMatch> Find_expense_matches<TThirdPartyType, TOwnedType>

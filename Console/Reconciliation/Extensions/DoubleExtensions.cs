@@ -28,7 +28,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Extensions
             return result;
         }
 
-        public static bool Equals(this double source, double other_amount)
+        public static bool Double_equals(this double source, double other_amount)
         {
             return Math.Abs(source - other_amount) < 0.0001;
         }

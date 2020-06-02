@@ -349,8 +349,8 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                     Actual_records = new List<ICSVRecord>
                     {
                         new BankRecord {Description = "Match 01", Unreconciled_amount = 20.22},
-                        new BankRecord {Description = "Match 02", Unreconciled_amount = 30.33},
-                        new BankRecord {Description = "Match 02", Unreconciled_amount = 40.44}
+                        new BankRecord {Description = "Match 02", Unreconciled_amount = 10.33},
+                        new BankRecord {Description = "Match 02", Unreconciled_amount = 4.01}
                     }
                 }
             };
@@ -441,6 +441,45 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
 
             // Assert
             Assert.AreEqual(record_for_matching.SourceRecord.Main_amount(), record_for_matching.Matches[index].Actual_records[0].Main_amount());
+        }
+
+        [Test]
+        public void M_WhenMatchingSpecifiedRecords_AndMultipleMatchesAreChosen_AndSummedAmountsDontMatch_WillMarkDiscrepancy()
+        {
+            // Arrange
+            var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
+            var mock_owned_file = new Mock<ICSVFile<BankRecord>>();
+            mock_owned_file.Setup(x => x.Records).Returns(new List<BankRecord>());
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
+            var source_record = new ActualBankRecord
+            {
+                Date = DateTime.Today,
+                Amount = 34.56,
+                Match = null,
+                Matched = false
+            };
+            var potential_matches = new List<IPotentialMatch>
+            {
+                new PotentialMatch
+                {
+                    Actual_records = new List<ICSVRecord>
+                    {
+                        new BankRecord {Description = "Match 01", Unreconciled_amount = 20.22},
+                        new BankRecord {Description = "Match 02", Unreconciled_amount = 30.33},
+                        new BankRecord {Description = "Match 02", Unreconciled_amount = 40.44}
+                    }
+                }
+            };
+            var index = 0;
+            var matches = potential_matches[index].Actual_records;
+            var expected_amount = matches[0].Main_amount() + matches[1].Main_amount() + matches[2].Main_amount();
+            var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
+
+            // Act
+            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+
+            // Assert 
+            Assert.IsTrue(record_for_matching.Matches[index].Actual_records[0].Description.Contains(ReconConsts.ExpensesDontAddUp));
         }
 
         [Test]
