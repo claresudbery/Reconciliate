@@ -145,7 +145,7 @@
 
         public const string BankInDescriptor = "Bank In";
         public const string BankOutDescriptor = "Bank Out";
-        public const string SeveralExpenses = "Several expenses";
+        public const string SeveralExpenses = "Expenses - see Expected In";
 
         public const int PartialDateMatchThreshold = 3;
         public const int PartialAmountMatchThreshold = 2;
