@@ -383,7 +383,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                     unmatched_source.Date,
                     unmatched_source.Main_amount(),
                     unmatched_source.Transaction_type(),
-                    "!! Unmatched from 3rd party: " + unmatched_source.Description,
+                    ReconConsts.UnmatchedFromThirdParty + unmatched_source.Description,
                     unmatched_source.Extra_info(),
                     unmatched_source);
                 Owned_file.Records.Add(new_owned_record);
