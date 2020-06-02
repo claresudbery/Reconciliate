@@ -1211,9 +1211,9 @@ namespace ReconciliationBaseTests.ReconciliationBase
             reconciliator.Finish("testing");
 
             // Assert
-            Assert.IsTrue(reconciliator.Owned_file_records()[original_num_owned_records].Description.StartsWith("!! Unmatched from 3rd party: "));
-            Assert.IsTrue(reconciliator.Owned_file_records()[original_num_owned_records + 1].Description.StartsWith("!! Unmatched from 3rd party: "));
-            Assert.IsTrue(reconciliator.Owned_file_records()[original_num_owned_records + 2].Description.StartsWith("!! Unmatched from 3rd party: "));
+            Assert.IsTrue(reconciliator.Owned_file_records()[original_num_owned_records].Description.StartsWith(ReconConsts.UnmatchedFromThirdParty));
+            Assert.IsTrue(reconciliator.Owned_file_records()[original_num_owned_records + 1].Description.StartsWith(ReconConsts.UnmatchedFromThirdParty));
+            Assert.IsTrue(reconciliator.Owned_file_records()[original_num_owned_records + 2].Description.StartsWith(ReconConsts.UnmatchedFromThirdParty));
         }
 
         [Test]
