@@ -119,7 +119,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                     Date = record_for_matching.SourceRecord.Date,
                     Description = Create_new_description(record_for_matching.Matches[match_index])
                 };
-                (new_match as BankRecord).Unreconciled_amount = record_for_matching.Matches[match_index].Actual_records.Sum(x => x.Main_amount());
+                var sum_of_matched_records = record_for_matching.Matches[match_index].Actual_records.Sum(x => x.Main_amount());
+                (new_match as BankRecord).Unreconciled_amount = record_for_matching.SourceRecord.Main_amount();
                 (new_match as BankRecord).Type = (record_for_matching.Matches[match_index].Actual_records[0] as BankRecord).Type;
                 foreach (var actual_record in record_for_matching.Matches[match_index].Actual_records)
                 {

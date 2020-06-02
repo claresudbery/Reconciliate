@@ -405,7 +405,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
-        public void M_WhenMatchingSpecifiedRecords_AndMultipleMatchesExist_WillCreateNewRecordWithAllAmountsAddedTogether()
+        public void M_WhenMatchingSpecifiedRecords_AndMultipleMatchesAreChosen_WillCreateNewRecordWithAmountToMatchSource()
         {
             // Arrange
             var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
@@ -440,7 +440,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert
-            Assert.AreEqual(expected_amount, record_for_matching.Matches[index].Actual_records[0].Main_amount());
+            Assert.AreEqual(record_for_matching.SourceRecord.Main_amount(), record_for_matching.Matches[index].Actual_records[0].Main_amount());
         }
 
         [Test]
