@@ -82,6 +82,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _expected_income_file.Update_expected_income_record_when_matched(source_record, matched_record);
         }
 
+        public void Create_new_expenses_record_to_match_balance(ICSVRecord source_record, double balance)
+        {
+            _expected_income_file.Create_new_expenses_record_to_match_balance(source_record, balance);
+        }
+
         public void Finish()
         {
             _expected_income_file.Finish();

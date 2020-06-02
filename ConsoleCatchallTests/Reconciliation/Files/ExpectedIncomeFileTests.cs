@@ -231,5 +231,36 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             Assert.AreEqual(amount, csv_file.Records[1].Reconciled_amount);
             Assert.AreEqual(desc2, csv_file.Records[1].Description);
         }
+
+        [Test]
+        public void Will_create_new_expenses_record_to_match_balance()
+        {
+            // Arrange
+            var income_file_io = new Mock<IFileIO<ExpectedIncomeRecord>>();
+            var income_records = new List<ExpectedIncomeRecord>();
+            income_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(income_records);
+            var income_file = new CSVFile<ExpectedIncomeRecord>(income_file_io.Object);
+            income_file.Load();
+            var expected_income_file = new ExpectedIncomeFile(income_file);
+            var actual_bank_record = new ActualBankRecord
+            {
+                Date = DateTime.Today,
+                Amount = 50
+            };
+            double balance = actual_bank_record.Amount - 10;
+
+            // Act
+            expected_income_file.Create_new_expenses_record_to_match_balance(actual_bank_record, balance);
+
+            // Assert
+            Assert.AreEqual(1, income_records.Count);
+            Assert.AreEqual(ReconConsts.UnknownExpense, income_records[0].Description);
+            Assert.AreEqual(balance, income_records[0].Unreconciled_amount);
+            Assert.AreEqual(actual_bank_record, income_records[0].Match);
+            Assert.AreEqual(true, income_records[0].Matched);
+            Assert.AreEqual(actual_bank_record.Date, income_records[0].Date);
+            Assert.AreEqual(actual_bank_record.Date, income_records[0].Date_paid);
+            Assert.AreEqual(actual_bank_record.Amount, income_records[0].Total_paid);
+        }
     }
 }
