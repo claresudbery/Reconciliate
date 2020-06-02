@@ -223,9 +223,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                 });
             mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<CredCard2InOutRecord> {
-                    new CredCard2InOutRecord {Description = Codes.Amazons},
-                    new CredCard2InOutRecord {Description = Codes.Amazons},
-                    new CredCard2InOutRecord {Description = Codes.Amazons},
+                    new CredCard2InOutRecord {Description = ReconConsts.Amazon_description},
+                    new CredCard2InOutRecord {Description = ReconConsts.Amazon_description},
+                    new CredCard2InOutRecord {Description = ReconConsts.Amazon_description},
                     new CredCard2InOutRecord {Description = "something else"}
                 });
             var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>("Bank In", mock_cred_card2_file_io.Object, mock_bank_file_io.Object);
@@ -239,7 +239,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                 x => x.Description_string == ReconConsts.Amazon_description);
             Assert.AreEqual(1, amazon_description_lines.Count(), "transaction with Amazon description.");
             var Amazon_code_lines = _output_all_lines_recorded_console_lines.Where(
-                x => x.Description_string == Codes.Amazons);
+                x => x.Description_string == ReconConsts.Amazon_description);
             Assert.AreEqual(3, Amazon_code_lines.Count(), "row with Amazon code.");
 
             // Clean up
