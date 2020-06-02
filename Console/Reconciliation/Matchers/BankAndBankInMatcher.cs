@@ -59,6 +59,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             reconciliation_interface.Do_semi_automatic_matching();
 
             reconciliator.Refresh_files();
+            Remove_expense_rows_that_didnt_get_matched(reconciliator);
             reconciliator.Reset_match_finder();
             reconciliator.Reset_record_matcher();
         }
@@ -87,6 +88,20 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         {
             return (bank_record as BankRecord).Type != Codes.Expenses
                 && !bank_record.Description.Contains(ReconConsts.Employer_expense_description);
+        }
+
+        public void Remove_expense_rows_that_didnt_get_matched<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            reconciliator.Filter_owned_file(Is_unmatched_expense_row);
+        }
+
+        public bool Is_unmatched_expense_row<TOwnedType>(TOwnedType bank_record) where TOwnedType : ICSVRecord, new()
+        {
+            return (bank_record as BankRecord).Type == Codes.Expenses
+                   && (bank_record as BankRecord).Matched == false
+                   && (bank_record as BankRecord).Match == null;
         }
 
         public List<ConsoleLine> Get_all_expense_transactions_from_actual_bank_in<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)

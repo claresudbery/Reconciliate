@@ -112,6 +112,22 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
+        public void M_AfterExpenseMatching_WillRemoveUnmatchedExpensesFromOwnedFile()
+        {
+            // Arrange
+            var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
+            var mock_reconciliator = new Mock<IReconciliator<ActualBankRecord, BankRecord>>();
+            var mock_reconciliation_interface = new Mock<IReconciliationInterface<ActualBankRecord, BankRecord>>();
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
+
+            // Act
+            matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
+
+            // Assert
+            mock_reconciliator.Verify(x => x.Filter_owned_file(matcher.Is_unmatched_expense_row));
+        }
+
+        [Test]
         public void M_WhenExpenseMatchingWillFilterActualBankFileForExpenseTransactionsOnly()
         {
             // Arrange
