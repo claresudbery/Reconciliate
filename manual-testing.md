@@ -4,11 +4,11 @@ If you want to do a quick manual end to end test, there are files in `reconcilia
 
 You'll need to be aware of how your config works. See the config section in [README.md](/README.md).
 
-If you're Clare (and you're not planning an out-of-the-box vanilla test), all the config and other files you need are in the private ReconciliationConfig code base (so you don't need to copy files from `reconciliation-samples/For-debugging` in the step below).
+If you're Clare (and you're not planning an out-of-the-box vanilla test), all the config and other files you need are in the private ReconciliationConfig code base, and you only need to do step 1 below. Don't forget, you probably DON'T want to check the changed spreadsheet back into the config repo!
 
 The quickest way to get up and running for testing purposes is:
 
-1. Copy Config.Xml to C:/Config/Config.Xml (or if you're Clare, copy C:/Config/OutOfTheBoxTestConfig.xml into C:/Config/Config.Xml).
+1. Copy Config.Xml to C:/Config/Config.Xml (or if you're Clare, copy C:/Config/OutOfTheBoxTestConfig.xml into C:/Config/Config.Xml for duplicating out-of-the-box testing, or C:/TestConfig.xml for more realistic test data).
 2. Check paths in SampleConfig.xml: At the time of writing, Test_backup_file_path is set to C:/Temp/ManualTesting/TestSpreadsheetBackups. You either need to create these folders or edit that path value in the xml.
 3. Edit Config.xml so that it contains the path to the repo version of SampleConfig.xml (which is in the spreadsheet-samples folder).
 (If you're on a Mac, it's similar but slightly different - see [README.md](/README.md)).

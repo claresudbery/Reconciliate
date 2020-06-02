@@ -5,6 +5,7 @@ Date, Type, Description, Value, Balance, Account Name, Account Number
 1/6/2020,BAC,"'Bank monthly outgoing transaction 01",-35.00,0.00,"'Envelope","'228822-99933422",
 2/6/2020,BAC,"'Bank monthly incoming transaction 02",15.60,0.00,"'Envelope","'228822-99933422",
 2/6/2020,BAC,"'Bank monthly outgoing transaction 02",-45.00,0.00,"'Envelope","'228822-99933422",
+3/6/2020,BAC,"'ACME LTD",75.00,0.00,"'Envelope","'228822-99933422",
 3/6/2020,BAC,"'Bank monthly incoming transaction 03",54.97,0.00,"'Envelope","'228822-99933422",
 3/6/2020,BAC,"'Bank monthly outgoing transaction 03",-55.00,0.00,"'Envelope","'228822-99933422",
 4/6/2020,BAC,"'Mortgage description",-1000.00,0.00,"'Envelope","'228822-99933422",
@@ -16,3 +17,4 @@ Date, Type, Description, Value, Balance, Account Name, Account Number
 10/6/2020,BAC,"'Cheese",222.00,0.00,"'Envelope","'228822-99933422",
 11/6/2020,BAC,"'Doughnut Pumpernickel",333.00,0.00,"'Envelope","'228822-99933422",
 11/6/2020,BAC,"'BankIn transaction from ActualBank.csv",444.00,0.00,"'Env","'2288",
+13/6/2020,BAC,"'ACME LTD",50.00,0.00,"'Envelope","'228822-99933422",
