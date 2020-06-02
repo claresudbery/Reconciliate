@@ -55,7 +55,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
                     Matched = true,
                     Date = source_record.Date,
                     Date_paid = source_record.Date,
-                    Total_paid = source_record.Main_amount()
+                    Total_paid = source_record.Main_amount(),
+                    Code = Codes.Expenses
                 });
             }
         }

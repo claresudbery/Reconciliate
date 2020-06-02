@@ -261,6 +261,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             Assert.AreEqual(actual_bank_record.Date, expected_income_file.File.Records[0].Date);
             Assert.AreEqual(actual_bank_record.Date, expected_income_file.File.Records[0].Date_paid);
             Assert.AreEqual(actual_bank_record.Amount, expected_income_file.File.Records[0].Total_paid);
+            Assert.AreEqual(Codes.Expenses, expected_income_file.File.Records[0].Code);
         }
     }
 }
