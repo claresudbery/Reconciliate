@@ -35,6 +35,25 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
+            Do_amazon_transaction_matching(reconciliator, reconciliation_interface);
+        }
+
+        private void Do_amazon_transaction_matching<TThirdPartyType, TOwnedType>(
+            IReconciliator<TThirdPartyType, TOwnedType> reconciliator,
+            IReconciliationInterface<TThirdPartyType, TOwnedType> reconciliation_interface)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            Filter_for_all_amazon_transactions_from_cred_card2(reconciliator);
+            Filter_for_all_amazon_transactions_from_cred_card2_in_out(reconciliator);
+            reconciliator.Set_match_finder(Find_Amazon_matches);
+            reconciliator.Set_record_matcher(Match_specified_records);
+
+            reconciliation_interface.Do_semi_automatic_matching();
+
+            reconciliator.Refresh_files();
+            reconciliator.Reset_match_finder();
+            reconciliator.Reset_record_matcher();
         }
 
         public void Finish()
@@ -50,8 +69,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
         public bool Is_not_third_party_amazon_transaction<TThirdPartyType>(TThirdPartyType cred_card2_record) where TThirdPartyType : ICSVRecord, new()
         {
-            return cred_card2_record.Description.Remove_punctuation().ToUpper()
-                   != ReconConsts.Amazon_description;
+            return !cred_card2_record.Description.Remove_punctuation().ToUpper().Contains(ReconConsts.Amazon_description);
         }
 
         public void Filter_for_all_amazon_transactions_from_cred_card2_in_out<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
@@ -63,16 +81,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
         public bool Is_not_owned_amazon_transaction<TOwnedType>(TOwnedType cred_card2_in_out_record) where TOwnedType : ICSVRecord, new()
         {
-            return cred_card2_in_out_record.Description.Remove_punctuation().ToUpper()
-                   != ReconConsts.Amazon_description;
-        }
-
-        public IEnumerable<IPotentialMatch> Find_Amazon_matches<TThirdPartyType, TOwnedType>
-            (TThirdPartyType source_record, ICSVFile<TOwnedType> owned_file)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-            return Debug_find_Amazon_matches(source_record as ActualBankRecord, owned_file as ICSVFile<BankRecord>);
+            return !cred_card2_in_out_record.Description.Remove_punctuation().ToUpper().Contains(ReconConsts.Amazon_description);
         }
 
         public void Match_specified_records<TThirdPartyType, TOwnedType>(
@@ -82,9 +91,82 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
+            if (record_for_matching.Matches[match_index].Actual_records.Count > 1)
+            {
+                Create_new_combined_record(record_for_matching, match_index, owned_file);
+            }
+            Match_records(record_for_matching.SourceRecord, record_for_matching.Matches[match_index].Actual_records[0]);
         }
 
-        private IEnumerable<IPotentialMatch> Debug_find_Amazon_matches(ActualBankRecord source_record, ICSVFile<BankRecord> owned_file)
+        public void Create_new_combined_record<TThirdPartyType, TOwnedType>(
+                RecordForMatching<TThirdPartyType> record_for_matching,
+                int match_index,
+                ICSVFile<TOwnedType> owned_file)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            foreach (var actual_record in record_for_matching.Matches[match_index].Actual_records)
+            {
+                owned_file.Remove_record_permanently((TOwnedType)actual_record);
+            }
+            TOwnedType new_match = New_combined_record<TThirdPartyType, TOwnedType>(record_for_matching, match_index);
+
+            record_for_matching.Matches[match_index].Actual_records.Clear();
+            record_for_matching.Matches[match_index].Actual_records.Add(new_match);
+            owned_file.Add_record_permanently(new_match);
+        }
+
+        private TOwnedType New_combined_record<TThirdPartyType, TOwnedType>(
+                RecordForMatching<TThirdPartyType> record_for_matching,
+                int match_index)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            var sum_of_all_matches = record_for_matching.Matches[match_index].Actual_records.Sum(x => x.Main_amount());
+            var expense_amounts_match = record_for_matching.SourceRecord.Main_amount()
+                .Double_equals(sum_of_all_matches);
+
+            var new_match = new TOwnedType
+            {
+                Date = record_for_matching.SourceRecord.Date,
+                Description = Create_new_description(record_for_matching.Matches[match_index], expense_amounts_match)
+            };
+            (new_match as CredCard2InOutRecord).Unreconciled_amount = record_for_matching.SourceRecord.Main_amount();
+            return new_match;
+        }
+
+        private void Match_records<TThirdPartyType>(TThirdPartyType source, ICSVRecord match) where TThirdPartyType : ICSVRecord, new()
+        {
+            match.Matched = true;
+            (source as ICSVRecord).Matched = true;
+            match.Match = source;
+            (source as ICSVRecord).Match = match;
+        }
+
+        private string Create_new_description(IPotentialMatch potential_match, bool expense_amounts_match)
+        {
+            var combined_amounts = potential_match.Actual_records[0].Main_amount().To_csv_string(true);
+            for (int count = 1; count < potential_match.Actual_records.Count; count++)
+            {
+                combined_amounts += $", {potential_match.Actual_records[count].Main_amount().To_csv_string(true)}";
+            }
+
+            var extra_text = expense_amounts_match
+                ? ""
+                : ReconConsts.AmazonTransactionsDontAddUp;
+
+            return $"{ReconConsts.SeveralAmazonTransactions} ({combined_amounts}){extra_text}";
+        }
+
+        public IEnumerable<IPotentialMatch> Find_Amazon_matches<TThirdPartyType, TOwnedType>
+            (TThirdPartyType source_record, ICSVFile<TOwnedType> owned_file)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            return Debug_find_Amazon_matches(source_record as CredCard2Record, owned_file as ICSVFile<CredCard2InOutRecord>);
+        }
+
+        private IEnumerable<IPotentialMatch> Debug_find_Amazon_matches(CredCard2Record source_record, ICSVFile<CredCard2InOutRecord> owned_file)
         {
             var result = new List<IPotentialMatch>();
             var random_number_generator = new Random();
@@ -97,30 +179,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             return result;
         }
 
-        public IEnumerable<IPotentialMatch> Standby_find_Amazon_matches<TThirdPartyType, TOwnedType>
-            (TThirdPartyType source_record, ICSVFile<TOwnedType> owned_file)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-            var result = new List<PotentialMatch>();
-            if (owned_file.Records[0].Main_amount() == source_record.Main_amount())
-            {
-                var actual_records = new List<ICSVRecord>();
-                actual_records.Add(owned_file.Records[0]);
-                result.Add(new PotentialMatch { Actual_records = actual_records });
-            }
-            return result;
-        }
-
-        public void Debug_preliminary_stuff<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-        }
-
         private static void Add_set_of_overlapping_matches(
             Random random_number_generator,
-            ICSVFile<BankRecord> owned_file,
+            ICSVFile<CredCard2InOutRecord> owned_file,
             List<IPotentialMatch> result,
             int num_matches)
         {

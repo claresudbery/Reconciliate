@@ -62,7 +62,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
-        public void M_WillFilterActualBankFileForAmazonTransactionsOnly()
+        public void M_WillFilterThirdPartyFileForAmazonTransactionsOnly()
         {
             // Arrange
             var mock_cred_card2_file_io = new Mock<IFileIO<CredCard2Record>>();
@@ -208,42 +208,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
 
             // Assert
             mock_reconciliator.Verify(x => x.Reset_record_matcher());
-        }
-
-        [Test]
-        public void M_CanShowFirstAmazonTransactionWithListOfMatches()
-        {
-            // Arrange
-            var mock_cred_card2_file_io = new Mock<IFileIO<CredCard2Record>>();
-            var mock_bank_file_io = new Mock<IFileIO<CredCard2InOutRecord>>();
-            mock_cred_card2_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<CredCard2Record> {
-                    new CredCard2Record {Description = ReconConsts.Amazon_description},
-                    new CredCard2Record {Description = "something else"}
-                });
-            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<CredCard2InOutRecord> {
-                    new CredCard2InOutRecord {Description = ReconConsts.Amazon_description},
-                    new CredCard2InOutRecord {Description = ReconConsts.Amazon_description},
-                    new CredCard2InOutRecord {Description = ReconConsts.Amazon_description},
-                    new CredCard2InOutRecord {Description = "something else"}
-                });
-            var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>("Bank In", mock_cred_card2_file_io.Object, mock_bank_file_io.Object);
-            var matcher = new CredCard2AndCredCard2InOutMatcher(this);
-
-            // Act
-            matcher.Debug_preliminary_stuff(reconciliator);
-
-            // Assert
-            var amazon_description_lines = _output_all_lines_recorded_console_lines.Where(
-                x => x.Description_string == ReconConsts.Amazon_description);
-            Assert.AreEqual(1, amazon_description_lines.Count(), "transaction with Amazon description.");
-            var Amazon_code_lines = _output_all_lines_recorded_console_lines.Where(
-                x => x.Description_string == ReconConsts.Amazon_description);
-            Assert.AreEqual(3, Amazon_code_lines.Count(), "row with Amazon code.");
-
-            // Clean up
-            reconciliator.Refresh_files();
         }
 
         [Test]
@@ -459,7 +423,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert 
-            Assert.IsTrue(record_for_matching.Matches[index].Actual_records[0].Description.Contains(ReconConsts.AmazonsDontAddUp));
+            Assert.IsTrue(record_for_matching.Matches[index].Actual_records[0].Description.Contains(ReconConsts.AmazonTransactionsDontAddUp));
         }
 
         [Test]
@@ -594,8 +558,8 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var bank_records = new List<CredCard2InOutRecord>
             {
                 new CredCard2InOutRecord {Description = "Match 01", Unreconciled_amount = 20.22},
-                new CredCard2InOutRecord {Description = "Match 02", Unreconciled_amount = 30.33},
-                new CredCard2InOutRecord {Description = "Match 02", Unreconciled_amount = 40.44}
+                new CredCard2InOutRecord {Description = "Match 02", Unreconciled_amount = 10.33},
+                new CredCard2InOutRecord {Description = "Match 02", Unreconciled_amount = 4.01}
             };
             var mock_cred_card2_in_out_file_io = new Mock<IFileIO<CredCard2InOutRecord>>();
             mock_cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_records);
@@ -624,33 +588,33 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void Will_not_lose_previously_matched_records_when_files_are_refreshed()
         {
             // Arrange
-            var some_other_actual_bank_description = "Some other ActualBank description";
-            var some_other_bank_description = "Some other bank description";
-            var actual_bank_data = new List<CredCard2Record>
+            var some_other_third_party_description = "Some other third party Cred Card 2 description";
+            var some_other_owned_description = "Some other owned Cred Card 2 description";
+            var third_party_data = new List<CredCard2Record>
             {
                 new CredCard2Record { Description = ReconConsts.Amazon_description },
-                new CredCard2Record { Description = some_other_actual_bank_description }
+                new CredCard2Record { Description = some_other_third_party_description }
             };
             var mock_cred_card2_file_io = new Mock<IFileIO<CredCard2Record>>();
-            mock_cred_card2_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(actual_bank_data);
+            mock_cred_card2_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(third_party_data);
             var cred_card2_file = new GenericFile<CredCard2Record>(new CSVFile<CredCard2Record>(mock_cred_card2_file_io.Object));
-            var bank_data = new List<CredCard2InOutRecord>
+            var owned_data = new List<CredCard2InOutRecord>
             {
-                new CredCard2InOutRecord {Description = "CredCard2InOutRecord01"},
-                new CredCard2InOutRecord {Description = "CredCard2InOutRecord02"},
-                new CredCard2InOutRecord {Description = "CredCard2InOutRecord03"},
-                new CredCard2InOutRecord {Description = some_other_bank_description}
+                new CredCard2InOutRecord {Description = $"{ReconConsts.Amazon_description} CredCard2InOutRecord01"},
+                new CredCard2InOutRecord {Description = $"{ReconConsts.Amazon_description} CredCard2InOutRecord02"},
+                new CredCard2InOutRecord {Description = $"{ReconConsts.Amazon_description} CredCard2InOutRecord03"},
+                new CredCard2InOutRecord {Description = some_other_owned_description}
             };
-            var mock_bank_file_io = new Mock<IFileIO<CredCard2InOutRecord>>();
-            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_data);
-            var bank_file = new GenericFile<CredCard2InOutRecord>(new CSVFile<CredCard2InOutRecord>(mock_bank_file_io.Object));
+            var mock_cred_card2_in_out_file_io = new Mock<IFileIO<CredCard2InOutRecord>>();
+            mock_cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(owned_data);
+            var cred_card2_in_out_file = new GenericFile<CredCard2InOutRecord>(new CSVFile<CredCard2InOutRecord>(mock_cred_card2_in_out_file_io.Object));
             var data_loading_info = new DataLoadingInformation<CredCard2Record, CredCard2InOutRecord> { Sheet_name = MainSheetNames.Cred_card2 };
-            var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(data_loading_info, cred_card2_file, bank_file);
+            var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(data_loading_info, cred_card2_file, cred_card2_in_out_file);
             var expected_potential_matches = new List<PotentialMatch>
             {
                 new PotentialMatch
                 {
-                    Actual_records = new List<ICSVRecord>{ bank_data[0], bank_data[1] },
+                    Actual_records = new List<ICSVRecord>{ owned_data[0], owned_data[1] },
                     Console_lines = new List<ConsoleLine>{ new ConsoleLine { Description_string = "Console Description" } }
                 }
             };
@@ -672,58 +636,13 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
 
             // Assert
             Assert.AreEqual(2, reconciliator.Third_party_file.Records.Count);
-            Assert.AreEqual(some_other_actual_bank_description, reconciliator.Third_party_file.Records[1].Description);
+            Assert.AreEqual(some_other_third_party_description, reconciliator.Third_party_file.Records[1].Description);
             Assert.AreEqual(3, reconciliator.Owned_file.Records.Count);
             Assert.IsFalse(reconciliator.Owned_file.Records[0].Matched);
-            Assert.AreEqual(some_other_bank_description, reconciliator.Owned_file.Records[1].Description);
-            Assert.AreEqual(actual_bank_data[0], reconciliator.Owned_file.Records[2].Match);
+            Assert.AreEqual(some_other_owned_description, reconciliator.Owned_file.Records[1].Description);
+            Assert.AreEqual(third_party_data[0], reconciliator.Owned_file.Records[2].Match);
             Assert.IsTrue(reconciliator.Owned_file.Records[2].Matched);
             Assert.IsTrue(reconciliator.Owned_file.Records[2].Description.Contains(ReconConsts.SeveralAmazonTransactions));
-        }
-
-        [Test]
-        public void M_WhenReconcilingAmazons_WillMatchOnASingleAmount()
-        {
-            // Arrange
-            var Amazon_amount = 10.00;
-            List<CredCard2InOutRecord> expected_in_rows = new List<CredCard2InOutRecord> { new CredCard2InOutRecord
-            {
-                Unreconciled_amount = Amazon_amount,
-                Description = "HELLOW"
-            } };
-            var cred_card2_in_out_file_io = new Mock<IFileIO<CredCard2InOutRecord>>();
-            cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(expected_in_rows);
-            var cred_card2_in_out_file = new CSVFile<CredCard2InOutRecord>(cred_card2_in_out_file_io.Object);
-            cred_card2_in_out_file.Load();
-            CredCard2Record Amazon_transaction = new CredCard2Record { Amount = Amazon_amount };
-            var matcher = new CredCard2AndCredCard2InOutMatcher(this);
-
-            // Act
-            var result = matcher.Standby_find_Amazon_matches(Amazon_transaction, cred_card2_in_out_file).ToList();
-
-            // Assert
-            Assert.AreEqual(1, result.Count);
-            Assert.AreEqual(expected_in_rows[0], result[0].Actual_records[0]);
-        }
-
-        [Test]
-        public void M_WhenReconcilingAmazons_WillNotMatchOnASingleDifferentAmount()
-        {
-            // Arrange
-            var Amazon_amount = 10.00;
-            List<CredCard2InOutRecord> expected_in_rows = new List<CredCard2InOutRecord> { new CredCard2InOutRecord { Unreconciled_amount = Amazon_amount } };
-            var cred_card2_in_out_file_io = new Mock<IFileIO<CredCard2InOutRecord>>();
-            cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(expected_in_rows);
-            var cred_card2_in_out_file = new CSVFile<CredCard2InOutRecord>(cred_card2_in_out_file_io.Object);
-            cred_card2_in_out_file.Load();
-            CredCard2Record Amazon_transaction = new CredCard2Record { Amount = Amazon_amount - 1 };
-            var matcher = new CredCard2AndCredCard2InOutMatcher(this);
-
-            // Act
-            var result = matcher.Standby_find_Amazon_matches(Amazon_transaction, cred_card2_in_out_file).ToList();
-
-            // Assert
-            Assert.AreEqual(0, result.Count);
         }
 
         [Test]
@@ -739,19 +658,19 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
-        public void M_WillFindSingleMatchingBankInTransactionForOneActualBankAmazonTransaction()
+        public void M_WillFindSingleMatchingBankInTransactionForOneThirdPartyAmazonTransaction()
         {
             Assert.AreEqual(true, true);
         }
 
         [Test]
-        public void M_WillFindSingleMatchingCollectionOfBankInTransactionsForOneActualBankAmazonTransaction()
+        public void M_WillFindSingleMatchingCollectionOfOwnedTransactionsForOneThirdPartyAmazonTransaction()
         {
             Assert.AreEqual(true, true);
         }
 
         [Test]
-        public void M_WillFindMultipleMatchingCollectionOfBankInTransactionsForOneActualBankAmazonTransaction()
+        public void M_WillFindMultipleMatchingCollectionOfOwnedTransactionsForOneThirdPartyAmazonTransaction()
         {
             Assert.AreEqual(true, true);
         }

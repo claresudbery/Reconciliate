@@ -146,8 +146,8 @@
         public const string UnmatchedFromThirdParty = "!! Unmatched from 3rd party: ";
         public const string ExpensesDontAddUp = " !! Expenses don't add up.";
         public const string UnknownExpense = "Unknown expense to plug gap between expected and actual amount.";
-        public const string AmazonsDontAddUp = " !! Amazon transactions don't add up.";
-        public const string UnknownAmazon = "Unknown Amazon transaction to plug gap between expected and actual amount.";
+        public const string AmazonTransactionsDontAddUp = " !! Amazon transactions don't add up.";
+        public const string UnknownAmazonTransaction = "Unknown Amazon transaction to plug gap between expected and actual amount.";
 
         public const string BankInDescriptor = "Bank In";
         public const string BankOutDescriptor = "Bank Out";

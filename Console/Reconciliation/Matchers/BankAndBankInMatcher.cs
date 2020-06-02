@@ -64,6 +64,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             reconciliator.Reset_record_matcher();
         }
 
+        public void Finish()
+        {
+            _bank_and_bank_in_loader.Finish();
+        }
+
         public void Filter_for_all_expense_transactions_from_actual_bank_in<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
@@ -250,11 +255,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                 result.Add(new PotentialMatch {Actual_records = actual_records});
             }
             return result;
-        }
-
-        public void Finish()
-        {
-            _bank_and_bank_in_loader.Finish();
         }
 
         public void Debug_preliminary_stuff<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
