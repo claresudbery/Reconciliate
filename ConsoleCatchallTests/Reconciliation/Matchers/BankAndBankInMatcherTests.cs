@@ -967,12 +967,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
-        public void M_WillFindSingleMatchingBankInTransactionForOneActualBankExpenseTransaction()
-        {
-            Assert.AreEqual(true, true);
-        }
-
-        [Test]
         public void M_WillFindSingleMatchingCollectionOfBankInTransactionsForOneActualBankExpenseTransaction()
         {
             Assert.AreEqual(true, true);

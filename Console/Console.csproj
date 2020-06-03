@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="Reconciliation\Files\ExpectedIncomeFile.cs" />
     <Compile Include="Reconciliation\Loaders\DummyLoader.cs" />
+    <Compile Include="Reconciliation\Matchers\MatchList.cs" />
+    <Compile Include="Reconciliation\Matchers\MultipleAmountMatcher.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\FakeRowNumbersForCell.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\FakeRowNumbersForText.cs" />
     <Compile Include="Reconciliation\Spreadsheets\FakeSpreadsheetData\FakeRows.cs" />
