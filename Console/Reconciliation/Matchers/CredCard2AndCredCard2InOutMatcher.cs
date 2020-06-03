@@ -35,14 +35,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
-            Do_amazon_transaction_matching(reconciliator, reconciliation_interface);
+            Do_amazon_transaction_matching(
+                reconciliator as IReconciliator<CredCard2Record, CredCard2InOutRecord>, 
+                reconciliation_interface as IReconciliationInterface<CredCard2Record, CredCard2InOutRecord>);
         }
 
-        private void Do_amazon_transaction_matching<TThirdPartyType, TOwnedType>(
-            IReconciliator<TThirdPartyType, TOwnedType> reconciliator,
-            IReconciliationInterface<TThirdPartyType, TOwnedType> reconciliation_interface)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
+        private void Do_amazon_transaction_matching(
+            IReconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator,
+            IReconciliationInterface<CredCard2Record, CredCard2InOutRecord> reconciliation_interface)
         {
             Filter_for_all_amazon_transactions_from_cred_card2(reconciliator);
             Filter_for_all_amazon_transactions_from_cred_card2_in_out(reconciliator);
@@ -60,36 +60,30 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         {
         }
 
-        public void Filter_for_all_amazon_transactions_from_cred_card2<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
+        public void Filter_for_all_amazon_transactions_from_cred_card2(IReconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator)
         {
             reconciliator.Filter_third_party_file(Is_not_third_party_amazon_transaction);
         }
 
-        public bool Is_not_third_party_amazon_transaction<TThirdPartyType>(TThirdPartyType cred_card2_record) where TThirdPartyType : ICSVRecord, new()
+        public bool Is_not_third_party_amazon_transaction(CredCard2Record cred_card2_record)
         {
             return !cred_card2_record.Description.Remove_punctuation().ToUpper().Contains(ReconConsts.Amazon_description);
         }
 
-        public void Filter_for_all_amazon_transactions_from_cred_card2_in_out<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
+        public void Filter_for_all_amazon_transactions_from_cred_card2_in_out(IReconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator)
         {
             reconciliator.Filter_owned_file(Is_not_owned_amazon_transaction);
         }
 
-        public bool Is_not_owned_amazon_transaction<TOwnedType>(TOwnedType cred_card2_in_out_record) where TOwnedType : ICSVRecord, new()
+        public bool Is_not_owned_amazon_transaction(CredCard2InOutRecord cred_card2_in_out_record)
         {
             return !cred_card2_in_out_record.Description.Remove_punctuation().ToUpper().Contains(ReconConsts.Amazon_description);
         }
 
-        public void Match_specified_records<TThirdPartyType, TOwnedType>(
-            RecordForMatching<TThirdPartyType> record_for_matching,
+        public void Match_specified_records(
+            RecordForMatching<CredCard2Record> record_for_matching,
             int match_index,
-            ICSVFile<TOwnedType> owned_file)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
+            ICSVFile<CredCard2InOutRecord> owned_file)
         {
             if (record_for_matching.Matches[match_index].Actual_records.Count > 1)
             {
@@ -98,52 +92,46 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             Match_records(record_for_matching.SourceRecord, record_for_matching.Matches[match_index].Actual_records[0]);
         }
 
-        public void Create_new_combined_record<TThirdPartyType, TOwnedType>(
-                RecordForMatching<TThirdPartyType> record_for_matching,
+        public void Create_new_combined_record(
+                RecordForMatching<CredCard2Record> record_for_matching,
                 int match_index,
-                ICSVFile<TOwnedType> owned_file)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
+                ICSVFile<CredCard2InOutRecord> owned_file)
         {
             foreach (var actual_record in record_for_matching.Matches[match_index].Actual_records)
             {
-                owned_file.Remove_record_permanently((TOwnedType)actual_record);
+                owned_file.Remove_record_permanently((CredCard2InOutRecord)actual_record);
             }
-            TOwnedType new_match = New_combined_record<TThirdPartyType, TOwnedType>(record_for_matching, match_index);
+            CredCard2InOutRecord new_match = New_combined_record(record_for_matching, match_index);
 
             record_for_matching.Matches[match_index].Actual_records.Clear();
             record_for_matching.Matches[match_index].Actual_records.Add(new_match);
             owned_file.Add_record_permanently(new_match);
         }
 
-        private TOwnedType New_combined_record<TThirdPartyType, TOwnedType>(
-                RecordForMatching<TThirdPartyType> record_for_matching,
+        private CredCard2InOutRecord New_combined_record(
+                RecordForMatching<CredCard2Record> record_for_matching,
                 int match_index)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
         {
-            var new_match = new TOwnedType
+            var new_match = new CredCard2InOutRecord
             {
                 Date = record_for_matching.SourceRecord.Date,
-                Description = Create_new_description<TThirdPartyType, TOwnedType>(record_for_matching, match_index)
+                Description = Create_new_description(record_for_matching, match_index)
             };
-            (new_match as CredCard2InOutRecord).Unreconciled_amount = record_for_matching.SourceRecord.Main_amount();
+            new_match.Unreconciled_amount = record_for_matching.SourceRecord.Main_amount();
             return new_match;
         }
 
-        private void Match_records<TThirdPartyType>(TThirdPartyType source, ICSVRecord match) where TThirdPartyType : ICSVRecord, new()
+        private void Match_records(CredCard2Record source, ICSVRecord match)
         {
             match.Matched = true;
-            (source as ICSVRecord).Matched = true;
+            source.Matched = true;
             match.Match = source;
-            (source as ICSVRecord).Match = match;
+            source.Match = match;
         }
 
-        private string Create_new_description<TThirdPartyType, TOwnedType>(
-                RecordForMatching<TThirdPartyType> record_for_matching,
+        private string Create_new_description(
+                RecordForMatching<CredCard2Record> record_for_matching,
                 int match_index)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
         {
             var combined_amounts = $"{Get_description_without_amazon(record_for_matching.Matches[match_index].Actual_records[0])}";
             for (int count = 1; count < record_for_matching.Matches[match_index].Actual_records.Count; count++)
@@ -184,12 +172,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             return new_description;
         }
 
-        public IEnumerable<IPotentialMatch> Find_Amazon_matches<TThirdPartyType, TOwnedType>
-            (TThirdPartyType source_record, ICSVFile<TOwnedType> owned_file)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
+        public IEnumerable<IPotentialMatch> Find_Amazon_matches(CredCard2Record source_record, ICSVFile<CredCard2InOutRecord> owned_file)
         {
-            return Debug_find_Amazon_matches(source_record as CredCard2Record, owned_file as ICSVFile<CredCard2InOutRecord>);
+            return Debug_find_Amazon_matches(source_record, owned_file);
         }
 
         private IEnumerable<IPotentialMatch> Debug_find_Amazon_matches(CredCard2Record source_record, ICSVFile<CredCard2InOutRecord> owned_file)
