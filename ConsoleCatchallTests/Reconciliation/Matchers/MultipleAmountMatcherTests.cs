@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using ConsoleCatchall.Console.Reconciliation;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Matchers;
 using ConsoleCatchall.Console.Reconciliation.Records;
-using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
-using ConsoleCatchall.Console.Reconciliation.Extensions;
 using Interfaces;
-using Interfaces.Constants;
-using Interfaces.DTOs;
 using Moq;
 using NUnit.Framework;
 
@@ -18,34 +12,33 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
     [TestFixture]
     public partial class MultipleAmountMatcherTests
     {
-        private Mock<IInputOutput> _mock_input_output;
+        private Mock<IFileIO<CredCard2InOutRecord>> _cred_card2_in_out_file_io;
+        private CSVFile<CredCard2InOutRecord> _cred_card2_in_out_file;
 
         [SetUp]
         public void Set_up()
         {
-            _mock_input_output = new Mock<IInputOutput>();
+            _cred_card2_in_out_file_io = new Mock<IFileIO<CredCard2InOutRecord>>();
+            _cred_card2_in_out_file = new CSVFile<CredCard2InOutRecord>(_cred_card2_in_out_file_io.Object);
         }
 
         [Test]
         public void M_WhenReconcilingExpenses_WillMatchOnASingleAmount()
         {
             // Arrange
-            var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var expense_amount = 10.00;
-            List<BankRecord> expected_in_rows = new List<BankRecord> { new BankRecord
+            List<CredCard2InOutRecord> expected_in_rows = new List<CredCard2InOutRecord> { new CredCard2InOutRecord
             {
                 Unreconciled_amount = expense_amount,
                 Description = "HELLOW"
             } };
-            var bank_in_file_io = new Mock<IFileIO<BankRecord>>();
-            bank_in_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(expected_in_rows);
-            var bank_in_file = new CSVFile<BankRecord>(bank_in_file_io.Object);
-            bank_in_file.Load();
+            _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(expected_in_rows);
+            _cred_card2_in_out_file.Load();
             ActualBankRecord expense_transaction = new ActualBankRecord { Amount = expense_amount };
-            var matcher = new MultipleAmountMatcher<ActualBankRecord, BankRecord>();
+            var matcher = new MultipleAmountMatcher<ActualBankRecord, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(expense_transaction, bank_in_file).ToList();
+            var result = matcher.Standby_find_expense_matches(expense_transaction, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(1, result.Count);
@@ -56,18 +49,15 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         public void M_WhenReconcilingExpenses_WillNotMatchOnASingleDifferentAmount()
         {
             // Arrange
-            var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
             var expense_amount = 10.00;
-            List<BankRecord> expected_in_rows = new List<BankRecord> { new BankRecord { Unreconciled_amount = expense_amount } };
-            var bank_in_file_io = new Mock<IFileIO<BankRecord>>();
-            bank_in_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(expected_in_rows);
-            var bank_in_file = new CSVFile<BankRecord>(bank_in_file_io.Object);
-            bank_in_file.Load();
+            List<CredCard2InOutRecord> expected_in_rows = new List<CredCard2InOutRecord> { new CredCard2InOutRecord { Unreconciled_amount = expense_amount } };
+            _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(expected_in_rows);
+            _cred_card2_in_out_file.Load();
             ActualBankRecord expense_transaction = new ActualBankRecord { Amount = expense_amount - 1 };
-            var matcher = new MultipleAmountMatcher<ActualBankRecord, BankRecord>();
+            var matcher = new MultipleAmountMatcher<ActualBankRecord, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(expense_transaction, bank_in_file).ToList();
+            var result = matcher.Standby_find_expense_matches(expense_transaction, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(0, result.Count);
