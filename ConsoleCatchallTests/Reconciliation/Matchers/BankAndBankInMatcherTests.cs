@@ -240,43 +240,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
-        public void M_CanShowFirstExpenseTransactionWithListOfMatches()
-        {
-            // Arrange
-            var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
-            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
-            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
-            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<ActualBankRecord> {
-                    new ActualBankRecord {Description = ReconConsts.Employer_expense_description},
-                    new ActualBankRecord {Description = "something else"}
-                });
-            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
-                .Returns(new List<BankRecord> {
-                    new BankRecord {Type = Codes.Expenses, Description = Codes.Expenses},
-                    new BankRecord {Type = Codes.Expenses, Description = Codes.Expenses},
-                    new BankRecord {Type = Codes.Expenses, Description = Codes.Expenses},
-                    new BankRecord {Type = "Chq", Description = "something else"}
-                });
-            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>("Bank In", mock_actual_bank_file_io.Object, mock_bank_file_io.Object);
-            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
-
-            // Act
-            matcher.Debug_preliminary_stuff(reconciliator);
-
-            // Assert
-            var expense_description_lines = _output_all_lines_recorded_console_lines.Where(
-                x => x.Description_string == ReconConsts.Employer_expense_description);
-            Assert.AreEqual(1, expense_description_lines.Count(), "transaction with expense description.");
-            var expense_code_lines = _output_all_lines_recorded_console_lines.Where(
-                x => x.Description_string == Codes.Expenses);
-            Assert.AreEqual(3, expense_code_lines.Count(), "row with expense code.");
-
-            // Clean up
-            reconciliator.Refresh_files();
-        }
-
-        [Test]
         public void M_WhenMatchingSpecifiedRecords_WillMatchRecordWithSpecifiedIndex()
         {
             // Arrange

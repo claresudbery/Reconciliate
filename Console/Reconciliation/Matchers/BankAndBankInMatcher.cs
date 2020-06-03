@@ -267,25 +267,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             return result;
         }
 
-        public void Debug_preliminary_stuff<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-            List<ConsoleLine> all_expense_transactions_from_actual_bank_in = Get_all_expense_transactions_from_actual_bank_in(reconciliator);
-            _input_output.Output_line("***********");
-            _input_output.Output_line("All Expense Transactions From ActualBank In:");
-            _input_output.Output_all_lines(all_expense_transactions_from_actual_bank_in);
-
-            List<ConsoleLine> all_expense_transactions_from_expected_in = Get_all_wages_rows_and_expense_transactions_from_expected_in(reconciliator);
-            _input_output.Output_line("***********");
-            _input_output.Output_line("All Expense Transactions From Expected In:");
-            _input_output.Output_all_lines(all_expense_transactions_from_expected_in);
-
-            reconciliator.Refresh_files();
-
-            _input_output.Get_input(ReconConsts.EnterAnyKeyToContinue);
-        }
-
         private IEnumerable<IPotentialMatch> Debug_find_expense_matches(ActualBankRecord source_record, ICSVFile<BankRecord> owned_file)
         {
             var result = new List<IPotentialMatch>();
