@@ -364,16 +364,18 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                 {
                     Actual_records = new List<ICSVRecord>
                     {
-                        new BankRecord {Description = "Match 01", Unreconciled_amount = 20.22},
-                        new BankRecord {Description = "Match 02", Unreconciled_amount = 10.33},
-                        new BankRecord {Description = "Match 02", Unreconciled_amount = 4.01}
+                        new BankRecord {Description = "Expense Thing 01", Unreconciled_amount = 20.22},
+                        new BankRecord {Description = "Expense Thing 02", Unreconciled_amount = 10.33},
+                        new BankRecord {Description = "Expense Thing 03", Unreconciled_amount = 2.01}
                     }
                 }
             };
             var index = 0;
             var matches = potential_matches[index].Actual_records;
             var expected_description =
-                $"{ReconConsts.SeveralExpenses} (£{matches[0].Main_amount()}, £{matches[1].Main_amount()}, £{matches[2].Main_amount()})";
+                $"{ReconConsts.SeveralExpenses} "
+                + $"({matches[0].Main_amount().To_csv_string(true)}, {matches[1].Main_amount().To_csv_string(true)}, {matches[2].Main_amount().To_csv_string(true)})"
+                + $"{ReconConsts.ExpensesDontAddUp} ({potential_matches[index].Actual_records.Sum(x => x.Main_amount()).To_csv_string(true)})";
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
 
             // Act

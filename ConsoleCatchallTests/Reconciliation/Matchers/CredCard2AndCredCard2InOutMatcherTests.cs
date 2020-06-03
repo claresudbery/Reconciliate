@@ -289,22 +289,29 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                 Match = null,
                 Matched = false
             };
+            var desc01 = "Thing 01";
+            var desc02 = "Thing 02";
+            var desc03 = "Thing 03";
             var potential_matches = new List<IPotentialMatch>
             {
                 new PotentialMatch
                 {
                     Actual_records = new List<ICSVRecord>
                     {
-                        new CredCard2InOutRecord {Description = "Match 01", Unreconciled_amount = 20.22},
-                        new CredCard2InOutRecord {Description = "Match 02", Unreconciled_amount = 10.33},
-                        new CredCard2InOutRecord {Description = "Match 02", Unreconciled_amount = 4.01}
+                        new CredCard2InOutRecord {Description = $"Amazon {desc01}", Unreconciled_amount = 20.22},
+                        new CredCard2InOutRecord {Description = $"Amazon {desc02}", Unreconciled_amount = 10.33},
+                        new CredCard2InOutRecord {Description = $"Amazon {desc03}", Unreconciled_amount = 2.01}
                     }
                 }
             };
             var index = 0;
             var matches = potential_matches[index].Actual_records;
             var expected_description =
-                $"{ReconConsts.SeveralAmazonTransactions} (£{matches[0].Main_amount()}, £{matches[1].Main_amount()}, £{matches[2].Main_amount()})";
+                $"{ReconConsts.SeveralAmazonTransactions} "
+                + $"({desc01} {matches[0].Main_amount().To_csv_string(true)}, "
+                + $"{desc02} {matches[1].Main_amount().To_csv_string(true)}, " 
+                + $"{desc03} {matches[2].Main_amount().To_csv_string(true)})"
+                + $"{ReconConsts.AmazonTransactionsDontAddUp} ({potential_matches[index].Actual_records.Sum(x => x.Main_amount()).To_csv_string(true)})";
             var record_for_matching = new RecordForMatching<CredCard2Record>(source_record, potential_matches);
 
             // Act

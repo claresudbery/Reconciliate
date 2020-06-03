@@ -154,15 +154,21 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         {
             var sum_of_all_matches =
                 record_for_matching.Matches[match_index].Actual_records.Sum(x => x.Main_amount());
+            var missing_balance = record_for_matching.SourceRecord.Main_amount() - sum_of_all_matches;
             var expense_amounts_match = record_for_matching.SourceRecord.Main_amount()
                 .Double_equals(sum_of_all_matches);
 
-            TOwnedType new_match = New_combined_record<TThirdPartyType, TOwnedType>(record_for_matching, match_index, expense_amounts_match);
+            TOwnedType new_match = New_combined_record<TThirdPartyType, TOwnedType>(
+                record_for_matching, 
+                match_index, 
+                expense_amounts_match,
+                sum_of_all_matches);
             Update_expected_income_and_owned_files<TThirdPartyType, TOwnedType>(
                 record_for_matching, 
                 match_index, 
                 expense_amounts_match,
                 sum_of_all_matches,
+                missing_balance,
                 owned_file);
 
             record_for_matching.Matches[match_index].Actual_records.Clear();
@@ -175,6 +181,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                 int match_index,
                 bool expense_amounts_match,
                 double sum_of_all_matches,
+                double missing_balance,
                 ICSVFile<TOwnedType> owned_file)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
@@ -187,7 +194,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
             if (!expense_amounts_match)
             {
-                var missing_balance = record_for_matching.SourceRecord.Main_amount() - sum_of_all_matches;
                 _bank_and_bank_in_loader.Create_new_expenses_record_to_match_balance(
                     record_for_matching.SourceRecord,
                     missing_balance);
@@ -197,14 +203,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         private TOwnedType New_combined_record<TThirdPartyType, TOwnedType>(
                 RecordForMatching<TThirdPartyType> record_for_matching,
                 int match_index,
-                bool expense_amounts_match)
+                bool expense_amounts_match,
+                double sum_of_all_matches)
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
             var new_match = new TOwnedType
             {
                 Date = record_for_matching.SourceRecord.Date,
-                Description = Create_new_description(record_for_matching.Matches[match_index], expense_amounts_match)
+                Description = Create_new_description(record_for_matching.Matches[match_index], expense_amounts_match, sum_of_all_matches)
             };
             (new_match as BankRecord).Unreconciled_amount = record_for_matching.SourceRecord.Main_amount();
             (new_match as BankRecord).Type = (record_for_matching.Matches[match_index].Actual_records[0] as BankRecord).Type;
@@ -219,7 +226,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             (source as ICSVRecord).Match = match;
         }
 
-        private string Create_new_description(IPotentialMatch potential_match, bool expense_amounts_match)
+        private string Create_new_description(
+            IPotentialMatch potential_match, 
+            bool expense_amounts_match,
+            double sum_of_all_matches)
         {
             var combined_amounts = potential_match.Actual_records[0].Main_amount().To_csv_string(true);
             for (int count = 1; count < potential_match.Actual_records.Count; count++)
@@ -229,7 +239,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
             var extra_text = expense_amounts_match
                 ? ""
-                : ReconConsts.ExpensesDontAddUp;
+                : $"{ReconConsts.ExpensesDontAddUp} ({sum_of_all_matches.To_csv_string(true)})";
 
             return $"{ReconConsts.SeveralExpenses} ({combined_amounts}){extra_text}";
         }

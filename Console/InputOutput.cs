@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using ConsoleCatchall.Console.Reconciliation.Extensions;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
@@ -20,13 +22,14 @@ namespace ConsoleCatchall.Console
         {
             for (int line_count = 1; line_count < options.Count; line_count++)
             {
-                foreach (var console_line in options[line_count].Console_lines)
-                {
-                    Output_line(console_line.Get_console_snippets(options[line_count]));
-                }
                 if (options[line_count].Console_lines.Count > 1)
                 {
                     Output_line("..............");
+                    Output_line($"Total: {options[line_count].Actual_records.Sum(x => x.Main_amount()).To_csv_string(true)}");
+                }
+                foreach (var console_line in options[line_count].Console_lines)
+                {
+                    Output_line(console_line.Get_console_snippets(options[line_count]));
                 }
             }
         }

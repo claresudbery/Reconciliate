@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ConsoleCatchall.Console.Reconciliation.Extensions;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.Constants;
@@ -120,6 +121,10 @@ namespace ConsoleCatchall.Console.Reconciliation
             _input_output.Output_line($"Source record for {Third_party_descriptor}, with best match immediately afterwards:");
             _input_output.Output("   ");
             _input_output.Output_line(Reconciliator.Current_source_record_as_console_line());
+            if (potential_matches[0].Console_lines.Count > 1)
+            {
+                _input_output.Output_line($"Total: {potential_matches[0].Actual_records.Sum(x => x.Main_amount()).To_csv_string(true)}");
+            }
             foreach (var console_line in potential_matches[0].Console_lines)
             {
                 _input_output.Output_line(console_line.Get_console_snippets(potential_matches[0]));
