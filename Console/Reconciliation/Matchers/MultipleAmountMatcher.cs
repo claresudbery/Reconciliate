@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ConsoleCatchall.Console.Reconciliation.Extensions;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.DTOs;
@@ -34,11 +35,20 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                 {
                     Actual_records = y.Matches,
                     Console_lines = y.Matches.Select(z => z.To_console()).ToList(),
-                    Rankings = new Rankings { Amount = 0, Date = 0, Combined = 0 },
-                    Amount_match = false,
-                    Full_text_match = false,
-                    Partial_text_match = false
-                }).ToList();
+                    Rankings = new Rankings
+                    {
+                        Amount = y.Distance_from_target(), 
+                        Date = y.Matches.Average(z => z.Date.Proximity_score(source_record.Date)), 
+                        Combined = 0
+                    },
+                    Amount_match = y.Exact_match(),
+                    Full_text_match = true,
+                    Partial_text_match = true
+                })
+                .OrderByDescending(x => x.Amount_match)
+                .ThenBy(x => x.Rankings.Date)
+                .ThenBy(x => x.Rankings.Amount)
+                .ToList();
             }
 
             return result;

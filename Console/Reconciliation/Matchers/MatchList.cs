@@ -9,14 +9,19 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         public double TargetAmount { get; set; }
         public IList<ICSVRecord> Matches { get; set; }
 
-        public double ActualAmount()
+        public double Actual_amount()
         {
             return Matches.Sum(x => x.Main_amount());
         }
 
-        public bool ExactMatch()
+        public bool Exact_match()
         {
-            return ActualAmount().Equals(TargetAmount);
+            return Actual_amount().Equals(TargetAmount);
+        }
+
+        public double Distance_from_target()
+        {
+            return TargetAmount - Actual_amount();
         }
     }
 }
