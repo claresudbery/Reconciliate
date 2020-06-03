@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using ConsoleCatchall.Console.Reconciliation.Extensions;
@@ -6,7 +5,6 @@ using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.Constants;
-using Interfaces.Delegates;
 using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Matchers
@@ -220,7 +218,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         public IEnumerable<IPotentialMatch> Find_expense_matches(ActualBankRecord source_record, ICSVFile<BankRecord> owned_file)
         {
             var generic_matcher = new MultipleAmountMatcher<ActualBankRecord, BankRecord>();
-            return generic_matcher.Debug_find_expense_matches(source_record, owned_file);
+            return generic_matcher.Find_expense_matches(source_record, owned_file);
         }
     }
 }
