@@ -109,7 +109,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             List<MatchList> results = new List<MatchList>();
 
             var concrete_candidates = candidates.OrderBy(x => x.Description).ToList();
-            concrete_candidates.RemoveAll(x => x.Main_amount() > target_amount);
+            concrete_candidates.RemoveAll(x => x.Main_amount().Double_greater_than(target_amount));
             double candidate_total = concrete_candidates.Sum(x => x.Main_amount());
 
             if (candidate_total.Double_equals(target_amount))
@@ -120,7 +120,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                     Matches = new List<ICSVRecord>(concrete_candidates)
                 });
             }
-            else if (candidate_total < target_amount)
+            else if (candidate_total.Double_less_than(target_amount))
             {
                 // !! We need this to sometimes be an empty list!
                 results.Add(new MatchList

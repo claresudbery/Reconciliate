@@ -548,14 +548,14 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                 new CredCard2InOutRecord { Unreconciled_amount = 10.65, Description = "Match02", Date = DateTime.Today.AddDays(-1) },
                 new CredCard2InOutRecord { Unreconciled_amount = 29.94, Description = "Match03", Date = DateTime.Today.AddDays(0) },
                 new CredCard2InOutRecord { Unreconciled_amount = 13.50, Description = "Match04", Date = DateTime.Today.AddDays(1) },
-                //new CredCard2InOutRecord { Unreconciled_amount = 14.38, Description = "Match01", Date = DateTime.Today.AddDays(2) },
-                new CredCard2InOutRecord { Unreconciled_amount = 12.98, Description = "Match02", Date = DateTime.Today.AddDays(3) },
-                //new CredCard2InOutRecord { Unreconciled_amount = 46.49, Description = "Match03", Date = DateTime.Today.AddDays(4) },
-                //new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = "Match04", Date = DateTime.Today.AddDays(9) },
-                //new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = "Match01", Date = DateTime.Today.AddDays(9) },
-                //new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = "Match02", Date = DateTime.Today.AddDays(9) },
-                //new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = "Match03", Date = DateTime.Today.AddDays(9) },
-                //new CredCard2InOutRecord { Unreconciled_amount = 50.00, Description = "Match04", Date = DateTime.Today.AddDays(9) }
+                new CredCard2InOutRecord { Unreconciled_amount = 14.38, Description = "Match05", Date = DateTime.Today.AddDays(2) },
+                new CredCard2InOutRecord { Unreconciled_amount = 12.98, Description = "Match06", Date = DateTime.Today.AddDays(3) },
+                new CredCard2InOutRecord { Unreconciled_amount = 46.49, Description = "Match07", Date = DateTime.Today.AddDays(4) },
+                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = "Match08", Date = DateTime.Today.AddDays(9) },
+                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = "Match09", Date = DateTime.Today.AddDays(9) },
+                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = "Match10", Date = DateTime.Today.AddDays(9) },
+                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = "Match11", Date = DateTime.Today.AddDays(9) },
+                new CredCard2InOutRecord { Unreconciled_amount = 50.00, Description = "Match12", Date = DateTime.Today.AddDays(9) }
             };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();

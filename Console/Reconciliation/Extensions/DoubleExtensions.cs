@@ -32,5 +32,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Extensions
         {
             return Math.Abs(source - other_amount) < 0.001;
         }
+
+        public static bool Double_less_than(this double source, double other_amount)
+        {
+            return Math.Round((decimal)source, 2) < Math.Round((decimal)other_amount, 2);
+        }
+
+        public static bool Double_greater_than(this double source, double other_amount)
+        {
+            return Math.Round((decimal)source, 2) > Math.Round((decimal)other_amount, 2);
+        }
     }
 }
