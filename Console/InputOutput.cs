@@ -20,11 +20,40 @@ namespace ConsoleCatchall.Console
 
         public void Output_all_lines_except_the_first(List<IPotentialMatch> options)
         {
-            for (int line_count = 1; line_count < options.Count; line_count++)
+            bool some_matches_have_multiple_transactions = options.Any(x => x.Console_lines.Count > 1);
+            int max_num_lines = some_matches_have_multiple_transactions 
+                ? ReconConsts.MaxNumMultiLineTransactions
+                : ReconConsts.MaxNumSingleLineTransactions;
+            if (options.Count <= max_num_lines)
             {
-                if (options[line_count].Console_lines.Count > 1)
+                DisplayOptions(options, 1, options.Count - 1, some_matches_have_multiple_transactions);
+            }
+            else
+            {
+                DisplayOptions(options, 1, max_num_lines - 1, some_matches_have_multiple_transactions);
+                Output_line("..............");
+                string input = Get_input(ReconConsts.SeeAllMatches);
+                if (!string.IsNullOrEmpty(input) && input.ToUpper() == "Y")
+                {
+                    DisplayOptions(options, max_num_lines, options.Count - 1, some_matches_have_multiple_transactions);
+                }
+            }
+        }
+
+        private void DisplayOptions(
+            List<IPotentialMatch> options, 
+            int start_index, 
+            int end_index,
+            bool divide_items_with_lines)
+        {
+            for (int line_count = start_index; line_count <= end_index; line_count++)
+            {
+                if (divide_items_with_lines)
                 {
                     Output_line("..............");
+                }
+                if (options[line_count].Console_lines.Count > 1)
+                {
                     Output_line($"Total: {options[line_count].Actual_records.Sum(x => x.Main_amount()).To_csv_string(true)}");
                 }
                 foreach (var console_line in options[line_count].Console_lines)

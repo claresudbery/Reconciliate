@@ -127,6 +127,7 @@
         public const string DefaultBankInPendingFileName = "BankInPending";
         public const string DefaultBankOutPendingFileName = "BankOutPending";
 
+        public const string SeeAllMatches = "There are more matches if you want them. To see all, enter y/Y. Otherwise enter any key.";
         public const string GoAgainFinish = "1. GoAgain; 2. Finish";
         public const string CheckExit = "ARE YOU SURE? None of your data will be saved. Enter Exit if you're sure; anything else if not.";
         public const string EnterNumberOfMatch = "Enter the number of the matching item, or I for ignore, or D for delete.";
@@ -162,6 +163,8 @@
 
         public const int DdDescriptionColumn = 15;
         public const int DescriptionColumn = 5;
+        public const int MaxNumMultiLineTransactions = 10;
+        public const int MaxNumSingleLineTransactions = 40;
 
         public static string BadMatchNumber = "Bad match number.";
     }
