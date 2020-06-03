@@ -43,7 +43,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.NotNull(result[0].Console_lines);
@@ -67,7 +67,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(1, result.Count);
@@ -92,7 +92,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(1, result.Count);
@@ -117,7 +117,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(0, result.Count);
@@ -141,7 +141,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(1, result.Count);
@@ -167,7 +167,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(1, result.Count);
@@ -196,7 +196,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(1, result.Count);
@@ -226,7 +226,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(1, result.Count);
@@ -258,7 +258,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(3, result.Count);
@@ -294,7 +294,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(3, result.Count);
@@ -330,7 +330,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(3, result.Count(x => x.Amount_match));
@@ -365,7 +365,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(3, result.Count(x => x.Rankings.Amount == 0));
@@ -396,7 +396,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(5, result[0].Rankings.Amount);
@@ -430,7 +430,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(desc01, result[0].Actual_records[0].Description);
@@ -461,7 +461,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(desc03, result[0].Actual_records[0].Description);
@@ -492,7 +492,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.AreEqual(desc03, result[0].Actual_records[0].Description);
@@ -525,7 +525,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.IsTrue(result[0].Actual_records.Any(x => x.Description == desc01));
@@ -562,7 +562,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
 
             // Act
-            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+            var result = matcher.Find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
 
             // Assert
             Assert.IsTrue(amount_to_match.Double_equals((result[0].Actual_records.Sum(x => x.Main_amount()))), 
