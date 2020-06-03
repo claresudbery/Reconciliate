@@ -14,7 +14,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
         public IEnumerable<IPotentialMatch> Find_expense_matches(TThirdPartyType source_record, ICSVFile<TOwnedType> owned_file)
         {
-            return Debug_find_expense_matches(source_record, owned_file);
+            return Standby_find_expense_matches(source_record, owned_file);
         }
 
         public IEnumerable<IPotentialMatch> Standby_find_expense_matches(TThirdPartyType source_record, ICSVFile<TOwnedType> owned_file)
@@ -91,7 +91,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         {
             List<MatchList> results = new List<MatchList>();
 
-            var concrete_candidates = candidates.ToList();
+            var concrete_candidates = candidates.OrderBy(x => x.Description).ToList();
             concrete_candidates.RemoveAll(x => x.Main_amount() > target_amount);
             double candidate_total = concrete_candidates.Sum(x => x.Main_amount());
 
@@ -125,9 +125,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                         var new_result = new MatchList
                         {
                             TargetAmount = target_amount,
-                            Matches = match_list.Matches.Concat(new List<ICSVRecord> {candidate}).ToList()
+                            Matches = match_list.Matches.Concat(new List<ICSVRecord> {candidate}).OrderBy(x => x.Description).ToList()
                         };
-                        if (!results.Any(x => x.Matches.SequenceEqual(new_result.Matches)))
+                        if (!results.Any(x => x.Matches.SequenceEqual(new_result.Matches, new CsvRecordComparer())))
                         {
                             results.Add(new_result);
                         }

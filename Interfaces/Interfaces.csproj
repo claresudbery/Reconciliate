@@ -47,6 +47,7 @@
     <Compile Include="Constants\PlanningSheetNames.cs" />
     <Compile Include="Constants\WorkingMode.cs" />
     <Compile Include="Constants\XmlReader.cs" />
+    <Compile Include="CsvRecordComparer.cs" />
     <Compile Include="DTOs\AutoMatchedRecord.cs" />
     <Compile Include="DTOs\BudgetingMonths.cs" />
     <Compile Include="DTOs\BudgetItemListData.cs" />
