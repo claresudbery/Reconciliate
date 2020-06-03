@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using ConsoleCatchall.Console.Reconciliation.Extensions;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Matchers;
 using ConsoleCatchall.Console.Reconciliation.Records;
@@ -531,6 +532,41 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             Assert.IsTrue(result[0].Actual_records.Any(x => x.Description == desc03));
             Assert.IsTrue(result[3].Actual_records.Any(x => x.Description == desc02));
             Assert.IsTrue(result[3].Actual_records.Any(x => x.Description == desc04));
+        }
+
+        [Test]
+        public void Will_find_exact_matches_when_numbers_are_prone_to_rounding_errors()
+        {
+            // Arrange
+            var amount_to_match = 66.57;
+            CredCard2Record transaction_to_match = new CredCard2Record
+            {
+                Amount = amount_to_match
+            };
+            List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> {
+                new CredCard2InOutRecord { Unreconciled_amount = 13.00, Description = "Match01", Date = DateTime.Today.AddDays(-2) },
+                new CredCard2InOutRecord { Unreconciled_amount = 10.65, Description = "Match02", Date = DateTime.Today.AddDays(-1) },
+                new CredCard2InOutRecord { Unreconciled_amount = 29.94, Description = "Match03", Date = DateTime.Today.AddDays(0) },
+                new CredCard2InOutRecord { Unreconciled_amount = 13.50, Description = "Match04", Date = DateTime.Today.AddDays(1) },
+                //new CredCard2InOutRecord { Unreconciled_amount = 14.38, Description = "Match01", Date = DateTime.Today.AddDays(2) },
+                new CredCard2InOutRecord { Unreconciled_amount = 12.98, Description = "Match02", Date = DateTime.Today.AddDays(3) },
+                //new CredCard2InOutRecord { Unreconciled_amount = 46.49, Description = "Match03", Date = DateTime.Today.AddDays(4) },
+                //new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = "Match04", Date = DateTime.Today.AddDays(9) },
+                //new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = "Match01", Date = DateTime.Today.AddDays(9) },
+                //new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = "Match02", Date = DateTime.Today.AddDays(9) },
+                //new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = "Match03", Date = DateTime.Today.AddDays(9) },
+                //new CredCard2InOutRecord { Unreconciled_amount = 50.00, Description = "Match04", Date = DateTime.Today.AddDays(9) }
+            };
+            _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
+            _cred_card2_in_out_file.Load();
+            var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
+
+            // Act
+            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+
+            // Assert
+            Assert.IsTrue(amount_to_match.Double_equals((result[0].Actual_records.Sum(x => x.Main_amount()))), 
+                $"Expected {result[0].Actual_records.Sum(x => x.Main_amount())} to equal {amount_to_match}");
         }
 
         [Test]

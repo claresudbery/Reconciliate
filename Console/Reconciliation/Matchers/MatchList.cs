@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using ConsoleCatchall.Console.Reconciliation.Extensions;
 using Interfaces;
 
 namespace ConsoleCatchall.Console.Reconciliation.Matchers
@@ -16,7 +17,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
         public bool Exact_match()
         {
-            return Actual_amount().Equals(TargetAmount);
+            return Actual_amount().Double_equals(TargetAmount);
         }
 
         public double Distance_from_target()

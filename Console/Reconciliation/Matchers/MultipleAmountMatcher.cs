@@ -26,6 +26,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                 source_record.Main_amount(),
                 owned_file.Records.Where(x => !x.Matched) as IEnumerable<ICSVRecord>).ToList();
 
+            var debug = match_lists.Select(x => x.Actual_amount()).ToList();
+
             bool no_matches_found = match_lists.Count == 1 
                                     && match_lists[0].Matches.Count == 0;
 
@@ -110,7 +112,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             concrete_candidates.RemoveAll(x => x.Main_amount() > target_amount);
             double candidate_total = concrete_candidates.Sum(x => x.Main_amount());
 
-            if (candidate_total.Equals(target_amount))
+            if (candidate_total.Double_equals(target_amount))
             {
                 results.Add(new MatchList
                 {
