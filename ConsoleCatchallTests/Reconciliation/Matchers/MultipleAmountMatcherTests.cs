@@ -24,6 +24,55 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
+        public void Will_populate_console_lines_for_every_potential_match()
+        {
+            // Arrange
+            var amount_to_match = 10.00;
+            CredCard2Record transaction_to_match = new CredCard2Record
+            {
+                Amount = amount_to_match
+            };
+            List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> { new CredCard2InOutRecord
+            {
+                Unreconciled_amount = amount_to_match
+            } };
+            _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
+            _cred_card2_in_out_file.Load();
+            var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
+
+            // Act
+            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+
+            // Assert
+            Assert.NotNull(result[0].Console_lines);
+        }
+
+        [Test]
+        public void Will_not_return_transactions_that_have_already_been_matched()
+        {
+            // Arrange
+            var amount_to_match = 10.00;
+            CredCard2Record transaction_to_match = new CredCard2Record
+            {
+                Amount = amount_to_match
+            };
+            List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> { 
+                new CredCard2InOutRecord { Unreconciled_amount = amount_to_match, Description = "Not matched", Matched = false },
+                new CredCard2InOutRecord { Unreconciled_amount = amount_to_match, Description = "Matched", Matched = true }
+            };
+            _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
+            _cred_card2_in_out_file.Load();
+            var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
+
+            // Act
+            var result = matcher.Standby_find_expense_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+
+            // Assert
+            Assert.AreEqual(1, result.Count);
+            Assert.IsFalse(result.Any(x => x.Actual_records.Any(y => y.Matched)));
+        }
+
+        [Test]
         public void Will_match_on_a_single_identical_amount()
         {
             // Arrange
@@ -289,6 +338,12 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
+        public void Will_return_multiple_individual_matches_when_multiple_single_exact_matches_exist()
+        {
+            Assert.AreEqual(true, true);
+        }
+
+        [Test]
         public void Will_prioritise_closer_amount_matches_when_multiple_matches_are_available_with_amount_less_than_target()
         {
             Assert.AreEqual(true, true);
@@ -314,12 +369,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
 
         [Test]
         public void Will_prioritise_closer_dates_when_duplicate_transactions_exist()
-        {
-            Assert.AreEqual(true, true);
-        }
-
-        [Test]
-        public void Will_populate_console_lines_for_every_potential_match()
         {
             Assert.AreEqual(true, true);
         }

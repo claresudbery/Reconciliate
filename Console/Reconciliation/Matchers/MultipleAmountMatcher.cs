@@ -23,7 +23,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
             var match_lists = Find_match_lists(
                 source_record.Main_amount(),
-                owned_file.Records as IEnumerable<ICSVRecord>).ToList();
+                owned_file.Records.Where(x => !x.Matched) as IEnumerable<ICSVRecord>).ToList();
 
             bool no_matches_found = match_lists.Count == 1 
                                     && match_lists[0].Matches.Count == 0;
@@ -32,7 +32,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             {
                 result = match_lists.Select(y => new PotentialMatch
                 {
-                    Actual_records = y.Matches
+                    Actual_records = y.Matches,
+                    Console_lines = y.Matches.Select(z => z.To_console()).ToList(),
+                    Rankings = new Rankings { Amount = 0, Date = 0, Combined = 0 },
+                    Amount_match = false,
+                    Full_text_match = false,
+                    Partial_text_match = false
                 }).ToList();
             }
 
