@@ -1,12 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ConsoleCatchall.Console.Reconciliation.Extensions;
-using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
-using Interfaces.Constants;
-using Interfaces.Delegates;
 using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Matchers
@@ -24,12 +20,21 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         public IEnumerable<IPotentialMatch> Standby_find_expense_matches(TThirdPartyType source_record, ICSVFile<TOwnedType> owned_file)
         {
             var result = new List<PotentialMatch>();
-            if (owned_file.Records[0].Main_amount() == source_record.Main_amount())
+            /*if (owned_file.Records[0].Main_amount() == source_record.Main_amount())
             {
                 var actual_records = new List<ICSVRecord>();
                 actual_records.Add(owned_file.Records[0]);
                 result.Add(new PotentialMatch {Actual_records = actual_records});
-            }
+            }*/
+
+            result = Find_match_lists(
+                owned_file.Records[0].Main_amount(), 
+                owned_file.Records as IEnumerable<ICSVRecord>)
+            .Select(y => new PotentialMatch
+            {
+                Actual_records = y.Matches
+            }).ToList();
+
             return result;
         }
 
@@ -81,20 +86,20 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             }
         }
 
-        private IEnumerable<MatchList> Find_match_lists(double target_amount, IEnumerable<double> candidates)
+        private IEnumerable<MatchList> Find_match_lists(double target_amount, IEnumerable<ICSVRecord> candidates)
         {
             List<MatchList> results = new List<MatchList>();
 
             var concrete_candidates = candidates.ToList();
-            concrete_candidates.RemoveAll(x => x > target_amount);
-            double candidate_total = concrete_candidates.Sum();
+            concrete_candidates.RemoveAll(x => x.Main_amount() > target_amount);
+            double candidate_total = concrete_candidates.Sum(x => x.Main_amount());
 
             if (candidate_total.Equals(target_amount))
             {
                 results.Add(new MatchList
                 {
                     TargetAmount = target_amount,
-                    Matches = new List<double>(concrete_candidates)
+                    Matches = new List<ICSVRecord>(concrete_candidates)
                 });
             }
             else if (candidate_total < target_amount)
@@ -103,23 +108,23 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                 results.Add(new MatchList
                 {
                     TargetAmount = target_amount,
-                    Matches = new List<double>(concrete_candidates)
+                    Matches = new List<ICSVRecord>(concrete_candidates)
                 });
             }
             else
             {
-                foreach (double candidate in concrete_candidates)
+                foreach (ICSVRecord candidate in concrete_candidates)
                 {
-                    List<double> new_candidates = new List<double>(concrete_candidates);
+                    List<ICSVRecord> new_candidates = new List<ICSVRecord>(concrete_candidates);
                     new_candidates.Remove(candidate);
-                    double new_target = target_amount - candidate;
+                    double new_target = target_amount - candidate.Main_amount();
                     IEnumerable<MatchList> new_match_lists = Find_match_lists(new_target, new_candidates);
                     foreach (MatchList match_list in new_match_lists)
                     {
                         var new_result = new MatchList
                         {
                             TargetAmount = target_amount,
-                            Matches = match_list.Matches.Concat(new List<double> {candidate}).ToList()
+                            Matches = match_list.Matches.Concat(new List<ICSVRecord> {candidate}).ToList()
                         };
                         if (!results.Any(x => x.Matches.SequenceEqual(new_result.Matches)))
                         {
