@@ -219,70 +219,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
         public IEnumerable<IPotentialMatch> Find_expense_matches(ActualBankRecord source_record, ICSVFile<BankRecord> owned_file)
         {
-            return Debug_find_expense_matches(source_record, owned_file);
-        }
-
-        public IEnumerable<IPotentialMatch> Standby_find_expense_matches<TThirdPartyType, TOwnedType>
-                (TThirdPartyType source_record, ICSVFile<TOwnedType> owned_file)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-            var result = new List<PotentialMatch>();
-            if (owned_file.Records[0].Main_amount() == source_record.Main_amount())
-            {
-                var actual_records = new List<ICSVRecord>();
-                actual_records.Add(owned_file.Records[0]);
-                result.Add(new PotentialMatch {Actual_records = actual_records});
-            }
-            return result;
-        }
-
-        private IEnumerable<IPotentialMatch> Debug_find_expense_matches(ActualBankRecord source_record, ICSVFile<BankRecord> owned_file)
-        {
-            var result = new List<IPotentialMatch>();
-            var random_number_generator = new Random();
-
-            Add_set_of_overlapping_matches(random_number_generator, owned_file, result, 3);
-            Add_set_of_overlapping_matches(random_number_generator, owned_file, result, 2);
-            Add_set_of_overlapping_matches(random_number_generator, owned_file, result, 2);
-            Add_set_of_overlapping_matches(random_number_generator, owned_file, result, 3);
-
-            return result;
-        }
-
-        private static void Add_set_of_overlapping_matches(
-            Random random_number_generator,
-            ICSVFile<BankRecord> owned_file, 
-            List<IPotentialMatch> result, 
-            int num_matches)
-        {
-            var unmatched_records = owned_file.Records.Where(x => !x.Matched).ToList();
-            var max_rand = unmatched_records.Count - 1;
-            if (max_rand >= 0)
-            {
-                var new_match = new PotentialMatch
-                {
-                    Actual_records = new List<ICSVRecord>(),
-                    Console_lines = new List<ConsoleLine>(),
-                    Rankings = new Rankings { Amount = 0, Date = 0, Combined = 0 },
-                    Amount_match = true,
-                    Full_text_match = true,
-                    Partial_text_match = true
-                };
-                for (int count = 1; count <= num_matches; count++)
-                {
-                    if (max_rand >= 0)
-                    {
-                        var random_index = random_number_generator.Next(0, max_rand);
-                        var next_record = unmatched_records[random_index];
-                        new_match.Actual_records.Add(next_record);
-                        new_match.Console_lines.Add(next_record.To_console());
-                        unmatched_records.Remove(next_record);
-                        max_rand--;
-                    }
-                }
-                result.Add(new_match);
-            }
+            var generic_matcher = new MultipleAmountMatcher<ActualBankRecord, BankRecord>();
+            return generic_matcher.Debug_find_expense_matches(source_record, owned_file);
         }
     }
 }

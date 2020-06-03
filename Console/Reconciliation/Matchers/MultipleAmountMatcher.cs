@@ -33,7 +33,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             return result;
         }
 
-        private IEnumerable<IPotentialMatch> Debug_find_expense_matches(TThirdPartyType source_record, ICSVFile<TOwnedType> owned_file)
+        public IEnumerable<IPotentialMatch> Debug_find_expense_matches(TThirdPartyType source_record, ICSVFile<TOwnedType> owned_file)
         {
             var result = new List<IPotentialMatch>();
             var random_number_generator = new Random();

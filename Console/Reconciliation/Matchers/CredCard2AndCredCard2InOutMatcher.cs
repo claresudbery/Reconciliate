@@ -174,55 +174,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
         public IEnumerable<IPotentialMatch> Find_Amazon_matches(CredCard2Record source_record, ICSVFile<CredCard2InOutRecord> owned_file)
         {
-            return Debug_find_Amazon_matches(source_record, owned_file);
-        }
-
-        private IEnumerable<IPotentialMatch> Debug_find_Amazon_matches(CredCard2Record source_record, ICSVFile<CredCard2InOutRecord> owned_file)
-        {
-            var result = new List<IPotentialMatch>();
-            var random_number_generator = new Random();
-
-            Add_set_of_overlapping_matches(random_number_generator, owned_file, result, 3);
-            Add_set_of_overlapping_matches(random_number_generator, owned_file, result, 4);
-            Add_set_of_overlapping_matches(random_number_generator, owned_file, result, 2);
-            Add_set_of_overlapping_matches(random_number_generator, owned_file, result, 3);
-
-            return result;
-        }
-
-        private static void Add_set_of_overlapping_matches(
-            Random random_number_generator,
-            ICSVFile<CredCard2InOutRecord> owned_file,
-            List<IPotentialMatch> result,
-            int num_matches)
-        {
-            var unmatched_records = owned_file.Records.Where(x => !x.Matched).ToList();
-            var max_rand = unmatched_records.Count - 1;
-            if (max_rand >= 0)
-            {
-                var new_match = new PotentialMatch
-                {
-                    Actual_records = new List<ICSVRecord>(),
-                    Console_lines = new List<ConsoleLine>(),
-                    Rankings = new Rankings { Amount = 0, Date = 0, Combined = 0 },
-                    Amount_match = true,
-                    Full_text_match = true,
-                    Partial_text_match = true
-                };
-                for (int count = 1; count <= num_matches; count++)
-                {
-                    if (max_rand >= 0)
-                    {
-                        var random_index = random_number_generator.Next(0, max_rand);
-                        var next_record = unmatched_records[random_index];
-                        new_match.Actual_records.Add(next_record);
-                        new_match.Console_lines.Add(next_record.To_console());
-                        unmatched_records.Remove(next_record);
-                        max_rand--;
-                    }
-                }
-                result.Add(new_match);
-            }
+            var generic_matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
+            return generic_matcher.Debug_find_expense_matches(source_record, owned_file);
         }
     }
 }
