@@ -20,20 +20,21 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         public IEnumerable<IPotentialMatch> Standby_find_expense_matches(TThirdPartyType source_record, ICSVFile<TOwnedType> owned_file)
         {
             var result = new List<PotentialMatch>();
-            /*if (owned_file.Records[0].Main_amount() == source_record.Main_amount())
-            {
-                var actual_records = new List<ICSVRecord>();
-                actual_records.Add(owned_file.Records[0]);
-                result.Add(new PotentialMatch {Actual_records = actual_records});
-            }*/
 
-            result = Find_match_lists(
-                owned_file.Records[0].Main_amount(), 
-                owned_file.Records as IEnumerable<ICSVRecord>)
-            .Select(y => new PotentialMatch
+            var match_lists = Find_match_lists(
+                source_record.Main_amount(),
+                owned_file.Records as IEnumerable<ICSVRecord>).ToList();
+
+            bool no_matches_found = match_lists.Count == 1 
+                                    && match_lists[0].Matches.Count == 0;
+
+            if (!no_matches_found)
             {
-                Actual_records = y.Matches
-            }).ToList();
+                result = match_lists.Select(y => new PotentialMatch
+                {
+                    Actual_records = y.Matches
+                }).ToList();
+            }
 
             return result;
         }
