@@ -6,6 +6,7 @@ using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.Constants;
+using Interfaces.Delegates;
 using Interfaces.DTOs;
 
 namespace ConsoleCatchall.Console.Reconciliation.Matchers
@@ -42,14 +43,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
-            Do_employer_expense_matching(reconciliator, reconciliation_interface);
+            Do_employer_expense_matching(
+                reconciliator as IReconciliator<ActualBankRecord, BankRecord>, 
+                reconciliation_interface as IReconciliationInterface<ActualBankRecord, BankRecord>);
         }
 
-        private void Do_employer_expense_matching<TThirdPartyType, TOwnedType>(
-                IReconciliator<TThirdPartyType, TOwnedType> reconciliator,
-                IReconciliationInterface<TThirdPartyType, TOwnedType> reconciliation_interface)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
+        private void Do_employer_expense_matching(
+                IReconciliator<ActualBankRecord, BankRecord> reconciliator,
+                IReconciliationInterface<ActualBankRecord, BankRecord> reconciliation_interface)
         {
             Filter_for_all_expense_transactions_from_actual_bank_in(reconciliator);
             Filter_for_all_wages_rows_and_expense_transactions_from_expected_in(reconciliator);
@@ -69,68 +70,44 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             _bank_and_bank_in_loader.Finish();
         }
 
-        public void Filter_for_all_expense_transactions_from_actual_bank_in<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
+        public void Filter_for_all_expense_transactions_from_actual_bank_in(IReconciliator<ActualBankRecord, BankRecord> reconciliator)
         {
             reconciliator.Filter_third_party_file(Is_not_expense_transaction);
         }
 
-        public bool Is_not_expense_transaction<TThirdPartyType>(TThirdPartyType actual_bank_record) where TThirdPartyType : ICSVRecord, new()
+        public bool Is_not_expense_transaction(ActualBankRecord actual_bank_record)
         {
             return actual_bank_record.Description.Remove_punctuation().ToUpper()
                    != ReconConsts.Employer_expense_description;
         }
 
-        public void Filter_for_all_wages_rows_and_expense_transactions_from_expected_in<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
+        public void Filter_for_all_wages_rows_and_expense_transactions_from_expected_in(IReconciliator<ActualBankRecord, BankRecord> reconciliator)
         {
             reconciliator.Filter_owned_file(Is_not_wages_row_or_expense_transaction);
         }
 
-        public bool Is_not_wages_row_or_expense_transaction<TOwnedType>(TOwnedType bank_record) where TOwnedType : ICSVRecord, new()
+        public bool Is_not_wages_row_or_expense_transaction(BankRecord bank_record)
         {
-            return (bank_record as BankRecord).Type != Codes.Expenses
+            return bank_record.Type != Codes.Expenses
                 && !bank_record.Description.Contains(ReconConsts.Employer_expense_description);
         }
 
-        public void Remove_expense_rows_that_didnt_get_matched<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
+        public void Remove_expense_rows_that_didnt_get_matched(IReconciliator<ActualBankRecord, BankRecord> reconciliator)
         {
             reconciliator.Filter_owned_file(Is_unmatched_expense_row);
         }
 
-        public bool Is_unmatched_expense_row<TOwnedType>(TOwnedType bank_record) where TOwnedType : ICSVRecord, new()
+        public bool Is_unmatched_expense_row(BankRecord bank_record)
         {
-            return (bank_record as BankRecord).Type == Codes.Expenses
-                   && (bank_record as BankRecord).Matched == false
-                   && (bank_record as BankRecord).Match == null;
+            return bank_record.Type == Codes.Expenses
+                   && bank_record.Matched == false
+                   && bank_record.Match == null;
         }
 
-        public List<ConsoleLine> Get_all_expense_transactions_from_actual_bank_in<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-            Filter_for_all_expense_transactions_from_actual_bank_in(reconciliator);
-            return reconciliator.Third_party_file.Records.Select(x => x.To_console()).ToList();
-        }
-
-        public List<ConsoleLine> Get_all_wages_rows_and_expense_transactions_from_expected_in<TThirdPartyType, TOwnedType>(IReconciliator<TThirdPartyType, TOwnedType> reconciliator)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
-        {
-            Filter_for_all_wages_rows_and_expense_transactions_from_expected_in(reconciliator);
-            return reconciliator.Owned_file.Records.Select(x => x.To_console()).ToList();
-        }
-
-        public void Match_specified_records<TThirdPartyType, TOwnedType>(
-                RecordForMatching<TThirdPartyType> record_for_matching,
+        public void Match_specified_records(
+                RecordForMatching<ActualBankRecord> record_for_matching,
                 int match_index,
-                ICSVFile<TOwnedType> owned_file)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
+                ICSVFile<BankRecord> owned_file)
         {
             if (record_for_matching.Matches[match_index].Actual_records.Count > 1)
             {
@@ -140,17 +117,17 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             {
                 _bank_and_bank_in_loader.Update_expected_income_record_when_matched(
                     record_for_matching.SourceRecord,
-                    (TOwnedType)record_for_matching.Matches[match_index].Actual_records[0]);
+                    (BankRecord)record_for_matching.Matches[match_index].Actual_records[0]);
             }
-            Match_records(record_for_matching.SourceRecord, record_for_matching.Matches[match_index].Actual_records[0]);
+            Match_records(
+                record_for_matching.SourceRecord,
+                (record_for_matching.Matches[match_index].Actual_records[0] as BankRecord));
         }
 
-        public void Create_new_combined_record<TThirdPartyType, TOwnedType>(
-                RecordForMatching<TThirdPartyType> record_for_matching,
+        public void Create_new_combined_record(
+                RecordForMatching<ActualBankRecord> record_for_matching,
                 int match_index,
-                ICSVFile<TOwnedType> owned_file)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
+                ICSVFile<BankRecord> owned_file)
         {
             var sum_of_all_matches =
                 record_for_matching.Matches[match_index].Actual_records.Sum(x => x.Main_amount());
@@ -158,12 +135,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             var expense_amounts_match = record_for_matching.SourceRecord.Main_amount()
                 .Double_equals(sum_of_all_matches);
 
-            TOwnedType new_match = New_combined_record<TThirdPartyType, TOwnedType>(
+            BankRecord new_match = New_combined_record(
                 record_for_matching, 
                 match_index, 
                 expense_amounts_match,
                 sum_of_all_matches);
-            Update_expected_income_and_owned_files<TThirdPartyType, TOwnedType>(
+            Update_expected_income_and_owned_files(
                 record_for_matching, 
                 match_index, 
                 expense_amounts_match,
@@ -176,20 +153,18 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             owned_file.Add_record_permanently(new_match);
         }
 
-        private void Update_expected_income_and_owned_files<TThirdPartyType, TOwnedType>(
-                RecordForMatching<TThirdPartyType> record_for_matching,
+        private void Update_expected_income_and_owned_files(
+                RecordForMatching<ActualBankRecord> record_for_matching,
                 int match_index,
                 bool expense_amounts_match,
                 double sum_of_all_matches,
                 double missing_balance,
-                ICSVFile<TOwnedType> owned_file)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
+                ICSVFile<BankRecord> owned_file)
         {
             foreach (var actual_record in record_for_matching.Matches[match_index].Actual_records)
             {
-                _bank_and_bank_in_loader.Update_expected_income_record_when_matched(record_for_matching.SourceRecord, (TOwnedType)actual_record);
-                owned_file.Remove_record_permanently((TOwnedType)actual_record);
+                _bank_and_bank_in_loader.Update_expected_income_record_when_matched(record_for_matching.SourceRecord, actual_record);
+                owned_file.Remove_record_permanently((BankRecord)actual_record);
             }
 
             if (!expense_amounts_match)
@@ -200,30 +175,28 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             }
         }
 
-        private TOwnedType New_combined_record<TThirdPartyType, TOwnedType>(
-                RecordForMatching<TThirdPartyType> record_for_matching,
+        private BankRecord New_combined_record(
+                RecordForMatching<ActualBankRecord> record_for_matching,
                 int match_index,
                 bool expense_amounts_match,
                 double sum_of_all_matches)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
         {
-            var new_match = new TOwnedType
+            var new_match = new BankRecord
             {
                 Date = record_for_matching.SourceRecord.Date,
                 Description = Create_new_description(record_for_matching.Matches[match_index], expense_amounts_match, sum_of_all_matches)
             };
-            (new_match as BankRecord).Unreconciled_amount = record_for_matching.SourceRecord.Main_amount();
-            (new_match as BankRecord).Type = (record_for_matching.Matches[match_index].Actual_records[0] as BankRecord).Type;
+            new_match.Unreconciled_amount = record_for_matching.SourceRecord.Main_amount();
+            new_match.Type = (record_for_matching.Matches[match_index].Actual_records[0] as BankRecord).Type;
             return new_match;
         }
 
-        private void Match_records<TThirdPartyType>(TThirdPartyType source, ICSVRecord match) where TThirdPartyType : ICSVRecord, new()
+        private void Match_records(ActualBankRecord source, BankRecord match)
         {
             match.Matched = true;
-            (source as ICSVRecord).Matched = true;
+            source.Matched = true;
             match.Match = source;
-            (source as ICSVRecord).Match = match;
+            source.Match = match;
         }
 
         private string Create_new_description(
@@ -244,12 +217,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             return $"{ReconConsts.SeveralExpenses} ({combined_amounts}){extra_text}";
         }
 
-        public IEnumerable<IPotentialMatch> Find_expense_matches<TThirdPartyType, TOwnedType>
-                (TThirdPartyType source_record, ICSVFile<TOwnedType> owned_file)
-            where TThirdPartyType : ICSVRecord, new()
-            where TOwnedType : ICSVRecord, new()
+        public IEnumerable<IPotentialMatch> Find_expense_matches(ActualBankRecord source_record, ICSVFile<BankRecord> owned_file)
         {
-            return Debug_find_expense_matches(source_record as ActualBankRecord, owned_file as ICSVFile<BankRecord>);
+            return Debug_find_expense_matches(source_record, owned_file);
         }
 
         public IEnumerable<IPotentialMatch> Standby_find_expense_matches<TThirdPartyType, TOwnedType>
