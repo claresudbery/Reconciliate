@@ -3,6 +3,7 @@ using System.Linq;
 using ConsoleCatchall.Console.Reconciliation.Extensions;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Records;
+using ConsoleCatchall.Console.Reconciliation.Utils;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
@@ -30,7 +31,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         {
             var loading_info = ((BankAndBankInLoader)_bank_and_bank_in_loader).Loading_info();
             loading_info.File_paths = main_file_paths;
-            var file_loader = new FileLoader(_input_output);
+            var file_loader = new FileLoader(_input_output, new Clock());
             ReconciliationInterface<ActualBankRecord, BankRecord> reconciliation_interface
                 = file_loader.Load_files_and_merge_data<ActualBankRecord, BankRecord>(loading_info, spreadsheet_factory, this);
             reconciliation_interface?.Do_the_matching();

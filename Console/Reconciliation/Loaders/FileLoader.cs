@@ -12,10 +12,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
     internal class FileLoader
     {
         private readonly IInputOutput _input_output;
+        private readonly IClock _clock;
 
-        public FileLoader(IInputOutput input_output)
+        public FileLoader(IInputOutput input_output, IClock clock)
         {
             _input_output = input_output;
+            _clock = clock;
         }
 
         public void Create_pending_csvs()
@@ -226,7 +228,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
         private DateTime Get_next_unplanned_month(ISpreadsheet spreadsheet)
         {
-            DateTime default_month = DateTime.Today;
+            DateTime default_month = _clock.Today_date_time();
             DateTime next_unplanned_month = default_month;
             bool bad_input = false;
             try

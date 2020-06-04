@@ -6,6 +6,7 @@ using System.Linq;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Records;
+using ConsoleCatchall.Console.Reconciliation.Utils;
 using ConsoleCatchallTests.Reconciliation.TestUtils;
 using Interfaces;
 using Interfaces.Constants;
@@ -60,7 +61,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         {
             // Arrange
             var mock_input_output = new Mock<IInputOutput>();
-            var reconciliate = new FileLoader(mock_input_output.Object);
+            var reconciliate = new FileLoader(mock_input_output.Object, new Clock());
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
             var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
@@ -115,7 +116,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns($"{user_input}")
                 .Returns("Y");
             // Use self-shunt to avoid infinite recursion:
-            var reconciliate = new FileLoader(this);
+            var reconciliate = new FileLoader(this, new Clock());
 
             // Act
             reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
@@ -135,7 +136,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns($"{month_input}")
                 .Returns("Y");
-            var reconciliate = new FileLoader(_mock_input_output.Object);
+            var reconciliate = new FileLoader(_mock_input_output.Object, new Clock());
 
             // Act
             var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
@@ -159,7 +160,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns($"{month_input + 1}")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:
-            var reconciliate = new FileLoader(this);
+            var reconciliate = new FileLoader(this, new Clock());
 
             // Act
             reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
@@ -191,7 +192,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns(user_input)
                 .Returns("Y")
                 .Returns("Y");
-            var reconciliate = new FileLoader(_mock_input_output.Object);
+            var reconciliate = new FileLoader(_mock_input_output.Object, new Clock());
 
             // Act
             var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
@@ -219,7 +220,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns("Y")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:
-            var reconciliate = new FileLoader(this);
+            var reconciliate = new FileLoader(this, new Clock());
             
             // Act
             reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
@@ -239,7 +240,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns($"{0}")
                 .Returns("Y")
                 .Returns("Y");
-            var reconciliate = new FileLoader(_mock_input_output.Object);
+            var reconciliate = new FileLoader(_mock_input_output.Object, new Clock());
 
             // Act
             var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
@@ -260,7 +261,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns("0")
                 .Returns("Y")
                 .Returns("Y");
-            var reconciliate = new FileLoader(_mock_input_output.Object);
+            var reconciliate = new FileLoader(_mock_input_output.Object, new Clock());
             bool exception_thrown = false;
 
             // Act
@@ -291,7 +292,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns($"{11}")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:
-            var reconciliate = new FileLoader(this);
+            var reconciliate = new FileLoader(this, new Clock());
 
             // Act
             reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
@@ -315,7 +316,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns($"{user_input_for_next_unplanned_month}")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:
-            var reconciliate = new FileLoader(this);
+            var reconciliate = new FileLoader(this, new Clock());
 
             // Act
             var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
@@ -344,7 +345,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns("1")
                 .Returns("Y");
             // Use self-shunt to track calls to GetInput:
-            var reconciliate = new FileLoader(this);
+            var reconciliate = new FileLoader(this, new Clock());
 
             // Act
             var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
@@ -359,7 +360,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         {
             // Arrange
             var mock_input_output = new Mock<IInputOutput>();
-            var reconciliate = new FileLoader(mock_input_output.Object);
+            var reconciliate = new FileLoader(mock_input_output.Object, new Clock());
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
             var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
@@ -418,7 +419,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         {
             // Arrange
             var mock_input_output = new Mock<IInputOutput>();
-            var reconciliate = new FileLoader(mock_input_output.Object);
+            var reconciliate = new FileLoader(mock_input_output.Object, new Clock());
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
             var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
@@ -464,7 +465,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         {
             // Arrange
             var mock_input_output = new Mock<IInputOutput>();
-            var reconciliate = new FileLoader(mock_input_output.Object);
+            var reconciliate = new FileLoader(mock_input_output.Object, new Clock());
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
             var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
@@ -510,7 +511,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         {
             // Arrange
             var mock_input_output = new Mock<IInputOutput>();
-            var reconciliate = new FileLoader(mock_input_output.Object);
+            var reconciliate = new FileLoader(mock_input_output.Object, new Clock());
             var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
             var pending_file = new CSVFile<BankRecord>(mock_pending_file_io.Object);
             mock_pending_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))

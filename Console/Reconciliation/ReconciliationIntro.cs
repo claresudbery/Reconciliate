@@ -32,7 +32,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             {
                 case "1":
                 {
-                    var file_loader = new FileLoader(_input_output);
+                    var file_loader = new FileLoader(_input_output, new Clock());
                     file_loader.Create_pending_csvs();
                 } 
                 break;

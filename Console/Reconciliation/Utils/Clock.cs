@@ -9,5 +9,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
         {
             return DateTime.Now;
         }
+        public DateTime Today_date_time()
+        {
+            return DateTime.Today;
+        }
     }
 }
