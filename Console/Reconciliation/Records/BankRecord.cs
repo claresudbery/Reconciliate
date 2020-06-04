@@ -70,7 +70,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 : "0");
 
             Type = values[TypeIndex];
-            Description = values[DescriptionIndex];
+            Description = values[DescriptionIndex].Strip_enclosing_quotes();
 
             Cheque_number = Convert.ToInt32(values[ChequeNumberIndex] != "" && values[ChequeNumberIndex].Is_numeric()
                 ? values[ChequeNumberIndex] 
@@ -189,7 +189,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 ? (Double)cell_set.Read_cell(UnreconciledAmountIndex)
                 : 0;
             Type = (String)cell_set.Read_cell(TypeIndex);
-            Description = (String)cell_set.Read_cell(DescriptionIndex);
+            Description = ((String)cell_set.Read_cell(DescriptionIndex)).Strip_enclosing_quotes();
             Cheque_number = cell_set.Count > ChequeNumberIndex && cell_set.Read_cell(ChequeNumberIndex) != null 
                 ? Convert.ToInt32((Double)cell_set.Read_cell(ChequeNumberIndex)) 
                 : 0;

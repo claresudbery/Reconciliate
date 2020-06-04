@@ -132,7 +132,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             Total_paid = cell_row.Count > TotalPaidIndex && cell_row.Read_cell(TotalPaidIndex) != null
                 ? (Double)cell_row.Read_cell(TotalPaidIndex)
                 : 0;
-            Description = (String)cell_row.Read_cell(DescriptionIndex);
+            Description = ((String)cell_row.Read_cell(DescriptionIndex)).Strip_enclosing_quotes();
 
             Source_line = To_string(_separator, false);
         }

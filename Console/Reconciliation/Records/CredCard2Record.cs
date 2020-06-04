@@ -58,7 +58,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 ? simple_amount
                 : "0");
 
-            Description = values[DescriptionIndex];
+            Description = values[DescriptionIndex].Strip_enclosing_quotes();
         }
 
         // Not currently used because the format of the file changed and they don't seem to use commas any more - and it's not the last field any more.
@@ -109,7 +109,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         {
             Date = DateTime.FromOADate((double)cell_set.Read_cell(DateIndex));
             Amount = (Double)cell_set.Read_cell(AmountIndex);
-            Description = (String)cell_set.Read_cell(DescriptionIndex);
+            Description = ((String)cell_set.Read_cell(DescriptionIndex)).Strip_enclosing_quotes();
         }
 
         public bool Main_amount_is_negative()

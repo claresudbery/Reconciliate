@@ -91,7 +91,7 @@ namespace ExcelIntegrationTests.Records
         {
             Date = DateTime.FromOADate((double)cells.Read_cell(0));
             Amount = (Double)cells.Read_cell(1);
-            Description = (String)cells.Read_cell(2);
+            Description = ((String)cells.Read_cell(2)).Strip_enclosing_quotes();
             Index = Convert.ToInt16((Double)cells.Read_cell(3));
         }
 

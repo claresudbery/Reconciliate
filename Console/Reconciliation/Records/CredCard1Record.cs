@@ -55,7 +55,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
 
             Reference = values[ReferenceIndex];
 
-            Description = values[DescriptionIndex];
+            Description = values[DescriptionIndex].Strip_enclosing_quotes();
 
             var simple_amount = string.IsNullOrEmpty(values[AmountIndex])
                 ? String.Empty
@@ -99,7 +99,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         {
             Date = DateTime.FromOADate((double)cell_set.Read_cell(DateIndex));
             Reference = (String)cell_set.Read_cell(ReferenceIndex);
-            Description = (String)cell_set.Read_cell(DescriptionIndex);
+            Description = ((String)cell_set.Read_cell(DescriptionIndex)).Strip_enclosing_quotes();
             Amount = (Double)cell_set.Read_cell(AmountIndex);
         }
 

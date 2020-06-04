@@ -59,7 +59,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 ? simple_unrec_amount 
                 : "0");
             
-            Description = values[DescriptionIndex] != String.Empty ? values[DescriptionIndex] : "Source record had no description";
+            Description = values[DescriptionIndex] != String.Empty ? values[DescriptionIndex].Strip_enclosing_quotes() : "Source record had no description";
 
             var simple_rec_amount = string.IsNullOrEmpty(values[ReconciledAmountIndex])
                 ? String.Empty
@@ -110,7 +110,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         {
             Date = DateTime.FromOADate((double)cell_set.Read_cell(DateIndex));
             Unreconciled_amount = (Double)cell_set.Read_cell(UnreconciledAmountIndex);
-            Description = (String)cell_set.Read_cell(DescriptionIndex);
+            Description = ((String)cell_set.Read_cell(DescriptionIndex)).Strip_enclosing_quotes();
             Reconciled_amount = cell_set.Count > ReconciledAmountIndex && cell_set.Read_cell(ReconciledAmountIndex) != null 
                 ? (Double)cell_set.Read_cell(ReconciledAmountIndex)
                 : 0;
