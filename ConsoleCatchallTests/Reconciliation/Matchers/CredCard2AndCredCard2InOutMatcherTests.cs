@@ -53,7 +53,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
             // Act
-            matcher.SetAmazonStrings();
             matcher.Filter_matching_transactions_from_cred_card2_in_out(reconciliator);
 
             // Assert
@@ -85,7 +84,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
             // Act
-            matcher.SetAmazonStrings();
             matcher.Filter_matching_transactions_from_cred_card2(reconciliator);
 
             // Assert
@@ -314,11 +312,10 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                 + $"({desc01} {matches[0].Main_amount().To_csv_string(true)}, "
                 + $"{desc02} {matches[1].Main_amount().To_csv_string(true)}, " 
                 + $"{desc03} {matches[2].Main_amount().To_csv_string(true)})"
-                + $"{ReconConsts.AmazonTransactionsDontAddUp} ({potential_matches[index].Actual_records.Sum(x => x.Main_amount()).To_csv_string(true)})";
+                + $"{ReconConsts.TransactionsDontAddUp} ({potential_matches[index].Actual_records.Sum(x => x.Main_amount()).To_csv_string(true)})";
             var record_for_matching = new RecordForMatching<CredCard2Record>(source_record, potential_matches);
 
             // Act
-            matcher.SetAmazonStrings();
             matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert
@@ -431,11 +428,10 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var record_for_matching = new RecordForMatching<CredCard2Record>(source_record, potential_matches);
 
             // Act
-            matcher.SetAmazonStrings();
             matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert 
-            Assert.IsTrue(record_for_matching.Matches[index].Actual_records[0].Description.Contains(ReconConsts.AmazonTransactionsDontAddUp));
+            Assert.IsTrue(record_for_matching.Matches[index].Actual_records[0].Description.Contains(ReconConsts.TransactionsDontAddUp));
         }
 
         [Test]
@@ -589,7 +585,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             }
 
             // Act
-            matcher.SetAmazonStrings();
             matcher.Match_specified_records(record_for_matching, index, cred_card2_in_out_file);
 
             // Assert
@@ -632,7 +627,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                 }
             };
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
-            matcher.SetAmazonStrings();
             matcher.Filter_matching_transactions_from_cred_card2(reconciliator);
             matcher.Filter_matching_transactions_from_cred_card2_in_out(reconciliator);
             reconciliator.Set_match_finder((record, file) => expected_potential_matches);

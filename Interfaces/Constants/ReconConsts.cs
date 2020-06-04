@@ -55,6 +55,7 @@
         public static string Cred_card2_in_out_descriptor => XmlReader.Read_xml(nameof(Cred_card2_in_out_descriptor));
         public static string Employer_expense_description => XmlReader.Read_xml(nameof(Employer_expense_description));
         public static string Amazon_description => XmlReader.Read_xml(nameof(Amazon_description));
+        public static string iTunes_description => XmlReader.Read_xml(nameof(iTunes_description));
 
         public static string Cred_card1_name => XmlReader.Read_xml(nameof(Cred_card1_name));
         public static string Cred_card2_name => XmlReader.Read_xml(nameof(Cred_card2_name));
@@ -147,13 +148,13 @@
         public const string UnmatchedFromThirdParty = "!! Unmatched from 3rd party: ";
         public const string ExpensesDontAddUp = " !! Expenses don't add up.";
         public const string UnknownExpense = "Unknown expense to plug gap between expected and actual amount.";
-        public const string AmazonTransactionsDontAddUp = " !! Transactions don't add up.";
-        public const string UnknownAmazonTransaction = "Unknown Amazon transaction to plug gap between expected and actual amount.";
+        public const string TransactionsDontAddUp = " !! Transactions don't add up.";
 
         public const string BankInDescriptor = "Bank In";
         public const string BankOutDescriptor = "Bank Out";
         public const string SeveralExpenses = "Expenses - see Expected In";
         public const string SeveralAmazonTransactions = "Amazon";
+        public const string SeveraliTunesTransactions = "iTunes";
 
         public const int PartialDateMatchThreshold = 3;
         public const int PartialAmountMatchThreshold = 2;

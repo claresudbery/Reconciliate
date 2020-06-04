@@ -44,7 +44,8 @@
     <Cred_card2_descriptor>CredCard2</Cred_card2_descriptor>                      
     <Cred_card2_in_out_descriptor>CredCard2 InOut</Cred_card2_in_out_descriptor>               
     <Employer_expense_description>ACME LTD</Employer_expense_description>                            
-    <Amazon_description>AMAZON</Amazon_description>               
+    <Amazon_description>AMAZON</Amazon_description>                                           
+    <iTunes_description>.com/Bill</iTunes_description>               
     <Cred_card1_name>CredCard1</Cred_card1_name>                            
     <Cred_card2_name>CredCard2</Cred_card2_name>                            
     <Cred_card1_dd_description>CREDIT CARD 1</Cred_card1_dd_description>                  

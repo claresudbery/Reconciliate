@@ -22,6 +22,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         public CredCard2AndCredCard2InOutMatcher(IInputOutput input_output)
         {
             _input_output = input_output;
+            SetAmazonStrings();
         }
 
         public void Do_matching(FilePaths main_file_paths, ISpreadsheetRepoFactory spreadsheet_factory)
@@ -43,6 +44,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             Do_amazon_transaction_matching(
                 reconciliator as IReconciliator<CredCard2Record, CredCard2InOutRecord>, 
                 reconciliation_interface as IReconciliationInterface<CredCard2Record, CredCard2InOutRecord>);
+
+            Do_iTunes_transaction_matching(
+                reconciliator as IReconciliator<CredCard2Record, CredCard2InOutRecord>,
+                reconciliation_interface as IReconciliationInterface<CredCard2Record, CredCard2InOutRecord>);
         }
 
         private void Do_amazon_transaction_matching(
@@ -50,7 +55,21 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             IReconciliationInterface<CredCard2Record, CredCard2InOutRecord> reconciliation_interface)
         {
             SetAmazonStrings();
+            Do_transaction_matching(reconciliator, reconciliation_interface);
+        }
 
+        private void Do_iTunes_transaction_matching(
+            IReconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator,
+            IReconciliationInterface<CredCard2Record, CredCard2InOutRecord> reconciliation_interface)
+        {
+            SetiTunesStrings();
+            Do_transaction_matching(reconciliator, reconciliation_interface);
+        }
+
+        private void Do_transaction_matching(
+            IReconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator,
+            IReconciliationInterface<CredCard2Record, CredCard2InOutRecord> reconciliation_interface)
+        {
             Filter_matching_transactions_from_cred_card2(reconciliator);
             Filter_matching_transactions_from_cred_card2_in_out(reconciliator);
             reconciliator.Set_match_finder(Find_matches);
@@ -70,8 +89,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         public void SetAmazonStrings()
         {
             _match_description_qualifier = ReconConsts.Amazon_description;
-            _transactions_dont_add_up = ReconConsts.AmazonTransactionsDontAddUp;
+            _transactions_dont_add_up = ReconConsts.TransactionsDontAddUp;
             _several_transactions = ReconConsts.SeveralAmazonTransactions;
+        }
+
+        public void SetiTunesStrings()
+        {
+            _match_description_qualifier = ReconConsts.iTunes_description;
+            _transactions_dont_add_up = ReconConsts.TransactionsDontAddUp;
+            _several_transactions = ReconConsts.SeveraliTunesTransactions;
         }
 
         public void Filter_matching_transactions_from_cred_card2(IReconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator)
