@@ -54,7 +54,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         {
             List<MatchList> results = new List<MatchList>();
 
-            var concrete_candidates = candidates.OrderBy(x => x.Description).ToList();
+            var concrete_candidates = candidates
+                .OrderBy(x => x.Description)
+                .ThenBy(x => x.Date)
+                .ThenBy(x => x.Main_amount())
+                .ToList();
             concrete_candidates.RemoveAll(x => x.Main_amount().Double_greater_than(target_amount));
             double candidate_total = concrete_candidates.Sum(x => x.Main_amount());
 
@@ -88,7 +92,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                         var new_result = new MatchList
                         {
                             TargetAmount = target_amount,
-                            Matches = match_list.Matches.Concat(new List<ICSVRecord> {candidate}).OrderBy(x => x.Description).ToList()
+                            Matches = match_list.Matches.Concat(new List<ICSVRecord> {candidate})
+                                .OrderBy(x => x.Description)
+                                .ThenBy(x => x.Date)
+                                .ThenBy(x => x.Main_amount())
+                                .ToList()
                         };
                         if (!results.Any(x => x.Matches.SequenceEqual(new_result.Matches, new CsvRecordComparer())))
                         {

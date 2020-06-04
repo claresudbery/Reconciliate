@@ -58,6 +58,7 @@
     <Compile Include="DTOs\FilePaths.cs" />
     <Compile Include="DTOs\Rankings.cs" />
     <Compile Include="DTOs\RecordForMatching.cs" />
+    <Compile Include="Extensions\DoubleExtensions.cs" />
     <Compile Include="IBankAndBankInLoader.cs" />
     <Compile Include="ICellRow.cs" />
     <Compile Include="IClock.cs" />
@@ -80,5 +81,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Delegates\RecordMatchingDelegate.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
