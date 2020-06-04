@@ -252,7 +252,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                             var year = default_month.Year;
                             if (actual_month < default_month.Month)
                             {
-                                year++;
+                                if (Month_is_smaller_because_end_of_year(actual_month, default_month.Month))
+                                {
+                                    year++;
+                                }
                             }
                             next_unplanned_month = new DateTime(year, actual_month, 1);
                         }
@@ -275,6 +278,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             }
 
             return next_unplanned_month;
+        }
+
+        private bool Month_is_smaller_because_end_of_year(int new_month, int old_month)
+        {
+            int month_difference = old_month - new_month;
+            return (month_difference > 6);
         }
 
         private int Get_last_month_for_budget_planning(ISpreadsheet spreadsheet, int next_unplanned_month)

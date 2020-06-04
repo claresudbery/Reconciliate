@@ -171,6 +171,54 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             Assert.AreEqual(2, _get_input_messages.Count(x => x == month_input_request));
         }
 
+        [Test]
+        public void Given_mortgage_row_not_found_When_budgeting_start_month_is_before_current_month_will_not_assume_end_of_year()
+        {
+            // Arrange
+            DateTime current_date = new DateTime(2020, 5, 1);
+            int start_month_input = current_date.Month - 1;
+            int end_month_input = current_date.Month + 1;
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            var mock_clock = new Mock<IClock>();
+            mock_clock.Setup(x => x.Today_date_time()).Returns(current_date);
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Throws(new Exception());
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns($"{start_month_input}")
+                .Returns($"{end_month_input}")
+                .Returns("Y");
+            var reconciliate = new FileLoader(_mock_input_output.Object, mock_clock.Object);
+
+            // Act
+            var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
+
+            // Assert
+            Assert.AreEqual(current_date.Year, result.Start_year);
+        }
+
+        [Test]
+        public void Given_mortgage_row_not_found_When_budgeting_start_month_is_at_start_of_following_year_will_increment_year_number()
+        {
+            // Arrange
+            DateTime current_date = new DateTime(2020, 12, 1);
+            int start_month_input = 1;
+            int end_month_input = 3;
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            var mock_clock = new Mock<IClock>();
+            mock_clock.Setup(x => x.Today_date_time()).Returns(current_date);
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Throws(new Exception());
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns($"{start_month_input}")
+                .Returns($"{end_month_input}")
+                .Returns("Y");
+            var reconciliate = new FileLoader(_mock_input_output.Object, mock_clock.Object);
+
+            // Act
+            var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
+
+            // Assert
+            Assert.AreEqual(current_date.Year + 1, result.Start_year);
+        }
+
         [TestCase("13")]
         [TestCase("0")]
         [TestCase("53")]
