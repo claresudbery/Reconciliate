@@ -2,7 +2,7 @@
 
 namespace Interfaces.Extensions
 {
-    internal static class DoubleExtensions
+    public static class DoubleExtensions
     {
         public static double Proximity_score(this double source, double other_amount)
         {

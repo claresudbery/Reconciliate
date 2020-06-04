@@ -2,6 +2,7 @@
 using ConsoleCatchall.Console.Reconciliation.Extensions;
 using Interfaces;
 using Interfaces.DTOs;
+using Interfaces.Extensions;
 
 namespace ExcelIntegrationTests.Records
 {

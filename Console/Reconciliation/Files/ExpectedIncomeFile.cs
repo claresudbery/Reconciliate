@@ -4,6 +4,7 @@ using ConsoleCatchall.Console.Reconciliation.Extensions;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.Constants;
+using Interfaces.Extensions;
 
 namespace ConsoleCatchall.Console.Reconciliation.Files
 {

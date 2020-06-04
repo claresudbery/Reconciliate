@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ConsoleCatchall.Console.Reconciliation.Extensions;
 using Interfaces;
+using Interfaces.Extensions;
 
 namespace ConsoleCatchall.Console.Reconciliation.Matchers
 {

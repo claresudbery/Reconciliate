@@ -72,7 +72,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reconciliation\Files\CSVFactory.cs" />
-    <Compile Include="Reconciliation\Extensions\DateExtensions.cs" />
     <Compile Include="Reconciliation\Extensions\DoubleExtensions.cs" />
     <Compile Include="Reconciliation\Files\FileIO.cs" />
     <Compile Include="Reconciliation\Loaders\PendingCsvFileCreator.cs" />
@@ -87,7 +86,6 @@
     <Compile Include="Reconciliation\Records\PotentialMatch.cs" />
     <Compile Include="Reconciliation\Records\CredCard1Record.cs" />
     <Compile Include="Reconciliation\Records\ActualBankRecord.cs" />
-    <Compile Include="Reconciliation\Extensions\StringExtensions.cs" />
     <Compile Include="Reconciliation\Utils\Communicator.cs" />
     <Compile Include="Reconciliation\Utils\DebugModeSwitcher.cs" />
     <Compile Include="Reconciliation\Utils\PathSetter.cs" />

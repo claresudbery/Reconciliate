@@ -5,6 +5,7 @@ using ConsoleCatchall.Console.Reconciliation.Extensions;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.DTOs;
+using Interfaces.Extensions;
 
 namespace ConsoleCatchall.Console.Reconciliation.Matchers
 {

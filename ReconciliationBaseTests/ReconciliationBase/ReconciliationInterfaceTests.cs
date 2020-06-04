@@ -869,7 +869,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
                 // which means it will have returned null.
                 reconciliation_interface.Do_the_matching();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // Do nothing. We deliberately mocked inputOutput to throw an exception.
             }

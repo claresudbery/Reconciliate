@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace ConsoleCatchall.Console.Reconciliation.Extensions
+namespace Interfaces.Extensions
 {
-    internal static class StringExtensions
+    public static class StringExtensions
     {
         public static bool Is_alpha(this string source)
         {

@@ -3,6 +3,7 @@ using ConsoleCatchall.Console.Reconciliation.Extensions;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
+using Interfaces.Extensions;
 
 namespace ConsoleCatchall.Console.Reconciliation.Records
 {

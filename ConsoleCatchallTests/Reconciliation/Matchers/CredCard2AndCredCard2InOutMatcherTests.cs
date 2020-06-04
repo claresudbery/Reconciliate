@@ -9,6 +9,7 @@ using ConsoleCatchall.Console.Reconciliation.Extensions;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
+using Interfaces.Extensions;
 using Moq;
 using NUnit.Framework;
 

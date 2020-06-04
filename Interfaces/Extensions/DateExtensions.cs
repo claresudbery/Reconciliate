@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ConsoleCatchall.Console.Reconciliation.Extensions
+namespace Interfaces.Extensions
 {
-    internal static class DateExtensions
+    public static class DateExtensions
     {
         public static double Proximity_score(this DateTime source, DateTime other_date)
         {

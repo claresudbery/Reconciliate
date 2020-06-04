@@ -1,4 +1,5 @@
 using ConsoleCatchall.Console.Reconciliation.Extensions;
+using Interfaces.Extensions;
 using NUnit.Framework;
 
 namespace ConsoleCatchallTests.Reconciliation.Extensions

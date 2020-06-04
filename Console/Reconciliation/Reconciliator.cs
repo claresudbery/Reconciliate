@@ -9,6 +9,7 @@ using Interfaces;
 using Interfaces.Constants;
 using Interfaces.Delegates;
 using Interfaces.DTOs;
+using Interfaces.Extensions;
 
 namespace ConsoleCatchall.Console.Reconciliation
 {

@@ -7,6 +7,7 @@ using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Matchers;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
+using Interfaces.Extensions;
 using Moq;
 using NUnit.Framework;
 
