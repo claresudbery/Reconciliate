@@ -75,6 +75,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             reconciliator.Set_match_finder(Find_matches);
             reconciliator.Set_record_matcher(Match_specified_records);
 
+            reconciliator.Rewind();
             reconciliation_interface.Do_semi_automatic_matching();
 
             reconciliator.Refresh_files();
@@ -107,7 +108,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
         public bool Is_not_third_party_matching_transaction(CredCard2Record cred_card2_record)
         {
-            return !cred_card2_record.Description.Remove_punctuation().ToUpper().Contains(_match_description_qualifier);
+            return !cred_card2_record.Description.ToUpper().Contains(_match_description_qualifier.ToUpper());
         }
 
         public void Filter_matching_transactions_from_cred_card2_in_out(IReconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator)
@@ -117,7 +118,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
         public bool Is_not_owned_matching_transaction(CredCard2InOutRecord cred_card2_in_out_record)
         {
-            return !cred_card2_in_out_record.Description.Remove_punctuation().ToUpper().Contains(_match_description_qualifier);
+            return !cred_card2_in_out_record.Description.ToUpper().Contains(_match_description_qualifier.ToUpper());
         }
 
         public void Match_specified_records(

@@ -27,25 +27,25 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
-        public void M_WhenDoingAmazonMatchingWillFilterOwnedFileForAmazonTransactionsOnly()
+        public void M_WillFilterOwnedFileForiTunesTransactionsOnly()
         {
             // Arrange
             var mock_cred_card2_in_out_file_io = new Mock<IFileIO<CredCard2InOutRecord>>();
             var amazon_description =
-                $"{ReconConsts.Amazon_description} purchase ";
+                $"{ReconConsts.iTunes_description} purchase ";
             mock_cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<CredCard2InOutRecord> {
-                    new CredCard2InOutRecord {Description = ReconConsts.Amazon_description + "1"},
+                    new CredCard2InOutRecord {Description = ReconConsts.iTunes_description + "1"},
                     new CredCard2InOutRecord {Description = "something"},
-                    new CredCard2InOutRecord {Description = ReconConsts.Amazon_description + "2"},
-                    new CredCard2InOutRecord {Description = ReconConsts.Amazon_description + "3"},
+                    new CredCard2InOutRecord {Description = ReconConsts.iTunes_description + "2"},
+                    new CredCard2InOutRecord {Description = ReconConsts.iTunes_description + "3"},
                     new CredCard2InOutRecord {Description = "something else"}
                 });
             var cred_card2_in_out_file = new GenericFile<CredCard2InOutRecord>(new CSVFile<CredCard2InOutRecord>(mock_cred_card2_in_out_file_io.Object));
             var mock_cred_card2_file_io = new Mock<IFileIO<CredCard2Record>>();
             mock_cred_card2_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<CredCard2Record> {
-                    new CredCard2Record {Description = $"\"AMZNMARKETPLACE {ReconConsts.Amazon_description}.CO.UK\""}
+                    new CredCard2Record {Description = $"\"HOLLYHILL {ReconConsts.iTunes_description}\""}
                 });
             var cred_card2_file = new GenericFile<CredCard2Record>(new CSVFile<CredCard2Record>(mock_cred_card2_file_io.Object));
             var data_loading_info = new DataLoadingInformation<CredCard2Record, CredCard2InOutRecord> { Sheet_name = MainSheetNames.Cred_card2 };
@@ -53,30 +53,31 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
             // Act
+            matcher.SetiTunesStrings();
             matcher.Filter_matching_transactions_from_cred_card2_in_out(reconciliator);
 
             // Assert
             Assert.AreEqual(3, reconciliator.Owned_file.Records.Count);
-            Assert.AreEqual(ReconConsts.Amazon_description + "1", reconciliator.Owned_file.Records[0].Description);
-            Assert.AreEqual(ReconConsts.Amazon_description + "2", reconciliator.Owned_file.Records[1].Description);
-            Assert.AreEqual(ReconConsts.Amazon_description + "3", reconciliator.Owned_file.Records[2].Description);
+            Assert.AreEqual(ReconConsts.iTunes_description + "1", reconciliator.Owned_file.Records[0].Description);
+            Assert.AreEqual(ReconConsts.iTunes_description + "2", reconciliator.Owned_file.Records[1].Description);
+            Assert.AreEqual(ReconConsts.iTunes_description + "3", reconciliator.Owned_file.Records[2].Description);
         }
 
         [Test]
-        public void M_WillFilterThirdPartyFileForAmazonTransactionsOnly()
+        public void M_WillFilterThirdPartyFileForiTunesTransactionsOnly()
         {
             // Arrange
             var mock_cred_card2_file_io = new Mock<IFileIO<CredCard2Record>>();
             mock_cred_card2_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<CredCard2Record> {
-                    new CredCard2Record {Description = $"\"'{ReconConsts.Amazon_description}\""},
+                    new CredCard2Record {Description = $"\"'{ReconConsts.iTunes_description}\""},
                     new CredCard2Record {Description = "something else"}
                 });
             var cred_card2_file = new GenericFile<CredCard2Record>(new CSVFile<CredCard2Record>(mock_cred_card2_file_io.Object));
             var mock_cred_card2_in_out_file_io = new Mock<IFileIO<CredCard2InOutRecord>>();
             mock_cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<CredCard2InOutRecord> {
-                    new CredCard2InOutRecord {Description = ReconConsts.Amazon_description + " purchase 1"}
+                    new CredCard2InOutRecord {Description = ReconConsts.iTunes_description + " purchase 1"}
                 });
             var cred_card2_in_out_file = new GenericFile<CredCard2InOutRecord>(new CSVFile<CredCard2InOutRecord>(mock_cred_card2_in_out_file_io.Object));
             var data_loading_info = new DataLoadingInformation<CredCard2Record, CredCard2InOutRecord> { Sheet_name = MainSheetNames.Cred_card2 };
@@ -84,15 +85,16 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
             // Act
+            matcher.SetiTunesStrings();
             matcher.Filter_matching_transactions_from_cred_card2(reconciliator);
 
             // Assert
             Assert.AreEqual(1, reconciliator.Third_party_file.Records.Count);
-            Assert.AreEqual(ReconConsts.Amazon_description, reconciliator.Third_party_file.Records[0].Description.Remove_punctuation());
+            Assert.IsTrue(reconciliator.Third_party_file.Records[0].Description.Contains(ReconConsts.iTunes_description));
         }
 
         [Test]
-        public void M_WhenAmazonMatchingWillFilterOwnedFileForAmazonTransactionsOnly()
+        public void M_WhenAmazonMatchingWillFilterOwnedFileForiTunesTransactionsOnly()
         {
             // Arrange
             var mock_reconciliator = new Mock<IReconciliator<CredCard2Record, CredCard2InOutRecord>>();
@@ -149,6 +151,21 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
 
             // Assert
             mock_reconciliator.Verify(x => x.Set_match_finder(matcher.Find_matches));
+        }
+
+        [Test]
+        public void M_WhenAmazonMatchingWillRewindReconciliator()
+        {
+            // Arrange
+            var mock_reconciliator = new Mock<IReconciliator<CredCard2Record, CredCard2InOutRecord>>();
+            var mock_reconciliation_interface = new Mock<IReconciliationInterface<CredCard2Record, CredCard2InOutRecord>>();
+            var matcher = new CredCard2AndCredCard2InOutMatcher(this);
+
+            // Act
+            matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
+
+            // Assert
+            mock_reconciliator.Verify(x => x.Rewind());
         }
 
         [Test]
