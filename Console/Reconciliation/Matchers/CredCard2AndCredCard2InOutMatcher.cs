@@ -176,7 +176,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         public IEnumerable<IPotentialMatch> Find_Amazon_matches(CredCard2Record source_record, ICSVFile<CredCard2InOutRecord> owned_file)
         {
             var generic_matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
-            return generic_matcher.Find_expense_matches(source_record, owned_file);
+            return generic_matcher.Find_matches(source_record, owned_file);
         }
     }
 }

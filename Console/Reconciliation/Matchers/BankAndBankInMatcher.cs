@@ -219,7 +219,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         public IEnumerable<IPotentialMatch> Find_expense_matches(ActualBankRecord source_record, ICSVFile<BankRecord> owned_file)
         {
             var generic_matcher = new MultipleAmountMatcher<ActualBankRecord, BankRecord>();
-            return generic_matcher.Find_expense_matches(source_record, owned_file);
+            return generic_matcher.Find_matches(source_record, owned_file);
         }
     }
 }
