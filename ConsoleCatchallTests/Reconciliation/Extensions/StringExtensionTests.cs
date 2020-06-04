@@ -87,5 +87,18 @@ namespace ConsoleCatchallTests.Reconciliation.Extensions
             // Assert
             Assert.AreEqual(expected_result, result);
         }
+
+        [TestCase("\"text\"", "text")]
+        [TestCase("\"text", "text")]
+        [TestCase("text\"", "text")]
+        [TestCase("text", "text")]
+        public void When_stripping_enclosing_quotes_start_and_end_quotes_will_be_removed(string source, string expected_result)
+        {
+            // Act
+            var result = source.Strip_enclosing_quotes();
+
+            // Assert
+            Assert.AreEqual(expected_result, result);
+        }
     }
 }

@@ -79,7 +79,19 @@ namespace Interfaces.Extensions
             return source[0] == '\''
                 ? source.Substring(1)
                 : source;
+        }
 
+        public static string Strip_enclosing_quotes(this string source)
+        {
+            var result =  source[0] == '"'
+                ? source.Substring(1)
+                : source;
+
+            result = result[result.Length - 1] == '"'
+                ? result.Substring(0, result.Length - 1)
+                : result;
+
+            return result;
         }
 
         public static string Replace_punctuation_with_spaces(this string source)
