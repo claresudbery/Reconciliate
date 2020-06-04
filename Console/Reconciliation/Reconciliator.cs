@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ConsoleCatchall.Console.Reconciliation.Extensions;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Utils;
@@ -569,7 +568,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
         private IPotentialMatch Single_match_only(IEnumerable<IPotentialMatch> all_matches)
         {
-            return all_matches.Count() == 1
+            return all_matches.Count() >= 1
                 ? all_matches.ToList()[0]
                 : null;
         }

@@ -2173,7 +2173,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
         }
 
         [Test]
-        public void M_WhenAutoMatching_MatchWillOnlyHappen_IfThereIsExactlyOneMatch()
+        public void M_WhenAutoMatching_GivenThereAreMultipleMatches_MatchWillStillHappen()
         {
             // Arrange
             var amount1 = 22.23;
@@ -2200,7 +2200,7 @@ namespace ReconciliationBaseTests.ReconciliationBase
             List<AutoMatchedRecord<ActualBankRecord>> auto_matched_items = reconciliator.Do_auto_matching();
 
             // Assert
-            Assert.AreEqual(0, auto_matched_items.Count);
+            Assert.AreEqual(1, auto_matched_items.Count);
         }
 
         [Test]
