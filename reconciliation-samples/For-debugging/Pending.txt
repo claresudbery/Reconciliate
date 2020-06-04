@@ -14,3 +14,18 @@ CredCard2
 1/6/20,55.00,,CredCard2 transaction from pending.txt
 2/6/20,66.00,,Eglantine
 3/6/20,77.00,,Fennel
+4/6/20,13.00,,Amazon thing01
+5/6/20,10.65,,Amazon thing02
+6/6/20,29.94,,Amazon thing03
+7/6/20,13.50,,Amazon thing04
+8/6/20,14.38,,Amazon thing05
+9/6/20,12.98,,Amazon thing06
+10/6/20,46.49,,Amazon thing07
+15/6/20,20.00,,Amazon thing08
+15/6/20,20.00,,Amazon thing09
+15/6/20,20.00,,Amazon thing10
+15/6/20,20.00,,Amazon thing11
+15/6/20,50.00,,Amazon thing12
+16/6/20,12.56,,iTunes01 .com/Bill
+17/6/20,19.99,,iTunes01 .com/Bill
+18/6/20,3.01,,iTunes01 .com/Bill
