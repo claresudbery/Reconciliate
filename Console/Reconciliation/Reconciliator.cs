@@ -543,7 +543,7 @@ namespace ConsoleCatchall.Console.Reconciliation
                 {
                     var new_record_for_matching = new AutoMatchedRecord<TThirdPartyType>(
                         third_party_record,
-                        Find_single_match_by_amount_and_text_and_near_date(third_party_record),
+                        single_match,
                         index);
 
                     Match_records(third_party_record, single_match.Actual_records.ElementAt(0));
