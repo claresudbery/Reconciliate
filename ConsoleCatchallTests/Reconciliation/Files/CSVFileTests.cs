@@ -613,7 +613,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
                 ',');
 
             Assert.AreEqual(1234.55, new_csv_file.Records[5].Unreconciled_amount);
-            Assert.AreEqual("\"Purchase\"", new_csv_file.Records[5].Description);
+            Assert.AreEqual("Purchase", new_csv_file.Records[5].Description);
         }
 
         [Test]

@@ -187,14 +187,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var cred_card2_record = new CredCard2Record();
-            string text_containing_commas = "\"something, something, something else\"";
+            string text_containing_commas = "something, something, something else";
             string csv_line = String.Format("08/06/2017,ref,13.49,{0}", text_containing_commas);
 
             // Act 
             cred_card2_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual("\"something; something; something else\"", cred_card2_record.Description);
+            Assert.AreEqual("something; something; something else", cred_card2_record.Description);
         }
 
         [Test]

@@ -48,7 +48,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
-            var expected_description = "\"ANY STORE 8888        ANYWHERE\"";
+            var expected_description = "ANY STORE 8888        ANYWHERE";
             string csv_line = String.Format("17/02/2017,23/11/2018,22223333,{0},1.94", expected_description);
 
             // Act 
@@ -309,14 +309,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var cred_card1_record = new CredCard1Record();
-            string text_containing_commas = "\"something, something, something else\"";
+            string text_containing_commas = "something, something, something else";
             string csv_line = String.Format("17/02/2017,23/11/2018,22223333,{0},12.35", text_containing_commas);
 
             // Act 
             cred_card1_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual("\"something; something; something else\"", cred_card1_record.Description);
+            Assert.AreEqual("something; something; something else", cred_card1_record.Description);
         }
 
         // This doesn't apply to CredCard1InOutRecord and BankRecord and CredCard2Record because the input is never encased in quotes.

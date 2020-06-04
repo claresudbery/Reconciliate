@@ -46,8 +46,8 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var actual_bank_record = new ActualBankRecord();
-            var expected_description = "\"'99999999-BFGH\"";
-            string csv_line = String.Format("06/03/2017,BAC,{0},261.40,4273.63,\"'Envelope\",\"'228822-99933422\",", expected_description);
+            var expected_description = "'99999999-BFGH";
+            string csv_line = String.Format("06/03/2017,BAC,{0},261.40,4273.63,'Envelope,'228822-99933422,", expected_description);
 
             // Act 
             actual_bank_record.Load(csv_line);
@@ -152,7 +152,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var actual_bank_record = new ActualBankRecord();
-            string csv_line = String.Format("06/03/2017,BAC,,261.40,4273.63,\"'Envelope\",\"'228822-99933422\",");
+            string csv_line = String.Format("06/03/2017,BAC,,261.40,4273.63,'Envelope,'228822-99933422,");
 
             // Act 
             actual_bank_record.Load(csv_line);
@@ -303,14 +303,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var actual_bank_record = new ActualBankRecord();
-            string text_containing_commas = "\"something, something, something else\"";
-            string csv_line = String.Format("06/03/2017,BAC,{0},261.40,12.35,\"'Envelope\",\"'228822-99933422\",", text_containing_commas);
+            string text_containing_commas = "something, something, something else";
+            string csv_line = String.Format("06/03/2017,BAC,{0},261.40,12.35,'Envelope,'228822-99933422,", text_containing_commas);
 
             // Act 
             actual_bank_record.Load(csv_line);
 
             // Assert
-            Assert.AreEqual("\"something; something; something else\"", actual_bank_record.Description);
+            Assert.AreEqual("something; something; something else", actual_bank_record.Description);
         }
 
         [Test]
@@ -350,7 +350,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var actual_bank_record = new ActualBankRecord();
-            string csv_line = String.Format("06/03/2017,BAC,\"'Some , description\",127.69,261.40,\"'Envelope\",\"'228822-99933422\",");
+            string csv_line = String.Format("06/03/2017,BAC,'Some , description,127.69,261.40,'Envelope,'228822-99933422,");
             actual_bank_record.Load(csv_line);
             actual_bank_record.Matched = false;
 
@@ -358,7 +358,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             string constructed_csv_line = actual_bank_record.To_csv();
 
             // Assert
-            Assert.AreEqual("06/03/2017,£127.69,BAC,\"'Some ; description\"", constructed_csv_line);
+            Assert.AreEqual("06/03/2017,£127.69,BAC,'Some ; description", constructed_csv_line);
         }
 
         // This doesn't apply to CredCard1InOutRecord and BankRecord and CredCard2Record because the input is never encased in quotes.
@@ -367,8 +367,8 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var actual_bank_record = new ActualBankRecord();
-            var description_encased_in_one_set_of_quotes = "\"'Some description\"";
-            string csv_line = String.Format("06/03/2017,BAC,{0},127.69,261.40,\"'Envelope\",\"'228822-99933422\",", description_encased_in_one_set_of_quotes);
+            var description_encased_in_one_set_of_quotes = "'Some description";
+            string csv_line = String.Format("06/03/2017,BAC,{0},127.69,261.40,'Envelope,'228822-99933422,", description_encased_in_one_set_of_quotes);
             actual_bank_record.Load(csv_line);
             actual_bank_record.Matched = false;
 
@@ -387,14 +387,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             var actual_bank_record = new ActualBankRecord();
             var amount = 1234.55;
             var amount_containing_comma = "£1,234.55";
-            string csv_line = String.Format("06/03/2017,BAC,\"description\",{0},261.40,\"'Envelope\",\"'228822-99933422\",", amount);
+            string csv_line = String.Format("06/03/2017,BAC,description,{0},261.40,'Envelope,'228822-99933422,", amount);
             actual_bank_record.Load(csv_line);
 
             // Act 
             string constructed_csv_line = actual_bank_record.To_csv();
 
             // Assert
-            string expected_csv_line = String.Format("06/03/2017,\"{0}\",BAC,\"description\"", amount_containing_comma);
+            string expected_csv_line = String.Format("06/03/2017,\"{0}\",BAC,description", amount_containing_comma);
             Assert.AreEqual(expected_csv_line, constructed_csv_line);
         }
 
@@ -405,14 +405,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             var actual_bank_record = new ActualBankRecord();
             var amount = "123.55";
             var amount_with_pound_sign = "£" + amount;
-            string csv_line = String.Format("06/03/2017,BAC,\"description\",{0},261.40,\"'Envelope\",\"'228822-99933422\",", amount);
+            string csv_line = String.Format("06/03/2017,BAC,description,{0},261.40,'Envelope,'228822-99933422,", amount);
             actual_bank_record.Load(csv_line);
 
             // Act 
             string constructed_csv_line = actual_bank_record.To_csv();
 
             // Assert
-            string expected_csv_line = String.Format("06/03/2017,{0},BAC,\"description\"", amount_with_pound_sign);
+            string expected_csv_line = String.Format("06/03/2017,{0},BAC,description", amount_with_pound_sign);
             Assert.AreEqual(expected_csv_line, constructed_csv_line);
         }
 

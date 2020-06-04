@@ -303,7 +303,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             string csv_line = String.Format("01/04/2017^£13.95^^POS^Purchase^1234^£14.22^^^");
             bank_record.Load(csv_line);
             bank_record.Matched = true;
-            string matched_record_csv_line = String.Format("06/03/2017,BAC,\"'Some , description\",127.69,261.40,\"'Envelope\",\"'228822-99933422\",");
+            string matched_record_csv_line = String.Format("06/03/2017,BAC,'Some , description,127.69,261.40,'Envelope,'228822-99933422,");
             var matched_record = new ActualBankRecord();
             matched_record.Load(matched_record_csv_line);
             bank_record.Match = matched_record;
@@ -312,7 +312,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             string constructed_csv_line = bank_record.To_csv();
 
             // Assert
-            Assert.AreEqual("01/04/2017,£13.95,x,POS,\"Purchase\",1234,£14.22,,,,,06/03/2017,£127.69,BAC,\"'Some ; description\"", constructed_csv_line);
+            Assert.AreEqual("01/04/2017,£13.95,x,POS,\"Purchase\",1234,£14.22,,,,,06/03/2017,£127.69,BAC,'Some ; description", constructed_csv_line);
         }
 
         // Note that these tests are arguably redundant, as the input uses ^ as a separator, instead of comma.
