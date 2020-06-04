@@ -53,7 +53,8 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
             // Act
-            matcher.Filter_for_all_amazon_transactions_from_cred_card2_in_out(reconciliator);
+            matcher.SetAmazonStrings();
+            matcher.Filter_matching_transactions_from_cred_card2_in_out(reconciliator);
 
             // Assert
             Assert.AreEqual(3, reconciliator.Owned_file.Records.Count);
@@ -84,7 +85,8 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
             // Act
-            matcher.Filter_for_all_amazon_transactions_from_cred_card2(reconciliator);
+            matcher.SetAmazonStrings();
+            matcher.Filter_matching_transactions_from_cred_card2(reconciliator);
 
             // Assert
             Assert.AreEqual(1, reconciliator.Third_party_file.Records.Count);
@@ -103,7 +105,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
 
             // Assert
-            mock_reconciliator.Verify(x => x.Filter_owned_file(matcher.Is_not_owned_amazon_transaction));
+            mock_reconciliator.Verify(x => x.Filter_owned_file(matcher.Is_not_owned_matching_transaction));
         }
 
         [Test]
@@ -118,7 +120,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
 
             // Assert
-            mock_reconciliator.Verify(x => x.Filter_third_party_file(matcher.Is_not_third_party_amazon_transaction));
+            mock_reconciliator.Verify(x => x.Filter_third_party_file(matcher.Is_not_third_party_matching_transaction));
         }
 
         [Test]
@@ -148,7 +150,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
 
             // Assert
-            mock_reconciliator.Verify(x => x.Set_match_finder(matcher.Find_Amazon_matches));
+            mock_reconciliator.Verify(x => x.Set_match_finder(matcher.Find_matches));
         }
 
         [Test]
@@ -316,6 +318,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var record_for_matching = new RecordForMatching<CredCard2Record>(source_record, potential_matches);
 
             // Act
+            matcher.SetAmazonStrings();
             matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert
@@ -428,6 +431,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var record_for_matching = new RecordForMatching<CredCard2Record>(source_record, potential_matches);
 
             // Act
+            matcher.SetAmazonStrings();
             matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert 
@@ -585,6 +589,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             }
 
             // Act
+            matcher.SetAmazonStrings();
             matcher.Match_specified_records(record_for_matching, index, cred_card2_in_out_file);
 
             // Assert
@@ -627,8 +632,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                 }
             };
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
-            matcher.Filter_for_all_amazon_transactions_from_cred_card2(reconciliator);
-            matcher.Filter_for_all_amazon_transactions_from_cred_card2_in_out(reconciliator);
+            matcher.SetAmazonStrings();
+            matcher.Filter_matching_transactions_from_cred_card2(reconciliator);
+            matcher.Filter_matching_transactions_from_cred_card2_in_out(reconciliator);
             reconciliator.Set_match_finder((record, file) => expected_potential_matches);
             reconciliator.Set_record_matcher(matcher.Match_specified_records);
             reconciliator.Find_reconciliation_matches_for_next_third_party_record();

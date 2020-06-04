@@ -15,6 +15,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
     {
         private readonly IInputOutput _input_output;
 
+        private string _match_description_qualifier = "";
+        private string _transactions_dont_add_up = "";
+        private string _several_transactions = "";
+
         public CredCard2AndCredCard2InOutMatcher(IInputOutput input_output)
         {
             _input_output = input_output;
@@ -45,9 +49,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             IReconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator,
             IReconciliationInterface<CredCard2Record, CredCard2InOutRecord> reconciliation_interface)
         {
-            Filter_for_all_amazon_transactions_from_cred_card2(reconciliator);
-            Filter_for_all_amazon_transactions_from_cred_card2_in_out(reconciliator);
-            reconciliator.Set_match_finder(Find_Amazon_matches);
+            SetAmazonStrings();
+
+            Filter_matching_transactions_from_cred_card2(reconciliator);
+            Filter_matching_transactions_from_cred_card2_in_out(reconciliator);
+            reconciliator.Set_match_finder(Find_matches);
             reconciliator.Set_record_matcher(Match_specified_records);
 
             reconciliation_interface.Do_semi_automatic_matching();
@@ -61,24 +67,31 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         {
         }
 
-        public void Filter_for_all_amazon_transactions_from_cred_card2(IReconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator)
+        public void SetAmazonStrings()
         {
-            reconciliator.Filter_third_party_file(Is_not_third_party_amazon_transaction);
+            _match_description_qualifier = ReconConsts.Amazon_description;
+            _transactions_dont_add_up = ReconConsts.AmazonTransactionsDontAddUp;
+            _several_transactions = ReconConsts.SeveralAmazonTransactions;
         }
 
-        public bool Is_not_third_party_amazon_transaction(CredCard2Record cred_card2_record)
+        public void Filter_matching_transactions_from_cred_card2(IReconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator)
         {
-            return !cred_card2_record.Description.Remove_punctuation().ToUpper().Contains(ReconConsts.Amazon_description);
+            reconciliator.Filter_third_party_file(Is_not_third_party_matching_transaction);
         }
 
-        public void Filter_for_all_amazon_transactions_from_cred_card2_in_out(IReconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator)
+        public bool Is_not_third_party_matching_transaction(CredCard2Record cred_card2_record)
         {
-            reconciliator.Filter_owned_file(Is_not_owned_amazon_transaction);
+            return !cred_card2_record.Description.Remove_punctuation().ToUpper().Contains(_match_description_qualifier);
         }
 
-        public bool Is_not_owned_amazon_transaction(CredCard2InOutRecord cred_card2_in_out_record)
+        public void Filter_matching_transactions_from_cred_card2_in_out(IReconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator)
         {
-            return !cred_card2_in_out_record.Description.Remove_punctuation().ToUpper().Contains(ReconConsts.Amazon_description);
+            reconciliator.Filter_owned_file(Is_not_owned_matching_transaction);
+        }
+
+        public bool Is_not_owned_matching_transaction(CredCard2InOutRecord cred_card2_in_out_record)
+        {
+            return !cred_card2_in_out_record.Description.Remove_punctuation().ToUpper().Contains(_match_description_qualifier);
         }
 
         public void Match_specified_records(
@@ -134,11 +147,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                 RecordForMatching<CredCard2Record> record_for_matching,
                 int match_index)
         {
-            var combined_amounts = $"{Get_description_without_amazon(record_for_matching.Matches[match_index].Actual_records[0])}";
+            var combined_amounts = $"{Get_description_without_specific_qualifier(record_for_matching.Matches[match_index].Actual_records[0])}";
             for (int count = 1; count < record_for_matching.Matches[match_index].Actual_records.Count; count++)
             {
                 var match = record_for_matching.Matches[match_index].Actual_records[count];
-                combined_amounts += $", {Get_description_without_amazon(match)}";
+                combined_amounts += $", {Get_description_without_specific_qualifier(match)}";
             }
 
             var sum_of_all_matches = record_for_matching.Matches[match_index].Actual_records.Sum(x => x.Main_amount());
@@ -146,26 +159,26 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                 .Double_equals(sum_of_all_matches);
             var extra_text = expense_amounts_match
                 ? ""
-                : $"{ReconConsts.AmazonTransactionsDontAddUp} ({sum_of_all_matches.To_csv_string(true)})"; 
+                : $"{_transactions_dont_add_up} ({sum_of_all_matches.To_csv_string(true)})"; 
 
-            return $"{ReconConsts.SeveralAmazonTransactions} ({combined_amounts}){extra_text}";
+            return $"{_several_transactions} ({combined_amounts}){extra_text}";
         }
 
-        private string Get_description_without_amazon(ICSVRecord match)
+        private string Get_description_without_specific_qualifier(ICSVRecord match)
         {
             string new_description = match.Description;
 
-            var amazon_index_with_space = match.Description.IndexOf($"{ReconConsts.Amazon_description} ", StringComparison.CurrentCultureIgnoreCase);
-            if (amazon_index_with_space >= 0)
+            var qualifier_index_with_space = match.Description.IndexOf($"{_match_description_qualifier} ", StringComparison.CurrentCultureIgnoreCase);
+            if (qualifier_index_with_space >= 0)
             {
-                new_description = match.Description.Remove(amazon_index_with_space, ReconConsts.Amazon_description.Length + 1);
+                new_description = match.Description.Remove(qualifier_index_with_space, _match_description_qualifier.Length + 1);
             }
             else
             {
-                var amazon_index_no_space = match.Description.IndexOf(ReconConsts.Amazon_description, StringComparison.CurrentCultureIgnoreCase);
-                if (amazon_index_no_space >= 0)
+                var qualifier_index_no_space = match.Description.IndexOf(_match_description_qualifier, StringComparison.CurrentCultureIgnoreCase);
+                if (qualifier_index_no_space >= 0)
                 {
-                    new_description = match.Description.Remove(amazon_index_no_space, ReconConsts.Amazon_description.Length);
+                    new_description = match.Description.Remove(qualifier_index_no_space, _match_description_qualifier.Length);
                 }
             }
 
@@ -173,7 +186,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             return new_description;
         }
 
-        public IEnumerable<IPotentialMatch> Find_Amazon_matches(CredCard2Record source_record, ICSVFile<CredCard2InOutRecord> owned_file)
+        public IEnumerable<IPotentialMatch> Find_matches(CredCard2Record source_record, ICSVFile<CredCard2InOutRecord> owned_file)
         {
             var generic_matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
             return generic_matcher.Find_matches(source_record, owned_file);
