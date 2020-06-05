@@ -1,7 +1,10 @@
 
 Date, Type, Description, Value, Balance, Account Name, Account Number
 
-1/6/2020,BAC,"'Bank monthly incoming transaction 01",21.76,0.00,"'Envelope","'228822-99933422",
+1/5/2020,BAC,"'ACME LTD",1000.00,0.00,"'Envelope","'228822-99933422",
+2/5/2020,BAC,"'Bank monthly incoming transaction 02",15.60,0.00,"'Envelope","'228822-99933422",
+3/5/2020,BAC,"'Bank monthly incoming transaction 03",54.97,0.00,"'Envelope","'228822-99933422",
+1/6/2020,BAC,"'ACME LTD",1000.00,0.00,"'Envelope","'228822-99933422",
 1/6/2020,BAC,"'Bank monthly outgoing transaction 01",-35.00,0.00,"'Envelope","'228822-99933422",
 2/6/2020,BAC,"'Bank monthly incoming transaction 02",15.60,0.00,"'Envelope","'228822-99933422",
 2/6/2020,BAC,"'Bank monthly outgoing transaction 02",-45.00,0.00,"'Envelope","'228822-99933422",
