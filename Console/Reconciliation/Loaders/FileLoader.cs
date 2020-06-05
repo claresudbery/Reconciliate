@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using ConsoleCatchall.Console.Reconciliation.Exceptions;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
 using ConsoleCatchall.Console.Reconciliation.Utils;
@@ -235,9 +236,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             {
                 next_unplanned_month = spreadsheet.Get_next_unplanned_month();
             }
-            catch (Exception)
+            catch (MonthlyBudgetedRowNotFoundException exception)
             {
-                string new_month = _input_output.Get_input(ReconConsts.CantFindMortgageRow);
+                string new_month = _input_output.Get_input(String.Format(ReconConsts.CantFindMortgageRow, exception.Message));
                 try
                 {
                     if (!String.IsNullOrEmpty(new_month) && Char.IsDigit(new_month[0]))

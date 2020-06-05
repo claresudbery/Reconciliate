@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ConsoleCatchall.Console.Reconciliation.Exceptions;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.Constants;
@@ -169,10 +170,21 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public DateTime Get_next_unplanned_month()
         {
-            string mortgage_row_description = Get_budget_item_description(Codes.Code042);
-            BankRecord bank_record = Get_last_bank_out_record_with_specified_description(mortgage_row_description);
+            string budget_item_code = Codes.Code042;
+            string mortgage_row_description = $"Couldn't get budget item description for {budget_item_code}";
+            DateTime next_unplanned_month = DateTime.Today;
 
-            DateTime next_unplanned_month = bank_record.Date.AddMonths(1);
+            try
+            {
+                mortgage_row_description = Get_budget_item_description(budget_item_code);
+                BankRecord bank_record = Get_last_bank_out_record_with_specified_description(mortgage_row_description);
+
+                next_unplanned_month = bank_record.Date.AddMonths(1);
+            }
+            catch (Exception)
+            {
+                throw new MonthlyBudgetedRowNotFoundException(mortgage_row_description);
+            }
 
             return next_unplanned_month;
         }

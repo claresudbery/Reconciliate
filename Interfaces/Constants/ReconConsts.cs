@@ -103,7 +103,7 @@
         public const string ConfirmNoMonthlyBudgeting =
             "You have chosen to continue without adding any monthly or annual budgeting amounts.";
 
-        public const string CantFindMortgageRow = "Can't find mortgage row (used for calculating next unplanned month, for budget out). \nCheck Budget Out has mortgage description that matches Bank Out. \nIf you've just changed it, it will be fine next time. \nFor now, please enter number for the first month you would like to schedule budgeted amounts:";
+        public const string CantFindMortgageRow = "Can't find '{0}' mortgage row (used for calculating next unplanned month, for budget out). \nCheck Budget Out has mortgage description that matches Bank Out. \nIf you've just changed it, it will be fine next time. \nFor now, please enter number for the first month you would like to schedule budgeted amounts:";
         public const string DividerText = "Divider";
 
         public const string DefaultUnplannedMonth =

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using ConsoleCatchall.Console.Reconciliation.Exceptions;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Records;
@@ -181,7 +182,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             var mock_clock = new Mock<IClock>();
             mock_clock.Setup(x => x.Today_date_time()).Returns(current_date);
-            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Throws(new Exception());
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Throws(new MonthlyBudgetedRowNotFoundException());
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns($"{start_month_input}")
                 .Returns($"{end_month_input}")
@@ -205,7 +206,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             var mock_clock = new Mock<IClock>();
             mock_clock.Setup(x => x.Today_date_time()).Returns(current_date);
-            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Throws(new Exception());
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Throws(new MonthlyBudgetedRowNotFoundException());
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns($"{start_month_input}")
                 .Returns($"{end_month_input}")
@@ -358,7 +359,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             _get_input_messages.Clear();
             int user_input_for_next_unplanned_month = 3;
             var mock_spreadsheet = new Mock<ISpreadsheet>();
-            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Throws(new Exception());
+            var mortgageException = new MonthlyBudgetedRowNotFoundException("MORTGAGE DESCRIPTION");
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Throws(mortgageException);
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns($"{user_input_for_next_unplanned_month}")
                 .Returns($"{user_input_for_next_unplanned_month}")
@@ -370,7 +372,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var result = reconciliate.Recursively_ask_for_budgeting_months(mock_spreadsheet.Object);
 
             // Assert
-            Assert.IsTrue(_get_input_messages.Contains(ReconConsts.CantFindMortgageRow));
+            Assert.IsTrue(_get_input_messages.Contains(String.Format(ReconConsts.CantFindMortgageRow, mortgageException.Message)));
             Assert.AreEqual(user_input_for_next_unplanned_month, result.Next_unplanned_month);
         }
         
@@ -387,7 +389,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var default_month = DateTime.Today.Month;
             _get_input_messages.Clear();
             var mock_spreadsheet = new Mock<ISpreadsheet>();
-            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Throws(new Exception());
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month()).Throws(new MonthlyBudgetedRowNotFoundException());
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(bad_input)
                 .Returns("1")
