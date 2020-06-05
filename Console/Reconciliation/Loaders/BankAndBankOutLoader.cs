@@ -132,6 +132,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             ISpreadsheet spreadsheet,
             IInputOutput input_output)
         {
+            input_output.Output_line("Writing bank balance to spreadsheet...");
             Update_bank_balance(
                 (third_party_file as ActualBankOutFile),
                 spreadsheet,
@@ -143,25 +144,32 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             ISpreadsheet spreadsheet,
             IInputOutput input_output)
         {
-            IEnumerable<ActualBankRecord> potential_balance_rows = actual_bank_out_file.Get_potential_balance_rows();
+            IList<ActualBankRecord> potential_balance_rows = actual_bank_out_file.Get_potential_balance_rows().ToList();
 
-            ActualBankRecord balance_row = Choose_balance_row(potential_balance_rows.ToList(), input_output);
+            if (!potential_balance_rows.Any())
+            {
+                input_output.Output_line(ReconConsts.CantFindBalanceRow);
+            }
+            else
+            {
+                ActualBankRecord balance_row = Choose_balance_row(potential_balance_rows, input_output);
 
-            string balance_description = String.Format(
-                ReconConsts.BankBalanceDescription,
-                ReconConsts.Bank_descriptor,
-                balance_row.Description,
-                balance_row.Main_amount(),
-                balance_row.Date);
+                string balance_description = String.Format(
+                    ReconConsts.BankBalanceDescription,
+                    ReconConsts.Bank_descriptor,
+                    balance_row.Description,
+                    balance_row.Main_amount(),
+                    balance_row.Date);
 
-            spreadsheet.Update_balance_on_totals_sheet(
-                Codes.Bank_bal,
-                balance_row.Balance,
-                balance_description,
-                balance_column: 2,
-                text_column: 6,
-                code_column: 1,
-                input_output: input_output);
+                spreadsheet.Update_balance_on_totals_sheet(
+                    Codes.Bank_bal,
+                    balance_row.Balance,
+                    balance_description,
+                    balance_column: 2,
+                    text_column: 6,
+                    code_column: 1,
+                    input_output: input_output);
+            }
         }
 
         private ActualBankRecord Choose_balance_row(IList<ActualBankRecord> potential_balance_rows, IInputOutput input_output)
