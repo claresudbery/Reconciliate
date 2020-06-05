@@ -9,7 +9,6 @@ using ConsoleCatchall.Console.Reconciliation.Extensions;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
-using Interfaces.Extensions;
 using Moq;
 using NUnit.Framework;
 
@@ -316,9 +315,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                 {
                     Actual_records = new List<ICSVRecord>
                     {
-                        new CredCard2InOutRecord {Description = $"Amazon {desc01}", Unreconciled_amount = 20.22},
-                        new CredCard2InOutRecord {Description = $"Amazon {desc02}", Unreconciled_amount = 10.33},
-                        new CredCard2InOutRecord {Description = $"Amazon {desc03}", Unreconciled_amount = 2.01}
+                        new CredCard2InOutRecord {Description = $"{ReconConsts.Amazon_description} {desc01}", Unreconciled_amount = 20.22},
+                        new CredCard2InOutRecord {Description = $"{ReconConsts.Amazon_description} {desc02}", Unreconciled_amount = 10.33},
+                        new CredCard2InOutRecord {Description = $"{ReconConsts.Amazon_description} {desc03}", Unreconciled_amount = 2.01}
                     }
                 }
             };
@@ -328,6 +327,46 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                 $"{ReconConsts.SeveralAmazonTransactions} "
                 + $"({desc01} {matches[0].Main_amount().To_csv_string(true)}, "
                 + $"{desc02} {matches[1].Main_amount().To_csv_string(true)}, " 
+                + $"{desc03} {matches[2].Main_amount().To_csv_string(true)})"
+                + $"{ReconConsts.TransactionsDontAddUp} ({potential_matches[index].Actual_records.Sum(x => x.Main_amount()).To_csv_string(true)})";
+            var record_for_matching = new RecordForMatching<CredCard2Record>(source_record, potential_matches);
+
+            // Act
+            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+
+            // Assert
+            Assert.AreEqual(expected_description, record_for_matching.Matches[index].Actual_records[0].Description);
+        }
+
+        [Test]
+        public void M_WhenMatchingSpecifiedRecords_AndMultipleMatchesExist_WillRemoveQualifierAndTrailingSpaceFromDescriptions()
+        {
+            // Arrange
+            var mock_owned_file = new Mock<ICSVFile<CredCard2InOutRecord>>();
+            mock_owned_file.Setup(x => x.Records).Returns(new List<CredCard2InOutRecord>());
+            var matcher = new CredCard2AndCredCard2InOutMatcher(this);
+            var source_record = new CredCard2Record { Amount = 30.00 };
+            var desc01 = "Thing 01";
+            var desc02 = "Thing 02";
+            var desc03 = "Thing 03";
+            var potential_matches = new List<IPotentialMatch>
+            {
+                new PotentialMatch
+                {
+                    Actual_records = new List<ICSVRecord>
+                    {
+                        new CredCard2InOutRecord {Description = $"{ReconConsts.Amazon_description} {desc01}", Unreconciled_amount = 20.22},
+                        new CredCard2InOutRecord {Description = $"{ReconConsts.Amazon_description}{desc02}", Unreconciled_amount = 10.33},
+                        new CredCard2InOutRecord {Description = $"{desc03} {ReconConsts.Amazon_description}", Unreconciled_amount = 2.01}
+                    }
+                }
+            };
+            var index = 0;
+            var matches = potential_matches[index].Actual_records;
+            var expected_description =
+                $"{ReconConsts.SeveralAmazonTransactions} "
+                + $"({desc01} {matches[0].Main_amount().To_csv_string(true)}, "
+                + $"{desc02} {matches[1].Main_amount().To_csv_string(true)}, "
                 + $"{desc03} {matches[2].Main_amount().To_csv_string(true)})"
                 + $"{ReconConsts.TransactionsDontAddUp} ({potential_matches[index].Actual_records.Sum(x => x.Main_amount()).To_csv_string(true)})";
             var record_for_matching = new RecordForMatching<CredCard2Record>(source_record, potential_matches);

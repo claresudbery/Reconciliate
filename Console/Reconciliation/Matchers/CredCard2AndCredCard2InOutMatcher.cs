@@ -196,19 +196,28 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         {
             string new_description = match.Description;
 
-            var qualifier_index_with_space = match.Description.IndexOf($"{_match_description_qualifier} ", StringComparison.CurrentCultureIgnoreCase);
-            if (qualifier_index_with_space >= 0)
+            var qualifier_index_with_space_at_end = match.Description.IndexOf($"{_match_description_qualifier} ", StringComparison.CurrentCultureIgnoreCase);
+            if (qualifier_index_with_space_at_end >= 0)
             {
-                new_description = match.Description.Remove(qualifier_index_with_space, _match_description_qualifier.Length + 1);
+                new_description = match.Description.Remove(qualifier_index_with_space_at_end, _match_description_qualifier.Length + 1);
             }
             else
             {
-                var qualifier_index_no_space = match.Description.IndexOf(_match_description_qualifier, StringComparison.CurrentCultureIgnoreCase);
-                if (qualifier_index_no_space >= 0)
+                var qualifier_index_with_space_at_start = match.Description.IndexOf($" {_match_description_qualifier}", StringComparison.CurrentCultureIgnoreCase);
+                if (qualifier_index_with_space_at_start >= 0)
                 {
-                    new_description = match.Description.Remove(qualifier_index_no_space, _match_description_qualifier.Length);
+                    new_description = match.Description.Remove(qualifier_index_with_space_at_start, _match_description_qualifier.Length + 1);
+                }
+                else
+                {
+                    var qualifier_index_no_space = match.Description.IndexOf(_match_description_qualifier, StringComparison.CurrentCultureIgnoreCase);
+                    if (qualifier_index_no_space >= 0)
+                    {
+                        new_description = match.Description.Remove(qualifier_index_no_space, _match_description_qualifier.Length);
+                    }
                 }
             }
+            
 
             new_description = $"{new_description} {match.Main_amount().To_csv_string(true)}";
             return new_description;
