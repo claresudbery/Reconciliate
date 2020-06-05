@@ -53,7 +53,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 // WriteBackToMainSpreadsheet. Between now and then, everything is done using csv files.
                 var spreadsheet_repo = spreadsheet_factory.Create_spreadsheet_repo();
                 var spreadsheet = new Spreadsheet(spreadsheet_repo);
-                BudgetingMonths budgeting_months = Recursively_ask_for_budgeting_months(spreadsheet);
+                BudgetingMonths budgeting_months = Recursively_ask_for_budgeting_months<TOwnedType>(spreadsheet, data_loading_info.Monthly_budget_data);
                 _input_output.Output_line("Loading data...");
 
                 var pending_file_io = new FileIO<TOwnedType>(spreadsheet_factory);
@@ -210,9 +210,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return reconciliation_interface;
         }
 
-        public BudgetingMonths Recursively_ask_for_budgeting_months(ISpreadsheet spreadsheet)
+        public BudgetingMonths Recursively_ask_for_budgeting_months<TRecordType>(
+                ISpreadsheet spreadsheet, 
+                BudgetItemListData budget_item_list_data)
+            where TRecordType : ICSVRecord, new()
         {
-            DateTime next_unplanned_month = Get_next_unplanned_month(spreadsheet);
+            DateTime next_unplanned_month = Get_next_unplanned_month<TRecordType>(spreadsheet, budget_item_list_data);
             int last_month_for_budget_planning = Get_last_month_for_budget_planning(spreadsheet, next_unplanned_month.Month);
             var budgeting_months = new BudgetingMonths
             {
@@ -227,14 +230,17 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             return budgeting_months;
         }
 
-        private DateTime Get_next_unplanned_month(ISpreadsheet spreadsheet)
+        private DateTime Get_next_unplanned_month<TRecordType>(
+                ISpreadsheet spreadsheet, 
+                BudgetItemListData budget_item_list_data)
+            where TRecordType : ICSVRecord, new()
         {
             DateTime default_month = _clock.Today_date_time();
             DateTime next_unplanned_month = default_month;
             bool bad_input = false;
             try
             {
-                next_unplanned_month = spreadsheet.Get_next_unplanned_month();
+                next_unplanned_month = spreadsheet.Get_next_unplanned_month<TRecordType>(budget_item_list_data);
             }
             catch (MonthlyBudgetedRowNotFoundException exception)
             {

@@ -84,12 +84,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             where TRecordType : ICSVRecord, new()
         {
             int first_row_number = _spreadsheet_io
-                                     .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.Start_divider, new List<int> { 2 }) + 1;
+                                     .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Budget_sheet_name, budget_item_list_data.Start_divider, new List<int> { ReconConsts.BudgetDividerColumn }) + 1;
             int last_row_number = _spreadsheet_io
-                                    .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Sheet_name, budget_item_list_data.End_divider, new List<int> { 2 }) - 1;
+                                    .Find_row_number_of_last_row_containing_cell(budget_item_list_data.Budget_sheet_name, budget_item_list_data.End_divider, new List<int> { ReconConsts.BudgetDividerColumn }) - 1;
 
             return _spreadsheet_io.Get_rows_as_records<TRecordType>(
-                budget_item_list_data.Sheet_name,
+                budget_item_list_data.Budget_sheet_name,
                 first_row_number,
                 last_row_number,
                 budget_item_list_data.First_column_number,
@@ -168,42 +168,69 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             _spreadsheet_io.Update_amount(sheet_name, row_number, first_column_number + 1, new_amount);
         }
 
-        public DateTime Get_next_unplanned_month()
+        public DateTime Get_next_unplanned_month<TRecordType>(BudgetItemListData budget_item_list_data = null)
+            where TRecordType : ICSVRecord, new()
         {
-            string budget_item_code = Codes.Code042;
-            string mortgage_row_description = $"Couldn't get budget item description for {budget_item_code}";
+            string budget_item_description = $"Couldn't find budget item on {budget_item_list_data.Budget_sheet_name} between {budget_item_list_data.Start_divider} and {budget_item_list_data.End_divider}";
             DateTime next_unplanned_month = DateTime.Today;
 
             try
             {
-                mortgage_row_description = Get_budget_item_description(budget_item_code);
-                BankRecord bank_record = Get_last_bank_out_record_with_specified_description(mortgage_row_description);
+                budget_item_description = Get_budget_item_description(budget_item_list_data);
+                TRecordType record = Get_last_record_with_specified_description<TRecordType>(budget_item_description, budget_item_list_data);
 
-                next_unplanned_month = bank_record.Date.AddMonths(1);
+                next_unplanned_month = record.Date.AddMonths(1);
             }
             catch (Exception)
             {
-                throw new MonthlyBudgetedRowNotFoundException(mortgage_row_description);
+                throw new MonthlyBudgetedRowNotFoundException(budget_item_description);
             }
 
             return next_unplanned_month;
         }
 
-        private BankRecord Get_last_bank_out_record_with_specified_description(string description)
+        private TRecordType Get_last_record_with_specified_description<TRecordType>(
+                string description,
+                BudgetItemListData budget_item_list_data) 
+            where TRecordType : ICSVRecord, new()
         {
-            var bank_record = new BankRecord();
+            var record = new TRecordType();
 
             var row_number_of_last_relevant_payment = _spreadsheet_io.Find_row_number_of_last_row_containing_cell(
-                MainSheetNames.Bank_out,
+                budget_item_list_data.Owned_sheet_name,
                 description,
-                new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn },
+                new List<int> { budget_item_list_data.Last_column_number - 1, budget_item_list_data.Third_party_desc_col },
                 false);
-            var bank_out_row = _spreadsheet_io.Read_specified_row(
-                MainSheetNames.Bank_out,
+            var spreadsheet_row = _spreadsheet_io.Read_specified_row(
+                budget_item_list_data.Owned_sheet_name,
                 row_number_of_last_relevant_payment);
-            bank_record.Read_from_spreadsheet_row(bank_out_row);
+            record.Read_from_spreadsheet_row(spreadsheet_row);
 
-            return bank_record;
+            return record;
+        }
+
+        private string Get_budget_item_description(BudgetItemListData budget_item_list_data)
+        {
+            string result = null;
+
+            int row_before_first_budget_item = _spreadsheet_io.Find_row_number_of_last_row_containing_cell(
+                budget_item_list_data.Budget_sheet_name,
+                budget_item_list_data.Start_divider,
+                new List<int> { ReconConsts.BudgetDividerColumn });
+            int row_after_last_budget_item = _spreadsheet_io.Find_row_number_of_last_row_containing_cell(
+                budget_item_list_data.Budget_sheet_name,
+                budget_item_list_data.End_divider,
+                new List<int> { ReconConsts.BudgetDividerColumn });
+
+            if (row_after_last_budget_item - row_before_first_budget_item > 1)
+            {
+                result = _spreadsheet_io.Get_text(
+                    budget_item_list_data.Budget_sheet_name,
+                    row_before_first_budget_item + 1,
+                    budget_item_list_data.Last_column_number);
+            }
+
+            return result;
         }
 
         private string Get_budget_item_description(string budget_item_code)
@@ -257,24 +284,30 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ICSVFile<TRecordType> pending_file,
             BudgetingMonths budgeting_months) where TRecordType : ICSVRecord, new()
         {
-            var final_month = budgeting_months.Last_month_for_budget_planning >= budgeting_months.Next_unplanned_month
-                ? budgeting_months.Last_month_for_budget_planning
-                : budgeting_months.Last_month_for_budget_planning + 12;
-            for (int month = budgeting_months.Next_unplanned_month; month <= final_month; month++)
+            if (budgeting_months.Next_unplanned_month > 0)
             {
-                int new_month = month;
-                int new_year = budgeting_months.Start_year;
-                if (month > 12)
+                var final_month = budgeting_months.Last_month_for_budget_planning >=
+                                  budgeting_months.Next_unplanned_month
+                    ? budgeting_months.Last_month_for_budget_planning
+                    : budgeting_months.Last_month_for_budget_planning + 12;
+                for (int month = budgeting_months.Next_unplanned_month; month <= final_month; month++)
                 {
-                    new_month = month - 12;
-                    new_year = new_year + 1;
+                    int new_month = month;
+                    int new_year = budgeting_months.Start_year;
+                    if (month > 12)
+                    {
+                        new_month = month - 12;
+                        new_year = new_year + 1;
+                    }
+
+                    var new_monthly_records = base_records.Select(
+                        x => (TRecordType)
+                            With_correct_days_per_month(x.Copy(), new_year, new_month));
+                    pending_file.Records.AddRange(new_monthly_records);
                 }
-                var new_monthly_records = base_records.Select(
-                    x => (TRecordType)
-                        With_correct_days_per_month(x.Copy(), new_year, new_month));
-                pending_file.Records.AddRange(new_monthly_records);
+
+                pending_file.Records = pending_file.Records.OrderBy(record => record.Date).ToList();
             }
-            pending_file.Records = pending_file.Records.OrderBy(record => record.Date).ToList();
         }
 
         private void Add_records_to_pending_file_for_records_that_have_matching_months<TRecordType>(
@@ -282,25 +315,28 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ICSVFile<TRecordType> pending_file,
             BudgetingMonths budgeting_months) where TRecordType : ICSVRecord, new()
         {
-            var final_month = budgeting_months.Last_month_for_budget_planning >= budgeting_months.Next_unplanned_month
-                ? budgeting_months.Last_month_for_budget_planning
-                : budgeting_months.Last_month_for_budget_planning + 12;
-            for (int month = budgeting_months.Next_unplanned_month; month <= final_month; month++)
+            if (budgeting_months.Next_unplanned_month > 0)
             {
-                var new_month = month;
-                var new_year = budgeting_months.Start_year;
-                if (month > 12)
+                var final_month = budgeting_months.Last_month_for_budget_planning >= budgeting_months.Next_unplanned_month
+                    ? budgeting_months.Last_month_for_budget_planning
+                    : budgeting_months.Last_month_for_budget_planning + 12;
+                for (int month = budgeting_months.Next_unplanned_month; month <= final_month; month++)
                 {
-                    new_month = month - 12;
-                    new_year = new_year + 1;
+                    var new_month = month;
+                    var new_year = budgeting_months.Start_year;
+                    if (month > 12)
+                    {
+                        new_month = month - 12;
+                        new_year = new_year + 1;
+                    }
+                    var new_annual_records = base_records
+                        .Where(x => x.Date.Month == new_month)
+                        .Select(x => (TRecordType)
+                            With_correct_days_per_month(x.Copy(), new_year, x.Date.Month));
+                    pending_file.Records.AddRange(new_annual_records.ToList());
                 }
-                var new_annual_records = base_records
-                    .Where(x => x.Date.Month == new_month)
-                    .Select(x => (TRecordType)
-                        With_correct_days_per_month(x.Copy(), new_year, x.Date.Month));
-                pending_file.Records.AddRange(new_annual_records.ToList());
+                pending_file.Records = pending_file.Records.OrderBy(record => record.Date).ToList();
             }
-            pending_file.Records = pending_file.Records.OrderBy(record => record.Date).ToList();
         }
 
         private ICSVRecord With_correct_days_per_month(ICSVRecord record, int new_year, int new_month)

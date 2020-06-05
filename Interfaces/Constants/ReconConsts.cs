@@ -164,6 +164,7 @@
 
         public const int DdDescriptionColumn = 15;
         public const int DescriptionColumn = 5;
+        public const int BudgetDividerColumn = 2;
         public const int MaxNumMultiLineTransactions = 10;
         public const int MaxNumSingleLineTransactions = 40;
 

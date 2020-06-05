@@ -37,11 +37,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 Loader = this,
                 Monthly_budget_data = new BudgetItemListData
                 {
-                    Sheet_name = MainSheetNames.Budget_in,
+                    Budget_sheet_name = MainSheetNames.Budget_in,
+                    Owned_sheet_name = MainSheetNames.Bank_in,
                     Start_divider = Dividers.Date,
                     End_divider = Dividers.Total,
                     First_column_number = 2,
-                    Last_column_number = 6
+                    Last_column_number = 6,
+                    Third_party_desc_col = 15
                 },
                 Annual_budget_data = null
             };

@@ -34,7 +34,7 @@ namespace Interfaces
             int text_column,
             int code_column,
             IInputOutput input_output);
-        DateTime Get_next_unplanned_month();
+        DateTime Get_next_unplanned_month<TRecordType>(BudgetItemListData budget_item_list_data) where TRecordType : ICSVRecord, new();
 
         void Add_budgeted_monthly_data_to_pending_file<TRecordType>(
             BudgetingMonths budgeting_months,

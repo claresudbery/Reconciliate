@@ -28,19 +28,23 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 Loader = this,
                 Monthly_budget_data = new BudgetItemListData
                 {
-                    Sheet_name = MainSheetNames.Budget_out,
+                    Budget_sheet_name = MainSheetNames.Budget_out,
+                    Owned_sheet_name = MainSheetNames.Bank_out,
                     Start_divider = Dividers.Sodds,
                     End_divider = Dividers.Cred_card1,
                     First_column_number = 2,
-                    Last_column_number = 6
+                    Last_column_number = 6,
+                    Third_party_desc_col = 15
                 },
                 Annual_budget_data = new BudgetItemListData
                 {
-                    Sheet_name = MainSheetNames.Budget_out,
+                    Budget_sheet_name = MainSheetNames.Budget_out,
+                    Owned_sheet_name = MainSheetNames.Bank_out,
                     Start_divider = Dividers.Annual_sodds,
                     End_divider = Dividers.Annual_total,
                     First_column_number = 2,
-                    Last_column_number = 6
+                    Last_column_number = 6,
+                    Third_party_desc_col = 15
                 }
             };
         }
