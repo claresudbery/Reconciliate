@@ -93,5 +93,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         {
             _expected_income_file.Finish();
         }
+
+        public void Do_actions_which_require_third_party_data_access(
+            IDataFile<ActualBankRecord> third_party_file, 
+            ISpreadsheet spreadsheet,
+            IInputOutput input_output)
+        {
+        }
     }
 }

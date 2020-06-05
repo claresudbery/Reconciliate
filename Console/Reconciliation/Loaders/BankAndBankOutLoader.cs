@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
@@ -81,6 +82,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 pending_file,
                 ReconConsts.Cred_card2_name,
                 ReconConsts.Cred_card2_dd_description);
+
+            // Note that we can't update bank balance here because we don't have access to third party file,
+            // so we do it below in Do_actions_which_require_third_party_data_access.
         }
 
         private void Add_most_recent_credit_card_direct_debits(
@@ -119,6 +123,41 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     cred_card_name,
                     next_date.ToShortDateString()));
             }
+        }
+
+        public void Do_actions_which_require_third_party_data_access(
+            IDataFile<ActualBankRecord> third_party_file, 
+            ISpreadsheet spreadsheet,
+            IInputOutput input_output)
+        {
+            Update_bank_balance(
+                (third_party_file as ActualBankOutFile),
+                spreadsheet,
+                input_output);
+        }
+
+        private void Update_bank_balance(
+            ActualBankOutFile actual_bank_out_file,
+            ISpreadsheet spreadsheet,
+            IInputOutput input_output)
+        {
+            ActualBankRecord balance_row = actual_bank_out_file.Get_balance_row();
+
+            string balance_description = String.Format(
+                ReconConsts.BankBalanceDescription,
+                ReconConsts.Bank_descriptor,
+                balance_row.Description,
+                balance_row.Main_amount(),
+                balance_row.Date);
+
+            spreadsheet.Update_balance_on_totals_sheet(
+                Codes.Bank_bal,
+                balance_row.Balance,
+                balance_description,
+                balance_column: 2,
+                text_column: 6,
+                code_column: 1,
+                input_output: input_output);
         }
     }
 }

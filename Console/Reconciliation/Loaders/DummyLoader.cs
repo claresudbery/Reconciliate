@@ -59,5 +59,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             DataLoadingInformation<ActualBankRecord, BankRecord> data_loading_info)
         {
         }
+
+        public void Do_actions_which_require_third_party_data_access(
+            IDataFile<ActualBankRecord> third_party_file,
+            ISpreadsheet spreadsheet,
+            IInputOutput input_output)
+        {
+        }
     }
 }

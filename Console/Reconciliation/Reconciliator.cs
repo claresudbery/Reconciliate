@@ -60,7 +60,9 @@ namespace ConsoleCatchall.Console.Reconciliation
         public Reconciliator(
             DataLoadingInformation<TThirdPartyType, TOwnedType> data_loading_info,
             IDataFile<TThirdPartyType> third_party_file,
-            IDataFile<TOwnedType> owned_file)
+            IDataFile<TOwnedType> owned_file,
+            ISpreadsheet spreadsheet = null,
+            IInputOutput input_output = null)
         {
             Third_party_data_file = third_party_file;
             Owned_data_file = owned_file;
@@ -69,6 +71,7 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             _worksheet_name = data_loading_info.Sheet_name;
 
+            data_loading_info.Loader.Do_actions_which_require_third_party_data_access(Third_party_data_file, spreadsheet, input_output);
             Reset();
         }
 

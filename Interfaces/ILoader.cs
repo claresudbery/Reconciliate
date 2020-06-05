@@ -16,5 +16,10 @@ namespace Interfaces
             ICSVFile<TOwnedType> pending_file,
             BudgetingMonths budgeting_months,
             DataLoadingInformation<TThirdPartyType, TOwnedType> data_loading_info);
+
+        void Do_actions_which_require_third_party_data_access(
+            IDataFile<TThirdPartyType> third_party_file, 
+            ISpreadsheet spreadsheet,
+            IInputOutput input_output);
     }
 }

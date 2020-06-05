@@ -106,7 +106,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             Merge_budget_data(spreadsheet, pending_file, budgeting_months, data_loading_info);
             Merge_other_data(spreadsheet, pending_file, budgeting_months, data_loading_info);
             Merge_unreconciled_data(spreadsheet, pending_file, data_loading_info);
-            var reconciliator = Load_third_party_and_owned_files_into_reconciliator<TThirdPartyType, TOwnedType>(data_loading_info, third_party_file_io, owned_file_io);
+            var reconciliator = Load_third_party_and_owned_files_into_reconciliator<TThirdPartyType, TOwnedType>(
+                data_loading_info, 
+                third_party_file_io, 
+                owned_file_io,
+                spreadsheet);
             var reconciliation_interface = Create_reconciliation_interface(data_loading_info, reconciliator, matcher);
 
             return reconciliation_interface;
@@ -175,7 +179,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             Load_third_party_and_owned_files_into_reconciliator<TThirdPartyType, TOwnedType>(
                 DataLoadingInformation<TThirdPartyType, TOwnedType> data_loading_info,
                 IFileIO<TThirdPartyType> third_party_file_io,
-                IFileIO<TOwnedType> owned_file_io)
+                IFileIO<TOwnedType> owned_file_io,
+                ISpreadsheet spreadsheet = null)
             where TThirdPartyType : ICSVRecord, new() where TOwnedType : ICSVRecord, new()
         {
             _input_output.Output_line("Loading data back in from 'owned' and 'third party' files...");
@@ -187,7 +192,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             var reconciliator = new Reconciliator<TThirdPartyType, TOwnedType>(
                 data_loading_info,
                 third_party_file,
-                owned_file);
+                owned_file,
+                spreadsheet,
+                _input_output);
 
             return reconciliator;
         }

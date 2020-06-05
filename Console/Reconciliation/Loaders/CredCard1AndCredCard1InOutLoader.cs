@@ -104,5 +104,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 code_column: 4,
                 input_output: input_output);
         }
+
+        public void Do_actions_which_require_third_party_data_access(
+            IDataFile<CredCard1Record> third_party_file,
+            ISpreadsheet spreadsheet,
+            IInputOutput input_output)
+        {
+        }
     }
 }
