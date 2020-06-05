@@ -42,9 +42,9 @@ namespace ConsoleCatchallTests.Reconciliation.Files
                 new ActualBankRecord {Amount = -10, Balance = 940.00, Date = new DateTime(2020, 1, 3)},
                 new ActualBankRecord {Amount = -10, Balance = 930.00, Date = new DateTime(2020, 1, 3)},
                 // most recent records
-                new ActualBankRecord {Amount = -10, Balance = 940.00, Date = new DateTime(2020, 1, 4), Description = balance_row_description},
-                new ActualBankRecord {Amount = -10, Balance = 960.00, Date = new DateTime(2020, 1, 4)},
-                new ActualBankRecord {Amount = -10, Balance = 950.00, Date = new DateTime(2020, 1, 4)},
+                new ActualBankRecord {Amount = -10, Balance = 900.00, Date = new DateTime(2020, 1, 4), Description = balance_row_description},
+                new ActualBankRecord {Amount = -10, Balance = 920.00, Date = new DateTime(2020, 1, 4)},
+                new ActualBankRecord {Amount = -10, Balance = 910.00, Date = new DateTime(2020, 1, 4)},
                 // pending record with no balance
                 new ActualBankRecord {Amount = -10, Balance = 0.00, Date = new DateTime(2020, 1, 5)},
             };

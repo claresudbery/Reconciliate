@@ -33,29 +33,32 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
         {
             File.Populate_records_from_original_file_load();
 
-            var sum_of_all_amounts = File.Records.Sum(x => x.Amount);
-            DateTime last_row_date = File.Records
+            var candidate_record_list = File.Records;
+            var sum_of_all_amounts = candidate_record_list.Sum(x => x.Amount);
+            DateTime last_row_date = candidate_record_list
                 .OrderBy(x => x.Date).ToList()
                 .Last()
                 .Date;
-            var most_recent_records = File.Records.Where(x => x.Date == last_row_date).ToList();
-            if (most_recent_records.Count == 1 && most_recent_records[0].Amount.Double_equals(0))
+            var most_recent_records = candidate_record_list.Where(x => x.Date == last_row_date).ToList();
+            if (most_recent_records.Count == 1 && most_recent_records[0].Balance.Double_equals(0))
             {
-                File.Records.RemoveAll(x => x.Date == last_row_date);
-                last_row_date = File.Records
+                candidate_record_list.RemoveAll(x => x.Date == last_row_date);
+                last_row_date = candidate_record_list
                     .OrderBy(x => x.Date).ToList()
                     .Last()
                     .Date;
-                most_recent_records = File.Records.Where(x => x.Date == last_row_date).ToList();
+                sum_of_all_amounts = candidate_record_list.Sum(x => x.Amount);
+                most_recent_records = candidate_record_list.Where(x => x.Date == last_row_date).ToList();
             }
-            DateTime earliest_row_date = File.Records
+            DateTime earliest_row_date = candidate_record_list
                 .OrderBy(x => x.Date).ToList()
                 .First()
                 .Date;
-            var earliest_records = File.Records.Where(x => x.Date == earliest_row_date).ToList();
+            var earliest_records = candidate_record_list.Where(x => x.Date == earliest_row_date).ToList();
 
             var balance_row = most_recent_records
-                .First(x => earliest_records.Any(y => x.Balance.Double_equals(y.Balance + y.Amount)));
+                .First(x => earliest_records
+                    .Any(y => x.Balance.Double_equals(y.Balance + sum_of_all_amounts - y.Amount)));
 
             Refresh_file_contents();
             return balance_row;
