@@ -284,30 +284,27 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ICSVFile<TRecordType> pending_file,
             BudgetingMonths budgeting_months) where TRecordType : ICSVRecord, new()
         {
-            if (budgeting_months.Next_unplanned_month > 0)
+            var final_month = budgeting_months.Last_month_for_budget_planning >=
+                              budgeting_months.Next_unplanned_month
+                ? budgeting_months.Last_month_for_budget_planning
+                : budgeting_months.Last_month_for_budget_planning + 12;
+            for (int month = budgeting_months.Next_unplanned_month; month <= final_month; month++)
             {
-                var final_month = budgeting_months.Last_month_for_budget_planning >=
-                                  budgeting_months.Next_unplanned_month
-                    ? budgeting_months.Last_month_for_budget_planning
-                    : budgeting_months.Last_month_for_budget_planning + 12;
-                for (int month = budgeting_months.Next_unplanned_month; month <= final_month; month++)
+                int new_month = month;
+                int new_year = budgeting_months.Start_year;
+                if (month > 12)
                 {
-                    int new_month = month;
-                    int new_year = budgeting_months.Start_year;
-                    if (month > 12)
-                    {
-                        new_month = month - 12;
-                        new_year = new_year + 1;
-                    }
-
-                    var new_monthly_records = base_records.Select(
-                        x => (TRecordType)
-                            With_correct_days_per_month(x.Copy(), new_year, new_month));
-                    pending_file.Records.AddRange(new_monthly_records);
+                    new_month = month - 12;
+                    new_year = new_year + 1;
                 }
 
-                pending_file.Records = pending_file.Records.OrderBy(record => record.Date).ToList();
+                var new_monthly_records = base_records.Select(
+                    x => (TRecordType)
+                        With_correct_days_per_month(x.Copy(), new_year, new_month));
+                pending_file.Records.AddRange(new_monthly_records);
             }
+
+            pending_file.Records = pending_file.Records.OrderBy(record => record.Date).ToList();
         }
 
         private void Add_records_to_pending_file_for_records_that_have_matching_months<TRecordType>(
@@ -315,28 +312,25 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             ICSVFile<TRecordType> pending_file,
             BudgetingMonths budgeting_months) where TRecordType : ICSVRecord, new()
         {
-            if (budgeting_months.Next_unplanned_month > 0)
+            var final_month = budgeting_months.Last_month_for_budget_planning >= budgeting_months.Next_unplanned_month
+                ? budgeting_months.Last_month_for_budget_planning
+                : budgeting_months.Last_month_for_budget_planning + 12;
+            for (int month = budgeting_months.Next_unplanned_month; month <= final_month; month++)
             {
-                var final_month = budgeting_months.Last_month_for_budget_planning >= budgeting_months.Next_unplanned_month
-                    ? budgeting_months.Last_month_for_budget_planning
-                    : budgeting_months.Last_month_for_budget_planning + 12;
-                for (int month = budgeting_months.Next_unplanned_month; month <= final_month; month++)
+                var new_month = month;
+                var new_year = budgeting_months.Start_year;
+                if (month > 12)
                 {
-                    var new_month = month;
-                    var new_year = budgeting_months.Start_year;
-                    if (month > 12)
-                    {
-                        new_month = month - 12;
-                        new_year = new_year + 1;
-                    }
-                    var new_annual_records = base_records
-                        .Where(x => x.Date.Month == new_month)
-                        .Select(x => (TRecordType)
-                            With_correct_days_per_month(x.Copy(), new_year, x.Date.Month));
-                    pending_file.Records.AddRange(new_annual_records.ToList());
+                    new_month = month - 12;
+                    new_year = new_year + 1;
                 }
-                pending_file.Records = pending_file.Records.OrderBy(record => record.Date).ToList();
+                var new_annual_records = base_records
+                    .Where(x => x.Date.Month == new_month)
+                    .Select(x => (TRecordType)
+                        With_correct_days_per_month(x.Copy(), new_year, x.Date.Month));
+                pending_file.Records.AddRange(new_annual_records.ToList());
             }
+            pending_file.Records = pending_file.Records.OrderBy(record => record.Date).ToList();
         }
 
         private ICSVRecord With_correct_days_per_month(ICSVRecord record, int new_year, int new_month)
