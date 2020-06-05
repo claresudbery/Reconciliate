@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
@@ -26,7 +27,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void Will_find_balance_row()
+        public void Will_find_balance_row_when_most_recent_transaction_has_no_balance()
         {
             // Arrange
             string balance_row_description = "Balance row";
@@ -36,6 +37,36 @@ namespace ConsoleCatchallTests.Reconciliation.Files
                 new ActualBankRecord {Amount = -10, Balance = 990.00, Date = new DateTime(2020, 1, 1)},
                 new ActualBankRecord {Amount = -10, Balance = 980.00, Date = new DateTime(2020, 1, 1)},
                 new ActualBankRecord {Amount = -10, Balance = 970.00, Date = new DateTime(2020, 1, 1)},
+                // most recent records
+                new ActualBankRecord {Amount = -10, Balance = 920.00, Date = new DateTime(2020, 1, 4)},
+                new ActualBankRecord {Amount = -10, Balance = 910.00, Date = new DateTime(2020, 1, 4)},
+                new ActualBankRecord {Amount = -10, Balance = 900.00, Date = new DateTime(2020, 1, 4), Description = balance_row_description},
+                // pending record with no balance
+                new ActualBankRecord {Amount = -10, Balance = 0.00, Date = new DateTime(2020, 1, 5)},
+            };
+            var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
+            mock_actual_bank_file.Setup(x => x.Records).Returns(fake_records);
+            var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
+
+            // Act
+            var result = actual_bank_out_file.Get_potential_balance_rows();
+
+            // Assert
+            Assert.AreEqual(1, result.Count());
+            Assert.AreEqual(balance_row_description, result.ToList()[0].Description);
+        }
+
+        [Test]
+        public void Will_find_balance_row_when_records_are_not_in_correct_order()
+        {
+            // Arrange
+            string balance_row_description = "Balance row";
+            var fake_records = new List<ActualBankRecord>
+            {
+                // earliest records
+                new ActualBankRecord {Amount = -10, Balance = 980.00, Date = new DateTime(2020, 1, 1)},
+                new ActualBankRecord {Amount = -10, Balance = 970.00, Date = new DateTime(2020, 1, 1)},
+                new ActualBankRecord {Amount = -10, Balance = 990.00, Date = new DateTime(2020, 1, 1), Description = "First row"},
                 // middle records
                 new ActualBankRecord {Amount = -10, Balance = 960.00, Date = new DateTime(2020, 1, 2)},
                 new ActualBankRecord {Amount = -10, Balance = 950.00, Date = new DateTime(2020, 1, 2)},
@@ -45,6 +76,46 @@ namespace ConsoleCatchallTests.Reconciliation.Files
                 new ActualBankRecord {Amount = -10, Balance = 900.00, Date = new DateTime(2020, 1, 4), Description = balance_row_description},
                 new ActualBankRecord {Amount = -10, Balance = 920.00, Date = new DateTime(2020, 1, 4)},
                 new ActualBankRecord {Amount = -10, Balance = 910.00, Date = new DateTime(2020, 1, 4)},
+            };
+            var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
+            mock_actual_bank_file.Setup(x => x.Records).Returns(fake_records);
+            var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
+
+            // Act
+            var result = actual_bank_out_file.Get_potential_balance_rows();
+
+            // Assert
+            Assert.AreEqual(1, result.Count());
+            Assert.AreEqual(balance_row_description, result.ToList()[0].Description);
+        }
+
+        [Test]
+        public void Will_find_balance_row_when_result_is_ambiguous_because_candidates_exist_with_same_balance()
+        {
+            // Arrange
+            string balance_row_desc_01 = "Potential balance row 01";
+            string balance_row_desc_02 = "Potential balance row 02";
+            var fake_records = new List<ActualBankRecord>
+            {
+                // earliest records
+                new ActualBankRecord {Amount = -10, Balance = 990.00, Date = new DateTime(2020, 1, 1)},
+                new ActualBankRecord {Amount = 10, Balance = 1000.00, Date = new DateTime(2020, 1, 1)},
+                new ActualBankRecord {Amount = -10, Balance = 990.00, Date = new DateTime(2020, 1, 1)},
+                new ActualBankRecord {Amount = 10, Balance = 1000.00, Date = new DateTime(2020, 1, 1)},
+                new ActualBankRecord {Amount = -10, Balance = 990.00, Date = new DateTime(2020, 1, 1)},
+                new ActualBankRecord {Amount = -10, Balance = 980.00, Date = new DateTime(2020, 1, 1)},
+                new ActualBankRecord {Amount = -10, Balance = 970.00, Date = new DateTime(2020, 1, 1)},
+                // middle records
+                new ActualBankRecord {Amount = -10, Balance = 960.00, Date = new DateTime(2020, 1, 2)},
+                new ActualBankRecord {Amount = -10, Balance = 950.00, Date = new DateTime(2020, 1, 2)},
+                new ActualBankRecord {Amount = -10, Balance = 940.00, Date = new DateTime(2020, 1, 3)},
+                new ActualBankRecord {Amount = -10, Balance = 930.00, Date = new DateTime(2020, 1, 3)},
+                // most recent records
+                new ActualBankRecord {Amount = -10, Balance = 920.00, Date = new DateTime(2020, 1, 4)},
+                new ActualBankRecord {Amount = -10, Balance = 910.00, Date = new DateTime(2020, 1, 4)},
+                new ActualBankRecord {Amount = -10, Balance = 900.00, Date = new DateTime(2020, 1, 4), Description = balance_row_desc_01},
+                new ActualBankRecord {Amount = 10, Balance = 910.00, Date = new DateTime(2020, 1, 4)},
+                new ActualBankRecord {Amount = -10, Balance = 900.00, Date = new DateTime(2020, 1, 4), Description = balance_row_desc_02},
                 // pending record with no balance
                 new ActualBankRecord {Amount = -10, Balance = 0.00, Date = new DateTime(2020, 1, 5)},
             };
@@ -53,10 +124,49 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
 
             // Act
-            var result = actual_bank_out_file.Get_balance_row();
+            var result = actual_bank_out_file.Get_potential_balance_rows();
 
             // Assert
-            Assert.AreEqual(balance_row_description, result.Description);
+            Assert.AreEqual(2, result.Count());
+            Assert.IsTrue(result.Any(x => x.Description == balance_row_desc_01));
+            Assert.IsTrue(result.Any(x => x.Description == balance_row_desc_02));
+        }
+
+        [Test]
+        public void Will_find_balance_row_when_result_is_ambiguous_because_multiple_early_records_exist_that_point_to_different_recent_records()
+        {
+            // Arrange
+            string balance_row_desc_01 = "Potential balance row 01";
+            string balance_row_desc_02 = "Potential balance row 02";
+            var fake_records = new List<ActualBankRecord>
+            {
+                // earliest records
+                new ActualBankRecord {Amount = -10, Balance = 990.00, Date = new DateTime(2020, 1, 1)},
+                new ActualBankRecord {Amount = 30, Balance = 1020.00, Date = new DateTime(2020, 1, 1)},
+                new ActualBankRecord {Amount = -20, Balance = 1000.00, Date = new DateTime(2020, 1, 1), Description = "This record could point at balance_row_desc_01"},
+                new ActualBankRecord {Amount = -20, Balance = 980.00, Date = new DateTime(2020, 1, 1)},
+                new ActualBankRecord {Amount = -10, Balance = 970.00, Date = new DateTime(2020, 1, 1)},
+                // middle records
+                new ActualBankRecord {Amount = -10, Balance = 960.00, Date = new DateTime(2020, 1, 2)},
+                new ActualBankRecord {Amount = -10, Balance = 950.00, Date = new DateTime(2020, 1, 2)},
+                new ActualBankRecord {Amount = -10, Balance = 940.00, Date = new DateTime(2020, 1, 3)},
+                new ActualBankRecord {Amount = -10, Balance = 930.00, Date = new DateTime(2020, 1, 3)},
+                // most recent records
+                new ActualBankRecord {Amount = -10, Balance = 920.00, Date = new DateTime(2020, 1, 4), Description = balance_row_desc_01},
+                new ActualBankRecord {Amount = -10, Balance = 910.00, Date = new DateTime(2020, 1, 4)},
+                new ActualBankRecord {Amount = -10, Balance = 900.00, Date = new DateTime(2020, 1, 4), Description = balance_row_desc_02},
+            };
+            var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
+            mock_actual_bank_file.Setup(x => x.Records).Returns(fake_records);
+            var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
+
+            // Act
+            var result = actual_bank_out_file.Get_potential_balance_rows();
+
+            // Assert
+            Assert.AreEqual(2, result.Count());
+            Assert.IsTrue(result.Any(x => x.Description == balance_row_desc_01));
+            Assert.IsTrue(result.Any(x => x.Description == balance_row_desc_02));
         }
     }
 }

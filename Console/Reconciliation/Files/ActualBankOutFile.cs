@@ -29,7 +29,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             File.Filter_for_negative_records_only();
         }
 
-        public ActualBankRecord Get_balance_row()
+        public IEnumerable<ActualBankRecord> Get_potential_balance_rows()
         {
             File.Populate_records_from_original_file_load();
 
@@ -56,12 +56,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
                 .Date;
             var earliest_records = candidate_record_list.Where(x => x.Date == earliest_row_date).ToList();
 
-            var balance_row = most_recent_records
-                .First(x => earliest_records
+            var potential_balance_rows = most_recent_records
+                .Where(x => earliest_records
                     .Any(y => x.Balance.Double_equals(y.Balance + sum_of_all_amounts - y.Amount)));
 
             Refresh_file_contents();
-            return balance_row;
+            return potential_balance_rows;
         }
     }
 }

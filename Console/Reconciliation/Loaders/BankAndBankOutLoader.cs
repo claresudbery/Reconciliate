@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
+using Interfaces.Extensions;
 
 namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
@@ -141,7 +143,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             ISpreadsheet spreadsheet,
             IInputOutput input_output)
         {
-            ActualBankRecord balance_row = actual_bank_out_file.Get_balance_row();
+            IEnumerable<ActualBankRecord> potential_balance_rows = actual_bank_out_file.Get_potential_balance_rows();
+
+            ActualBankRecord balance_row = Choose_balance_row(potential_balance_rows.ToList(), input_output);
 
             string balance_description = String.Format(
                 ReconConsts.BankBalanceDescription,
@@ -158,6 +162,31 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 text_column: 6,
                 code_column: 1,
                 input_output: input_output);
+        }
+
+        private ActualBankRecord Choose_balance_row(IList<ActualBankRecord> potential_balance_rows, IInputOutput input_output)
+        {
+            var result = potential_balance_rows.Last();
+
+            if (potential_balance_rows.Count > 1)
+            {
+                input_output.Output_line(String.Format(ReconConsts.MultipleBalanceRows, result.To_string()));
+
+                for (int index = 0; index < potential_balance_rows.Count; index++)
+                {
+                    input_output.Output_line($"{index + 1}. {potential_balance_rows[index].To_string()}");
+                }
+
+                string input = input_output.Get_generic_input(ReconConsts.MultipleBalanceRows);
+
+                int new_index = 0;
+                if (int.TryParse(input, out new_index))
+                {
+                    result = potential_balance_rows[new_index - 1];
+                }
+            }
+
+            return result;
         }
     }
 }
