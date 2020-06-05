@@ -254,5 +254,28 @@ namespace ExcelIntegrationTests.Records
             // Assert
             Assert.AreEqual(expected_source_line, bank_record.Source_line);
         }
+
+        [Test]
+        [Parallelizable(ParallelScope.None)]
+        public void Will_cope_with_bank_record_cells_when_not_all_cells_are_populated()
+        {
+            // Arrange
+            String expected_description = "SOMETHING EXCITING & SOMEWHERE COOL";
+            var bank_record = new BankRecord();
+            List<object> cells = new List<object>
+            {
+                (double)43405,
+                null,
+                null,
+                "POS",
+                expected_description
+            };
+
+            // Act 
+            bank_record.Read_from_spreadsheet_row(new ExcelRow(cells));
+
+            // Assert
+            Assert.AreEqual(expected_description, bank_record.Description);
+        }
     }
 }

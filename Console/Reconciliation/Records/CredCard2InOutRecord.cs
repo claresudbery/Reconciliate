@@ -109,7 +109,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public void Read_from_spreadsheet_row(ICellRow cell_set)
         {
             Date = DateTime.FromOADate((double)cell_set.Read_cell(DateIndex));
-            Unreconciled_amount = cell_set.Read_cell(UnreconciledAmountIndex) != null ? (Double)cell_set.Read_cell(UnreconciledAmountIndex) : 0;
+            Unreconciled_amount = cell_set.Read_cell(UnreconciledAmountIndex) != null 
+                ? (Double)cell_set.Read_cell(UnreconciledAmountIndex) 
+                : 0;
             Description = ((String)cell_set.Read_cell(DescriptionIndex)).Strip_enclosing_quotes();
             Reconciled_amount = cell_set.Count > ReconciledAmountIndex && cell_set.Read_cell(ReconciledAmountIndex) != null 
                 ? (Double)cell_set.Read_cell(ReconciledAmountIndex)

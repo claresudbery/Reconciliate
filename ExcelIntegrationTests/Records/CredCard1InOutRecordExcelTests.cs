@@ -167,7 +167,7 @@ namespace ExcelIntegrationTests.Records
             List<object> cells = new List<object>
             {
                 (double)43405,
-                13.95,
+                null,
                 null,
                 expected_description
             };
