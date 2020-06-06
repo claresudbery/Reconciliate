@@ -57,7 +57,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             csv_line = csv_line.Replace_commas_surrounded_by_spaces();
             SourceLine = csv_line;
             OutputSourceLine = csv_line;
-            Load_from_original_line(override_separator);
+            Load_from_original_line();
         }
 
         public void Load_from_original_line()

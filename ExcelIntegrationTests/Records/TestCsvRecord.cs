@@ -17,6 +17,7 @@ namespace ExcelIntegrationTests.Records
         public Int16 Index { get; set; }
 
         public ICSVRecord Match { get; set; }
+        public string SourceLine { get; set; }
         public string OutputSourceLine { get; set; }
 
         public TestCsvRecord Build()
@@ -110,6 +111,11 @@ namespace ExcelIntegrationTests.Records
         }
 
         public void Load(string csv_line, char? override_separator = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Load_from_original_line()
         {
             throw new NotImplementedException();
         }
