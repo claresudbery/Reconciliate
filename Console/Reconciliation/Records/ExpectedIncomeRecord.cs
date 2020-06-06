@@ -12,7 +12,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public ICSVRecord Match { get; set; }
         public bool Matched { get; set; }
         public bool Divider { get; set; }
-        public string Source_line { get; private set; }
+        public string SourceLine { get; private set; }
+        public string OutputSourceLine { get; private set; }
 
         // Source data - loaded on startup (if any new essential fields are added, update EssentialFields value below):
         public DateTime Date { get; set; }
@@ -139,7 +140,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 : 0;
             Description = ((String)cell_row.Read_cell(DescriptionIndex)).Strip_enclosing_quotes();
 
-            Source_line = To_string(_separator, false);
+            SourceLine = To_string(_separator, false);
+            OutputSourceLine = To_string(_separator, false);
         }
 
         private String To_string(char separator, bool encase_description_in_quotes = true, bool format_currency = true)
@@ -191,7 +193,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 Date_paid = Date_paid,
                 Total_paid = Total_paid,
                 Description = Description,
-                Source_line = Source_line
+                SourceLine = SourceLine,
+                OutputSourceLine = OutputSourceLine
             };
         }
 
@@ -203,7 +206,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
 
         public void Update_source_line_for_output(char output_separator)
         {
-            Source_line = To_string(output_separator);
+            OutputSourceLine = To_string(output_separator);
         }
 
         public BankRecord Convert_to_bank_record()

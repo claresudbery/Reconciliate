@@ -147,7 +147,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             expected_income_record.Read_from_spreadsheet_row(mock_cells.Object);
 
             // Assert
-            Assert.AreEqual(expected_source_line, expected_income_record.Source_line);
+            Assert.AreEqual(expected_source_line, expected_income_record.OutputSourceLine);
         }
 
         [Test]
@@ -283,7 +283,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             expected_income_record.Update_source_line_for_output(',');
 
             // Assert
-            Assert.AreEqual(expected_source_line, expected_income_record.Source_line);
+            Assert.AreEqual(expected_source_line, expected_income_record.OutputSourceLine);
         }
 
         [Test]
@@ -313,7 +313,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             Assert.AreEqual(expected_income_record.Date_paid, copied_record.Date_paid);
             Assert.AreEqual(expected_income_record.Total_paid, copied_record.Total_paid);
             Assert.AreEqual(expected_income_record.Description, copied_record.Description);
-            Assert.AreEqual(expected_income_record.Source_line, copied_record.Source_line);
+            Assert.AreEqual(expected_income_record.OutputSourceLine, copied_record.OutputSourceLine);
         }
 
         [Test]
@@ -338,7 +338,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
                 Description = original_description,
             };
             expected_income_record.Update_source_line_for_output(',');
-            var original_source_line = expected_income_record.Source_line;
+            var original_source_line = expected_income_record.OutputSourceLine;
 
             // Act 
             var copied_record = (ExpectedIncomeRecord)expected_income_record.Copy();
@@ -359,7 +359,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             Assert.AreEqual(original_date_paid, expected_income_record.Date_paid);
             Assert.AreEqual(original_total_paid, expected_income_record.Total_paid);
             Assert.AreEqual(original_description, expected_income_record.Description);
-            Assert.AreEqual(original_source_line, expected_income_record.Source_line);
+            Assert.AreEqual(original_source_line, expected_income_record.OutputSourceLine);
         }
 
         [Test]

@@ -486,7 +486,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
                 Unreconciled_amount = 12.34,
                 Description = "Description",
                 Reconciled_amount = 56.78,
-                Source_line = "SourceLine"
+                OutputSourceLine = "SourceLine"
             };
 
             // Act 
@@ -497,7 +497,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             Assert.AreEqual(cred_card2_in_out_record.Unreconciled_amount, copied_record.Unreconciled_amount);
             Assert.AreEqual(cred_card2_in_out_record.Description, copied_record.Description);
             Assert.AreEqual(cred_card2_in_out_record.Reconciled_amount, copied_record.Reconciled_amount);
-            Assert.AreEqual(cred_card2_in_out_record.Source_line, copied_record.Source_line);
+            Assert.AreEqual(cred_card2_in_out_record.OutputSourceLine, copied_record.OutputSourceLine);
         }
 
         [Test]
@@ -515,7 +515,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
                 Unreconciled_amount = original_unreconciled_amount,
                 Description = original_description,
                 Reconciled_amount = original_reconciled_amount,
-                Source_line = original_source_line
+                OutputSourceLine = original_source_line
             };
 
             // Act 
@@ -524,14 +524,14 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             copied_record.Unreconciled_amount = copied_record.Unreconciled_amount + 1;
             copied_record.Description = copied_record.Description + "something else";
             copied_record.Reconciled_amount = copied_record.Reconciled_amount + 1;
-            copied_record.Source_line = copied_record.Source_line + "something else";
+            copied_record.OutputSourceLine = copied_record.OutputSourceLine + "something else";
 
             // Assert
             Assert.AreEqual(original_date, cred_card2_in_out_record.Date);
             Assert.AreEqual(original_unreconciled_amount, cred_card2_in_out_record.Unreconciled_amount);
             Assert.AreEqual(original_description, cred_card2_in_out_record.Description);
             Assert.AreEqual(original_reconciled_amount, cred_card2_in_out_record.Reconciled_amount);
-            Assert.AreEqual(original_source_line, cred_card2_in_out_record.Source_line);
+            Assert.AreEqual(original_source_line, cred_card2_in_out_record.OutputSourceLine);
         }
 
         [Test]

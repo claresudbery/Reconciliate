@@ -174,7 +174,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
         {
             return Records
                 .OrderBy(x => x.Date)
-                .Select(record => record.Source_line)
+                .Select(record => record.OutputSourceLine)
                 .ToList();
         }
 

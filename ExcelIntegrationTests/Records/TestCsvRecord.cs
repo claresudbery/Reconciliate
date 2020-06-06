@@ -17,7 +17,7 @@ namespace ExcelIntegrationTests.Records
         public Int16 Index { get; set; }
 
         public ICSVRecord Match { get; set; }
-        public string Source_line { get; set; }
+        public string OutputSourceLine { get; set; }
 
         public TestCsvRecord Build()
         {
@@ -41,7 +41,7 @@ namespace ExcelIntegrationTests.Records
 
         public void Update_source_line_for_output(char output_separator)
         {
-            Source_line = To_csv();
+            OutputSourceLine = To_csv();
         }
 
         public TestCsvRecord With_date(DateTime new_date)

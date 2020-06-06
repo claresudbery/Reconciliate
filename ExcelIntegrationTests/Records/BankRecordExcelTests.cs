@@ -252,7 +252,7 @@ namespace ExcelIntegrationTests.Records
             bank_record.Read_from_spreadsheet_row(cells);
 
             // Assert
-            Assert.AreEqual(expected_source_line, bank_record.Source_line);
+            Assert.AreEqual(expected_source_line, bank_record.OutputSourceLine);
         }
 
         [Test]

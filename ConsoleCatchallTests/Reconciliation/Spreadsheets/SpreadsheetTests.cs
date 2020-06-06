@@ -223,9 +223,9 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
 
             // Assert
             Assert.AreEqual(expected_num_records, csv_file.Records.Count);
-            Assert.IsTrue(csv_file.Records[0].Source_line.Contains(text1), $"line 0 should contain correct text");
-            Assert.IsTrue(csv_file.Records[1].Source_line.Contains(text2), $"line 1 should contain correct text");
-            Assert.IsTrue(csv_file.Records[2].Source_line.Contains(text3), $"line 1 should contain correct text");
+            Assert.IsTrue(csv_file.Records[0].OutputSourceLine.Contains(text1), $"line 0 should contain correct text");
+            Assert.IsTrue(csv_file.Records[1].OutputSourceLine.Contains(text2), $"line 1 should contain correct text");
+            Assert.IsTrue(csv_file.Records[2].OutputSourceLine.Contains(text3), $"line 1 should contain correct text");
         }
 
         [Test]

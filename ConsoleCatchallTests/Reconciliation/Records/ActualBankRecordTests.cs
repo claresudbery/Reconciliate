@@ -437,7 +437,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             Assert.AreEqual(actual_bank_record.Amount, copied_record.Amount);
             Assert.AreEqual(actual_bank_record.Description, copied_record.Description);
             Assert.AreEqual(actual_bank_record.Type, copied_record.Type);
-            Assert.AreEqual(actual_bank_record.Source_line, copied_record.Source_line);
+            Assert.AreEqual(actual_bank_record.OutputSourceLine, copied_record.OutputSourceLine);
         }
 
         [Test]
@@ -456,7 +456,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
                 Type = original_type
             };
             actual_bank_record.Update_source_line_for_output(',');
-            var original_source_line = actual_bank_record.Source_line;
+            var original_source_line = actual_bank_record.OutputSourceLine;
 
             // Act 
             var copied_record = (ActualBankRecord)actual_bank_record.Copy();
@@ -471,7 +471,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             Assert.AreEqual(original_amount, actual_bank_record.Amount);
             Assert.AreEqual(original_description, actual_bank_record.Description);
             Assert.AreEqual(original_type, actual_bank_record.Type);
-            Assert.AreEqual(original_source_line, actual_bank_record.Source_line);
+            Assert.AreEqual(original_source_line, actual_bank_record.OutputSourceLine);
         }
 
         [Test]

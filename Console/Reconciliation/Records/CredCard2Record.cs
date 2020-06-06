@@ -13,7 +13,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public ICSVRecord Match { get; set; }
         public bool Matched { get; set; }
         public bool Divider { get; set; }
-        public string Source_line { get; private set; }
+        public string SourceLine { get; set; }
+        public string OutputSourceLine { get; private set; }
 
         public DateTime Date { get; set; }
         public string Description { get; set; }
@@ -43,13 +44,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public void Load(string csv_line, char? override_separator = null)
         {
             csv_line = csv_line.Replace_commas_surrounded_by_spaces();
-            Source_line = csv_line;
+            SourceLine = csv_line;
+            OutputSourceLine = csv_line;
             Load_from_original_line(override_separator);
         }
 
         public void Load_from_original_line(char? override_separator = null)
         {
-            var csv_line = Source_line;
+            var csv_line = SourceLine;
             var values = csv_line.Split(_separator);
             values = StringHelper.Make_sure_there_are_at_least_enough_string_values(_expected_number_of_fields_per_row, values);
 
@@ -169,13 +171,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 Date = Date,
                 Description = Description,
                 Amount = Amount,
-                Source_line = Source_line
+                SourceLine = SourceLine,
+                OutputSourceLine = OutputSourceLine
             };
         }
 
         public void Update_source_line_for_output(char output_separator)
         {
-            Source_line = To_string(output_separator);
+            OutputSourceLine = To_string(output_separator);
         }
 
         public void Reconcile()
@@ -185,7 +188,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
 
         public void Convert_source_line_separators(char original_separator, char new_separator)
         {
-            Source_line = Source_line.Convert_separators(original_separator, new_separator);
+            OutputSourceLine = OutputSourceLine.Convert_separators(original_separator, new_separator);
         }
     }
 }

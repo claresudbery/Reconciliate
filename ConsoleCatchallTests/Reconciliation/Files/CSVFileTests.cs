@@ -587,7 +587,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
                 true,
                 ',');
 
-            Assert.AreEqual("01/05/2017,£12.34,,POS,\"something, something, something else\",,,,,", new_csv_file.Records[5].Source_line);
+            Assert.AreEqual("01/05/2017,£12.34,,POS,\"something, something, something else\",,,,,", new_csv_file.Records[5].OutputSourceLine);
         }
 
         [Test]

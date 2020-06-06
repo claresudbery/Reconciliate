@@ -604,7 +604,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             Assert.AreEqual(bank_record.Reconciled_amount, copied_record.Reconciled_amount);
             Assert.AreEqual(bank_record.Type, copied_record.Type);
             Assert.AreEqual(bank_record.Cheque_number, copied_record.Cheque_number);
-            Assert.AreEqual(bank_record.Source_line, copied_record.Source_line);
+            Assert.AreEqual(bank_record.OutputSourceLine, copied_record.OutputSourceLine);
         }
 
         [Test]
@@ -627,7 +627,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
                 Cheque_number = original_cheque_number
             };
             bank_record.Update_source_line_for_output(',');
-            var original_source_line = bank_record.Source_line;
+            var original_source_line = bank_record.OutputSourceLine;
 
             // Act 
             var copied_record = (BankRecord)bank_record.Copy();
@@ -644,7 +644,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             Assert.AreEqual(original_unreconciled_amount, bank_record.Unreconciled_amount);
             Assert.AreEqual(original_description, bank_record.Description);
             Assert.AreEqual(original_reconciled_amount, bank_record.Reconciled_amount);
-            Assert.AreEqual(original_source_line, bank_record.Source_line);
+            Assert.AreEqual(original_source_line, bank_record.OutputSourceLine);
             Assert.AreEqual(original_type, bank_record.Type);
             Assert.AreEqual(original_cheque_number, bank_record.Cheque_number);
         }

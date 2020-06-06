@@ -9,7 +9,8 @@ namespace Interfaces
         bool Divider { get; set; }
         DateTime Date { get; set; }
         string Description { get; set; }
-        string Source_line { get; }
+        string SourceLine { get; }
+        string OutputSourceLine { get; }
         ICSVRecord Match { get; set; }
 
         void Create_from_match(DateTime date, double amount, string type, string description, int extra_info, ICSVRecord matched_record);

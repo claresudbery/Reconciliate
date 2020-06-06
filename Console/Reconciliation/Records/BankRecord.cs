@@ -13,7 +13,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public ICSVRecord Match { get; set; }
         public bool Matched { get; set; }
         public bool Divider { get; set; }
-        public string Source_line { get; private set; }
+        public string SourceLine { get; private set; }
+        public string OutputSourceLine { get; private set; }
         public static string EmptyType = "Empty Type";
 
         // Source data - loaded on startup (if any new essential fields are added, update EssentialFields value below):
@@ -53,14 +54,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
 
         public void Load(string csv_line, char? override_separator = null)
         {
-            Source_line = csv_line;
+            SourceLine = csv_line;
+            OutputSourceLine = csv_line;
             Load_from_original_line(override_separator);
         }
 
         public void Load_from_original_line(char? override_separator = null)
         {
             char separator = override_separator ?? _separator;
-            var csv_line = Source_line;
+            var csv_line = SourceLine;
             string[] values = Split_values_based_on_separator_and_handle_commas_in_amounts(csv_line, separator);
             values = StringHelper.Make_sure_there_are_at_least_enough_string_values(_expected_number_of_fields_per_row, values);
 
@@ -203,7 +205,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 ? (Double)cell_set.Read_cell(ReconciledAmountIndex)
                 : 0;
 
-            Source_line = To_string(_separator, false);
+            SourceLine = To_string(_separator, false);
+            OutputSourceLine = To_string(_separator, false);
         }
 
         private String To_string(char separator, bool encase_description_in_quotes = true, bool format_currency = true)
@@ -275,7 +278,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
 
         public void Convert_source_line_separators(char original_separator, char new_separator)
         {
-            Source_line = Source_line.Convert_separators(original_separator, new_separator);
+            OutputSourceLine = OutputSourceLine.Convert_separators(original_separator, new_separator);
         }
 
         public ICSVRecord With_date(DateTime new_date)
@@ -294,13 +297,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 Description = Description,
                 Reconciled_amount = Reconciled_amount,
                 Cheque_number = Cheque_number,
-                Source_line = Source_line
+                SourceLine = SourceLine,
+                OutputSourceLine = OutputSourceLine
             };
         }
 
         public void Update_source_line_for_output(char output_separator)
         {
-            Source_line = To_string(output_separator);
+            OutputSourceLine = To_string(output_separator);
         }
     }
 }

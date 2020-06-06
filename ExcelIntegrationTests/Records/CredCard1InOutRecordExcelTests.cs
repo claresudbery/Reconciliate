@@ -214,7 +214,7 @@ namespace ExcelIntegrationTests.Records
             cred_card1_in_out_record.Read_from_spreadsheet_row(cells);
 
             // Assert
-            Assert.AreEqual(expected_source_line, cred_card1_in_out_record.Source_line);
+            Assert.AreEqual(expected_source_line, cred_card1_in_out_record.OutputSourceLine);
         }
     }
 }
