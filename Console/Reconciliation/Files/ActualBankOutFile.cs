@@ -90,16 +90,17 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             ActualBankRecord last_record = new ActualBankRecord();
             if (File.SourceRecords.Count > 0)
             {
-                DateTime last_row_date = File.SourceRecords.Max(x => x.Date);
-                last_record = File.SourceRecords.First();
+                var negative_records = File.SourceRecords.Where(x => x.Amount < 0).ToList();
+                DateTime last_row_date = negative_records.Max(x => x.Date);
+                last_record = negative_records.First();
 
                 if (last_record.Date != last_row_date)
                 {
-                    last_record = File.SourceRecords.Last();
+                    last_record = negative_records.Last();
 
                     if (last_record.Date != last_row_date)
                     {
-                        last_record = File.SourceRecords.OrderBy(x => x.Date).Last();
+                        last_record = negative_records.OrderBy(x => x.Date).Last();
                     }
                 }
             }
