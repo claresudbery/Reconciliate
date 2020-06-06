@@ -218,6 +218,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 Reconciled_amount = typed_source.Reconciled_amount;
                 SourceLine = typed_source.SourceLine;
                 OutputSourceLine = typed_source.OutputSourceLine;
+
+                Match = typed_source.Match;
+                Matched = typed_source.Matched;
+                Divider = typed_source.Divider;
             }
             else
             {
@@ -235,7 +239,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 Description = Description,
                 Reconciled_amount = Reconciled_amount,
                 SourceLine = SourceLine,
-                OutputSourceLine = OutputSourceLine
+                OutputSourceLine = OutputSourceLine,
+
+                Match = Match,
+                Matched = Matched,
+                Divider = Divider
             };
         }
 

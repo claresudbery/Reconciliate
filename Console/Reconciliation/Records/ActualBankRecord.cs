@@ -41,6 +41,17 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             OutputSourceLine = "";
         }
 
+        public ActualBankRecord(bool create_dummy_data)
+        {
+            SourceLine = "";
+            OutputSourceLine = "";
+            if (create_dummy_data)
+            {
+                SourceLine = "1/1/2020,x,x,1,1";
+                OutputSourceLine = SourceLine;
+            }
+        }
+
         public void Create_from_match(DateTime date, double amount, string type, string description, int extra_info, ICSVRecord matched_record)
         {
             Match = matched_record;
@@ -185,6 +196,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 Balance = typed_source.Balance;
                 SourceLine = typed_source.SourceLine;
                 OutputSourceLine = typed_source.OutputSourceLine;
+
+                Match = typed_source.Match;
+                Matched = typed_source.Matched;
+                Divider = typed_source.Divider;
             }
             else
             {
@@ -203,8 +218,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 Amount = Amount,
                 Balance = Balance,
                 SourceLine = SourceLine,
-                OutputSourceLine = OutputSourceLine
-            };
+                OutputSourceLine = OutputSourceLine,
+
+                Match = Match,
+                Matched = Matched,
+                Divider = Divider
+        };
         }
 
         public void Update_source_line_for_output(char output_separator)

@@ -459,6 +459,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_input_output.Verify(x => x.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file..."));
             mock_input_output.Verify(x => x.Output_line("Loading data back in from 'owned' and 'third party' files..."));
             mock_input_output.Verify(x => x.Output_line("Creating reconciliation interface..."));
+            mock_input_output.Verify(x => x.Output_line("Writing bank balance to spreadsheet..."));
             Assert.AreEqual(loading_info.Third_party_descriptor, reconciliation_interface.Third_party_descriptor, "Third Party Descriptor");
             Assert.AreEqual(loading_info.Owned_file_descriptor, reconciliation_interface.Owned_file_descriptor, "Owned File Descriptor");
             Assert.AreEqual(mock_matcher.Object, reconciliation_interface.Matcher, "Matcher");

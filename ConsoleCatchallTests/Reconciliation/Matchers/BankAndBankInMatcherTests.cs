@@ -7,6 +7,8 @@ using ConsoleCatchall.Console.Reconciliation.Matchers;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
 using ConsoleCatchall.Console.Reconciliation.Extensions;
+using ConsoleCatchall.Console.Reconciliation.Loaders;
+using ConsoleCatchallTests.Reconciliation.TestUtils;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
@@ -51,7 +53,10 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                     new ActualBankRecord {Description = $"\"'{ReconConsts.Employer_expense_description}\""}
                 });
             var actual_bank_file = new ActualBankInFile(new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object));
-            var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord> { Sheet_name = MainSheetNames.Bank_in };
+            var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord>
+            {
+                Sheet_name = MainSheetNames.Bank_in, Loader = new BankAndBankInLoader(new Mock<ISpreadsheetRepoFactory>().Object)
+            };
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(data_loading_info, actual_bank_file, bank_in_file);
             var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
 
@@ -84,7 +89,10 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                     new BankRecord {Type = Codes.Expenses, Description = Codes.Expenses + "1"}
                 });
             var bank_in_file = new GenericFile<BankRecord>(new CSVFile<BankRecord>(mock_bank_in_file_io.Object));
-            var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord> { Sheet_name = MainSheetNames.Bank_in };
+            var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord>
+            {
+                Sheet_name = MainSheetNames.Bank_in, Loader = new BankAndBankInLoader(new Mock<ISpreadsheetRepoFactory>().Object)
+            };
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(data_loading_info, actual_bank_file, bank_in_file);
             var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
 
@@ -870,7 +878,10 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
             mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_data);
             var bank_file = new GenericFile<BankRecord>(new CSVFile<BankRecord>(mock_bank_file_io.Object));
-            var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord> { Sheet_name = MainSheetNames.Bank_in };
+            var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord>
+            {
+                Sheet_name = MainSheetNames.Bank_in, Loader = new BankAndBankInLoader(new Mock<ISpreadsheetRepoFactory>().Object)
+            };
             var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(data_loading_info, actual_bank_file, bank_file);
             var expected_potential_matches = new List<PotentialMatch>
             {

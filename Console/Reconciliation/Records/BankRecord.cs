@@ -41,6 +41,23 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public const int ReconciledAmountIndex = 6;
         public const int MatchOffset = 11;
 
+        public BankRecord()
+        {
+            SourceLine = "";
+            OutputSourceLine = "";
+        }
+
+        public BankRecord(bool create_dummy_data)
+        {
+            SourceLine = "";
+            OutputSourceLine = "";
+            if (create_dummy_data)
+            {
+                SourceLine = "1/1/2020^1^x^x^x";
+                OutputSourceLine = SourceLine;
+            }
+        }
+
         public void Create_from_match(DateTime date, double amount, string type, string description, int extra_info, ICSVRecord matched_record)
         {
             Match = matched_record;
@@ -114,7 +131,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         private bool We_have_an_empty_essential_field()
         {
             return Date == Convert.ToDateTime("9/9/9999", StringHelper.Culture())
-                   || Unreconciled_amount == 0
+                   || Unreconciled_amount.Double_equals(0)
                    || string.IsNullOrEmpty(Type)
                    || string.IsNullOrEmpty(Description);
         }
@@ -301,6 +318,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 Cheque_number = typed_source.Cheque_number;
                 SourceLine = typed_source.SourceLine;
                 OutputSourceLine = typed_source.OutputSourceLine;
+
+                Match = typed_source.Match;
+                Matched = typed_source.Matched;
+                Divider = typed_source.Divider;
             }
             else
             {
@@ -320,7 +341,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 Reconciled_amount = Reconciled_amount,
                 Cheque_number = Cheque_number,
                 SourceLine = SourceLine,
-                OutputSourceLine = OutputSourceLine
+                OutputSourceLine = OutputSourceLine,
+
+                Match = Match,
+                Matched = Matched,
+                Divider = Divider
             };
         }
 

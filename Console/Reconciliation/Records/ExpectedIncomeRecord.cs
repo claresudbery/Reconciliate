@@ -40,17 +40,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public void Create_from_match(DateTime date, double amount, string type, string description, int extra_info,
             ICSVRecord matched_record)
         {
-            throw new NotImplementedException();
         }
 
         public void Load(string csv_line, char? override_separator = null)
         {
-            throw new NotImplementedException();
         }
 
         public void Load_from_original_line()
         {
-            throw new NotImplementedException();
         }
 
         public bool Main_amount_is_negative()
@@ -159,7 +156,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
 
         public void Convert_source_line_separators(char original_separator, char new_separator)
         {
-            throw new NotImplementedException();
         }
 
         public double Main_amount()
@@ -197,6 +193,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 Description = typed_source.Description;
                 SourceLine = typed_source.SourceLine;
                 OutputSourceLine = typed_source.OutputSourceLine;
+
+                Match = typed_source.Match;
+                Matched = typed_source.Matched;
+                Divider = typed_source.Divider;
             }
             else
             {
@@ -217,7 +217,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 Total_paid = Total_paid,
                 Description = Description,
                 SourceLine = SourceLine,
-                OutputSourceLine = OutputSourceLine
+                OutputSourceLine = OutputSourceLine,
+
+                Match = Match,
+                Matched = Matched,
+                Divider = Divider
             };
         }
 

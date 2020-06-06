@@ -64,8 +64,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             Records.Clear();
             foreach (var record in SourceRecords)
             {
-                record.Load_from_original_line();
-                Records.Add(record);
+                var new_record = new TRecordType();
+                new_record.Copy_from(record);
+                Records.Add(new_record);
             }
         }
 

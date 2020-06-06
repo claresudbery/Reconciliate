@@ -6,6 +6,7 @@ using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Matchers;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Extensions;
+using ConsoleCatchall.Console.Reconciliation.Loaders;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
@@ -47,7 +48,10 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                     new CredCard2Record {Description = $"\"HOLLYHILL {ReconConsts.iTunes_description}\""}
                 });
             var cred_card2_file = new GenericFile<CredCard2Record>(new CSVFile<CredCard2Record>(mock_cred_card2_file_io.Object));
-            var data_loading_info = new DataLoadingInformation<CredCard2Record, CredCard2InOutRecord> { Sheet_name = MainSheetNames.Cred_card2 };
+            var data_loading_info = new DataLoadingInformation<CredCard2Record, CredCard2InOutRecord>
+            {
+                Sheet_name = MainSheetNames.Cred_card2, Loader = new CredCard2AndCredCard2InOutLoader()
+            };
             var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(data_loading_info, cred_card2_file, cred_card2_in_out_file);
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
@@ -79,7 +83,10 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                     new CredCard2InOutRecord {Description = ReconConsts.iTunes_description + " purchase 1"}
                 });
             var cred_card2_in_out_file = new GenericFile<CredCard2InOutRecord>(new CSVFile<CredCard2InOutRecord>(mock_cred_card2_in_out_file_io.Object));
-            var data_loading_info = new DataLoadingInformation<CredCard2Record, CredCard2InOutRecord> { Sheet_name = MainSheetNames.Cred_card2 };
+            var data_loading_info = new DataLoadingInformation<CredCard2Record, CredCard2InOutRecord>
+            {
+                Sheet_name = MainSheetNames.Cred_card2, Loader = new CredCard2AndCredCard2InOutLoader()
+            };
             var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(data_loading_info, cred_card2_file, cred_card2_in_out_file);
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
@@ -672,7 +679,10 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_cred_card2_in_out_file_io = new Mock<IFileIO<CredCard2InOutRecord>>();
             mock_cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(owned_data);
             var cred_card2_in_out_file = new GenericFile<CredCard2InOutRecord>(new CSVFile<CredCard2InOutRecord>(mock_cred_card2_in_out_file_io.Object));
-            var data_loading_info = new DataLoadingInformation<CredCard2Record, CredCard2InOutRecord> { Sheet_name = MainSheetNames.Cred_card2 };
+            var data_loading_info = new DataLoadingInformation<CredCard2Record, CredCard2InOutRecord>
+            {
+                Sheet_name = MainSheetNames.Cred_card2, Loader = new CredCard2AndCredCard2InOutLoader()
+            };
             var reconciliator = new Reconciliator<CredCard2Record, CredCard2InOutRecord>(data_loading_info, cred_card2_file, cred_card2_in_out_file);
             var expected_potential_matches = new List<PotentialMatch>
             {
