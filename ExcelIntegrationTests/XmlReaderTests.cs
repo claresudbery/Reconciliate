@@ -16,7 +16,6 @@ namespace ExcelIntegrationTests
             Assert.AreEqual(xml_reader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Test_record)}"), "TestRecord");
             Assert.AreEqual(xml_reader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Cred_card)}"), "CredCard");
             Assert.AreEqual(xml_reader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Bank)}"), "Bank");
-            Assert.AreEqual(xml_reader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Actual_bank)}"), "ActualBank");
             Assert.AreEqual(xml_reader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Bad_divider)}"), "BadDivider");
             Assert.AreEqual(xml_reader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Budget_out)}"), "Budget Out");
             Assert.AreEqual(xml_reader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Expected_out)}"), "Expected Out");
@@ -29,7 +28,6 @@ namespace ExcelIntegrationTests
             Assert.AreEqual(TestSheetNames.Test_record, "TestRecord");
             Assert.AreEqual(TestSheetNames.Cred_card, "CredCard");
             Assert.AreEqual(TestSheetNames.Bank, "Bank");
-            Assert.AreEqual(TestSheetNames.Actual_bank, "ActualBank");
             Assert.AreEqual(TestSheetNames.Bad_divider, "BadDivider");
             Assert.AreEqual(TestSheetNames.Budget_out, "Budget Out");
             Assert.AreEqual(TestSheetNames.Expected_out, "Expected Out");

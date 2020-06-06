@@ -24,7 +24,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public string Description { get; set; }
         public double Reconciled_amount { get; set; }
         public int Cheque_number { get; set; }
-        public string Last_transaction_marker { get; set; }
 
         public const string EssentialFields = "date, unreconciled amount, type or description";
 
@@ -40,7 +39,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public const int DescriptionIndex = 4;
         public const int ChequeNumberIndex = 5;
         public const int ReconciledAmountIndex = 6;
-        public const int LastTransactionMarkerIndex = 7;
         public const int MatchOffset = 11;
 
         public BankRecord()
@@ -190,7 +188,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 cell_set.Populate_cell(row_number, DescriptionIndex + 1, Description);
                 Populate_cell_with_amount(cell_set, row_number, ChequeNumberIndex, Cheque_number);
                 Populate_cell_with_amount(cell_set, row_number, ReconciledAmountIndex, Reconciled_amount);
-                //cell_set.Populate_cell(row_number, LastTransactionMarkerIndex, Last_transaction_marker);
                 
                 if (Match != null)
                 {
@@ -225,7 +222,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             Reconciled_amount = cell_set.Count > ReconciledAmountIndex && cell_set.Read_cell(ReconciledAmountIndex) != null 
                 ? (Double)cell_set.Read_cell(ReconciledAmountIndex)
                 : 0;
-            //Last_transaction_marker = ((String)cell_set.Read_cell(LastTransactionMarkerIndex)).Strip_enclosing_quotes();
 
             SourceLine = To_string(_default_separator, false);
             OutputSourceLine = To_string(_default_separator, false);
@@ -321,7 +317,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 Description = typed_source.Description;
                 Reconciled_amount = typed_source.Reconciled_amount;
                 Cheque_number = typed_source.Cheque_number;
-                Last_transaction_marker = typed_source.Last_transaction_marker;
                 SourceLine = typed_source.SourceLine;
                 OutputSourceLine = typed_source.OutputSourceLine;
 
@@ -346,7 +341,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 Description = Description,
                 Reconciled_amount = Reconciled_amount,
                 Cheque_number = Cheque_number,
-                Last_transaction_marker = Last_transaction_marker,
                 SourceLine = SourceLine,
                 OutputSourceLine = OutputSourceLine,
 

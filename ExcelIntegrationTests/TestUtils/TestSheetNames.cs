@@ -15,6 +15,5 @@ namespace ExcelIntegrationTests.TestUtils
         public static string Budget_out => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Budget_out)}");
         public static string Test_record => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Test_record)}");
         public static string Bad_divider => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Bad_divider)}");
-        public static string Actual_bank => XmlReader.Read_xml($"{nameof(TestSheetNames)}.{nameof(TestSheetNames.Actual_bank)}");
     }
 }

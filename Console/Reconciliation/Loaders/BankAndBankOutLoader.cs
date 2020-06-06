@@ -150,10 +150,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             // They'll only get matched up after reconciliation.
             // But then again, if we store the marker on the ActualBankRecord object then we can just copy it over the the owned object when reconciliation happens.
             ActualBankRecord last_record = actual_bank_out_file.Get_last_bank_out_row();
-            BankRecord last_owned_record = owned_file.File.Records.First(
-                x => x.Description == last_record.Description
-                     && x.Main_amount().Double_equals(last_record.Amount));
-            last_owned_record.Last_transaction_marker = ReconConsts.LastOnlineTransaction;
+            last_record.LastTransactionMarker = ReconConsts.LastOnlineTransaction;
         }
 
         private void Update_bank_balance(

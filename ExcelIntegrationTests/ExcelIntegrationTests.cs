@@ -970,13 +970,13 @@ namespace ExcelIntegrationTests
             var row_number = 2;
 
             // Act
-            var result = _excelSpreadsheet.Read_specified_row(TestSheetNames.Actual_bank, row_number);
+            var result = _excelSpreadsheet.Read_specified_row(TestSheetNames.Cred_card1, row_number);
 
             // Assert
-            Assert.AreEqual("Thing", result.Read_cell(1));
+            Assert.AreEqual(new DateTime(2018,5,29), DateTime.FromOADate((double)result.Read_cell(0)));
+            Assert.AreEqual(12345, result.Read_cell(1));
             Assert.AreEqual("description", result.Read_cell(2));
             Assert.AreEqual(4567.89, result.Read_cell(3));
-            Assert.AreEqual(7898.88, result.Read_cell(4));
         }
 
         [Test]
@@ -984,17 +984,17 @@ namespace ExcelIntegrationTests
         public void Can_read_specified_row_based_on_specified_range_of_columns()
         {
             // Arrange
-            var row_number = 2;
-            var start_column = 3;
-            var end_column = 4;
+            var row_number = 4;
+            var start_column = 5;
+            var end_column = 6;
 
             // Act
-            var result = _excelSpreadsheet.Read_specified_row(TestSheetNames.Actual_bank, row_number, start_column, end_column);
+            var result = _excelSpreadsheet.Read_specified_row(TestSheetNames.Bank, row_number, start_column, end_column);
 
             // Assert
             Assert.AreEqual(2, result.Count, "Number of cells in row");
-            Assert.AreEqual("description", result.Read_cell(0));
-            Assert.AreEqual(4567.89, result.Read_cell(1));
+            Assert.AreEqual("description1", result.Read_cell(0));
+            Assert.AreEqual(12345, result.Read_cell(1));
         }
 
         [Test]

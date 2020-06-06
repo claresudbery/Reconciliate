@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ConsoleCatchall.Console.Reconciliation.Records;
+using ExcelIntegrationTests.TestUtils;
 using ExcelLibrary;
 using Interfaces.Constants;
 using NUnit.Framework;
@@ -23,16 +24,16 @@ namespace ExcelIntegrationTests.Records
                 Type = "Chq",
                 Description = "New description which will overwrite what's normally there.",
                 Cheque_number = 4234566,
-                Reconciled_amount = 6666.66
+                Reconciled_amount = 6666.66,
             };
-            var cells = _spreadsheet.Current_cells("Bank");
-            var last_row_number = _spreadsheet.Last_row_number("Bank");
+            var cells = _spreadsheet.Current_cells(TestSheetNames.Bank);
+            var last_row_number = _spreadsheet.Last_row_number(TestSheetNames.Bank);
             var previous_record = new BankRecord();
-            previous_record.Read_from_spreadsheet_row(_spreadsheet.Read_last_row("Bank"));
+            previous_record.Read_from_spreadsheet_row(_spreadsheet.Read_last_row(TestSheetNames.Bank));
 
             // Act 
             bank_record.Populate_spreadsheet_row(cells, last_row_number);
-            var new_row = _spreadsheet.Read_last_row("Bank");
+            var new_row = _spreadsheet.Read_last_row(TestSheetNames.Bank);
 
             // Assert
             Assert.AreEqual(bank_record.Date, DateTime.FromOADate((double)new_row.Read_cell(0)));
@@ -52,14 +53,14 @@ namespace ExcelIntegrationTests.Records
         {
             // Arrange
             var bank_record = new BankRecord {Divider = true};
-            var cells = _spreadsheet.Current_cells("Bank");
-            var last_row_number = _spreadsheet.Last_row_number("Bank");
+            var cells = _spreadsheet.Current_cells(TestSheetNames.Bank);
+            var last_row_number = _spreadsheet.Last_row_number(TestSheetNames.Bank);
             var previous_record = new BankRecord();
-            previous_record.Read_from_spreadsheet_row(_spreadsheet.Read_last_row("Bank"));
+            previous_record.Read_from_spreadsheet_row(_spreadsheet.Read_last_row(TestSheetNames.Bank));
 
             // Act 
             bank_record.Populate_spreadsheet_row(cells, last_row_number);
-            var new_row = _spreadsheet.Read_last_row("Bank");
+            var new_row = _spreadsheet.Read_last_row(TestSheetNames.Bank);
 
             // Assert
             Assert.AreEqual(ReconConsts.DividerText, (String)new_row.Read_cell(1));
@@ -74,14 +75,14 @@ namespace ExcelIntegrationTests.Records
         {
             // Arrange
             var bank_record = new BankRecord {Matched = true};
-            var cells = _spreadsheet.Current_cells("Bank");
-            var last_row_number = _spreadsheet.Last_row_number("Bank");
+            var cells = _spreadsheet.Current_cells(TestSheetNames.Bank);
+            var last_row_number = _spreadsheet.Last_row_number(TestSheetNames.Bank);
             var previous_record = new BankRecord();
-            previous_record.Read_from_spreadsheet_row(_spreadsheet.Read_last_row("Bank"));
+            previous_record.Read_from_spreadsheet_row(_spreadsheet.Read_last_row(TestSheetNames.Bank));
 
             // Act 
             bank_record.Populate_spreadsheet_row(cells, last_row_number);
-            var new_row = _spreadsheet.Read_last_row("Bank");
+            var new_row = _spreadsheet.Read_last_row(TestSheetNames.Bank);
 
             // Assert
             Assert.AreEqual("x", (String)new_row.Read_cell(2));
@@ -96,14 +97,14 @@ namespace ExcelIntegrationTests.Records
         {
             // Arrange
             var bank_record = new BankRecord {Matched = false};
-            var cells = _spreadsheet.Current_cells("Bank");
-            var last_row_number = _spreadsheet.Last_row_number("Bank");
+            var cells = _spreadsheet.Current_cells(TestSheetNames.Bank);
+            var last_row_number = _spreadsheet.Last_row_number(TestSheetNames.Bank);
             var previous_record = new BankRecord();
-            previous_record.Read_from_spreadsheet_row(_spreadsheet.Read_last_row("Bank"));
+            previous_record.Read_from_spreadsheet_row(_spreadsheet.Read_last_row(TestSheetNames.Bank));
 
             // Act 
             bank_record.Populate_spreadsheet_row(cells, last_row_number);
-            var new_row = _spreadsheet.Read_last_row("Bank");
+            var new_row = _spreadsheet.Read_last_row(TestSheetNames.Bank);
 
             // Assert
             Assert.AreEqual(null, (String)new_row.Read_cell(2));
@@ -123,14 +124,14 @@ namespace ExcelIntegrationTests.Records
                 Cheque_number = 0,
                 Reconciled_amount = 0
             };
-            var cells = _spreadsheet.Current_cells("Bank");
-            var last_row_number = _spreadsheet.Last_row_number("Bank");
+            var cells = _spreadsheet.Current_cells(TestSheetNames.Bank);
+            var last_row_number = _spreadsheet.Last_row_number(TestSheetNames.Bank);
             var previous_record = new BankRecord();
-            previous_record.Read_from_spreadsheet_row(_spreadsheet.Read_last_row("Bank"));
+            previous_record.Read_from_spreadsheet_row(_spreadsheet.Read_last_row(TestSheetNames.Bank));
 
             // Act 
             bank_record.Populate_spreadsheet_row(cells, last_row_number);
-            var new_row = _spreadsheet.Read_last_row("Bank");
+            var new_row = _spreadsheet.Read_last_row(TestSheetNames.Bank);
 
             // Assert
             Assert.AreEqual(null, new_row.Read_cell(1));
@@ -153,7 +154,7 @@ namespace ExcelIntegrationTests.Records
             int expected_cheque_number = 42345;
             Double expected_reconciled_amount = 7567.89;
             var bank_record = new BankRecord();
-            var cells = _spreadsheet.Read_last_row("Bank");
+            var cells = _spreadsheet.Read_last_row(TestSheetNames.Bank);
 
             // Act 
             bank_record.Read_from_spreadsheet_row(cells);
@@ -225,7 +226,7 @@ namespace ExcelIntegrationTests.Records
             int expected_cheque_number = 0;
             Double expected_reconciled_amount = 0;
             var bank_record = new BankRecord();
-            var cells = _spreadsheet.Read_specified_row("Bank", 6);
+            var cells = _spreadsheet.Read_specified_row(TestSheetNames.Bank, 6);
 
             // Act 
             bank_record.Read_from_spreadsheet_row(cells);
@@ -246,7 +247,7 @@ namespace ExcelIntegrationTests.Records
             // Arrange
             String expected_source_line = String.Format("02/07/2018^£5.20^^ABC^description4^42345^\"£7,567.89\"^^^");
             var bank_record = new BankRecord();
-            var cells = _spreadsheet.Read_last_row("Bank");
+            var cells = _spreadsheet.Read_last_row(TestSheetNames.Bank);
 
             // Act 
             bank_record.Read_from_spreadsheet_row(cells);

@@ -20,6 +20,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public string Description { get; set; }
         public double Amount { get; set; }
         public double Balance { get; set; }
+        public string LastTransactionMarker { get; set; }
 
         private char _default_separator = ',';
         private int _expected_number_of_fields_per_row = 5;
@@ -30,6 +31,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public const int AmountIndex = 3;
         public const int BalanceIndex = 4;
 
+        public const int LastTransactionMarkerSpreadsheetIndex = 7;
         public const int DateSpreadsheetIndex = BankRecord.MatchOffset + 0;
         public const int AmountSpreadsheetIndex = BankRecord.MatchOffset + 1;
         public const int TypeSpreadsheetIndex = BankRecord.MatchOffset + 2;
@@ -124,6 +126,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
 
         public void Populate_spreadsheet_row(ICellSet cell_set, int row_number)
         {
+            cell_set.Populate_cell(row_number, LastTransactionMarkerSpreadsheetIndex + 1, LastTransactionMarker);
             cell_set.Populate_cell(row_number, DateSpreadsheetIndex + 1, Date);
             cell_set.Populate_cell(row_number, AmountSpreadsheetIndex + 1, Amount);
             cell_set.Populate_cell(row_number, TypeSpreadsheetIndex + 1, Type);
@@ -132,11 +135,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
 
         public void Read_from_spreadsheet_row(ICellRow cell_set)
         {
-            Date = DateTime.FromOADate((double)cell_set.Read_cell(DateIndex));
-            Type = (String)cell_set.Read_cell(TypeIndex);
-            Description = ((String)cell_set.Read_cell(DescriptionIndex)).Strip_enclosing_quotes();
-            Amount = (Double)cell_set.Read_cell(AmountIndex);
-            Balance = (Double)cell_set.Read_cell(BalanceIndex);
+            LastTransactionMarker = ((String)cell_set.Read_cell(LastTransactionMarkerSpreadsheetIndex)).Strip_enclosing_quotes();
+            Date = DateTime.FromOADate((double)cell_set.Read_cell(DateSpreadsheetIndex));
+            Type = (String)cell_set.Read_cell(TypeSpreadsheetIndex);
+            Description = ((String)cell_set.Read_cell(DescriptionSpreadsheetIndex)).Strip_enclosing_quotes();
+            Amount = (Double)cell_set.Read_cell(AmountSpreadsheetIndex);
         }
 
         public bool Main_amount_is_negative()
@@ -194,6 +197,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 Description = typed_source.Description;
                 Amount = typed_source.Amount ;
                 Balance = typed_source.Balance;
+                LastTransactionMarker = typed_source.LastTransactionMarker;
                 SourceLine = typed_source.SourceLine;
                 OutputSourceLine = typed_source.OutputSourceLine;
 
@@ -217,6 +221,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 Description = Description,
                 Amount = Amount,
                 Balance = Balance,
+                LastTransactionMarker = LastTransactionMarker,
                 SourceLine = SourceLine,
                 OutputSourceLine = OutputSourceLine,
 
