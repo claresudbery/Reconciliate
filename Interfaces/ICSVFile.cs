@@ -21,7 +21,7 @@ namespace Interfaces
         List<string> Unmatched_records_as_csv();
         List<string> Matched_records_as_csv();
         List<string> All_records_as_csv();
-        List<string> All_records_as_source_lines();
+        List<string> All_records_as_output_source_lines();
         void Write_to_csv_file(string file_suffix);
         void Write_to_file_as_source_lines(string new_file_name);
         void Write_back_to_main_spreadsheet(string worksheet_name);

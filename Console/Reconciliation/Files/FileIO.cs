@@ -35,11 +35,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             }
         }
 
-        public void Write_to_file_as_source_lines(string new_file_name, List<string> source_lines)
+        public void Write_to_file_as_source_lines(string new_file_name, List<string> output_source_lines)
         {
             using (StreamWriter output_file = new StreamWriter(File_path + "/" + new_file_name + ".csv"))
             {
-                foreach (string line in source_lines)
+                foreach (string line in output_source_lines)
                 {
                     output_file.WriteLine(line);
                 }

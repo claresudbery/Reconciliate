@@ -170,7 +170,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
                 .ToList();
         }
 
-        public List<string> All_records_as_source_lines()
+        public List<string> All_records_as_output_source_lines()
         {
             return Records
                 .OrderBy(x => x.Date)
@@ -185,7 +185,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
 
         public void Write_to_file_as_source_lines(string new_file_name)
         {
-            File_io.Write_to_file_as_source_lines(new_file_name, All_records_as_source_lines());
+            File_io.Write_to_file_as_source_lines(new_file_name, All_records_as_output_source_lines());
         }
 
         public void Write_back_to_main_spreadsheet(string worksheet_name)
