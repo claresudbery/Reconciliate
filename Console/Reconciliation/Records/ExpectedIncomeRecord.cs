@@ -47,6 +47,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             throw new NotImplementedException();
         }
 
+        public void Load_from_original_line(char? override_separator = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Main_amount_is_negative()
         {
             return Unreconciled_amount < 0;

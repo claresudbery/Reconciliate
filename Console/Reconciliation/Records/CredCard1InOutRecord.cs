@@ -43,8 +43,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
 
         public void Load(string csv_line, char? override_separator = null)
         {
-            var separator = override_separator ?? _separator;
             Source_line = csv_line;
+            Load_from_original_line(override_separator);
+        }
+
+        public void Load_from_original_line(char? override_separator = null)
+        {
+            var separator = override_separator ?? _separator;
+            var csv_line = Source_line;
             var values = csv_line.Split(separator);
             values = StringHelper.Make_sure_there_are_at_least_enough_string_values(_expected_number_of_fields_per_row, values);
 

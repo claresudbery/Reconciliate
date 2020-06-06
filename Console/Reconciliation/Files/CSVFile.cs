@@ -9,10 +9,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
         public IFileIO<TRecordType> File_io { get; set; }
 
         public List<string> File_contents { get; set; }
-        // _sourceRecords is held separately from Records because sometimes we filter for negative or positive records only,
+        // SourceRecords is held separately from Records because sometimes we filter for negative or positive records only,
         // but we still want to keep hold of all the original source records.
-        private List<TRecordType> Source_records { get; set; }
         public List<TRecordType> Records { get; set; }
+        public List<TRecordType> SourceRecords { get; set; }
 
         public CSVFile(IFileIO<TRecordType> file_io)
         {
@@ -26,11 +26,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
         {
             File_contents = new List<string>();
             Records = new List<TRecordType>();
-            Source_records = new List<TRecordType>();
+            SourceRecords = new List<TRecordType>();
             if (load_file)
             {
-                Source_records = File_io.Load(File_contents, override_separator);
-                if (Source_records != null)
+                SourceRecords = File_io.Load(File_contents, override_separator);
+                if (SourceRecords != null)
                 {
                     if (order_on_load)
                     {
@@ -45,44 +45,45 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
         {
             File_contents.Clear();
             Records.Clear();
-            Source_records.Clear();
-            Source_records = File_io.Load(File_contents);
+            SourceRecords.Clear();
+            SourceRecords = File_io.Load(File_contents);
             Populate_records_from_original_file_load();
         }
 
         public void Populate_source_records_from_records()
         {
-            Source_records.Clear();
+            SourceRecords.Clear();
             foreach (var record in Records)
             {
-                Source_records.Add(record);
+                SourceRecords.Add(record);
             }
         }
 
         public void Populate_records_from_original_file_load()
         {
             Records.Clear();
-            foreach (var record in Source_records)
+            foreach (var record in SourceRecords)
             {
+                record.Load_from_original_line();
                 Records.Add(record);
             }
         }
 
         public void Remove_record_permanently(TRecordType record_to_remove)
         {
-            Source_records.Remove(record_to_remove);
+            SourceRecords.Remove(record_to_remove);
             Records.Remove(record_to_remove);
         }
 
         public void Add_record_permanently(TRecordType record_to_add)
         {
-            Source_records.Add(record_to_add);
+            SourceRecords.Add(record_to_add);
             Records.Add(record_to_add);
         }
 
         private void Order_by_date()
         {
-            Source_records = Source_records.OrderBy(x => x.Date).ToList();
+            SourceRecords = SourceRecords.OrderBy(x => x.Date).ToList();
         }
 
         public void Filter_for_positive_records_only()
