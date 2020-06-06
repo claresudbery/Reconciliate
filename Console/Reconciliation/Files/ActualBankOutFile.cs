@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
+using Interfaces.Constants;
 using Interfaces.Extensions;
 
 namespace ConsoleCatchall.Console.Reconciliation.Files
@@ -20,31 +21,18 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             char? override_separator = null,
             bool order_on_load = true)
         {
-            File.Load(load_file, override_separator, order_on_load);
+            File.Load(load_file, override_separator, false);
+            Mark_last_bank_row();
+            if (order_on_load)
+            {
+                File.Order_by_date();
+            }
             Refresh_file_contents();
         }
 
         public void Refresh_file_contents()
         {
             File.Filter_for_negative_records_only();
-        }
-
-        public ActualBankRecord Get_last_bank_out_row()
-        {
-            DateTime last_row_date = File.Records.Max(x => x.Date);
-            var last_record = File.Records.First();
-
-            if (last_record.Date != last_row_date)
-            {
-                last_record = File.Records.Last();
-
-                if (last_record.Date != last_row_date)
-                {
-                    last_record = File.Records.OrderBy(x => x.Date).Last();
-                }
-            }
-
-            return last_record;
         }
 
         public IEnumerable<ActualBankRecord> Get_potential_balance_rows()
@@ -89,6 +77,34 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             return records_from_last_day
                 .Where(x => records_from_first_day
                     .Any(y => x.Balance.Double_equals(y.Balance + sum_of_all_amounts - y.Amount)));
+        }
+
+        private void Mark_last_bank_row()
+        {
+            ActualBankRecord last_record = Get_last_bank_out_row();
+            last_record.LastTransactionMarker = ReconConsts.LastOnlineTransaction;
+        }
+
+        public ActualBankRecord Get_last_bank_out_row()
+        {
+            ActualBankRecord last_record = new ActualBankRecord();
+            if (File.SourceRecords.Count > 0)
+            {
+                DateTime last_row_date = File.SourceRecords.Max(x => x.Date);
+                last_record = File.SourceRecords.First();
+
+                if (last_record.Date != last_row_date)
+                {
+                    last_record = File.SourceRecords.Last();
+
+                    if (last_record.Date != last_row_date)
+                    {
+                        last_record = File.SourceRecords.OrderBy(x => x.Date).Last();
+                    }
+                }
+            }
+
+            return last_record;
         }
     }
 }

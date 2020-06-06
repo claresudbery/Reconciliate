@@ -6,6 +6,7 @@ namespace Interfaces
     {
         List<string> File_contents { get; set; }
         List<TRecordType> Records { get; set; }
+        List<TRecordType> SourceRecords { get; set; }
         IFileIO<TRecordType> File_io { get; set; }
 
         void Load(bool load_file = true,
@@ -34,5 +35,6 @@ namespace Interfaces
         void Populate_records_from_original_file_load();
         void Remove_record_permanently(TRecordType record_to_remove);
         void Add_record_permanently(TRecordType record_to_add);
+        void Order_by_date();
     }
 }

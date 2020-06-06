@@ -17,6 +17,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         {
             // Arrange
             var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
+            mock_actual_bank_file.Setup(x => x.SourceRecords).Returns(new List<ActualBankRecord>());
             var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
 
             // Act
@@ -177,7 +178,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
                 new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 1)},
             };
             var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
-            mock_actual_bank_file.Setup(x => x.Records).Returns(fake_records);
+            mock_actual_bank_file.Setup(x => x.SourceRecords).Returns(fake_records);
             var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
 
             // Act
@@ -201,7 +202,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
                 new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4), Description = last_row_description},
             };
             var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
-            mock_actual_bank_file.Setup(x => x.Records).Returns(fake_records);
+            mock_actual_bank_file.Setup(x => x.SourceRecords).Returns(fake_records);
             var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
 
             // Act
@@ -225,7 +226,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
                 new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 3)},
             };
             var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
-            mock_actual_bank_file.Setup(x => x.Records).Returns(fake_records);
+            mock_actual_bank_file.Setup(x => x.SourceRecords).Returns(fake_records);
             var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
 
             // Act

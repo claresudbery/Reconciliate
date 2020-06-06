@@ -91,7 +91,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             Records.Add(record_to_add);
         }
 
-        private void Order_by_date()
+        public void Order_by_date()
         {
             SourceRecords = SourceRecords.OrderBy(x => x.Date).ToList();
         }

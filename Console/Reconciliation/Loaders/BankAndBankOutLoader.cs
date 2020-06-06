@@ -134,22 +134,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             ISpreadsheet spreadsheet,
             IInputOutput input_output)
         {
-            //Mark_latest_bank_row((third_party_file as ActualBankOutFile), owned_file);
-
             Update_bank_balance(
                 (third_party_file as ActualBankOutFile),
                 spreadsheet,
                 input_output);
-        }
-
-        private void Mark_latest_bank_row(ActualBankOutFile actual_bank_out_file, IDataFile<BankRecord> owned_file)
-        {
-            // To do: Take account of fact that there may be more than one match.
-            // But more importantly, find out why this actual bank record
-            // is not finding its way into the match of an owned record - or if it is, its LAstTransactionMArker value is not getting
-            // written to spreadsheet via ActualBankRecord.Populate_spreadsheet_row (which I discovered via a conditional breakpoint).
-            ActualBankRecord last_record = actual_bank_out_file.Get_last_bank_out_row();
-            last_record.LastTransactionMarker = ReconConsts.LastOnlineTransaction;
         }
 
         private void Update_bank_balance(
