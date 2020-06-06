@@ -7,7 +7,6 @@ using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
-using Interfaces.Extensions;
 
 namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
@@ -167,9 +166,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     Codes.Bank_bal,
                     balance_row.Balance,
                     balance_description,
-                    balance_column: 2,
-                    text_column: 6,
-                    code_column: 1,
+                    balance_column: ReconConsts.BankBalanceAmountColumn,
+                    text_column: ReconConsts.BankBalanceTextColumn,
+                    code_column: ReconConsts.BankBalanceCodeColumn,
                     input_output: input_output);
             }
         }

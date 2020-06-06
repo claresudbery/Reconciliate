@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
@@ -9,6 +10,7 @@ using Interfaces.Constants;
 using Interfaces.DTOs;
 using Moq;
 using NUnit.Framework;
+using ConsoleCatchall.Console.Reconciliation.Extensions;
 
 namespace ConsoleCatchallTests.Reconciliation.Loaders
 {
@@ -125,6 +127,84 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             Assert_direct_debit_details_are_correct(pending_records[1], next_direct_debit_date02, expected_amount2, ReconConsts.Cred_card1_dd_description);
             Assert_direct_debit_details_are_correct(pending_records[2], next_direct_debit_date01, expected_amount1, ReconConsts.Cred_card2_dd_description);
             Assert_direct_debit_details_are_correct(pending_records[3], next_direct_debit_date02, expected_amount2, ReconConsts.Cred_card2_dd_description);
+        }
+
+        [Test]
+        public void Will_update_bank_balance()
+        {
+            // Arrange
+            var bank_and_bank_out_loader = new BankAndBankOutLoader();
+            var mockSpreadsheet = new Mock<ISpreadsheet>();
+            var mockInputOutput = new Mock<IInputOutput>();
+            string expected_description = "Balance row";
+            double expected_balance = 970.00;
+            double expected_transaction_amount = -10.00;
+            var fake_records = new List<ActualBankRecord>
+            {
+                // earliest records
+                new ActualBankRecord {Amount = -10, Balance = 990.00, Date = new DateTime(2020, 1, 1)},
+                // most recent records
+                new ActualBankRecord {Amount = -10, Balance = 980.00, Date = new DateTime(2020, 1, 4)},
+                new ActualBankRecord {Amount = expected_transaction_amount, Balance = expected_balance, Date = new DateTime(2020, 1, 4), Description = expected_description},
+            };
+            var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
+            mock_actual_bank_file.Setup(x => x.Records).Returns(fake_records);
+            var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
+
+            // Act 
+            bank_and_bank_out_loader.Do_actions_which_require_third_party_data_access(actual_bank_out_file,
+                mockSpreadsheet.Object, mockInputOutput.Object);
+
+            // Assert
+            mockSpreadsheet.Verify(x => x.Update_balance_on_totals_sheet(
+                Codes.Bank_bal,
+                expected_balance,
+                It.Is<string>(y => y.Contains(expected_description) 
+                                   && y.Contains(expected_transaction_amount.To_csv_string(true))),
+                ReconConsts.BankBalanceAmountColumn,
+                ReconConsts.BankBalanceTextColumn,
+                ReconConsts.BankBalanceCodeColumn,
+                It.IsAny<IInputOutput>()));
+        }
+
+        [Test]
+        public void Will_assume_bank_records_are_in_reverse_date_order_when_looking_for_bank_balance_transaction()
+        {
+            // Arrange
+            var bank_and_bank_out_loader = new BankAndBankOutLoader();
+            var mockSpreadsheet = new Mock<ISpreadsheet>();
+            var mockInputOutput = new Mock<IInputOutput>();
+            mockInputOutput.Setup(x => x.Get_generic_input(ReconConsts.MultipleBalanceRows)).Returns("1");
+            string expected_description = "Balance row";
+            string alternative_candidate = "another potential candidate";
+            var fake_records = new List<ActualBankRecord>
+            {
+                // most recent records
+                new ActualBankRecord {Amount = -10, Balance = 970.00, Date = new DateTime(2020, 1, 4), Description = expected_description},
+                new ActualBankRecord {Amount = 10, Balance = 980.00, Date = new DateTime(2020, 1, 4)},
+                new ActualBankRecord {Amount = -10, Balance = 970.00, Date = new DateTime(2020, 1, 4), Description = alternative_candidate},
+                // earliest records
+                new ActualBankRecord {Amount = -10, Balance = 980.00, Date = new DateTime(2020, 1, 1)},
+            };
+            var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
+            mock_actual_bank_file.Setup(x => x.Records).Returns(fake_records);
+            var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
+
+            // Act 
+            bank_and_bank_out_loader.Do_actions_which_require_third_party_data_access(actual_bank_out_file,
+                mockSpreadsheet.Object, mockInputOutput.Object);
+
+            // Assert
+            mockInputOutput.Verify(x => x.Output_line(It.Is<string>(y => y.Contains(expected_description))), Times.Exactly(2));
+            mockInputOutput.Verify(x => x.Output_line(It.Is<string>(y => y.Contains(alternative_candidate))), Times.Exactly(1));
+            mockSpreadsheet.Verify(x => x.Update_balance_on_totals_sheet(
+                Codes.Bank_bal,
+                It.IsAny<double>(),
+                It.Is<string>(y => y.Contains(expected_description)),
+                ReconConsts.BankBalanceAmountColumn,
+                ReconConsts.BankBalanceTextColumn,
+                ReconConsts.BankBalanceCodeColumn,
+                It.IsAny<IInputOutput>()));
         }
     }
 }

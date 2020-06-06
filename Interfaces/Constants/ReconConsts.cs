@@ -168,6 +168,10 @@
         public const int DdDescriptionColumn = 15;
         public const int DescriptionColumn = 5;
         public const int BudgetDividerColumn = 2;
+        public const int BankBalanceAmountColumn = 2;
+        public const int BankBalanceTextColumn = 6;
+        public const int BankBalanceCodeColumn = 1;
+
         public const int MaxNumMultiLineTransactions = 10;
         public const int MaxNumSingleLineTransactions = 40;
 
