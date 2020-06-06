@@ -53,8 +53,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
 
         public void Load_from_original_line()
         {
-            var csv_line = SourceLine;
-            var values = csv_line.Split(_current_separator);
+            var values = SourceLine.Split(_current_separator);
             values = StringHelper.Make_sure_there_are_at_least_enough_string_values(_expected_number_of_fields_per_row, values);
 
             Date = values[DateIndex] != "" && values[DateIndex].Is_numeric()
