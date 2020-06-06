@@ -36,7 +36,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
                     {
                         Order_by_date();
                     }
-                    Populate_records_from_original_file_load();
+                    Populate_records();
                 }
             }
         }
@@ -47,7 +47,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             Records.Clear();
             SourceRecords.Clear();
             SourceRecords = File_io.Load(File_contents);
-            Populate_records_from_original_file_load();
+            Populate_records();
         }
 
         public void Populate_source_records_from_records()
@@ -65,6 +65,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             foreach (var record in SourceRecords)
             {
                 record.Load_from_original_line();
+                Records.Add(record);
+            }
+        }
+
+        public void Populate_records()
+        {
+            Records.Clear();
+            foreach (var record in SourceRecords)
+            {
                 Records.Add(record);
             }
         }
@@ -104,13 +113,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
 
         public void Remove_records(System.Predicate<TRecordType> filter_predicate)
         {
-            Populate_records_from_original_file_load();
+            Populate_records();
             Records.RemoveAll(filter_predicate);
         }
 
         public void Swap_signs_of_all_amounts()
         {
-            Populate_records_from_original_file_load();
+            Populate_records();
             foreach (var record in Records)
             {
                 record.Swap_sign_of_main_amount();

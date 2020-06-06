@@ -27,7 +27,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
 
         public const string EssentialFields = "date, unreconciled amount, type or description";
 
-        private char _separator = '^';
+        private char _default_separator = '^';
+        private char _current_separator = '^';
         private int _expected_number_of_fields_per_row = 10;
 
         public const int DateIndex = 0;
@@ -54,16 +55,16 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
 
         public void Load(string csv_line, char? override_separator = null)
         {
+            _current_separator = override_separator ?? _default_separator;
             SourceLine = csv_line;
             OutputSourceLine = csv_line;
-            Load_from_original_line(override_separator);
+            Load_from_original_line();
         }
 
-        public void Load_from_original_line(char? override_separator = null)
+        public void Load_from_original_line()
         {
-            char separator = override_separator ?? _separator;
             var csv_line = SourceLine;
-            string[] values = Split_values_based_on_separator_and_handle_commas_in_amounts(csv_line, separator);
+            string[] values = Split_values_based_on_separator_and_handle_commas_in_amounts(csv_line, _current_separator);
             values = StringHelper.Make_sure_there_are_at_least_enough_string_values(_expected_number_of_fields_per_row, values);
 
             Date = values[DateIndex] != "" && values[DateIndex].Is_numeric()
@@ -205,8 +206,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 ? (Double)cell_set.Read_cell(ReconciledAmountIndex)
                 : 0;
 
-            SourceLine = To_string(_separator, false);
-            OutputSourceLine = To_string(_separator, false);
+            SourceLine = To_string(_default_separator, false);
+            OutputSourceLine = To_string(_default_separator, false);
         }
 
         private String To_string(char separator, bool encase_description_in_quotes = true, bool format_currency = true)

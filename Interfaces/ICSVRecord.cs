@@ -15,7 +15,7 @@ namespace Interfaces
 
         void Create_from_match(DateTime date, double amount, string type, string description, int extra_info, ICSVRecord matched_record);
         void Load(string csv_line, char? override_separator = null);
-        void Load_from_original_line(char? override_separator = null);
+        void Load_from_original_line();
         bool Main_amount_is_negative();
         void Make_main_amount_positive();
         void Swap_sign_of_main_amount();

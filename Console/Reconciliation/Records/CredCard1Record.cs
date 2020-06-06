@@ -20,7 +20,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public string Description { get; set; }
         public double Amount { get; set; }
 
-        private char _separator = ',';
+        private char _default_separator = ',';
         private int _expected_number_of_fields_per_row = 5;
 
         public const int DateIndex = 0;
@@ -51,10 +51,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             Load_from_original_line(override_separator);
         }
 
-        public void Load_from_original_line(char? override_separator = null)
+        public void Load_from_original_line()
         {
             var csv_line = SourceLine;
-            var values = csv_line.Split(_separator);
+            var values = csv_line.Split(_default_separator);
             values = StringHelper.Make_sure_there_are_at_least_enough_string_values(_expected_number_of_fields_per_row, values);
 
             Date = values[DateIndex] != "" && values[DateIndex].Is_numeric()

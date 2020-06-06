@@ -24,7 +24,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public double Total_paid { get; set; }
         public string Description { get; set; }
 
-        private char _separator = ',';
+        private char _default_separator = ',';
 
         public const int DateIndex = 0;
         public const int UnreconciledAmountIndex = 1;
@@ -48,7 +48,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             throw new NotImplementedException();
         }
 
-        public void Load_from_original_line(char? override_separator = null)
+        public void Load_from_original_line()
         {
             throw new NotImplementedException();
         }
@@ -140,8 +140,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
                 : 0;
             Description = ((String)cell_row.Read_cell(DescriptionIndex)).Strip_enclosing_quotes();
 
-            SourceLine = To_string(_separator, false);
-            OutputSourceLine = To_string(_separator, false);
+            SourceLine = To_string(_default_separator, false);
+            OutputSourceLine = To_string(_default_separator, false);
         }
 
         private String To_string(char separator, bool encase_description_in_quotes = true, bool format_currency = true)
