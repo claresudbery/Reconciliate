@@ -161,7 +161,7 @@
         public const int PartialDateMatchThreshold = 3;
         public const int PartialAmountMatchThreshold = 2;
 
-        public const string BankBalanceDescription = "!! <-- leftmost column - {0} bal recorded from downloaded csv, {1} {2} row dated {3}";
+        public const string BankBalanceDescription = "!! <-- leftmost column - {0} bal recorded from downloaded csv, \"{1}\" {2} row dated {3}";
         public const string CredCardBalanceDescription = "!! {0} bal recorded from statement dated {1}";
         public const string AskForCredCardDirectDebit = "If you have it, please enter the expected {0} Direct Debit for around {1}. Otherwise enter 0.";
 

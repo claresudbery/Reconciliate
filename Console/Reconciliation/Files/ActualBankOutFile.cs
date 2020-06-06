@@ -35,25 +35,16 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
 
             var candidate_record_list = File.Records;
             var sum_of_all_amounts = candidate_record_list.Sum(x => x.Amount);
-            DateTime last_row_date = candidate_record_list
-                .OrderBy(x => x.Date).ToList()
-                .Last()
-                .Date;
+            DateTime last_row_date = candidate_record_list.Max(x => x.Date);
             var most_recent_records = candidate_record_list.Where(x => x.Date == last_row_date).ToList();
             if (most_recent_records.Count == 1 && most_recent_records[0].Balance.Double_equals(0))
             {
                 candidate_record_list.RemoveAll(x => x.Date == last_row_date);
-                last_row_date = candidate_record_list
-                    .OrderBy(x => x.Date).ToList()
-                    .Last()
-                    .Date;
+                last_row_date = candidate_record_list.Max(x => x.Date);
                 sum_of_all_amounts = candidate_record_list.Sum(x => x.Amount);
                 most_recent_records = candidate_record_list.Where(x => x.Date == last_row_date).ToList();
             }
-            DateTime earliest_row_date = candidate_record_list
-                .OrderBy(x => x.Date).ToList()
-                .First()
-                .Date;
+            DateTime earliest_row_date = candidate_record_list.Min(x => x.Date);
             var earliest_records = candidate_record_list.Where(x => x.Date == earliest_row_date).ToList();
 
             var potential_balance_rows = most_recent_records

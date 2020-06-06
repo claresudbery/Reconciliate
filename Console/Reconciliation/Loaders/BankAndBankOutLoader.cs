@@ -149,6 +149,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
             if (!potential_balance_rows.Any())
             {
+                input_output.Output_line("");
                 input_output.Get_generic_input(ReconConsts.CantFindBalanceRow);
             }
             else
@@ -175,10 +176,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
         private ActualBankRecord Choose_balance_row(IList<ActualBankRecord> potential_balance_rows, IInputOutput input_output)
         {
-            var result = potential_balance_rows.Last();
+            var result = potential_balance_rows.First();
 
             if (potential_balance_rows.Count > 1)
             {
+                input_output.Output_line("");
                 input_output.Output_line(String.Format(ReconConsts.MultipleBalanceRows, result.To_string()));
 
                 for (int index = 0; index < potential_balance_rows.Count; index++)
