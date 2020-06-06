@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
-using Interfaces.DTOs;
 using Interfaces.Extensions;
 
 namespace ConsoleCatchall.Console.Reconciliation.Files
@@ -38,28 +37,41 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             if (File.Records.Count > 0)
             {
                 var candidate_record_list = File.Records;
-                var sum_of_all_amounts = candidate_record_list.Sum(x => x.Amount);
+
                 DateTime last_row_date = candidate_record_list.Max(x => x.Date);
-                var most_recent_records = candidate_record_list.Where(x => x.Date == last_row_date).ToList();
-                if (most_recent_records.Count == 1 && most_recent_records[0].Balance.Double_equals(0))
+                var records_from_last_day = candidate_record_list.Where(x => x.Date == last_row_date).ToList();
+
+                if (records_from_last_day.Count == 1 && records_from_last_day[0].Balance.Double_equals(0))
                 {
                     candidate_record_list.RemoveAll(x => x.Date == last_row_date);
                     last_row_date = candidate_record_list.Max(x => x.Date);
-                    sum_of_all_amounts = candidate_record_list.Sum(x => x.Amount);
-                    most_recent_records = candidate_record_list.Where(x => x.Date == last_row_date).ToList();
+                    records_from_last_day = candidate_record_list.Where(x => x.Date == last_row_date).ToList();
                 }
-                DateTime earliest_row_date = candidate_record_list.Min(x => x.Date);
-                var earliest_records = candidate_record_list.Where(x => x.Date == earliest_row_date).ToList();
 
-                potential_balance_rows = most_recent_records
-                    .Where(x => earliest_records
-                        .Any(y => x.Balance.Double_equals(y.Balance + sum_of_all_amounts - y.Amount)))
+                var sum_of_all_amounts = candidate_record_list.Sum(x => x.Amount);
+                DateTime earliest_row_date = candidate_record_list.Min(x => x.Date);
+                var records_from_first_day = candidate_record_list.Where(x => x.Date == earliest_row_date).ToList();
+
+                potential_balance_rows = Find_records_from_last_day_whose_balance_matches_sum_of_amounts_and_a_record_from_first_day(
+                        records_from_first_day,
+                        records_from_last_day,
+                        sum_of_all_amounts)
                     .ToList();
 
                 Refresh_file_contents();
             }
 
             return potential_balance_rows;
+        }
+
+        private IEnumerable<ActualBankRecord> Find_records_from_last_day_whose_balance_matches_sum_of_amounts_and_a_record_from_first_day(
+            IEnumerable<ActualBankRecord> records_from_first_day, 
+            IEnumerable<ActualBankRecord> records_from_last_day,
+            double sum_of_all_amounts)
+        {
+            return records_from_last_day
+                .Where(x => records_from_first_day
+                    .Any(y => x.Balance.Double_equals(y.Balance + sum_of_all_amounts - y.Amount)));
         }
     }
 }
