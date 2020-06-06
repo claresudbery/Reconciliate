@@ -3,10 +3,10 @@ Date, Type, Description, Value, Balance, Account Name, Account Number
 13/06/2020,BAC,'ACME LTD,50,-1373.86,'Envelope,'228822-99933422
 13/06/2020,BAC,'BankOut transaction from ActualBank.csv,-50,-1423.86,'Env,'2288
 13/06/2020,BAC,'BankIn transaction from ActualBank.csv,44,-1373.86,'Env,'2288
-11/06/2020,BAC,'Doughnut Pumpernickel,333,-1417.86,'Envelope,'228822-99933422
-10/06/2020,BAC,'Cheese,222,-1750.86,'Envelope,'228822-99933422
 13/06/2020,BAC,'CREDIT CARD 2,-2000,-1972.86,'Env,'2288
 12/06/2020,BAC,'CREDIT CARD 1,-1000,27.14,'Env,'2288
+11/06/2020,BAC,'Doughnut Pumpernickel,333,-1417.86,'Envelope,'228822-99933422
+10/06/2020,BAC,'Cheese,222,-1750.86,'Envelope,'228822-99933422
 07/06/2020,BAC,'Banana,-32,1027.14,'Envelope,'228822-99933422
 06/06/2020,BAC,'Aubergine,-22,1059.14,'Envelope,'228822-99933422
 04/06/2020,BAC,'Mortgage description,-1000,1081.14,'Envelope,'228822-99933422
