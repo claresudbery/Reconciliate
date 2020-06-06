@@ -71,7 +71,11 @@ namespace ConsoleCatchall.Console.Reconciliation
 
             _worksheet_name = data_loading_info.Sheet_name;
 
-            data_loading_info.Loader.Do_actions_which_require_third_party_data_access(Third_party_data_file, spreadsheet, input_output);
+            data_loading_info.Loader.Do_actions_which_require_third_party_data_access(
+                Third_party_data_file,
+                Owned_data_file,
+                spreadsheet, 
+                input_output);
             Reset();
         }
 

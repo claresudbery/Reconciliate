@@ -151,6 +151,7 @@
         public const string TransactionsDontAddUp = " !! Transactions don't add up.";
         public const string MultipleBalanceRows = "I think the bank balance row is __{0}__ but it might be something else. Please choose the one you want.";
         public const string CantFindBalanceRow = "Can't find bank balance row! Won't be updating Totals tab. Enter any key to acknowledge.";
+        public const string LastOnlineTransaction = "!! Last online transaction!!";
 
         public const string BankInDescriptor = "Bank In";
         public const string BankOutDescriptor = "Bank Out";

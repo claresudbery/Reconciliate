@@ -18,7 +18,8 @@ namespace Interfaces
             DataLoadingInformation<TThirdPartyType, TOwnedType> data_loading_info);
 
         void Do_actions_which_require_third_party_data_access(
-            IDataFile<TThirdPartyType> third_party_file, 
+            IDataFile<TThirdPartyType> third_party_file,
+            IDataFile<TOwnedType> owned_file,
             ISpreadsheet spreadsheet,
             IInputOutput input_output);
     }

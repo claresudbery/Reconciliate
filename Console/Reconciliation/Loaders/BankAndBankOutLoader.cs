@@ -7,6 +7,7 @@ using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
+using Interfaces.Extensions;
 
 namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
@@ -128,15 +129,31 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         }
 
         public void Do_actions_which_require_third_party_data_access(
-            IDataFile<ActualBankRecord> third_party_file, 
+            IDataFile<ActualBankRecord> third_party_file,
+            IDataFile<BankRecord> owned_file,
             ISpreadsheet spreadsheet,
             IInputOutput input_output)
         {
-            input_output.Output_line("Writing bank balance to spreadsheet...");
+            //Mark_latest_bank_row((third_party_file as ActualBankOutFile), owned_file);
+
             Update_bank_balance(
                 (third_party_file as ActualBankOutFile),
                 spreadsheet,
                 input_output);
+        }
+
+        private void Mark_latest_bank_row(ActualBankOutFile actual_bank_out_file, IDataFile<BankRecord> owned_file)
+        {
+            // To do: Take account of fact that there may be more than one match.
+            // But more importantly, take account of fact that at this point, owned file does not necerssarily have a transaction to match 
+            // the last transaction from third party file.
+            // They'll only get matched up after reconciliation.
+            // But then again, if we store the marker on the ActualBankRecord object then we can just copy it over the the owned object when reconciliation happens.
+            ActualBankRecord last_record = actual_bank_out_file.Get_last_bank_out_row();
+            BankRecord last_owned_record = owned_file.File.Records.First(
+                x => x.Description == last_record.Description
+                     && x.Main_amount().Double_equals(last_record.Amount));
+            last_owned_record.Last_transaction_marker = ReconConsts.LastOnlineTransaction;
         }
 
         private void Update_bank_balance(
@@ -144,6 +161,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             ISpreadsheet spreadsheet,
             IInputOutput input_output)
         {
+            input_output.Output_line("Writing bank balance to spreadsheet...");
+
             IList<ActualBankRecord> potential_balance_rows = actual_bank_out_file.Get_potential_balance_rows().ToList();
 
             if (!potential_balance_rows.Any())

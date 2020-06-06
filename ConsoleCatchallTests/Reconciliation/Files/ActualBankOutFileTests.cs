@@ -162,5 +162,77 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             Assert.IsTrue(result.Any(x => x.Description == balance_row_desc_01));
             Assert.IsTrue(result.Any(x => x.Description == balance_row_desc_02));
         }
+
+        [Test]
+        public void Will_find_last_bank_out_row_when_latest_records_come_first()
+        {
+            // Arrange
+            string last_row_description = "Last row";
+            var fake_records = new List<ActualBankRecord>
+            {
+                // most recent records
+                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4), Description = last_row_description},
+                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4)},
+                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4)},
+                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 1)},
+            };
+            var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
+            mock_actual_bank_file.Setup(x => x.Records).Returns(fake_records);
+            var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
+
+            // Act
+            var result = actual_bank_out_file.Get_last_bank_out_row();
+
+            // Assert
+            Assert.AreEqual(last_row_description, result.Description);
+        }
+
+        [Test]
+        public void Will_find_last_bank_out_row_when_latest_records_come_last()
+        {
+            // Arrange
+            string last_row_description = "Last row";
+            var fake_records = new List<ActualBankRecord>
+            {
+                // most recent records
+                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 1)},
+                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4)},
+                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4)},
+                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4), Description = last_row_description},
+            };
+            var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
+            mock_actual_bank_file.Setup(x => x.Records).Returns(fake_records);
+            var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
+
+            // Act
+            var result = actual_bank_out_file.Get_last_bank_out_row();
+
+            // Assert
+            Assert.AreEqual(last_row_description, result.Description);
+        }
+
+        [Test]
+        public void Will_find_last_bank_out_row_when_records_are_not_in_order()
+        {
+            // Arrange
+            string last_row_description = "Last row";
+            var fake_records = new List<ActualBankRecord>
+            {
+                // most recent records
+                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 2)},
+                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 1)},
+                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4), Description = last_row_description},
+                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 3)},
+            };
+            var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
+            mock_actual_bank_file.Setup(x => x.Records).Returns(fake_records);
+            var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
+
+            // Act
+            var result = actual_bank_out_file.Get_last_bank_out_row();
+
+            // Assert
+            Assert.AreEqual(last_row_description, result.Description);
+        }
     }
 }

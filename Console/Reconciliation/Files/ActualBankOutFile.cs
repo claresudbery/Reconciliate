@@ -29,6 +29,24 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             File.Filter_for_negative_records_only();
         }
 
+        public ActualBankRecord Get_last_bank_out_row()
+        {
+            DateTime last_row_date = File.Records.Max(x => x.Date);
+            var last_record = File.Records.First();
+
+            if (last_record.Date != last_row_date)
+            {
+                last_record = File.Records.Last();
+
+                if (last_record.Date != last_row_date)
+                {
+                    last_record = File.Records.OrderBy(x => x.Date).Last();
+                }
+            }
+
+            return last_record;
+        }
+
         public IEnumerable<ActualBankRecord> Get_potential_balance_rows()
         {
             File.Populate_records_from_original_file_load();
@@ -57,10 +75,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
                         records_from_last_day,
                         sum_of_all_amounts)
                     .ToList();
-
-                Refresh_file_contents();
             }
 
+            Refresh_file_contents();
             return potential_balance_rows;
         }
 

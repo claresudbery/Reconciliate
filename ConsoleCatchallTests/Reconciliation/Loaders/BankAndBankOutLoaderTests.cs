@@ -150,10 +150,15 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
             mock_actual_bank_file.Setup(x => x.Records).Returns(fake_records);
             var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
+            var mock_bank_file = new Mock<ICSVFile<BankRecord>>();
+            var bank_file = new GenericFile<BankRecord>(mock_bank_file.Object);
 
             // Act 
-            bank_and_bank_out_loader.Do_actions_which_require_third_party_data_access(actual_bank_out_file,
-                mockSpreadsheet.Object, mockInputOutput.Object);
+            bank_and_bank_out_loader.Do_actions_which_require_third_party_data_access(
+                actual_bank_out_file,
+                bank_file,
+                mockSpreadsheet.Object, 
+                mockInputOutput.Object);
 
             // Assert
             mockSpreadsheet.Verify(x => x.Update_balance_on_totals_sheet(
@@ -189,10 +194,15 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
             mock_actual_bank_file.Setup(x => x.Records).Returns(fake_records);
             var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
+            var mock_bank_file = new Mock<ICSVFile<BankRecord>>();
+            var bank_file = new GenericFile<BankRecord>(mock_bank_file.Object);
 
             // Act 
-            bank_and_bank_out_loader.Do_actions_which_require_third_party_data_access(actual_bank_out_file,
-                mockSpreadsheet.Object, mockInputOutput.Object);
+            bank_and_bank_out_loader.Do_actions_which_require_third_party_data_access(
+                actual_bank_out_file,
+                bank_file,
+                mockSpreadsheet.Object, 
+                mockInputOutput.Object);
 
             // Assert
             mockInputOutput.Verify(x => x.Output_line(It.Is<string>(y => y.Contains(expected_description))), Times.Exactly(2));
