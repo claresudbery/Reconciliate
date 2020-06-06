@@ -43,8 +43,6 @@ Note that at the time of writing, *when running in debug mode* (not real mode) t
 
 If you're using the test data in `reconciliation-samples/For-debugging`, this is how the data is structured / what you should expect to see.
 
-All the data is in June, so enter 6 for both the first month and the last month when asked what your budgeting months are.  
-
 Here are the main test data elements:
 * ActualBank.csv - this contains transactions as they might be if you downloaded them from your bank.
 * CredCard1.csv - this contains transactions as they might be if you downloaded them from your credit card provider.
@@ -66,9 +64,14 @@ After this you want to test the four modes one at a time. I would suggest you do
 * CredCard1 and CredCard1 InOut
 * CredCard2 and CredCard2 InOut
 
-For each one, enter "6" (June) for first and last budgeting months. 
+BUDGETING MONTHS:
+For each mode, it will use transactions in the test spreadsheet to calculate what your first budgeting month should be. This is based on the monthly transactions defined on Budget In and Budget Out. It finds the most recent one in the spreadsheet and then decides what your next budgeting month should be as a result. At the time of writing these are as follows:
+* BankIn: previous month was Apr, so next will be May (enter 6 to budget from May to June).
+* BankOut: previous month was May, so next will be June (enter 6 to budget one month June to June).
+* CredCard1: previous month was June, so next will be July (enter 7 to budget one month July to July).
+* CredCard2: previous month was July, so next will be Aug (enter 8 to budget one month Aug to Aug).
 
-For Bank Out, CredCard1 and CredCard2 you'll be aked for cred card direct debit amounts - you can either choose to match these to the transactions marked "CRED CARD 1 PAYMENT DESCRIPTION ON STATEMENTS" in CredCard1.csv and CredCard2.csv, or enter different amounts to see what happens. You're only budgeting for one month (June) so when asked for a second direct debit amount for each cred card, just enter 0.
+For Bank Out, CredCard1 and CredCard2 you'll be aked for cred card direct debit amounts - you can either choose to match these to the transactions marked "CRED CARD 1 PAYMENT DESCRIPTION ON STATEMENTS" in CredCard1.csv and CredCard2.csv, or enter different amounts to see what happens. You're only budgeting for one month (June) where cred card payments are concerned, so when asked for a second direct debit amount for each cred card, just enter 0.
 
 (See below for what to expect from the data in each of the four modes.)
 
@@ -77,28 +80,32 @@ Experiment with the following:
 * Matching or ignoring the semi-automatic matches. 
 * Reversing manual matches by following instructions on screen.
 * Using the "Go again" functionality to match any unmatched transaction from ActualBank.
+* Matching single third party transactions against multiple targets - currently used for expenses (BankIn), Amazon (CredCard2) and iTunes (CredCard2).
 
 Once you're done, choose "Write csv and finish." If you're on Windows (but not on Mac) this will have the effect of writing the results to the relevant worksheets in the spreadsheet. At the time of writing, you have to check the debug spreadsheet after each of the four modes (BankIn, BankOut etc) because it will be wiped and rewritten between each mode. 
 
 (See below for what to expect from the data in each of the four modes.)
 
-!! Some of the behaviour described below will be slightly different because the test data is in 2019 and the budget functionality will change dates to the current year. To fix this you'll have to edit the test data to be in whatever your current year is.
+!! Some of the behaviour described below may be slightly different if test data is out of step with the current year - the budget functionality will default some dates to the current year, which can create a discrepancy. If it's an issue, you can edit the test data to be in whatever your current year is.
 
 ### Bank In and Bank Out
 
-ActualBank.csv contains three budgeted "monthly incoming" transactions and three "monthly outgoing" transactions. These will all be matched exactly by transactions in the spreadsheet (Your-Spreadsheet.xlsx), in the "Budget In" and "Budget Out" worksheets. This means they'll pop up at the start as "automatic matches".
+ActualBank.csv contains three budgeted "monthly incoming" transactions and three "monthly outgoing" transactions. One of them may be set to be wages - you can check by looking at the test spereadsheet, on the Budget In tab. These will all be matched exactly by transactions in the spreadsheet (Your-Spreadsheet.xlsx), in the "Budget In" and "Budget Out" worksheets. This means they'll pop up at the start as "automatic matches".
+
+MATCHING EXPENSES:
+ActualBank.csv also contains transactions that are designed to match up with expenses transactions from Expected In. These will be matched as multiples when you choose the "ActualBank and BankIn" option. That is to say, multiple transactions from Expected In will be combined to match a single transaction in ActualBank.csv. You'll be given different combinations of individual transactions to choose from, with the best match at the top.
 
 ActualBank.csv also contains Bank In transactions (positive amounts) and Bank Out transactions (negative amounts) which are designed to match up with the transactions in Pending.txt in the following ways:
 * For some (eg "cheese") the date, description and amount all match exactly. These should show up at the start as "automatic matches".
 * For some (eg "doughnut pumpernickel"), the description is a partial match but the date and amount are exact matches. These should also show up at the start as "automatic matches".
 * For some (eg "Banana"), the date and desciption are exact matches but the amount is only a partial match - these should show up in the semi-automatic matches.
 * For some (eg "BankIn transaction from ActualBank.csv"), there is no real match in Pending.txt but Pending.txt contains non-matching Bank In and Bank Out transaction with descriptions similar enough that they'll show up as semi-automatic matches.
-* The mortgage transaction is there because there is separate functionality that will automatically generate mortgage transactions using the data in the "Budget Out" worksheet in the spreadsheet, and the data in your config.
 * The credit card transactions are there because there is separate functionality that will automatically generate credit card direct debits using the data you enter on the command line (when in Bank Out mode), and the data in your config.
 
 When you finish the reconciliation you'll see some extra "unmatched records from Bank In/Out":
 * "left over from previous reconciliation" - these are from the Bank In and Bank Out worksheets in the spreadsheet.
-* For Bank In, you'll see expenses - these are from the "Expected In" worksheet in the spreadsheet.
+
+When you finish, the latest bank balance should be written to the Totals sheet in spreadsheet.
 
 ## CredCard1 and CredCard2
 
@@ -114,4 +121,12 @@ They each contain transactions designed to match up with the transactions in Pen
 * For some (eg "Jam Kippers" / "Halloumi Icecream"), the amount and date are exact matches but the description is not a match at all - these should show up as semi-automatic matches.
 * For some (eg "CredCard1 transaction from CredCard1.csv"), there is no real match in Pending.txt / CredCardInOutPending.csv but they contain non-matching CredCard1 and CredCard2 transaction with descriptions similar enough that they'll show up as semi-automatic matches.
 
-When you finish the reconciliation you'll see extra "unmatched records from Bank In/Out" labelled "left over from previous reconciliation" - these are from the CredCard1 / CredCard2 worksheets in the spreadsheet.
+There are deliberate duplicate transactions in CredCard1InOutPending.csv to test that duplicate transactions can still be auto-matched at the start of reconciliation.
+
+MATCHING iTunes AND AMAZON TRANSACTIONS:
+There is functionality which works the same way as the expenses functionality, to allow you to match one cred card transaction with multiple source transactions where iTunes and Amazon are concerned. It works the same way as expenses for bank in - see "MATCHING EXPENSES" above.
+There is test Amazon CredCard2 data in Pending.txt which will create so many possible matches that they won't all fit on screen. You should get the option to view extra matches.
+
+When you finish the reconciliation you'll see extra "unmatched records" labelled "left over from previous reconciliation" - these are from the CredCard1 / CredCard2 worksheets in the spreadsheet.
+
+When you finish, the latest cred card balance should be written to the Totals sheet in spreadsheet.
