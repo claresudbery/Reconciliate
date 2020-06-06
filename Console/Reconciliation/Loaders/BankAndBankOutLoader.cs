@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ConsoleCatchall.Console.Reconciliation.Extensions;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
@@ -148,7 +149,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
             if (!potential_balance_rows.Any())
             {
-                input_output.Output_line(ReconConsts.CantFindBalanceRow);
+                input_output.Get_generic_input(ReconConsts.CantFindBalanceRow);
             }
             else
             {
@@ -158,8 +159,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     ReconConsts.BankBalanceDescription,
                     ReconConsts.Bank_descriptor,
                     balance_row.Description,
-                    balance_row.Main_amount(),
-                    balance_row.Date);
+                    balance_row.Main_amount().To_csv_string(true),
+                    balance_row.Date.ToString(@"dd\/MM\/yyyy"));
 
                 spreadsheet.Update_balance_on_totals_sheet(
                     Codes.Bank_bal,
