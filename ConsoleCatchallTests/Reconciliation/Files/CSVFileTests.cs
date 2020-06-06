@@ -424,7 +424,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Load();
 
             // Act
-            List<string> csv_lines = csv_file.All_records_as_source_lines();
+            List<string> csv_lines = csv_file.All_records_as_output_source_lines();
 
             // Assert
             Assert.AreEqual("01/02/2017^£350.00^^ABC^ZZZThing3^^^^^", csv_lines[0]);
@@ -446,7 +446,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Convert_source_line_separators(',', '^');
 
             // Assert
-            List<string> csv_lines = csv_file.All_records_as_source_lines();
+            List<string> csv_lines = csv_file.All_records_as_output_source_lines();
             Assert.AreEqual("24/03/2017^£200.12^^PCL^ZZZSpecialDescription001^^^^^", csv_lines[0]);
             Assert.AreEqual("01/04/2017^£261.40^^PCL^ZZZSpecialDescription005^^^^^", csv_lines[1]);
             Assert.AreEqual("03/10/2018^£350.00^^ABC^ZZZThing1^^^^^", csv_lines[2]);
@@ -464,7 +464,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Convert_source_line_separators(',', '^');
 
             // Assert
-            List<string> csv_lines = csv_file.All_records_as_source_lines();
+            List<string> csv_lines = csv_file.All_records_as_output_source_lines();
             Assert.AreEqual("09/04/2017^£8.33^^ZZZSpecialDescription021^", csv_lines[0]);
             Assert.AreEqual("01/05/2017^£3.16^^ZZZSpecialDescription022^", csv_lines[1]);
             Assert.AreEqual("06/05/2017^£11.94^^ZZZSpecialDescription023^", csv_lines[2]);
@@ -484,7 +484,7 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             csv_file.Convert_source_line_separators(',', '^');
 
             // Assert
-            List<string> csv_lines = csv_file.All_records_as_source_lines();
+            List<string> csv_lines = csv_file.All_records_as_output_source_lines();
             Assert.AreEqual("19/12/2016^£7.99^^ZZZSpecialDescription017^", csv_lines[0]);
             Assert.AreEqual("02/01/2017^£6.29^^ZZZSpecialDescription018^", csv_lines[1]);
             Assert.AreEqual("15/02/2017^£1.99^^ZZZSpecialDescription019^", csv_lines[2]);
