@@ -164,6 +164,25 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             return this;
         }
 
+        public void Copy_from(ICSVRecord source)
+        {
+            if (source.GetType() == typeof(CredCard2Record))
+            {
+                CredCard2Record typed_source = source as CredCard2Record;
+
+                Date = typed_source.Date;
+                Description = typed_source.Description;
+                Amount = typed_source.Amount;
+                SourceLine = typed_source.SourceLine;
+                OutputSourceLine = typed_source.OutputSourceLine;
+            }
+            else
+            {
+                throw (new Exception("Trying to copy record but it's not a CredCard2Record type."));
+            }
+        }
+
+        // Remember you can use Copy_from if you're having trouble with generic types.
         public ICSVRecord Copy()
         {
             return new CredCard2Record

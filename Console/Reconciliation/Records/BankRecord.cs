@@ -288,6 +288,28 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             return this;
         }
 
+        public void Copy_from(ICSVRecord source)
+        {
+            if (source.GetType() == typeof(BankRecord))
+            {
+                BankRecord typed_source = source as BankRecord;
+
+                Date = typed_source.Date;
+                Unreconciled_amount = typed_source.Unreconciled_amount;
+                Type = typed_source.Type;
+                Description = typed_source.Description;
+                Reconciled_amount = typed_source.Reconciled_amount;
+                Cheque_number = typed_source.Cheque_number;
+                SourceLine = typed_source.SourceLine;
+                OutputSourceLine = typed_source.OutputSourceLine;
+            }
+            else
+            {
+                throw (new Exception("Trying to copy record but it's not a BankRecord type."));
+            }
+        }
+
+        // Remember you can use Copy_from if you're having trouble with generic types.
         public ICSVRecord Copy()
         {
             return new BankRecord

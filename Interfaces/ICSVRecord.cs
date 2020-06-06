@@ -31,6 +31,7 @@ namespace Interfaces
         string Transaction_type();
         int Extra_info();
         ICSVRecord Copy();
+        void Copy_from(ICSVRecord source);
         ICSVRecord With_date(DateTime new_date);
         void Update_source_line_for_output(char output_separator);
     }

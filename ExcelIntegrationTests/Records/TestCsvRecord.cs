@@ -30,6 +30,11 @@ namespace ExcelIntegrationTests.Records
             return this;
         }
 
+        public void Copy_from(ICSVRecord source)
+        {
+            throw new NotImplementedException();
+        }
+
         public ICSVRecord Copy()
         {
             throw new NotImplementedException();
