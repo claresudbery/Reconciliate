@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Reconciliation\Exceptions\MonthlyBudgetedRowNotFoundException.cs" />
+    <Compile Include="Reconciliation\Files\ActualBankFileHelper.cs" />
     <Compile Include="Reconciliation\Files\ExpectedIncomeFile.cs" />
     <Compile Include="Reconciliation\Loaders\DummyLoader.cs" />
     <Compile Include="Reconciliation\Matchers\MatchList.cs" />

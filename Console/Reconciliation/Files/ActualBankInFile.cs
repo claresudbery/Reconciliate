@@ -17,7 +17,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             char? override_separator = null,
             bool order_on_load = true)
         {
-            File.Load(load_file, override_separator, order_on_load);
+            File.Load(load_file, override_separator, false);
+            var positive_records = File.SourceRecords.Where(x => x.Amount > 0).ToList();
+            ActualBankFileHelper.Mark_last_bank_row(positive_records);
+            if (order_on_load)
+            {
+                File.Order_by_date();
+            }
             Refresh_file_contents();
         }
 

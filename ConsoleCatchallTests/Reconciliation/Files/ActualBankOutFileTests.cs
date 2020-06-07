@@ -4,6 +4,7 @@ using System.Linq;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
+using Interfaces.Constants;
 using Moq;
 using NUnit.Framework;
 
@@ -165,75 +166,55 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void Will_find_last_bank_out_row_when_latest_records_come_first()
+        public void Will_mark_last_bank_out_row_when_loading_given_file_contains_bank_in_transactions_too()
         {
             // Arrange
             string last_row_description = "Last row";
             var fake_records = new List<ActualBankRecord>
             {
-                // most recent records
+                new ActualBankRecord {Amount = 10, Date = new DateTime(2020, 1, 4)},
                 new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4), Description = last_row_description},
-                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4)},
-                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4)},
-                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 1)},
-            };
-            var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
-            mock_actual_bank_file.Setup(x => x.SourceRecords).Returns(fake_records);
-            var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
-
-            // Act
-            var result = actual_bank_out_file.Get_last_bank_out_row();
-
-            // Assert
-            Assert.AreEqual(last_row_description, result.Description);
-        }
-
-        [Test]
-        public void Will_find_last_bank_out_row_when_latest_records_come_last()
-        {
-            // Arrange
-            string last_row_description = "Last row";
-            var fake_records = new List<ActualBankRecord>
-            {
-                // most recent records
-                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 1)},
-                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4)},
-                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4)},
-                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4), Description = last_row_description},
-            };
-            var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
-            mock_actual_bank_file.Setup(x => x.SourceRecords).Returns(fake_records);
-            var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
-
-            // Act
-            var result = actual_bank_out_file.Get_last_bank_out_row();
-
-            // Assert
-            Assert.AreEqual(last_row_description, result.Description);
-        }
-
-        [Test]
-        public void Will_find_last_bank_out_row_when_records_are_not_in_order()
-        {
-            // Arrange
-            string last_row_description = "Last row";
-            var fake_records = new List<ActualBankRecord>
-            {
-                // most recent records
+                new ActualBankRecord {Amount = 10, Date = new DateTime(2020, 1, 3)},
                 new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 2)},
                 new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 1)},
-                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4), Description = last_row_description},
-                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 3)},
             };
-            var mock_actual_bank_file = new Mock<ICSVFile<ActualBankRecord>>();
-            mock_actual_bank_file.Setup(x => x.SourceRecords).Returns(fake_records);
-            var actual_bank_out_file = new ActualBankOutFile(mock_actual_bank_file.Object);
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), It.IsAny<char?>()))
+                .Returns(fake_records);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            var actual_bank_out_file = new ActualBankOutFile(actual_bank_file);
 
             // Act
-            var result = actual_bank_out_file.Get_last_bank_out_row();
+            actual_bank_out_file.Load();
 
             // Assert
-            Assert.AreEqual(last_row_description, result.Description);
+            var last_record = actual_bank_out_file.File.Records.First(x => x.Description == last_row_description);
+            Assert.AreEqual(ReconConsts.LastOnlineTransaction, last_record.LastTransactionMarker);
+        }
+
+        [Test]
+        public void Will_mark_last_bank_out_row_when_loading_before_records_are_ordered_in_date_order()
+        {
+            // Arrange
+            string last_row_description = "Last row";
+            var fake_records = new List<ActualBankRecord>
+            {
+                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4), Description = last_row_description},
+                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 4), Description = "This will be the last row when ordered in date order."},
+                new ActualBankRecord {Amount = -10, Date = new DateTime(2020, 1, 2)},
+            };
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), It.IsAny<char?>()))
+                .Returns(fake_records);
+            var actual_bank_file = new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object);
+            var actual_bank_out_file = new ActualBankOutFile(actual_bank_file);
+
+            // Act
+            actual_bank_out_file.Load();
+
+            // Assert
+            var last_record = actual_bank_out_file.File.Records.First(x => x.Description == last_row_description);
+            Assert.AreEqual(ReconConsts.LastOnlineTransaction, last_record.LastTransactionMarker);
         }
     }
 }

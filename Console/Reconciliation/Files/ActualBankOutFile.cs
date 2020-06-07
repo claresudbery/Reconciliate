@@ -22,7 +22,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             bool order_on_load = true)
         {
             File.Load(load_file, override_separator, false);
-            Mark_last_bank_row();
+            var negative_records = File.SourceRecords.Where(x => x.Amount < 0).ToList();
+            ActualBankFileHelper.Mark_last_bank_row(negative_records);
             if (order_on_load)
             {
                 File.Order_by_date();
@@ -77,35 +78,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
             return records_from_last_day
                 .Where(x => records_from_first_day
                     .Any(y => x.Balance.Double_equals(y.Balance + sum_of_all_amounts - y.Amount)));
-        }
-
-        private void Mark_last_bank_row()
-        {
-            ActualBankRecord last_record = Get_last_bank_out_row();
-            last_record.LastTransactionMarker = ReconConsts.LastOnlineTransaction;
-        }
-
-        public ActualBankRecord Get_last_bank_out_row()
-        {
-            ActualBankRecord last_record = new ActualBankRecord();
-            if (File.SourceRecords.Count > 0)
-            {
-                var negative_records = File.SourceRecords.Where(x => x.Amount < 0).ToList();
-                DateTime last_row_date = negative_records.Max(x => x.Date);
-                last_record = negative_records.First();
-
-                if (last_record.Date != last_row_date)
-                {
-                    last_record = negative_records.Last();
-
-                    if (last_record.Date != last_row_date)
-                    {
-                        last_record = negative_records.OrderBy(x => x.Date).Last();
-                    }
-                }
-            }
-
-            return last_record;
         }
     }
 }
