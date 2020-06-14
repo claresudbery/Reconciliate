@@ -1,3 +1,7 @@
+## Diagram:
+
+There is a flow chart here (created June 2020): https://docs.google.com/drawings/d/1sPN6IkrHsppO1s8zgLWDXe1KrzPmfNO_rFeEAdoukLI/edit
+
 ## Config
 There are TWO config files. The first is the main entry point and only contains one line, which is the path to the full config. This is so that you can put your main config in a secure non-public location. If you're Clare and you've forgotten where your config is, check C:/Config/Config.Xml for the location, but also remember that it's stored in the separate ReconciliationConfig private git repo.
 
