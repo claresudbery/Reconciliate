@@ -1,7 +1,3 @@
-## Diagram:
-
-There is a flow chart here (created June 2020): https://docs.google.com/drawings/d/1sPN6IkrHsppO1s8zgLWDXe1KrzPmfNO_rFeEAdoukLI/edit
-
 ## Config
 There are TWO config files. The first is the main entry point and only contains one line, which is the path to the full config. This is so that you can put your main config in a secure non-public location. If you're Clare and you've forgotten where your config is, check C:/Config/Config.Xml for the location, but also remember that it's stored in the separate ReconciliationConfig private git repo.
 
@@ -68,7 +64,13 @@ Gotcha when switching back from .Net Core to .Net Framework: "dll / exe could no
 ### HRESULT exception In Windows when writing to spreadsheet
 Go to task manager, scroll down to processes below the line, and get rid of ALL instances of Excel you find (right-click | End task).
 
+## Code flow diagram:
+
+There is a code chart available (created June 2020) that shows the most important code elements and what order they happen in, so you can see where best to insert new functionality:
+(I think it also helps to show where the code still needs a fair bit of work to make simpler / more accessible):
+![code chart](/Reconciliate-flow-chart.jpg)
 	
+
 An example of a C# app with a Windows interface that edits an Excel spreadsheet:  
 https://www.codeproject.com/Tips/696864/Working-with-Excel-Using-Csharp    
     
