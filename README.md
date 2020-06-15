@@ -1,4 +1,9 @@
+## Intro
+
+Note that if you're here because you read [the article on Martin Fowler's site](https://martinfowler.com/articles/class-too-large.html), you probably want to focus on the `Refactor-examples` branch rather than the master branch: `git checkout Refactor-examples`  
+
 ## Config
+
 There are TWO config files. The first is the main entry point and only contains one line, which is the path to the full config. This is so that you can put your main config in a secure non-public location. If you're Clare and you've forgotten where your config is, check C:/Config/Config.Xml for the location, but also remember that it's stored in the separate ReconciliationConfig private git repo.
 
 The entry-level config is assumed to be in a file called Config.Xml. Its location can be passed in as a command-line argument, but it has a default value which is C:/Config. That won't work unless you're on Windows, so if you're on Mac you HAVE to pass in your entry-level config file location.
@@ -64,6 +69,13 @@ Gotcha when switching back from .Net Core to .Net Framework: "dll / exe could no
 ### HRESULT exception In Windows when writing to spreadsheet
 Go to task manager, scroll down to processes below the line, and get rid of ALL instances of Excel you find (right-click | End task).
 
+## Code flow diagram:
+
+There is a code chart available (created June 2020) that shows the most important code elements and what order they happen in, so you can see where best to insert new functionality:  
+(I think it also helps to show where the code still needs a fair bit of work to make simpler / more accessible).  
+Note that it is based on the master branch, not the `Refactor-examples` branch, so there are some minor differences between the two:   
+
+![code chart](/Reconciliate-flow-chart.jpg)
 	
 An example of a C# app with a Windows interface that edits an Excel spreadsheet:  
 https://www.codeproject.com/Tips/696864/Working-with-Excel-Using-Csharp    
