@@ -1,6 +1,6 @@
 ## Intro
 
-Note that if you're here because you read the article on Martin Fowler's site](), you probably want to focus on the `Refactor-examples` branch rather than the master branch: `git checkout Refactor-examples`
+Note that if you're here because you read [the article on Martin Fowler's site](https://martinfowler.com/articles/class-too-large.html), you probably want to focus on the `Refactor-examples` branch rather than the master branch: `git checkout Refactor-examples`
 
 ## Config
 There are TWO config files. The first is the main entry point and only contains one line, which is the path to the full config. This is so that you can put your main config in a secure non-public location. If you're Clare and you've forgotten where your config is, check C:/Config/Config.Xml for the location, but also remember that it's stored in the separate ReconciliationConfig private git repo.
