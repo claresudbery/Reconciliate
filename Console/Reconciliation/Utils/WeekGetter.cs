@@ -26,14 +26,29 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             return new Weeks();
         }
 
-        public DateTime Find_previous_Saturday(DateTime today)
+        public int Num_weeks_between_dates(DateTime start, DateTime end)
         {
-            return today.AddDays(Days_to_subtract(today) * -1);
+            return 0;
         }
 
-        private int Days_to_subtract(DateTime today)
+        public DateTime Find_previous_Saturday(DateTime today)
+        {
+            return today.AddDays(Days_to_subtract_for_Saturday(today) * -1);
+        }
+
+        private int Days_to_subtract_for_Saturday(DateTime today)
         {
             return (Convert.ToInt16(today.DayOfWeek) + 1) % 7;
+        }
+
+        public DateTime Find_previous_Friday(DateTime today)
+        {
+            return today.AddDays(Days_to_subtract_for_Friday(today) * -1);
+        }
+
+        private int Days_to_subtract_for_Friday(DateTime today)
+        {
+            return (Convert.ToInt16(today.DayOfWeek) + 2) % 7;
         }
     }
 }
