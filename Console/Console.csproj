@@ -90,6 +90,7 @@
     <Compile Include="Reconciliation\Records\ActualBankRecord.cs" />
     <Compile Include="Reconciliation\Utils\Communicator.cs" />
     <Compile Include="Reconciliation\Utils\DebugModeSwitcher.cs" />
+    <Compile Include="Reconciliation\Utils\WeekGetter.cs" />
     <Compile Include="Reconciliation\Utils\PathSetter.cs" />
     <Compile Include="Reconciliation\Utils\StringHelper.cs" />
   </ItemGroup>

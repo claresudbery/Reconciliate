@@ -55,6 +55,7 @@
     <Compile Include="DTOs\ConsoleLine.cs" />
     <Compile Include="DTOs\ConsoleSnippet.cs" />
     <Compile Include="DTOs\DataLoadingInformation.cs" />
+    <Compile Include="DTOs\Weeks.cs" />
     <Compile Include="DTOs\FilePaths.cs" />
     <Compile Include="DTOs\Rankings.cs" />
     <Compile Include="DTOs\RecordForMatching.cs" />

@@ -107,6 +107,7 @@
     <Compile Include="LinqExperiments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reconciliation\Records\CredCard1RecordTests.cs" />
+    <Compile Include="Reconciliation\Utils\WeekGetterTests.cs" />
     <Compile Include="Reconciliation\Utils\BudgetingMonthsTests.cs" />
     <Compile Include="Reconciliation\Utils\XmlReaderTests.cs" />
     <Compile Include="Reconciliation\Utils\DateHelperTests.cs" />
