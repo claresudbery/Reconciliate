@@ -18,10 +18,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             _input_output = input_output;
         }
 
-        public Weeks Decide_num_weeks()
+        public Weeks Decide_num_weeks(string context_description)
         {
-            _input_output.Output_line(
-                "Mathematical dude! Let's do some reconciliating. Type Exit at any time to leave (although to be honest I'm not sure that actually works...)");
+            _input_output.Output_line($"Which Saturday do you want to start with for {context_description}? Enter 1 or 2:");
+            _input_output.Output_line($"Which Friday do you want to end with for {context_description}? Enter 1 or 2:");
 
             return new Weeks();
         }

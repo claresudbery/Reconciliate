@@ -150,11 +150,35 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         [Test]
         public void Will_ask_user_which_Saturday_to_start_on_when_deciding_num_weeks()
         {
+            // Arrange 
+            var mock_input_output = new Mock<IInputOutput>();
+            var week_getter = new WeekGetter(mock_input_output.Object);
+            mock_input_output.Setup(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("1");
+
+            // Act
+            var result = week_getter.Decide_num_weeks("Testing, testing...");
+
+            // Assert
+            mock_input_output.Verify(x => x.Output_line(
+                It.Is<string>(y => y.Contains("Saturday"))));
         }
 
         [Test]
         public void Will_ask_user_which_Friday_to_end_on_when_deciding_num_weeks()
         {
+            // Arrange 
+            var mock_input_output = new Mock<IInputOutput>();
+            var week_getter = new WeekGetter(mock_input_output.Object);
+            mock_input_output.Setup(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("1");
+
+            // Act
+            var result = week_getter.Decide_num_weeks("Testing, testing...");
+
+            // Assert
+            mock_input_output.Verify(x => x.Output_line(
+                It.Is<string>(y => y.Contains("Friday"))));
         }
         
         [Test]
