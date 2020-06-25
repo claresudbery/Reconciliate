@@ -255,46 +255,6 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             Assert.AreEqual(expected_result, result.NumWeeks);
         }
 
-        [Test]
-        public void Dummy_test()
-        {
-            int start_day = 5;
-            int start_month = 12;
-            int start_year = 2020;
-            int end_month = 1;
-            int end_year = 2021;
-            bool choose_first_saturday = true;
-            bool choose_first_friday = false;
-            int expected_result = 9;
-
-            // Arrange
-            DateTime start_date = new DateTime(start_year, start_month, start_day);
-            var mock_input_output = new Mock<IInputOutput>();
-            var mock_clock = new Mock<IClock>();
-            var week_getter = new WeekGetter(mock_input_output.Object, mock_clock.Object);
-            var budgeting_months_not_ending_friday = new BudgetingMonths
-            {
-                Start_year = start_year,
-                Next_unplanned_month = start_month,
-                Last_month_for_budget_planning = end_month
-            };
-            mock_input_output.Setup(x => x.Get_input(
-                    It.Is<string>(y => y.Contains("Sat")),
-                    It.IsAny<string>()))
-                .Returns(choose_first_saturday ? "1" : "2");
-            mock_input_output.Setup(x => x.Get_input(
-                    It.Is<string>(y => y.Contains("Fri")),
-                    It.IsAny<string>()))
-                .Returns(choose_first_friday ? "1" : "2");
-            mock_clock.Setup(x => x.Today_date_time()).Returns(start_date);
-
-            // Act
-            var result = week_getter.Decide_num_weeks("Testing, testing...", budgeting_months_not_ending_friday);
-
-            // Assert
-            Assert.AreEqual(expected_result, result.NumWeeks);
-        }
-
         [TestCase(11, 7, true, 11, 7)]
         [TestCase(13, 7, true, 11, 7)]
         [TestCase(11, 7, false, 18, 7)]
@@ -306,6 +266,35 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             int expected_day,
             int expected_month)
         {
+            // Arrange
+            const int year = 2020;
+            DateTime start_date = new DateTime(year, start_month, start_day);
+            var mock_input_output = new Mock<IInputOutput>();
+            var mock_clock = new Mock<IClock>();
+            var week_getter = new WeekGetter(mock_input_output.Object, mock_clock.Object);
+            var budgeting_months_not_ending_friday = new BudgetingMonths
+            {
+                Start_year = year,
+                Next_unplanned_month = start_month,
+                Last_month_for_budget_planning = start_month
+            };
+            mock_input_output.Setup(x => x.Get_input(
+                    It.Is<string>(y => y.Contains("Sat")),
+                    It.IsAny<string>()))
+                .Returns(choose_first_saturday ? "1" : "2");
+            mock_input_output.Setup(x => x.Get_input(
+                    It.Is<string>(y => y.Contains("Fri")),
+                    It.IsAny<string>()))
+                .Returns("1");
+            mock_clock.Setup(x => x.Today_date_time()).Returns(start_date);
+
+            // Act
+            var result = week_getter.Decide_num_weeks("Testing, testing...", budgeting_months_not_ending_friday);
+
+            // Assert
+            Assert.AreEqual(expected_day, result.FirstSaturday.Day);
+            Assert.AreEqual(expected_month, result.FirstSaturday.Month);
+            Assert.AreEqual(year, result.FirstSaturday.Year);
         }
     }
 }

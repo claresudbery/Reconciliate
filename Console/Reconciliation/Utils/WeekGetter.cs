@@ -26,19 +26,28 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             _input_output.Output_line($"1. {start_date.ToShortDateString()}");
             _input_output.Output_line($"2. {start_date.AddDays(7).ToShortDateString()}");
             var choice = _input_output.Get_input($"Which Saturday do you want to start with for {context_description}? Enter 1 or 2:");
+            if (choice == "2")
+            {
+                start_date = start_date.AddDays(7);
+            }
 
             var end_date = budgeting_months.Budgeting_end_date().AddMonths(1).AddDays(-1);
             if (end_date.DayOfWeek != DayOfWeek.Friday)
             {
-                end_date = Find_previous_Friday(DateTime.Today);
+                end_date = Find_previous_Friday(end_date);
                 _input_output.Output_line($"1. {end_date.ToShortDateString()}");
                 _input_output.Output_line($"2. {end_date.AddDays(7).ToShortDateString()}");
-                _input_output.Get_input($"Which Friday do you want to end with for {context_description}? Enter 1 or 2:");
+                choice = _input_output.Get_input($"Which Friday do you want to end with for {context_description}? Enter 1 or 2:");
+                if (choice == "2")
+                {
+                    end_date = end_date.AddDays(7);
+                }
             }
             
             return new Weeks
             {
-                NumWeeks = Num_weeks_between_dates(start_date, end_date)
+                NumWeeks = Num_weeks_between_dates(start_date, end_date),
+                FirstSaturday = start_date
             };
         }
 
