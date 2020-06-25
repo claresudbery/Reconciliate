@@ -64,35 +64,6 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             Assert.AreEqual(expected_month, result.Month);
         }
 
-        [TestCase(4, 7, 2020, 10, 7, 2020, 1)]
-        [TestCase(4, 7, 2020, 17, 7, 2020, 2)]
-        [TestCase(4, 7, 2020, 24, 7, 2020, 3)]
-        [TestCase(4, 7, 2020, 31, 7, 2020, 4)]
-        [TestCase(4, 7, 2020, 7, 8, 2020, 5)]
-        [TestCase(4, 7, 2020, 4, 9, 2020, 9)]
-        [TestCase(5, 12, 2020, 1, 1, 2021, 4)]
-        public void Will_calculate_num_weeks_between_dates(
-            int start_day,
-            int start_month,
-            int start_year,
-            int end_day,
-            int end_month,
-            int end_year,
-            int expected_result)
-        {
-            // Arrange 
-            DateTime start_date = new DateTime(start_year, start_month, start_day);
-            DateTime end_date = new DateTime(end_year, end_month, end_day);
-            var mock_input_output = new Mock<IInputOutput>();
-            var week_getter = new WeekGetter(mock_input_output.Object);
-
-            // Act
-            int result = week_getter.Num_weeks_between_dates(start_date, end_date);
-
-            // Assert
-            Assert.AreEqual(expected_result, result, $"Expected {expected_result} but got {result}");
-        }
-
         [Test]
         public void Will_throw_exception_if_start_date_not_Saturday_when_calculating_weeks_between_dates()
         {
@@ -145,6 +116,35 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             // Assert
             Assert.AreEqual(true, exception_thrown);
             Assert.IsTrue(exception_message.Contains("Friday"), "Exception message should refer to Friday");
+        }
+
+        [TestCase(4, 7, 2020, 10, 7, 2020, 1)]
+        [TestCase(4, 7, 2020, 17, 7, 2020, 2)]
+        [TestCase(4, 7, 2020, 24, 7, 2020, 3)]
+        [TestCase(4, 7, 2020, 31, 7, 2020, 4)]
+        [TestCase(4, 7, 2020, 7, 8, 2020, 5)]
+        [TestCase(4, 7, 2020, 4, 9, 2020, 9)]
+        [TestCase(5, 12, 2020, 1, 1, 2021, 4)]
+        public void Will_calculate_num_weeks_between_dates(
+            int start_day,
+            int start_month,
+            int start_year,
+            int end_day,
+            int end_month,
+            int end_year,
+            int expected_result)
+        {
+            // Arrange 
+            DateTime start_date = new DateTime(start_year, start_month, start_day);
+            DateTime end_date = new DateTime(end_year, end_month, end_day);
+            var mock_input_output = new Mock<IInputOutput>();
+            var week_getter = new WeekGetter(mock_input_output.Object);
+
+            // Act
+            int result = week_getter.Num_weeks_between_dates(start_date, end_date);
+
+            // Assert
+            Assert.AreEqual(expected_result, result, $"Expected {expected_result} but got {result}");
         }
 
         [Test]
