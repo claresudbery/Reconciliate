@@ -100,6 +100,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         {
             Update_living_expenses(input_output, spreadsheet, budgeting_months);
             Update_groceries(input_output, spreadsheet, budgeting_months);
+            Update_owed_CHB(spreadsheet, budgeting_months);
         }
 
         private void Update_living_expenses(IInputOutput input_output, ISpreadsheet spreadsheet, BudgetingMonths budgeting_months)
@@ -114,6 +115,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             var week_getter = new WeekGetter(input_output, new Clock());
             var weeks = week_getter.Decide_num_weeks("grocery shopping", budgeting_months);
             spreadsheet.Update_groceries(weeks.NumWeeks);
+        }
+
+        private void Update_owed_CHB(ISpreadsheet spreadsheet, BudgetingMonths budgeting_months)
+        {
+            spreadsheet.Update_owed_CHB(budgeting_months.Num_budgeting_months());
         }
 
         private void Add_most_recent_credit_card_direct_debits(

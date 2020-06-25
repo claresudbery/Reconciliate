@@ -171,13 +171,23 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
         public void Update_living_expenses(int num_weeks)
         {
             var base_amount = _spreadsheet_io.Get_amount(MainSheetNames.Budget_out, Codes.Code004);
-            _spreadsheet_io.Update_amount(MainSheetNames.Expected_out, Codes.Code074, num_weeks * base_amount);
+            var new_amount = num_weeks * base_amount;
+            _spreadsheet_io.Update_amount(MainSheetNames.Expected_out, Codes.Code074, new_amount);
         }
 
         public void Update_groceries(int num_weeks)
         {
             var base_amount = _spreadsheet_io.Get_amount(MainSheetNames.Budget_out, Codes.Code005);
-            _spreadsheet_io.Update_amount(MainSheetNames.Expected_out, Codes.Code075, num_weeks * base_amount);
+            var new_amount = num_weeks * base_amount;
+            _spreadsheet_io.Update_amount(MainSheetNames.Expected_out, Codes.Code075, new_amount);
+        }
+
+        public void Update_owed_CHB(int num_months)
+        {
+            var base_amount = _spreadsheet_io.Get_amount(MainSheetNames.Budget_out, Codes.Code003);
+            var current_amount = _spreadsheet_io.Get_amount(MainSheetNames.Expected_out, Codes.Code003, 2);
+            var new_amount = current_amount + (base_amount * num_months);
+            _spreadsheet_io.Update_amount(MainSheetNames.Expected_out, Codes.Code003, new_amount);
         }
 
         public DateTime Get_next_unplanned_month<TRecordType>(BudgetItemListData budget_item_list_data = null)

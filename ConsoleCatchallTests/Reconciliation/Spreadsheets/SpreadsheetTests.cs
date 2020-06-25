@@ -798,75 +798,75 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         }
 
         [Test]
-        public void Will_use_Code004_to_get_living_expenses_base_amount()
+        public void Will_calculate_living_expenses_as_num_weeks_times_base_amount_and_use_Code074_and_Code004()
         {
             // Arrange
+            const double BaseAmount = 20;
+            const int NumWeeks = 2;
+            const double ExpectedAmount = BaseAmount * NumWeeks;
             var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
-            const int irrelevant = 7;
+            mock_spreadsheet_repo.Setup(x => x.Get_amount(MainSheetNames.Budget_out, Codes.Code004, 3))
+                .Returns(BaseAmount);
 
             // Act
-            spreadsheet.Update_living_expenses(irrelevant);
-
-            // Assert
-            mock_spreadsheet_repo.Verify(x => x.Get_amount(
-                MainSheetNames.Budget_out,
-                Codes.Code004,
-                It.IsAny<int>()));
-        }
-
-        [Test]
-        public void Will_use_Code074_to_update_living_expenses()
-        {
-            // Arrange
-            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
-            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
-            const int irrelevant = 7;
-
-            // Act
-            spreadsheet.Update_living_expenses(irrelevant);
+            spreadsheet.Update_living_expenses(NumWeeks);
 
             // Assert
             mock_spreadsheet_repo.Verify(x => x.Update_amount(
                 MainSheetNames.Expected_out,
                 Codes.Code074,
-                It.IsAny<double>(), It.IsAny<int>(), It.IsAny<int>()));
+                ExpectedAmount,
+                2, 1));
         }
 
         [Test]
-        public void Will_use_Code005_to_get_groceries_base_amount()
+        public void Will_calculate_groceries_as_num_weeks_times_base_amount_and_use_Code075_and_Code005()
         {
             // Arrange
+            const double BaseAmount = 20;
+            const int NumWeeks = 2;
+            const double ExpectedAmount = BaseAmount * NumWeeks;
             var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
-            const int irrelevant = 7;
+            mock_spreadsheet_repo.Setup(x => x.Get_amount(MainSheetNames.Budget_out, Codes.Code005, 3))
+                .Returns(BaseAmount);
 
             // Act
-            spreadsheet.Update_groceries(irrelevant);
-
-            // Assert
-            mock_spreadsheet_repo.Verify(x => x.Get_amount(
-                MainSheetNames.Budget_out,
-                Codes.Code005,
-                It.IsAny<int>()));
-        }
-
-        [Test]
-        public void Will_use_Code075_to_update_groceries()
-        {
-            // Arrange
-            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
-            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
-            const int irrelevant = 7;
-
-            // Act
-            spreadsheet.Update_groceries(irrelevant);
+            spreadsheet.Update_groceries(NumWeeks);
 
             // Assert
             mock_spreadsheet_repo.Verify(x => x.Update_amount(
                 MainSheetNames.Expected_out,
                 Codes.Code075,
-                It.IsAny<double>(), It.IsAny<int>(), It.IsAny<int>()));
+                ExpectedAmount,
+                2, 1));
+        }
+
+        [Test]
+        public void Will_calculate_owed_CHB_as_num_budgeting_months_times_base_amount_plus_previous_amount_and_use_Code003()
+        {
+            // Arrange
+            const double BaseAmount = 30;
+            const double PreviousAmount = 1000;
+            const int NumMonths = 2;
+            const double ExpectedAmount = PreviousAmount + (BaseAmount * NumMonths);
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            mock_spreadsheet_repo.Setup(x => x.Get_amount(MainSheetNames.Budget_out, Codes.Code003, 3))
+                .Returns(BaseAmount);
+            mock_spreadsheet_repo.Setup(x => x.Get_amount(MainSheetNames.Expected_out, Codes.Code003, 2))
+                .Returns(PreviousAmount);
+
+            // Act
+            spreadsheet.Update_owed_CHB(NumMonths);
+
+            // Assert
+            mock_spreadsheet_repo.Verify(x => x.Update_amount(
+                MainSheetNames.Expected_out,
+                Codes.Code003,
+                ExpectedAmount,
+                2,1));
         }
     }
 }
