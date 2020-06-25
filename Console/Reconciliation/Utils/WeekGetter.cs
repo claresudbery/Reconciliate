@@ -23,25 +23,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
         public Weeks Decide_num_weeks(string context_description, BudgetingMonths budgeting_months)
         {
             var start_date = Find_previous_Saturday(_clock.Today_date_time());
-            _input_output.Output_line($"1. {start_date.ToShortDateString()}");
-            _input_output.Output_line($"2. {start_date.AddDays(7).ToShortDateString()}");
-            var choice = _input_output.Get_input($"Which Saturday do you want to start with for {context_description}? Enter 1 or 2:");
-            if (choice == "2")
-            {
-                start_date = start_date.AddDays(7);
-            }
+            start_date = Decide_date(start_date, "Saturday", context_description);
 
             var end_date = budgeting_months.Budgeting_end_date().AddMonths(1).AddDays(-1);
             if (end_date.DayOfWeek != DayOfWeek.Friday)
             {
                 end_date = Find_previous_Friday(end_date);
-                _input_output.Output_line($"1. {end_date.ToShortDateString()}");
-                _input_output.Output_line($"2. {end_date.AddDays(7).ToShortDateString()}");
-                choice = _input_output.Get_input($"Which Friday do you want to end with for {context_description}? Enter 1 or 2:");
-                if (choice == "2")
-                {
-                    end_date = end_date.AddDays(7);
-                }
+                end_date = Decide_date(end_date, "Friday", context_description);
             }
             
             return new Weeks
@@ -49,6 +37,19 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
                 NumWeeks = Num_weeks_between_dates(start_date, end_date),
                 FirstSaturday = start_date
             };
+        }
+
+        private DateTime Decide_date(DateTime date, string day_name, string context_description)
+        {
+            _input_output.Output_line($"1. {date.ToShortDateString()}");
+            _input_output.Output_line($"2. {date.AddDays(7).ToShortDateString()}");
+            var choice = _input_output.Get_input($"Which {day_name} do you want to start with for {context_description}? Enter 1 or 2:");
+            if (choice == "2")
+            {
+                date = date.AddDays(7);
+            }
+
+            return date;
         }
 
         public int Num_weeks_between_dates(DateTime start_date, DateTime end_date)

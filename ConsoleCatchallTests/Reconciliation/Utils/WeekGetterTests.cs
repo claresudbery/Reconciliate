@@ -255,6 +255,52 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             Assert.AreEqual(expected_result, result.NumWeeks);
         }
 
+        [TestCase(1, 6, 7, 7, true, true, 9)]
+        [TestCase(12, 7, 7, 7, true, true, 3)]
+        [TestCase(12, 7, 7, 7, false, true, 2)]
+        [TestCase(12, 7, 6, 7, true, true, 3)]
+        [TestCase(12, 7, 6, 7, false, true, 2)]
+        [TestCase(12, 7, 7, 7, true, true, 3)]
+        [TestCase(3, 7, 7, 7, true, true, 5)]
+        [TestCase(3, 7, 7, 7, false, true, 4)]
+        public void Will_calculate_correct_num_weeks_when_todays_date_is_not_in_first_budgeting_month(
+            int today_day,
+            int today_month,
+            int start_month,
+            int end_month,
+            bool choose_first_saturday,
+            bool choose_first_friday,
+            int expected_result)
+        {
+            // Arrange
+            const int year = 2020;
+            DateTime today = new DateTime(year, today_month, today_day);
+            var mock_input_output = new Mock<IInputOutput>();
+            var mock_clock = new Mock<IClock>();
+            var week_getter = new WeekGetter(mock_input_output.Object, mock_clock.Object);
+            var budgeting_months_not_ending_friday = new BudgetingMonths
+            {
+                Start_year = year,
+                Next_unplanned_month = start_month,
+                Last_month_for_budget_planning = end_month
+            };
+            mock_input_output.Setup(x => x.Get_input(
+                    It.Is<string>(y => y.Contains("Sat")),
+                    It.IsAny<string>()))
+                .Returns(choose_first_saturday ? "1" : "2");
+            mock_input_output.Setup(x => x.Get_input(
+                    It.Is<string>(y => y.Contains("Fri")),
+                    It.IsAny<string>()))
+                .Returns(choose_first_friday ? "1" : "2");
+            mock_clock.Setup(x => x.Today_date_time()).Returns(today);
+
+            // Act
+            var result = week_getter.Decide_num_weeks("Testing, testing...", budgeting_months_not_ending_friday);
+
+            // Assert
+            Assert.AreEqual(expected_result, result.NumWeeks);
+        }
+
         [TestCase(11, 7, true, 11, 7)]
         [TestCase(13, 7, true, 11, 7)]
         [TestCase(11, 7, false, 18, 7)]
