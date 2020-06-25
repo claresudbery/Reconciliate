@@ -18,11 +18,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             _input_output = input_output;
         }
 
-        public Weeks Decide_num_weeks(string context_description)
+        public Weeks Decide_num_weeks(string context_description, BudgetingMonths budgeting_months)
         {
             _input_output.Output_line($"Which Saturday do you want to start with for {context_description}? Enter 1 or 2:");
-            _input_output.Output_line($"Which Friday do you want to end with for {context_description}? Enter 1 or 2:");
-
+            var end_date = budgeting_months.Budgeting_end_date().AddDays(-1);
+            if (budgeting_months.Budgeting_end_date().AddMonths(1).AddDays(-1).DayOfWeek != DayOfWeek.Friday)
+            {
+                _input_output.Output_line($"Which Friday do you want to end with for {context_description}? Enter 1 or 2:");
+            }
+            
             return new Weeks();
         }
 

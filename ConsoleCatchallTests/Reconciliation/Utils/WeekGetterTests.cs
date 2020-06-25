@@ -153,11 +153,10 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             // Arrange 
             var mock_input_output = new Mock<IInputOutput>();
             var week_getter = new WeekGetter(mock_input_output.Object);
-            mock_input_output.Setup(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns("1");
+            var budgeting_months_not_ending_friday = new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 };
 
             // Act
-            var result = week_getter.Decide_num_weeks("Testing, testing...");
+            var result = week_getter.Decide_num_weeks("Testing, testing...", budgeting_months_not_ending_friday);
 
             // Assert
             mock_input_output.Verify(x => x.Output_line(
@@ -170,11 +169,10 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             // Arrange 
             var mock_input_output = new Mock<IInputOutput>();
             var week_getter = new WeekGetter(mock_input_output.Object);
-            mock_input_output.Setup(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns("1");
+            var budgeting_months_not_ending_friday = new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 };
 
             // Act
-            var result = week_getter.Decide_num_weeks("Testing, testing...");
+            var result = week_getter.Decide_num_weeks("Testing, testing...", budgeting_months_not_ending_friday);
 
             // Assert
             mock_input_output.Verify(x => x.Output_line(
@@ -184,6 +182,23 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         [Test]
         public void Will_not_ask_user_which_Friday_to_end_on_when_month_ends_on_Friday()
         {
+            // Arrange 
+            var mock_input_output = new Mock<IInputOutput>();
+            var week_getter = new WeekGetter(mock_input_output.Object);
+            var budgeting_months_ending_friday = new BudgetingMonths
+            {
+                Start_year = 2020,
+                Next_unplanned_month = 7,
+                Last_month_for_budget_planning = 7
+            };
+
+            // Act
+            var result = week_getter.Decide_num_weeks("Testing, testing...", budgeting_months_ending_friday);
+
+            // Assert
+            mock_input_output.Verify(x => x.Output_line(
+                It.Is<string>(y => y.Contains("Friday"))), 
+                Times.Never);
         }
 
         [TestCase(11, 7, 2020, 7, 2020, true, null, 3)]
@@ -206,6 +221,10 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             bool? choose_first_friday,
             int expected_result)
         {
+            var mock_input_output = new Mock<IInputOutput>();
+            var week_getter = new WeekGetter(mock_input_output.Object);
+            mock_input_output.Setup(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("1");
         }
 
         [TestCase(11, 7, true, 11, 7)]
