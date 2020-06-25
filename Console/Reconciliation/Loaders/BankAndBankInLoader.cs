@@ -79,6 +79,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             _expected_income_csv_file.Populate_records_from_original_file_load();
         }
 
+        public void Generate_ad_hoc_data(
+            IInputOutput input_output,
+            ISpreadsheet spreadsheet,
+            ICSVFile<BankRecord> pending_file,
+            BudgetingMonths budgeting_months,
+            DataLoadingInformation<ActualBankRecord, BankRecord> data_loading_info)
+        {
+        }
+
         public void Update_expected_income_record_when_matched(ICSVRecord source_record, ICSVRecord matched_record)
         {
             _expected_income_file.Update_expected_income_record_when_matched(source_record, matched_record);

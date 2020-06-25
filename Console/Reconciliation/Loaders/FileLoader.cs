@@ -105,6 +105,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             Load_pending_data(pending_file_io, pending_file, data_loading_info);
             Merge_budget_data(spreadsheet, pending_file, budgeting_months, data_loading_info);
             Merge_other_data(spreadsheet, pending_file, budgeting_months, data_loading_info);
+            Generate_ad_hoc_data(spreadsheet, pending_file, budgeting_months, data_loading_info);
             Merge_unreconciled_data(spreadsheet, pending_file, data_loading_info);
             var reconciliator = Load_third_party_and_owned_files_into_reconciliator<TThirdPartyType, TOwnedType>(
                 data_loading_info, 
@@ -114,6 +115,17 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             var reconciliation_interface = Create_reconciliation_interface(data_loading_info, reconciliator, matcher);
 
             return reconciliation_interface;
+        }
+
+        private void Generate_ad_hoc_data<TThirdPartyType, TOwnedType>(
+                ISpreadsheet spreadsheet,
+                ICSVFile<TOwnedType> pending_file,
+                BudgetingMonths budgeting_months,
+                DataLoadingInformation<TThirdPartyType, TOwnedType> data_loading_info)
+            where TThirdPartyType : ICSVRecord, new()
+            where TOwnedType : ICSVRecord, new()
+        {
+            data_loading_info.Loader.Generate_ad_hoc_data(_input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
         }
 
         public void Load_pending_data<TThirdPartyType, TOwnedType>(

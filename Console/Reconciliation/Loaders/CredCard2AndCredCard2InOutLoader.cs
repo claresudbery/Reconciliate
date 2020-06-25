@@ -105,6 +105,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 input_output: input_output);
         }
 
+        public void Generate_ad_hoc_data(
+            IInputOutput input_output,
+            ISpreadsheet spreadsheet,
+            ICSVFile<CredCard2InOutRecord> pending_file,
+            BudgetingMonths budgeting_months,
+            DataLoadingInformation<CredCard2Record, CredCard2InOutRecord> data_loading_info)
+        {
+        }
+
         public void Do_actions_which_require_third_party_data_access(
             IDataFile<CredCard2Record> third_party_file,
             IDataFile<CredCard2InOutRecord> owned_file,

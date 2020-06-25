@@ -90,6 +90,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             // so we do it below in Do_actions_which_require_third_party_data_access.
         }
 
+        public void Generate_ad_hoc_data(
+            IInputOutput input_output,
+            ISpreadsheet spreadsheet,
+            ICSVFile<BankRecord> pending_file,
+            BudgetingMonths budgeting_months,
+            DataLoadingInformation<ActualBankRecord, BankRecord> data_loading_info)
+        {
+        }
+
         private void Add_most_recent_credit_card_direct_debits(
             IInputOutput input_output,
             ISpreadsheet spreadsheet,

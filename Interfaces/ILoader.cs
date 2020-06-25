@@ -22,5 +22,12 @@ namespace Interfaces
             IDataFile<TOwnedType> owned_file,
             ISpreadsheet spreadsheet,
             IInputOutput input_output);
+
+        void Generate_ad_hoc_data(
+            IInputOutput input_output,
+            ISpreadsheet spreadsheet,
+            ICSVFile<TOwnedType> pending_file,
+            BudgetingMonths budgeting_months,
+            DataLoadingInformation<TThirdPartyType, TOwnedType> data_loading_info);
     }
 }
