@@ -90,7 +90,7 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             int result = week_getter.Num_weeks_between_dates(start_date, end_date);
 
             // Assert
-            Assert.AreEqual(expected_result, result);
+            Assert.AreEqual(expected_result, result, $"Expected {expected_result} but got {result}");
         }
 
         [Test]

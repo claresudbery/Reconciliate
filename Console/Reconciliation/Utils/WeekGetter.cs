@@ -31,7 +31,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             Day_should_be(start_date, DayOfWeek.Saturday, "Start", "Saturday");
             Day_should_be(end_date, DayOfWeek.Friday, "End", "Friday");
 
-            return 0;
+            return (end_date.AddDays(1) - start_date).Duration().Days / 7;
         }
 
         private void Day_should_be(DateTime date, DayOfWeek expected_day, string date_description, string day_description)
