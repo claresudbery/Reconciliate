@@ -68,7 +68,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
             var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
             var mock_bank_out_file_io = new Mock<IFileIO<BankRecord>>();
-            var budgeting_months = new BudgetingMonths();
+            var budgeting_months = new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 };
             mock_pending_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), It.IsAny<char>()))
                 .Returns(new List<BankRecord>());
             mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
@@ -416,7 +416,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
             var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
             var mock_bank_out_file_io = new Mock<IFileIO<BankRecord>>();
-            var budgeting_months = new BudgetingMonths();
+            var budgeting_months = new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 };
             mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord>());
             mock_bank_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
@@ -455,6 +455,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_pending_file.Verify(x => x.Write_to_file_as_source_lines(loading_info.File_paths.Owned_file_name));
             mock_input_output.Verify(x => x.Output_line("Loading data from pending file (which you should have already split out, if necessary)..."));
             mock_input_output.Verify(x => x.Output_line("Merging budget data with pending data..."));
+            mock_input_output.Verify(x => x.Output_line("Merging other data..."));
+            mock_input_output.Verify(x => x.Output_line("Generating ad hoc data..."));
             mock_input_output.Verify(x => x.Output_line("Merging unreconciled rows from spreadsheet with pending and budget data..."));
             mock_input_output.Verify(x => x.Output_line("Copying merged data (from pending, unreconciled, and budgeting) into main 'owned' csv file..."));
             mock_input_output.Verify(x => x.Output_line("Loading data back in from 'owned' and 'third party' files..."));
@@ -476,7 +478,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
             var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
             var mock_bank_out_file_io = new Mock<IFileIO<BankRecord>>();
-            var budgeting_months = new BudgetingMonths();
+            var budgeting_months = new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 };
             mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord>());
             mock_bank_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
@@ -512,6 +514,52 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         }
 
         [Test]
+        public void M_WillCallGenerateAdHocDataWithPendingFile_ForPassedInLoader()
+        {
+            // Arrange
+            var mock_input_output = new Mock<IInputOutput>();
+            var reconciliate = new FileLoader(mock_input_output.Object, new Clock());
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_out_file_io = new Mock<IFileIO<BankRecord>>();
+            var budgeting_months = new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 };
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+                .Returns(new List<ActualBankRecord>());
+            mock_bank_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+                .Returns(new List<BankRecord>());
+            var mock_loader = new Mock<ILoader<ActualBankRecord, BankRecord>>();
+            mock_loader.Setup(x => x.Create_new_third_party_file(It.IsAny<IFileIO<ActualBankRecord>>())).Returns(new ActualBankInFile(new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object)));
+            mock_loader.Setup(x => x.Create_new_owned_file(It.IsAny<IFileIO<BankRecord>>())).Returns(new GenericFile<BankRecord>(new CSVFile<BankRecord>(mock_bank_out_file_io.Object)));
+            var loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord>
+            {
+                Loader = mock_loader.Object,
+                File_paths = new FilePaths()
+            };
+            var mock_matcher = new Mock<IMatcher>();
+
+            // Act
+            var reconciliation_interface = reconciliate.Load<ActualBankRecord, BankRecord>(
+                mock_spreadsheet.Object,
+                mock_pending_file_io.Object,
+                mock_pending_file.Object,
+                mock_actual_bank_file_io.Object,
+                mock_bank_out_file_io.Object,
+                budgeting_months,
+                loading_info,
+                mock_matcher.Object);
+
+            // Assert
+            mock_loader.Verify(x => x.Generate_ad_hoc_data(
+                mock_input_output.Object,
+                mock_spreadsheet.Object,
+                mock_pending_file.Object,
+                budgeting_months,
+                loading_info), Times.Exactly(1));
+        }
+
+        [Test]
         public void LoadFilesAndMergeData_WillNotLoadData_WhenTesting()
         {
             // Arrange
@@ -526,7 +574,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 .Returns(new List<ActualBankRecord>());
             mock_bank_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<BankRecord>());
-            var budgeting_months = new BudgetingMonths();
+            var budgeting_months = new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 };
             var loading_info = new DummyLoader().Loading_info();
             loading_info.File_paths.Main_path = "This is not a path";
             bool exception_thrown = false;

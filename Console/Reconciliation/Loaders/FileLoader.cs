@@ -125,6 +125,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
+            _input_output.Output_line("Generating ad hoc data...");
             data_loading_info.Loader.Generate_ad_hoc_data(_input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
         }
 
@@ -167,6 +168,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             where TThirdPartyType : ICSVRecord, new()
             where TOwnedType : ICSVRecord, new()
         {
+            _input_output.Output_line("Merging other data...");
             data_loading_info.Loader.Merge_bespoke_data_with_pending_file(_input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
         }
 

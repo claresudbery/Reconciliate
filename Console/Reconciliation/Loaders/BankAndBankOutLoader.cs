@@ -4,6 +4,7 @@ using System.Linq;
 using ConsoleCatchall.Console.Reconciliation.Extensions;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Records;
+using ConsoleCatchall.Console.Reconciliation.Utils;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
@@ -97,6 +98,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             BudgetingMonths budgeting_months,
             DataLoadingInformation<ActualBankRecord, BankRecord> data_loading_info)
         {
+            var week_getter = new WeekGetter(input_output, new Clock());
+            var weeks = week_getter.Decide_num_weeks("weekly spends", budgeting_months);
         }
 
         private void Add_most_recent_credit_card_direct_debits(
