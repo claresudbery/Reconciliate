@@ -96,6 +96,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             return 0;
         }
 
+        public string Get_text(string sheet_name, string code, int text_column = 4)
+        {
+            throw new NotImplementedException();
+        }
+
         public double Get_amount(string sheet_name, int row, int column)
         {
             _debug_log.Append_to_file_as_source_line($"{Get_method_name()}: sheetName {sheet_name}, row {row}, column {column}");
@@ -205,6 +210,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
 
         public void Update_text(string sheet_name, int text_row, int text_column, string new_text)
         {
+        }
+
+        public void Update_text(string sheet_name, string code, string new_text, int text_column = 4)
+        {
+            throw new NotImplementedException();
         }
 
         public void Update_amount(string sheet_name, int amount_row, int amount_column, double new_amount)

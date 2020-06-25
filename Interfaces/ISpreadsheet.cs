@@ -28,7 +28,7 @@ namespace Interfaces
         void Add_new_transaction_to_savings(DateTime new_date, double new_amount);
         void Update_living_expenses(int num_weeks);
         void Update_groceries(int num_weeks);
-        void Update_owed_CHB(int num_months);
+        void Update_owed_CHB(BudgetingMonths budgeting_months);
         void Update_balance_on_totals_sheet(
             string balance_code,
             double new_balance,

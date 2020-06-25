@@ -150,6 +150,11 @@ namespace ExcelLibrary
             Inner_spreadsheet.Update_amount(sheet_name, amount_code, new_amount, amount_column, code_column);
         }
 
+        public void Update_text(string sheet_name, string code, string new_text, int text_column = 4)
+        {
+            Inner_spreadsheet.Update_text(sheet_name, code, new_text, text_column);
+        }
+
         public void Update_amount_and_text(
             string sheet_name, 
             string amount_code, 
@@ -175,6 +180,11 @@ namespace ExcelLibrary
         public string Get_text(string sheet_name, int row, int column)
         {
             return Inner_spreadsheet.Get_text(sheet_name, row, column);
+        }
+
+        public string Get_text(string sheet_name, string code, int text_column = 4)
+        {
+            return Inner_spreadsheet.Get_text(sheet_name, code, text_column);
         }
 
         public int Find_row_number_of_first_row_containing_cell(string sheet_name, string target_cell_text, int expected_column_number = 2)
@@ -625,6 +635,12 @@ namespace ExcelLibrary
                 Update_amount(sheet_name, row, amount_column, new_amount);
             }
 
+            public void Update_text(string sheet_name, string code, string new_text, int text_column = 4)
+            {
+                int row = Find_row_number_of_last_row_containing_cell(sheet_name, code, new List<int> { text_column });
+                Update_text(sheet_name, row, text_column, new_text);
+            }
+
             public void Update_amount_and_text(
                 string sheet_name, 
                 string amount_code, 
@@ -673,6 +689,21 @@ namespace ExcelLibrary
                 if (null == excel_cell)
                 {
                     throw new Exception(ReconConsts.MissingCell + $"{sheet_name}, row {row}, column {column}.");
+                }
+
+                return (string)excel_cell;
+            }
+
+            internal string Get_text(string sheet_name, string code, int text_column = 4)
+            {
+                const int codeColumn = 1;
+                int row = Find_row_number_of_last_row_containing_cell(sheet_name, code, new List<int> { codeColumn });
+
+                var excel_cell = Read_specified_cell(sheet_name, row, text_column);
+
+                if (null == excel_cell)
+                {
+                    throw new Exception(ReconConsts.MissingCell + $"{sheet_name}, amountCode {code}.");
                 }
 
                 return (string)excel_cell;

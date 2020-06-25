@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using ConsoleCatchall.Console.Reconciliation.Exceptions;
 using ConsoleCatchall.Console.Reconciliation.Records;
@@ -182,12 +183,22 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             _spreadsheet_io.Update_amount(MainSheetNames.Expected_out, Codes.Code075, new_amount);
         }
 
-        public void Update_owed_CHB(int num_months)
+        public void Update_owed_CHB(BudgetingMonths budgeting_months)
         {
+            var num_months = budgeting_months.Num_budgeting_months();
             var base_amount = _spreadsheet_io.Get_amount(MainSheetNames.Budget_out, Codes.Code003);
             var current_amount = _spreadsheet_io.Get_amount(MainSheetNames.Expected_out, Codes.Code003, 2);
             var new_amount = current_amount + (base_amount * num_months);
             _spreadsheet_io.Update_amount(MainSheetNames.Expected_out, Codes.Code003, new_amount);
+
+            var text = _spreadsheet_io.Get_text(MainSheetNames.Expected_out, Codes.Code003);
+            if (!String.IsNullOrEmpty(text))
+            {
+                text = text.Substring(0, text.Length - 9)
+                       + budgeting_months.Budgeting_end_date().ToString("MMM", CultureInfo.CurrentCulture)
+                       + $" {budgeting_months.Budgeting_end_date().Year})";
+                _spreadsheet_io.Update_text(MainSheetNames.Expected_out, Codes.Code003, text);
+            }
         }
 
         public DateTime Get_next_unplanned_month<TRecordType>(BudgetItemListData budget_item_list_data = null)

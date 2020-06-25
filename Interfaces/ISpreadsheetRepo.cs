@@ -39,10 +39,12 @@ namespace Interfaces
         void Delete_specified_rows(String sheet_name, int first_row_number, int last_row_number);
         DateTime Get_date(string sheet_name, int row, int column);
         string Get_text(string sheet_name, int row, int column);
+        string Get_text(string sheet_name, string code, int text_column = 4);
         double Get_amount(string sheet_name, int row, int column);
         double Get_amount(string sheet_name, string code, int amount_column = 3);
         void Update_date(string sheet_name, int date_row, int date_column, DateTime new_date);
         void Update_text(string sheet_name, int text_row, int text_column, string new_text);
+        void Update_text(string sheet_name, string code, string new_text, int text_column = 4);
         void Update_amount(string sheet_name, int amount_row, int amount_column, double new_amount);
         void Update_amount(string sheet_name, string amount_code, double new_amount, int amount_column = 2, int code_column = 1);
         void Update_amount_and_text(

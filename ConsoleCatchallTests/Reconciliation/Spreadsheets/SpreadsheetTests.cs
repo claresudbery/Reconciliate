@@ -857,9 +857,15 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
                 .Returns(BaseAmount);
             mock_spreadsheet_repo.Setup(x => x.Get_amount(MainSheetNames.Expected_out, Codes.Code003, 2))
                 .Returns(PreviousAmount);
+            var budgeting_months = new BudgetingMonths
+            {
+                Next_unplanned_month = 1,
+                Last_month_for_budget_planning = 2,
+                Start_year = 2020
+            };
 
             // Act
-            spreadsheet.Update_owed_CHB(NumMonths);
+            spreadsheet.Update_owed_CHB(budgeting_months);
 
             // Assert
             mock_spreadsheet_repo.Verify(x => x.Update_amount(
@@ -867,6 +873,34 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
                 Codes.Code003,
                 ExpectedAmount,
                 2,1));
+        }
+
+        [Test]
+        public void Will_update_text_when_updating_owed_CHB()
+        {
+            // Arrange
+            const string OriginalText = "CHB owed (Apr to Jun 2020)";
+            const string ExpectedText = "CHB owed (Apr to Aug 2020)";
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            mock_spreadsheet_repo.Setup(x => x.Get_text(MainSheetNames.Expected_out, Codes.Code003, 4))
+                .Returns(OriginalText);
+            var budgeting_months = new BudgetingMonths
+            {
+                Next_unplanned_month = 7,
+                Last_month_for_budget_planning = 8,
+                Start_year = 2020
+            };
+
+            // Act
+            spreadsheet.Update_owed_CHB(budgeting_months);
+
+            // Assert
+            mock_spreadsheet_repo.Verify(x => x.Update_text(
+                MainSheetNames.Expected_out,
+                Codes.Code003,
+                ExpectedText,
+                4));
         }
     }
 }

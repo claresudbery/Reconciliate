@@ -274,7 +274,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             );
 
             // Assert
-            mock_spreadsheet.Verify(x => x.Update_owed_CHB(It.IsAny<int>()));
+            mock_spreadsheet.Verify(x => x.Update_owed_CHB(It.IsAny<BudgetingMonths>()));
         }
     }
 }

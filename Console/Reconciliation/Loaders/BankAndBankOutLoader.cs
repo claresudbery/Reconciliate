@@ -119,7 +119,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
         private void Update_owed_CHB(ISpreadsheet spreadsheet, BudgetingMonths budgeting_months)
         {
-            spreadsheet.Update_owed_CHB(budgeting_months.Num_budgeting_months());
+            spreadsheet.Update_owed_CHB(budgeting_months);
         }
 
         private void Add_most_recent_credit_card_direct_debits(
