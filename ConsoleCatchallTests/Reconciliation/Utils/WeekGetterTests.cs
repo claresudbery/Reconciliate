@@ -80,24 +80,84 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
             int end_year,
             int expected_result)
         {
+            // Arrange 
+            DateTime start_date = new DateTime(start_year, start_month, start_day);
+            DateTime end_date = new DateTime(end_year, end_month, end_day);
+            var mock_input_output = new Mock<IInputOutput>();
+            var week_getter = new WeekGetter(mock_input_output.Object);
+
+            // Act
+            int result = week_getter.Num_weeks_between_dates(start_date, end_date);
+
+            // Assert
+            Assert.AreEqual(expected_result, result);
         }
 
+        [Test]
         public void Will_throw_exception_if_start_date_not_Saturday_when_calculating_weeks_between_dates()
         {
+            // Arrange 
+            DateTime start_date = new DateTime(2020, 7, 12);
+            DateTime end_date = new DateTime(2020, 7, 31);
+            var mock_input_output = new Mock<IInputOutput>();
+            var week_getter = new WeekGetter(mock_input_output.Object);
+            bool exception_thrown = false;
+            var exception_message = "";
+
+            // Act
+            try
+            {
+                week_getter.Num_weeks_between_dates(start_date, end_date);
+            }
+            catch (Exception exception)
+            {
+                exception_thrown = true;
+                exception_message = exception.Message;
+            }
+
+            // Assert
+            Assert.AreEqual(true, exception_thrown);
+            Assert.IsTrue(exception_message.Contains("Saturday"), "Exception message should refer to Saturday");
         }
 
+        [Test]
         public void Will_throw_exception_if_end_date_not_Friday_when_calculating_weeks_between_dates()
         {
+            // Arrange 
+            DateTime start_date = new DateTime(2020, 7, 11);
+            DateTime end_date = new DateTime(2020, 7, 30);
+            var mock_input_output = new Mock<IInputOutput>();
+            var week_getter = new WeekGetter(mock_input_output.Object);
+            bool exception_thrown = false;
+            var exception_message = "";
+
+            // Act
+            try
+            {
+                week_getter.Num_weeks_between_dates(start_date, end_date);
+            }
+            catch (Exception exception)
+            {
+                exception_thrown = true;
+                exception_message = exception.Message;
+            }
+
+            // Assert
+            Assert.AreEqual(true, exception_thrown);
+            Assert.IsTrue(exception_message.Contains("Friday"), "Exception message should refer to Friday");
         }
 
+        [Test]
         public void Will_ask_user_which_Saturday_to_start_on_when_deciding_num_weeks()
         {
         }
 
+        [Test]
         public void Will_ask_user_which_Friday_to_end_on_when_deciding_num_weeks()
         {
         }
-
+        
+        [Test]
         public void Will_not_ask_user_which_Friday_to_end_on_when_month_ends_on_Friday()
         {
         }

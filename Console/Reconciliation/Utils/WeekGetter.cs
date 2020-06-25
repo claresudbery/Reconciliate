@@ -26,9 +26,20 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             return new Weeks();
         }
 
-        public int Num_weeks_between_dates(DateTime start, DateTime end)
+        public int Num_weeks_between_dates(DateTime start_date, DateTime end_date)
         {
+            Day_should_be(start_date, DayOfWeek.Saturday, "Start", "Saturday");
+            Day_should_be(end_date, DayOfWeek.Friday, "End", "Friday");
+
             return 0;
+        }
+
+        private void Day_should_be(DateTime date, DayOfWeek expected_day, string date_description, string day_description)
+        {
+            if (date.DayOfWeek != expected_day)
+            {
+                throw new Exception($"{date_description} date should be a {day_description} when calculating num weeks.");
+            }
         }
 
         public DateTime Find_previous_Saturday(DateTime today)
