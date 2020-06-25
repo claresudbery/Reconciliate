@@ -168,6 +168,18 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             _spreadsheet_io.Update_amount(sheet_name, row_number, first_column_number + 1, new_amount);
         }
 
+        public void Update_living_expenses(int num_weeks)
+        {
+            var base_amount = _spreadsheet_io.Get_amount(MainSheetNames.Budget_out, Codes.Code004);
+            _spreadsheet_io.Update_amount(MainSheetNames.Expected_out, Codes.Code074, num_weeks * base_amount);
+        }
+
+        public void Update_groceries(int num_weeks)
+        {
+            var base_amount = _spreadsheet_io.Get_amount(MainSheetNames.Budget_out, Codes.Code005);
+            _spreadsheet_io.Update_amount(MainSheetNames.Expected_out, Codes.Code075, num_weeks * base_amount);
+        }
+
         public DateTime Get_next_unplanned_month<TRecordType>(BudgetItemListData budget_item_list_data = null)
             where TRecordType : ICSVRecord, new()
         {

@@ -796,5 +796,77 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             // Assert
             Assert.AreEqual(description, bank_row.Description);
         }
+
+        [Test]
+        public void Will_use_Code004_to_get_living_expenses_base_amount()
+        {
+            // Arrange
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            const int irrelevant = 7;
+
+            // Act
+            spreadsheet.Update_living_expenses(irrelevant);
+
+            // Assert
+            mock_spreadsheet_repo.Verify(x => x.Get_amount(
+                MainSheetNames.Budget_out,
+                Codes.Code004,
+                It.IsAny<int>()));
+        }
+
+        [Test]
+        public void Will_use_Code074_to_update_living_expenses()
+        {
+            // Arrange
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            const int irrelevant = 7;
+
+            // Act
+            spreadsheet.Update_living_expenses(irrelevant);
+
+            // Assert
+            mock_spreadsheet_repo.Verify(x => x.Update_amount(
+                MainSheetNames.Expected_out,
+                Codes.Code074,
+                It.IsAny<double>(), It.IsAny<int>(), It.IsAny<int>()));
+        }
+
+        [Test]
+        public void Will_use_Code005_to_get_groceries_base_amount()
+        {
+            // Arrange
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            const int irrelevant = 7;
+
+            // Act
+            spreadsheet.Update_groceries(irrelevant);
+
+            // Assert
+            mock_spreadsheet_repo.Verify(x => x.Get_amount(
+                MainSheetNames.Budget_out,
+                Codes.Code005,
+                It.IsAny<int>()));
+        }
+
+        [Test]
+        public void Will_use_Code075_to_update_groceries()
+        {
+            // Arrange
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            const int irrelevant = 7;
+
+            // Act
+            spreadsheet.Update_groceries(irrelevant);
+
+            // Assert
+            mock_spreadsheet_repo.Verify(x => x.Update_amount(
+                MainSheetNames.Expected_out,
+                Codes.Code075,
+                It.IsAny<double>(), It.IsAny<int>(), It.IsAny<int>()));
+        }
     }
 }

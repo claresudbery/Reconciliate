@@ -23,13 +23,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
         public Weeks Decide_num_weeks(string context_description, BudgetingMonths budgeting_months)
         {
             var start_date = Find_previous_Saturday(_clock.Today_date_time());
-            start_date = Decide_date(start_date, "Saturday", context_description);
+            start_date = Decide_date(start_date, "Saturday", context_description, "start");
 
             var end_date = budgeting_months.Budgeting_end_date().AddMonths(1).AddDays(-1);
             if (end_date.DayOfWeek != DayOfWeek.Friday)
             {
                 end_date = Find_previous_Friday(end_date);
-                end_date = Decide_date(end_date, "Friday", context_description);
+                end_date = Decide_date(end_date, "Friday", context_description, "end");
             }
             
             return new Weeks
@@ -39,11 +39,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Utils
             };
         }
 
-        private DateTime Decide_date(DateTime date, string day_name, string context_description)
+        private DateTime Decide_date(DateTime date, string day_name, string context_description, string start_or_end)
         {
             _input_output.Output_line($"1. {date.ToShortDateString()}");
             _input_output.Output_line($"2. {date.AddDays(7).ToShortDateString()}");
-            var choice = _input_output.Get_input($"Which {day_name} do you want to start with for {context_description}? Enter 1 or 2:");
+            var choice = _input_output.Get_input($"Which {day_name} do you want to {start_or_end} with for {context_description}? Enter 1 or 2:");
             if (choice == "2")
             {
                 date = date.AddDays(7);

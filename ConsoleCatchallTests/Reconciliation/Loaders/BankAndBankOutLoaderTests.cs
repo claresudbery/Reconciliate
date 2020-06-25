@@ -216,5 +216,45 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 ReconConsts.BankBalanceCodeColumn,
                 It.IsAny<IInputOutput>()));
         }
+
+        [Test]
+        public void Will_update_living_expenses_when_generating_ad_hoc_data()
+        {
+            // Arrange
+            var bank_and_bank_out_loader = new BankAndBankOutLoader();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            
+            // Act
+            bank_and_bank_out_loader.Generate_ad_hoc_data(
+                new Mock<IInputOutput>().Object,
+                mock_spreadsheet.Object,
+                new Mock<ICSVFile<BankRecord>>().Object,
+                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 },
+                new DataLoadingInformation<ActualBankRecord, BankRecord>()
+                );
+
+            // Assert
+            mock_spreadsheet.Verify(x => x.Update_living_expenses(It.IsAny<int>()));
+        }
+
+        [Test]
+        public void Will_update_groceries_when_generating_ad_hoc_data()
+        {
+            // Arrange
+            var bank_and_bank_out_loader = new BankAndBankOutLoader();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+
+            // Act
+            bank_and_bank_out_loader.Generate_ad_hoc_data(
+                new Mock<IInputOutput>().Object,
+                mock_spreadsheet.Object,
+                new Mock<ICSVFile<BankRecord>>().Object,
+                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 },
+                new DataLoadingInformation<ActualBankRecord, BankRecord>()
+            );
+
+            // Assert
+            mock_spreadsheet.Verify(x => x.Update_groceries(It.IsAny<int>()));
+        }
     }
 }

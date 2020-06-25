@@ -26,6 +26,8 @@ namespace Interfaces
         double Get_planning_money_paid_by_guests();
         void Insert_new_row_on_expected_out(double new_amount, string new_notes);
         void Add_new_transaction_to_savings(DateTime new_date, double new_amount);
+        void Update_living_expenses(int num_weeks);
+        void Update_groceries(int num_weeks);
         void Update_balance_on_totals_sheet(
             string balance_code,
             double new_balance,
