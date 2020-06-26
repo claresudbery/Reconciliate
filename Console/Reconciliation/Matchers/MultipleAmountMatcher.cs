@@ -19,7 +19,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
             var match_lists = Find_match_lists(
                 source_record.Main_amount(),
-                owned_file.Records.Where(x => !x.Matched) as IEnumerable<ICSVRecord>).ToList();
+                owned_file.Records.Where(
+                    x => !x.Matched
+                         && x.Date >= source_record.Date.AddDays(-5)
+                         && x.Date <= source_record.Date.AddDays(5)
+                ) as IEnumerable<ICSVRecord>).ToList();
 
             var debug = match_lists.Select(x => x.Actual_amount()).ToList();
 
