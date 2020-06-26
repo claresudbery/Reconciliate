@@ -637,7 +637,8 @@ namespace ExcelLibrary
 
             public void Update_text(string sheet_name, string code, string new_text, int text_column = 4)
             {
-                int row = Find_row_number_of_last_row_containing_cell(sheet_name, code, new List<int> { text_column });
+                int code_column = 1;
+                int row = Find_row_number_of_last_row_containing_cell(sheet_name, code, new List<int> { code_column });
                 Update_text(sheet_name, row, text_column, new_text);
             }
 
