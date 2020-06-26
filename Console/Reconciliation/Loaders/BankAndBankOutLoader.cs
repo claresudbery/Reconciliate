@@ -122,7 +122,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             var num_months = 0;
             if (int.TryParse(input, out num_months))
             {
-                spreadsheet.Update_item(num_months, budget_code, expected_out_code);
+                spreadsheet.Update_expected_out(num_months, budget_code, expected_out_code);
             }
         }
 
@@ -144,7 +144,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         {
             var week_getter = new WeekGetter(input_output, new Clock());
             var weeks = week_getter.Decide_num_weeks(item, budgeting_months);
-            spreadsheet.Update_item(weeks.NumWeeks, budget_code, expected_out_code);
+            spreadsheet.Update_expected_out(weeks.NumWeeks, budget_code, expected_out_code);
         }
 
         private void Update_owed_CHB(ISpreadsheet spreadsheet, BudgetingMonths budgeting_months)

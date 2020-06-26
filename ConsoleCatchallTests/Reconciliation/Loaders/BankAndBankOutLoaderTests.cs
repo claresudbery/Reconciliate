@@ -235,7 +235,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 );
 
             // Assert
-            mock_spreadsheet.Verify(x => x.Update_item(
+            mock_spreadsheet.Verify(x => x.Update_expected_out(
                 It.IsAny<int>(),
                 Codes.Code004,
                 Codes.Code074));
@@ -261,7 +261,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             );
 
             // Assert
-            mock_spreadsheet.Verify(x => x.Update_item(
+            mock_spreadsheet.Verify(x => x.Update_expected_out(
                 It.IsAny<int>(),
                 Codes.Code005,
                 Codes.Code075));
@@ -289,7 +289,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             );
 
             // Assert
-            mock_spreadsheet.Verify(x => x.Update_item(
+            mock_spreadsheet.Verify(x => x.Update_expected_out(
                 It.IsAny<int>(),
                 Codes.Code078,
                 Codes.Code078));
@@ -317,7 +317,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             );
 
             // Assert
-            mock_spreadsheet.Verify(x => x.Update_item(
+            mock_spreadsheet.Verify(x => x.Update_expected_out(
                 It.IsAny<int>(),
                 Codes.Code006,
                 Codes.Code006));
@@ -345,7 +345,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             );
 
             // Assert
-            mock_spreadsheet.Verify(x => x.Update_item(
+            mock_spreadsheet.Verify(x => x.Update_expected_out(
                 It.IsAny<int>(),
                 Codes.Code007,
                 Codes.Code007));
@@ -373,7 +373,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             );
 
             // Assert
-            mock_spreadsheet.Verify(x => x.Update_item(
+            mock_spreadsheet.Verify(x => x.Update_expected_out(
                 It.IsAny<int>(),
                 Codes.Code011,
                 Codes.Code011));

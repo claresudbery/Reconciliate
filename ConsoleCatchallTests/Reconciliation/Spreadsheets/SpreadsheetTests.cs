@@ -812,7 +812,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
                 .Returns(BaseAmount);
 
             // Act
-            spreadsheet.Update_item(Multiplier, budget_code, expected_out_code);
+            spreadsheet.Update_expected_out(Multiplier, budget_code, expected_out_code);
 
             // Assert
             mock_spreadsheet_repo.Verify(x => x.Update_amount(

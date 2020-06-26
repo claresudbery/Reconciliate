@@ -169,7 +169,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             _spreadsheet_io.Update_amount(sheet_name, row_number, first_column_number + 1, new_amount);
         }
         
-        public void Update_item(int multiplier, string budget_code, string expected_out_code)
+        public void Update_expected_out(int multiplier, string budget_code, string expected_out_code)
         {
             var base_amount = _spreadsheet_io.Get_amount(MainSheetNames.Budget_out, budget_code);
             var new_amount = multiplier * base_amount;
