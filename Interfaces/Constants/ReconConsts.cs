@@ -94,7 +94,7 @@
         public const string MissingCell = "Cell does not exist: ";
 
         public const string EnterMonths =
-                "Enter the last month you want to plan for. \nBudget amounts will be added from {0} to the month you specify (inclusive). \nEnter 0 if no budgeting required.";
+                "Enter the last month you want to plan for. \nBudget amounts will be added from {0} to the month you specify (inclusive). \nEnter 0 if no budgeting required, for instance MBNA often has no monthly budget items.";
 
         public const string ConfirmBadMonth = "Your input was 0 or invalid. Would you like to proceed without adding monthly / annual budget amounts? Enter Y for Yes";
 

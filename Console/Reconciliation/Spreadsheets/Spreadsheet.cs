@@ -203,9 +203,16 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             try
             {
                 budget_item_description = Get_budget_item_description(budget_item_list_data);
-                TRecordType record = Get_last_record_with_specified_description<TRecordType>(budget_item_description, budget_item_list_data);
 
-                next_unplanned_month = record.Date.AddMonths(1);
+                if (null != budget_item_description)
+                {
+                    TRecordType record = Get_last_record_with_specified_description<TRecordType>(budget_item_description, budget_item_list_data);
+                    next_unplanned_month = record.Date.AddMonths(1);
+                }
+                else
+                {
+                    next_unplanned_month = DateTime.Today.AddMonths(1);
+                }
             }
             catch (Exception)
             {
