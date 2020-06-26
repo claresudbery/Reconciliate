@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using ConsoleCatchall.Console.Reconciliation.Extensions;
 using ConsoleCatchall.Console.Reconciliation.Files;
@@ -98,23 +99,52 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             BudgetingMonths budgeting_months,
             DataLoadingInformation<ActualBankRecord, BankRecord> data_loading_info)
         {
-            Update_living_expenses(input_output, spreadsheet, budgeting_months);
-            Update_groceries(input_output, spreadsheet, budgeting_months);
             Update_owed_CHB(spreadsheet, budgeting_months);
+
+            Update_weekly_item(input_output, spreadsheet, budgeting_months, "weekly spends", Codes.Code004, Codes.Code074);
+            Update_weekly_item(input_output, spreadsheet, budgeting_months, "grocery shopping", Codes.Code005, Codes.Code075);
+
+            Update_monthly_item(input_output, spreadsheet, budgeting_months, "yoga", Codes.Code078, Codes.Code078);
+            Update_monthly_item(input_output, spreadsheet, budgeting_months, "fuel", Codes.Code006, Codes.Code006);
+            Update_monthly_item(input_output, spreadsheet, budgeting_months, "vet", Codes.Code007, Codes.Code007);
+            Update_monthly_item(input_output, spreadsheet, budgeting_months, "internet", Codes.Code011, Codes.Code011);
         }
 
-        private void Update_living_expenses(IInputOutput input_output, ISpreadsheet spreadsheet, BudgetingMonths budgeting_months)
+        private void Update_monthly_item(
+            IInputOutput input_output,
+            ISpreadsheet spreadsheet,
+            BudgetingMonths budgeting_months,
+            string item, 
+            string budget_code, 
+            string expected_out_code)
         {
-            var week_getter = new WeekGetter(input_output, new Clock());
-            var weeks = week_getter.Decide_num_weeks("weekly spends", budgeting_months);
-            spreadsheet.Update_living_expenses(weeks.NumWeeks);
+            var input = input_output.Get_input(Num_months_question(budgeting_months, item));
+            var num_months = 0;
+            if (int.TryParse(input, out num_months))
+            {
+                spreadsheet.Update_item(num_months, budget_code, expected_out_code);
+            }
         }
 
-        private void Update_groceries(IInputOutput input_output, ISpreadsheet spreadsheet, BudgetingMonths budgeting_months)
+        private string Num_months_question(BudgetingMonths budgeting_months, string item)
+        {
+            var months = budgeting_months.Num_budgeting_months();
+            var start = budgeting_months.Budgeting_start_date().ToString("MMM", CultureInfo.CurrentCulture);
+            var end = budgeting_months.Budgeting_end_date().ToString("MMM", CultureInfo.CurrentCulture);
+            return $"You're budgeting for {months} months, {start} til {end}. How many months of {item} do you want to budget for?";
+        }
+
+        private void Update_weekly_item(
+            IInputOutput input_output, 
+            ISpreadsheet spreadsheet, 
+            BudgetingMonths budgeting_months,
+            string item,
+            string budget_code,
+            string expected_out_code)
         {
             var week_getter = new WeekGetter(input_output, new Clock());
-            var weeks = week_getter.Decide_num_weeks("grocery shopping", budgeting_months);
-            spreadsheet.Update_groceries(weeks.NumWeeks);
+            var weeks = week_getter.Decide_num_weeks(item, budgeting_months);
+            spreadsheet.Update_item(weeks.NumWeeks, budget_code, expected_out_code);
         }
 
         private void Update_owed_CHB(ISpreadsheet spreadsheet, BudgetingMonths budgeting_months)

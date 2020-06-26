@@ -222,11 +222,12 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         {
             // Arrange
             var bank_and_bank_out_loader = new BankAndBankOutLoader();
+            var mock_input_output = new Mock<IInputOutput>();
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             
             // Act
             bank_and_bank_out_loader.Generate_ad_hoc_data(
-                new Mock<IInputOutput>().Object,
+                mock_input_output.Object,
                 mock_spreadsheet.Object,
                 new Mock<ICSVFile<BankRecord>>().Object,
                 new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 },
@@ -234,7 +235,12 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 );
 
             // Assert
-            mock_spreadsheet.Verify(x => x.Update_living_expenses(It.IsAny<int>()));
+            mock_spreadsheet.Verify(x => x.Update_item(
+                It.IsAny<int>(),
+                Codes.Code004,
+                Codes.Code074));
+            mock_input_output.Verify(x => x.Get_input(
+                It.Is<string>(y => y.Contains("weekly spends")), ""));
         }
 
         [Test]
@@ -242,11 +248,12 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         {
             // Arrange
             var bank_and_bank_out_loader = new BankAndBankOutLoader();
+            var mock_input_output = new Mock<IInputOutput>();
             var mock_spreadsheet = new Mock<ISpreadsheet>();
 
             // Act
             bank_and_bank_out_loader.Generate_ad_hoc_data(
-                new Mock<IInputOutput>().Object,
+                mock_input_output.Object,
                 mock_spreadsheet.Object,
                 new Mock<ICSVFile<BankRecord>>().Object,
                 new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 },
@@ -254,7 +261,124 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             );
 
             // Assert
-            mock_spreadsheet.Verify(x => x.Update_groceries(It.IsAny<int>()));
+            mock_spreadsheet.Verify(x => x.Update_item(
+                It.IsAny<int>(),
+                Codes.Code005,
+                Codes.Code075));
+            mock_input_output.Verify(x => x.Get_input(
+                It.Is<string>(y => y.Contains("grocery shopping")), ""));
+        }
+
+        [Test]
+        public void Will_update_yoga_when_generating_ad_hoc_data()
+        {
+            // Arrange
+            var bank_and_bank_out_loader = new BankAndBankOutLoader();
+            var mock_input_output = new Mock<IInputOutput>();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_input_output.Setup(x => x.Get_input(It.Is<string>(y => y.Contains("yoga")), ""))
+                .Returns("2");
+
+            // Act
+            bank_and_bank_out_loader.Generate_ad_hoc_data(
+                mock_input_output.Object,
+                mock_spreadsheet.Object,
+                new Mock<ICSVFile<BankRecord>>().Object,
+                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 },
+                new DataLoadingInformation<ActualBankRecord, BankRecord>()
+            );
+
+            // Assert
+            mock_spreadsheet.Verify(x => x.Update_item(
+                It.IsAny<int>(),
+                Codes.Code078,
+                Codes.Code078));
+            mock_input_output.Verify(x => x.Get_input(
+                It.Is<string>(y => y.Contains("yoga")), ""));
+        }
+
+        [Test]
+        public void Will_update_fuel_when_generating_ad_hoc_data()
+        {
+            // Arrange
+            var bank_and_bank_out_loader = new BankAndBankOutLoader();
+            var mock_input_output = new Mock<IInputOutput>();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_input_output.Setup(x => x.Get_input(It.Is<string>(y => y.Contains("fuel")), ""))
+                .Returns("2");
+
+            // Act
+            bank_and_bank_out_loader.Generate_ad_hoc_data(
+                mock_input_output.Object,
+                mock_spreadsheet.Object,
+                new Mock<ICSVFile<BankRecord>>().Object,
+                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 },
+                new DataLoadingInformation<ActualBankRecord, BankRecord>()
+            );
+
+            // Assert
+            mock_spreadsheet.Verify(x => x.Update_item(
+                It.IsAny<int>(),
+                Codes.Code006,
+                Codes.Code006));
+            mock_input_output.Verify(x => x.Get_input(
+                It.Is<string>(y => y.Contains("fuel")), ""));
+        }
+
+        [Test]
+        public void Will_update_vet_when_generating_ad_hoc_data()
+        {
+            // Arrange
+            var bank_and_bank_out_loader = new BankAndBankOutLoader();
+            var mock_input_output = new Mock<IInputOutput>();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_input_output.Setup(x => x.Get_input(It.Is<string>(y => y.Contains("vet")), ""))
+                .Returns("2");
+
+            // Act
+            bank_and_bank_out_loader.Generate_ad_hoc_data(
+                mock_input_output.Object,
+                mock_spreadsheet.Object,
+                new Mock<ICSVFile<BankRecord>>().Object,
+                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 },
+                new DataLoadingInformation<ActualBankRecord, BankRecord>()
+            );
+
+            // Assert
+            mock_spreadsheet.Verify(x => x.Update_item(
+                It.IsAny<int>(),
+                Codes.Code007,
+                Codes.Code007));
+            mock_input_output.Verify(x => x.Get_input(
+                It.Is<string>(y => y.Contains("vet")), ""));
+        }
+
+        [Test]
+        public void Will_update_internet_when_generating_ad_hoc_data()
+        {
+            // Arrange
+            var bank_and_bank_out_loader = new BankAndBankOutLoader();
+            var mock_input_output = new Mock<IInputOutput>();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_input_output.Setup(x => x.Get_input(It.Is<string>(y => y.Contains("internet")), ""))
+                .Returns("2");
+
+            // Act
+            bank_and_bank_out_loader.Generate_ad_hoc_data(
+                mock_input_output.Object,
+                mock_spreadsheet.Object,
+                new Mock<ICSVFile<BankRecord>>().Object,
+                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 },
+                new DataLoadingInformation<ActualBankRecord, BankRecord>()
+            );
+
+            // Assert
+            mock_spreadsheet.Verify(x => x.Update_item(
+                It.IsAny<int>(),
+                Codes.Code011,
+                Codes.Code011));
+            mock_input_output.Verify(x => x.Get_input(
+                It.Is<string>(y => y.Contains("internet")), ""));
         }
 
         [Test]

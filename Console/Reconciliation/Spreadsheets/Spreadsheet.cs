@@ -168,19 +168,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             _spreadsheet_io.Update_date(sheet_name, row_number, first_column_number, new_date);
             _spreadsheet_io.Update_amount(sheet_name, row_number, first_column_number + 1, new_amount);
         }
-
-        public void Update_living_expenses(int num_weeks)
+        
+        public void Update_item(int multiplier, string budget_code, string expected_out_code)
         {
-            var base_amount = _spreadsheet_io.Get_amount(MainSheetNames.Budget_out, Codes.Code004);
-            var new_amount = num_weeks * base_amount;
-            _spreadsheet_io.Update_amount(MainSheetNames.Expected_out, Codes.Code074, new_amount);
-        }
-
-        public void Update_groceries(int num_weeks)
-        {
-            var base_amount = _spreadsheet_io.Get_amount(MainSheetNames.Budget_out, Codes.Code005);
-            var new_amount = num_weeks * base_amount;
-            _spreadsheet_io.Update_amount(MainSheetNames.Expected_out, Codes.Code075, new_amount);
+            var base_amount = _spreadsheet_io.Get_amount(MainSheetNames.Budget_out, budget_code);
+            var new_amount = multiplier * base_amount;
+            _spreadsheet_io.Update_amount(MainSheetNames.Expected_out, expected_out_code, new_amount);
         }
 
         public void Update_owed_CHB(BudgetingMonths budgeting_months)

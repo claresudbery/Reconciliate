@@ -798,47 +798,26 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         }
 
         [Test]
-        public void Will_calculate_living_expenses_as_num_weeks_times_base_amount_and_use_Code074_and_Code004()
+        public void Will_calculate_updated_item_amount_as_multiplier_times_base_amount_and_use_supplied_codes()
         {
             // Arrange
             const double BaseAmount = 20;
-            const int NumWeeks = 2;
-            const double ExpectedAmount = BaseAmount * NumWeeks;
+            const int Multiplier = 2;
+            const double ExpectedAmount = BaseAmount * Multiplier;
+            var budget_code = Codes.Code004;
+            var expected_out_code = Codes.Code005;
             var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
-            mock_spreadsheet_repo.Setup(x => x.Get_amount(MainSheetNames.Budget_out, Codes.Code004, 3))
+            mock_spreadsheet_repo.Setup(x => x.Get_amount(MainSheetNames.Budget_out, budget_code, 3))
                 .Returns(BaseAmount);
 
             // Act
-            spreadsheet.Update_living_expenses(NumWeeks);
+            spreadsheet.Update_item(Multiplier, budget_code, expected_out_code);
 
             // Assert
             mock_spreadsheet_repo.Verify(x => x.Update_amount(
                 MainSheetNames.Expected_out,
-                Codes.Code074,
-                ExpectedAmount,
-                2, 1));
-        }
-
-        [Test]
-        public void Will_calculate_groceries_as_num_weeks_times_base_amount_and_use_Code075_and_Code005()
-        {
-            // Arrange
-            const double BaseAmount = 20;
-            const int NumWeeks = 2;
-            const double ExpectedAmount = BaseAmount * NumWeeks;
-            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
-            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
-            mock_spreadsheet_repo.Setup(x => x.Get_amount(MainSheetNames.Budget_out, Codes.Code005, 3))
-                .Returns(BaseAmount);
-
-            // Act
-            spreadsheet.Update_groceries(NumWeeks);
-
-            // Assert
-            mock_spreadsheet_repo.Verify(x => x.Update_amount(
-                MainSheetNames.Expected_out,
-                Codes.Code075,
+                expected_out_code,
                 ExpectedAmount,
                 2, 1));
         }
