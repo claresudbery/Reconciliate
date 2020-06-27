@@ -534,6 +534,39 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
+        public void Will_only_match_transactions_that_are_within_the_tolerance_range()
+        {
+            // Arrange
+            var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
+            var amount_to_match = 50.00;
+            CredCard2Record transaction_to_match = new CredCard2Record
+            {
+                Amount = amount_to_match,
+                Date = DateTime.Today
+            };
+            var desc01 = "Match01";
+            var desc02 = "Match02";
+            var desc03 = "Match03";
+            var desc04 = "Match04";
+            List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> {
+                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = desc01, Date = DateTime.Today },
+                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = desc02, Date = DateTime.Today.AddDays(matcher.DateTolerance + 1) },
+                new CredCard2InOutRecord { Unreconciled_amount = 30.00, Description = desc03, Date = DateTime.Today },
+                new CredCard2InOutRecord { Unreconciled_amount = 30.00, Description = desc04, Date = DateTime.Today.AddDays(-(matcher.DateTolerance + 1)) }
+            };
+            _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
+            _cred_card2_in_out_file.Load();
+
+            // Act
+            var result = matcher.Find_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+
+            // Assert
+            Assert.AreEqual(1, result.Count);
+            Assert.IsFalse(result[0].Actual_records.Any(x => x.Description == desc02));
+            Assert.IsFalse(result[0].Actual_records.Any(x => x.Description == desc04));
+        }
+
+        [Test]
         public void Will_find_exact_matches_when_numbers_are_prone_to_rounding_errors()
         {
             // Arrange

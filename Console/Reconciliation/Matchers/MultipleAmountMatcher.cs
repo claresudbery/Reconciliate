@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using ConsoleCatchall.Console.Reconciliation.Extensions;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.DTOs;
@@ -13,7 +11,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         where TThirdPartyType : ICSVRecord, new()
         where TOwnedType : ICSVRecord, new()
     {
-        private const int DateTolerance = 5;
+        public int DateTolerance => 5;
 
         public IEnumerable<IPotentialMatch> Find_matches(TThirdPartyType source_record, ICSVFile<TOwnedType> owned_file)
         {
