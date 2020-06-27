@@ -154,7 +154,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         {
             _input_output.Output_line("Merging budget data with pending data...");
 
-            if (budgeting_months.Budgeting_required())
+            if (budgeting_months.Do_transaction_budgeting)
             {
                 spreadsheet.Add_budgeted_monthly_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
 
@@ -241,19 +241,41 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 BudgetItemListData budget_item_list_data)
             where TRecordType : ICSVRecord, new()
         {
+            bool do_transaction_budgeting = Confirm_budgeting(ReconConsts.ConfirmTransactionBudgeting);
+            bool do_expected_out_budgeting = Confirm_budgeting(ReconConsts.ConfirmExpectedOutBudgeting);
             DateTime next_unplanned_month = Get_next_unplanned_month<TRecordType>(spreadsheet, budget_item_list_data);
             int last_month_for_budget_planning = Get_last_month_for_budget_planning(spreadsheet, next_unplanned_month.Month);
             var budgeting_months = new BudgetingMonths
             {
                 Next_unplanned_month = next_unplanned_month.Month,
                 Last_month_for_budget_planning = last_month_for_budget_planning,
-                Start_year = next_unplanned_month.Year
+                Start_year = next_unplanned_month.Year,
+                Do_expected_out_budgeting = do_expected_out_budgeting,
+                Do_transaction_budgeting = do_transaction_budgeting
             };
-            if (last_month_for_budget_planning != 0)
+            if (last_month_for_budget_planning == 0)
+            {
+                budgeting_months.Do_expected_out_budgeting = false;
+                budgeting_months.Do_transaction_budgeting = false;
+            }
+            else
             {
                 budgeting_months.Last_month_for_budget_planning = Confirm_budgeting_month_choices_with_user(budgeting_months, spreadsheet);
             }
             return budgeting_months;
+        }
+
+        private bool Confirm_budgeting(string confirmation_message)
+        {
+            bool result = false;
+
+            var input = _input_output.Get_input(confirmation_message);
+            if (!string.IsNullOrEmpty(input) && input.ToUpper() == "Y")
+            {
+                result = true;
+            }
+
+            return result;
         }
 
         private DateTime Get_next_unplanned_month<TRecordType>(

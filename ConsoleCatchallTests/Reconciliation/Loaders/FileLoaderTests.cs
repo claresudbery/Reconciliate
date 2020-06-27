@@ -104,7 +104,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             {
                 Start_year = 2020, 
                 Next_unplanned_month = 6, 
-                Last_month_for_budget_planning = no_budgeting_wanted
+                Last_month_for_budget_planning = no_budgeting_wanted,
+                Do_transaction_budgeting = false
             };
             var mock_input_output = new Mock<IInputOutput>();
             var reconciliate = new FileLoader(mock_input_output.Object, new Clock());
@@ -210,6 +211,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Returns(unplanned_month);
             string confirmation_text = string.Format(ReconConsts.ConfirmMonthInterval, first_month, second_month, month_span);
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("Y")
+                .Returns("Y")
                 .Returns($"{user_input}")
                 .Returns("Y");
             // Use self-shunt to avoid infinite recursion:
@@ -231,6 +234,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Returns(next_unplanned_month);
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("Y")
+                .Returns("Y")
                 .Returns($"{month_input}")
                 .Returns("Y");
             var reconciliate = new FileLoader(_mock_input_output.Object, new Clock());
@@ -252,6 +257,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Returns(next_unplanned_month);
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("Y")
+                .Returns("Y")
                 .Returns($"{month_input}")
                 .Returns("N")
                 .Returns($"{month_input + 1}")
@@ -280,6 +287,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_clock.Setup(x => x.Today_date_time()).Returns(current_date);
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Throws(new MonthlyBudgetedRowNotFoundException());
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("Y")
+                .Returns("Y")
                 .Returns($"{start_month_input}")
                 .Returns($"{end_month_input}")
                 .Returns("Y");
@@ -304,6 +313,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_clock.Setup(x => x.Today_date_time()).Returns(current_date);
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Throws(new MonthlyBudgetedRowNotFoundException());
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("Y")
+                .Returns("Y")
                 .Returns($"{start_month_input}")
                 .Returns($"{end_month_input}")
                 .Returns("Y");
@@ -334,6 +345,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             DateTime next_unplanned_month = new DateTime(2018, 11, 1);
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Returns(next_unplanned_month);
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("Y")
+                .Returns("Y")
                 .Returns(user_input)
                 .Returns("Y")
                 .Returns("Y");
@@ -361,6 +374,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             DateTime next_unplanned_month = new DateTime(2018, 10, 1);
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Returns(next_unplanned_month);
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("Y")
+                .Returns("Y")
                 .Returns($"{user_input}")
                 .Returns("Y")
                 .Returns("Y");
@@ -382,6 +397,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             DateTime next_unplanned_month = new DateTime(2018, 10, 1);
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Returns(next_unplanned_month);
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("Y")
+                .Returns("Y")
                 .Returns($"{0}")
                 .Returns("Y")
                 .Returns("Y");
@@ -403,6 +420,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             DateTime next_unplanned_month = new DateTime(2018, 10, 1);
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Returns(next_unplanned_month);
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("Y")
+                .Returns("Y")
                 .Returns("0")
                 .Returns("Y")
                 .Returns("Y");
@@ -432,6 +451,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             DateTime next_unplanned_month = new DateTime(2018, 10, 1);
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Returns(next_unplanned_month);
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("Y")
+                .Returns("Y")
                 .Returns($"{0}")
                 .Returns("N")
                 .Returns($"{11}")
@@ -458,6 +479,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mortgageException = new MonthlyBudgetedRowNotFoundException("MORTGAGE DESCRIPTION");
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Throws(mortgageException);
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("Y")
+                .Returns("Y")
                 .Returns($"{user_input_for_next_unplanned_month}")
                 .Returns($"{user_input_for_next_unplanned_month}")
                 .Returns("Y");
@@ -487,6 +510,8 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_spreadsheet = new Mock<ISpreadsheet>();
             mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Throws(new MonthlyBudgetedRowNotFoundException());
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("Y")
+                .Returns("Y")
                 .Returns(bad_input)
                 .Returns("1")
                 .Returns("Y");
@@ -512,7 +537,13 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
             var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
             var mock_bank_out_file_io = new Mock<IFileIO<BankRecord>>();
-            var budgeting_months = new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 };
+            var budgeting_months = new BudgetingMonths
+            {
+                Start_year = 2020, 
+                Next_unplanned_month = 6, 
+                Last_month_for_budget_planning = 6,
+                Do_transaction_budgeting = true
+            };
             mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
                 .Returns(new List<ActualBankRecord>());
             mock_bank_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))

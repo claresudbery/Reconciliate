@@ -7,6 +7,8 @@ namespace Interfaces.DTOs
         public int Next_unplanned_month { get; set; }
         public int Last_month_for_budget_planning { get; set; }
         public int Start_year { get; set; }
+        public bool Do_expected_out_budgeting { get; set; }
+        public bool Do_transaction_budgeting { get; set; }
 
         public bool Budgeting_not_required()
         {

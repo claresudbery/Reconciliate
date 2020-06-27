@@ -230,7 +230,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_input_output.Object,
                 mock_spreadsheet.Object,
                 new Mock<ICSVFile<BankRecord>>().Object,
-                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 },
+                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6, Do_expected_out_budgeting = true },
                 new DataLoadingInformation<ActualBankRecord, BankRecord>()
                 );
 
@@ -256,7 +256,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_input_output.Object,
                 mock_spreadsheet.Object,
                 new Mock<ICSVFile<BankRecord>>().Object,
-                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 },
+                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6, Do_expected_out_budgeting = true },
                 new DataLoadingInformation<ActualBankRecord, BankRecord>()
             );
 
@@ -284,7 +284,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_input_output.Object,
                 mock_spreadsheet.Object,
                 new Mock<ICSVFile<BankRecord>>().Object,
-                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 },
+                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6, Do_expected_out_budgeting = true },
                 new DataLoadingInformation<ActualBankRecord, BankRecord>()
             );
 
@@ -312,7 +312,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_input_output.Object,
                 mock_spreadsheet.Object,
                 new Mock<ICSVFile<BankRecord>>().Object,
-                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 },
+                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6, Do_expected_out_budgeting = true},
                 new DataLoadingInformation<ActualBankRecord, BankRecord>()
             );
 
@@ -340,7 +340,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_input_output.Object,
                 mock_spreadsheet.Object,
                 new Mock<ICSVFile<BankRecord>>().Object,
-                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 },
+                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6, Do_expected_out_budgeting = true },
                 new DataLoadingInformation<ActualBankRecord, BankRecord>()
             );
 
@@ -368,7 +368,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_input_output.Object,
                 mock_spreadsheet.Object,
                 new Mock<ICSVFile<BankRecord>>().Object,
-                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 },
+                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6, Do_expected_out_budgeting = true },
                 new DataLoadingInformation<ActualBankRecord, BankRecord>()
             );
 
@@ -393,12 +393,43 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 new Mock<IInputOutput>().Object,
                 mock_spreadsheet.Object,
                 new Mock<ICSVFile<BankRecord>>().Object,
-                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6 },
+                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6, Do_expected_out_budgeting = true },
                 new DataLoadingInformation<ActualBankRecord, BankRecord>()
             );
 
             // Assert
             mock_spreadsheet.Verify(x => x.Update_owed_CHB(It.IsAny<BudgetingMonths>()));
+        }
+
+        [Test]
+        public void Will_not_update_any_amounts_when_generating_ad_hoc_data_if_user_wants_no_expected_out_budgeting()
+        {
+            // Arrange
+            var bank_and_bank_out_loader = new BankAndBankOutLoader();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            var budgeting_months = new BudgetingMonths
+            {
+                Start_year = 2020,
+                Next_unplanned_month = 6, 
+                Last_month_for_budget_planning = 6,
+                Do_expected_out_budgeting = false
+            };
+
+            // Act
+            bank_and_bank_out_loader.Generate_ad_hoc_data(
+                new Mock<IInputOutput>().Object,
+                mock_spreadsheet.Object,
+                new Mock<ICSVFile<BankRecord>>().Object,
+                budgeting_months,
+                new DataLoadingInformation<ActualBankRecord, BankRecord>()
+            );
+
+            // Assert
+            mock_spreadsheet.Verify(x => x.Update_owed_CHB(It.IsAny<BudgetingMonths>()), Times.Never);
+            mock_spreadsheet.Verify(x => x.Update_expected_out(
+                It.IsAny<int>(),
+                It.IsAny<string>(),
+                It.IsAny<string>()), Times.Never);
         }
     }
 }

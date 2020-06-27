@@ -93,6 +93,12 @@
 
         public const string MissingCell = "Cell does not exist: ";
 
+        public const string ConfirmTransactionBudgeting =
+            "Do you want to budget for monthly transactions like mortgage, etc? Enter y/Y for yes.";
+
+        public const string ConfirmExpectedOutBudgeting =
+            "Do you want to budget for non-transaction amounts like groceries (probably only applies to Bank Out)? Enter y/Y for yes.";
+
         public const string EnterMonths =
                 "Enter the last month you want to plan for. \nBudget amounts will be added from {0} to the month you specify (inclusive). \nEnter 0 if no budgeting required, for instance MBNA often has no monthly budget items.";
 

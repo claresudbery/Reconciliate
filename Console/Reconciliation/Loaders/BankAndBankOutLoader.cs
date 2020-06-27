@@ -99,15 +99,18 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             BudgetingMonths budgeting_months,
             DataLoadingInformation<ActualBankRecord, BankRecord> data_loading_info)
         {
-            Update_owed_CHB(spreadsheet, budgeting_months);
+            if (budgeting_months.Do_expected_out_budgeting)
+            {
+                Update_owed_CHB(spreadsheet, budgeting_months);
 
-            Update_weekly_item(input_output, spreadsheet, budgeting_months, "weekly spends", Codes.Code004, Codes.Code074);
-            Update_weekly_item(input_output, spreadsheet, budgeting_months, "grocery shopping", Codes.Code005, Codes.Code075);
+                Update_weekly_item(input_output, spreadsheet, budgeting_months, "weekly spends", Codes.Code004, Codes.Code074);
+                Update_weekly_item(input_output, spreadsheet, budgeting_months, "grocery shopping", Codes.Code005, Codes.Code075);
 
-            Update_monthly_item(input_output, spreadsheet, budgeting_months, "yoga", Codes.Code078, Codes.Code078);
-            Update_monthly_item(input_output, spreadsheet, budgeting_months, "fuel", Codes.Code006, Codes.Code006);
-            Update_monthly_item(input_output, spreadsheet, budgeting_months, "vet", Codes.Code007, Codes.Code007);
-            Update_monthly_item(input_output, spreadsheet, budgeting_months, "internet", Codes.Code011, Codes.Code011);
+                Update_monthly_item(input_output, spreadsheet, budgeting_months, "yoga", Codes.Code078, Codes.Code078);
+                Update_monthly_item(input_output, spreadsheet, budgeting_months, "fuel", Codes.Code006, Codes.Code006);
+                Update_monthly_item(input_output, spreadsheet, budgeting_months, "vet", Codes.Code007, Codes.Code007);
+                Update_monthly_item(input_output, spreadsheet, budgeting_months, "internet", Codes.Code011, Codes.Code011);
+            }
         }
 
         private void Update_monthly_item(
