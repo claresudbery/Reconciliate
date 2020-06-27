@@ -5,6 +5,7 @@ using ConsoleCatchall.Console.Reconciliation.Records;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
+using Interfaces.Extensions;
 
 namespace ConsoleCatchall.Console.Reconciliation.Loaders
 {
@@ -92,17 +93,20 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     next_date.ToShortDateString()));
             }
 
-            spreadsheet.Update_balance_on_totals_sheet(
-                Codes.Cred_card1_bal,
-                new_balance,
-                string.Format(
-                    ReconConsts.CredCardBalanceDescription,
-                    ReconConsts.Cred_card1_name,
-                    $"{statement_date.ToString("MMM")} {statement_date.Year}"),
-                balance_column: 5,
-                text_column: 6,
-                code_column: 4,
-                input_output: input_output);
+            if (!new_balance.Double_equals(0))
+            {
+                spreadsheet.Update_balance_on_totals_sheet(
+                    Codes.Cred_card1_bal,
+                    new_balance,
+                    string.Format(
+                        ReconConsts.CredCardBalanceDescription,
+                        ReconConsts.Cred_card1_name,
+                        $"{statement_date.ToString("MMM")} {statement_date.Year}"),
+                    balance_column: 5,
+                    text_column: 6,
+                    code_column: 4,
+                    input_output: input_output);
+            }
         }
 
         public void Generate_ad_hoc_data(

@@ -172,5 +172,53 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                     $"{last_direct_debit_date.ToString("MMM")} {last_direct_debit_date.Year}"),
                 5, 6, 4, mock_input_output.Object), Times.Exactly(1));
         }
+
+        [Test]
+        public void Merge_Bespoke_Data_With_Pending_File__Will_Not_Update_Balance_On_Totals_Sheet_If_Users_Enters_No_Data()
+        {
+            // Arrange
+            TestHelper.Set_correct_date_formatting();
+            var mock_input_output = new Mock<IInputOutput>();
+            double new_balance = 5673.99;
+            DateTime last_direct_debit_date = new DateTime(2018, 12, 17);
+            var next_direct_debit_date01 = last_direct_debit_date.AddMonths(1);
+            mock_input_output
+                .Setup(x => x.Get_input(
+                    string.Format(
+                        ReconConsts.AskForCredCardDirectDebit,
+                        ReconConsts.Cred_card1_name,
+                        next_direct_debit_date01.ToShortDateString()), ""))
+                .Returns("0");
+            var bank_record = new BankRecord { Date = last_direct_debit_date };
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_spreadsheet.Setup(x => x.Get_most_recent_row_containing_text<BankRecord>(
+                    MainSheetNames.Bank_out, ReconConsts.Cred_card1_dd_description, new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn }))
+                .Returns(bank_record);
+            var mock_pending_file = new Mock<ICSVFile<CredCard1InOutRecord>>();
+            var pending_records = new List<CredCard1InOutRecord>();
+            mock_pending_file.Setup(x => x.Records).Returns(pending_records);
+            var budgeting_months = new BudgetingMonths();
+            var loading_info = new CredCard1AndCredCard1InOutLoader().Loading_info();
+            var cred_card1_and_cred_card1_in_out_loader = new CredCard1AndCredCard1InOutLoader();
+
+            // Act
+            cred_card1_and_cred_card1_in_out_loader.Merge_bespoke_data_with_pending_file(
+                mock_input_output.Object,
+                mock_spreadsheet.Object,
+                mock_pending_file.Object,
+                budgeting_months,
+                loading_info);
+
+            // Assert
+            mock_spreadsheet.Verify(x => x.Update_balance_on_totals_sheet(
+                    It.IsAny<string>(),
+                    It.IsAny<double>(),
+                    It.IsAny<string>(),
+                    It.IsAny<int>(),
+                    It.IsAny<int>(),
+                    It.IsAny<int>(), 
+                    mock_input_output.Object), 
+                Times.Never);
+        }
     }
 }
