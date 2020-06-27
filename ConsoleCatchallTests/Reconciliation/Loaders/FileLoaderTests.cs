@@ -761,5 +761,31 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             // Assert
             Assert.IsFalse(exception_thrown);
         }
+
+        [Test]
+        public void Recursively_Ask_For_Budgeting_Months__Will_Start_From_Current_Month_If_User_Doesnt_Want_To_Do_Transaction_Budgeting()
+        {
+            // Arrange
+            _get_input_messages.Clear();
+            const int irrelevant = 1;
+            const int this_month = 1;
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Returns(new DateTime(2020, this_month + 1, 1));
+            var mock_clock = new Mock<IClock>();
+            mock_clock.Setup(x => x.Today_date_time()).Returns(new DateTime(2020, this_month, 1));
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("N")
+                .Returns("Y")
+                .Returns($"{irrelevant}")
+                .Returns("Y");
+            // Use self-shunt to avoid infinite recursion:
+            var file_loader = new FileLoader(this, mock_clock.Object);
+
+            // Act
+            var budgeting_months = file_loader.Recursively_ask_for_budgeting_months<BankRecord>(mock_spreadsheet.Object, new BudgetItemListData());
+
+            // Assert
+            Assert.AreEqual(this_month, budgeting_months.Next_unplanned_month);
+        }
     }
 }

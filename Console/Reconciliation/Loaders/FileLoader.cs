@@ -243,7 +243,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         {
             bool do_transaction_budgeting = Confirm_budgeting(ReconConsts.ConfirmTransactionBudgeting);
             bool do_expected_out_budgeting = Confirm_budgeting(ReconConsts.ConfirmExpectedOutBudgeting);
-            DateTime next_unplanned_month = Get_next_unplanned_month<TRecordType>(spreadsheet, budget_item_list_data);
+            DateTime next_unplanned_month = _clock.Today_date_time();
+            if (do_transaction_budgeting)
+            {
+                next_unplanned_month = Get_next_unplanned_month<TRecordType>(spreadsheet, budget_item_list_data);
+            }
             int last_month_for_budget_planning = Get_last_month_for_budget_planning(spreadsheet, next_unplanned_month.Month);
             var budgeting_months = new BudgetingMonths
             {
