@@ -11,12 +11,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         where TThirdPartyType : ICSVRecord, new()
         where TOwnedType : ICSVRecord, new()
     {
-        public int DateTolerance => 5;
+        public int DateTolerance => 200;
+        private double _num_recursive_iterations = 0;
 
         public IEnumerable<IPotentialMatch> Find_matches(TThirdPartyType source_record, ICSVFile<TOwnedType> owned_file)
         {
             var result = new List<PotentialMatch>();
 
+            _num_recursive_iterations = 0;
             var match_lists = Find_match_lists(
                 source_record.Main_amount(),
                 owned_file.Records.Where(
@@ -61,6 +63,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
         private IEnumerable<MatchList> Find_match_lists(double target_amount, IEnumerable<ICSVRecord> candidates)
         {
+            _num_recursive_iterations++;
             List<MatchList> results = new List<MatchList>();
 
             var concrete_candidates = candidates
