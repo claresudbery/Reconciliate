@@ -13,6 +13,8 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         where TThirdPartyType : ICSVRecord, new()
         where TOwnedType : ICSVRecord, new()
     {
+        private const int DateTolerance = 5;
+
         public IEnumerable<IPotentialMatch> Find_matches(TThirdPartyType source_record, ICSVFile<TOwnedType> owned_file)
         {
             var result = new List<PotentialMatch>();
@@ -20,9 +22,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             var match_lists = Find_match_lists(
                 source_record.Main_amount(),
                 owned_file.Records.Where(
-                    x => !x.Matched
-                         && x.Date >= source_record.Date.AddDays(-5)
-                         && x.Date <= source_record.Date.AddDays(5)
+                    x => !x.Matched && Date_is_within_tolerance(source_record, x)
                 ) as IEnumerable<ICSVRecord>).ToList();
 
             var debug = match_lists.Select(x => x.Actual_amount()).ToList();
@@ -53,6 +53,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             }
 
             return result;
+        }
+
+        public bool Date_is_within_tolerance(TThirdPartyType source_record, TOwnedType target_record)
+        {
+            return target_record.Date >= source_record.Date.AddDays(-DateTolerance)
+                   && target_record.Date <= source_record.Date.AddDays(DateTolerance);
         }
 
         private IEnumerable<MatchList> Find_match_lists(double target_amount, IEnumerable<ICSVRecord> candidates)
