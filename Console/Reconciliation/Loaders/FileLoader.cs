@@ -153,10 +153,15 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             where TOwnedType : ICSVRecord, new()
         {
             _input_output.Output_line("Merging budget data with pending data...");
-            spreadsheet.Add_budgeted_monthly_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
-            if (null != data_loading_info.Annual_budget_data)
+
+            if (budgeting_months.Budgeting_required())
             {
-                spreadsheet.Add_budgeted_annual_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Annual_budget_data);
+                spreadsheet.Add_budgeted_monthly_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Monthly_budget_data);
+
+                if (null != data_loading_info.Annual_budget_data)
+                {
+                    spreadsheet.Add_budgeted_annual_data_to_pending_file(budgeting_months, pending_file, data_loading_info.Annual_budget_data);
+                }
             }
         }
 

@@ -95,6 +95,102 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                     Times.Never);
         }
 
+        [Test]
+        public void Will_Not_Attempt_To_Merge_Budgeted_Monthly_Data_If_User_Has_Asked_For_No_Budgeting()
+        {
+            // Arrange
+            const int no_budgeting_wanted = 0;
+            var budgeting_months = new BudgetingMonths
+            {
+                Start_year = 2020, 
+                Next_unplanned_month = 6, 
+                Last_month_for_budget_planning = no_budgeting_wanted
+            };
+            var mock_input_output = new Mock<IInputOutput>();
+            var reconciliate = new FileLoader(mock_input_output.Object, new Clock());
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_out_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_pending_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), It.IsAny<char>()))
+                .Returns(new List<BankRecord>());
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+                .Returns(new List<ActualBankRecord>());
+            mock_bank_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+                .Returns(new List<BankRecord>());
+            var loading_info = new DummyLoader().Loading_info();
+            var mock_matcher = new Mock<IMatcher>();
+
+            // Act
+            var reconciliation_interface = reconciliate.Load<ActualBankRecord, BankRecord>(
+                mock_spreadsheet.Object,
+                mock_pending_file_io.Object,
+                mock_pending_file.Object,
+                mock_actual_bank_file_io.Object,
+                mock_bank_out_file_io.Object,
+                budgeting_months,
+                loading_info,
+                mock_matcher.Object);
+
+            // Assert
+            mock_spreadsheet
+                .Verify(x => x.Add_budgeted_monthly_data_to_pending_file(
+                        It.IsAny<BudgetingMonths>(), 
+                        It.IsAny<ICSVFile<BankRecord>>(), 
+                        It.IsAny<BudgetItemListData>()),
+                    Times.Never);
+        }
+
+        [Test]
+        public void Will_Not_Attempt_To_Merge_Budgeted_Annual_Data_If_User_Has_Asked_For_No_Budgeting()
+        {
+            // Arrange
+            const int no_budgeting_wanted = 0;
+            var budgeting_months = new BudgetingMonths
+            {
+                Start_year = 2020,
+                Next_unplanned_month = 6,
+                Last_month_for_budget_planning = no_budgeting_wanted
+            };
+            var loading_info = new DummyLoader().Loading_info();
+            // Give it some annual budget data, otherwise it owuldn't do annual nudgeting anyway.
+            loading_info.Annual_budget_data = new BudgetItemListData();
+            var mock_input_output = new Mock<IInputOutput>();
+            var reconciliate = new FileLoader(mock_input_output.Object, new Clock());
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            var mock_pending_file_io = new Mock<IFileIO<BankRecord>>();
+            var mock_pending_file = new Mock<ICSVFile<BankRecord>>();
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            var mock_bank_out_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_pending_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), It.IsAny<char>()))
+                .Returns(new List<BankRecord>());
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+                .Returns(new List<ActualBankRecord>());
+            mock_bank_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+                .Returns(new List<BankRecord>());
+            var mock_matcher = new Mock<IMatcher>();
+
+            // Act
+            var reconciliation_interface = reconciliate.Load<ActualBankRecord, BankRecord>(
+                mock_spreadsheet.Object,
+                mock_pending_file_io.Object,
+                mock_pending_file.Object,
+                mock_actual_bank_file_io.Object,
+                mock_bank_out_file_io.Object,
+                budgeting_months,
+                loading_info,
+                mock_matcher.Object);
+
+            // Assert
+            mock_spreadsheet
+                .Verify(x => x.Add_budgeted_annual_data_to_pending_file(
+                        It.IsAny<BudgetingMonths>(),
+                        It.IsAny<ICSVFile<BankRecord>>(),
+                        It.IsAny<BudgetItemListData>()),
+                    Times.Never);
+        }
+
         [TestCase(1, 4, "Jan", "Apr", 4)]
         [TestCase(1, 10, "Jan", "Oct", 10)]
         [TestCase(12, 3, "Dec", "Mar", 4)]
