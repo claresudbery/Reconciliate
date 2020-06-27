@@ -174,12 +174,11 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         }
 
         [Test]
-        public void Merge_Bespoke_Data_With_Pending_File__Will_Not_Update_Balance_On_Totals_Sheet_If_Users_Enters_No_Data()
+        public void Merge_Bespoke_Data_With_Pending_File__Will_Not_Update_Balance_On_Totals_Sheet_If_User_Enters_No_Data()
         {
             // Arrange
             TestHelper.Set_correct_date_formatting();
             var mock_input_output = new Mock<IInputOutput>();
-            double new_balance = 5673.99;
             DateTime last_direct_debit_date = new DateTime(2018, 12, 17);
             var next_direct_debit_date01 = last_direct_debit_date.AddMonths(1);
             var next_direct_debit_date02 = last_direct_debit_date.AddMonths(2);
