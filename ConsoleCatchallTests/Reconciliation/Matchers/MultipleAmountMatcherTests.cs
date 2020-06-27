@@ -31,11 +31,11 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var amount_to_match = 10.00;
             CredCard2Record transaction_to_match = new CredCard2Record
             {
-                Amount = amount_to_match
+                Amount = amount_to_match, Date = DateTime.Today
             };
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> { new CredCard2InOutRecord
             {
-                Unreconciled_amount = amount_to_match
+                Unreconciled_amount = amount_to_match, Date = DateTime.Today
             } };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
@@ -55,11 +55,11 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var amount_to_match = 10.00;
             CredCard2Record transaction_to_match = new CredCard2Record
             {
-                Amount = amount_to_match
+                Amount = amount_to_match, Date = DateTime.Today
             };
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> { 
-                new CredCard2InOutRecord { Unreconciled_amount = amount_to_match, Description = "Not matched", Matched = false },
-                new CredCard2InOutRecord { Unreconciled_amount = amount_to_match, Description = "Matched", Matched = true }
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = amount_to_match, Description = "Not matched", Matched = false },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = amount_to_match, Description = "Matched", Matched = true }
             };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
@@ -80,11 +80,11 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var amount_to_match = 10.00;
             CredCard2Record transaction_to_match = new CredCard2Record
             {
-                Amount = amount_to_match
+                Amount = amount_to_match, Date = DateTime.Today
             };
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> { new CredCard2InOutRecord
             {
-                Unreconciled_amount = amount_to_match
+                Unreconciled_amount = amount_to_match, Date = DateTime.Today
             } };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
@@ -105,11 +105,11 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var amount_to_match = 10.00;
             CredCard2Record transaction_to_match = new CredCard2Record
             {
-                Amount = amount_to_match
+                Amount = amount_to_match, Date = DateTime.Today
             };
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> { new CredCard2InOutRecord
             {
-                Unreconciled_amount = amount_to_match + 1
+                Unreconciled_amount = amount_to_match + 1, Date = DateTime.Today
             } };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
@@ -129,11 +129,11 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var amount_to_match = 10.00;
             CredCard2Record transaction_to_match = new CredCard2Record
             {
-                Amount = amount_to_match
+                Amount = amount_to_match, Date = DateTime.Today
             };
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> { new CredCard2InOutRecord
             {
-                Unreconciled_amount = amount_to_match - 1
+                Unreconciled_amount = amount_to_match - 1, Date = DateTime.Today
             } };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
@@ -154,12 +154,12 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var amount_to_match = 40.00;
             CredCard2Record transaction_to_match = new CredCard2Record
             {
-                Amount = amount_to_match
+                Amount = amount_to_match, Date = DateTime.Today
             };
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> {
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = "Match01" },
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = "Match02" },
-                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = "Match03" }
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 10.00, Description = "Match01" },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 10.00, Description = "Match02" },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 20.00, Description = "Match03" }
             };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
@@ -183,12 +183,12 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var amount_to_match = 40.00;
             CredCard2Record transaction_to_match = new CredCard2Record
             {
-                Amount = amount_to_match
+                Amount = amount_to_match, Date = DateTime.Today
             };
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> { 
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = "Match01" },
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = "Match02" },
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = "Match03" }
+                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = "Match01", Date = DateTime.Today },
+                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = "Match02", Date = DateTime.Today },
+                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = "Match03", Date = DateTime.Today }
             };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
@@ -212,13 +212,13 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var amount_to_match = 50.00;
             CredCard2Record transaction_to_match = new CredCard2Record
             {
-                Amount = amount_to_match
+                Amount = amount_to_match, Date = DateTime.Today
             };
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> {
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = "Match01" },
-                new CredCard2InOutRecord { Unreconciled_amount = 30.00, Description = "Match02" },
-                new CredCard2InOutRecord { Unreconciled_amount = 60.00, Description = "Match03" },
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = "Match04" }
+                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = "Match01", Date = DateTime.Today },
+                new CredCard2InOutRecord { Unreconciled_amount = 30.00, Description = "Match02", Date = DateTime.Today },
+                new CredCard2InOutRecord { Unreconciled_amount = 60.00, Description = "Match03", Date = DateTime.Today },
+                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = "Match04", Date = DateTime.Today }
             };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
@@ -242,15 +242,15 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var amount_to_match = 20.00;
             CredCard2Record transaction_to_match = new CredCard2Record
             {
-                Amount = amount_to_match
+                Amount = amount_to_match, Date = DateTime.Today
             };
             var desc01 = "Match01";
             var desc02 = "Match02";
             var desc03 = "Match03";
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> {
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = desc01 },
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = desc02 },
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = desc03 }
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 10.00, Description = desc01 },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 10.00, Description = desc02 },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 10.00, Description = desc03 }
             };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
@@ -276,17 +276,17 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var amount_to_match = 40.00;
             CredCard2Record transaction_to_match = new CredCard2Record
             {
-                Amount = amount_to_match
+                Amount = amount_to_match, Date = DateTime.Today
             };
             var desc01 = "Match01";
             var desc02 = "Match02";
             var desc03 = "Match03";
             var desc04 = "Match04";
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> {
-                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = desc01 },
-                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = desc02 },
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = desc03 },
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = desc04 }
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 20.00, Description = desc01 },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 20.00, Description = desc02 },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 10.00, Description = desc03 },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 10.00, Description = desc04 }
             };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
@@ -310,7 +310,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var amount_to_match = 40.00;
             CredCard2Record transaction_to_match = new CredCard2Record
             {
-                Amount = amount_to_match
+                Amount = amount_to_match, Date = DateTime.Today
             };
             var desc01 = "Match01";
             var desc02 = "Match02";
@@ -318,11 +318,11 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var desc04 = "Match04";
             var desc05 = "Match05";
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> {
-                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = desc01 },
-                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = desc02 },
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = desc03 },
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = desc04 },
-                new CredCard2InOutRecord { Unreconciled_amount = 5.00, Description = desc05 }
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 20.00, Description = desc01 },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 20.00, Description = desc02 },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 10.00, Description = desc03 },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 10.00, Description = desc04 },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 5.00, Description = desc05 }
             };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
@@ -345,7 +345,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var amount_to_match = 40.00;
             CredCard2Record transaction_to_match = new CredCard2Record
             {
-                Amount = amount_to_match
+                Amount = amount_to_match, Date = DateTime.Today
             };
             var desc01 = "Match01";
             var desc02 = "Match02";
@@ -353,11 +353,11 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var desc04 = "Match04";
             var desc05 = "Match05";
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> {
-                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = desc01 },
-                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = desc02 },
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = desc03 },
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = desc04 },
-                new CredCard2InOutRecord { Unreconciled_amount = 5.00, Description = desc05 }
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 20.00, Description = desc01 },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 20.00, Description = desc02 },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 10.00, Description = desc03 },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 10.00, Description = desc04 },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 5.00, Description = desc05 }
             };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
@@ -380,15 +380,15 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var amount_to_match = 40.00;
             CredCard2Record transaction_to_match = new CredCard2Record
             {
-                Amount = amount_to_match
+                Amount = amount_to_match, Date = DateTime.Today
             };
             var desc01 = "Match01";
             var desc02 = "Match02";
             var desc03 = "Match03";
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> {
-                new CredCard2InOutRecord { Unreconciled_amount = 30.00, Description = desc01 },
-                new CredCard2InOutRecord { Unreconciled_amount = 35.00, Description = desc02 },
-                new CredCard2InOutRecord { Unreconciled_amount = 25.00, Description = desc03 }
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 30.00, Description = desc01 },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 35.00, Description = desc02 },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 25.00, Description = desc03 }
             };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
@@ -515,9 +515,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var desc04 = "Match04";
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> {
                 new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = desc01, Date = DateTime.Today },
-                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = desc02, Date = DateTime.Today.AddDays(10) },
+                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = desc02, Date = DateTime.Today.AddDays(5) },
                 new CredCard2InOutRecord { Unreconciled_amount = 30.00, Description = desc03, Date = DateTime.Today },
-                new CredCard2InOutRecord { Unreconciled_amount = 30.00, Description = desc04, Date = DateTime.Today.AddDays(10) }
+                new CredCard2InOutRecord { Unreconciled_amount = 30.00, Description = desc04, Date = DateTime.Today.AddDays(5) }
             };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
@@ -540,7 +540,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var amount_to_match = 66.57;
             CredCard2Record transaction_to_match = new CredCard2Record
             {
-                Amount = amount_to_match
+                Amount = amount_to_match, Date = DateTime.Today
             };
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> {
                 new CredCard2InOutRecord { Unreconciled_amount = 13.00, Description = "Match01", Date = DateTime.Today.AddDays(-2) },
@@ -582,9 +582,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var desc02 = "Match02";
             var desc03 = "Match03";
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> {
-                new CredCard2InOutRecord { Unreconciled_amount = 50.00, Description = desc01 },
-                new CredCard2InOutRecord { Unreconciled_amount = 50.00, Description = desc02 },
-                new CredCard2InOutRecord { Unreconciled_amount = 50.00, Description = desc03 }
+                new CredCard2InOutRecord { Unreconciled_amount = 50.00, Description = desc01, Date = DateTime.Today },
+                new CredCard2InOutRecord { Unreconciled_amount = 50.00, Description = desc02, Date = DateTime.Today },
+                new CredCard2InOutRecord { Unreconciled_amount = 50.00, Description = desc03, Date = DateTime.Today }
             };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
@@ -611,10 +611,10 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
                 Date = DateTime.Today
             };
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> {
-                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = "Match01" },
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = "Match02" },
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = "Match03" },
-                new CredCard2InOutRecord { Unreconciled_amount = 10.00, Description = "Match04" }
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 20.00, Description = "Match01" },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 10.00, Description = "Match02" },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 10.00, Description = "Match03" },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 10.00, Description = "Match04" }
             };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();
