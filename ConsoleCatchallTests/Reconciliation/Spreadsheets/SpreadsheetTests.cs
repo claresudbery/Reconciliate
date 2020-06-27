@@ -469,6 +469,44 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         }
 
         [Test]
+        public void Get_Next_Unplanned_Month__Will_Return_Next_Month_If_No_Monthly_Budget_Items_Exist()
+        {
+            // Arrange
+            int expected_budget_out_row_number = 10;
+            DateTime expected_last_planned_date = DateTime.Today.AddMonths(1);
+            BudgetItemListData budget_item_list_data = new BudgetItemListData
+            {
+                Budget_sheet_name = MainSheetNames.Budget_out,
+                Owned_sheet_name = MainSheetNames.Cred_card1,
+                Start_divider = Dividers.Cred_card1,
+                End_divider = Dividers.Cred_card2,
+                First_column_number = 2,
+                Last_column_number = 5,
+                Third_party_desc_col = 10
+            };
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
+                    budget_item_list_data.Budget_sheet_name,
+                    budget_item_list_data.Start_divider,
+                    new List<int> { ReconConsts.BudgetDividerColumn },
+                    true))
+                .Returns(expected_budget_out_row_number);
+            mock_spreadsheet_repo.Setup(x => x.Find_row_number_of_last_row_containing_cell(
+                    budget_item_list_data.Budget_sheet_name,
+                    budget_item_list_data.End_divider,
+                    new List<int> { ReconConsts.BudgetDividerColumn },
+                    true))
+                .Returns(expected_budget_out_row_number + 1);
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+
+            // Act
+            var result = spreadsheet.Get_next_unplanned_month<BankRecord>(budget_item_list_data);
+
+            // Assert
+            Assert.AreEqual(expected_last_planned_date.Month, result.Month);
+        }
+
+        [Test]
         public void M_GetNextUnplannedMonth_WillThrowExceptionIfMortgageRowCannotBeFound()
         {
             // Arrange
