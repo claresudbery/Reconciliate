@@ -105,6 +105,41 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
+        public void Will_find_expense_transactions_in_ActualBank_file_when_their_descriptions_contain_the_employer_expense_description()
+        {
+            // Arrange
+            var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
+            var mock_actual_bank_file_io = new Mock<IFileIO<ActualBankRecord>>();
+            string matched_description = $"\"'{ReconConsts.Employer_expense_description} and also some more text\"";
+            mock_actual_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+                .Returns(new List<ActualBankRecord> {
+                    new ActualBankRecord {Description = matched_description},
+                    new ActualBankRecord {Description = "something else"}
+                });
+            var actual_bank_file = new ActualBankInFile(new CSVFile<ActualBankRecord>(mock_actual_bank_file_io.Object));
+            var mock_bank_in_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_in_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null))
+                .Returns(new List<BankRecord> {
+                    new BankRecord {Type = Codes.Expenses, Description = Codes.Expenses + "1"}
+                });
+            var bank_in_file = new GenericFile<BankRecord>(new CSVFile<BankRecord>(mock_bank_in_file_io.Object));
+            var data_loading_info = new DataLoadingInformation<ActualBankRecord, BankRecord>
+            {
+                Sheet_name = MainSheetNames.Bank_in,
+                Loader = new BankAndBankInLoader(new Mock<ISpreadsheetRepoFactory>().Object)
+            };
+            var reconciliator = new Reconciliator<ActualBankRecord, BankRecord>(data_loading_info, actual_bank_file, bank_in_file);
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
+
+            // Act
+            matcher.Filter_for_all_expense_transactions_from_actual_bank_in(reconciliator);
+
+            // Assert
+            Assert.AreEqual(1, reconciliator.Third_party_file.Records.Count);
+            Assert.AreEqual(matched_description, reconciliator.Third_party_file.Records[0].Description);
+        }
+
+        [Test]
         public void M_WhenExpenseMatchingWillFilterOwnedFileForWagesRowsAndExpenseTransactionsOnly()
         {
             // Arrange

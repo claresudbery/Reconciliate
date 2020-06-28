@@ -77,8 +77,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 
         public bool Is_not_expense_transaction(ActualBankRecord actual_bank_record)
         {
-            return actual_bank_record.Description.Remove_punctuation().ToUpper()
-                   != ReconConsts.Employer_expense_description;
+            return !actual_bank_record.Description.Remove_punctuation().ToUpper().Contains(ReconConsts.Employer_expense_description.ToUpper());
         }
 
         public void Filter_for_all_wages_rows_and_expense_transactions_from_expected_in(IReconciliator<ActualBankRecord, BankRecord> reconciliator)
