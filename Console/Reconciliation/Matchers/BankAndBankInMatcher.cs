@@ -43,6 +43,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             Do_employer_expense_matching(
                 reconciliator as IReconciliator<ActualBankRecord, BankRecord>, 
                 reconciliation_interface as IReconciliationInterface<ActualBankRecord, BankRecord>);
+
+            Ensure_that_ExpectedIn_transactions_will_be_updated_after_reconciliation(
+                reconciliator as IReconciliator<ActualBankRecord, BankRecord>);
+        }
+
+        private void Ensure_that_ExpectedIn_transactions_will_be_updated_after_reconciliation(IReconciliator<ActualBankRecord, BankRecord> reconciliator)
+        {
+            reconciliator.Set_record_matcher(Match_BankIn_records);
         }
 
         private void Do_employer_expense_matching(
@@ -52,7 +60,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             Filter_for_all_expense_transactions_from_actual_bank_in(reconciliator);
             Filter_for_all_wages_rows_and_expense_transactions_from_expected_in(reconciliator);
             reconciliator.Set_match_finder(Find_expense_matches);
-            reconciliator.Set_record_matcher(Match_specified_records);
+            reconciliator.Set_record_matcher(Match_expense_records);
 
             reconciliation_interface.Do_semi_automatic_matching();
 
@@ -100,7 +108,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                    && bank_record.Match == null;
         }
 
-        public void Match_specified_records(
+        public void Match_expense_records(
                 RecordForMatching<ActualBankRecord> record_for_matching,
                 int match_index,
                 ICSVFile<BankRecord> owned_file)
@@ -118,6 +126,22 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             Match_records(
                 record_for_matching.SourceRecord,
                 (record_for_matching.Matches[match_index].Actual_records[0] as BankRecord));
+        }
+
+        public void Match_BankIn_records(
+            RecordForMatching<ActualBankRecord> record_for_matching,
+            int match_index,
+            ICSVFile<BankRecord> owned_file)
+        {
+            var match = (BankRecord) record_for_matching.Matches[match_index].Actual_records[0];
+            if (match.Type == Codes.ExpectedInBankTransaction)
+            {
+                _bank_and_bank_in_loader.Update_expected_income_record_when_matched(
+                    record_for_matching.SourceRecord,
+                    match);
+            }
+
+            Reconciliator<ActualBankRecord, BankRecord>.Match_specified_records(record_for_matching, match_index, owned_file);
         }
 
         public void Create_new_combined_record(

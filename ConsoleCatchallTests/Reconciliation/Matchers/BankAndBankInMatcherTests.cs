@@ -247,7 +247,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
 
             // Assert
-            mock_reconciliator.Verify(x => x.Set_record_matcher(matcher.Match_specified_records));
+            mock_reconciliator.Verify(x => x.Set_record_matcher(matcher.Match_expense_records));
         }
 
         [Test]
@@ -306,7 +306,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var index = 1;
 
             // Act
-            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+            matcher.Match_expense_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert
             Assert.AreEqual(false, record_for_matching.Matches[0].Actual_records[0].Matched, "first record not matched");
@@ -344,7 +344,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             Assert.AreEqual(2, record_for_matching.Matches[index].Actual_records.Count, "num matches before call");
 
             // Act
-            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+            matcher.Match_expense_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert
             Assert.AreEqual(1, record_for_matching.Matches[index].Actual_records.Count, "num matches after call");
@@ -385,7 +385,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
 
             // Act
-            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+            matcher.Match_expense_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert
             Assert.AreEqual(expected_description, record_for_matching.Matches[index].Actual_records[0].Description);
@@ -422,7 +422,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
 
             // Act
-            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+            matcher.Match_expense_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert
             Assert.AreEqual(source_record.Date, record_for_matching.Matches[index].Actual_records[0].Date);
@@ -461,7 +461,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
 
             // Act
-            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+            matcher.Match_expense_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert
             Assert.AreEqual(record_for_matching.SourceRecord.Main_amount(), record_for_matching.Matches[index].Actual_records[0].Main_amount());
@@ -500,7 +500,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
 
             // Act
-            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+            matcher.Match_expense_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert 
             Assert.IsTrue(record_for_matching.Matches[index].Actual_records[0].Description.Contains(ReconConsts.ExpensesDontAddUp));
@@ -538,7 +538,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
 
             // Act
-            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+            matcher.Match_expense_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert
             Assert.AreEqual(expected_type, (record_for_matching.Matches[index].Actual_records[0] as BankRecord).Type);
@@ -575,7 +575,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
 
             // Act
-            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+            matcher.Match_expense_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert
             Assert.AreEqual(true, record_for_matching.Matches[index].Actual_records[0].Matched, "match is set to matched");
@@ -613,7 +613,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
 
             // Act
-            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+            matcher.Match_expense_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert
             Assert.AreEqual(record_for_matching.SourceRecord, record_for_matching.Matches[index].Actual_records[0].Match, "match is pointing at source");
@@ -655,7 +655,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             }
 
             // Act
-            matcher.Match_specified_records(record_for_matching, index, bank_in_file);
+            matcher.Match_expense_records(record_for_matching, index, bank_in_file);
 
             // Assert
             foreach (var bank_record in bank_records)
@@ -699,7 +699,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             }
 
             // Act
-            matcher.Match_specified_records(record_for_matching, index, bank_in_file);
+            matcher.Match_expense_records(record_for_matching, index, bank_in_file);
 
             // Assert
             Assert.AreEqual(1, bank_in_file.Records.Count);
@@ -740,7 +740,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
 
             // Act
-            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+            matcher.Match_expense_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert
             mock_bank_and_bank_in_loader.Verify(x => x.Update_expected_income_record_when_matched(
@@ -749,6 +749,44 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             mock_bank_and_bank_in_loader.Verify(x => x.Update_expected_income_record_when_matched(
                 It.Is<ICSVRecord>(y => y.Description == desc0),
                 It.Is<ICSVRecord>(y => y.Description == desc2)));
+        }
+
+        [Test]
+        public void When_matching_BankIn_records_will_update_ExpectedIncome_records()
+        {
+            // Arrange
+            var mock_bank_and_bank_in_loader = new Mock<IBankAndBankInLoader>();
+            var mock_owned_file = new Mock<ICSVFile<BankRecord>>();
+            mock_owned_file.Setup(x => x.Records).Returns(new List<BankRecord>());
+            var matcher = new BankAndBankInMatcher(this, mock_bank_and_bank_in_loader.Object);
+            var desc0 = "Source 01";
+            var desc1 = "Match 01";
+            var amount1 = 20.22;
+            var source_record = new ActualBankRecord
+            {
+                Amount = amount1,
+                Description = desc0
+            };
+            var potential_matches = new List<IPotentialMatch>
+            {
+                new PotentialMatch
+                {
+                    Actual_records = new List<ICSVRecord>
+                    {
+                        new BankRecord {Description = desc1, Unreconciled_amount = amount1, Type = Codes.ExpectedInBankTransaction}
+                    }
+                }
+            };
+            var index = 0;
+            var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
+
+            // Act
+            matcher.Match_BankIn_records(record_for_matching, index, mock_owned_file.Object);
+
+            // Assert
+            mock_bank_and_bank_in_loader.Verify(x => x.Update_expected_income_record_when_matched(
+                It.Is<ActualBankRecord>(y => y.Description == desc0),
+                It.Is<BankRecord>(y => y.Description == desc1)));
         }
 
         [Test]
@@ -788,7 +826,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
 
             // Act
-            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+            matcher.Match_expense_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert
             mock_bank_and_bank_in_loader.Verify(x => x.Create_new_expenses_record_to_match_balance(
@@ -834,7 +872,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
 
             // Act
-            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+            matcher.Match_expense_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert
             mock_bank_and_bank_in_loader.Verify(x => x.Create_new_expenses_record_to_match_balance(
@@ -876,7 +914,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
 
             // Act
-            matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
+            matcher.Match_expense_records(record_for_matching, index, mock_owned_file.Object);
 
             // Assert
             mock_bank_and_bank_in_loader.Verify(x => x.Update_expected_income_record_when_matched(
@@ -926,7 +964,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             matcher.Filter_for_all_expense_transactions_from_actual_bank_in(reconciliator);
             matcher.Filter_for_all_wages_rows_and_expense_transactions_from_expected_in(reconciliator);
             reconciliator.Set_match_finder((record, file) => expected_potential_matches);
-            reconciliator.Set_record_matcher(matcher.Match_specified_records);
+            reconciliator.Set_record_matcher(matcher.Match_expense_records);
             reconciliator.Find_reconciliation_matches_for_next_third_party_record();
             reconciliator.Match_current_record(0);
             Assert.AreEqual(1, reconciliator.Third_party_file.Records.Count);

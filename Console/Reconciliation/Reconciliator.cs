@@ -290,7 +290,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             _record_matching_delegate(_latest_record_for_matching, match_index, Owned_file);
         }
 
-        private void Match_specified_records(
+        public static void Match_specified_records(
             RecordForMatching<TThirdPartyType> record_for_matching, 
             int match_index,
             ICSVFile<TOwnedType> owned_file)
@@ -314,7 +314,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             }
         }
 
-        private void Match_records(TThirdPartyType source, ICSVRecord match)
+        private static void Match_records(TThirdPartyType source, ICSVRecord match)
         {
             source.Matched = true;
             source.Match = match;
@@ -332,7 +332,7 @@ namespace ConsoleCatchall.Console.Reconciliation
             match.Match = null;
         }
 
-        private void Change_amount_and_description_to_match_third_party_record(TThirdPartyType source_record, ICSVRecord matched_record)
+        private static void Change_amount_and_description_to_match_third_party_record(TThirdPartyType source_record, ICSVRecord matched_record)
         {
             matched_record.Description = matched_record.Description 
                                         + ReconConsts.OriginalAmountWas
