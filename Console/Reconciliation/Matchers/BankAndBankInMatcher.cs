@@ -13,8 +13,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
 {
     internal class BankAndBankInMatcher : IMatcher
     {
-        public List<ExpectedIncomeRecord> MatchedExpectedIncomeRecords;
-
         private readonly IInputOutput _input_output;
         private readonly IBankAndBankInLoader _bank_and_bank_in_loader;
 
@@ -24,7 +22,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
         {
             _input_output = input_output;
             _bank_and_bank_in_loader = bank_and_bank_in_loader;
-            MatchedExpectedIncomeRecords = new List<ExpectedIncomeRecord>();
         }
 
         public void Do_matching(FilePaths main_file_paths, ISpreadsheetRepoFactory spreadsheet_factory)

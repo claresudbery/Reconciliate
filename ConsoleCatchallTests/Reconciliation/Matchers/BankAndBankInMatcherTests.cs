@@ -5,10 +5,8 @@ using ConsoleCatchall.Console.Reconciliation;
 using ConsoleCatchall.Console.Reconciliation.Files;
 using ConsoleCatchall.Console.Reconciliation.Matchers;
 using ConsoleCatchall.Console.Reconciliation.Records;
-using ConsoleCatchall.Console.Reconciliation.Spreadsheets;
 using ConsoleCatchall.Console.Reconciliation.Extensions;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
-using ConsoleCatchallTests.Reconciliation.TestUtils;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
@@ -739,7 +737,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             };
             var index = 0;
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
-            Assert.AreEqual(0, matcher.MatchedExpectedIncomeRecords.Count);
 
             // Act
             matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
@@ -788,7 +785,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             };
             var index = 0;
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
-            Assert.AreEqual(0, matcher.MatchedExpectedIncomeRecords.Count);
 
             // Act
             matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
@@ -835,7 +831,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             };
             var index = 0;
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
-            Assert.AreEqual(0, matcher.MatchedExpectedIncomeRecords.Count);
 
             // Act
             matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
@@ -878,7 +873,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             };
             var index = 0;
             var record_for_matching = new RecordForMatching<ActualBankRecord>(source_record, potential_matches);
-            Assert.AreEqual(0, matcher.MatchedExpectedIncomeRecords.Count);
 
             // Act
             matcher.Match_specified_records(record_for_matching, index, mock_owned_file.Object);
