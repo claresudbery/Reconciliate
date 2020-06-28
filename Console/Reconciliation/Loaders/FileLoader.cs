@@ -241,23 +241,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 BudgetItemListData budget_item_list_data)
             where TRecordType : ICSVRecord, new()
         {
-            bool do_transaction_budgeting = Confirm_budgeting(ReconConsts.ConfirmTransactionBudgeting);
-            bool do_expected_out_budgeting = Confirm_budgeting(ReconConsts.ConfirmExpectedOutBudgeting);
-            DateTime next_unplanned_month = _clock.Today_date_time();
-            var budgeting_months = new BudgetingMonths
+            BudgetingMonths budgeting_months = Initialise_budgeting_months<TRecordType>(spreadsheet, budget_item_list_data);
+
+            if (budgeting_months.Do_transaction_budgeting || budgeting_months.Do_expected_out_budgeting)
             {
-                Do_expected_out_budgeting = do_expected_out_budgeting,
-                Do_transaction_budgeting = do_transaction_budgeting
-            };
-            if (do_transaction_budgeting)
-            {
-                next_unplanned_month = Get_next_unplanned_month<TRecordType>(spreadsheet, budget_item_list_data);
-            }
-            budgeting_months.Next_unplanned_month = next_unplanned_month.Month;
-            budgeting_months.Start_year = next_unplanned_month.Year;
-            if (do_transaction_budgeting || do_expected_out_budgeting)
-            {
-                int last_month_for_budget_planning = Get_last_month_for_budget_planning(spreadsheet, next_unplanned_month.Month);
+                int last_month_for_budget_planning = Get_last_month_for_budget_planning(spreadsheet, budgeting_months.Next_unplanned_month);
                 budgeting_months.Last_month_for_budget_planning = last_month_for_budget_planning;
                 if (last_month_for_budget_planning == 0)
                 {
@@ -269,6 +257,33 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                     budgeting_months.Last_month_for_budget_planning = Confirm_budgeting_month_choices_with_user(budgeting_months, spreadsheet);
                 }
             }
+            return budgeting_months;
+        }
+
+        private BudgetingMonths Initialise_budgeting_months<TRecordType>(
+                ISpreadsheet spreadsheet, 
+                BudgetItemListData budget_item_list_data)
+            where TRecordType : ICSVRecord, new()
+        {
+            DateTime next_unplanned_month = _clock.Today_date_time();
+
+            bool do_transaction_budgeting = Confirm_budgeting(ReconConsts.ConfirmTransactionBudgeting);
+            bool do_expected_out_budgeting = Confirm_budgeting(ReconConsts.ConfirmExpectedOutBudgeting);
+
+            var budgeting_months = new BudgetingMonths
+            {
+                Do_expected_out_budgeting = do_expected_out_budgeting,
+                Do_transaction_budgeting = do_transaction_budgeting
+            };
+
+            if (do_transaction_budgeting)
+            {
+                next_unplanned_month = Get_next_unplanned_month<TRecordType>(spreadsheet, budget_item_list_data);
+            }
+
+            budgeting_months.Next_unplanned_month = next_unplanned_month.Month;
+            budgeting_months.Start_year = next_unplanned_month.Year;
+
             return budgeting_months;
         }
 
