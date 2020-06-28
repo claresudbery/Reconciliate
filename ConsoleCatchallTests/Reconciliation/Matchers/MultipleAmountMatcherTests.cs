@@ -550,9 +550,9 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var desc04 = "Match04";
             List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> {
                 new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = desc01, Date = DateTime.Today },
-                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = desc02, Date = DateTime.Today.AddDays(matcher.DateTolerance + 1) },
+                new CredCard2InOutRecord { Unreconciled_amount = 20.00, Description = desc02, Date = DateTime.Today.AddDays(matcher.DefaultDateTolerance + 1) },
                 new CredCard2InOutRecord { Unreconciled_amount = 30.00, Description = desc03, Date = DateTime.Today },
-                new CredCard2InOutRecord { Unreconciled_amount = 30.00, Description = desc04, Date = DateTime.Today.AddDays(-(matcher.DateTolerance + 1)) }
+                new CredCard2InOutRecord { Unreconciled_amount = 30.00, Description = desc04, Date = DateTime.Today.AddDays(-(matcher.DefaultDateTolerance + 1)) }
             };
             _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
             _cred_card2_in_out_file.Load();

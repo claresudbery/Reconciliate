@@ -7,6 +7,7 @@ using ConsoleCatchall.Console.Reconciliation.Matchers;
 using ConsoleCatchall.Console.Reconciliation.Records;
 using ConsoleCatchall.Console.Reconciliation.Extensions;
 using ConsoleCatchall.Console.Reconciliation.Loaders;
+using ConsoleCatchallTests.Reconciliation.TestUtils;
 using Interfaces;
 using Interfaces.Constants;
 using Interfaces.DTOs;
@@ -946,6 +947,29 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             Assert.AreEqual(actual_bank_data[0], reconciliator.Owned_file.Records[2].Match);
             Assert.IsTrue(reconciliator.Owned_file.Records[2].Matched);
             Assert.IsTrue(reconciliator.Owned_file.Records[2].Description.Contains(ReconConsts.SeveralExpenses));
+        }
+
+        [Test]
+        public void When_expense_matching_will_match_expected_in_transactions_that_dont_have_nearby_dates()
+        {
+            // Arrange
+            var matcher = new BankAndBankInMatcher(this, new BankAndBankInLoader(new Mock<ISpreadsheetRepoFactory>().Object));
+            var actual_bank_record = new ActualBankRecord
+                {Description = ReconConsts.Employer_expense_description, Date = DateTime.Today};
+            var bank_data = new List<BankRecord>
+            {
+                new BankRecord {Description = "BankRecord01", Type = Codes.Expenses, Date = DateTime.Today.AddDays(100)}
+            };
+            var mock_bank_file_io = new Mock<IFileIO<BankRecord>>();
+            mock_bank_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(bank_data);
+            var bank_file = new CSVFile<BankRecord>(mock_bank_file_io.Object);
+            bank_file.Load();
+
+            // Act
+            var results = matcher.Find_expense_matches(actual_bank_record, bank_file);
+
+            // Assert
+            Assert.AreEqual(1, results.Count());
         }
     }
 }
