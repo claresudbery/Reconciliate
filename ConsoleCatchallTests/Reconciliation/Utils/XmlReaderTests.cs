@@ -168,7 +168,8 @@ namespace ConsoleCatchallTests.Reconciliation.Utils
         [TestCase(nameof(Codes.Cred_card1_bal), "CredCard1 Balance")]
         [TestCase(nameof(Codes.Cred_card2_bal), "CredCard2 Balance")]
         [TestCase(nameof(Codes.Expenses), "Acme Expenses")]
-        public void Temp_Test_For_New_Config_Values(string element_name, string element_value)
+        [TestCase(nameof(Codes.ExpectedInBankTransaction), "Bank Transaction")]
+        public void All_Config_Values_Should_Be_In_Config(string element_name, string element_value)
         {
             var xml_reader = new MyXmlReader();
             Assert.AreEqual(element_value, xml_reader.Read_xml(element_name, _sample_xml_config_file_path));

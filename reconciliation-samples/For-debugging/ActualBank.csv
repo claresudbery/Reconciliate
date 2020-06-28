@@ -10,6 +10,7 @@ Date, Type, Description, Value, Balance, Account Name, Account Number
 07/06/2020,BAC,'Banana,-32,1027.14,'Envelope,'228822-99933422
 06/06/2020,BAC,'Aubergine,-22,1059.14,'Envelope,'228822-99933422
 04/06/2020,BAC,'Mortgage description,-1000,1081.14,'Envelope,'228822-99933422
+04/06/2020,BAC,'Transaction that matches bank transaction in Expected In,75,2081.17,'Envelope,'228822-99933422
 03/06/2020,BAC,'Bank monthly outgoing transaction 03,-55,2081.14,'Envelope,'228822-99933422
 03/06/2020,BAC,'Bank monthly incoming transaction 03,54.97,2136.14,'Envelope,'228822-99933422
 03/06/2020,BAC,'ACME LTD,75,2081.17,'Envelope,'228822-99933422

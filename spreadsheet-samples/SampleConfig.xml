@@ -75,6 +75,7 @@
     <Cred_card1_bal>CredCard1 Balance</Cred_card1_bal>
     <Cred_card2_bal>CredCard2 Balance</Cred_card2_bal>
     <Expenses>Acme Expenses</Expenses>
+    <ExpectedInBankTransaction>Bank Transaction</ExpectedInBankTransaction>
     <Code001>Code001</Code001>
     <Code002>Code002</Code002>
     <Code003>Code003</Code003>

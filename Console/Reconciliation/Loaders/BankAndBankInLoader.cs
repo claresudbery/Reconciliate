@@ -73,7 +73,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
 
             spreadsheet.Add_unreconciled_rows_to_csv_file<ExpectedIncomeRecord>(MainSheetNames.Expected_in, _expected_income_file.File);
             _expected_income_csv_file.Populate_source_records_from_records();
-            _expected_income_file.Filter_for_employer_expenses_only();
+            _expected_income_file.Filter_for_employer_expenses_and_bank_transactions_only();
 
             _expected_income_file.Copy_to_pending_file(pending_file);
             _expected_income_csv_file.Populate_records_from_original_file_load();

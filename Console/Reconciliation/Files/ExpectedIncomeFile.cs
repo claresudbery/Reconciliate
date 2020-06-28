@@ -26,12 +26,12 @@ namespace ConsoleCatchall.Console.Reconciliation.Files
 
         public void Refresh_file_contents()
         {
-            Filter_for_employer_expenses_only();
+            Filter_for_employer_expenses_and_bank_transactions_only();
         }
 
-        public void Filter_for_employer_expenses_only()
+        public void Filter_for_employer_expenses_and_bank_transactions_only()
         {
-            File.Remove_records(x => x.Code != Codes.Expenses);
+            File.Remove_records(x => x.Code != Codes.Expenses && x.Code != Codes.ExpectedInBankTransaction);
         }
 
         public void Copy_to_pending_file(ICSVFile<BankRecord> pending_file)

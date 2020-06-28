@@ -27,22 +27,28 @@ namespace ConsoleCatchallTests.Reconciliation.Files
         }
 
         [Test]
-        public void Can_filter_for_employer_expense_records_only()
+        public void Will_filter_for_employer_expense_records_and_bank_transactions_only()
         {
             // Arrange
             var mock_expected_income_file_io = new Mock<IFileIO<ExpectedIncomeRecord>>();
             var expected_income_csv_file = new CSVFile<ExpectedIncomeRecord>(mock_expected_income_file_io.Object);
-            var expected_description = "description2";
+            var expected_description_1 = "description1";
+            var expected_description_2 = "description2";
             var expected_income_records = new List<ExpectedIncomeRecord>
             {
                 new ExpectedIncomeRecord
                 {
-                    Description = expected_description,
+                    Description = expected_description_1,
                     Code = Codes.Expenses
                 },
                 new ExpectedIncomeRecord
                 {
-                    Description = "description1",
+                    Description = expected_description_2,
+                    Code = Codes.ExpectedInBankTransaction
+                },
+                new ExpectedIncomeRecord
+                {
+                    Description = "description3",
                     Code = "other"
                 }
             };
@@ -51,11 +57,12 @@ namespace ConsoleCatchallTests.Reconciliation.Files
             var expected_income_file = new ExpectedIncomeFile(expected_income_csv_file);
 
             // Act
-            expected_income_file.Filter_for_employer_expenses_only();
+            expected_income_file.Filter_for_employer_expenses_and_bank_transactions_only();
 
             // Assert
-            Assert.AreEqual(1, expected_income_csv_file.Records.Count);
-            Assert.AreEqual(expected_description, expected_income_csv_file.Records[0].Description);
+            Assert.AreEqual(2, expected_income_csv_file.Records.Count);
+            Assert.AreEqual(expected_description_1, expected_income_csv_file.Records[0].Description);
+            Assert.AreEqual(expected_description_2, expected_income_csv_file.Records[1].Description);
         }
 
         [Test]

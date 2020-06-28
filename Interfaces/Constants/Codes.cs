@@ -8,6 +8,7 @@
         public static string Cred_card1_bal => XmlReader.Read_xml(nameof(Cred_card1_bal));
         public static string Cred_card2_bal => XmlReader.Read_xml(nameof(Cred_card2_bal));
         public static string Expenses => XmlReader.Read_xml(nameof(Expenses));
+        public static string ExpectedInBankTransaction => XmlReader.Read_xml(nameof(ExpectedInBankTransaction));
 
         public static string Code001 => XmlReader.Read_xml(nameof(Code001));
         public static string Code002 => XmlReader.Read_xml(nameof(Code002));
