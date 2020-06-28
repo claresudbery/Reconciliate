@@ -244,27 +244,30 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             bool do_transaction_budgeting = Confirm_budgeting(ReconConsts.ConfirmTransactionBudgeting);
             bool do_expected_out_budgeting = Confirm_budgeting(ReconConsts.ConfirmExpectedOutBudgeting);
             DateTime next_unplanned_month = _clock.Today_date_time();
+            var budgeting_months = new BudgetingMonths
+            {
+                Do_expected_out_budgeting = do_expected_out_budgeting,
+                Do_transaction_budgeting = do_transaction_budgeting
+            };
             if (do_transaction_budgeting)
             {
                 next_unplanned_month = Get_next_unplanned_month<TRecordType>(spreadsheet, budget_item_list_data);
             }
-            int last_month_for_budget_planning = Get_last_month_for_budget_planning(spreadsheet, next_unplanned_month.Month);
-            var budgeting_months = new BudgetingMonths
+            budgeting_months.Next_unplanned_month = next_unplanned_month.Month;
+            budgeting_months.Start_year = next_unplanned_month.Year;
+            if (do_transaction_budgeting || do_expected_out_budgeting)
             {
-                Next_unplanned_month = next_unplanned_month.Month,
-                Last_month_for_budget_planning = last_month_for_budget_planning,
-                Start_year = next_unplanned_month.Year,
-                Do_expected_out_budgeting = do_expected_out_budgeting,
-                Do_transaction_budgeting = do_transaction_budgeting
-            };
-            if (last_month_for_budget_planning == 0)
-            {
-                budgeting_months.Do_expected_out_budgeting = false;
-                budgeting_months.Do_transaction_budgeting = false;
-            }
-            else
-            {
-                budgeting_months.Last_month_for_budget_planning = Confirm_budgeting_month_choices_with_user(budgeting_months, spreadsheet);
+                int last_month_for_budget_planning = Get_last_month_for_budget_planning(spreadsheet, next_unplanned_month.Month);
+                budgeting_months.Last_month_for_budget_planning = last_month_for_budget_planning;
+                if (last_month_for_budget_planning == 0)
+                {
+                    budgeting_months.Do_expected_out_budgeting = false;
+                    budgeting_months.Do_transaction_budgeting = false;
+                }
+                else
+                {
+                    budgeting_months.Last_month_for_budget_planning = Confirm_budgeting_month_choices_with_user(budgeting_months, spreadsheet);
+                }
             }
             return budgeting_months;
         }

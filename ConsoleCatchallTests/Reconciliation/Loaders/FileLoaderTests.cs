@@ -767,16 +767,16 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         {
             // Arrange
             _get_input_messages.Clear();
-            const int irrelevant = 1;
-            const int this_month = 1;
+            const int Irrelevant = 1;
+            const int ThisMonth = 1;
             var mock_spreadsheet = new Mock<ISpreadsheet>();
-            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Returns(new DateTime(2020, this_month + 1, 1));
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Returns(new DateTime(2020, ThisMonth + 1, 1));
             var mock_clock = new Mock<IClock>();
-            mock_clock.Setup(x => x.Today_date_time()).Returns(new DateTime(2020, this_month, 1));
+            mock_clock.Setup(x => x.Today_date_time()).Returns(new DateTime(2020, ThisMonth, 1));
             _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns("N")
                 .Returns("Y")
-                .Returns($"{irrelevant}")
+                .Returns($"{Irrelevant}")
                 .Returns("Y");
             // Use self-shunt to avoid infinite recursion:
             var file_loader = new FileLoader(this, mock_clock.Object);
@@ -785,7 +785,92 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var budgeting_months = file_loader.Recursively_ask_for_budgeting_months<BankRecord>(mock_spreadsheet.Object, new BudgetItemListData());
 
             // Assert
-            Assert.AreEqual(this_month, budgeting_months.Next_unplanned_month);
+            Assert.AreEqual(ThisMonth, budgeting_months.Next_unplanned_month);
+        }
+
+        [Test]
+        public void Recursively_ask_for_budgeting_months__will_not_ask_for_further_input_if_user_doesnt_want_any_budgeting()
+        {
+            // Arrange
+            _get_input_messages.Clear();
+            const int ThisMonth = 1;
+            var next_unplanned_month = new DateTime(2020, ThisMonth + 1, 1);
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Returns(next_unplanned_month);
+            var mock_clock = new Mock<IClock>();
+            mock_clock.Setup(x => x.Today_date_time()).Returns(new DateTime(2020, ThisMonth, 1));
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("N")
+                .Returns("N");
+            // Use self-shunt to avoid infinite recursion:
+            var file_loader = new FileLoader(this, mock_clock.Object);
+
+            // Act
+            var budgeting_months = file_loader.Recursively_ask_for_budgeting_months<BankRecord>(mock_spreadsheet.Object, new BudgetItemListData());
+
+            // Assert
+            _mock_input_output.Verify(x => x.Get_input(
+                It.Is<string>(y => y.Contains(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(ThisMonth))),
+                It.IsAny<string>()),
+                Times.Never);
+        }
+
+        [Test]
+        public void Recursively_ask_for_budgeting_months__will_ask_for_further_input_if_user_wants_transaction_budgeting()
+        {
+            // Arrange
+            _get_input_messages.Clear();
+            const int Irrelevant = 1;
+            const int ThisMonth = 1;
+            var next_unplanned_month = new DateTime(2020, ThisMonth + 1, 1);
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Returns(next_unplanned_month);
+            var mock_clock = new Mock<IClock>();
+            mock_clock.Setup(x => x.Today_date_time()).Returns(new DateTime(2020, ThisMonth, 1));
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("Y")
+                .Returns("N")
+                .Returns($"{Irrelevant}")
+                .Returns("Y");
+            // Use self-shunt to avoid infinite recursion:
+            var file_loader = new FileLoader(this, mock_clock.Object);
+
+            // Act
+            var budgeting_months = file_loader.Recursively_ask_for_budgeting_months<BankRecord>(mock_spreadsheet.Object, new BudgetItemListData());
+
+            // Assert
+            _mock_input_output.Verify(x => x.Get_input(
+                    It.Is<string>(y => y.Contains(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(ThisMonth + 1))),
+                    It.IsAny<string>()));
+        }
+
+        [Test]
+        public void Recursively_ask_for_budgeting_months__will_ask_for_further_input_if_user_wants_expected_out_budgeting()
+        {
+            // Arrange
+            _get_input_messages.Clear();
+            const int Irrelevant = 1;
+            const int ThisMonth = 1;
+            var next_unplanned_month = new DateTime(2020, ThisMonth + 1, 1);
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            mock_spreadsheet.Setup(x => x.Get_next_unplanned_month<BankRecord>(It.IsAny<BudgetItemListData>())).Returns(next_unplanned_month);
+            var mock_clock = new Mock<IClock>();
+            mock_clock.Setup(x => x.Today_date_time()).Returns(new DateTime(2020, ThisMonth, 1));
+            _mock_input_output.SetupSequence(x => x.Get_input(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("N")
+                .Returns("Y")
+                .Returns($"{Irrelevant}")
+                .Returns("Y");
+            // Use self-shunt to avoid infinite recursion:
+            var file_loader = new FileLoader(this, mock_clock.Object);
+
+            // Act
+            var budgeting_months = file_loader.Recursively_ask_for_budgeting_months<BankRecord>(mock_spreadsheet.Object, new BudgetItemListData());
+
+            // Assert
+            _mock_input_output.Verify(x => x.Get_input(
+                It.Is<string>(y => y.Contains(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(ThisMonth))),
+                It.IsAny<string>()));
         }
     }
 }
