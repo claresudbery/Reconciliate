@@ -100,7 +100,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
         {
             if (budgeting_months.Do_expected_out_budgeting)
             {
-                Update_owed_CHB(spreadsheet, budgeting_months);
+                Update_owed_CHB(input_output, spreadsheet, budgeting_months);
 
                 Update_weekly_item(input_output, spreadsheet, budgeting_months, "weekly spends", Codes.Code004, Codes.Code074);
                 Update_weekly_item(input_output, spreadsheet, budgeting_months, "grocery shopping", Codes.Code005, Codes.Code075);
@@ -149,9 +149,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             spreadsheet.Update_expected_out(weeks.NumWeeks, budget_code, expected_out_code);
         }
 
-        private void Update_owed_CHB(ISpreadsheet spreadsheet, BudgetingMonths budgeting_months)
+        private void Update_owed_CHB(IInputOutput input_output, ISpreadsheet spreadsheet, BudgetingMonths budgeting_months)
         {
-            spreadsheet.Update_owed_CHB(budgeting_months);
+            var input = input_output.Get_input("Do you want to add to the CHB total? The answer is probably No if you're not doing monthly transaction budgeting this time. Enter y/Y for Yes.");
+            if (!String.IsNullOrEmpty(input) && input.ToUpper() == "Y")
+            {
+                spreadsheet.Update_owed_CHB(budgeting_months);
+            }
         }
 
         private void Add_most_recent_credit_card_direct_debits(

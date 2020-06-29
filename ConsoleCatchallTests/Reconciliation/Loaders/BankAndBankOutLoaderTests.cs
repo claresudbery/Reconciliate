@@ -387,10 +387,13 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             // Arrange
             var bank_and_bank_out_loader = new BankAndBankOutLoader();
             var mock_spreadsheet = new Mock<ISpreadsheet>();
+            var mock_input_output = new Mock<IInputOutput>();
+            mock_input_output.Setup(x => x.Get_input(It.Is<string>(y => y.Contains("CHB")), ""))
+                .Returns("Y");
 
             // Act
             bank_and_bank_out_loader.Generate_ad_hoc_data(
-                new Mock<IInputOutput>().Object,
+                mock_input_output.Object,
                 mock_spreadsheet.Object,
                 new Mock<ICSVFile<BankRecord>>().Object,
                 new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6, Do_expected_out_budgeting = true },
@@ -399,6 +402,30 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
 
             // Assert
             mock_spreadsheet.Verify(x => x.Update_owed_CHB(It.IsAny<BudgetingMonths>()));
+        }
+
+        [Test]
+        public void Will_not_update_owed_CHB_when_generating_ad_hoc_data_if_user_says_no()
+        {
+            // Arrange
+            var bank_and_bank_out_loader = new BankAndBankOutLoader();
+            var mock_spreadsheet = new Mock<ISpreadsheet>();
+            var mock_input_output = new Mock<IInputOutput>();
+            mock_input_output.Setup(x => x.Get_input(It.Is<string>(y => y.Contains("CHB")), ""))
+                .Returns("N");
+
+            // Act
+            bank_and_bank_out_loader.Generate_ad_hoc_data(
+                mock_input_output.Object,
+                mock_spreadsheet.Object,
+                new Mock<ICSVFile<BankRecord>>().Object,
+                new BudgetingMonths { Start_year = 2020, Next_unplanned_month = 6, Last_month_for_budget_planning = 6, Do_expected_out_budgeting = true },
+                new DataLoadingInformation<ActualBankRecord, BankRecord>()
+            );
+
+            // Assert
+            mock_spreadsheet.Verify(x => x.Update_owed_CHB(It.IsAny<BudgetingMonths>()), 
+                Times.Never);
         }
 
         [Test]
