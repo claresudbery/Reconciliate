@@ -896,16 +896,33 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         public void Will_update_text_when_updating_owed_CHB()
         {
             // Arrange
-            const string OriginalText = "CHB owed (Apr to Jun 2020)";
-            const string ExpectedText = "CHB owed (Apr to Aug 2020)";
+            const int NumMonths = 2;
+            const int OldTotalMonths = 15;
+            const int NewTotalMonths = OldTotalMonths + NumMonths;
+            const double BaseAmount = 11;
+            const double CurrentAmount = OldTotalMonths * BaseAmount;
+            const int NextUnplannedMonth = 7;
+            string original_text = $"CHB owed (this is {OldTotalMonths} months Apr 2019 to Jun 2020)";
+            string expected_text = $"CHB owed (this is {NewTotalMonths} months Apr 2019 to Aug 2020)";
             var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
             mock_spreadsheet_repo.Setup(x => x.Get_text(MainSheetNames.Expected_out, Codes.Code003, 4))
-                .Returns(OriginalText);
+                .Returns(original_text);
+            mock_spreadsheet_repo.Setup(x => x.Get_amount(MainSheetNames.Budget_out, Codes.Code003, 3))
+                .Returns(BaseAmount);
+            mock_spreadsheet_repo.Setup(x => x.Get_amount(MainSheetNames.Expected_out, Codes.Code003, 2))
+                .Returns(CurrentAmount);
+            var updated_text = "";
+            mock_spreadsheet_repo.Setup(x => x.Update_text(
+                MainSheetNames.Expected_out,
+                Codes.Code003,
+                It.IsAny<string>(),
+                4))
+                .Callback<string,string,string,int>((a, b, text, d) => { updated_text = text; });
             var budgeting_months = new BudgetingMonths
             {
-                Next_unplanned_month = 7,
-                Last_month_for_budget_planning = 8,
+                Next_unplanned_month = NextUnplannedMonth,
+                Last_month_for_budget_planning = NextUnplannedMonth + NumMonths - 1,
                 Start_year = 2020
             };
 
@@ -913,11 +930,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             spreadsheet.Update_owed_CHB(budgeting_months);
 
             // Assert
-            mock_spreadsheet_repo.Verify(x => x.Update_text(
-                MainSheetNames.Expected_out,
-                Codes.Code003,
-                ExpectedText,
-                4));
+            Assert.AreEqual(expected_text, updated_text);
         }
     }
 }

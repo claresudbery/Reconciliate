@@ -182,14 +182,18 @@ namespace ConsoleCatchall.Console.Reconciliation.Spreadsheets
             var base_amount = _spreadsheet_io.Get_amount(MainSheetNames.Budget_out, Codes.Code003);
             var current_amount = _spreadsheet_io.Get_amount(MainSheetNames.Expected_out, Codes.Code003, 2);
             var new_amount = current_amount + (base_amount * num_months);
+            var total_months = (current_amount / base_amount) + num_months;
             _spreadsheet_io.Update_amount(MainSheetNames.Expected_out, Codes.Code003, new_amount);
 
             var text = _spreadsheet_io.Get_text(MainSheetNames.Expected_out, Codes.Code003);
             if (!String.IsNullOrEmpty(text))
             {
-                text = text.Substring(0, text.Length - 9)
-                       + budgeting_months.Budgeting_end_date().ToString("MMM", CultureInfo.CurrentCulture)
-                       + $" {budgeting_months.Budgeting_end_date().Year})";
+                var begin_text = text.Substring(0, text.Length - 31);
+                var month_total = String.Format("{0:00}", total_months);
+                var start_date = text.Substring(text.Length - 21, 8);
+                var end_month = budgeting_months.Budgeting_end_date().ToString("MMM", CultureInfo.CurrentCulture);
+                var end_year = budgeting_months.Budgeting_end_date().Year;
+                text = $"{begin_text}{month_total} months {start_date} to {end_month} {end_year})";
                 _spreadsheet_io.Update_text(MainSheetNames.Expected_out, Codes.Code003, text);
             }
         }
