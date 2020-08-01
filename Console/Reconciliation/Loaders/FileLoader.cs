@@ -314,7 +314,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
             }
             catch (MonthlyBudgetedRowNotFoundException exception)
             {
-                string new_month = _input_output.Get_input(String.Format(ReconConsts.CantFindMortgageRow, exception.Message));
+                string new_month = _input_output.Get_input(String.Format(ReconConsts.CantFindPreviousBudgetRow, exception.Message));
                 try
                 {
                     if (!String.IsNullOrEmpty(new_month) && Char.IsDigit(new_month[0]))

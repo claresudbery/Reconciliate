@@ -893,7 +893,7 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         }
 
         [Test]
-        public void Will_update_text_when_updating_owed_CHB()
+        public void Will_update_text_with_num_months_and_month_range_when_updating_owed_CHB()
         {
             // Arrange
             const int NumMonths = 2;
@@ -919,6 +919,48 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
                 It.IsAny<string>(),
                 4))
                 .Callback<string,string,string,int>((a, b, text, d) => { updated_text = text; });
+            var budgeting_months = new BudgetingMonths
+            {
+                Next_unplanned_month = NextUnplannedMonth,
+                Last_month_for_budget_planning = NextUnplannedMonth + NumMonths - 1,
+                Start_year = 2020
+            };
+
+            // Act
+            spreadsheet.Update_owed_CHB(budgeting_months);
+
+            // Assert
+            Assert.AreEqual(expected_text, updated_text);
+        }
+
+
+        [Test]
+        public void Will_update_text_with_num_months_as_two_digits_when_updating_owed_CHB()
+        {
+            // Arrange
+            const int NumMonths = 2;
+            const int OldTotalMonths = 1;
+            const int NewTotalMonths = OldTotalMonths + NumMonths;
+            const double BaseAmount = 11;
+            const double CurrentAmount = OldTotalMonths * BaseAmount;
+            const int NextUnplannedMonth = 7;
+            string original_text = $"CHB owed (this is {String.Format("{0:00}", OldTotalMonths)} months Apr 2019 to Jun 2020)";
+            string expected_text = $"CHB owed (this is {String.Format("{0:00}", NewTotalMonths)} months Apr 2019 to Aug 2020)";
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            mock_spreadsheet_repo.Setup(x => x.Get_text(MainSheetNames.Expected_out, Codes.Code003, 4))
+                .Returns(original_text);
+            mock_spreadsheet_repo.Setup(x => x.Get_amount(MainSheetNames.Budget_out, Codes.Code003, 3))
+                .Returns(BaseAmount);
+            mock_spreadsheet_repo.Setup(x => x.Get_amount(MainSheetNames.Expected_out, Codes.Code003, 2))
+                .Returns(CurrentAmount);
+            var updated_text = "";
+            mock_spreadsheet_repo.Setup(x => x.Update_text(
+                MainSheetNames.Expected_out,
+                Codes.Code003,
+                It.IsAny<string>(),
+                4))
+                .Callback<string, string, string, int>((a, b, text, d) => { updated_text = text; });
             var budgeting_months = new BudgetingMonths
             {
                 Next_unplanned_month = NextUnplannedMonth,

@@ -491,7 +491,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             var result = reconciliate.Recursively_ask_for_budgeting_months<BankRecord>(mock_spreadsheet.Object, new BudgetItemListData());
 
             // Assert
-            Assert.IsTrue(_get_input_messages.Contains(String.Format(ReconConsts.CantFindMortgageRow, mortgageException.Message)));
+            Assert.IsTrue(_get_input_messages.Contains(String.Format(ReconConsts.CantFindPreviousBudgetRow, mortgageException.Message)));
             Assert.AreEqual(user_input_for_next_unplanned_month, result.Next_unplanned_month);
         }
         
