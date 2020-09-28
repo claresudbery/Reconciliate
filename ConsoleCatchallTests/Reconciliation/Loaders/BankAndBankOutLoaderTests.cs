@@ -354,13 +354,13 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
         }
 
         [Test]
-        public void Will_update_internet_when_generating_ad_hoc_data()
+        public void Will_update_domain_hosting_when_generating_ad_hoc_data()
         {
             // Arrange
             var bank_and_bank_out_loader = new BankAndBankOutLoader();
             var mock_input_output = new Mock<IInputOutput>();
             var mock_spreadsheet = new Mock<ISpreadsheet>();
-            mock_input_output.Setup(x => x.Get_input(It.Is<string>(y => y.Contains("internet")), ""))
+            mock_input_output.Setup(x => x.Get_input(It.Is<string>(y => y.Contains("domain hosting")), ""))
                 .Returns("2");
 
             // Act
@@ -378,7 +378,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 Codes.Code011,
                 Codes.Code011));
             mock_input_output.Verify(x => x.Get_input(
-                It.Is<string>(y => y.Contains("internet")), ""));
+                It.Is<string>(y => y.Contains("domain hosting")), ""));
         }
 
         [Test]

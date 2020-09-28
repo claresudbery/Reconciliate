@@ -108,7 +108,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Loaders
                 Update_monthly_item(input_output, spreadsheet, budgeting_months, "yoga", Codes.Code078, Codes.Code078);
                 Update_monthly_item(input_output, spreadsheet, budgeting_months, "fuel", Codes.Code006, Codes.Code006);
                 Update_monthly_item(input_output, spreadsheet, budgeting_months, "vet", Codes.Code007, Codes.Code007);
-                Update_monthly_item(input_output, spreadsheet, budgeting_months, "internet", Codes.Code011, Codes.Code011);
+                Update_monthly_item(input_output, spreadsheet, budgeting_months, "domain hosting", Codes.Code011, Codes.Code011);
             }
         }
 
