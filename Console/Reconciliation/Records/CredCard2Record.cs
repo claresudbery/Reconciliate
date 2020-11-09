@@ -21,11 +21,11 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
         public double Amount { get; set; }
 
         private char _default_separator = ',';
-        private int _expected_number_of_fields_per_row = 4;
+        private int _expected_number_of_fields_per_row = 5;
 
         public const int DateIndex = 0;
-        public const int AmountIndex = 2;
-        public const int DescriptionIndex = 3;
+        public const int AmountIndex = 4;
+        public const int DescriptionIndex = 1;
 
         public const int DateSpreadsheetIndex = CredCard2InOutRecord.MatchOffset + 0;
         public const int AmountSpreadsheetIndex = CredCard2InOutRecord.MatchOffset + 1;
@@ -57,8 +57,6 @@ namespace ConsoleCatchall.Console.Reconciliation.Records
             Date = values[DateIndex] != "" && values[DateIndex].Is_numeric()
                 ? DateTime.ParseExact(values[DateIndex], "dd/MM/yyyy", CultureInfo.InvariantCulture)
                 : Convert.ToDateTime("9/9/9999", StringHelper.Culture());
-
-            // values[1] is a reference field that we don't care about.
 
             string simple_amount = values[AmountIndex].TrimStart(new char[]{'"', ' '}).TrimEnd('"');
             Amount = Convert.ToDouble(simple_amount != "" && simple_amount.Is_numeric()

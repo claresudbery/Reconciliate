@@ -16,7 +16,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             // Arrange
             var cred_card2_record = new CredCard2Record();
             string expected_date_as_string = "08/06/2017";
-            string csv_line = String.Format("{0},ref,13.49,ACME UK HOLDINGS", expected_date_as_string);
+            string csv_line = String.Format("{0},ACME UK HOLDINGS,Ms Pippi Long,ref,13.49", expected_date_as_string);
             var expected_date = DateTime.ParseExact(expected_date_as_string, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             // Act 
@@ -32,7 +32,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             // Arrange
             var cred_card2_record = new CredCard2Record();
             var expected_description = "ACME UK HOLDINGS";
-            string csv_line = String.Format("08/06/2017,ref,13.49,{0},", expected_description);
+            string csv_line = String.Format("08/06/2017,{0},Ms Pippi Long,ref,13.49", expected_description);
 
             // Act 
             cred_card2_record.Load(csv_line);
@@ -48,7 +48,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             var cred_card2_record = new CredCard2Record();
             var expected_amount = 1.94;
             string input_amount = "\" " + expected_amount + "\"";
-            string csv_line = String.Format("08/06/2017,ref,{0},ACME UK HOLDINGS,General Purchases", input_amount);
+            string csv_line = String.Format("08/06/2017,ACME UK HOLDINGS,Ms Pippi Long,ref,{0}", input_amount);
 
             // Act 
             cred_card2_record.Load(csv_line);
@@ -63,7 +63,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             // Arrange
             var cred_card2_record = new CredCard2Record();
             var expected_date = new DateTime(9999, 9, 9);
-            string csv_line = String.Format(",ref,13.49,ACME UK HOLDINGS");
+            string csv_line = String.Format(",ACME UK HOLDINGS,Ms Pippi Long,ref,13.49");
 
             // Act 
             cred_card2_record.Load(csv_line);
@@ -77,7 +77,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var cred_card2_record = new CredCard2Record();
-            string csv_line = String.Format("08/06/2017,ref,13.49,");
+            string csv_line = String.Format("08/06/2017,,Ms Pippi Long,ref,13.49");
 
             // Act 
             cred_card2_record.Load(csv_line);
@@ -91,7 +91,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var cred_card2_record = new CredCard2Record();
-            string csv_line = String.Format("08/06/2017,ref,,ACME UK HOLDINGS");
+            string csv_line = String.Format("08/06/2017,ACME UK HOLDINGS,Ms Pippi Long,ref,");
 
             // Act 
             cred_card2_record.Load(csv_line);
@@ -107,7 +107,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             var cred_card2_record = new CredCard2Record();
             var expected_date = new DateTime(9999, 9, 9);
             var bad_date = "not a date";
-            string csv_line = String.Format("{0},ref,13.49,ACME UK HOLDINGS", bad_date);
+            string csv_line = String.Format("{0},ACME UK HOLDINGS,Ms Pippi Long,ref,13.49", bad_date);
 
             // Act 
             cred_card2_record.Load(csv_line);
@@ -122,7 +122,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             // Arrange
             var cred_card2_record = new CredCard2Record();
             var bad_amount = "not an amount";
-            string csv_line = String.Format("08/06/2017,ref,{0},ACME UK HOLDINGS", bad_amount);
+            string csv_line = String.Format("08/06/2017,ACME UK HOLDINGS,Ms Pippi Long,ref,{0}", bad_amount);
 
             // Act 
             cred_card2_record.Load(csv_line);
@@ -138,7 +138,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             var cred_card2_record = new CredCard2Record();
             var negative_amount = -23.23;
             string input_amount = "-" + negative_amount * -1;
-            string csv_line = String.Format("08/06/2017,ref,{0},ACME UK HOLDINGS", input_amount);
+            string csv_line = String.Format("08/06/2017,ACME UK HOLDINGS,Ms Pippi Long,ref,{0}", input_amount);
             cred_card2_record.Load(csv_line);
 
             // Act 
@@ -155,7 +155,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             var cred_card2_record = new CredCard2Record();
             var positive_amount = 23.23;
             string input_amount = positive_amount.ToString();
-            string csv_line = String.Format("08/06/2017,ref,{0},ACME UK HOLDINGS", input_amount);
+            string csv_line = String.Format("08/06/2017,ACME UK HOLDINGS,Ms Pippi Long,ref,{0}", input_amount);
             cred_card2_record.Load(csv_line);
 
             // Act 
@@ -170,7 +170,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
         {
             // Arrange
             var cred_card2_record = new CredCard2Record();
-            string csv_line = String.Format("08/06/2017,ref,13.49,ACME UK HOLDINGS");
+            string csv_line = String.Format("08/06/2017,ACME UK HOLDINGS,Ms Pippi Long,ref,13.49");
             cred_card2_record.Load(csv_line);
             cred_card2_record.Matched = false;
 
@@ -188,7 +188,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             // Arrange
             var cred_card2_record = new CredCard2Record();
             string text_containing_commas = "something, something, something else";
-            string csv_line = String.Format("08/06/2017,ref,13.49,{0}", text_containing_commas);
+            string csv_line = String.Format("08/06/2017,{0},Ms Pippi Long,ref,13.49", text_containing_commas);
 
             // Act 
             cred_card2_record.Load(csv_line);
@@ -204,7 +204,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             var cred_card2_record = new CredCard2Record();
             var amount = "123.55";
             var amount_with_pound_sign = "£" + amount;
-            string csv_line = String.Format("08/06/2017,ref,{0},ACME UK HOLDINGS", amount);
+            string csv_line = String.Format("08/06/2017,ACME UK HOLDINGS,Ms Pippi Long,ref,{0}", amount);
             cred_card2_record.Load(csv_line);
 
             // Act 
@@ -222,7 +222,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             // Arrange
             var cred_card2_record = new CredCard2Record();
             var negative_amount = "-123.55";
-            string csv_line = String.Format("08/06/2017,ref,{0},ACME UK HOLDINGS", negative_amount);
+            string csv_line = String.Format("08/06/2017,ACME UK HOLDINGS,Ms Pippi Long,ref,{0}", negative_amount);
 
             // Act 
             cred_card2_record.Load(csv_line);

@@ -265,7 +265,7 @@ namespace ConsoleCatchallTests.Reconciliation.Records
             string csv_line = String.Format("19/04/2017^£13.48^^Acme: Esmerelda's birthday^£33.44");
             cred_card2_in_out_record.Load(csv_line);
             cred_card2_in_out_record.Matched = true;
-            string matched_record_csv_line = String.Format("08/06/2017,ref,13.49,ACME UK HOLDINGS");
+            string matched_record_csv_line = String.Format("08/06/2017,ACME UK HOLDINGS,Ms Pippi Long,ref,13.49");
             var matched_record = new CredCard2Record();
             matched_record.Load(matched_record_csv_line);
             cred_card2_in_out_record.Match = matched_record;
