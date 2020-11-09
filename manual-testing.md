@@ -12,7 +12,7 @@ The quickest way to get up and running for testing purposes is:
 2. Check paths in SampleConfig.xml: At the time of writing, Test_backup_file_path is set to C:/Temp/ManualTesting/TestSpreadsheetBackups. You either need to create these folders or edit that path value in the xml.
 3. Edit Config.xml so that it contains the path to the repo version of SampleConfig.xml (which is in the spreadsheet-samples folder).
 (If you're on a Mac, it's similar but slightly different - see [README.md](/README.md)).
-4. Jump to [the next section](#issues-to-know-about-while-testing) and start testing.
+4. Jump to [the next section](#running-the-tests) and start testing.
 
 If you haven't edited your config at all then everything will work as-is. If you have edited your config, you need to do the following:
 
@@ -33,7 +33,9 @@ After you've copied the csv / txt files you may need to rename them, depending o
 * Default_cred_card1_in_out_pending_file_name  
 * Default_cred_card2_file_name
 
-Then you can run the software in one of the debug modes. See "things to know while testing" below. If you're using the test data, see "What to expect from the test data" below.
+## Running the tests
+
+Now you can run the software in one of the debug modes (see readme.md). See "things to know while testing" below. If you're using the test data, see "What to expect from the test data" below.
 
 ## Issues to know about while testing
 
