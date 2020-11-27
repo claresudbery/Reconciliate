@@ -815,29 +815,6 @@ namespace ConsoleCatchall.Console.Reconciliation
             expected_income_csv_file.Populate_records_from_original_file_load();
         }
 
-        public void Bank_and_bank_out__Merge_bespoke_data_with_pending_file(
-                IInputOutput input_output,
-                ISpreadsheet spreadsheet,
-                ICSVFile<BankRecord> pending_file,
-                BudgetingMonths budgeting_months,
-                DataLoadingInformation data_loading_info)
-        {
-            var file_loader = new FileLoader();
-            file_loader.Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
-                input_output,
-                spreadsheet,
-                pending_file,
-                ReconConsts.Cred_card1_name,
-                ReconConsts.Cred_card1_dd_description);
-
-            file_loader.Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
-                input_output,
-                spreadsheet,
-                (ICSVFile<BankRecord>)pending_file,
-                ReconConsts.Cred_card2_name,
-                ReconConsts.Cred_card2_dd_description);
-        }
-
         public void Cred_card1_and_cred_card1_in_out__Merge_bespoke_data_with_pending_file(
                 IInputOutput input_output,
                 ISpreadsheet spreadsheet,
