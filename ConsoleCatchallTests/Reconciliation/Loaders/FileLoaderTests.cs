@@ -52,7 +52,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             Assert.AreEqual("POS", pending_record.Type);
         }
 
-        private ReconciliationIntro Set_up_for_CredCard1_and_CredCard2_data(
+        private FileLoader Set_up_for_CredCard1_and_CredCard2_data(
             DateTime last_direct_debit_date,
             double expected_amount1,
             double expected_amount2,
@@ -81,7 +81,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
                 mock_spreadsheet_repo,
                 2);
 
-            return new ReconciliationIntro(mock_input_output.Object);
+            return new FileLoader();
         }
 
         private void Set_up_for_credit_card_data(
@@ -143,7 +143,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             TestHelper.Set_correct_date_formatting();
             var mock_input_output = new Mock<IInputOutput>();
             var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
-            var reconciliation_intro = Set_up_for_CredCard1_and_CredCard2_data(
+            var file_loader = Set_up_for_CredCard1_and_CredCard2_data(
                 last_direct_debit_date,
                 expected_amount1,
                 expected_amount2,
@@ -155,7 +155,7 @@ namespace ConsoleCatchallTests.Reconciliation.Loaders
             mock_pending_file.Setup(x => x.Records).Returns(pending_records);
 
             // Act
-            reconciliation_intro.Bank_and_bank_out__Merge_bespoke_data_with_pending_file(
+            file_loader.Bank_and_bank_out__Merge_bespoke_data_with_pending_file(
                 mock_input_output.Object,
                 spreadsheet,
                 mock_pending_file.Object,
