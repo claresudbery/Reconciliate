@@ -670,7 +670,8 @@ namespace ConsoleCatchall.Console.Reconciliation
                 data_loading_info.Monthly_budget_data,
                 data_loading_info.Annual_budget_data);
             _input_output.Output_line("Merging bespoke data with pending file...");
-            Bank_and_bank_out__Merge_bespoke_data_with_pending_file(_input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
+            var file_loader = new FileLoader();
+            file_loader.Bank_and_bank_out__Merge_bespoke_data_with_pending_file(_input_output, spreadsheet, pending_file, budgeting_months, data_loading_info);
             _input_output.Output_line("Updating source lines for output...");
             pending_file.Update_source_lines_for_output(data_loading_info.Loading_separator);
 
@@ -821,14 +822,15 @@ namespace ConsoleCatchall.Console.Reconciliation
                 BudgetingMonths budgeting_months,
                 DataLoadingInformation data_loading_info)
         {
-            Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
+            var file_loader = new FileLoader();
+            file_loader.Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
                 input_output,
                 spreadsheet,
                 pending_file,
                 ReconConsts.Cred_card1_name,
                 ReconConsts.Cred_card1_dd_description);
 
-            Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
+            file_loader.Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
                 input_output,
                 spreadsheet,
                 (ICSVFile<BankRecord>)pending_file,
@@ -934,44 +936,6 @@ namespace ConsoleCatchall.Console.Reconciliation
                 balance_column: 5,
                 text_column: 6,
                 code_column: 4);
-        }
-
-        private void Bank_and_bank_out__Add_most_recent_credit_card_direct_debits(
-            IInputOutput input_output,
-            ISpreadsheet spreadsheet,
-            ICSVFile<BankRecord> pending_file,
-            string cred_card_name,
-            string direct_debit_description)
-        {
-            var most_recent_cred_card_direct_debit = spreadsheet.Get_most_recent_row_containing_text<BankRecord>(
-                MainSheetNames.Bank_out,
-                direct_debit_description,
-                new List<int> { ReconConsts.DescriptionColumn, ReconConsts.DdDescriptionColumn });
-
-            var next_date = most_recent_cred_card_direct_debit.Date.AddMonths(1);
-            var input = input_output.Get_input(string.Format(
-                ReconConsts.AskForCredCardDirectDebit,
-                cred_card_name,
-                next_date.ToShortDateString()));
-            while (input != "0")
-            {
-                double amount;
-                if (double.TryParse(input, out amount))
-                {
-                    pending_file.Records.Add(new BankRecord
-                    {
-                        Date = next_date,
-                        Description = direct_debit_description,
-                        Type = "POS",
-                        Unreconciled_amount = amount
-                    });
-                }
-                next_date = next_date.Date.AddMonths(1);
-                input = input_output.Get_input(string.Format(
-                    ReconConsts.AskForCredCardDirectDebit,
-                    cred_card_name,
-                    next_date.ToShortDateString()));
-            }
         }
 
         #endregion File loading
