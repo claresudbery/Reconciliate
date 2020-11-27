@@ -553,9 +553,10 @@ namespace ConsoleCatchall.Console.Reconciliation
                         }
                         break;
                     case ReconciliationType.BankAndBankOut:
-                        {
+                    {
+                        var file_loader = new FileLoader(_input_output, _spreadsheet_factory);
                             reconciliation_interface =
-                                Load_bank_and_bank_out(
+                                file_loader.Load_bank_and_bank_out(
                                     spreadsheet,
                                     budgeting_months,
                                     main_file_paths);
