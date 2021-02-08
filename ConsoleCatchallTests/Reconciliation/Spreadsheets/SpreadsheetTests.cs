@@ -864,9 +864,9 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
         public void Will_calculate_owed_CHB_as_num_budgeting_months_times_base_amount_plus_previous_amount_and_use_Code003()
         {
             // Arrange
-            const double BaseAmount = 30;
-            const double PreviousAmount = 1000;
-            const int NumMonths = 2;
+            const double BaseAmount = 91;
+            const double PreviousAmount = 1167;
+            const int NumMonths = 3;
             const double ExpectedAmount = PreviousAmount + (BaseAmount * NumMonths);
             var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
             var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
@@ -877,8 +877,8 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
             var budgeting_months = new BudgetingMonths
             {
                 Next_unplanned_month = 1,
-                Last_month_for_budget_planning = 2,
-                Start_year = 2020
+                Last_month_for_budget_planning = 3,
+                Start_year = 2021
             };
 
             // Act
@@ -924,6 +924,49 @@ namespace ConsoleCatchallTests.Reconciliation.Spreadsheets
                 Next_unplanned_month = NextUnplannedMonth,
                 Last_month_for_budget_planning = NextUnplannedMonth + NumMonths - 1,
                 Start_year = 2020
+            };
+
+            // Act
+            spreadsheet.Update_owed_CHB(budgeting_months);
+
+            // Assert
+            Assert.AreEqual(expected_text, updated_text);
+        }
+
+        [Test]
+        public void Will_update_text_with_num_months_and_month_range_when_updating_owed_CHB_and_total_period_is_12_months()
+        {
+            // Arrange
+            const int NumMonths = 3;
+            const int OldTotalMonths = 9;
+            const int NewTotalMonths = OldTotalMonths + NumMonths;
+            const double BaseAmount = 11;
+            const double CurrentAmount = OldTotalMonths * BaseAmount;
+            const int NextUnplannedMonth = 1;
+            string strOldTotalMonths = $"{OldTotalMonths:00}";
+            string strNewTotalMonths = $"{NewTotalMonths:00}";
+            string original_text = $"CHB owed (this is {strOldTotalMonths} months Apr 2020 to Dec 2020)";
+            string expected_text = $"CHB owed (this is {strNewTotalMonths} months Apr 2020 to Mar 2021)";
+            var mock_spreadsheet_repo = new Mock<ISpreadsheetRepo>();
+            var spreadsheet = new Spreadsheet(mock_spreadsheet_repo.Object);
+            mock_spreadsheet_repo.Setup(x => x.Get_text(MainSheetNames.Expected_out, Codes.Code003, 4))
+                .Returns(original_text);
+            mock_spreadsheet_repo.Setup(x => x.Get_amount(MainSheetNames.Budget_out, Codes.Code003, 3))
+                .Returns(BaseAmount);
+            mock_spreadsheet_repo.Setup(x => x.Get_amount(MainSheetNames.Expected_out, Codes.Code003, 2))
+                .Returns(CurrentAmount);
+            var updated_text = "";
+            mock_spreadsheet_repo.Setup(x => x.Update_text(
+                MainSheetNames.Expected_out,
+                Codes.Code003,
+                It.IsAny<string>(),
+                4))
+                .Callback<string, string, string, int>((a, b, text, d) => { updated_text = text; });
+            var budgeting_months = new BudgetingMonths
+            {
+                Next_unplanned_month = NextUnplannedMonth,
+                Last_month_for_budget_planning = NextUnplannedMonth + NumMonths - 1,
+                Start_year = 2021
             };
 
             // Act
