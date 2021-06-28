@@ -177,6 +177,38 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
+        public void Will_create_match_with_candidates_whose_total_sum_is_equal_to_target_when_some_candidates_have_negative_amounts()
+        {
+            // Arrange
+            var amount_to_match = 40.00;
+            CredCard2Record transaction_to_match = new CredCard2Record
+            {
+                Amount = amount_to_match,
+                Date = DateTime.Today
+            };
+            List<CredCard2InOutRecord> candidate_rows = new List<CredCard2InOutRecord> {
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 30.00, Description = "Match01" },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = -10.00, Description = "Match02" },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = -5.00, Description = "Match02" },
+                new CredCard2InOutRecord { Date = DateTime.Today, Unreconciled_amount = 25.00, Description = "Match03" }
+            };
+            _cred_card2_in_out_file_io.Setup(x => x.Load(It.IsAny<List<string>>(), null)).Returns(candidate_rows);
+            _cred_card2_in_out_file.Load();
+            var matcher = new MultipleAmountMatcher<CredCard2Record, CredCard2InOutRecord>();
+
+            // Act
+            var result = matcher.Find_matches(transaction_to_match, _cred_card2_in_out_file).ToList();
+
+            // Assert
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(4, result[0].Actual_records.Count);
+            Assert.AreEqual(candidate_rows[0].Unreconciled_amount, result[0].Actual_records[0].Main_amount());
+            Assert.AreEqual(candidate_rows[1].Unreconciled_amount, result[0].Actual_records[1].Main_amount());
+            Assert.AreEqual(candidate_rows[2].Unreconciled_amount, result[0].Actual_records[2].Main_amount());
+            Assert.AreEqual(candidate_rows[3].Unreconciled_amount, result[0].Actual_records[3].Main_amount());
+        }
+
+        [Test]
         public void Will_create_single_match_with_multiple_candidates_whose_total_sum_is_too_small()
         {
             // Arrange
