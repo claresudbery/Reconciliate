@@ -27,7 +27,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
-        public void M_WillFilterOwnedFileForiTunesTransactionsOnly()
+        public void M_WillFilterOwnedFileForSpecifiedTransactionsOnly()
         {
             // Arrange
             var mock_cred_card2_in_out_file_io = new Mock<IFileIO<CredCard2InOutRecord>>();
@@ -67,7 +67,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
-        public void M_WillFilterThirdPartyFileForiTunesTransactionsOnly()
+        public void M_WillFilterThirdPartyFileForSpecifiedTransactionsOnly()
         {
             // Arrange
             var mock_cred_card2_file_io = new Mock<IFileIO<CredCard2Record>>();
@@ -100,7 +100,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
         }
 
         [Test]
-        public void M_WhenAmazonMatchingWillFilterOwnedFileForiTunesTransactionsOnly()
+        public void M_WhenTransactionMatchingWillFilterOwnedFileForSpecifiedTransactionsOnly()
         {
             // Arrange
             var mock_reconciliator = new Mock<IReconciliator<CredCard2Record, CredCard2InOutRecord>>();
@@ -108,14 +108,14 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
             // Act
-            matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
+            matcher.Do_transaction_matching(mock_reconciliator.Object, mock_reconciliation_interface.Object);
 
             // Assert
             mock_reconciliator.Verify(x => x.Filter_owned_file(matcher.Is_not_owned_matching_transaction));
         }
 
         [Test]
-        public void M_WhenAmazonMatchingWillFilterThirdPartyFileForAmazonTransactionsOnly()
+        public void M_WhenTransactionMatchingWillFilterThirdPartyFileForSpecifiedTransactionsOnly()
         {
             // Arrange
             var mock_reconciliator = new Mock<IReconciliator<CredCard2Record, CredCard2InOutRecord>>();
@@ -123,14 +123,14 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
             // Act
-            matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
+            matcher.Do_transaction_matching(mock_reconciliator.Object, mock_reconciliation_interface.Object);
 
             // Assert
             mock_reconciliator.Verify(x => x.Filter_third_party_file(matcher.Is_not_third_party_matching_transaction));
         }
 
         [Test]
-        public void M_WhenAmazonMatchingWillRefreshFilesAtEnd()
+        public void M_WhenTransactionMatchingWillRefreshFilesAtEnd()
         {
             // Arrange
             var mock_reconciliator = new Mock<IReconciliator<CredCard2Record, CredCard2InOutRecord>>();
@@ -138,14 +138,14 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
             // Act
-            matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
+            matcher.Do_transaction_matching(mock_reconciliator.Object, mock_reconciliation_interface.Object);
 
             // Assert
             mock_reconciliator.Verify(x => x.Refresh_files());
         }
 
         [Test]
-        public void M_WhenAmazonMatchingWillSetMatchFindingDelegate()
+        public void M_WhenTransactionMatchingWillSetMatchFindingDelegate()
         {
             // Arrange
             var mock_reconciliator = new Mock<IReconciliator<CredCard2Record, CredCard2InOutRecord>>();
@@ -153,14 +153,14 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
             // Act
-            matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
+            matcher.Do_transaction_matching(mock_reconciliator.Object, mock_reconciliation_interface.Object);
 
             // Assert
             mock_reconciliator.Verify(x => x.Set_match_finder(matcher.Find_matches));
         }
 
         [Test]
-        public void M_WhenAmazonMatchingWillRewindReconciliator()
+        public void M_WhenTransactionMatchingWillRewindReconciliator()
         {
             // Arrange
             var mock_reconciliator = new Mock<IReconciliator<CredCard2Record, CredCard2InOutRecord>>();
@@ -168,14 +168,14 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
             // Act
-            matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
+            matcher.Do_transaction_matching(mock_reconciliator.Object, mock_reconciliation_interface.Object);
 
             // Assert
             mock_reconciliator.Verify(x => x.Rewind());
         }
 
         [Test]
-        public void M_WhenAmazonMatchingWillResetMatchFindingDelegateAtEnd()
+        public void M_WhenTransactionMatchingWillResetMatchFindingDelegateAtEnd()
         {
             // Arrange
             var mock_reconciliator = new Mock<IReconciliator<CredCard2Record, CredCard2InOutRecord>>();
@@ -183,14 +183,14 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
             // Act
-            matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
+            matcher.Do_transaction_matching(mock_reconciliator.Object, mock_reconciliation_interface.Object);
 
             // Assert
             mock_reconciliator.Verify(x => x.Reset_match_finder());
         }
 
         [Test]
-        public void M_WhenAmazonMatchingWillSetRecordMatchingDelegate()
+        public void M_WhenTransactionMatchingWillSetRecordMatchingDelegate()
         {
             // Arrange
             var mock_reconciliator = new Mock<IReconciliator<CredCard2Record, CredCard2InOutRecord>>();
@@ -198,14 +198,14 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
             // Act
-            matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
+            matcher.Do_transaction_matching(mock_reconciliator.Object, mock_reconciliation_interface.Object);
 
             // Assert
             mock_reconciliator.Verify(x => x.Set_record_matcher(matcher.Match_specified_records));
         }
 
         [Test]
-        public void M_WhenAmazonMatchingWillDoSemiAutomaticMatching()
+        public void M_WhenTransactionMatchingWillDoSemiAutomaticMatching()
         {
             // Arrange
             var mock_reconciliator = new Mock<IReconciliator<CredCard2Record, CredCard2InOutRecord>>();
@@ -213,14 +213,14 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
             // Act
-            matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
+            matcher.Do_transaction_matching(mock_reconciliator.Object, mock_reconciliation_interface.Object);
 
             // Assert
             mock_reconciliation_interface.Verify(x => x.Do_semi_automatic_matching());
         }
 
         [Test]
-        public void M_WhenAmazonMatchingWillResetRecordMatchingDelegate()
+        public void M_WhenTransactionMatchingWillResetRecordMatchingDelegate()
         {
             // Arrange
             var mock_reconciliator = new Mock<IReconciliator<CredCard2Record, CredCard2InOutRecord>>();
@@ -228,7 +228,7 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
 
             // Act
-            matcher.Do_preliminary_stuff(mock_reconciliator.Object, mock_reconciliation_interface.Object);
+            matcher.Do_transaction_matching(mock_reconciliator.Object, mock_reconciliation_interface.Object);
 
             // Assert
             mock_reconciliator.Verify(x => x.Reset_record_matcher());

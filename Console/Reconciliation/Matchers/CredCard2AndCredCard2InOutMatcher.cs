@@ -67,7 +67,7 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             Do_transaction_matching(reconciliator, reconciliation_interface);
         }
 
-        private void Do_transaction_matching(
+        public void Do_transaction_matching(
             IReconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator,
             IReconciliationInterface<CredCard2Record, CredCard2InOutRecord> reconciliation_interface)
         {
