@@ -82,7 +82,7 @@ Experiment with the following:
 * Matching or ignoring the semi-automatic matches. 
 * Reversing manual matches by following instructions on screen.
 * Using the "Go again" functionality to match any unmatched transaction from ActualBank.
-* Matching single third party transactions against multiple targets - currently used for expenses (BankIn), Amazon (CredCard2) and iTunes (CredCard2).
+* Matching single third party transactions against multiple targets - currently used for expenses (BankIn), Amazon (CredCard2), iTunes (CredCard2) and Asda (CredCard2).
 
 Once you're done, choose "Write csv and finish." If you're on Windows (but not on Mac) this will have the effect of writing the results to the relevant worksheets in the spreadsheet. At the time of writing, you have to check the debug spreadsheet after each of the four modes (BankIn, BankOut etc) because it will be wiped and rewritten between each mode. 
 

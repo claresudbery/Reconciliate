@@ -56,6 +56,7 @@
         public static string Employer_expense_description => XmlReader.Read_xml(nameof(Employer_expense_description));
         public static string Amazon_description => XmlReader.Read_xml(nameof(Amazon_description));
         public static string iTunes_description => XmlReader.Read_xml(nameof(iTunes_description));
+        public static string Asda_description => XmlReader.Read_xml(nameof(Asda_description));
 
         public static string Cred_card1_name => XmlReader.Read_xml(nameof(Cred_card1_name));
         public static string Cred_card2_name => XmlReader.Read_xml(nameof(Cred_card2_name));
@@ -164,6 +165,7 @@
         public const string SeveralExpenses = "Expenses - see Expected In";
         public const string SeveralAmazonTransactions = "Amazon";
         public const string SeveraliTunesTransactions = "iTunes";
+        public const string SeveralAsdaTransactions = "Asda";
 
         public const int PartialDateMatchThreshold = 3;
         public const int PartialAmountMatchThreshold = 2;

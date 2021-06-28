@@ -49,6 +49,10 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             Do_iTunes_transaction_matching(
                 reconciliator as IReconciliator<CredCard2Record, CredCard2InOutRecord>,
                 reconciliation_interface as IReconciliationInterface<CredCard2Record, CredCard2InOutRecord>);
+
+            Do_Asda_transaction_matching(
+                reconciliator as IReconciliator<CredCard2Record, CredCard2InOutRecord>,
+                reconciliation_interface as IReconciliationInterface<CredCard2Record, CredCard2InOutRecord>);
         }
 
         private void Do_amazon_transaction_matching(
@@ -64,6 +68,14 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             IReconciliationInterface<CredCard2Record, CredCard2InOutRecord> reconciliation_interface)
         {
             SetiTunesStrings();
+            Do_transaction_matching(reconciliator, reconciliation_interface);
+        }
+
+        private void Do_Asda_transaction_matching(
+            IReconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator,
+            IReconciliationInterface<CredCard2Record, CredCard2InOutRecord> reconciliation_interface)
+        {
+            SetAsdaStrings();
             Do_transaction_matching(reconciliator, reconciliation_interface);
         }
 
@@ -100,6 +112,13 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
             _match_description_qualifier = ReconConsts.iTunes_description;
             _transactions_dont_add_up = ReconConsts.TransactionsDontAddUp;
             _several_transactions = ReconConsts.SeveraliTunesTransactions;
+        }
+
+        public void SetAsdaStrings()
+        {
+            _match_description_qualifier = ReconConsts.Asda_description;
+            _transactions_dont_add_up = ReconConsts.TransactionsDontAddUp;
+            _several_transactions = ReconConsts.SeveralAsdaTransactions;
         }
 
         public void Filter_matching_transactions_from_cred_card2(IReconciliator<CredCard2Record, CredCard2InOutRecord> reconciliator)
