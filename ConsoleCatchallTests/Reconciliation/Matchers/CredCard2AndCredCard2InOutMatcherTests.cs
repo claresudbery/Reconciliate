@@ -466,13 +466,6 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var mock_owned_file = new Mock<ICSVFile<CredCard2InOutRecord>>();
             mock_owned_file.Setup(x => x.Records).Returns(new List<CredCard2InOutRecord>());
             var matcher = new CredCard2AndCredCard2InOutMatcher(this);
-            var source_record = new CredCard2Record
-            {
-                Date = DateTime.Today,
-                Amount = 34.56,
-                Match = null,
-                Matched = false
-            };
             var potential_matches = new List<IPotentialMatch>
             {
                 new PotentialMatch
@@ -488,6 +481,13 @@ namespace ConsoleCatchallTests.Reconciliation.Matchers
             var index = 0;
             var matches = potential_matches[index].Actual_records;
             var expected_amount = matches[0].Main_amount() + matches[1].Main_amount() + matches[2].Main_amount();
+            var source_record = new CredCard2Record
+            {
+                Date = DateTime.Today,
+                Amount = expected_amount + 10,
+                Match = null,
+                Matched = false
+            };
             var record_for_matching = new RecordForMatching<CredCard2Record>(source_record, potential_matches);
 
             // Act
