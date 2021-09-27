@@ -50,9 +50,9 @@ namespace ConsoleCatchall.Console.Reconciliation.Matchers
                 reconciliator as IReconciliator<CredCard2Record, CredCard2InOutRecord>,
                 reconciliation_interface as IReconciliationInterface<CredCard2Record, CredCard2InOutRecord>);
 
-            Do_Asda_transaction_matching(
+            /* Do_Asda_transaction_matching(
                 reconciliator as IReconciliator<CredCard2Record, CredCard2InOutRecord>,
-                reconciliation_interface as IReconciliationInterface<CredCard2Record, CredCard2InOutRecord>);
+               reconciliation_interface as IReconciliationInterface<CredCard2Record, CredCard2InOutRecord>);*/
         }
 
         private void Do_amazon_transaction_matching(
